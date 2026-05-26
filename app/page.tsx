@@ -155,7 +155,7 @@ export default function Home() {
             alt=""
             fill
             priority
-            style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.45 }}
+            style={{ objectFit: 'cover', objectPosition: 'center 65%', opacity: 0.55 }}
           />
         </div>
         <div className="hero-particles" id="heroParticles" />
