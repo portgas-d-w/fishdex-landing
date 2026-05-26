@@ -129,6 +129,20 @@ export default function Home() {
       pillar.addEventListener('mouseleave', () => { pillar.style.paddingLeft = '0'; pillar.style.borderLeft = 'none' })
     })
 
+    // Burger menu mobile
+    const burger = document.getElementById('navBurger')
+    const navLinks = document.querySelector('.nav-links') as HTMLElement | null
+    const handleBurger = () => {
+      navLinks?.classList.toggle('open')
+      burger?.classList.toggle('open')
+    }
+    burger?.addEventListener('click', handleBurger)
+    // Ferme le menu au clic sur un lien
+    navLinks?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      navLinks.classList.remove('open')
+      burger?.classList.remove('open')
+    }))
+
     return () => {
       window.removeEventListener('scroll', handleNavScroll)
       window.removeEventListener('scroll', handleParallax)
