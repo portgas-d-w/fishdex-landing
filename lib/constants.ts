@@ -1,4 +1,4 @@
-export const APP_URL = 'https://fish-dex-six.vercel.app'
+export const APP_URL = 'https://app.fishdex.fr'
 export const SITE_URL = 'https://fishdex.fr'
 export const CONTACT_EMAIL = 'contact@fishdex.fr'
 

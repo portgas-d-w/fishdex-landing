@@ -1,98 +1,129 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Camera, MapPin, BookOpen, BarChart2, Cloud, Fish } from 'lucide-react'
 
-const FEATURES = [
-  {
-    icon: Fish,
-    title: 'FishDex complet',
-    desc: '92 espèces d\'eau douce françaises avec fiches détaillées, habitats, records, et système de rareté.',
-    color: '#22d3ee',
-  },
-  {
-    icon: Camera,
-    title: 'Capture & IA',
-    desc: 'Photographie ta prise, l\'IA identifie l\'espèce et estime la taille. Chaque capture devient un souvenir.',
-    color: '#c084fc',
-    pro: true,
-  },
-  {
-    icon: MapPin,
-    title: 'Spots & sessions',
-    desc: 'Géolocalise tes spots secrets, démarre une session, note tes conditions. Retrouve tout plus tard.',
-    color: '#34d399',
-  },
-  {
-    icon: BarChart2,
-    title: 'Statistiques',
-    desc: 'Suivi de progression, espèces les plus pêchées, meilleurs spots, évolution dans le temps.',
-    color: '#f59e0b',
-    pro: true,
-  },
-  {
-    icon: Cloud,
-    title: 'Météo intelligente',
-    desc: 'Conditions actuelles pour tes spots, conseils de pêche adaptés à la météo du moment.',
-    color: '#60a5fa',
-    pro: true,
-  },
-  {
-    icon: BookOpen,
-    title: 'Journal vivant',
-    desc: 'Tes sessions prennent vie — photos, ressentis, conditions. Un carnet qui grandit avec toi.',
-    color: '#fb7185',
-  },
-]
+const reveal = {
+  hidden: { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0 },
+}
+const transition = (delay = 0) => ({ duration: 1.4, ease: [0.22, 1, 0.36, 1] as const, delay })
+const viewport = { once: true }
 
 export default function FeaturesSection() {
   return (
-    <section id="features" className="py-32 px-6">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-20"
-        >
-          <p className="text-xs text-cyan-400/60 uppercase tracking-[0.2em] mb-4">Fonctionnalités</p>
-          <h2 className="text-4xl md:text-5xl font-light text-white mb-4">
-            Tout pour vivre la pêche
-          </h2>
-          <p className="text-white/35 text-lg font-light">Sans fioritures. Sans notifications inutiles.</p>
-        </motion.div>
+    <>
+      {/* CHAPITRE 01 — DÉCOUVRIR */}
+      <section id="features" style={{ position: 'relative', height: '85vh', minHeight: 600, overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=1920&q=80" alt="Truite" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,#060d18 0%,rgba(6,13,24,.45) 55%,rgba(6,13,24,.35) 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right,rgba(6,13,24,.7) 0%,rgba(6,13,24,.2) 60%,transparent 100%)' }} />
+        </div>
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0 60px 80px', maxWidth: 1400, margin: '0 auto' }}>
+          <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={viewport} transition={transition(0)}
+            style={{ fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20 }}
+          >
+            01
+            <span style={{ display: 'block', width: 48, height: 1, background: 'rgba(255,255,255,0.12)' }} />
+          </motion.div>
+          <motion.h2 variants={reveal} initial="hidden" whileInView="visible" viewport={viewport} transition={transition(0.1)}
+            className="playfair"
+            style={{ fontSize: 'clamp(60px,8vw,108px)', fontWeight: 300, letterSpacing: '-0.03em', lineHeight: 0.95, color: '#fff', marginBottom: 14 }}
+          >
+            Découvrir.
+          </motion.h2>
+          <motion.p variants={reveal} initial="hidden" whileInView="visible" viewport={viewport} transition={transition(0.2)}
+            style={{ fontSize: 18, color: 'rgba(180,225,255,0.45)', fontStyle: 'italic', fontWeight: 300, marginBottom: 8 }}
+          >
+            92 espèces. Un monde vivant.
+          </motion.p>
+          <motion.p variants={reveal} initial="hidden" whileInView="visible" viewport={viewport} transition={transition(0.35)}
+            style={{ fontSize: 14, color: 'rgba(255,255,255,0.4)', fontWeight: 300 }}
+          >
+            Chaque poisson d&apos;eau douce de France, documenté. Biologie, techniques, conditions idéales.
+          </motion.p>
+        </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {FEATURES.map((feat, i) => (
-            <motion.div
-              key={feat.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.08 }}
-              className="glass rounded-2xl p-6 relative group hover:border-white/14 transition-all duration-300"
+      {/* SPLIT — CAPTURER */}
+      <div style={{ padding: '120px 60px', background: '#060d18' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 120, alignItems: 'center' }}>
+          <div>
+            <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={viewport} transition={transition(0)}
+              style={{ fontSize: 10, letterSpacing: '0.45em', textTransform: 'uppercase', color: 'rgba(34,211,238,0.4)', marginBottom: 24 }}
             >
-              {feat.pro && (
-                <span
-                  className="absolute top-4 right-4 text-[10px] px-2 py-0.5 rounded-full font-medium"
-                  style={{ background: 'rgba(192,132,252,0.12)', color: '#c084fc', border: '1px solid rgba(192,132,252,0.2)' }}
-                >
-                  Pro
-                </span>
-              )}
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                style={{ background: `${feat.color}14`, border: `1px solid ${feat.color}22` }}
-              >
-                <feat.icon size={18} style={{ color: feat.color }} strokeWidth={1.5} />
-              </div>
-              <h3 className="text-white font-medium mb-2">{feat.title}</h3>
-              <p className="text-white/35 text-sm leading-relaxed font-light">{feat.desc}</p>
+              02 · Capturer
             </motion.div>
-          ))}
+            <motion.h2 variants={reveal} initial="hidden" whileInView="visible" viewport={viewport} transition={transition(0.1)}
+              className="playfair"
+              style={{ fontSize: 'clamp(44px,5vw,72px)', fontWeight: 300, lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: 24 }}
+            >
+              L&apos;instant<br /><em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.4)' }}>devient souvenir.</em>
+            </motion.h2>
+            <motion.p variants={reveal} initial="hidden" whileInView="visible" viewport={viewport} transition={transition(0.2)}
+              style={{ fontSize: 15, color: 'rgba(255,255,255,0.4)', lineHeight: 1.8, maxWidth: 420 }}
+            >
+              Photographier, identifier, garder. Chaque prise prend sa place dans ton encyclopédie personnelle.
+            </motion.p>
+          </div>
+
+          <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={viewport} transition={transition(0.1)} style={{ position: 'relative' }}>
+            <div style={{ position: 'absolute', inset: -40, borderRadius: 80, background: 'radial-gradient(circle,rgba(34,211,238,.12) 0%,transparent 70%)', filter: 'blur(20px)', pointerEvents: 'none' }} />
+            <div style={{ width: 280, margin: '0 auto', borderRadius: 48, padding: 12, background: 'linear-gradient(145deg,rgba(80,90,110,.4),rgba(20,30,50,.6))', boxShadow: '0 40px 80px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.06)', position: 'relative' }}>
+              <div style={{ position: 'absolute', top: 8, left: '50%', transform: 'translateX(-50%)', width: 80, height: 20, background: '#000', borderRadius: 10, zIndex: 10 }} />
+              <div style={{ borderRadius: 38, overflow: 'hidden', aspectRatio: '9/19.5', background: 'linear-gradient(160deg,#0a1628,#0d2240)', position: 'relative' }}>
+                <div style={{ padding: '40px 20px 20px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+                  <div style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.06)', borderRadius: 16, padding: 16, backdropFilter: 'blur(10px)' }}>
+                    <div style={{ fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(34,211,238,.6)', marginBottom: 8 }}>Capture enregistrée</div>
+                    <div className="playfair" style={{ fontSize: 18, fontWeight: 300, color: '#fff', marginBottom: 4 }}>Truite fario</div>
+                    <div style={{ fontSize: 11, color: 'rgba(255,255,255,.4)', marginBottom: 12, fontStyle: 'italic' }}>Salmo trutta fario</div>
+                    <div style={{ display: 'flex', gap: 16 }}>
+                      <div><div style={{ fontSize: 14, color: '#fff', fontWeight: 300 }}>52 cm</div><div style={{ fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,.3)', marginTop: 2 }}>Taille</div></div>
+                      <div><div style={{ fontSize: 14, color: '#fff', fontWeight: 300 }}>1.4 kg</div><div style={{ fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,.3)', marginTop: 2 }}>Poids</div></div>
+                      <div><div style={{ fontSize: 14, color: '#60a5fa', fontWeight: 300 }}>Rare</div><div style={{ fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,.3)', marginTop: 2 }}>Rareté</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+
+      {/* CHAPITRE 03 — COLLECTIONNER */}
+      <section style={{ position: 'relative', height: '85vh', minHeight: 600, overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="https://images.unsplash.com/photo-1563911302283-d2bc129e7570?w=1920&q=80" alt="Lac nuit" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,#060d18 0%,rgba(6,13,24,.45) 55%,rgba(6,13,24,.35) 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right,rgba(6,13,24,.7) 0%,rgba(6,13,24,.2) 60%,transparent 100%)' }} />
+        </div>
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0 60px 80px', maxWidth: 1400, margin: '0 auto' }}>
+          <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={viewport} transition={transition(0)}
+            style={{ fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20 }}
+          >
+            03
+            <span style={{ display: 'block', width: 48, height: 1, background: 'rgba(255,255,255,0.12)' }} />
+          </motion.div>
+          <motion.h2 variants={reveal} initial="hidden" whileInView="visible" viewport={viewport} transition={transition(0.1)}
+            className="playfair"
+            style={{ fontSize: 'clamp(60px,8vw,108px)', fontWeight: 300, letterSpacing: '-0.03em', lineHeight: 0.95, color: '#fff', marginBottom: 14 }}
+          >
+            Collectionner.
+          </motion.h2>
+          <motion.p variants={reveal} initial="hidden" whileInView="visible" viewport={viewport} transition={transition(0.2)}
+            style={{ fontSize: 18, color: 'rgba(180,225,255,0.45)', fontStyle: 'italic', fontWeight: 300, marginBottom: 8 }}
+          >
+            Votre aquarium grandit avec vous.
+          </motion.p>
+          <motion.p variants={reveal} initial="hidden" whileInView="visible" viewport={viewport} transition={transition(0.35)}
+            style={{ fontSize: 14, color: 'rgba(255,255,255,0.4)', fontWeight: 300 }}
+          >
+            De la carpe commune au brochet légendaire. Chaque capture enrichit votre collection.
+          </motion.p>
+        </div>
+      </section>
+    </>
   )
 }

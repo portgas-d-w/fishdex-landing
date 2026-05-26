@@ -1,101 +1,130 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Check } from 'lucide-react'
-import { PRICING_TIERS, APP_URL } from '@/lib/constants'
+import { APP_URL } from '@/lib/constants'
+
+const TIERS = [
+  {
+    name: 'Gratuit',
+    price: '0 €',
+    priceSize: 36,
+    tagline: 'Pour commencer.',
+    features: [
+      'FishDex complet — 92 espèces',
+      'Captures illimitées',
+      'Sessions de pêche',
+      '5 spots favoris',
+      'FishFeed communauté',
+    ],
+    cta: "Accéder à l'app",
+    featured: false,
+  },
+  {
+    name: 'Pro',
+    subtitle: '· Recommandé',
+    price: '3,99€',
+    period: '/ mois',
+    tagline: 'Pour vivre la pêche.',
+    features: [
+      'IA reconnaissance espèces',
+      'Estimation taille par photo',
+      'Statistiques avancées',
+      'Export sessions PDF',
+      'Spots illimités',
+      'Météo intelligente',
+    ],
+    cta: 'Essai gratuit 7 jours',
+    featured: true,
+  },
+  {
+    name: 'Légende',
+    price: '6,99€',
+    period: '/ mois',
+    tagline: 'Pour les passionnés.',
+    features: [
+      'Tout le Pro',
+      'Carte interactive des spots',
+      'Analyse prédictive conditions',
+      'Journal vocal transcrit',
+      "Accès anticipé aux features",
+    ],
+    cta: 'Choisir Légende',
+    featured: false,
+  },
+]
+
+const reveal = { hidden: { opacity: 0, y: 32 }, visible: { opacity: 1, y: 0 } }
+const vp = { once: true }
+const tr = (d = 0) => ({ duration: 1.4, ease: [0.22, 1, 0.36, 1] as const, delay: d })
 
 export default function PricingSection() {
   return (
-    <section id="pricing" className="py-32 px-6">
-      <div className="max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+    <section id="pricing" style={{ padding: '120px 60px', background: '#060d18' }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+        <motion.p variants={reveal} initial="hidden" whileInView="visible" viewport={vp} transition={tr(0)}
+          style={{ fontSize: 10, letterSpacing: '0.45em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.2)', marginBottom: 36 }}
         >
-          <p className="text-xs text-cyan-400/60 uppercase tracking-[0.2em] mb-4">Tarifs</p>
-          <h2 className="text-4xl md:text-5xl font-light text-white mb-4">Simple et honnête</h2>
-          <p className="text-white/35 font-light">
-            Commence gratuitement. Passe Pro si tu veux aller plus loin.
-          </p>
-        </motion.div>
+          Chapitre 05 · Tarifs
+        </motion.p>
+        <motion.h2 variants={reveal} initial="hidden" whileInView="visible" viewport={vp} transition={tr(0.1)}
+          className="playfair"
+          style={{ fontSize: 'clamp(48px,6vw,84px)', fontWeight: 300, lineHeight: 1.04, letterSpacing: '-0.02em', marginBottom: 60 }}
+        >
+          Trois<br /><em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.38)' }}>profondeurs.</em>
+        </motion.h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {PRICING_TIERS.map((tier, i) => (
-            <motion.div
+        <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={vp} transition={tr(0.2)}
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}
+        >
+          {TIERS.map(tier => (
+            <div
               key={tier.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="relative rounded-2xl p-6 flex flex-col"
               style={{
-                background: tier.featured
-                  ? 'linear-gradient(145deg, rgba(34,211,238,0.10) 0%, rgba(14,22,40,0.9) 100%)'
-                  : 'rgba(255,255,255,0.04)',
-                border: tier.featured
-                  ? '1px solid rgba(34,211,238,0.25)'
-                  : '1px solid rgba(255,255,255,0.08)',
-                boxShadow: tier.featured ? '0 0 40px rgba(34,211,238,0.08)' : undefined,
+                padding: '40px 36px', borderRadius: 20, position: 'relative',
+                background: tier.featured ? 'linear-gradient(160deg,rgba(34,211,238,.05) 0%,rgba(34,211,238,.015) 100%)' : 'rgba(255,255,255,.02)',
+                border: tier.featured ? '1px solid rgba(34,211,238,.15)' : '1px solid rgba(255,255,255,.04)',
+                transition: 'border-color 0.8s',
               }}
+              onMouseEnter={e => { if (!tier.featured) e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)' }}
+              onMouseLeave={e => { if (!tier.featured) e.currentTarget.style.borderColor = 'rgba(255,255,255,0.04)' }}
             >
               {tier.featured && (
-                <div
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 text-[11px] px-3 py-1 rounded-full font-medium text-slate-950"
-                  style={{ background: 'linear-gradient(135deg, #67e8f9, #22d3ee)' }}
-                >
-                  Recommandé
-                </div>
+                <div style={{ position: 'absolute', top: -1, left: 32, right: 32, height: 1, background: 'linear-gradient(90deg,transparent,rgba(34,211,238,.5),transparent)' }} />
               )}
-
-              <div className="mb-6">
-                <p className="text-white/50 text-sm mb-1">{tier.name}</p>
-                <div className="flex items-baseline gap-1 mb-1">
-                  <span className="text-3xl font-light text-white">{tier.price}</span>
-                  {tier.period && <span className="text-white/30 text-sm">/{tier.period}</span>}
-                </div>
-                <p className="text-white/25 text-xs">{tier.tagline}</p>
+              <p style={{ fontSize: 10, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(255,255,255,.32)', marginBottom: 6 }}>
+                {tier.name}
+                {tier.subtitle && <span style={{ color: 'rgba(34,211,238,.5)', marginLeft: 10 }}>{tier.subtitle}</span>}
+              </p>
+              <div>
+                <span className="playfair" style={{ fontSize: tier.priceSize ?? 48, fontWeight: 300, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1 }}>{tier.price}</span>
+                {tier.period && <span style={{ fontSize: 12, color: 'rgba(255,255,255,.25)', marginLeft: 4 }}>{tier.period}</span>}
               </div>
-
-              <ul className="flex flex-col gap-3 mb-8 flex-1">
-                {tier.features.map(f => (
-                  <li key={f} className="flex items-start gap-2.5">
-                    <Check
-                      size={14}
-                      className="flex-shrink-0 mt-0.5"
-                      style={{ color: tier.featured ? '#22d3ee' : 'rgba(255,255,255,0.3)' }}
-                      strokeWidth={2.5}
-                    />
-                    <span className="text-white/50 text-sm font-light">{f}</span>
-                  </li>
-                ))}
+              <p style={{ fontSize: 14, fontStyle: 'italic', color: 'rgba(255,255,255,.32)', fontWeight: 300, margin: '12px 0 20px' }}>{tier.tagline}</p>
+              <div style={{ width: 28, height: 1, background: 'rgba(255,255,255,.07)', marginBottom: 20 }} />
+              <ul className="pricing-features" style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 32 }}>
+                {tier.features.map(f => <li key={f}>{f}</li>)}
               </ul>
-
               <a
                 href={APP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-center py-3 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105"
-                style={
-                  tier.featured
-                    ? {
-                        background: 'linear-gradient(135deg, #67e8f9, #22d3ee)',
-                        color: '#0a1628',
-                      }
-                    : {
-                        background: 'rgba(255,255,255,0.06)',
-                        color: 'rgba(255,255,255,0.6)',
-                        border: '1px solid rgba(255,255,255,0.1)',
-                      }
-                }
+                style={{
+                  display: 'block', width: '100%', padding: 13, borderRadius: 50,
+                  fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase',
+                  cursor: 'pointer', transition: 'all 0.7s', textDecoration: 'none', textAlign: 'center',
+                  ...(tier.featured
+                    ? { background: '#fff', color: '#060d18' }
+                    : { background: 'rgba(255,255,255,.03)', color: 'rgba(255,255,255,.45)', border: '1px solid rgba(255,255,255,.06)' }
+                  ),
+                }}
+                onMouseEnter={e => { e.currentTarget.style.background = tier.featured ? '#67e8f9' : 'rgba(255,255,255,.06)' }}
+                onMouseLeave={e => { e.currentTarget.style.background = tier.featured ? '#fff' : 'rgba(255,255,255,.03)' }}
               >
                 {tier.cta}
               </a>
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

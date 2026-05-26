@@ -2,88 +2,75 @@
 
 import { motion } from 'framer-motion'
 
-const MEMORIES = [
-  {
-    date: 'Il y a 1 an aujourd\'hui',
-    title: 'Brochet · 84 cm',
-    spot: 'Étang des Saules',
-    note: 'No-kill. Sorti à l\'aube, brume sur l\'eau.',
-    color: '#60a5fa',
-  },
-  {
-    date: '23 avril',
-    title: 'Session lac du barrage',
-    spot: '4h12 · 3 captures',
-    note: 'Conditions parfaites. Vent nul, température 14°C.',
-    color: '#34d399',
-  },
-  {
-    date: 'Record personnel',
-    title: 'Silure · 1m42',
-    spot: 'Rivière Dordogne',
-    note: 'Le poisson de ma vie.',
-    color: '#c084fc',
-  },
-]
+const reveal = { hidden: { opacity: 0, y: 32 }, visible: { opacity: 1, y: 0 } }
+const vp = { once: true }
+const tr = (d = 0) => ({ duration: 1.4, ease: [0.22, 1, 0.36, 1] as const, delay: d })
 
 export default function MemorySection() {
   return (
-    <section id="memory" className="py-32 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Texte */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <p className="text-xs text-cyan-400/60 uppercase tracking-[0.2em] mb-4">Journal vivant</p>
-            <h2 className="text-4xl md:text-5xl font-light text-white mb-6 leading-tight">
-              La mémoire de<br />
-              <span className="text-cyan-400">chaque sortie</span>
-            </h2>
-            <p className="text-white/40 text-lg font-light leading-relaxed mb-6">
-              Un souvenir ne s'efface pas. FishDex te rappelle ce que tu as vécu,
-              là où tu l'as vécu. Dans un an, tu liras "Brochet · 84cm · brume sur l'eau"
-              et tu y seras de nouveau.
-            </p>
-            <p className="text-white/25 text-base font-light">
-              Sessions, captures, spots, ressentis. Tout est là.
-            </p>
-          </motion.div>
+    <section id="memory" style={{ position: 'relative', height: '100vh', minHeight: 600, overflow: 'hidden', display: 'flex', alignItems: 'flex-end' }}>
+      {/* Background image */}
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg,#060d18 0%,#0a1628 100%)' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=80"
+          alt="Lac aube"
+          loading="lazy"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.55 }}
+        />
+      </div>
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,#060d18 0%,rgba(6,13,24,.5) 50%,rgba(6,13,24,.3) 100%)' }} />
 
-          {/* Cards mémoires */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col gap-4"
+      {/* Content */}
+      <div style={{ position: 'relative', zIndex: 10, padding: '0 60px 80px', maxWidth: 1400, margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: '7fr 5fr', gap: 48, alignItems: 'end' }}>
+        <div>
+          <motion.p variants={reveal} initial="hidden" whileInView="visible" viewport={vp} transition={tr(0)}
+            style={{ fontSize: 9, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(34,211,238,0.4)', marginBottom: 28 }}
           >
-            {MEMORIES.map((mem, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.12, duration: 0.5 }}
-                className="glass rounded-2xl p-5 flex gap-4 items-start"
-              >
-                <div
-                  className="w-1 self-stretch rounded-full flex-shrink-0"
-                  style={{ background: mem.color, boxShadow: `0 0 8px ${mem.color}60` }}
-                />
-                <div>
-                  <p className="text-[11px] text-white/30 mb-1">{mem.date}</p>
-                  <p className="text-white font-medium text-sm mb-0.5">{mem.title}</p>
-                  <p className="text-white/40 text-xs mb-2">{mem.spot}</p>
-                  <p className="text-white/25 text-xs italic font-light">{mem.note}</p>
-                </div>
-              </motion.div>
-            ))}
+            Un souvenir
+          </motion.p>
+          <motion.h2 variants={reveal} initial="hidden" whileInView="visible" viewport={vp} transition={tr(0.1)}
+            className="playfair"
+            style={{ fontSize: 'clamp(42px,5.5vw,80px)', fontWeight: 300, lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: 24 }}
+          >
+            Ce ne sont pas les prises<br /><em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.42)' }}>qui restent.</em>
+          </motion.h2>
+          <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={vp} transition={tr(0.2)}
+            style={{ display: 'flex', gap: 8, marginBottom: 28 }}
+          >
+            <span style={{ padding: '5px 14px', borderRadius: 50, fontSize: 9, letterSpacing: '0.22em', textTransform: 'uppercase', border: '1px solid rgba(34,211,238,.18)', color: 'rgba(34,211,238,.7)' }}>Brochet</span>
+            <span style={{ padding: '5px 14px', borderRadius: 50, fontSize: 9, letterSpacing: '0.22em', textTransform: 'uppercase', border: '1px solid rgba(96,165,250,.18)', color: 'rgba(96,165,250,.7)' }}>Rare</span>
+          </motion.div>
+          <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={vp} transition={tr(0.35)}
+            style={{ fontSize: 'clamp(22px,3vw,38px)', fontWeight: 300, color: 'rgba(255,255,255,0.8)', letterSpacing: '-0.01em' }}
+          >
+            87 cm <span style={{ color: 'rgba(255,255,255,0.2)', margin: '0 10px' }}>—</span> 3.2 kg
           </motion.div>
         </div>
+
+        <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={vp} transition={tr(0.2)}
+          style={{ padding: '28px 32px', borderRadius: 20, background: 'rgba(255,255,255,.03)', backdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,.045)' }}
+        >
+          <p style={{ fontSize: 14, fontStyle: 'italic', color: 'rgba(255,255,255,.65)', fontWeight: 300, lineHeight: 1.7, marginBottom: 20 }}>
+            &ldquo;Ce matin-là, la brume n&apos;avait pas encore quitté le lac. Le silence était total.&rdquo;
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {[
+              ['Date', '19 mai 2026'],
+              ['Lieu', 'Lac d\'Annecy'],
+              ['Eau', '14 °C'],
+              ['Session', '4h 23min'],
+            ].map(([label, val]) => (
+              <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 9 }}>
+                <span style={{ letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,.22)', width: 52 }}>{label}</span>
+                <span style={{ color: 'rgba(255,255,255,.5)' }}>{val}</span>
+              </div>
+            ))}
+          </div>
+          <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid rgba(255,255,255,.04)', fontSize: 13, fontStyle: 'italic', color: 'rgba(255,255,255,.18)' }}>
+            — noté à la main
+          </div>
+        </motion.div>
       </div>
     </section>
   )

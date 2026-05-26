@@ -1,20 +1,28 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
-  variable: '--font-inter',
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
+})
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500'],
+  style: ['normal', 'italic'],
+  variable: '--font-dm-sans',
 })
 
 export const metadata: Metadata = {
-  title: 'FishDex — Le monde vivant de la pêche',
-  description: "L'encyclopédie vivante des poissons d'eau douce français. Journal de sessions, collection de captures, météo intelligente.",
+  title: 'FishDex — Chaque poisson raconte une histoire',
+  description: 'FishDex transforme chaque sortie pêche en souvenir vivant. Découvrez 92 espèces, capturez vos moments, construisez votre journal d\'explorateur.',
   metadataBase: new URL('https://fishdex.fr'),
   openGraph: {
     title: 'FishDex',
-    description: "L'encyclopédie vivante des poissons d'eau douce français.",
+    description: 'FishDex transforme chaque sortie pêche en souvenir vivant.',
     url: 'https://fishdex.fr',
     siteName: 'FishDex',
     locale: 'fr_FR',
@@ -23,14 +31,14 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'FishDex',
-    description: "L'encyclopédie vivante des poissons d'eau douce français.",
+    description: 'FishDex transforme chaque sortie pêche en souvenir vivant.',
   },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={inter.variable}>
-      <body style={{ fontFamily: 'var(--font-inter), sans-serif' }}>{children}</body>
+    <html lang="fr" className={`${cormorant.variable} ${dmSans.variable}`}>
+      <body>{children}</body>
     </html>
   )
 }
