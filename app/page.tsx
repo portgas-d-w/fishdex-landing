@@ -12,32 +12,6 @@ export default function Home() {
     }
     window.addEventListener('scroll', handleNavScroll, { passive: true })
 
-    // Custom cursor
-    const cursor = document.getElementById('cursor')
-    const ring = document.getElementById('cursorRing')
-    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0
-    let animId: number
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX = e.clientX
-      mouseY = e.clientY
-      if (cursor) { cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px' }
-    }
-    document.addEventListener('mousemove', handleMouseMove)
-
-    const interactives = document.querySelectorAll('a, button, .pillar, .univers-card, .espece-cell, .gallery-item, .premium-plan')
-    interactives.forEach(el => {
-      el.addEventListener('mouseenter', () => ring?.classList.add('hovering'))
-      el.addEventListener('mouseleave', () => ring?.classList.remove('hovering'))
-    })
-
-    const animateRing = () => {
-      ringX += (mouseX - ringX) * 0.12
-      ringY += (mouseY - ringY) * 0.12
-      if (ring) { ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px' }
-      animId = requestAnimationFrame(animateRing)
-    }
-    animateRing()
 
     // Reveal on scroll
     const revealEls = document.querySelectorAll('.reveal')
@@ -146,8 +120,6 @@ export default function Home() {
     return () => {
       window.removeEventListener('scroll', handleNavScroll)
       window.removeEventListener('scroll', handleParallax)
-      document.removeEventListener('mousemove', handleMouseMove)
-      cancelAnimationFrame(animId)
       observer.disconnect()
       timelineObserver.disconnect()
     }
@@ -155,8 +127,6 @@ export default function Home() {
 
   return (
     <>
-      <div className="cursor" id="cursor" />
-      <div className="cursor-ring" id="cursorRing" />
 
       {/* NAV */}
       <nav id="navbar">
