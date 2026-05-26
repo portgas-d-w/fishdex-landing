@@ -1309,3 +1309,9 @@ footer {
 @media (max-width: 480px) {
   .especes-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+@media (max-width: 768px) {
+  .hero-bg img {
+    object-position: 72% 65% !important;
+  }
+}
