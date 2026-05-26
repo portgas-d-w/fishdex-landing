@@ -147,6 +147,7 @@ export default function Home() {
       {/* NAV */}
       <nav id="navbar">
         <a href="#" className="nav-logo">
+          <img src="/logo.svg" alt="FishDex" style={{ height: '28px', width: '28px', objectFit: 'contain' }} />
           FishDex
           <span className="nav-logo-dot" />
         </a>
@@ -155,7 +156,7 @@ export default function Home() {
           <li><a href="#especes">Espèces</a></li>
           <li><a href="#sessions">Sessions</a></li>
           <li><a href="#premium">Premium</a></li>
-          <li><a href="#beta" className="nav-cta">Rejoindre la bêta</a></li>
+          <li><a href="https://app.fishdex.fr" className="nav-cta" target="_blank" rel="noopener noreferrer">Rejoindre la bêta</a></li>
         </ul>
         <div className="nav-burger" id="navBurger">
           <span /><span /><span />
@@ -186,7 +187,7 @@ export default function Home() {
             Transformez vos sorties pêche en souvenirs vivants. Découvrez, capturez, revivez — dans un univers influencé par la météo, les saisons et la lumière naturelle.
           </p>
           <div className="hero-ctas">
-            <a href="#beta" className="btn-primary">
+            <a href="https://app.fishdex.fr" className="btn-primary" target="_blank" rel="noopener noreferrer">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5" /><path d="M6 8l2 2 2.5-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
               Rejoindre la bêta
             </a>
@@ -494,31 +495,46 @@ export default function Home() {
               <div className="section-label reveal">Premium</div>
               <h2 className="section-title reveal reveal-delay-1">Gratuit et<br /><em>généreux.</em></h2>
               <p className="section-body reveal reveal-delay-2" style={{ marginBottom: '40px' }}>FishDex est conçu pour être profondément utile dans sa version gratuite. Le premium enrichit l&apos;expérience — il ne la conditionne pas.</p>
-              <a href="#beta" className="btn-primary reveal reveal-delay-3">Commencer gratuitement</a>
+              <a href="https://app.fishdex.fr" className="btn-primary reveal reveal-delay-3" target="_blank" rel="noopener noreferrer">Commencer gratuitement</a>
             </div>
             <div className="premium-plans">
               <div className="premium-plan reveal">
                 <div className="plan-badge">Gratuit · Pour toujours</div>
-                <div className="plan-name">Explorateur</div>
-                <p className="plan-desc">Toutes les fonctionnalités essentielles pour vivre pleinement votre passion.</p>
+                <div className="plan-name">Gratuit</div>
+                <p className="plan-desc">L&apos;essentiel pour découvrir et capturer vos premières espèces.</p>
                 <ul className="plan-features">
-                  <li>92 espèces à découvrir</li>
-                  <li>Sessions illimitées</li>
-                  <li>Galerie personnelle</li>
-                  <li>Météo et conditions en temps réel</li>
-                  <li>FishDex personnel complet</li>
+                  <li>Toutes les espèces à découvrir</li>
+                  <li>Captures et sessions limitées</li>
+                  <li>FishDex personnel</li>
+                  <li>Badges et niveaux</li>
+                  <li>Wrapped annuel</li>
                 </ul>
               </div>
               <div className="premium-plan featured reveal reveal-delay-1">
-                <div className="plan-badge">✦ Premium</div>
-                <div className="plan-name">Naturaliste</div>
-                <p className="plan-desc">Pour ceux qui veulent aller plus loin dans l&apos;exploration et le souvenir.</p>
+                <div className="plan-badge">✦ Pro</div>
+                <div className="plan-name">Pro</div>
+                <p className="plan-desc">Pour le pêcheur qui veut aller plus loin dans le suivi et l&apos;analyse.</p>
                 <ul className="plan-features">
-                  <li>Tout Explorateur inclus</li>
-                  <li>Memories — récits de sessions animés</li>
-                  <li>Statistiques et évolution personnelle</li>
-                  <li>Export haute qualité</li>
-                  <li>Alertes espèces rares et saisons</li>
+                  <li>Tout Gratuit inclus</li>
+                  <li>Compteur taille / poids automatique</li>
+                  <li>Estimation de taille par photo</li>
+                  <li>Statistiques avancées et graphiques</li>
+                  <li>Export PDF et image des sessions</li>
+                  <li>Spots avancés</li>
+                  <li>Notifications météo intelligentes</li>
+                  <li>Wrapped accessible toute l&apos;année</li>
+                </ul>
+              </div>
+              <div className="premium-plan reveal reveal-delay-2">
+                <div className="plan-badge">★ Légende</div>
+                <div className="plan-name">Légende</div>
+                <p className="plan-desc">L&apos;expérience ultime pour les passionnés les plus exigeants.</p>
+                <ul className="plan-features">
+                  <li>Tout Pro inclus</li>
+                  <li>Carte interactive de tous les spots</li>
+                  <li>Analyse prédictive des conditions</li>
+                  <li>Journal mood / humeur FishLog</li>
+                  <li>Support prioritaire</li>
                 </ul>
               </div>
             </div>
@@ -585,8 +601,11 @@ export default function Home() {
           <p className="cta-final-sub reveal reveal-delay-2">
             Rejoignez la bêta FishDex et soyez parmi les premiers à vivre cette nouvelle façon d&apos;explorer la pêche. Gratuit, pour toujours.
           </p>
+          <p className="cta-final-sub reveal reveal-delay-2" style={{ fontSize: '0.9rem', opacity: 0.7, marginTop: '-8px' }}>
+            Pour accéder à la bêta, suivez <a href="https://instagram.com/FishDex.fr" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', textDecoration: 'underline' }}>@FishDex.fr</a> sur Instagram et envoyez-nous un message privé.
+          </p>
           <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }} className="reveal reveal-delay-3">
-            <a href="#" className="btn-primary" style={{ fontSize: '1rem', padding: '18px 42px' }}>
+            <a href="https://app.fishdex.fr" className="btn-primary" style={{ fontSize: '1rem', padding: '18px 42px' }} target="_blank" rel="noopener noreferrer">
               Rejoindre la bêta
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M10 5l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </a>
@@ -600,7 +619,10 @@ export default function Home() {
       {/* FOOTER */}
       <footer>
         <div className="footer-inner">
-          <div className="footer-logo">FishDex</div>
+          <div className="footer-logo">
+            <img src="/logo.svg" alt="FishDex" style={{ height: '36px', width: '36px', objectFit: 'contain', verticalAlign: 'middle', marginRight: '8px' }} />
+            FishDex
+          </div>
           <ul className="footer-links">
             <li><a href="#">Confidentialité</a></li>
             <li><a href="#">Conditions</a></li>

@@ -38,8 +38,10 @@ Minimalist dark UI map screenshot showing a fishing session route on a lake, dar
 
 ## 3. Sessions — Mockup téléphone avec session active — `session-phone-mockup.png`
 
+*Prompt mis à jour d'après le style réel de l'app FishDex (mai 2026)*
+
 ```
-Realistic smartphone mockup showing a dark fishing app interface, the screen displays an active session with: a timeline on the left side, fish icons with timestamps, weather indicator (12°C, partly cloudy), a lake map thumbnail, session duration counter showing "5h 32min", the phone is slightly tilted at 15 degrees, dark background (#071118), screen glowing softly, no reflections on screen, isolated on dark background, PNG transparent background
+Ultra-realistic smartphone screenshot (no device frame, just the screen) of a fishing app called FishDex showing an active session screen. The UI must exactly match this style: very dark navy background (#071118), cards with subtle dark borders and slight glassmorphism, cyan/teal accent color (#01B1F3) for highlights, white text for titles, muted grey for secondary info. The screen shows: top header "SESSION ACTIVE" with a green "En cours" pill badge, location "Lac d'Annecy", large timer "00:05:12", capture counter "3 Captures · 2 Espèces", a "+ Ajouter une prise" cyan button and "Voir la session →" outline button. Below: a weather card "CONDITIONS ACTUELLES — 18°C Nuageux, Vent 8 km/h SO, Lever 06:12, Coucher 21:38". Below that: "MES DERNIÈRES CAPTURES" section showing 3 capture cards each with a fish illustration (brochet, perche, truite fario), species name, weight, and a "Rare" or "Commun" badge in cyan or grey pill. Bottom navigation bar with 5 icons: Le Spot, FishDex, Capture (camera, centered and highlighted in cyan), Aquarium, Sessions. Screen aspect ratio 9:16, photorealistic UI screenshot quality, no phone hardware frame, transparent or dark background, PNG
 ```
 
 ---

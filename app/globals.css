@@ -976,15 +976,14 @@ section { position: relative; overflow: hidden; }
 }
 
 .premium-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
 }
 
 .premium-plans {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
@@ -1035,7 +1034,16 @@ section { position: relative; overflow: hidden; }
   font-size: 1.8rem;
   font-weight: 300;
   color: var(--accent-cream);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+}
+
+.plan-price {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--accent-sage);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
 }
 
 .plan-desc {
@@ -1252,7 +1260,7 @@ footer {
   .univers-cards { grid-template-columns: repeat(2, 1fr); }
   .especes-grid { grid-template-columns: repeat(4, 1fr); }
   .sessions-layout { grid-template-columns: 1fr; }
-  .premium-layout { grid-template-columns: 1fr; gap: 60px; }
+  .premium-plans { grid-template-columns: repeat(2, 1fr); }
   .sessions-visual { position: static; }
 }
 
@@ -1274,6 +1282,7 @@ footer {
   .footer-inner { flex-direction: column; gap: 32px; text-align: center; }
   .footer-links { flex-wrap: wrap; justify-content: center; }
   .hero-ctas { flex-direction: column; align-items: center; }
+  .premium-plans { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
