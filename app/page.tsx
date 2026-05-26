@@ -151,7 +151,7 @@ export default function Home() {
       <section className="hero" id="hero">
         <div className="hero-bg">
           <Image
-            src="/images/bg/hero-background.png"
+            src="/images/bg/hero-background.jpg"
             alt=""
             fill
             priority
