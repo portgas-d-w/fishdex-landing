@@ -593,20 +593,6 @@ export default function Home() {
             style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.25 }}
           />
         </div>
-        <svg style={{ position: 'absolute', bottom: 0, left: 0, right: 0, width: '100%', height: '260px', pointerEvents: 'none' }} viewBox="0 0 1440 260" preserveAspectRatio="xMidYMax slice">
-          <defs>
-            <linearGradient id="horizGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#0F1C23" stopOpacity="0" />
-              <stop offset="100%" stopColor="#0F1C23" stopOpacity="0.6" />
-            </linearGradient>
-          </defs>
-          <path d="M0,180 L100,120 L200,160 L320,100 L440,150 L560,90 L680,140 L800,100 L920,145 L1040,90 L1160,130 L1280,100 L1440,120 L1440,260 L0,260 Z" fill="#0a1c20" opacity="0.5" />
-          <path d="M0,200 L80,155 L160,185 L260,140 L380,175 L500,130 L620,165 L740,135 L860,170 L980,128 L1100,160 L1220,135 L1340,158 L1440,140 L1440,260 L0,260 Z" fill="#071a1a" opacity="0.6" />
-          <rect x="0" y="200" width="1440" height="60" fill="#071118" />
-          <ellipse cx="720" cy="230" rx="300" ry="15" fill="#8FBFA3" opacity="0.04" />
-          <path d="M400,215 Q560,210 720,215 Q880,220 1040,215" stroke="#8FBFA3" strokeWidth="0.8" fill="none" opacity="0.12" />
-          <rect x="0" y="240" width="1440" height="20" fill="url(#horizGrad)" />
-        </svg>
         <div className="cta-final-content">
           <div className="section-label reveal" style={{ justifyContent: 'center', marginBottom: '32px' }}>Commencer l&apos;aventure</div>
           <div className="cta-final-quote reveal reveal-delay-1">
