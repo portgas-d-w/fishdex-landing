@@ -452,7 +452,7 @@ export default function Home() {
               { src: '/images/bg/galerie-prise-04-carpe-sous-marin.png', alt: 'Carpe vue depuis sous l\'eau', cls: 'gi-4' },
               { src: '/images/bg/galerie-prise-05-pecheur-orage.png', alt: 'Pêcheur sous l\'orage', cls: 'gi-5' },
               { src: '/images/bg/galerie-prise-06-lancer-silhouette.png', alt: 'Silhouette d\'un lancer au coucher de soleil', cls: 'gi-6' },
-              { src: '/images/new/ambiance-main-brochet-coucher-soleil.png', alt: 'Mains tenant une truite', cls: 'gi-7' },
+              { src: '/images/bg/ambiance-main-brochet-coucher-soleil.png', alt: 'Mains tenant une truite', cls: 'gi-7' },
               { src: '/images/bg/galerie-prise-08-relacher-carpe-panorama.png', alt: 'Relâcher une carpe dans l\'eau', cls: 'gi-8' },
             ].map((item, i) => (
               <div key={i} className="gallery-item">
