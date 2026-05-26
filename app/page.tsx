@@ -375,12 +375,12 @@ export default function Home() {
               </div>
             </div>
             <div className="sessions-visual reveal">
-              <div style={{ position: 'relative', borderRadius: '20px', overflow: 'hidden', aspectRatio: '9/16', maxWidth: '280px', margin: '0 auto', boxShadow: '0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(143,191,163,0.12)' }}>
+              <div style={{ position: 'relative', aspectRatio: '3/4', maxWidth: '340px', margin: '0 auto' }}>
                 <Image
                   src="/images/mockups/session-phone-mockup.png"
                   alt="Session FishDex sur téléphone"
                   fill
-                  style={{ objectFit: 'cover', objectPosition: 'top' }}
+                  style={{ objectFit: 'contain' }}
                 />
               </div>
             </div>
