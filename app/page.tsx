@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import Image from 'next/image'
+import Background3D from '../components/Background3D'
 
 export default function Home() {
   useEffect(() => {
@@ -127,6 +128,7 @@ export default function Home() {
 
   return (
     <>
+      <Background3D />
 
       {/* NAV */}
       <nav id="navbar">
@@ -149,14 +151,8 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero" id="hero">
-        <div className="hero-bg">
-          <Image
-            src="/images/bg/hero-background.jpg"
-            alt=""
-            fill
-            priority
-            style={{ objectFit: 'cover', objectPosition: 'center 65%', opacity: 0.55 }}
-          />
+        <div className="hero-bg" style={{ background: 'transparent' }}>
+          {/* Static image replaced by 3D background */}
         </div>
         <div className="hero-particles" id="heroParticles" />
         <div className="hero-content">
@@ -528,13 +524,8 @@ export default function Home() {
 
       {/* COMMUNITY */}
       <section className="community" id="community" style={{ position: 'relative', overflow: 'hidden' }}>
-        <Image
-          src="/images/bg/community-bg.png"
-          alt=""
-          fill
-          style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.18, zIndex: 0 }}
-        />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, var(--bg-deep) 0%, transparent 30%, transparent 70%, var(--bg-deep) 100%)', zIndex: 1 }} />
+        {/* Static image replaced by 3D background */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, var(--bg-deep) 0%, transparent 30%, transparent 70%, var(--bg-deep) 100%)', zIndex: 1, pointerEvents: 'none' }} />
         <div className="section-inner" style={{ position: 'relative', zIndex: 2 }}>
           <div className="community-inner">
             <div className="section-label reveal" style={{ justifyContent: 'center' }}>Communauté</div>
@@ -555,13 +546,8 @@ export default function Home() {
 
       {/* CTA FINAL */}
       <section className="cta-final" id="beta">
-        <div className="cta-final-bg">
-          <Image
-            src="/images/bg/cta-water-bg.png"
-            alt=""
-            fill
-            style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.25 }}
-          />
+        <div className="cta-final-bg" style={{ background: 'transparent' }}>
+          {/* Static image replaced by 3D background */}
         </div>
         <div className="cta-final-content">
           <div className="section-label reveal" style={{ justifyContent: 'center', marginBottom: '32px' }}>Commencer l&apos;aventure</div>

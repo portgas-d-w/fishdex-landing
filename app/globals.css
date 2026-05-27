@@ -26,7 +26,7 @@ html { scroll-behavior: smooth; font-size: 16px; }
 }
 
 body {
-  background: var(--bg-deep);
+  background: transparent; /* Was var(--bg-deep), made transparent for 3D background */
   color: var(--text-primary);
   font-family: var(--font-body);
   font-weight: 300;
@@ -608,7 +608,7 @@ section { position: relative; overflow: hidden; }
 /* ─── UNIVERS VIVANT ─── */
 .univers {
   padding: 140px 0;
-  background: var(--bg-mid);
+  background: transparent; /* Was var(--bg-mid) */
 }
 
 .univers-header {
