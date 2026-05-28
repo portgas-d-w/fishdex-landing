@@ -1,127 +1,99 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useEffect, Suspense } from 'react';
 import { useFrame } from '@react-three/fiber';
+import { useGLTF, useAnimations, Clone } from '@react-three/drei';
 import * as THREE from 'three';
 import { useScrollVelocity } from '../useScrollProgress';
 
-// Generate a simple low-poly fish geometry
-function createFishGeometry() {
-  const geom = new THREE.BufferGeometry();
-  
-  // A simple 3D diamond/ellipsoid for the body, plus a V tail
-  const vertices = new Float32Array([
-    // Body (diamond shape)
-    // nose
-    0, 0, 2,     // 0
-    // middle cross section
-    0.5, 0, 0,   // 1 (right)
-    -0.5, 0, 0,  // 2 (left)
-    0, 0.8, 0,   // 3 (top)
-    0, -0.6, 0,  // 4 (bottom)
-    // tail base
-    0, 0, -2,    // 5
-    // tail fins
-    0, 1, -3,    // 6 (tail top)
-    0, -1, -3,   // 7 (tail bottom)
-  ]);
+// Preload models (adjust paths carefully due to spaces in folder name)
+const MODEL_CARP = '/image 3d/carp_fish.glb';
+const MODEL_AYU = '/image 3d/cc0____ayu_sweetfish.glb';
+const MODEL_BREAM = '/image 3d/lahna_-_braxen_-_bream.glb';
 
-  const indices = [
-    // Nose to middle
-    0, 1, 3,
-    0, 3, 2,
-    0, 2, 4,
-    0, 4, 1,
-    // Middle to tail base
-    1, 5, 3,
-    3, 5, 2,
-    2, 5, 4,
-    4, 5, 1,
-    // Tail fin (flat on X)
-    5, 6, 7,
-    7, 6, 5 // double sided
-  ];
-
-  geom.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
-  geom.setIndex(indices);
-  geom.computeVertexNormals();
-  return geom;
-}
-
-const fishGeometry = createFishGeometry();
+useGLTF.preload(MODEL_CARP);
+useGLTF.preload(MODEL_AYU);
+useGLTF.preload(MODEL_BREAM);
 
 interface FishProps {
   curve: THREE.CatmullRomCurve3;
-  color: string;
+  modelUrl: string;
   speed: number;
   scale: number;
-  opacity: number;
   timeOffset: number;
 }
 
-function Fish({ curve, color, speed, scale, opacity, timeOffset }: FishProps) {
-  const meshRef = useRef<THREE.Mesh>(null);
+function GltfFish({ curve, modelUrl, speed, scale, timeOffset }: FishProps) {
+  const groupRef = useRef<THREE.Group>(null);
   const scrollVelocity = useScrollVelocity();
+  
+  const { scene, animations } = useGLTF(modelUrl);
+  const { actions } = useAnimations(animations, groupRef);
+
+  useEffect(() => {
+    // Play the first animation found (usually the swim cycle)
+    const actionNames = Object.keys(actions);
+    if (actionNames.length > 0) {
+      actions[actionNames[0]]?.play();
+    }
+  }, [actions]);
 
   useFrame((state) => {
-    if (!meshRef.current) return;
+    if (!groupRef.current) return;
     
-    // Base time progression
     let t = (state.clock.elapsedTime * speed + timeOffset) % 1;
     
-    // Accelerate if scrolling fast
-    const vel = Math.abs(scrollVelocity.current);
-    const speedMult = 1 + vel * 0.3;
-    
-    // Note: To properly implement variable speed along a curve without jumping,
-    // we would need to integrate speed over time. For simplicity, we just use the raw t
-    // and rely on the fact that vel is a continuous derivative, but this is a simplified version.
-    // In a perfect system, we'd store local elapsed time per fish.
-    
-    // Get position on curve
     const pos = curve.getPointAt(t);
     const tangent = curve.getTangentAt(t);
     
-    meshRef.current.position.copy(pos);
+    groupRef.current.position.copy(pos);
     
-    // Look along the tangent
     const lookAtPos = pos.clone().add(tangent);
-    meshRef.current.lookAt(lookAtPos);
+    groupRef.current.lookAt(lookAtPos);
     
-    // Body undulation (rotation on Y based on time)
-    meshRef.current.rotateY(Math.sin(state.clock.elapsedTime * speed * 20) * 0.2);
+    // Adjust swim animation speed based on scroll
+    const vel = Math.abs(scrollVelocity.current);
+    const actionNames = Object.keys(actions);
+    if (actionNames.length > 0 && actions[actionNames[0]]) {
+      actions[actionNames[0]]!.timeScale = 1 + vel * 0.2;
+    }
   });
 
+  // Most GLTF models need a rotation fix if they aren't facing +Z natively
+  // We wrap Clone in a group so we can easily tweak orientation if needed later
   return (
-    <mesh ref={meshRef} scale={scale}>
-      <primitive object={fishGeometry} attach="geometry" />
-      <meshStandardMaterial 
-        color={color} 
-        transparent 
-        opacity={opacity} 
-        flatShading 
-        metalness={0.1} 
-        roughness={0.7} 
-      />
-    </mesh>
+    <group ref={groupRef} scale={scale}>
+      {/* Rotation Y by PI to flip it if it swims backwards. You might need to adjust this depending on the model's export axis. */}
+      <group rotation={[0, Math.PI, 0]}>
+        <Clone object={scene} />
+      </group>
+    </group>
   );
 }
 
-export default function Fauna() {
+function FaunaGroup() {
   const fishes = useMemo(() => {
-    // Generate 5 unique paths
-    return Array.from({ length: 5 }).map((_, i) => {
-      // Determine if surface or deep fish based on index
+    const models = [MODEL_CARP, MODEL_AYU, MODEL_BREAM, MODEL_CARP, MODEL_BREAM];
+    
+    return models.map((modelUrl, i) => {
       const isSurface = i < 3;
       
-      const zCenter = isSurface ? -100 - Math.random() * 100 : -400 - Math.random() * 200;
-      const radiusX = 20 + Math.random() * 20;
+      // Push fish far on the Z-axis
+      const zCenter = isSurface ? -350 - Math.random() * 150 : -600 - Math.random() * 300;
+      
+      // Force fish to swim only on the edges (left/right or top/bottom)
+      // They will center around x = ±40 or y = ±25
+      const isSide = Math.random() > 0.5;
+      const xCenter = isSide ? (Math.random() > 0.5 ? 1 : -1) * (35 + Math.random() * 15) : (Math.random() - 0.5) * 20;
+      // Camera underwater is at Y = -1. Keep them away from Y = -1.
+      const yCenter = isSide ? -10 + (Math.random() - 0.5) * 10 : (Math.random() > 0.5 ? 15 : -20) - Math.random() * 10;
+      
+      const radiusX = 10 + Math.random() * 10;
       const radiusZ = 15 + Math.random() * 15;
       
-      // Create a wavy loop path
       const points = [];
       for(let a = 0; a < Math.PI * 2; a += Math.PI / 4) {
-        const x = Math.cos(a) * radiusX + (Math.random() - 0.5) * 10;
-        const y = (Math.random() - 0.5) * 10;
-        const z = Math.sin(a) * radiusZ + zCenter + (Math.random() - 0.5) * 10;
+        const x = xCenter + Math.cos(a) * radiusX + (Math.random() - 0.5) * 5;
+        const y = yCenter + (Math.random() - 0.5) * 5; 
+        const z = zCenter + Math.sin(a) * radiusZ + (Math.random() - 0.5) * 10;
         points.push(new THREE.Vector3(x, y, z));
       }
       
@@ -129,10 +101,9 @@ export default function Fauna() {
       
       return {
         curve,
-        color: isSurface ? '#8FBFA3' : '#1a3d30',
-        opacity: isSurface ? 0.6 : 0.4,
+        modelUrl,
         speed: isSurface ? 0.015 + Math.random() * 0.01 : 0.005 + Math.random() * 0.005,
-        scale: 1.0 + Math.random() * 1.5,
+        scale: 4.0 + Math.random() * 2.0, // Scale adjusted for GLTF
         timeOffset: Math.random()
       };
     });
@@ -141,8 +112,16 @@ export default function Fauna() {
   return (
     <group>
       {fishes.map((f, i) => (
-        <Fish key={i} {...f} />
+        <GltfFish key={i} {...f} />
       ))}
     </group>
+  );
+}
+
+export default function Fauna() {
+  return (
+    <Suspense fallback={null}>
+      <FaunaGroup />
+    </Suspense>
   );
 }

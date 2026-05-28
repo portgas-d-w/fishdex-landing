@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useScrollProgress } from './useScrollProgress';
@@ -6,9 +6,9 @@ import { useScrollProgress } from './useScrollProgress';
 const GodRaysMaterial = new THREE.ShaderMaterial({
   uniforms: {
     uTime: { value: 0 },
-    uScrollProgress: { value: 0 },
+    uOpacity: { value: 0 },
     uColor: { value: new THREE.Color('#C9A96E') },
-    uColorDeep: { value: new THREE.Color('#ffffff') }
+    uColorDeep: { value: new THREE.Color('#1a3520') }
   },
   vertexShader: `
     varying vec2 vUv;
@@ -19,7 +19,7 @@ const GodRaysMaterial = new THREE.ShaderMaterial({
   `,
   fragmentShader: `
     uniform float uTime;
-    uniform float uScrollProgress;
+    uniform float uOpacity;
     uniform vec3 uColor;
     uniform vec3 uColorDeep;
     
@@ -54,42 +54,30 @@ const GodRaysMaterial = new THREE.ShaderMaterial({
     }
 
     void main() {
-      // Base coordinates
-      vec2 uv = vUv;
+      if (uOpacity <= 0.0) discard;
       
-      // Undulation (slow, irregular)
+      vec2 uv = vUv;
       float t = uTime * 0.1;
       float noiseValue = snoise(vec2(uv.x * 3.0, t));
       
-      // Generate vertical bands (rays)
-      // Perturb the x coordinate slightly with noise
       float xPerturbed = uv.x + noiseValue * 0.05;
       
-      // Create distinct bands
       float rays = 0.0;
       rays += sin(xPerturbed * 30.0) * 0.5 + 0.5;
       rays += sin(xPerturbed * 15.0 - t * 2.0) * 0.5 + 0.5;
       rays += sin(xPerturbed * 45.0 + t) * 0.5 + 0.5;
-      rays /= 3.0; // Normalize
+      rays /= 3.0;
       
-      // Contrast and shape the rays
       rays = smoothstep(0.4, 0.9, rays);
       
-      // Fade edges (top, bottom, left, right)
       float edgeFade = smoothstep(0.0, 0.2, uv.y) * smoothstep(1.0, 0.6, uv.y) * 
                        smoothstep(0.0, 0.2, uv.x) * smoothstep(1.0, 0.8, uv.x);
                        
-      // Depth fade based on scroll progress
-      // As uScrollProgress goes 0 -> 1, rays fade out (we're going deeper)
-      float scrollFade = smoothstep(0.6, 0.2, uScrollProgress);
+      // The color mix could be static or depend on depth if we pass it, 
+      // but uColor is golden, uColorDeep is greenish
+      vec3 finalColor = mix(uColor, uColorDeep, 1.0 - edgeFade);
       
-      // Blend colors based on scroll
-      vec3 finalColor = mix(uColor, uColorDeep, uScrollProgress);
-      
-      // Opacity multiplier: max 0.12 at surface, drops as we go deep
-      float baseOpacity = mix(0.12, 0.06, uScrollProgress);
-      
-      float finalAlpha = rays * edgeFade * scrollFade * baseOpacity;
+      float finalAlpha = rays * edgeFade * uOpacity;
       
       gl_FragColor = vec4(finalColor, finalAlpha);
     }
@@ -102,23 +90,34 @@ const GodRaysMaterial = new THREE.ShaderMaterial({
 
 export default function GodRays() {
   const meshRef = useRef<THREE.Mesh>(null);
-  const materialRef = useRef<THREE.ShaderMaterial>(GodRaysMaterial.clone());
-  const scrollProgress = useScrollProgress();
+  const material = useMemo(() => GodRaysMaterial.clone(), []);
+  const materialRef = useRef<THREE.ShaderMaterial>(material);
 
   useFrame((state) => {
-    if (materialRef.current) {
-      materialRef.current.uniforms.uTime.value = state.clock.elapsedTime;
-      materialRef.current.uniforms.uScrollProgress.value = scrollProgress.current;
-    }
+    if (!materialRef.current || !meshRef.current) return;
     
-    if (meshRef.current) {
-      // Slight upward movement as we scroll down to simulate moving away from surface
-      meshRef.current.position.y = 10 + scrollProgress.current * 20;
-    }
+    const y = state.camera.position.y;
+    const z = state.camera.position.z;
+    
+    // Plunge: 0 above water, 1 underwater
+    const plungeProgress = THREE.MathUtils.clamp((3.5 - y) / 4.5, 0, 1);
+    
+    // Depth: rays vanish completely by Section 4 (Z=-350)
+    // Starts fading around Sec 3 (-200)
+    const fadeOut = THREE.MathUtils.clamp((-200 - z) / 150, 0, 1);
+    
+    // Base opacity when fully underwater and not too deep is ~0.15
+    const opacity = plungeProgress * (1.0 - fadeOut) * 0.15;
+    
+    materialRef.current.uniforms.uTime.value = state.clock.elapsedTime;
+    materialRef.current.uniforms.uOpacity.value = opacity;
+    
+    // Keep rays in front of the camera as we dive deeper until they fade out
+    // If camera is at Z, place rays at Z - 50
+    meshRef.current.position.z = z - 50;
   });
 
   return (
-    // Tilt the plane slightly to simulate 10-15 degree angle rays from above
     <mesh 
       ref={meshRef} 
       position={[0, 10, -50]} 

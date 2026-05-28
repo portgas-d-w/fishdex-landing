@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { useScrollVelocity } from '../useScrollProgress';
 
 const DUST_COUNT = 2500;
-const BUBBLE_COUNT = 100;
+const BUBBLE_COUNT = 400;
 
 export default function Particles() {
   const dustRef = useRef<THREE.InstancedMesh>(null);
@@ -154,10 +154,10 @@ export default function Particles() {
         <sphereGeometry args={[0.05, 8, 8]} />
         <meshPhysicalMaterial 
           transparent
-          opacity={0.12}
-          transmission={0.9}
-          roughness={0}
-          ior={1.1}
+          opacity={0.35}
+          transmission={0.8}
+          roughness={0.1}
+          ior={1.2}
           thickness={0.5}
           clearcoat={1}
           clearcoatRoughness={0.1}

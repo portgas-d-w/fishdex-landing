@@ -13,11 +13,10 @@ export default function Background3D() {
   const [shouldRender, setShouldRender] = useState(false);
 
   useEffect(() => {
-    // Check mobile (matchMedia) and prefers-reduced-motion
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    // Check prefers-reduced-motion
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
-    if (isMobile || reducedMotion) {
+    if (reducedMotion) {
       setShouldRender(false);
       return;
     }
@@ -53,7 +52,7 @@ export default function Background3D() {
       background: '#040a0d' // Fallback color
     }}>
       <Canvas
-        camera={{ position: [0, 0, 0], fov: 60 }}
+        camera={{ position: [0, 5, 100], fov: 60 }}
         dpr={typeof window !== 'undefined' ? Math.min(window.devicePixelRatio, 2) : 1}
         gl={{ 
           antialias: true,

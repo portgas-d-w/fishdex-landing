@@ -1,6 +1,6 @@
-/* ─── RESET & BASE ─── */
+/* â”€â”€â”€ RESET & BASE â”€â”€â”€ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; overflow: hidden; height: 100%; }
 
 :root {
   --bg-deep:    #071118;
@@ -26,23 +26,26 @@ html { scroll-behavior: smooth; font-size: 16px; }
 }
 
 body {
-  background: transparent; /* Was var(--bg-deep), made transparent for 3D background */
+  background: transparent;
   color: var(--text-primary);
   font-family: var(--font-body);
   font-weight: 300;
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow: hidden;
+  height: 100%;
+  position: fixed;
+  width: 100%;
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection { background: rgba(143,191,163,0.3); color: var(--accent-cream); }
 
-/* ─── SCROLLBAR ─── */
+/* â”€â”€â”€ SCROLLBAR â”€â”€â”€ */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg-deep); }
 ::-webkit-scrollbar-thumb { background: var(--accent-sage); border-radius: 2px; }
 
-/* ─── NOISE TEXTURE OVERLAY ─── */
+/* â”€â”€â”€ NOISE TEXTURE OVERLAY â”€â”€â”€ */
 body::before {
   content: '';
   position: fixed;
@@ -55,7 +58,7 @@ body::before {
   mix-blend-mode: overlay;
 }
 
-/* ─── NAV ─── */
+/* â”€â”€â”€ NAV â”€â”€â”€ */
 nav {
   position: fixed;
   top: 0;
@@ -154,7 +157,7 @@ nav.scrolled {
 .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-/* ─── HERO ─── */
+/* â”€â”€â”€ HERO â”€â”€â”€ */
 .hero {
   position: relative;
   min-height: 100dvh;
@@ -384,7 +387,7 @@ nav.scrolled {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ─── SECTION UTILS ─── */
+/* â”€â”€â”€ SECTION UTILS â”€â”€â”€ */
 section {
   position: relative;
   overflow: visible; /* Allow 3D transforms to show */
@@ -438,14 +441,7 @@ section {
   max-width: 540px;
 }
 
-/* ─── SCROLL-DRIVEN 3D TRAVERSE ─── */
-/* Transforms set directly by JS on every scroll frame — no transitions */
-[data-dive] {
-  will-change: transform, opacity, filter;
-  transform-origin: center center;
-}
-
-/* ─── INTRO NUMBER ─── */
+/* â”€â”€â”€ INTRO NUMBER â”€â”€â”€ */
 .intro-strip {
   padding: 80px 0;
   border-top: 1px solid var(--glass-border);
@@ -481,7 +477,7 @@ section {
   letter-spacing: 0.06em;
 }
 
-/* ─── CONCEPT / 3 PILLARS ─── */
+/* â”€â”€â”€ CONCEPT / 3 PILLARS â”€â”€â”€ */
 .concept { padding: 140px 0; }
 
 .concept-grid {
@@ -603,7 +599,7 @@ section {
   border-color: rgba(143,191,163,0.3);
 }
 
-/* ─── UNIVERS VIVANT ─── */
+/* â”€â”€â”€ UNIVERS VIVANT â”€â”€â”€ */
 .univers {
   padding: 140px 0;
   background: transparent; /* Was var(--bg-mid) */
@@ -684,7 +680,7 @@ section {
   line-height: 1.2;
 }
 
-/* ─── SESSIONS ─── */
+/* â”€â”€â”€ SESSIONS â”€â”€â”€ */
 .sessions { padding: 140px 0; }
 
 .sessions-layout {
@@ -835,7 +831,7 @@ section {
   font-weight: 300;
 }
 
-/* ─── ESPÈCES ─── */
+/* â”€â”€â”€ ESPÃˆCES â”€â”€â”€ */
 .especes {
   padding: 140px 0;
   background: transparent; /* Was var(--bg-mid) */
@@ -911,7 +907,7 @@ section {
 .fish-5 { background: linear-gradient(135deg, #1a2808 0%, #2a3d15 100%); }
 .fish-6 { background: linear-gradient(135deg, #200a1a 0%, #351528 100%); }
 
-/* ─── GALLERY ─── */
+/* â”€â”€â”€ GALLERY â”€â”€â”€ */
 .gallery { padding: 140px 0; }
 
 .gallery-header {
@@ -970,7 +966,7 @@ section {
 .gi-7 { background: linear-gradient(135deg, #201808, #352d15); }
 .gi-8 { background: linear-gradient(135deg, #082015, #153a28); }
 
-/* ─── PREMIUM ─── */
+/* â”€â”€â”€ PREMIUM â”€â”€â”€ */
 .premium {
   padding: 140px 0;
   background: transparent; /* Was var(--bg-mid) */
@@ -1084,7 +1080,7 @@ section {
   background-repeat: no-repeat;
 }
 
-/* ─── COMMUNITY ─── */
+/* â”€â”€â”€ COMMUNITY â”€â”€â”€ */
 .community { padding: 120px 0; }
 
 .community-inner {
@@ -1126,7 +1122,7 @@ section {
   flex-shrink: 0;
 }
 
-/* ─── CTA FINAL ─── */
+/* â”€â”€â”€ CTA FINAL â”€â”€â”€ */
 .cta-final {
   padding: 180px 0;
   text-align: center;
@@ -1175,7 +1171,7 @@ section {
   margin-right: auto;
 }
 
-/* ─── FOOTER ─── */
+/* â”€â”€â”€ FOOTER â”€â”€â”€ */
 footer {
   padding: 60px 0 40px;
   border-top: 1px solid var(--glass-border);
@@ -1220,7 +1216,7 @@ footer {
   letter-spacing: 0.04em;
 }
 
-/* ─── CUSTOM CURSOR ─── */
+/* â”€â”€â”€ CUSTOM CURSOR â”€â”€â”€ */
 .cursor {
   position: fixed;
   width: 8px;
@@ -1255,7 +1251,22 @@ footer {
   .cursor, .cursor-ring { display: none; }
 }
 
-/* ─── RESPONSIVE ─── */
+/* â”€â”€â”€ MOBILE / REDUCED-MOTION DOM FALLBACK â”€â”€â”€ */
+/* The dive sections live inside the WebGL canvas on desktop (HtmlSections.tsx).
+   Background3D mounts the canvas only when the viewport is wide enough AND the
+   user allows motion. In every other case the canvas â€” and its content â€” is
+   absent, so we surface the flat DOM version instead. Mirrors that condition. */
+.mobile-experience { display: none; }
+
+@media (max-width: 768px) {
+  .mobile-experience { display: block; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-experience { display: block; }
+}
+
+/* â”€â”€â”€ RESPONSIVE â”€â”€â”€ */
 @media (max-width: 1024px) {
   .concept-grid { grid-template-columns: 1fr; gap: 48px; }
   .univers-cards { grid-template-columns: repeat(2, 1fr); }
@@ -1312,20 +1323,128 @@ footer {
   .hero-bg img {
     object-position: 72% 65% !important;
   }
+}
+/* --- NEW MOCKUP STYLES --- */
 
-  /* Disable 3D on mobile */
-  [data-dive] {
-    transform: none !important;
-    filter: none !important;
-    opacity: 1 !important;
-  }
+/* Concept Icons */
+.pillar-icon { margin-left: auto; }
+
+/* Espèces Grid 6x2 */
+.especes-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  width: 100vw;
+  margin-left: -48px; /* Offset the section inner padding */
+  background: var(--bg-deep);
+}
+.espece-cell {
+  position: relative;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255,255,255,0.02);
+  background: linear-gradient(to bottom, #0d2820, #071118);
+  overflow: hidden;
 }
 
-/* ─── ACCESSIBILITY ─── */
-@media (prefers-reduced-motion: reduce) {
-  [data-dive] {
-    transform: none !important;
-    filter: none !important;
-    opacity: 1 !important;
-  }
+/* Galerie Masonry */
+.galerie-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
 }
+.galerie-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 250px;
+  gap: 16px;
+}
+.galerie-item {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.galerie-item.g-tall { grid-row: span 2; }
+.galerie-item.g-wide { grid-column: span 2; }
+
+/* Premium Cards */
+.premium-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+.premium-card {
+  background: rgba(143,191,163,0.03);
+  border: 1px solid rgba(143,191,163,0.1);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  position: relative;
+  transition: transform 0.3s;
+}
+.premium-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(143,191,163,0.3);
+}
+.plan-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--accent-cream);
+  margin-bottom: 16px;
+}
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.plan-features li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+.premium-card.pro { background: rgba(143,191,163,0.08); border-color: rgba(143,191,163,0.4); }
+.premium-card.pro .plan-title { color: var(--accent-sage); }
+
+/* Communauté & CTA Final Backgrounds */
+.communaute, .cta-final { position: relative; min-height: 80vh; overflow: hidden; }
+.communaute-bg, .cta-final-bg { position: absolute; inset: 0; }
+.communaute-overlay, .cta-final-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--bg-deep) 0%, rgba(7,17,24,0.7) 100%);
+}
+
+.btn-instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--accent-cream);
+  padding: 12px 24px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+.btn-instagram:hover { background: rgba(255,255,255,0.1); }
+.ig-icon {
+  width: 20px; height: 20px;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  border-radius: 6px;
+}
+
+.cta-final-title {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 300;
+  color: var(--accent-cream);
+  text-align: center;
+  margin-bottom: 24px;
+}
+.cta-final-sub { text-align: center; color: var(--text-muted); margin-bottom: 48px; }
+

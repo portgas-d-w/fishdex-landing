@@ -135,8 +135,8 @@ const PLANES: PlaneConfig[] = [
 
 interface CausticPlaneProps {
   config: PlaneConfig;
-  progressRef: React.RefObject<{ current: number }>;
-  velocityRef: React.RefObject<{ current: number }>;
+  progressRef: { current: number };
+  velocityRef: { current: number };
 }
 
 function CausticPlane({ config, progressRef, velocityRef }: CausticPlaneProps) {
@@ -157,20 +157,8 @@ function CausticPlane({ config, progressRef, velocityRef }: CausticPlaneProps) {
     if (!mat) return;
 
     mat.uniforms.uTime.value = state.clock.elapsedTime;
-
-    if (progressRef.current) {
-      mat.uniforms.uProgress.value =
-        typeof progressRef.current === 'number'
-          ? progressRef.current
-          : (progressRef.current as unknown as { current: number }).current ?? 0;
-    }
-
-    if (velocityRef.current) {
-      mat.uniforms.uVelocity.value =
-        typeof velocityRef.current === 'number'
-          ? velocityRef.current
-          : (velocityRef.current as unknown as { current: number }).current ?? 0;
-    }
+    mat.uniforms.uProgress.value = progressRef.current;
+    mat.uniforms.uVelocity.value = velocityRef.current;
   });
 
   return (
@@ -206,8 +194,8 @@ export default function Caustics() {
         <CausticPlane
           key={i}
           config={config}
-          progressRef={progressRef as React.RefObject<{ current: number }>}
-          velocityRef={velocityRef as React.RefObject<{ current: number }>}
+          progressRef={progressRef}
+          velocityRef={velocityRef}
         />
       ))}
     </>
