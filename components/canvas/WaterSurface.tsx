@@ -35,9 +35,8 @@ export default function WaterSurface() {
       waterColor: 0x071512, // Dark deep water color
       distortionScale: 3.7,
       fog: true,
-      format: gl.outputColorSpace,
     };
-  }, [normalMap, gl.outputColorSpace]);
+  }, [normalMap]);
 
   useFrame((state, delta) => {
     if (ref.current) {
