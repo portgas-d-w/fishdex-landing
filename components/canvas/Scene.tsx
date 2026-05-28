@@ -14,7 +14,7 @@ import { Environment, useTexture } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { cinematicState } from './useScrollProgress';
 
-import Vegetation from './Environment/Vegetation';
+import UnderwaterBackground from './Environment/UnderwaterBackground';
 import { SECTION_Z_POSITIONS } from './useScrollProgress';
 
 function DynamicEnvironment() {
@@ -117,7 +117,7 @@ export default function Scene() {
       />
 
       {/* 3D Elements */}
-      <Vegetation />
+      <UnderwaterBackground />
       <GodRays />
       <FishingFloat />
       <FishingLine />
