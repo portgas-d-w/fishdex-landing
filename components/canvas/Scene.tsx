@@ -10,7 +10,7 @@ import FishingFloat from './Environment/FishingFloat';
 import FishingLine from './Environment/FishingLine';
 import GodRays from './GodRays';
 import HtmlSections from './UI/HtmlSections';
-import { Environment } from '@react-three/drei';
+import { Environment, useTexture } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { cinematicState } from './useScrollProgress';
 
@@ -82,11 +82,14 @@ function DynamicEnvironment() {
     }
   });
 
+  const envMap = useTexture('/images/new/8d74e320-5e81-443f-8430-4c5d53a62f55.png');
+  envMap.mapping = THREE.EquirectangularReflectionMapping;
+
   return (
     <>
       <fogExp2 ref={fogRef} attach="fog" args={['#051014', 0.002]} />
       <ambientLight ref={ambientRef} intensity={0.4} color="#0f2b38" />
-      <Environment files="/images/new/8d74e320-5e81-443f-8430-4c5d53a62f55.png" background />
+      <Environment map={envMap} background />
     </>
   );
 }
