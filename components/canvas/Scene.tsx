@@ -10,6 +10,7 @@ import FishingFloat from './Environment/FishingFloat';
 import FishingLine from './Environment/FishingLine';
 import GodRays from './GodRays';
 import HtmlSections from './UI/HtmlSections';
+import { Environment } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { cinematicState } from './useScrollProgress';
 
@@ -85,6 +86,7 @@ function DynamicEnvironment() {
     <>
       <fogExp2 ref={fogRef} attach="fog" args={['#051014', 0.002]} />
       <ambientLight ref={ambientRef} intensity={0.4} color="#0f2b38" />
+      <Environment files="/images/new/8d74e320-5e81-443f-8430-4c5d53a62f55.png" background />
     </>
   );
 }
@@ -95,11 +97,11 @@ export default function Scene() {
       <CameraRig />
       <DynamicEnvironment />
       
-      {/* Sun — bas gauche, angle rasant (golden hour) */}
+      {/* Sun — bas gauche, horizon, face à la caméra */}
       <directionalLight
-        position={[-100, 15, 50]}
-        intensity={1.2}
-        color="#C9A96E"
+        position={[-30, 2, -100]}
+        intensity={1.5}
+        color="#FFAA55"
       />
       
       {/* Fill light — subtle blue from below */}
