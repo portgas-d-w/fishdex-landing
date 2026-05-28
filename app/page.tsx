@@ -2,7 +2,9 @@
 
 import { useEffect } from 'react'
 import Image from 'next/image'
-import Background3D from '../components/Background3D'
+import dynamic from 'next/dynamic'
+
+const Background3D = dynamic(() => import('../components/Background3D'), { ssr: false })
 import Navigation from '../components/Navigation'
 import MobileExperience from '../components/MobileExperience'
 
