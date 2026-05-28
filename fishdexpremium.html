@@ -1,0 +1,2610 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FishDex — Chaque poisson raconte une histoire</title>
+<meta name="description" content="FishDex transforme chaque sortie pêche en souvenir vivant. Découvrez 92 espèces, capturez vos moments, construisez votre journal d'explorateur.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+<style>
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+:root {
+  --bg-deep:    #071118;
+  --bg-mid:     #0F1C23;
+  --bg-panel:   #132B2B;
+  --accent-sage:#8FBFA3;
+  --accent-sand:#D9C89E;
+  --accent-cream:#F4F0E8;
+  --text-primary:#F4F0E8;
+  --text-muted:  rgba(244,240,232,0.55);
+  --text-dim:    rgba(244,240,232,0.3);
+  --gold:        #C9A96E;
+  --glass-bg:    rgba(15,28,35,0.6);
+  --glass-border:rgba(143,191,163,0.15);
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 40px;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: rgba(143,191,163,0.3); color: var(--accent-cream); }
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--accent-sage); border-radius: 2px; }
+
+/* ─── NOISE TEXTURE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 128px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.6s var(--ease-out);
+}
+
+nav.scrolled {
+  background: rgba(7,17,24,0.85);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 14px 48px;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--accent-cream);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-logo-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-sage);
+  display: inline-block;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--accent-cream); }
+
+.nav-cta {
+  background: var(--accent-sage);
+  color: var(--bg-deep) !important;
+  padding: 10px 22px;
+  border-radius: 100px;
+  font-weight: 500 !important;
+  transition: all 0.3s var(--ease-out) !important;
+}
+
+.nav-cta:hover {
+  background: var(--accent-cream) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(143,191,163,0.3);
+}
+
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-burger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--accent-cream);
+  transition: all 0.3s;
+}
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 70%, rgba(143,191,163,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(201,169,110,0.06) 0%, transparent 50%),
+    linear-gradient(160deg, #071118 0%, #0d2020 40%, #071118 100%);
+}
+
+/* Animated water ripple */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: radial-gradient(ellipse 40% 20% at 50% 70%, rgba(143,191,163,0.04) 0%, transparent 70%);
+  animation: water-drift 12s ease-in-out infinite alternate;
+}
+
+@keyframes water-drift {
+  0% { transform: translate(-3%, 2%) scale(1); }
+  100% { transform: translate(3%, -2%) scale(1.05); }
+}
+
+/* SVG landscape scene */
+.hero-scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-water {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+}
+
+.hero-mountains {
+  position: absolute;
+  bottom: 38%;
+  left: 0;
+  right: 0;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(201,169,110,0.18) 0%, transparent 70%);
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: sun-glow 8s ease-in-out infinite alternate;
+}
+
+@keyframes sun-glow {
+  0% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+  100% { opacity: 1; transform: translateX(-48%) scale(1.1); }
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent-sand);
+  opacity: 0;
+  animation: float-particle var(--dur) var(--delay) ease-in-out infinite;
+}
+
+@keyframes float-particle {
+  0% { opacity: 0; transform: translateY(0) scale(0); }
+  20% { opacity: var(--op); transform: translateY(-20px) scale(1); }
+  80% { opacity: var(--op); transform: translateY(-80px) scale(0.8); }
+  100% { opacity: 0; transform: translateY(-120px) scale(0); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 0 24px;
+  max-width: 900px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-sage);
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fade-up 1s 0.3s var(--ease-out) forwards;
+}
+
+.hero-badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-sage);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 7.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--accent-cream);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fade-up 1.2s 0.5s var(--ease-out) forwards;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--accent-sand);
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-muted);
+  font-weight: 300;
+  max-width: 520px;
+  margin: 0 auto 52px;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fade-up 1.2s 0.7s var(--ease-out) forwards;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fade-up 1.2s 0.9s var(--ease-out) forwards;
+}
+
+.btn-primary {
+  background: var(--accent-sage);
+  color: var(--bg-deep);
+  padding: 16px 36px;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.4s var(--ease-out);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--accent-cream);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(143,191,163,0.35);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent-cream);
+  padding: 16px 36px;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(244,240,232,0.2);
+  transition: all 0.4s var(--ease-out);
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(244,240,232,0.5);
+  background: rgba(244,240,232,0.05);
+  transform: translateY(-2px);
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  animation: fade-up 1s 1.5s ease forwards;
+}
+
+.hero-scroll-hint span {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--accent-sage), transparent);
+  animation: scroll-pulse 2s ease-in-out infinite;
+}
+
+@keyframes scroll-pulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── SECTION UTILS ─── */
+section { position: relative; overflow: hidden; }
+
+.section-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-sage);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent-sage);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--accent-cream);
+  margin-bottom: 24px;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--accent-sand);
+}
+
+.section-body {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  max-width: 540px;
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+.reveal-delay-4 { transition-delay: 0.6s; }
+
+/* ─── INTRO NUMBER ─── */
+.intro-strip {
+  padding: 80px 0;
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.intro-strip .section-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.intro-stat {
+  padding: 32px 48px;
+  border-right: 1px solid var(--glass-border);
+  text-align: center;
+}
+
+.intro-stat:last-child { border-right: none; }
+
+.intro-stat-num {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--accent-sand);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.intro-stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+/* ─── CONCEPT / 3 PILLARS ─── */
+.concept {
+  padding: 140px 0;
+}
+
+.concept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-top: 80px;
+}
+
+.concept-visual {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.concept-visual-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0d2820 0%, #1a3d30 50%, #0a1f1a 100%);
+}
+
+/* Animated water surface in concept */
+.concept-water-anim {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+}
+
+.concept-fish-silhouette {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.concept-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7,17,24,0.8) 0%, transparent 50%);
+}
+
+.concept-caption {
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  right: 32px;
+}
+
+.concept-caption-tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-sage);
+  margin-bottom: 8px;
+}
+
+.concept-caption-text {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--accent-cream);
+  line-height: 1.2;
+}
+
+.concept-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pillar {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.pillar:first-child { padding-top: 0; }
+.pillar:last-child { border-bottom: none; }
+
+.pillar:hover .pillar-num { color: var(--accent-sage); }
+.pillar:hover .pillar-title { color: var(--accent-cream); }
+
+.pillar-num {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--text-dim);
+  transition: color 0.3s;
+  min-width: 24px;
+  padding-top: 4px;
+}
+
+.pillar-content { flex: 1; }
+
+.pillar-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  transition: color 0.3s;
+  letter-spacing: -0.01em;
+}
+
+.pillar-body {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 380px;
+}
+
+.pillar-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(143,191,163,0.08);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+
+.pillar:hover .pillar-icon {
+  background: rgba(143,191,163,0.15);
+  border-color: rgba(143,191,163,0.3);
+}
+
+/* ─── UNIVERS VIVANT ─── */
+.univers {
+  padding: 140px 0;
+  background: var(--bg-mid);
+}
+
+.univers-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 80px;
+}
+
+.univers-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.univers-card {
+  aspect-ratio: 3/4;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.univers-card:hover { transform: translateY(-8px) scale(1.02); }
+
+.univers-card-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.univers-card:hover .univers-card-bg { transform: scale(1.08); }
+
+.univers-card-bg.dawn {
+  background: linear-gradient(160deg, #1a2a3a 0%, #2d4a3e 40%, #1a3028 100%);
+}
+.univers-card-bg.storm {
+  background: linear-gradient(160deg, #0d1520 0%, #1a2535 50%, #0a1018 100%);
+}
+.univers-card-bg.golden {
+  background: linear-gradient(160deg, #2a1a08 0%, #3d2a15 50%, #1a1008 100%);
+}
+.univers-card-bg.night {
+  background: linear-gradient(160deg, #05080d 0%, #0a1525 50%, #030508 100%);
+}
+
+/* SVG nature in cards */
+.univers-card-art {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.univers-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7,17,24,0.85) 0%, transparent 55%);
+}
+
+.univers-card-info {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+}
+
+.univers-card-season {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-sage);
+  margin-bottom: 6px;
+}
+
+.univers-card-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--accent-cream);
+  line-height: 1.2;
+}
+
+/* ─── SESSIONS ─── */
+.sessions {
+  padding: 140px 0;
+}
+
+.sessions-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: start;
+  margin-top: 80px;
+}
+
+.sessions-timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent-sage), transparent);
+}
+
+.timeline-entry {
+  position: relative;
+  margin-bottom: 48px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.7s var(--ease-out);
+}
+
+.timeline-entry.visible { opacity: 1; transform: translateX(0); }
+
+.timeline-dot {
+  position: absolute;
+  left: -37px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg-deep);
+  border: 2px solid var(--accent-sage);
+  transition: all 0.3s;
+}
+
+.timeline-entry:hover .timeline-dot {
+  background: var(--accent-sage);
+  box-shadow: 0 0 16px rgba(143,191,163,0.4);
+}
+
+.timeline-time {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-sage);
+  margin-bottom: 8px;
+}
+
+.timeline-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--accent-cream);
+  margin-bottom: 8px;
+}
+
+.timeline-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.sessions-visual {
+  position: sticky;
+  top: 120px;
+}
+
+.session-card-preview {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(24px);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  padding: 32px;
+}
+
+.session-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+.session-card-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.session-card-weather {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--accent-sage);
+}
+
+.session-map-placeholder {
+  aspect-ratio: 16/9;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #0a1f18 0%, #152d25 60%, #0d2020 100%);
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.session-catches-row {
+  display: flex;
+  gap: 12px;
+}
+
+.session-catch-item {
+  flex: 1;
+  background: rgba(143,191,163,0.06);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  text-align: center;
+}
+
+.session-catch-fish-icon {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.session-catch-name {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.session-catch-size {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--accent-sand);
+  font-weight: 300;
+}
+
+/* ─── ESPÈCES ─── */
+.especes {
+  padding: 140px 0;
+  background: var(--bg-mid);
+}
+
+.especes-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.especes-count-display {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 15vw, 12rem);
+  font-weight: 300;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(143,191,163,0.2);
+  line-height: 0.9;
+  margin-bottom: 24px;
+  letter-spacing: -0.03em;
+}
+
+.especes-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px;
+}
+
+.espece-cell {
+  aspect-ratio: 1;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.espece-cell-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.espece-cell:hover .espece-cell-bg { transform: scale(1.12); }
+
+.espece-cell-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(7,17,24,0.5);
+  transition: all 0.3s;
+}
+
+.espece-cell:hover .espece-cell-overlay { background: rgba(7,17,24,0.2); }
+
+.espece-cell-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: rgba(244,240,232,0);
+  text-align: center;
+  transition: all 0.3s;
+  background: linear-gradient(to top, rgba(7,17,24,0.8) 0%, transparent);
+}
+
+.espece-cell:hover .espece-cell-name { color: var(--accent-cream); }
+
+/* Fish silhouette colors */
+.fish-1 { background: linear-gradient(135deg, #0d2820 0%, #1a4535 100%); }
+.fish-2 { background: linear-gradient(135deg, #1a1a2e 0%, #2a2d4a 100%); }
+.fish-3 { background: linear-gradient(135deg, #2a1808 0%, #3d2a15 100%); }
+.fish-4 { background: linear-gradient(135deg, #0a1820 0%, #182535 100%); }
+.fish-5 { background: linear-gradient(135deg, #1a2808 0%, #2a3d15 100%); }
+.fish-6 { background: linear-gradient(135deg, #200a1a 0%, #351528 100%); }
+
+/* ─── GALLERY ─── */
+.gallery {
+  padding: 140px 0;
+}
+
+.gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 60px;
+}
+
+.gallery-mosaic {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(3, 200px);
+  gap: 8px;
+}
+
+.gallery-item {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.gallery-item:nth-child(1) { grid-column: span 5; grid-row: span 2; }
+.gallery-item:nth-child(2) { grid-column: span 3; grid-row: span 1; }
+.gallery-item:nth-child(3) { grid-column: span 4; grid-row: span 1; }
+.gallery-item:nth-child(4) { grid-column: span 3; grid-row: span 1; }
+.gallery-item:nth-child(5) { grid-column: span 4; grid-row: span 1; }
+.gallery-item:nth-child(6) { grid-column: span 4; grid-row: span 2; }
+.gallery-item:nth-child(7) { grid-column: span 3; grid-row: span 2; }
+.gallery-item:nth-child(8) { grid-column: span 5; grid-row: span 1; }
+
+.gallery-item-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.gallery-item:hover .gallery-item-bg { transform: scale(1.06); }
+
+.gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(7,17,24,0.3);
+  transition: all 0.4s;
+}
+
+.gallery-item:hover .gallery-item-overlay { background: rgba(7,17,24,0.1); }
+
+/* Gallery item backgrounds */
+.gi-1 { background: linear-gradient(135deg, #0d2820, #1a4535, #2a6045); }
+.gi-2 { background: linear-gradient(135deg, #1a2808, #2d4515); }
+.gi-3 { background: linear-gradient(135deg, #2a1808, #4a3020); }
+.gi-4 { background: linear-gradient(135deg, #081520, #152535); }
+.gi-5 { background: linear-gradient(135deg, #1a0820, #2d1535); }
+.gi-6 { background: linear-gradient(135deg, #0d2025, #1a3a40); }
+.gi-7 { background: linear-gradient(135deg, #201808, #352d15); }
+.gi-8 { background: linear-gradient(135deg, #082015, #153a28); }
+
+/* ─── PREMIUM ─── */
+.premium {
+  padding: 140px 0;
+  background: var(--bg-mid);
+}
+
+.premium-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.premium-plans {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.premium-plan {
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: all 0.4s var(--ease-out);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-plan::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(143,191,163,0.05) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.premium-plan:hover::before { opacity: 1; }
+.premium-plan:hover { border-color: rgba(143,191,163,0.3); transform: translateY(-4px); }
+
+.premium-plan.featured {
+  border-color: rgba(143,191,163,0.4);
+  background: linear-gradient(135deg, rgba(143,191,163,0.08) 0%, transparent 60%);
+}
+
+.plan-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(143,191,163,0.15);
+  border: 1px solid rgba(143,191,163,0.3);
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-sage);
+  margin-bottom: 20px;
+}
+
+.plan-name {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--accent-cream);
+  margin-bottom: 8px;
+}
+
+.plan-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+.plan-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.plan-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.plan-features li::before {
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(143,191,163,0.15);
+  border: 1px solid var(--accent-sage);
+  flex-shrink: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 8l2.5 2.5L12 5.5' stroke='%238FBFA3' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 14px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ─── COMMUNITY ─── */
+.community {
+  padding: 120px 0;
+}
+
+.community-inner {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.community-instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  padding: 14px 28px;
+  border-radius: 100px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-top: 40px;
+  transition: all 0.4s var(--ease-out);
+}
+
+.community-instagram:hover {
+  border-color: rgba(143,191,163,0.4);
+  color: var(--accent-cream);
+  transform: translateY(-2px);
+}
+
+.ig-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ─── CTA FINAL ─── */
+.cta-final {
+  padding: 180px 0;
+  text-align: center;
+  position: relative;
+}
+
+.cta-final-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 50%, rgba(143,191,163,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,169,110,0.05) 0%, transparent 60%),
+    var(--bg-deep);
+}
+
+.cta-final-horizon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to top, rgba(15,28,35,0.5) 0%, transparent);
+}
+
+.cta-final-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.cta-final-quote {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--accent-cream);
+  margin-bottom: 32px;
+}
+
+.cta-final-quote em {
+  font-style: italic;
+  color: var(--accent-sand);
+}
+
+.cta-final-sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 52px;
+  max-width: 460px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 60px 0 40px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.footer-links a {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover { color: var(--text-muted); }
+
+.footer-copy {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+/* ─── SVG ANIMATIONS ─── */
+.wave-anim {
+  animation: wave-move 6s ease-in-out infinite;
+}
+
+@keyframes wave-move {
+  0%, 100% { d: path("M0,80 C160,60 320,100 480,80 C640,60 800,100 960,80 C1120,60 1280,100 1440,80 L1440,200 L0,200 Z"); }
+  50% { d: path("M0,100 C160,80 320,120 480,100 C640,80 800,120 960,100 C1120,80 1280,120 1440,100 L1440,200 L0,200 Z"); }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .concept-grid { grid-template-columns: 1fr; gap: 48px; }
+  .univers-cards { grid-template-columns: repeat(2, 1fr); }
+  .especes-grid { grid-template-columns: repeat(4, 1fr); }
+  .sessions-layout { grid-template-columns: 1fr; }
+  .premium-layout { grid-template-columns: 1fr; gap: 60px; }
+  .sessions-visual { position: static; }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  nav.scrolled { padding: 12px 24px; }
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  .section-inner { padding: 0 24px; }
+  .intro-strip .section-inner { grid-template-columns: 1fr; }
+  .intro-stat { border-right: none; border-bottom: 1px solid var(--glass-border); }
+  .intro-stat:last-child { border-bottom: none; }
+  .univers-cards { grid-template-columns: repeat(2, 1fr); }
+  .univers-header { grid-template-columns: 1fr; gap: 32px; }
+  .especes-grid { grid-template-columns: repeat(3, 1fr); }
+  .gallery-mosaic {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+  .gallery-item { grid-column: span 1 !important; grid-row: span 1 !important; aspect-ratio: 1; }
+  .gallery-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .footer-inner { flex-direction: column; gap: 32px; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+  .hero-ctas { flex-direction: column; align-items: center; }
+}
+
+@media (max-width: 480px) {
+  .especes-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ─── CUSTOM CURSOR ─── */
+.cursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-sage);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: all 0.1s;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(143,191,163,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: all 0.15s ease-out;
+}
+
+.cursor-ring.hovering {
+  width: 50px;
+  height: 50px;
+  border-color: rgba(143,191,163,0.7);
+}
+
+@media (max-width: 768px) {
+  .cursor, .cursor-ring { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ─── NAV ─── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    FishDex
+    <span class="nav-logo-dot"></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#concept">L'univers</a></li>
+    <li><a href="#especes">Espèces</a></li>
+    <li><a href="#sessions">Sessions</a></li>
+    <li><a href="#premium">Premium</a></li>
+    <li><a href="#beta" class="nav-cta">Rejoindre la bêta</a></li>
+  </ul>
+  <div class="nav-burger" id="navBurger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+
+  <!-- Ambient glow -->
+  <div class="hero-glow"></div>
+
+  <!-- Scene SVG -->
+  <div class="hero-scene">
+    <svg width="100%" height="100%" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Sky gradient -->
+      <defs>
+        <radialGradient id="sunGlow" cx="50%" cy="28%" r="30%">
+          <stop offset="0%" stop-color="#C9A96E" stop-opacity="0.25"/>
+          <stop offset="60%" stop-color="#8FBFA3" stop-opacity="0.05"/>
+          <stop offset="100%" stop-color="#071118" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="mtnGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1a3d30"/>
+          <stop offset="100%" stop-color="#0d2820"/>
+        </linearGradient>
+        <linearGradient id="mtn2Grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#132B2B"/>
+          <stop offset="100%" stop-color="#0a1f1a"/>
+        </linearGradient>
+        <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0d2a30" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#071118" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="reflectGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#C9A96E" stop-opacity="0.12"/>
+          <stop offset="100%" stop-color="#8FBFA3" stop-opacity="0.03"/>
+        </linearGradient>
+        <filter id="blur-sm">
+          <feGaussianBlur stdDeviation="3"/>
+        </filter>
+        <filter id="blur-md">
+          <feGaussianBlur stdDeviation="8"/>
+        </filter>
+      </defs>
+
+      <!-- Sun glow -->
+      <ellipse cx="720" cy="240" rx="220" ry="120" fill="url(#sunGlow)"/>
+      <!-- Sun -->
+      <circle cx="720" cy="240" r="32" fill="#C9A96E" opacity="0.7" filter="url(#blur-sm)"/>
+      <circle cx="720" cy="240" r="18" fill="#D9C89E" opacity="0.9"/>
+
+      <!-- Mountains far -->
+      <path d="M0,540 L180,360 L320,460 L480,310 L640,420 L780,300 L920,410 L1100,320 L1260,400 L1440,340 L1440,900 L0,900 Z" fill="#0a1c1a" opacity="0.8"/>
+      <!-- Mountains mid -->
+      <path d="M0,600 L120,480 L240,560 L380,430 L520,520 L680,400 L820,500 L960,420 L1100,490 L1240,430 L1440,510 L1440,900 L0,900 Z" fill="url(#mtn2Grad)" opacity="0.9"/>
+      <!-- Treeline -->
+      <path d="M0,650 Q60,630 120,650 Q160,620 200,650 Q240,625 280,650 Q330,615 370,650 Q420,620 460,650 Q510,618 550,650 Q600,622 640,650 Q690,616 730,650 Q780,620 820,650 Q870,618 910,650 Q960,622 1000,650 Q1060,615 1100,650 Q1160,618 1200,650 Q1260,622 1300,650 Q1360,616 1400,650 L1440,650 L1440,900 L0,900 Z" fill="#081a14" opacity="0.95"/>
+
+      <!-- Water surface -->
+      <rect x="0" y="650" width="1440" height="250" fill="url(#waterGrad)"/>
+
+      <!-- Water ripples / reflections -->
+      <ellipse cx="720" cy="700" rx="200" ry="15" fill="url(#reflectGrad)" opacity="0.6"/>
+      <ellipse cx="720" cy="720" rx="160" ry="10" fill="url(#reflectGrad)" opacity="0.4"/>
+      <ellipse cx="720" cy="740" rx="120" ry="6" fill="url(#reflectGrad)" opacity="0.2"/>
+
+      <!-- Animated wave lines -->
+      <g opacity="0.25">
+        <path d="M100,670 Q200,665 300,670 Q400,675 500,670" stroke="#8FBFA3" stroke-width="0.8" fill="none">
+          <animate attributeName="d" dur="4s" repeatCount="indefinite"
+            values="M100,670 Q200,665 300,670 Q400,675 500,670;
+                    M100,672 Q200,667 300,672 Q400,677 500,672;
+                    M100,670 Q200,665 300,670 Q400,675 500,670"/>
+        </path>
+        <path d="M600,675 Q700,670 800,675 Q900,680 1000,675" stroke="#8FBFA3" stroke-width="0.8" fill="none">
+          <animate attributeName="d" dur="5s" repeatCount="indefinite"
+            values="M600,675 Q700,670 800,675 Q900,680 1000,675;
+                    M600,677 Q700,672 800,677 Q900,682 1000,677;
+                    M600,675 Q700,670 800,675 Q900,680 1000,675"/>
+        </path>
+        <path d="M900,685 Q1000,680 1100,685 Q1200,690 1300,685" stroke="#8FBFA3" stroke-width="0.8" fill="none">
+          <animate attributeName="d" dur="3.5s" repeatCount="indefinite"
+            values="M900,685 Q1000,680 1100,685 Q1200,690 1300,685;
+                    M900,687 Q1000,682 1100,687 Q1200,692 1300,687;
+                    M900,685 Q1000,680 1100,685 Q1200,690 1300,685"/>
+        </path>
+        <path d="M200,690 Q350,685 500,690 Q650,695 800,690" stroke="#D9C89E" stroke-width="0.5" fill="none" opacity="0.5">
+          <animate attributeName="d" dur="6s" repeatCount="indefinite"
+            values="M200,690 Q350,685 500,690 Q650,695 800,690;
+                    M200,692 Q350,687 500,692 Q650,697 800,692;
+                    M200,690 Q350,685 500,690 Q650,695 800,690"/>
+        </path>
+      </g>
+
+      <!-- Fish silhouette in water -->
+      <g opacity="0.18" transform="translate(580, 710)">
+        <ellipse cx="40" cy="0" rx="45" ry="14" fill="#8FBFA3"/>
+        <path d="M-5,0 L-25,-12 L-25,12 Z" fill="#8FBFA3"/>
+      </g>
+
+      <!-- Fisherman silhouette -->
+      <g transform="translate(680, 580)" opacity="0.7">
+        <!-- body -->
+        <rect x="-6" y="-50" width="12" height="35" rx="4" fill="#071118"/>
+        <!-- head -->
+        <circle cx="0" cy="-58" r="10" fill="#071118"/>
+        <!-- hat -->
+        <rect x="-12" y="-70" width="24" height="6" rx="2" fill="#0a1c1a"/>
+        <rect x="-7" y="-82" width="14" height="14" rx="3" fill="#0a1c1a"/>
+        <!-- rod -->
+        <line x1="10" y1="-45" x2="80" y2="-100" stroke="#132B2B" stroke-width="2"/>
+        <!-- line -->
+        <line x1="80" y1="-100" x2="100" y2="20" stroke="#8FBFA3" stroke-width="0.8" opacity="0.4">
+          <animate attributeName="x2" dur="3s" repeatCount="indefinite" values="100;102;98;100"/>
+        </line>
+        <!-- legs -->
+        <line x1="-3" y1="-15" x2="-6" y2="0" stroke="#071118" stroke-width="6" stroke-linecap="round"/>
+        <line x1="3" y1="-15" x2="6" y2="0" stroke="#071118" stroke-width="6" stroke-linecap="round"/>
+      </g>
+
+      <!-- Birds far -->
+      <g opacity="0.4">
+        <path d="M320,180 Q328,173 336,180" stroke="#D9C89E" stroke-width="1.2" fill="none"/>
+        <path d="M355,165 Q363,158 371,165" stroke="#D9C89E" stroke-width="1.2" fill="none"/>
+        <path d="M390,175 Q398,168 406,175" stroke="#D9C89E" stroke-width="1.2" fill="none"/>
+      </g>
+
+      <!-- Fog band -->
+      <rect x="0" y="600" width="1440" height="80" fill="url(#mtn2Grad)" opacity="0.3" filter="url(#blur-md)"/>
+    </svg>
+  </div>
+
+  <!-- Floating particles -->
+  <div class="hero-particles" id="heroParticles"></div>
+
+  <!-- Hero content -->
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Bêta ouverte · 2026
+    </div>
+    <h1 class="hero-title">
+      Chaque poisson<br><em>raconte une histoire.</em>
+    </h1>
+    <p class="hero-subtitle">
+      Transformez vos sorties pêche en souvenirs vivants. Découvrez, capturez, revivez — dans un univers influencé par la météo, les saisons et la lumière naturelle.
+    </p>
+    <div class="hero-ctas">
+      <a href="#beta" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M6 8l2 2 2.5-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Rejoindre la bêta
+      </a>
+      <a href="#concept" class="btn-secondary">
+        Découvrir FishDex
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span>Explorer</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── STATS STRIP ─── -->
+<div class="intro-strip">
+  <div class="section-inner">
+    <div class="intro-stat reveal">
+      <div class="intro-stat-num">92</div>
+      <div class="intro-stat-label">Espèces à découvrir</div>
+    </div>
+    <div class="intro-stat reveal reveal-delay-1">
+      <div class="intro-stat-num">4</div>
+      <div class="intro-stat-label">Saisons vivantes</div>
+    </div>
+    <div class="intro-stat reveal reveal-delay-2">
+      <div class="intro-stat-num">∞</div>
+      <div class="intro-stat-label">Souvenirs à créer</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CONCEPT ─── -->
+<section class="concept" id="concept">
+  <div class="section-inner">
+    <div class="section-label reveal">L'Expérience</div>
+    <div class="concept-grid">
+      <!-- Visual -->
+      <div class="concept-visual reveal">
+        <div class="concept-visual-bg"></div>
+        <!-- Nature scene SVG -->
+        <svg width="100%" height="100%" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0">
+          <defs>
+            <radialGradient id="cvGlow" cx="50%" cy="30%" r="50%">
+              <stop offset="0%" stop-color="#C9A96E" stop-opacity="0.2"/>
+              <stop offset="100%" stop-color="#0d2820" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="cvWater" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1a3d35"/>
+              <stop offset="100%" stop-color="#071118"/>
+            </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
+              <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+            </filter>
+          </defs>
+
+          <!-- Sky -->
+          <rect width="400" height="500" fill="#0a1f1a"/>
+          <!-- Sky glow -->
+          <ellipse cx="200" cy="100" rx="180" ry="100" fill="url(#cvGlow)"/>
+          <!-- Sun -->
+          <circle cx="200" cy="100" r="24" fill="#C9A96E" opacity="0.65" filter="url(#glow)"/>
+          <circle cx="200" cy="100" r="14" fill="#D9C89E" opacity="0.85"/>
+
+          <!-- Mountain layers -->
+          <path d="M0,280 L80,180 L160,240 L240,160 L320,210 L400,170 L400,500 L0,500 Z" fill="#0d2820" opacity="0.9"/>
+          <path d="M0,320 L60,240 L120,290 L200,220 L280,270 L360,230 L400,260 L400,500 L0,500 Z" fill="#0a1c18" opacity="0.95"/>
+
+          <!-- Forest silhouette -->
+          <path d="M0,350 Q20,330 40,350 Q55,325 70,350 Q85,328 100,350 Q120,322 140,350 Q160,326 180,350 Q200,320 220,350 Q240,324 260,350 Q280,328 300,350 Q320,322 340,350 Q370,326 400,350 L400,500 L0,500 Z" fill="#071118"/>
+
+          <!-- Water -->
+          <rect x="0" y="350" width="400" height="150" fill="url(#cvWater)" opacity="0.95"/>
+
+          <!-- Water ripples -->
+          <ellipse cx="200" cy="375" rx="100" ry="8" fill="#C9A96E" opacity="0.08"/>
+          <ellipse cx="200" cy="390" rx="70" ry="5" fill="#8FBFA3" opacity="0.06"/>
+          <path d="M60,370 Q100,365 140,370 Q180,375 220,370" stroke="#8FBFA3" stroke-width="0.6" fill="none" opacity="0.3"/>
+          <path d="M200,380 Q240,375 280,380 Q320,385 360,380" stroke="#8FBFA3" stroke-width="0.6" fill="none" opacity="0.2"/>
+
+          <!-- Big fish underwater -->
+          <g transform="translate(180, 420)" opacity="0.22">
+            <ellipse cx="0" cy="0" rx="55" ry="16" fill="#8FBFA3"/>
+            <path d="M-55,0 L-75,-14 L-75,14 Z" fill="#8FBFA3"/>
+            <circle cx="40" cy="-4" r="4" fill="#071118"/>
+          </g>
+
+          <!-- Reeds / cattails -->
+          <line x1="30" y1="350" x2="35" y2="290" stroke="#2a4a30" stroke-width="3" stroke-linecap="round"/>
+          <ellipse cx="35" cy="293" rx="4" ry="18" fill="#1a3020"/>
+          <line x1="50" y1="350" x2="56" y2="300" stroke="#2a4a30" stroke-width="2.5" stroke-linecap="round"/>
+          <ellipse cx="56" cy="303" rx="3" ry="14" fill="#1a3020"/>
+          <line x1="370" y1="350" x2="364" y2="285" stroke="#2a4a30" stroke-width="3" stroke-linecap="round"/>
+          <ellipse cx="364" cy="288" rx="4" ry="18" fill="#1a3020"/>
+
+          <!-- Stars -->
+          <circle cx="60" cy="50" r="1.2" fill="#D9C89E" opacity="0.6"/>
+          <circle cx="320" cy="70" r="1" fill="#D9C89E" opacity="0.5"/>
+          <circle cx="140" cy="40" r="0.8" fill="#F4F0E8" opacity="0.4"/>
+          <circle cx="280" cy="55" r="1.2" fill="#D9C89E" opacity="0.55"/>
+          <circle cx="360" cy="35" r="0.8" fill="#F4F0E8" opacity="0.4"/>
+          <circle cx="100" cy="80" r="1" fill="#D9C89E" opacity="0.45"/>
+        </svg>
+
+        <div class="concept-overlay"></div>
+        <div class="concept-caption">
+          <div class="concept-caption-tag">Immersion totale</div>
+          <div class="concept-caption-text">Un monde vivant,<br>à chaque sortie.</div>
+        </div>
+      </div>
+
+      <!-- Pillars -->
+      <div class="concept-pillars">
+        <div class="pillar reveal">
+          <div class="pillar-num">01</div>
+          <div class="pillar-content">
+            <div class="pillar-title">Découvrir</div>
+            <p class="pillar-body">92 espèces de poissons à identifier et à collecter. Chaque capture révèle une fiche vivante : comportement, habitat, saison. Un musée naturel dans votre poche.</p>
+          </div>
+          <div class="pillar-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8.5" cy="8.5" r="5.5" stroke="#8FBFA3" stroke-width="1.2"/><path d="M13 13l3.5 3.5" stroke="#8FBFA3" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="pillar reveal reveal-delay-1">
+          <div class="pillar-num">02</div>
+          <div class="pillar-content">
+            <div class="pillar-title">Capturer</div>
+            <p class="pillar-body">Photographiez, enregistrez, géolocalisez. Chaque prise devient une entrée dans votre FishDex personnel — horodatée, contextualisée, inoubliable.</p>
+          </div>
+          <div class="pillar-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="11" rx="2" stroke="#8FBFA3" stroke-width="1.2"/><circle cx="10" cy="10.5" r="2.5" stroke="#8FBFA3" stroke-width="1.2"/><path d="M7 5l1-2h4l1 2" stroke="#8FBFA3" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="pillar reveal reveal-delay-2">
+          <div class="pillar-num">03</div>
+          <div class="pillar-content">
+            <div class="pillar-title">Revivre</div>
+            <p class="pillar-body">Vos sessions deviennent des récits. Une galerie immersive reconstruit chaque sortie — météo, lumière, captures, émotions. Des souvenirs qui durent.</p>
+          </div>
+          <div class="pillar-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10a6 6 0 1012 0A6 6 0 004 10z" stroke="#8FBFA3" stroke-width="1.2"/><path d="M10 7v3l2 2" stroke="#8FBFA3" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── UNIVERS VIVANT ─── -->
+<section class="univers" id="univers">
+  <div class="section-inner">
+    <div class="univers-header">
+      <div>
+        <div class="section-label reveal">L'Univers</div>
+        <h2 class="section-title reveal reveal-delay-1">Un monde qui<br><em>respire avec vous.</em></h2>
+      </div>
+      <div>
+        <p class="section-body reveal reveal-delay-2">FishDex évolue avec la météo, les saisons et la lumière du jour. L'interface s'adapte à votre environnement réel — du brumeux matin d'automne au coucher de soleil d'été.</p>
+      </div>
+    </div>
+
+    <div class="univers-cards">
+      <!-- Card: Dawn -->
+      <div class="univers-card reveal">
+        <div class="univers-card-bg dawn"></div>
+        <div class="univers-card-art">
+          <svg width="100%" height="180" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="dawnSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0a1a20"/>
+                <stop offset="100%" stop-color="#1a3530"/>
+              </linearGradient>
+            </defs>
+            <rect width="200" height="180" fill="url(#dawnSky)"/>
+            <!-- Horizon glow -->
+            <ellipse cx="100" cy="100" rx="90" ry="40" fill="#D9C89E" opacity="0.12"/>
+            <!-- Mountains -->
+            <path d="M0,120 L40,80 L80,110 L120,70 L160,100 L200,75 L200,180 L0,180 Z" fill="#0a1c18" opacity="0.9"/>
+            <!-- Mist -->
+            <rect x="0" y="115" width="200" height="20" fill="#8FBFA3" opacity="0.05" filter="url(#blur-md)"/>
+            <!-- Water -->
+            <rect x="0" y="130" width="200" height="50" fill="#0d2020" opacity="0.95"/>
+            <path d="M20,138 Q50,134 80,138" stroke="#D9C89E" stroke-width="0.7" fill="none" opacity="0.3"/>
+            <path d="M100,142 Q130,138 160,142" stroke="#D9C89E" stroke-width="0.7" fill="none" opacity="0.25"/>
+          </svg>
+        </div>
+        <div class="univers-card-overlay"></div>
+        <div class="univers-card-info">
+          <div class="univers-card-season">Printemps · Aube</div>
+          <div class="univers-card-name">La brume du matin</div>
+        </div>
+      </div>
+
+      <!-- Card: Storm -->
+      <div class="univers-card reveal reveal-delay-1">
+        <div class="univers-card-bg storm"></div>
+        <div class="univers-card-art">
+          <svg width="100%" height="180" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+            <!-- Storm clouds -->
+            <ellipse cx="80" cy="50" rx="70" ry="35" fill="#1a2530" opacity="0.9"/>
+            <ellipse cx="140" cy="40" rx="55" ry="28" fill="#151e2a" opacity="0.95"/>
+            <ellipse cx="50" cy="65" rx="45" ry="22" fill="#1a2535" opacity="0.8"/>
+            <!-- Lightning -->
+            <path d="M110,70 L100,100 L108,100 L95,130" stroke="#D9C89E" stroke-width="1.2" fill="none" opacity="0.7"/>
+            <!-- Rain lines -->
+            <g opacity="0.2">
+              <line x1="30" y1="80" x2="25" y2="110" stroke="#8FBFA3" stroke-width="0.8"/>
+              <line x1="50" y1="85" x2="45" y2="115" stroke="#8FBFA3" stroke-width="0.8"/>
+              <line x1="160" y1="75" x2="155" y2="105" stroke="#8FBFA3" stroke-width="0.8"/>
+              <line x1="180" y1="80" x2="175" y2="110" stroke="#8FBFA3" stroke-width="0.8"/>
+            </g>
+            <!-- Mountains dark -->
+            <path d="M0,130 L50,100 L100,120 L150,95 L200,115 L200,180 L0,180 Z" fill="#050d12" opacity="0.95"/>
+            <!-- Dark water -->
+            <rect x="0" y="145" width="200" height="35" fill="#040c10" opacity="0.98"/>
+            <path d="M10,152 Q40,148 70,152 Q100,156 130,152" stroke="#8FBFA3" stroke-width="0.6" fill="none" opacity="0.15"/>
+          </svg>
+        </div>
+        <div class="univers-card-overlay"></div>
+        <div class="univers-card-info">
+          <div class="univers-card-season">Automne · Orage</div>
+          <div class="univers-card-name">L'électricité de l'air</div>
+        </div>
+      </div>
+
+      <!-- Card: Golden hour -->
+      <div class="univers-card reveal reveal-delay-2">
+        <div class="univers-card-bg golden"></div>
+        <div class="univers-card-art">
+          <svg width="100%" height="180" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="goldenSun" cx="50%" cy="55%" r="40%">
+                <stop offset="0%" stop-color="#C9A96E" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="#2a1808" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="200" height="180" fill="#1a1008"/>
+            <ellipse cx="100" cy="95" rx="100" ry="70" fill="url(#goldenSun)"/>
+            <!-- Sun setting -->
+            <circle cx="100" cy="95" r="30" fill="#C9A96E" opacity="0.4"/>
+            <circle cx="100" cy="95" r="20" fill="#D9A050" opacity="0.6"/>
+            <circle cx="100" cy="95" r="12" fill="#E8B060" opacity="0.8"/>
+            <!-- Horizon silhouette -->
+            <path d="M0,100 L200,100 L200,180 L0,180 Z" fill="#0a0804" opacity="0.9"/>
+            <!-- Tree silhouettes -->
+            <line x1="20" y1="100" x2="20" y2="60" stroke="#050504" stroke-width="3"/>
+            <path d="M5,75 L20,50 L35,75 Z" fill="#050504"/>
+            <path d="M8,90 L20,65 L32,90 Z" fill="#050504"/>
+            <line x1="180" y1="100" x2="180" y2="55" stroke="#050504" stroke-width="3"/>
+            <path d="M165,70 L180,45 L195,70 Z" fill="#050504"/>
+            <path d="M168,85 L180,62 L192,85 Z" fill="#050504"/>
+            <!-- Water reflection -->
+            <ellipse cx="100" cy="130" rx="80" ry="20" fill="#C9A96E" opacity="0.08"/>
+            <rect x="0" y="118" width="200" height="62" fill="#0d0a06" opacity="0.7"/>
+            <path d="M40,125 Q70,120 100,125 Q130,130 160,125" stroke="#C9A96E" stroke-width="1" fill="none" opacity="0.2"/>
+          </svg>
+        </div>
+        <div class="univers-card-overlay"></div>
+        <div class="univers-card-info">
+          <div class="univers-card-season">Été · Coucher de soleil</div>
+          <div class="univers-card-name">L'heure dorée</div>
+        </div>
+      </div>
+
+      <!-- Card: Night -->
+      <div class="univers-card reveal reveal-delay-3">
+        <div class="univers-card-bg night"></div>
+        <div class="univers-card-art">
+          <svg width="100%" height="180" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="180" fill="#030507"/>
+            <!-- Stars -->
+            <circle cx="40" cy="20" r="1.5" fill="#F4F0E8" opacity="0.8"/>
+            <circle cx="80" cy="35" r="1" fill="#D9C89E" opacity="0.7"/>
+            <circle cx="120" cy="15" r="1.5" fill="#F4F0E8" opacity="0.9"/>
+            <circle cx="160" cy="30" r="1" fill="#D9C89E" opacity="0.6"/>
+            <circle cx="190" cy="12" r="1.2" fill="#F4F0E8" opacity="0.75"/>
+            <circle cx="55" cy="45" r="0.8" fill="#F4F0E8" opacity="0.6"/>
+            <circle cx="145" cy="50" r="0.8" fill="#D9C89E" opacity="0.5"/>
+            <circle cx="25" cy="60" r="1" fill="#F4F0E8" opacity="0.65"/>
+            <!-- Moon -->
+            <circle cx="155" cy="35" r="18" fill="#D9C89E" opacity="0.18"/>
+            <circle cx="155" cy="35" r="12" fill="#D9C89E" opacity="0.3"/>
+            <!-- Moon crescent cutout effect -->
+            <circle cx="162" cy="31" r="11" fill="#030507"/>
+            <!-- Mountains silhouette -->
+            <path d="M0,110 L50,70 L90,100 L130,60 L170,90 L200,75 L200,180 L0,180 Z" fill="#050a0d" opacity="0.98"/>
+            <!-- Dark water with moon reflection -->
+            <rect x="0" y="135" width="200" height="45" fill="#030609"/>
+            <ellipse cx="155" cy="150" rx="30" ry="8" fill="#D9C89E" opacity="0.06"/>
+            <path d="M130,142 Q145,138 160,142 Q175,146 190,142" stroke="#D9C89E" stroke-width="0.5" fill="none" opacity="0.15"/>
+          </svg>
+        </div>
+        <div class="univers-card-overlay"></div>
+        <div class="univers-card-info">
+          <div class="univers-card-season">Hiver · Nuit</div>
+          <div class="univers-card-name">Le silence de l'eau</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SESSIONS ─── -->
+<section class="sessions" id="sessions">
+  <div class="section-inner">
+    <div class="section-label reveal">Sessions</div>
+    <h2 class="section-title reveal reveal-delay-1">Une sortie devient<br><em>un souvenir.</em></h2>
+
+    <div class="sessions-layout">
+      <!-- Timeline -->
+      <div class="sessions-timeline">
+        <div class="timeline-line"></div>
+
+        <div class="timeline-entry">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">05:42 — Lever du soleil</div>
+          <div class="timeline-title">Arrivée sur site</div>
+          <p class="timeline-desc">L'application détecte l'aube. L'interface bascule en mode aurore — lumière chaude, brume visuelle. La journée commence.</p>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">07:18 — Brise légère</div>
+          <div class="timeline-title">Première capture</div>
+          <p class="timeline-desc">Un gardon de 28 cm. FishDex l'identifie, l'enregistre, le géolocalise. Votre FishDex s'enrichit. Un badge se débloque.</p>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">09:55 — Soleil haut</div>
+          <div class="timeline-title">Découverte rare</div>
+          <p class="timeline-desc">Une brème commune — votre 14ème espèce. L'application vibre doucement. Une animation rare se déploie. Moment de grâce.</p>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">12:40 — Fin de session</div>
+          <div class="timeline-title">Le souvenir se crée</div>
+          <p class="timeline-desc">FishDex compile automatiquement votre session : carte du lieu, météo, captures, moments. Un journal vivant, prêt à être revécu.</p>
+        </div>
+      </div>
+
+      <!-- Session preview card -->
+      <div class="sessions-visual reveal">
+        <div class="session-card-preview">
+          <div class="session-card-header">
+            <div>
+              <div style="font-family:var(--font-display);font-size:1.4rem;font-weight:300;color:var(--accent-cream);margin-bottom:4px;">Session du 14 avril</div>
+              <div class="session-card-date">Lac de la Forêt · 5h de pêche</div>
+            </div>
+            <div class="session-card-weather">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M4 12c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              12°C · Partiel
+            </div>
+          </div>
+
+          <!-- Map placeholder -->
+          <div class="session-map-placeholder">
+            <svg width="100%" height="100%" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+              <!-- Map-like terrain -->
+              <rect width="400" height="220" fill="#0a1f18"/>
+              <path d="M0,80 Q100,60 200,80 Q300,100 400,80 L400,220 L0,220 Z" fill="#0d2820" opacity="0.6"/>
+              <!-- Lake -->
+              <ellipse cx="200" cy="150" rx="120" ry="45" fill="#0a2530" opacity="0.9"/>
+              <ellipse cx="200" cy="150" rx="110" ry="40" fill="#0d2e38" opacity="0.7"/>
+              <!-- Topographic lines -->
+              <ellipse cx="200" cy="130" rx="80" ry="30" fill="none" stroke="#1a4535" stroke-width="0.8" opacity="0.5"/>
+              <ellipse cx="200" cy="120" rx="55" ry="22" fill="none" stroke="#1a4535" stroke-width="0.8" opacity="0.4"/>
+              <!-- Route path -->
+              <path d="M60,190 Q80,170 100,160 Q130,145 160,148 Q185,150 200,150" stroke="#8FBFA3" stroke-width="1.5" fill="none" stroke-dasharray="4,3" opacity="0.6"/>
+              <!-- Capture markers -->
+              <circle cx="175" cy="148" r="5" fill="#8FBFA3" opacity="0.9"/>
+              <circle cx="175" cy="148" r="9" fill="none" stroke="#8FBFA3" stroke-width="1" opacity="0.4"/>
+              <circle cx="200" cy="152" r="5" fill="#D9C89E" opacity="0.9"/>
+              <circle cx="200" cy="152" r="9" fill="none" stroke="#D9C89E" stroke-width="1" opacity="0.4"/>
+              <circle cx="225" cy="148" r="4" fill="#8FBFA3" opacity="0.7"/>
+              <!-- Labels -->
+              <text x="160" y="185" fill="#8FBFA3" font-size="9" font-family="sans-serif" opacity="0.6">Lac de la Forêt</text>
+              <text x="60" y="200" fill="#F4F0E8" font-size="7" font-family="sans-serif" opacity="0.4">Départ</text>
+            </svg>
+          </div>
+
+          <!-- Catches -->
+          <div class="session-catches-row">
+            <div class="session-catch-item">
+              <span class="session-catch-fish-icon">🐟</span>
+              <div class="session-catch-name">Gardon</div>
+              <div class="session-catch-size">28 cm</div>
+            </div>
+            <div class="session-catch-item">
+              <span class="session-catch-fish-icon">🐠</span>
+              <div class="session-catch-name">Brème</div>
+              <div class="session-catch-size">41 cm</div>
+            </div>
+            <div class="session-catch-item">
+              <span class="session-catch-fish-icon">🐡</span>
+              <div class="session-catch-name">Carpe</div>
+              <div class="session-catch-size">62 cm</div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--glass-border);display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:0.78rem;color:var(--text-dim);letter-spacing:0.06em;">3 espèces · 4 captures · 5h</span>
+            <span style="font-size:0.78rem;color:var(--accent-sage);">Voir le souvenir →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ESPÈCES ─── -->
+<section class="especes" id="especes">
+  <div class="section-inner">
+    <div class="especes-header">
+      <div class="especes-count-display reveal">92</div>
+      <div class="section-label reveal" style="justify-content:center;">Espèces</div>
+      <h2 class="section-title reveal reveal-delay-1" style="text-align:center;max-width:600px;margin:0 auto 16px;">Un musée vivant<br>dans votre poche.</h2>
+      <p class="section-body reveal reveal-delay-2" style="text-align:center;margin:0 auto 60px;max-width:480px;">De la truite fario au silure géant — chaque espèce vous attend. Biologie, comportement, records, habitats. Une encyclopédie que vous construisez capture après capture.</p>
+    </div>
+
+    <!-- Species grid -->
+    <div class="especes-grid">
+      <!-- 12 cells with fish names and SVG art -->
+      <div class="espece-cell reveal" style="transition-delay:0s">
+        <div class="espece-cell-bg fish-1">
+          <svg width="100%" height="100%" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#0d2820"/>
+            <ellipse cx="60" cy="60" rx="38" ry="20" fill="#1a4535" opacity="0.7"/>
+            <path d="M22,60 L10,45 L10,75 Z" fill="#1a4535" opacity="0.7"/>
+            <circle cx="88" cy="54" r="5" fill="#071118"/>
+            <path d="M50,50 Q60,45 70,50" stroke="#8FBFA3" stroke-width="0.8" fill="none" opacity="0.4"/>
+            <path d="M55,60 Q60,58 65,60" stroke="#8FBFA3" stroke-width="0.6" fill="none" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="espece-cell-overlay"></div>
+        <div class="espece-cell-name">Truite fario</div>
+      </div>
+      <div class="espece-cell reveal reveal-delay-1">
+        <div class="espece-cell-bg fish-2">
+          <svg width="100%" height="100%" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#1a1a2e"/>
+            <ellipse cx="60" cy="60" rx="32" ry="16" fill="#2a2d4a" opacity="0.8"/>
+            <path d="M28,60 L14,42 L14,78 Z" fill="#2a2d4a" opacity="0.7"/>
+            <circle cx="84" cy="55" r="5" fill="#0d0d1a"/>
+            <line x1="55" y1="52" x2="65" y2="68" stroke="#4a4d7a" stroke-width="3" opacity="0.4"/>
+            <line x1="60" y1="50" x2="60" y2="70" stroke="#4a4d7a" stroke-width="3" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="espece-cell-overlay"></div>
+        <div class="espece-cell-name">Perche commune</div>
+      </div>
+      <div class="espece-cell reveal reveal-delay-2">
+        <div class="espece-cell-bg fish-3">
+          <svg width="100%" height="100%" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#2a1808"/>
+            <ellipse cx="62" cy="62" rx="45" ry="22" fill="#3d2a15" opacity="0.8"/>
+            <path d="M17,62 L5,44 L5,80 Z" fill="#3d2a15" opacity="0.7"/>
+            <circle cx="95" cy="56" r="6" fill="#1a0d05"/>
+            <ellipse cx="62" cy="62" rx="20" ry="8" fill="#4d3a20" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="espece-cell-overlay"></div>
+        <div class="espece-cell-name">Carpe commune</div>
+      </div>
+      <div class="espece-cell reveal reveal-delay-3">
+        <div class="espece-cell-bg fish-4">
+          <svg width="100%" height="100%" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#0a1820"/>
+            <ellipse cx="58" cy="60" rx="36" ry="14" fill="#182535" opacity="0.8"/>
+            <path d="M22,60 L8,46 L8,74 Z" fill="#182535" opacity="0.7"/>
+            <circle cx="86" cy="55" r="4.5" fill="#050c10"/>
+            <path d="M35,55 Q58,48 80,55" stroke="#2a4060" stroke-width="4" fill="none" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="espece-cell-overlay"></div>
+        <div class="espece-cell-name">Brochet</div>
+      </div>
+      <div class="espece-cell reveal">
+        <div class="espece-cell-bg fish-5">
+          <svg width="100%" height="100%" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#1a2808"/>
+            <ellipse cx="60" cy="60" rx="30" ry="18" fill="#2a3d15" opacity="0.8"/>
+            <path d="M30,60 L15,46 L15,74 Z" fill="#2a3d15" opacity="0.7"/>
+            <circle cx="82" cy="55" r="5" fill="#0d1405"/>
+            <path d="M45,52 L75,52" stroke="#3a5020" stroke-width="2" opacity="0.6"/>
+            <path d="M45,60 L75,60" stroke="#3a5020" stroke-width="2" opacity="0.6"/>
+            <path d="M45,68 L75,68" stroke="#3a5020" stroke-width="2" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="espece-cell-overlay"></div>
+        <div class="espece-cell-name">Sandre</div>
+      </div>
+      <div class="espece-cell reveal reveal-delay-1">
+        <div class="espece-cell-bg fish-6">
+          <svg width="100%" height="100%" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#200a1a"/>
+            <ellipse cx="60" cy="60" rx="28" ry="14" fill="#351528" opacity="0.8"/>
+            <path d="M32,60 L18,48 L18,72 Z" fill="#351528" opacity="0.7"/>
+            <circle cx="80" cy="55" r="4" fill="#100510"/>
+          </svg>
+        </div>
+        <div class="espece-cell-overlay"></div>
+        <div class="espece-cell-name">Brème commune</div>
+      </div>
+      <div class="espece-cell reveal reveal-delay-2">
+        <div class="espece-cell-bg fish-1">
+          <svg width="100%" height="100%" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#0d2820"/>
+            <ellipse cx="60" cy="62" rx="25" ry="18" fill="#1a4535" opacity="0.7"/>
+            <path d="M35,62 L22,50 L22,74 Z" fill="#1a4535" opacity="0.6"/>
+            <circle cx="78" cy="58" r="4" fill="#071118"/>
+          </svg>
+        </div>
+        <div class="espece-cell-overlay"></div>
+        <div class="espece-cell-name">Gardon</div>
+      </div>
+      <div class="espece-cell reveal reveal-delay-3">
+        <div class="espece-cell-bg fish-2">
+          <svg width="100%" height="100%" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#1a1a2e"/>
+            <ellipse cx="65" cy="60" rx="42" ry="16" fill="#2a2d4a" opacity="0.8"/>
+            <path d="M23,60 L10,46 L10,74 Z" fill="#2a2d4a" opacity="0.7"/>
+            <circle cx="97" cy="55" r="5.5" fill="#0d0d1a"/>
+            <ellipse cx="65" cy="60" rx="18" ry="6" fill="#3a3d5a" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="espece-cell-overlay"></div>
+        <div class="espece-cell-name">Silure glane</div>
+      </div>
+      <div class="espece-cell reveal">
+        <div class="espece-cell-bg fish-3">
+          <svg width="100%" height="100%" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#2a1808"/>
+            <ellipse cx="58" cy="60" rx="30" ry="12" fill="#3d2a15" opacity="0.8"/>
+            <path d="M28,60 L15,49 L15,71 Z" fill="#3d2a15" opacity="0.7"/>
+            <circle cx="80" cy="56" r="4" fill="#1a0d05"/>
+          </svg>
+        </div>
+        <div class="espece-cell-overlay"></div>
+        <div class="espece-cell-name">Tanche</div>
+      </div>
+      <div class="espece-cell reveal reveal-delay-1">
+        <div class="espece-cell-bg fish-4">
+          <svg width="100%" height="100%" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#0a1820"/>
+            <ellipse cx="60" cy="60" rx="35" ry="15" fill="#182535" opacity="0.8"/>
+            <path d="M25,60 L12,47 L12,73 Z" fill="#182535" opacity="0.7"/>
+            <circle cx="87" cy="55" r="5" fill="#050c10"/>
+          </svg>
+        </div>
+        <div class="espece-cell-overlay"></div>
+        <div class="espece-cell-name">Black-bass</div>
+      </div>
+      <div class="espece-cell reveal reveal-delay-2">
+        <div class="espece-cell-bg fish-5">
+          <svg width="100%" height="100%" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#1a2808"/>
+            <ellipse cx="60" cy="60" rx="28" ry="20" fill="#2a3d15" opacity="0.8"/>
+            <path d="M32,60 L18,47 L18,73 Z" fill="#2a3d15" opacity="0.7"/>
+            <circle cx="80" cy="54" r="5" fill="#0d1405"/>
+          </svg>
+        </div>
+        <div class="espece-cell-overlay"></div>
+        <div class="espece-cell-name">Ablette</div>
+      </div>
+      <div class="espece-cell reveal reveal-delay-3">
+        <div class="espece-cell-bg fish-6">
+          <svg width="100%" height="100%" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" fill="#200a1a"/>
+            <ellipse cx="60" cy="60" rx="33" ry="16" fill="#351528" opacity="0.8"/>
+            <path d="M27,60 L14,47 L14,73 Z" fill="#351528" opacity="0.7"/>
+            <circle cx="85" cy="55" r="4.5" fill="#100510"/>
+          </svg>
+        </div>
+        <div class="espece-cell-overlay"></div>
+        <div class="espece-cell-name">+ 80 espèces</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:60px;">
+      <a href="#beta" class="btn-secondary reveal">Explorer toutes les espèces →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GALLERY ─── -->
+<section class="gallery" id="gallery">
+  <div class="section-inner">
+    <div class="gallery-header">
+      <div>
+        <div class="section-label reveal">Galerie</div>
+        <h2 class="section-title reveal reveal-delay-1">Des moments<br><em>qui durent.</em></h2>
+      </div>
+      <p class="section-body reveal reveal-delay-2" style="max-width:360px;">Chaque sortie, chaque capture, chaque lever de soleil sur l'eau — votre vie de pêcheur en images.</p>
+    </div>
+
+    <div class="gallery-mosaic">
+      <div class="gallery-item">
+        <div class="gallery-item-bg gi-1">
+          <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="400" fill="#0d2820"/>
+            <rect width="400" height="400" fill="url(#goldenSun)" opacity="0.3"/>
+            <!-- Water scene -->
+            <path d="M0,250 L400,250 L400,400 L0,400 Z" fill="#0a2020"/>
+            <ellipse cx="200" cy="270" rx="150" ry="25" fill="#C9A96E" opacity="0.07"/>
+            <!-- Fisherman -->
+            <g transform="translate(200,240)">
+              <rect x="-5" y="-40" width="10" height="28" rx="3" fill="#050f0d"/>
+              <circle cx="0" cy="-47" r="8" fill="#050f0d"/>
+              <rect x="-10" y="-57" width="20" height="5" rx="2" fill="#081510"/>
+              <rect x="-6" y="-68" width="12" height="12" rx="2" fill="#081510"/>
+              <line x1="8" y1="-35" x2="70" y2="-80" stroke="#1a3025" stroke-width="1.5"/>
+              <line x1="70" y1="-80" x2="85" y2="15" stroke="#8FBFA3" stroke-width="0.8" opacity="0.5"/>
+            </g>
+            <!-- Forest -->
+            <path d="M0,200 Q20,185 40,200 Q55,180 70,200 Q90,178 110,200 Q130,182 150,200 Q170,176 190,200 L400,200 L400,400 L0,400 Z" fill="#071118"/>
+            <!-- Light rays -->
+            <line x1="200" y1="0" x2="100" y2="250" stroke="#C9A96E" stroke-width="0.5" opacity="0.08"/>
+            <line x1="200" y1="0" x2="200" y2="250" stroke="#C9A96E" stroke-width="0.5" opacity="0.06"/>
+            <line x1="200" y1="0" x2="300" y2="250" stroke="#C9A96E" stroke-width="0.5" opacity="0.08"/>
+          </svg>
+        </div>
+        <div class="gallery-item-overlay"></div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-item-bg gi-2">
+          <svg width="100%" height="100%" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="300" height="200" fill="#1a2808"/>
+            <!-- Macro fish close-up -->
+            <ellipse cx="150" cy="110" rx="120" ry="55" fill="#2a4015" opacity="0.8"/>
+            <path d="M30,110 L0,88 L0,132 Z" fill="#2a4015" opacity="0.8"/>
+            <circle cx="245" cy="96" r="16" fill="#0d1405"/>
+            <circle cx="240" cy="93" r="6" fill="#3a5020" opacity="0.5"/>
+            <!-- Scales texture -->
+            <g opacity="0.25">
+              <ellipse cx="150" cy="105" rx="18" ry="10" fill="none" stroke="#4a6025" stroke-width="0.8"/>
+              <ellipse cx="180" cy="108" rx="18" ry="10" fill="none" stroke="#4a6025" stroke-width="0.8"/>
+              <ellipse cx="120" cy="108" rx="18" ry="10" fill="none" stroke="#4a6025" stroke-width="0.8"/>
+              <ellipse cx="165" cy="118" rx="18" ry="10" fill="none" stroke="#4a6025" stroke-width="0.8"/>
+              <ellipse cx="135" cy="118" rx="18" ry="10" fill="none" stroke="#4a6025" stroke-width="0.8"/>
+            </g>
+            <!-- Water droplet -->
+            <ellipse cx="200" cy="60" rx="4" ry="6" fill="#8FBFA3" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="gallery-item-overlay"></div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-item-bg gi-3">
+          <svg width="100%" height="100%" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="300" height="200" fill="#2a1808"/>
+            <!-- Sunset reflection -->
+            <rect width="300" height="100" fill="#1a1005"/>
+            <ellipse cx="150" cy="80" rx="200" ry="80" fill="#C9A96E" opacity="0.12"/>
+            <circle cx="150" cy="80" r="35" fill="#C9A96E" opacity="0.25"/>
+            <circle cx="150" cy="80" r="20" fill="#D9A050" opacity="0.4"/>
+            <!-- Ripple reflection on water -->
+            <rect x="0" y="100" width="300" height="100" fill="#1a1005"/>
+            <ellipse cx="150" cy="120" rx="80" ry="12" fill="#C9A96E" opacity="0.1"/>
+            <path d="M80,108 Q120,105 160,108 Q200,111 240,108" stroke="#C9A96E" stroke-width="0.8" fill="none" opacity="0.2"/>
+            <path d="M60,118 Q100,115 140,118 Q180,121 220,118" stroke="#C9A96E" stroke-width="0.6" fill="none" opacity="0.15"/>
+            <!-- Silhouette reeds -->
+            <line x1="20" y1="100" x2="25" y2="60" stroke="#0a0804" stroke-width="3"/>
+            <ellipse cx="25" cy="63" rx="3" ry="12" fill="#0a0804"/>
+            <line x1="40" y1="100" x2="44" y2="65" stroke="#0a0804" stroke-width="2.5"/>
+            <ellipse cx="44" cy="68" rx="2.5" ry="10" fill="#0a0804"/>
+            <line x1="270" y1="100" x2="265" y2="58" stroke="#0a0804" stroke-width="3"/>
+            <ellipse cx="265" cy="61" rx="3" ry="12" fill="#0a0804"/>
+          </svg>
+        </div>
+        <div class="gallery-item-overlay"></div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-item-bg gi-4">
+          <svg width="100%" height="100%" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="300" height="200" fill="#081520"/>
+            <!-- Underwater view -->
+            <ellipse cx="150" cy="60" rx="200" ry="80" fill="#0d2535" opacity="0.6"/>
+            <!-- Light rays from surface -->
+            <path d="M100,0 L80,200" stroke="#8FBFA3" stroke-width="20" fill="none" opacity="0.04"/>
+            <path d="M150,0 L140,200" stroke="#8FBFA3" stroke-width="15" fill="none" opacity="0.05"/>
+            <path d="M200,0 L210,200" stroke="#8FBFA3" stroke-width="18" fill="none" opacity="0.04"/>
+            <!-- Bubbles -->
+            <circle cx="120" cy="150" r="5" fill="none" stroke="#8FBFA3" stroke-width="0.8" opacity="0.3"/>
+            <circle cx="130" cy="120" r="3" fill="none" stroke="#8FBFA3" stroke-width="0.6" opacity="0.25"/>
+            <circle cx="160" cy="160" r="7" fill="none" stroke="#8FBFA3" stroke-width="0.8" opacity="0.2"/>
+            <circle cx="180" cy="130" r="4" fill="none" stroke="#8FBFA3" stroke-width="0.6" opacity="0.3"/>
+            <!-- Fish silhouette -->
+            <g transform="translate(150, 110)" opacity="0.5">
+              <ellipse cx="0" cy="0" rx="50" ry="18" fill="#1a3d55"/>
+              <path d="M-50,0 L-70,-15 L-70,15 Z" fill="#1a3d55"/>
+              <circle cx="40" cy="-5" r="6" fill="#0a1a25"/>
+            </g>
+          </svg>
+        </div>
+        <div class="gallery-item-overlay"></div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-item-bg gi-5">
+          <svg width="100%" height="100%" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="300" height="200" fill="#1a0820"/>
+            <!-- Night sky with aurora-like effect -->
+            <ellipse cx="150" cy="80" rx="250" ry="100" fill="#2a1035" opacity="0.5"/>
+            <path d="M0,80 Q75,40 150,70 Q225,100 300,60" stroke="#8FBFA3" stroke-width="30" fill="none" opacity="0.07"/>
+            <path d="M0,100 Q75,60 150,90 Q225,120 300,80" stroke="#D9C89E" stroke-width="20" fill="none" opacity="0.05"/>
+            <!-- Stars -->
+            <circle cx="50" cy="30" r="1.5" fill="#F4F0E8" opacity="0.8"/>
+            <circle cx="100" cy="20" r="1" fill="#D9C89E" opacity="0.7"/>
+            <circle cx="200" cy="25" r="1.5" fill="#F4F0E8" opacity="0.75"/>
+            <circle cx="250" cy="15" r="1" fill="#F4F0E8" opacity="0.6"/>
+            <circle cx="280" cy="40" r="1.2" fill="#D9C89E" opacity="0.65"/>
+            <!-- Dark landscape -->
+            <path d="M0,150 L50,120 L100,140 L150,110 L200,130 L250,115 L300,135 L300,200 L0,200 Z" fill="#050308"/>
+            <rect x="0" y="170" width="300" height="30" fill="#040206"/>
+          </svg>
+        </div>
+        <div class="gallery-item-overlay"></div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-item-bg gi-6">
+          <svg width="100%" height="100%" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="300" height="400" fill="#0d2025"/>
+            <!-- River valley -->
+            <path d="M0,180 L300,180 L300,400 L0,400 Z" fill="#0a1820"/>
+            <!-- Mountains with snow -->
+            <path d="M0,160 L60,80 L120,140 L180,60 L240,120 L300,80 L300,400 L0,400 Z" fill="#0f2535"/>
+            <path d="M60,80 L75,100 L45,100 Z" fill="#F4F0E8" opacity="0.2"/>
+            <path d="M180,60 L200,85 L160,85 Z" fill="#F4F0E8" opacity="0.25"/>
+            <!-- River -->
+            <path d="M80,400 Q120,350 140,300 Q155,260 150,200 Q145,170 130,180 Q150,170 160,180 Q170,260 165,300 Q180,350 220,400" fill="#0d2535" opacity="0.8"/>
+            <path d="M130,200 Q140,195 150,200 Q160,205 160,200" stroke="#8FBFA3" stroke-width="0.8" fill="none" opacity="0.3"/>
+            <!-- Forest -->
+            <path d="M0,200 Q15,188 30,200 Q45,185 60,200 Q80,183 100,200 Q120,182 140,200" fill="#081520"/>
+            <path d="M165,200 Q185,182 205,200 Q225,183 245,200 Q265,182 285,200 L300,200 L300,400 L0,400 Z" fill="#081520"/>
+          </svg>
+        </div>
+        <div class="gallery-item-overlay"></div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-item-bg gi-7">
+          <svg width="100%" height="100%" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="300" height="400" fill="#201808"/>
+            <!-- Equipment flat lay concept -->
+            <ellipse cx="150" cy="200" rx="120" ry="150" fill="#2d2310" opacity="0.5"/>
+            <!-- Lure / fly fishing -->
+            <ellipse cx="150" cy="160" rx="40" ry="15" fill="#3d2a10" opacity="0.8"/>
+            <!-- Rod section -->
+            <line x1="80" y1="80" x2="220" y2="320" stroke="#4a3a18" stroke-width="8" stroke-linecap="round"/>
+            <line x1="80" y1="80" x2="220" y2="320" stroke="#C9A96E" stroke-width="2" stroke-linecap="round" opacity="0.2"/>
+            <!-- Reel -->
+            <circle cx="130" cy="200" r="25" fill="#2a2010"/>
+            <circle cx="130" cy="200" r="18" fill="#1a1508"/>
+            <circle cx="130" cy="200" r="8" fill="#2a2010"/>
+            <!-- Line on water -->
+            <path d="M220,320 Q260,350 240,390" stroke="#D9C89E" stroke-width="1" fill="none" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="gallery-item-overlay"></div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-item-bg gi-8">
+          <svg width="100%" height="100%" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="200" fill="#082015"/>
+            <!-- Aerial-like water view -->
+            <rect width="400" height="200" fill="#0a2820"/>
+            <!-- Water patterns -->
+            <ellipse cx="200" cy="100" rx="300" ry="120" fill="#0d3025" opacity="0.7"/>
+            <!-- Lily pads -->
+            <ellipse cx="80" cy="120" rx="25" ry="20" fill="#1a3a15" opacity="0.7"/>
+            <ellipse cx="320" cy="80" rx="30" ry="22" fill="#1a3a15" opacity="0.65"/>
+            <ellipse cx="180" cy="150" rx="20" ry="16" fill="#1a3a15" opacity="0.6"/>
+            <ellipse cx="280" cy="140" rx="22" ry="18" fill="#1a3a15" opacity="0.65"/>
+            <!-- Surface ripples -->
+            <circle cx="200" cy="100" r="30" fill="none" stroke="#8FBFA3" stroke-width="0.8" opacity="0.15"/>
+            <circle cx="200" cy="100" r="55" fill="none" stroke="#8FBFA3" stroke-width="0.6" opacity="0.1"/>
+            <circle cx="200" cy="100" r="80" fill="none" stroke="#8FBFA3" stroke-width="0.5" opacity="0.08"/>
+            <!-- Light patches -->
+            <ellipse cx="200" cy="90" rx="60" ry="25" fill="#C9A96E" opacity="0.04"/>
+          </svg>
+        </div>
+        <div class="gallery-item-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PREMIUM ─── -->
+<section class="premium" id="premium">
+  <div class="section-inner">
+    <div class="premium-layout">
+      <div>
+        <div class="section-label reveal">Premium</div>
+        <h2 class="section-title reveal reveal-delay-1">Gratuit et<br><em>généreux.</em></h2>
+        <p class="section-body reveal reveal-delay-2" style="margin-bottom:40px;">FishDex est conçu pour être profondément utile dans sa version gratuite. Le premium enrichit l'expérience — il ne la conditionne pas.</p>
+        <a href="#beta" class="btn-primary reveal reveal-delay-3">Commencer gratuitement</a>
+      </div>
+
+      <div class="premium-plans">
+        <div class="premium-plan reveal">
+          <div class="plan-badge">Gratuit · Pour toujours</div>
+          <div class="plan-name">Explorateur</div>
+          <p class="plan-desc">Toutes les fonctionnalités essentielles pour vivre pleinement votre passion.</p>
+          <ul class="plan-features">
+            <li>92 espèces à découvrir</li>
+            <li>Sessions illimitées</li>
+            <li>Galerie personnelle</li>
+            <li>Météo et conditions en temps réel</li>
+            <li>FishDex personnel complet</li>
+          </ul>
+        </div>
+
+        <div class="premium-plan featured reveal reveal-delay-1">
+          <div class="plan-badge">✦ Premium</div>
+          <div class="plan-name">Naturaliste</div>
+          <p class="plan-desc">Pour ceux qui veulent aller plus loin dans l'exploration et le souvenir.</p>
+          <ul class="plan-features">
+            <li>Tout Explorateur inclus</li>
+            <li>Memories — récits de sessions animés</li>
+            <li>Statistiques et évolution personnelle</li>
+            <li>Export haute qualité</li>
+            <li>Alertes espèces rares et saisons</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── COMMUNITY ─── -->
+<section class="community" id="community">
+  <div class="section-inner">
+    <div class="community-inner">
+      <div class="section-label reveal" style="justify-content:center;">Communauté</div>
+      <h2 class="section-title reveal reveal-delay-1" style="text-align:center;">Rejoignez la<br><em>communauté.</em></h2>
+      <p class="section-body reveal reveal-delay-2" style="text-align:center;margin:0 auto;">Des passionnés de pêche et de nature, unis par l'amour de l'eau et de la découverte. Partagez vos captures, inspirez et soyez inspiré.</p>
+      <div style="text-align:center;">
+        <a href="https://instagram.com/FishDex.fr" class="community-instagram reveal reveal-delay-3" target="_blank" rel="noopener">
+          <div class="ig-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="10" height="10" rx="3" stroke="white" stroke-width="1.2"/><circle cx="6" cy="6" r="2.5" stroke="white" stroke-width="1.2"/><circle cx="9" cy="3" r="0.8" fill="white"/></svg>
+          </div>
+          @FishDex.fr · Instagram
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA FINAL ─── -->
+<section class="cta-final" id="beta">
+  <div class="cta-final-bg"></div>
+
+  <!-- Decorative SVG horizon -->
+  <svg style="position:absolute;bottom:0;left:0;right:0;width:100%;height:260px;pointer-events:none" viewBox="0 0 1440 260" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="horizGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0F1C23" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#0F1C23" stop-opacity="0.6"/>
+      </linearGradient>
+    </defs>
+    <!-- Distant mountains -->
+    <path d="M0,180 L100,120 L200,160 L320,100 L440,150 L560,90 L680,140 L800,100 L920,145 L1040,90 L1160,130 L1280,100 L1440,120 L1440,260 L0,260 Z" fill="#0a1c20" opacity="0.5"/>
+    <path d="M0,200 L80,155 L160,185 L260,140 L380,175 L500,130 L620,165 L740,135 L860,170 L980,128 L1100,160 L1220,135 L1340,158 L1440,140 L1440,260 L0,260 Z" fill="#071a1a" opacity="0.6"/>
+    <rect x="0" y="200" width="1440" height="60" fill="#071118"/>
+    <!-- Water glimmer -->
+    <ellipse cx="720" cy="230" rx="300" ry="15" fill="#8FBFA3" opacity="0.04"/>
+    <path d="M400,215 Q560,210 720,215 Q880,220 1040,215" stroke="#8FBFA3" stroke-width="0.8" fill="none" opacity="0.12"/>
+    <rect x="0" y="240" width="1440" height="20" fill="url(#horizGrad)"/>
+  </svg>
+
+  <div class="cta-final-content">
+    <div class="section-label reveal" style="justify-content:center;margin-bottom:32px;">Commencer l'aventure</div>
+    <div class="cta-final-quote reveal reveal-delay-1">
+      Votre premier poisson<br>mérite d'être <em>inoubliable.</em>
+    </div>
+    <p class="cta-final-sub reveal reveal-delay-2">
+      Rejoignez la bêta FishDex et soyez parmi les premiers à vivre cette nouvelle façon d'explorer la pêche. Gratuit, pour toujours.
+    </p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-3">
+      <a href="#" class="btn-primary" style="font-size:1rem;padding:18px 42px;">
+        Rejoindre la bêta
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M10 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="https://instagram.com/FishDex.fr" class="btn-secondary" target="_blank" rel="noopener">
+        Suivre sur Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">FishDex</div>
+    <ul class="footer-links">
+      <li><a href="#">Confidentialité</a></li>
+      <li><a href="#">Conditions</a></li>
+      <li><a href="https://instagram.com/FishDex.fr" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="mailto:hello@fishdex.fr">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 FishDex · Tous droits réservés</div>
+  </div>
+</footer>
+
+<script>
+// ─── NAV SCROLL ───
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// ─── CUSTOM CURSOR ───
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+const interactives = document.querySelectorAll('a, button, .pillar, .univers-card, .espece-cell, .gallery-item, .premium-plan, .session-catch-item');
+interactives.forEach(el => {
+  el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
+  el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
+});
+
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  ring.style.left = ringX + 'px';
+  ring.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+// ─── REVEAL ON SCROLL ───
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+revealEls.forEach(el => observer.observe(el));
+
+// ─── TIMELINE REVEAL ───
+const timelineEntries = document.querySelectorAll('.timeline-entry');
+const timelineObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 150);
+    }
+  });
+}, { threshold: 0.2 });
+
+timelineEntries.forEach(el => timelineObserver.observe(el));
+
+// ─── FLOATING PARTICLES ───
+function createParticles() {
+  const container = document.getElementById('heroParticles');
+  if (!container) return;
+
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 3 + 1;
+    const x = Math.random() * 100;
+    const dur = Math.random() * 8 + 6;
+    const delay = Math.random() * 10;
+    const op = Math.random() * 0.3 + 0.1;
+
+    p.style.cssText = `
+      left: ${x}%;
+      bottom: ${Math.random() * 30 + 5}%;
+      width: ${size}px;
+      height: ${size}px;
+      --dur: ${dur}s;
+      --delay: -${delay}s;
+      --op: ${op};
+    `;
+    container.appendChild(p);
+  }
+}
+createParticles();
+
+// ─── HERO PARALLAX ───
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const scrolled = window.scrollY;
+      const heroScene = document.querySelector('.hero-scene');
+      const heroContent = document.querySelector('.hero-content');
+      if (heroScene) heroScene.style.transform = `translateY(${scrolled * 0.35}px)`;
+      if (heroContent) heroContent.style.transform = `translateY(${scrolled * 0.15}px)`;
+      ticking = false;
+    });
+    ticking = true;
+  }
+}, { passive: true });
+
+// ─── SPECIES COUNT ANIMATION ───
+function animateCount(el, target, duration = 2000) {
+  let start = 0;
+  const step = timestamp => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 4);
+    el.textContent = Math.floor(ease * target);
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = target;
+  };
+  requestAnimationFrame(step);
+}
+
+const countEl = document.querySelector('.especes-count-display');
+if (countEl) {
+  const countObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCount(countEl, 92);
+        countObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  countObserver.observe(countEl);
+}
+
+// ─── SMOOTH ANCHOR SCROLL ───
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ─── PILLAR HOVER EFFECT ───
+document.querySelectorAll('.pillar').forEach(pillar => {
+  pillar.addEventListener('mouseenter', function() {
+    this.style.paddingLeft = '12px';
+    this.style.borderLeft = '2px solid rgba(143,191,163,0.4)';
+  });
+  pillar.addEventListener('mouseleave', function() {
+    this.style.paddingLeft = '0';
+    this.style.borderLeft = 'none';
+  });
+});
+
+console.log('%c🐟 FishDex · Chaque poisson raconte une histoire.', 'color:#8FBFA3;font-family:serif;font-size:14px;');
+</script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - img
+  - main [ref=e2]:
+    - generic:
+      - link "FishDex" [ref=e3] [cursor=pointer]:
+        - /url: "#hero"
+        - img [ref=e4]
+        - generic [ref=e15]: FishDex
+      - navigation:
+        - link "Découvrir" [ref=e16] [cursor=pointer]:
+          - /url: "#features"
+        - link "Collection" [ref=e17] [cursor=pointer]:
+          - /url: "#rarity"
+        - link "Souvenir" [ref=e18] [cursor=pointer]:
+          - /url: "#memory"
+        - link "Tarifs" [ref=e19] [cursor=pointer]:
+          - /url: "#pricing"
+        - link "Manifeste" [ref=e20] [cursor=pointer]:
+          - /url: "#manifest"
+      - link "Accéder →" [ref=e21] [cursor=pointer]:
+        - /url: https://app.fishdex.fr
+    - generic [ref=e22]:
+      - img [ref=e28]
+      - generic [ref=e48]:
+        - paragraph [ref=e49]: fishdex.fr · Bêta fermée
+        - heading "Le monde vivant de la pêche." [level=1] [ref=e50]:
+          - text: Le monde vivant
+          - emphasis [ref=e51]: de la pêche.
+        - generic [ref=e52]:
+          - link "Explorer" [ref=e53] [cursor=pointer]:
+            - /url: "#features"
+          - link "Accéder à l'app →" [ref=e55] [cursor=pointer]:
+            - /url: https://app.fishdex.fr
+      - generic [ref=e57]:
+        - generic [ref=e58]:
+          - generic [ref=e59]: 12°
+          - generic [ref=e60]: Annecy · France
+        - generic [ref=e62]:
+          - generic [ref=e63]: Brume matinale
+          - generic [ref=e64]: 1018 hPa
+      - generic [ref=e66]: Défiler
+    - generic [ref=e68]:
+      - img "Truite" [ref=e70]
+      - generic [ref=e73]:
+        - generic [ref=e74]: "01"
+        - heading "Découvrir." [level=2] [ref=e76]
+        - paragraph [ref=e77]: 92 espèces. Un monde vivant.
+        - paragraph [ref=e78]: Chaque poisson d'eau douce de France, documenté. Biologie, techniques, conditions idéales.
+    - generic [ref=e80]:
+      - generic [ref=e81]:
+        - generic [ref=e82]: 02 · Capturer
+        - heading "L'instant devient souvenir." [level=2] [ref=e83]:
+          - text: L'instant
+          - emphasis [ref=e84]: devient souvenir.
+        - paragraph [ref=e85]: Photographier, identifier, garder. Chaque prise prend sa place dans ton encyclopédie personnelle.
+      - generic [ref=e91]:
+        - generic [ref=e92]: Capture enregistrée
+        - generic [ref=e93]: Truite fario
+        - generic [ref=e94]: Salmo trutta fario
+        - generic [ref=e95]:
+          - generic [ref=e96]:
+            - generic [ref=e97]: 52 cm
+            - generic [ref=e98]: Taille
+          - generic [ref=e99]:
+            - generic [ref=e100]: 1.4 kg
+            - generic [ref=e101]: Poids
+          - generic [ref=e102]:
+            - generic [ref=e103]: Rare
+            - generic [ref=e104]: Rareté
+    - generic [ref=e105]:
+      - img "Lac nuit" [ref=e107]
+      - generic [ref=e110]:
+        - generic [ref=e111]: "03"
+        - heading "Collectionner." [level=2] [ref=e113]
+        - paragraph [ref=e114]: Votre aquarium grandit avec vous.
+        - paragraph [ref=e115]: De la carpe commune au brochet légendaire. Chaque capture enrichit votre collection.
+    - generic [ref=e117]:
+      - paragraph [ref=e118]: La collection · Six raretés
+      - heading "Chaque rencontre est unique." [level=2] [ref=e119]:
+        - text: Chaque rencontre
+        - emphasis [ref=e120]: est unique.
+      - generic [ref=e121]:
+        - generic [ref=e122]:
+          - generic [ref=e124]: I
+          - generic [ref=e126]:
+            - generic [ref=e127]: Commune
+            - generic [ref=e128]: Gardon · Rotengle · Brème
+        - generic [ref=e130]:
+          - generic [ref=e132]: II
+          - generic [ref=e134]:
+            - generic [ref=e135]: Peu commune
+            - generic [ref=e136]: Chevesne · Vandoise
+        - generic [ref=e138]:
+          - generic [ref=e140]: III
+          - generic [ref=e142]:
+            - generic [ref=e143]: Rare
+            - generic [ref=e144]: Truite fario · Ombre
+        - generic [ref=e146]:
+          - generic [ref=e148]: IV
+          - generic [ref=e150]:
+            - generic [ref=e151]: Épique
+            - generic [ref=e152]: Silure · Saumon
+        - generic [ref=e154]:
+          - generic [ref=e156]: V
+          - generic [ref=e158]:
+            - generic [ref=e159]: Légendaire
+            - generic [ref=e160]: Huchon · Cristivomer
+        - generic [ref=e162]:
+          - generic [ref=e165]: VI
+          - generic [ref=e167]:
+            - generic [ref=e168]: Mirage
+            - generic [ref=e169]: Presque impossible
+    - generic [ref=e171]:
+      - img "Lac aube" [ref=e173]
+      - generic [ref=e175]:
+        - generic [ref=e176]:
+          - paragraph [ref=e177]: Un souvenir
+          - heading "Ce ne sont pas les prises qui restent." [level=2] [ref=e178]:
+            - text: Ce ne sont pas les prises
+            - emphasis [ref=e179]: qui restent.
+          - generic [ref=e180]:
+            - generic [ref=e181]: Brochet
+            - generic [ref=e182]: Rare
+          - generic [ref=e183]: 87 cm — 3.2 kg
+        - generic [ref=e184]:
+          - paragraph [ref=e185]: “Ce matin-là, la brume n'avait pas encore quitté le lac. Le silence était total.”
+          - generic [ref=e186]:
+            - generic [ref=e187]:
+              - generic [ref=e188]: Date
+              - generic [ref=e189]: 19 mai 2026
+            - generic [ref=e190]:
+              - generic [ref=e191]: Lieu
+              - generic [ref=e192]: Lac d'Annecy
+            - generic [ref=e193]:
+              - generic [ref=e194]: Eau
+              - generic [ref=e195]: 14 °C
+            - generic [ref=e196]:
+              - generic [ref=e197]: Session
+              - generic [ref=e198]: 4h 23min
+          - generic [ref=e199]: — noté à la main
+    - generic [ref=e201]:
+      - paragraph [ref=e202]: Chapitre 05 · Tarifs
+      - heading "Trois profondeurs." [level=2] [ref=e203]:
+        - text: Trois
+        - emphasis [ref=e204]: profondeurs.
+      - generic [ref=e205]:
+        - generic [ref=e206]:
+          - paragraph [ref=e207]: Gratuit
+          - generic [ref=e208]: 0 €
+          - paragraph [ref=e209]: Pour commencer.
+          - list [ref=e211]:
+            - listitem [ref=e212]: FishDex complet — 92 espèces
+            - listitem [ref=e213]: Captures illimitées
+            - listitem [ref=e214]: Sessions de pêche
+            - listitem [ref=e215]: 5 spots favoris
+            - listitem [ref=e216]: FishFeed communauté
+          - link "Accéder à l'app" [ref=e217] [cursor=pointer]:
+            - /url: https://app.fishdex.fr
+        - generic [ref=e218]:
+          - paragraph [ref=e220]: Pro· Recommandé
+          - generic [ref=e221]: 3,99€/ mois
+          - paragraph [ref=e222]: Pour vivre la pêche.
+          - list [ref=e224]:
+            - listitem [ref=e225]: IA reconnaissance espèces
+            - listitem [ref=e226]: Estimation taille par photo
+            - listitem [ref=e227]: Statistiques avancées
+            - listitem [ref=e228]: Export sessions PDF
+            - listitem [ref=e229]: Spots illimités
+            - listitem [ref=e230]: Météo intelligente
+          - link "Essai gratuit 7 jours" [ref=e231] [cursor=pointer]:
+            - /url: https://app.fishdex.fr
+        - generic [ref=e232]:
+          - paragraph [ref=e233]: Légende
+          - generic [ref=e234]: 6,99€/ mois
+          - paragraph [ref=e235]: Pour les passionnés.
+          - list [ref=e237]:
+            - listitem [ref=e238]: Tout le Pro
+            - listitem [ref=e239]: Carte interactive des spots
+            - listitem [ref=e240]: Analyse prédictive conditions
+            - listitem [ref=e241]: Journal vocal transcrit
+            - listitem [ref=e242]: Accès anticipé aux features
+          - link "Choisir Légende" [ref=e243] [cursor=pointer]:
+            - /url: https://app.fishdex.fr
+    - generic [ref=e245]:
+      - generic [ref=e248]: Manifeste
+      - heading "Construit lentement. Par un homme, au bord d'un lac." [level=2] [ref=e249]:
+        - text: Construit lentement.
+        - emphasis [ref=e250]: Par un homme,
+        - text: au bord d'un lac.
+      - generic [ref=e251]:
+        - paragraph [ref=e252]: Pas de bureau. Pas d'équipe. Juste du temps.
+        - paragraph [ref=e253]: FishDex existe parce que la pêche mérite un objet à sa hauteur.
+      - generic [ref=e254]:
+        - generic [ref=e255]:
+          - generic [ref=e256]: "92"
+          - generic [ref=e257]: Espèces
+        - generic [ref=e258]:
+          - generic [ref=e259]: "1"
+          - generic [ref=e260]: Créateur
+        - generic [ref=e261]:
+          - generic [ref=e262]: ∞
+          - generic [ref=e263]: Patience
+        - generic [ref=e264]: France 🇫🇷
+    - generic [ref=e268]:
+      - img [ref=e270]
+      - heading "Commencer à se souvenir." [level=2] [ref=e281]:
+        - text: Commencer
+        - emphasis [ref=e282]: à se souvenir.
+      - paragraph [ref=e283]:
+        - text: Bêta fermée.
+        - text: Sur invitation uniquement.
+      - link "Accéder à l'app" [ref=e284] [cursor=pointer]:
+        - /url: https://app.fishdex.fr
+      - generic [ref=e287]: Web app · Gratuit pour commencer
+    - generic [ref=e288]:
+      - generic [ref=e289]:
+        - img [ref=e290]
+        - generic [ref=e298]: FishDex
+      - generic [ref=e299]:
+        - link "Découvrir" [ref=e300] [cursor=pointer]:
+          - /url: "#features"
+        - link "Tarifs" [ref=e301] [cursor=pointer]:
+          - /url: "#pricing"
+        - link "Manifeste" [ref=e302] [cursor=pointer]:
+          - /url: "#manifest"
+        - link "App" [ref=e303] [cursor=pointer]:
+          - /url: https://app.fishdex.fr
+      - paragraph [ref=e304]: © 2026 FishDex · France
+  - button "Open Next.js Dev Tools" [ref=e310] [cursor=pointer]:
+    - img [ref=e311]

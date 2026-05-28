@@ -1,0 +1,298 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - link "FishDex" [ref=e3] [cursor=pointer]:
+      - /url: "#"
+      - text: FishDex
+    - list [ref=e5]:
+      - listitem [ref=e6]:
+        - link "L'univers" [ref=e7] [cursor=pointer]:
+          - /url: "#concept"
+      - listitem [ref=e8]:
+        - link "Espèces" [ref=e9] [cursor=pointer]:
+          - /url: "#especes"
+      - listitem [ref=e10]:
+        - link "Sessions" [ref=e11] [cursor=pointer]:
+          - /url: "#sessions"
+      - listitem [ref=e12]:
+        - link "Premium" [ref=e13] [cursor=pointer]:
+          - /url: "#premium"
+      - listitem [ref=e14]:
+        - link "Rejoindre la bêta" [ref=e15] [cursor=pointer]:
+          - /url: "#beta"
+  - generic [ref=e16]:
+    - img [ref=e20]
+    - generic [ref=e53]:
+      - generic [ref=e54]: Bêta ouverte · 2026
+      - heading "Chaque poisson raconte une histoire." [level=1] [ref=e56]:
+        - text: Chaque poisson
+        - emphasis [ref=e57]: raconte une histoire.
+      - paragraph [ref=e58]: Transformez vos sorties pêche en souvenirs vivants. Découvrez, capturez, revivez — dans un univers influencé par la météo, les saisons et la lumière naturelle.
+      - generic [ref=e59]:
+        - link "Rejoindre la bêta" [ref=e60] [cursor=pointer]:
+          - /url: "#beta"
+          - img [ref=e61]
+          - text: Rejoindre la bêta
+        - link "Découvrir FishDex" [ref=e64] [cursor=pointer]:
+          - /url: "#concept"
+          - text: Découvrir FishDex
+          - img [ref=e65]
+    - generic [ref=e68]: Explorer
+  - generic [ref=e71]:
+    - generic [ref=e72]:
+      - generic [ref=e73]: "92"
+      - generic [ref=e74]: Espèces à découvrir
+    - generic [ref=e75]:
+      - generic [ref=e76]: "4"
+      - generic [ref=e77]: Saisons vivantes
+    - generic [ref=e78]:
+      - generic [ref=e79]: ∞
+      - generic [ref=e80]: Souvenirs à créer
+  - generic [ref=e82]:
+    - generic [ref=e83]: L'Expérience
+    - generic [ref=e84]:
+      - generic [ref=e85]:
+        - img "Pêcheur au lever du soleil dans la brume" [ref=e87]
+        - generic [ref=e89]:
+          - generic [ref=e90]: Immersion totale
+          - generic [ref=e91]:
+            - text: Un monde vivant,
+            - text: à chaque sortie.
+      - generic [ref=e92]:
+        - generic [ref=e93] [cursor=pointer]:
+          - generic [ref=e94]: "01"
+          - generic [ref=e95]:
+            - generic [ref=e96]: Découvrir
+            - paragraph [ref=e97]: "92 espèces de poissons à identifier et à collecter. Chaque capture révèle une fiche vivante : comportement, habitat, saison. Un musée naturel dans votre poche."
+          - img [ref=e99]
+        - generic [ref=e102] [cursor=pointer]:
+          - generic [ref=e103]: "02"
+          - generic [ref=e104]:
+            - generic [ref=e105]: Capturer
+            - paragraph [ref=e106]: Photographiez, enregistrez, géolocalisez. Chaque prise devient une entrée dans votre FishDex personnel — horodatée, contextualisée, inoubliable.
+          - img [ref=e108]
+        - generic [ref=e112] [cursor=pointer]:
+          - generic [ref=e113]: "03"
+          - generic [ref=e114]:
+            - generic [ref=e115]: Revivre
+            - paragraph [ref=e116]: Vos sessions deviennent des récits. Une galerie immersive reconstruit chaque sortie — météo, lumière, captures, émotions. Des souvenirs qui durent.
+          - img [ref=e118]
+  - generic [ref=e122]:
+    - generic [ref=e123]:
+      - generic [ref=e124]:
+        - generic [ref=e125]: L'Univers
+        - heading "Un monde qui respire avec vous." [level=2] [ref=e126]:
+          - text: Un monde qui
+          - emphasis [ref=e127]: respire avec vous.
+      - paragraph [ref=e129]: FishDex évolue avec la météo, les saisons et la lumière du jour. L'interface s'adapte à votre environnement réel — du brumeux matin d'automne au coucher de soleil d'été.
+    - generic [ref=e130]:
+      - generic [ref=e131] [cursor=pointer]:
+        - img "Lac au lever du soleil" [ref=e134]
+        - generic [ref=e136]:
+          - generic [ref=e137]: Printemps · Aube
+          - generic [ref=e138]: La brume du matin
+      - generic [ref=e139] [cursor=pointer]:
+        - img "Lac sous l'orage" [ref=e142]
+        - generic [ref=e144]:
+          - generic [ref=e145]: Automne · Orage
+          - generic [ref=e146]: L'électricité de l'air
+      - generic [ref=e147] [cursor=pointer]:
+        - img "Coucher de soleil brumeux" [ref=e150]
+        - generic [ref=e152]:
+          - generic [ref=e153]: Été · Coucher de soleil
+          - generic [ref=e154]: L'heure dorée
+      - generic [ref=e155] [cursor=pointer]:
+        - img "Lac la nuit sous la lune" [ref=e158]
+        - generic [ref=e160]:
+          - generic [ref=e161]: Hiver · Nuit
+          - generic [ref=e162]: Le silence de l'eau
+  - generic [ref=e164]:
+    - generic [ref=e165]: Sessions
+    - heading "Une sortie devient un souvenir." [level=2] [ref=e166]:
+      - text: Une sortie devient
+      - emphasis [ref=e167]: un souvenir.
+    - generic [ref=e168]:
+      - generic [ref=e169]:
+        - generic [ref=e171]:
+          - generic [ref=e173]: 05:42 — Lever du soleil
+          - generic [ref=e174]: Arrivée sur site
+          - paragraph [ref=e175]: L'application détecte l'aube. L'interface bascule en mode aurore — lumière chaude, brume visuelle. La journée commence.
+        - generic [ref=e176]:
+          - generic [ref=e178]: 07:18 — Brise légère
+          - generic [ref=e179]: Première capture
+          - paragraph [ref=e180]: Un gardon de 28 cm. FishDex l'identifie, l'enregistre, le géolocalise. Votre FishDex s'enrichit. Un badge se débloque.
+        - generic [ref=e181]:
+          - generic [ref=e183]: 09:55 — Soleil haut
+          - generic [ref=e184]: Découverte rare
+          - paragraph [ref=e185]: Une brème commune — votre 14ème espèce. L'application vibre doucement. Une animation rare se déploie. Moment de grâce.
+        - generic [ref=e186]:
+          - generic [ref=e188]: 12:40 — Fin de session
+          - generic [ref=e189]: Le souvenir se crée
+          - paragraph [ref=e190]: "FishDex compile automatiquement votre session : carte du lieu, météo, captures, moments. Un journal vivant, prêt à être revécu."
+      - generic [ref=e192]:
+        - generic [ref=e193]:
+          - generic [ref=e194]:
+            - generic [ref=e195]: Session du 14 avril
+            - generic [ref=e196]: Lac de la Forêt · 5h de pêche
+          - generic [ref=e197]:
+            - img [ref=e198]
+            - text: 12°C · Partiel
+        - img [ref=e202]:
+          - generic [ref=e215]: Lac de la Forêt
+          - generic [ref=e216]: Départ
+        - generic [ref=e217]:
+          - generic [ref=e218]:
+            - generic [ref=e219]: 🐟
+            - generic [ref=e220]: Gardon
+            - generic [ref=e221]: 28 cm
+          - generic [ref=e222]:
+            - generic [ref=e223]: 🐠
+            - generic [ref=e224]: Brème
+            - generic [ref=e225]: 41 cm
+          - generic [ref=e226]:
+            - generic [ref=e227]: 🐡
+            - generic [ref=e228]: Carpe
+            - generic [ref=e229]: 62 cm
+        - generic [ref=e230]:
+          - generic [ref=e231]: 3 espèces · 4 captures · 5h
+          - generic [ref=e232]: Voir le souvenir →
+  - generic [ref=e234]:
+    - generic [ref=e235]:
+      - generic [ref=e236]: "92"
+      - generic [ref=e237]: Espèces
+      - heading "Un musée vivant dans votre poche." [level=2] [ref=e238]:
+        - text: Un musée vivant
+        - text: dans votre poche.
+      - paragraph [ref=e239]: De la truite fario au silure géant — chaque espèce vous attend. Biologie, comportement, records, habitats. Une encyclopédie que vous construisez capture après capture.
+    - generic [ref=e240]:
+      - generic [ref=e241] [cursor=pointer]:
+        - img "Truite fario" [ref=e243]
+        - generic [ref=e245]: Truite fario
+      - generic [ref=e246] [cursor=pointer]:
+        - img "Perche commune" [ref=e248]
+        - generic [ref=e250]: Perche commune
+      - generic [ref=e251] [cursor=pointer]:
+        - img "Carpe commune" [ref=e253]
+        - generic [ref=e255]: Carpe commune
+      - generic [ref=e256] [cursor=pointer]:
+        - img "Brochet" [ref=e258]
+        - generic [ref=e260]: Brochet
+      - generic [ref=e261] [cursor=pointer]:
+        - img "Sandre" [ref=e263]
+        - generic [ref=e265]: Sandre
+      - generic [ref=e266] [cursor=pointer]:
+        - img "Brème commune" [ref=e268]
+        - generic [ref=e270]: Brème commune
+      - generic [ref=e271] [cursor=pointer]:
+        - img "Gardon" [ref=e273]
+        - generic [ref=e275]: Gardon
+      - generic [ref=e276] [cursor=pointer]:
+        - img "Silure glane" [ref=e278]
+        - generic [ref=e280]: Silure glane
+      - generic [ref=e281] [cursor=pointer]:
+        - img "Tanche" [ref=e283]
+        - generic [ref=e285]: Tanche
+      - generic [ref=e286] [cursor=pointer]:
+        - img "Black-bass" [ref=e288]
+        - generic [ref=e290]: Black-bass
+      - generic [ref=e291] [cursor=pointer]:
+        - img "Ablette" [ref=e293]
+        - generic [ref=e295]: Ablette
+      - generic [ref=e296] [cursor=pointer]:
+        - img "Saumon atlantique" [ref=e298]
+        - generic [ref=e300]: Saumon atlantique
+    - link "Explorer toutes les espèces →" [ref=e302] [cursor=pointer]:
+      - /url: "#beta"
+  - generic [ref=e304]:
+    - generic [ref=e305]:
+      - generic [ref=e306]:
+        - generic [ref=e307]: Galerie
+        - heading "Des moments qui durent." [level=2] [ref=e308]:
+          - text: Des moments
+          - emphasis [ref=e309]: qui durent.
+      - paragraph [ref=e310]: Chaque sortie, chaque capture, chaque lever de soleil sur l'eau — votre vie de pêcheur en images.
+    - generic [ref=e311]:
+      - img "Pêcheur en bateau au lever du soleil" [ref=e314] [cursor=pointer]
+      - img "Main tenant un brochet au coucher du soleil" [ref=e318] [cursor=pointer]
+      - img "Pêcheuse au bord du lac au coucher du soleil" [ref=e322] [cursor=pointer]
+      - img "Vue sous-marine avec rayons de lumière" [ref=e326] [cursor=pointer]
+      - img "Pêcheur sous l'orage sombre" [ref=e330] [cursor=pointer]
+      - img "Pêcheur lançant au coucher du soleil" [ref=e334] [cursor=pointer]
+      - img "Reflets à la surface de l'eau" [ref=e338] [cursor=pointer]
+      - img "Pêcheuse avec une carpe au lever du soleil" [ref=e342] [cursor=pointer]
+  - generic [ref=e346]:
+    - generic [ref=e347]:
+      - generic [ref=e348]: Premium
+      - heading "Gratuit et généreux." [level=2] [ref=e349]:
+        - text: Gratuit et
+        - emphasis [ref=e350]: généreux.
+      - paragraph [ref=e351]: FishDex est conçu pour être profondément utile dans sa version gratuite. Le premium enrichit l'expérience — il ne la conditionne pas.
+      - link "Commencer gratuitement" [ref=e352] [cursor=pointer]:
+        - /url: "#beta"
+    - generic [ref=e353]:
+      - generic [ref=e354] [cursor=pointer]:
+        - generic [ref=e355]: Gratuit · Pour toujours
+        - generic [ref=e356]: Explorateur
+        - paragraph [ref=e357]: Toutes les fonctionnalités essentielles pour vivre pleinement votre passion.
+        - list [ref=e358]:
+          - listitem [ref=e359]: 92 espèces à découvrir
+          - listitem [ref=e360]: Sessions illimitées
+          - listitem [ref=e361]: Galerie personnelle
+          - listitem [ref=e362]: Météo et conditions en temps réel
+          - listitem [ref=e363]: FishDex personnel complet
+      - generic [ref=e364] [cursor=pointer]:
+        - generic [ref=e365]: ✦ Premium
+        - generic [ref=e366]: Naturaliste
+        - paragraph [ref=e367]: Pour ceux qui veulent aller plus loin dans l'exploration et le souvenir.
+        - list [ref=e368]:
+          - listitem [ref=e369]: Tout Explorateur inclus
+          - listitem [ref=e370]: Memories — récits de sessions animés
+          - listitem [ref=e371]: Statistiques et évolution personnelle
+          - listitem [ref=e372]: Export haute qualité
+          - listitem [ref=e373]: Alertes espèces rares et saisons
+  - generic [ref=e376]:
+    - generic [ref=e377]: Communauté
+    - heading "Rejoignez la communauté." [level=2] [ref=e378]:
+      - text: Rejoignez la
+      - emphasis [ref=e379]: communauté.
+    - paragraph [ref=e380]: Des passionnés de pêche et de nature, unis par l'amour de l'eau et de la découverte. Partagez vos captures, inspirez et soyez inspiré.
+    - link "@FishDex.fr · Instagram" [ref=e382] [cursor=pointer]:
+      - /url: https://instagram.com/FishDex.fr
+      - img [ref=e384]
+      - text: "@FishDex.fr · Instagram"
+      - img [ref=e388]
+  - generic [ref=e390]:
+    - img
+    - generic [ref=e392]:
+      - generic [ref=e393]: Commencer l'aventure
+      - generic [ref=e394]:
+        - text: Votre premier poisson
+        - text: mérite d'être
+        - emphasis [ref=e395]: inoubliable.
+      - paragraph [ref=e396]: Rejoignez la bêta FishDex et soyez parmi les premiers à vivre cette nouvelle façon d'explorer la pêche. Gratuit, pour toujours.
+      - generic [ref=e397]:
+        - link "Rejoindre la bêta" [ref=e398] [cursor=pointer]:
+          - /url: "#"
+          - text: Rejoindre la bêta
+          - img [ref=e399]
+        - link "Suivre sur Instagram" [ref=e401] [cursor=pointer]:
+          - /url: https://instagram.com/FishDex.fr
+  - contentinfo [ref=e402]:
+    - generic [ref=e403]:
+      - generic [ref=e404]: FishDex
+      - list [ref=e405]:
+        - listitem [ref=e406]:
+          - link "Confidentialité" [ref=e407] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e408]:
+          - link "Conditions" [ref=e409] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e410]:
+          - link "Instagram" [ref=e411] [cursor=pointer]:
+            - /url: https://instagram.com/FishDex.fr
+        - listitem [ref=e412]:
+          - link "Contact" [ref=e413] [cursor=pointer]:
+            - /url: mailto:hello@fishdex.fr
+      - generic [ref=e414]: © 2026 FishDex · Tous droits réservés
+  - button "Open Next.js Dev Tools" [ref=e420] [cursor=pointer]:
+    - img [ref=e421]
+  - alert [ref=e424]

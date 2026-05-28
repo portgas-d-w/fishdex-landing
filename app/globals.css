@@ -26,7 +26,7 @@ html { scroll-behavior: smooth; font-size: 16px; }
 }
 
 body {
-  background: var(--bg-deep);
+  background: transparent; /* Was var(--bg-deep), made transparent for 3D background */
   color: var(--text-primary);
   font-family: var(--font-body);
   font-weight: 300;
@@ -385,7 +385,10 @@ nav.scrolled {
 }
 
 /* ─── SECTION UTILS ─── */
-section { position: relative; overflow: hidden; }
+section {
+  position: relative;
+  overflow: visible; /* Allow 3D transforms to show */
+}
 
 .section-inner {
   max-width: 1280px;
@@ -435,17 +438,12 @@ section { position: relative; overflow: hidden; }
   max-width: 540px;
 }
 
-/* Reveal animation */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+/* ─── SCROLL-DRIVEN 3D TRAVERSE ─── */
+/* Transforms set directly by JS on every scroll frame — no transitions */
+[data-dive] {
+  will-change: transform, opacity, filter;
+  transform-origin: center center;
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: 0.15s; }
-.reveal-delay-2 { transition-delay: 0.3s; }
-.reveal-delay-3 { transition-delay: 0.45s; }
-.reveal-delay-4 { transition-delay: 0.6s; }
 
 /* ─── INTRO NUMBER ─── */
 .intro-strip {
@@ -608,7 +606,7 @@ section { position: relative; overflow: hidden; }
 /* ─── UNIVERS VIVANT ─── */
 .univers {
   padding: 140px 0;
-  background: var(--bg-mid);
+  background: transparent; /* Was var(--bg-mid) */
 }
 
 .univers-header {
@@ -840,7 +838,7 @@ section { position: relative; overflow: hidden; }
 /* ─── ESPÈCES ─── */
 .especes {
   padding: 140px 0;
-  background: var(--bg-mid);
+  background: transparent; /* Was var(--bg-mid) */
 }
 
 .especes-header {
@@ -975,7 +973,7 @@ section { position: relative; overflow: hidden; }
 /* ─── PREMIUM ─── */
 .premium {
   padding: 140px 0;
-  background: var(--bg-mid);
+  background: transparent; /* Was var(--bg-mid) */
 }
 
 .premium-layout {
@@ -1313,5 +1311,21 @@ footer {
 @media (max-width: 768px) {
   .hero-bg img {
     object-position: 72% 65% !important;
+  }
+
+  /* Disable 3D on mobile */
+  [data-dive] {
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ─── ACCESSIBILITY ─── */
+@media (prefers-reduced-motion: reduce) {
+  [data-dive] {
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
   }
 }

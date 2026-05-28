@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import Image from 'next/image'
+import Background3D from '../components/Background3D'
 
 export default function Home() {
   useEffect(() => {
@@ -13,12 +14,149 @@ export default function Home() {
     window.addEventListener('scroll', handleNavScroll, { passive: true })
 
 
-    // Reveal on scroll
-    const revealEls = document.querySelectorAll('.reveal')
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') })
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' })
-    revealEls.forEach(el => observer.observe(el))
+    // ═══ SCROLL-DRIVEN 3D TRAVERSE ENGINE ═══
+    // No IntersectionObserver. The scroll IS the movement.
+    const isMobile = window.matchMedia('(max-width: 768px)').matches
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    // Collect all animatable elements from dive sections
+    const diveElements: { el: HTMLElement; depth: string; noExit: boolean; isImage: boolean }[] = []
+
+    if (!isMobile && !prefersReduced) {
+      const sections = document.querySelectorAll('[data-dive-section]')
+      const selectors = [
+        '.section-label', '.section-title', '.section-body',
+        '.intro-stat', '.pillar', '.univers-card',
+        '.concept-visual', '.sessions-visual',
+        '.especes-count-display', '.espece-cell',
+        '.premium-plan', '.gallery-item',
+        '.community-instagram',
+        '.cta-final-quote', '.cta-final-sub',
+        '.btn-primary', '.btn-secondary',
+      ].join(', ')
+
+      sections.forEach(section => {
+        const type = (section as HTMLElement).dataset.diveSection || 'normal'
+        const children = section.querySelectorAll(selectors)
+        children.forEach(child => {
+          const el = child as HTMLElement
+          el.setAttribute('data-dive', '')
+
+          // Determine depth type
+          let depth = 'normal'
+          if (el.classList.contains('section-title') || el.classList.contains('cta-final-quote')) depth = 'title'
+          else if (el.classList.contains('section-body') || el.classList.contains('cta-final-sub') || el.classList.contains('pillar')) depth = 'body'
+          else if (el.classList.contains('section-label')) depth = 'label'
+          else if (type === 'premium' && el.classList.contains('premium-plan')) depth = 'premium'
+
+          const isImage = el.classList.contains('concept-visual')
+            || el.classList.contains('sessions-visual')
+            || el.classList.contains('gallery-item')
+
+          diveElements.push({
+            el,
+            depth,
+            noExit: type === 'final',
+            isImage,
+          })
+        })
+      })
+
+      // Smoothstep easing
+      const smoothstep = (t: number) => t * t * (3 - 2 * t)
+
+      // Depth configs: [zFar, scaleFar, blurFar]
+      const depthConfig: Record<string, [number, number, number]> = {
+        title:   [-400, 0.70, 8],
+        body:    [-250, 0.82, 6],
+        label:   [-200, 0.85, 5],
+        premium: [-200, 0.85, 0],
+        normal:  [-300, 0.75, 6],
+      }
+
+      const updateDive = () => {
+        const vh = window.innerHeight
+
+        diveElements.forEach(({ el, depth, noExit, isImage }) => {
+          const rect = el.getBoundingClientRect()
+          const elCenter = rect.top + rect.height / 2
+
+          // Normalized: 0 = element center at bottom of viewport
+          //             0.5 = element center at center of viewport
+          //             1 = element center at top of viewport
+          const raw = 1 - (elCenter / vh)
+
+          const [zFar, scaleFar, blurFar] = depthConfig[depth] || depthConfig.normal
+          const zPast = 100
+          const scalePast = 0.8
+
+          let z: number, s: number, blur: number, opacity: number
+
+          if (raw <= -0.15) {
+            // Far below — fully deep
+            z = zFar; s = scaleFar; blur = blurFar; opacity = 0
+          } else if (raw < 0.35) {
+            // Approaching — swimming toward it
+            const t = smoothstep((raw + 0.15) / 0.5)
+            z = zFar * (1 - t)
+            s = scaleFar + (1 - scaleFar) * t
+            blur = blurFar * (1 - t)
+            opacity = t
+          } else if (raw <= 0.65) {
+            // Reading zone — sharp, stable
+            z = 0; s = 1; blur = 0; opacity = 1
+          } else if (raw < 1.15) {
+            // Passing — swimming through it
+            if (noExit) {
+              z = 0; s = 1; blur = 0; opacity = 1
+            } else {
+              const t = smoothstep((raw - 0.65) / 0.5)
+              z = zPast * t
+              s = 1 + (scalePast - 1) * t
+              blur = 4 * t
+              opacity = 1 - t
+            }
+          } else {
+            // Far above — fully passed
+            if (noExit) {
+              z = 0; s = 1; blur = 0; opacity = 1
+            } else {
+              z = zPast; s = scalePast; blur = 4; opacity = 0
+            }
+          }
+
+          el.style.transform = `perspective(800px) translateZ(${z.toFixed(1)}px) scale(${s.toFixed(4)})`
+          el.style.opacity = String(Math.max(0, Math.min(1, opacity)).toFixed(3))
+
+          // Images: porthole clip-path + desaturation
+          if (isImage) {
+            const clipPct = Math.max(0, Math.min(100, opacity * 100))
+            el.style.clipPath = `circle(${clipPct.toFixed(1)}%)`
+            const sat = 0.6 + 0.4 * Math.max(0, Math.min(1, opacity))
+            el.style.filter = blur > 0.05
+              ? `blur(${blur.toFixed(1)}px) saturate(${sat.toFixed(2)})`
+              : `saturate(${sat.toFixed(2)})`
+          } else {
+            el.style.filter = blur > 0.05 ? `blur(${blur.toFixed(1)}px)` : 'none'
+          }
+        })
+      }
+
+      let diveTicking = false
+      const onDiveScroll = () => {
+        if (!diveTicking) {
+          requestAnimationFrame(() => {
+            updateDive()
+            diveTicking = false
+          })
+          diveTicking = true
+        }
+      }
+
+      window.addEventListener('scroll', onDiveScroll, { passive: true })
+      window.addEventListener('resize', updateDive, { passive: true })
+      updateDive() // Initial positioning
+    }
 
     // Timeline reveal
     const timelineEntries = document.querySelectorAll('.timeline-entry')
@@ -120,13 +258,14 @@ export default function Home() {
     return () => {
       window.removeEventListener('scroll', handleNavScroll)
       window.removeEventListener('scroll', handleParallax)
-      observer.disconnect()
+      // dive engine cleaned up by removing scroll listener
       timelineObserver.disconnect()
     }
   }, [])
 
   return (
     <>
+      <Background3D />
 
       {/* NAV */}
       <nav id="navbar">
@@ -149,14 +288,8 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero" id="hero">
-        <div className="hero-bg">
-          <Image
-            src="/images/bg/hero-background.jpg"
-            alt=""
-            fill
-            priority
-            style={{ objectFit: 'cover', objectPosition: 'center 65%', opacity: 0.55 }}
-          />
+        <div className="hero-bg" style={{ background: 'transparent' }}>
+          {/* Static image replaced by 3D background */}
         </div>
         <div className="hero-particles" id="heroParticles" />
         <div className="hero-content">
@@ -188,17 +321,17 @@ export default function Home() {
       </section>
 
       {/* STATS STRIP */}
-      <div className="intro-strip">
+      <div className="intro-strip" data-dive-section="normal">
         <div className="section-inner">
-          <div className="intro-stat reveal">
+          <div className="intro-stat">
             <div className="intro-stat-num">92</div>
             <div className="intro-stat-label">Espèces à découvrir</div>
           </div>
-          <div className="intro-stat reveal reveal-delay-1">
+          <div className="intro-stat">
             <div className="intro-stat-num">4</div>
             <div className="intro-stat-label">Saisons vivantes</div>
           </div>
-          <div className="intro-stat reveal reveal-delay-2">
+          <div className="intro-stat">
             <div className="intro-stat-num">∞</div>
             <div className="intro-stat-label">Souvenirs à créer</div>
           </div>
@@ -206,11 +339,11 @@ export default function Home() {
       </div>
 
       {/* CONCEPT */}
-      <section className="concept" id="concept">
+      <section className="concept" id="concept" data-dive-section="normal">
         <div className="section-inner">
-          <div className="section-label reveal">L&apos;Expérience</div>
+          <div className="section-label">L&apos;Expérience</div>
           <div className="concept-grid">
-            <div className="concept-visual reveal">
+            <div className="concept-visual">
               <div className="concept-visual-bg" />
               <Image
                 src="/images/bg/ambiance-pecheur-lever-soleil-brume-doree.png"
@@ -225,7 +358,7 @@ export default function Home() {
               </div>
             </div>
             <div className="concept-pillars">
-              <div className="pillar reveal">
+              <div className="pillar">
                 <div className="pillar-num">01</div>
                 <div className="pillar-content">
                   <div className="pillar-title">Découvrir</div>
@@ -235,7 +368,7 @@ export default function Home() {
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8.5" cy="8.5" r="5.5" stroke="#8FBFA3" strokeWidth="1.2" /><path d="M13 13l3.5 3.5" stroke="#8FBFA3" strokeWidth="1.2" strokeLinecap="round" /></svg>
                 </div>
               </div>
-              <div className="pillar reveal reveal-delay-1">
+              <div className="pillar">
                 <div className="pillar-num">02</div>
                 <div className="pillar-content">
                   <div className="pillar-title">Capturer</div>
@@ -245,7 +378,7 @@ export default function Home() {
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="11" rx="2" stroke="#8FBFA3" strokeWidth="1.2" /><circle cx="10" cy="10.5" r="2.5" stroke="#8FBFA3" strokeWidth="1.2" /><path d="M7 5l1-2h4l1 2" stroke="#8FBFA3" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </div>
               </div>
-              <div className="pillar reveal reveal-delay-2">
+              <div className="pillar">
                 <div className="pillar-num">03</div>
                 <div className="pillar-content">
                   <div className="pillar-title">Revivre</div>
@@ -261,19 +394,19 @@ export default function Home() {
       </section>
 
       {/* UNIVERS VIVANT */}
-      <section className="univers" id="univers">
+      <section className="univers" id="univers" data-dive-section="normal">
         <div className="section-inner">
           <div className="univers-header">
             <div>
-              <div className="section-label reveal">L&apos;Univers</div>
-              <h2 className="section-title reveal reveal-delay-1">Un monde qui<br /><em>respire avec vous.</em></h2>
+              <div className="section-label">L&apos;Univers</div>
+              <h2 className="section-title">Un monde qui<br /><em>respire avec vous.</em></h2>
             </div>
             <div>
-              <p className="section-body reveal reveal-delay-2">Une aube brumeuse de printemps n&apos;a rien à voir avec une nuit d&apos;hiver sur le lac. FishDex le sait. Et s&apos;adapte.</p>
+              <p className="section-body">Une aube brumeuse de printemps n&apos;a rien à voir avec une nuit d&apos;hiver sur le lac. FishDex le sait. Et s&apos;adapte.</p>
             </div>
           </div>
           <div className="univers-cards">
-            <div className="univers-card reveal">
+            <div className="univers-card">
               <div className="univers-card-bg dawn" />
               <div className="univers-card-art" style={{ overflow: 'hidden' }}>
                 <Image
@@ -289,7 +422,7 @@ export default function Home() {
                 <div className="univers-card-name">La brume du matin</div>
               </div>
             </div>
-            <div className="univers-card reveal reveal-delay-1">
+            <div className="univers-card">
               <div className="univers-card-bg storm" />
               <div className="univers-card-art" style={{ overflow: 'hidden' }}>
                 <Image
@@ -305,7 +438,7 @@ export default function Home() {
                 <div className="univers-card-name">L&apos;électricité de l&apos;air</div>
               </div>
             </div>
-            <div className="univers-card reveal reveal-delay-2">
+            <div className="univers-card">
               <div className="univers-card-bg golden" />
               <div className="univers-card-art" style={{ overflow: 'hidden' }}>
                 <Image
@@ -321,7 +454,7 @@ export default function Home() {
                 <div className="univers-card-name">L&apos;heure dorée</div>
               </div>
             </div>
-            <div className="univers-card reveal reveal-delay-3">
+            <div className="univers-card">
               <div className="univers-card-bg night" />
               <div className="univers-card-art" style={{ overflow: 'hidden' }}>
                 <Image
@@ -342,10 +475,10 @@ export default function Home() {
       </section>
 
       {/* SESSIONS */}
-      <section className="sessions" id="sessions">
+      <section className="sessions" id="sessions" data-dive-section="normal">
         <div className="section-inner">
-          <div className="section-label reveal">Sessions</div>
-          <h2 className="section-title reveal reveal-delay-1">Une sortie devient<br /><em>un souvenir.</em></h2>
+          <div className="section-label">Sessions</div>
+          <h2 className="section-title">Une sortie devient<br /><em>un souvenir.</em></h2>
           <div className="sessions-layout">
             <div className="sessions-timeline">
               <div className="timeline-line" />
@@ -374,7 +507,7 @@ export default function Home() {
                 <p className="timeline-desc">FishDex compile automatiquement votre session : carte du lieu, météo, captures, moments. Un journal vivant, prêt à être revécu.</p>
               </div>
             </div>
-            <div className="sessions-visual reveal">
+            <div className="sessions-visual">
               <div style={{ position: 'relative', aspectRatio: '3/4', maxWidth: '340px', margin: '0 auto' }}>
                 <Image
                   src="/images/mockups/session-phone-mockup.png"
@@ -389,13 +522,13 @@ export default function Home() {
       </section>
 
       {/* ESPÈCES */}
-      <section className="especes" id="especes">
+      <section className="especes" id="especes" data-dive-section="normal">
         <div className="section-inner">
           <div className="especes-header">
-            <div className="especes-count-display reveal">92</div>
-            <div className="section-label reveal" style={{ justifyContent: 'center' }}>Espèces</div>
-            <h2 className="section-title reveal reveal-delay-1" style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto 16px' }}>Un musée vivant<br />dans votre poche.</h2>
-            <p className="section-body reveal reveal-delay-2" style={{ textAlign: 'center', margin: '0 auto 60px', maxWidth: '480px' }}>De la truite fario au silure géant — 92 espèces vous attendent, chacune avec sa biologie, ses eaux, ses saisons. Pas une encyclopédie à lire. Une à vivre, capture après capture.</p>
+            <div className="especes-count-display">92</div>
+            <div className="section-label" style={{ justifyContent: 'center' }}>Espèces</div>
+            <h2 className="section-title" style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto 16px' }}>Un musée vivant<br />dans votre poche.</h2>
+            <p className="section-body" style={{ textAlign: 'center', margin: '0 auto 60px', maxWidth: '480px' }}>De la truite fario au silure géant — 92 espèces vous attendent, chacune avec sa biologie, ses eaux, ses saisons. Pas une encyclopédie à lire. Une à vivre, capture après capture.</p>
           </div>
           <div className="especes-grid">
             {[
@@ -412,7 +545,7 @@ export default function Home() {
               { name: 'Ablette',          img: '/images/fishes/ablette.png',          bg: '/images/bg/background-paisibles.png' },
               { name: 'Saumon atlantique',img: '/images/fishes/saumon-atlantique.png',bg: '/images/bg/background-eaux-vives.png' },
             ].map((fish, i) => (
-              <div key={i} className={`espece-cell reveal${i % 4 === 1 ? ' reveal-delay-1' : i % 4 === 2 ? ' reveal-delay-2' : i % 4 === 3 ? ' reveal-delay-3' : ''}`} style={{ transitionDelay: `${(i % 4) * 0.15}s` }}>
+              <div key={i} className={`espece-cell${i % 4 === 1 ? '' : i % 4 === 2 ? '' : i % 4 === 3 ? '' : ''}`} style={{ transitionDelay: `${(i % 4) * 0.15}s` }}>
                 <div className="espece-cell-bg">
                   <Image src={fish.bg} alt="" fill style={{ objectFit: 'cover' }} />
                   <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.18)', zIndex: 1 }} />
@@ -429,20 +562,20 @@ export default function Home() {
             ))}
           </div>
           <div style={{ textAlign: 'center', marginTop: '60px' }}>
-            <a href="#beta" className="btn-secondary reveal">Explorer toutes les espèces →</a>
+            <a href="#beta" className="btn-secondary">Explorer toutes les espèces →</a>
           </div>
         </div>
       </section>
 
       {/* GALLERY */}
-      <section className="gallery" id="gallery">
+      <section className="gallery" id="gallery" data-dive-section="normal">
         <div className="section-inner">
           <div className="gallery-header">
             <div>
-              <div className="section-label reveal">Galerie</div>
-              <h2 className="section-title reveal reveal-delay-1">Des moments<br /><em>qui durent.</em></h2>
+              <div className="section-label">Galerie</div>
+              <h2 className="section-title">Des moments<br /><em>qui durent.</em></h2>
             </div>
-            <p className="section-body reveal reveal-delay-2" style={{ maxWidth: '360px' }}>Chaque sortie, chaque capture, chaque lever de soleil sur l&apos;eau — votre vie de pêcheur en images.</p>
+            <p className="section-body" style={{ maxWidth: '360px' }}>Chaque sortie, chaque capture, chaque lever de soleil sur l&apos;eau — votre vie de pêcheur en images.</p>
           </div>
           <div className="gallery-mosaic">
             {[
@@ -472,17 +605,17 @@ export default function Home() {
       </section>
 
       {/* PREMIUM */}
-      <section className="premium" id="premium">
+      <section className="premium" id="premium" data-dive-section="premium">
         <div className="section-inner">
           <div className="premium-layout">
             <div>
-              <div className="section-label reveal">Premium</div>
-              <h2 className="section-title reveal reveal-delay-1">Gratuit et<br /><em>généreux.</em></h2>
-              <p className="section-body reveal reveal-delay-2" style={{ marginBottom: '40px' }}>FishDex est gratuit, vraiment. Le premium va plus loin — il ne vous retient pas derrière un mur.</p>
-              <a href="https://app.fishdex.fr" className="btn-primary reveal reveal-delay-3" target="_blank" rel="noopener noreferrer">Commencer gratuitement</a>
+              <div className="section-label">Premium</div>
+              <h2 className="section-title">Gratuit et<br /><em>généreux.</em></h2>
+              <p className="section-body" style={{ marginBottom: '40px' }}>FishDex est gratuit, vraiment. Le premium va plus loin — il ne vous retient pas derrière un mur.</p>
+              <a href="https://app.fishdex.fr" className="btn-primary" target="_blank" rel="noopener noreferrer">Commencer gratuitement</a>
             </div>
             <div className="premium-plans">
-              <div className="premium-plan reveal">
+              <div className="premium-plan">
                 <div className="plan-badge">Gratuit · Pour toujours</div>
                 <div className="plan-name">Gratuit</div>
                 <p className="plan-desc">Tout ce qu&apos;il faut pour commencer à explorer. Aucune limite sur l&apos;essentiel.</p>
@@ -494,7 +627,7 @@ export default function Home() {
                   <li>Wrapped annuel</li>
                 </ul>
               </div>
-              <div className="premium-plan featured reveal reveal-delay-1">
+              <div className="premium-plan featured">
                 <div className="plan-badge">✦ Pro</div>
                 <div className="plan-name">Pro</div>
                 <p className="plan-desc">Pour celui qui pêche souvent, observe beaucoup et veut garder une trace de tout.</p>
@@ -509,7 +642,7 @@ export default function Home() {
                   <li>Wrapped accessible toute l&apos;année</li>
                 </ul>
               </div>
-              <div className="premium-plan reveal reveal-delay-2">
+              <div className="premium-plan">
                 <div className="plan-badge">★ Légende</div>
                 <div className="plan-name">Légende</div>
                 <p className="plan-desc">Pour les passionnés qui vivent la pêche comme une vraie discipline. Chaque détail compte.</p>
@@ -527,21 +660,16 @@ export default function Home() {
       </section>
 
       {/* COMMUNITY */}
-      <section className="community" id="community" style={{ position: 'relative', overflow: 'hidden' }}>
-        <Image
-          src="/images/bg/community-bg.png"
-          alt=""
-          fill
-          style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.18, zIndex: 0 }}
-        />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, var(--bg-deep) 0%, transparent 30%, transparent 70%, var(--bg-deep) 100%)', zIndex: 1 }} />
+      <section className="community" id="community" data-dive-section="normal" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Static image replaced by 3D background */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, var(--bg-deep) 0%, transparent 30%, transparent 70%, var(--bg-deep) 100%)', zIndex: 1, pointerEvents: 'none' }} />
         <div className="section-inner" style={{ position: 'relative', zIndex: 2 }}>
           <div className="community-inner">
-            <div className="section-label reveal" style={{ justifyContent: 'center' }}>Communauté</div>
-            <h2 className="section-title reveal reveal-delay-1" style={{ textAlign: 'center' }}>Rejoignez la<br /><em>communauté.</em></h2>
-            <p className="section-body reveal reveal-delay-2" style={{ textAlign: 'center', margin: '0 auto' }}>Ceux qui comprennent pourquoi on se lève à 5h du matin pour aller au bord de l&apos;eau se retrouvent ici.</p>
+            <div className="section-label" style={{ justifyContent: 'center' }}>Communauté</div>
+            <h2 className="section-title" style={{ textAlign: 'center' }}>Rejoignez la<br /><em>communauté.</em></h2>
+            <p className="section-body" style={{ textAlign: 'center', margin: '0 auto' }}>Ceux qui comprennent pourquoi on se lève à 5h du matin pour aller au bord de l&apos;eau se retrouvent ici.</p>
             <div style={{ textAlign: 'center' }}>
-              <a href="https://instagram.com/FishDex.fr" className="community-instagram reveal reveal-delay-3" target="_blank" rel="noopener noreferrer">
+              <a href="https://instagram.com/FishDex.fr" className="community-instagram" target="_blank" rel="noopener noreferrer">
                 <div className="ig-icon">
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="10" height="10" rx="3" stroke="white" strokeWidth="1.2" /><circle cx="6" cy="6" r="2.5" stroke="white" strokeWidth="1.2" /><circle cx="9" cy="3" r="0.8" fill="white" /></svg>
                 </div>
@@ -554,27 +682,22 @@ export default function Home() {
       </section>
 
       {/* CTA FINAL */}
-      <section className="cta-final" id="beta">
-        <div className="cta-final-bg">
-          <Image
-            src="/images/bg/cta-water-bg.png"
-            alt=""
-            fill
-            style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.25 }}
-          />
+      <section className="cta-final" id="beta" data-dive-section="final">
+        <div className="cta-final-bg" style={{ background: 'transparent' }}>
+          {/* Static image replaced by 3D background */}
         </div>
         <div className="cta-final-content">
-          <div className="section-label reveal" style={{ justifyContent: 'center', marginBottom: '32px' }}>Commencer l&apos;aventure</div>
-          <div className="cta-final-quote reveal reveal-delay-1">
+          <div className="section-label" style={{ justifyContent: 'center', marginBottom: '32px' }}>Commencer l&apos;aventure</div>
+          <div className="cta-final-quote">
             Combien d&apos;espèces vous manque-t-il ?
           </div>
-          <p className="cta-final-sub reveal reveal-delay-2">
+          <p className="cta-final-sub">
             La bêta est ouverte. Gratuit, pour toujours. Il ne manque que vous.
           </p>
-          <p className="cta-final-sub reveal reveal-delay-2" style={{ fontSize: '0.9rem', opacity: 0.7, marginTop: '-8px' }}>
+          <p className="cta-final-sub" style={{ fontSize: '0.9rem', opacity: 0.7, marginTop: '-8px' }}>
             Pour accéder à la bêta, suivez <a href="https://instagram.com/FishDex.fr" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', textDecoration: 'underline' }}>@FishDex.fr</a> sur Instagram et envoyez-nous un message privé.
           </p>
-          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }} className="reveal reveal-delay-3">
+          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="https://app.fishdex.fr" className="btn-primary" style={{ fontSize: '1rem', padding: '18px 42px' }} target="_blank" rel="noopener noreferrer">
               Rejoindre la bêta
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M10 5l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
