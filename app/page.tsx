@@ -183,24 +183,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATS STRIP */}
-      <div className="intro-strip">
-        <div className="section-inner">
-          <div className="intro-stat reveal">
-            <div className="intro-stat-num">92</div>
-            <div className="intro-stat-label">Espèces à découvrir</div>
-          </div>
-          <div className="intro-stat reveal reveal-delay-1">
-            <div className="intro-stat-num">4</div>
-            <div className="intro-stat-label">Saisons vivantes</div>
-          </div>
-          <div className="intro-stat reveal reveal-delay-2">
-            <div className="intro-stat-num">∞</div>
-            <div className="intro-stat-label">Souvenirs à créer</div>
-          </div>
-        </div>
-      </div>
-
       {/* CONCEPT */}
       <section className="concept" id="concept">
         <div className="section-inner">
