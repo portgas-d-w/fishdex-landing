@@ -82,7 +82,7 @@ function DynamicEnvironment() {
     }
   });
 
-  const envMap = useTexture('/images/new/8d74e320-5e81-443f-8430-4c5d53a62f55.png');
+  const envMap = useTexture('/images/new/section-1.png');
   envMap.mapping = THREE.EquirectangularReflectionMapping;
 
   return (
