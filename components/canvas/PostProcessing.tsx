@@ -3,13 +3,12 @@ import { EffectComposer, Bloom, ChromaticAberration, DepthOfField, Vignette, Noi
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { diveState } from './useScrollProgress';
-import { SURFACE_CROSSING_PROGRESS, SECTIONS } from './diveConfig';
+import { SECTIONS } from './diveConfig';
 
 export default function PostProcessing() {
   const dofRef = useRef<any>(null);
   const noiseRef = useRef<any>(null);
   const vignetteRef = useRef<any>(null);
-  const chromaRef = useRef<any>(null);
 
   useFrame((state, delta) => {
     const { progress } = diveState;
@@ -27,6 +26,8 @@ export default function PostProcessing() {
     }
 
     // 2) Profondeur : grain + vignette croissants une fois immergé.
+    //    (Le franchissement de surface reste discret : pas d’effet spectaculaire,
+    //    la réfraction est portée par cette montée douce + l’aberration statique.)
     const submerged = THREE.MathUtils.clamp((1.5 - camY) / 3.0, 0, 1);
     if (noiseRef.current?.blendMode) {
       const tgt = submerged * 0.03;
@@ -36,17 +37,6 @@ export default function PostProcessing() {
       const d = vignetteRef.current.uniforms.get('darkness');
       if (d) d.value = THREE.MathUtils.damp(d.value, submerged * 1.0, 4, delta);
     }
-
-    // 3) Crossing de surface : réfraction DISCRÈTE et brève.
-    //    Petite bosse d’aberration chromatique autour du franchissement,
-    //    sinon valeur de repos quasi nulle. Pas d’effet spectaculaire.
-    if (chromaRef.current?.offset) {
-      const w = 0.04; // largeur de la fenêtre de crossing en progress
-      const t = THREE.MathUtils.clamp(1 - Math.abs(progress - SURFACE_CROSSING_PROGRESS) / w, 0, 1);
-      const pulse = t * t; // 0 hors fenêtre → 1 au passage
-      const amt = 0.0008 + pulse * 0.0018; // repos ~0.0008, pic ~0.0026 (subtil)
-      chromaRef.current.offset.set(amt, amt);
-    }
   });
 
   return (
@@ -54,7 +44,9 @@ export default function PostProcessing() {
     <EffectComposer multisampling={0}>
       <DepthOfField ref={dofRef} target={new THREE.Vector3(0, 0, 0)} focalLength={0.02} bokehScale={2} />
       <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.5} intensity={1.2} radius={0.8} mipmapBlur />
-      <ChromaticAberration ref={chromaRef} offset={new THREE.Vector2(0.0008, 0.0008)} radialModulation={false} modulationOffset={0} />
+      {/* Aberration chromatique STATIQUE et subtile (réfraction discrète, pas de ref :
+          ChromaticAberration est un wrapEffect déclaratif — l’animer par ref plante). */}
+      <ChromaticAberration offset={new THREE.Vector2(0.0009, 0.0009)} radialModulation={false} modulationOffset={0} />
       <Noise ref={noiseRef} opacity={0} />
       <Vignette ref={vignetteRef} eskil={false} offset={0.2} darkness={0} />
     </EffectComposer>
