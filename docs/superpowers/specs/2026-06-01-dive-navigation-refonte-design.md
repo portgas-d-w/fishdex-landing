@@ -52,6 +52,11 @@ Le seul DOM scrollable est le spacer ; tout le visible est le canvas fixe. → s
 - `SECTIONS`: tableau de 7 entrées `{ id, readingProgress, sectionZ, distanceFactor }`.
   `readingProgress` = valeur `0..1` où la caméra est pile en lecture face à la section
   (= ancres d'aimantation). `sectionZ` = position du volume dans la scène.
+- **Rythme narratif** : l'espacement Z et la distance de visibilité du fog sont calibrés
+  pour que la section suivante **émerge relativement vite** après la traversée de la
+  précédente, afin d'éviter tout « couloir vide » et de garder un bon rythme. La fenêtre
+  noire entre deux sections doit rester brève (juste assez pour réabsorber la section
+  traversée — voir occlusion ci-dessous), pas un long tunnel sans contenu.
 - `SURFACE_CROSSING_PROGRESS`: valeur `0..1` du franchissement de la surface.
 - `DEPTH_KEYFRAMES`: keyframes `{ progress, fogDensity, fogColor, ambientIntensity, ambientColor }`
   pour le dégradé de profondeur.
@@ -84,7 +89,13 @@ Le seul DOM scrollable est le spacer ; tout le visible est le canvas fixe. → s
   - approche → fondu 0→1 + flou qui se résorbe ;
   - `d ≈ 0` → net, centré, lisible ;
   - `d > 0` (traversée) → couches s'écartent / défilent autour de la caméra à vitesses
-    différentes + flou + fondu.
+    différentes + flou.
+- **Occlusion progressive (réabsorption par la profondeur)** : une section traversée
+  ne disparaît pas par simple fondu d'opacité. À mesure qu'elle s'éloigne derrière la
+  caméra, ses couleurs sont **tirées vers la couleur du fog** et **assombries** (desaturation
+  + perte de luminosité), puis noyées dans la densité du fog/obscurité sous-marine, comme
+  réabsorbées par la profondeur. L'opacité ne fait que finaliser ce qui est déjà avalé
+  par l'eau, jamais l'inverse.
 - Espacement `sectionZ` choisi > distance de visibilité du fog → une seule section visible.
 - Contenu HTML riche **conservé** (grilles, cartes prix, timeline) via `<Html transform>`.
 
@@ -97,9 +108,11 @@ Le seul DOM scrollable est le spacer ; tout le visible est le canvas fixe. → s
 ### `components/canvas/WaterSurface.tsx` + `PostProcessing.tsx` (modifiés)
 
 - `WaterSurface` : visible quand `camera.y > −1` ; teinte sous-marine au passage.
-- `PostProcessing` : pic bref (~400 ms) de distorsion au franchissement de surface
-  (aberration chromatique + ondulation/réfraction + léger coup de FOV + voile de
-  gouttelettes) ; intensités des effets liées à la profondeur.
+- `PostProcessing` : franchissement de surface **discret et crédible** — une réfraction
+  /ondulation brève et subtile au passage de `y=0` (pas d'effet spectaculaire : ni gros
+  coup de FOV, ni voile de gouttelettes appuyé). Légère aberration chromatique tolérée si
+  elle reste imperceptible consciemment. L'objectif est le réalisme du passage sous l'eau,
+  pas la démonstration. Intensités des effets liées à la profondeur.
 
 ### `app/page.tsx` (modifié)
 
@@ -133,12 +146,15 @@ Le seul DOM scrollable est le spacer ; tout le visible est le canvas fixe. → s
 1. Un seul système de scroll ; plus aucun `overflow:hidden` ni capture molette.
 2. La caméra avance en continu proportionnellement au scroll ; à l'arrêt, recalage doux
    sur la section la plus proche.
-3. Entrée : bord du lac lisible → avancée → franchissement de surface avec réfraction →
-   sous l'eau, sans coupure visible.
+3. Entrée : bord du lac lisible → avancée → franchissement de surface avec réfraction
+   **discrète et crédible** → sous l'eau, sans coupure visible.
 4. À aucun moment deux sections ne sont simultanément visibles ; chaque section émerge
-   du fog au dernier moment.
+   du fog au dernier moment, et **émerge relativement vite** après la traversée de la
+   précédente (pas de couloir vide prolongé).
 5. En quittant une section, la caméra **traverse** son contenu (couches qui défilent
-   autour) avant que la suivante n'émerge.
+   autour) ; la section traversée est ensuite **progressivement réabsorbée par la
+   profondeur** (tirée vers la couleur du fog + assombrie), pas un simple fondu d'opacité,
+   avant que la suivante n'émerge.
 6. Texte toujours parfaitement lisible en position de lecture.
 7. Mouvement lent, cinématographique, sans à-coups.
 8. Fonctionne desktop + mobile (iPhone/Android) ; cible 60 fps ; fallback DOM si
