@@ -11,6 +11,7 @@ import { useFrame } from '@react-three/fiber';
 import { diveState } from './useScrollProgress';
 import { sampleDepthGrading } from './diveConfig';
 import WaterSurface from './WaterSurface';
+import { QUALITY_TIERS, type QualityTier } from './qualityTier';
 
 import UnderwaterBackground from './Environment/UnderwaterBackground';
 
@@ -38,7 +39,8 @@ function DynamicEnvironment() {
   );
 }
 
-export default function Scene() {
+export default function Scene({ tier }: { tier: QualityTier }) {
+  const params = tier === 'dom-fallback' ? QUALITY_TIERS.low : QUALITY_TIERS[tier];
   return (
     <>
       <CameraRig />
@@ -73,8 +75,8 @@ export default function Scene() {
       {/* 3D UI Layers */}
       <HtmlSections />
 
-      {/* Post-processing — Bloom + Chromatic Aberration */}
-      <PostProcessing />
+      {/* Post-processing — Bloom + Chromatic Aberration (désactivé en palier bas) */}
+      {params.postProcessing && <PostProcessing />}
     </>
   );
 }

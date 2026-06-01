@@ -3,32 +3,30 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Preload } from '@react-three/drei';
-import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Scene from './canvas/Scene';
 import { initScrollTracking } from './canvas/useScrollProgress';
+import { detectQualityTier, readDeviceEnv, QUALITY_TIERS, type QualityTier } from './canvas/qualityTier';
+import { START_Z } from './canvas/diveConfig';
 
 export default function Background3D() {
-  const [shouldRender, setShouldRender] = useState(false);
+  const [tier, setTier] = useState<QualityTier | null>(null);
 
   useEffect(() => {
-    // Check prefers-reduced-motion
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (reducedMotion) {
-      setShouldRender(false);
-      return;
+    const t = detectQualityTier(readDeviceEnv());
+    setTier(t);
+    if (t !== 'dom-fallback') {
+      initScrollTracking();
+      ScrollTrigger.refresh();
     }
-    
-    setShouldRender(true);
-    
-    initScrollTracking();
-    ScrollTrigger.refresh();
   }, []);
 
-  // Sur mobile ou si "reduced motion", on rend un simple dégradé CSS (via classes Tailwind ou inline)
-  if (!shouldRender) {
+  // Avant détection : rien (évite un flash).
+  if (tier === null) return null;
+
+  // Fallback DOM (reduced-motion / WebGL absent / device très faible) : dégradé CSS.
+  if (tier === 'dom-fallback') {
     return (
       <div style={{
         position: 'fixed',
@@ -39,6 +37,8 @@ export default function Background3D() {
       }} />
     );
   }
+
+  const params = QUALITY_TIERS[tier];
 
   return (
     <div style={{
@@ -52,9 +52,9 @@ export default function Background3D() {
       background: '#040a0d' // Fallback color
     }}>
       <Canvas
-        camera={{ position: [0, 5, 100], fov: 60 }}
-        dpr={typeof window !== 'undefined' ? Math.min(window.devicePixelRatio, 2) : 1}
-        gl={{ 
+        camera={{ position: [0, 3.5, START_Z], fov: 60 }}
+        dpr={typeof window !== 'undefined' ? Math.min(window.devicePixelRatio, params.dprCap) : 1}
+        gl={{
           antialias: true,
           powerPreference: "high-performance",
           alpha: false
@@ -62,7 +62,7 @@ export default function Background3D() {
       >
         <color attach="background" args={['#040a0d']} />
         <Suspense fallback={null}>
-          <Scene />
+          <Scene tier={tier} />
           <Preload all />
         </Suspense>
       </Canvas>
