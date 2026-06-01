@@ -86,12 +86,15 @@ export function initScrollTracking() {
       cinematicEvents.dispatchEvent(new Event('surface_return'));
     }
 
-    // Move Camera Z
-    // Easing power4.inOut is very close to cubic-bezier(0.76, 0, 0.24, 1)
+    // Move Camera Z.
+    // power2.inOut glides continuously (gentle accel/decel) instead of the
+    // hard mid-burst of power4 — this is the *only* easing on the camera now;
+    // CameraRig tracks this value tightly (see its DIVING damp) so the motion
+    // is not double-smoothed and doesn't lag behind.
     gsap.to(cinematicState, {
       cameraZ: CAMERA_Z_TARGETS[newIndex],
       duration: 1.4,
-      ease: "power4.inOut",
+      ease: "power2.inOut",
       onUpdate: () => {
         const totalDist = Math.abs(CAMERA_Z_TARGETS[0] - CAMERA_Z_TARGETS[TOTAL_SECTIONS - 1]);
         const currentDist = Math.abs(CAMERA_Z_TARGETS[0] - cinematicState.cameraZ);
@@ -103,15 +106,20 @@ export function initScrollTracking() {
       }
     });
 
-    // Notify new section to appear after 400ms delay
+    // Reveal the incoming section as the camera is settling (~halfway through
+    // the 1.4s move). Its fade-in then lands together with the camera arrival,
+    // so the whole thing reads as one continuous "travel + reveal" motion
+    // rather than text popping in mid-flight.
     setTimeout(() => {
       cinematicEvents.dispatchEvent(new CustomEvent('section_enter', { detail: { index: newIndex } }));
-    }, 400);
+    }, 550);
 
-    // Cooldown of 1.6s
+    // Cooldown — kept just above the camera duration so a new navigation can't
+    // start mid-move (which would spawn a competing cameraZ tween), but short
+    // enough to not feel blocked.
     setTimeout(() => {
       isCooldown = false;
-    }, 1600);
+    }, 1500);
   };
 
   const handleInput = (e: Event) => {

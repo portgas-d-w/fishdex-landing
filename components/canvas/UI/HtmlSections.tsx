@@ -16,7 +16,7 @@ function HtmlSection({ index, children, distanceFactor = 30, z = SECTION_Z_POSIT
       const customEvent = e as CustomEvent;
       if (customEvent.detail.index === index) {
         setActive(false);
-        setTimeout(() => setVisible(false), 300);
+        setTimeout(() => setVisible(false), 400); // matches the 0.4s fade-out below
       }
     };
 
@@ -47,9 +47,9 @@ function HtmlSection({ index, children, distanceFactor = 30, z = SECTION_Z_POSIT
     pointerEvents: 'auto' as const,
     opacity: active ? 1 : 0,
     transform: active ? 'translateY(0) translateZ(0)' : 'translateY(20px) translateZ(-15px)',
-    transition: active 
-      ? 'opacity 0.7s ease, transform 1s cubic-bezier(0.2, 1, 0.3, 1)' 
-      : 'opacity 0.3s ease, transform 0.3s ease',
+    transition: active
+      ? 'opacity 0.8s ease, transform 1s cubic-bezier(0.2, 1, 0.3, 1)'
+      : 'opacity 0.4s ease, transform 0.4s ease',
   };
 
   return (
@@ -131,7 +131,7 @@ export default function HtmlSections() {
             </div>
             <div className="univers-cards">
               <div className="univers-card">
-                <Image src="/images/bg/background-nature-lac-lever-soleil.png" alt="Printemps" fill style={{ objectFit: 'cover' }} />
+                <Image src="/images/bg/background-nature-lac-lever-soleil.png" alt="Printemps" fill sizes="(max-width: 768px) 45vw, 320px" style={{ objectFit: 'cover' }} />
                 <div className="univers-card-overlay" />
                 <div className="univers-card-info">
                   <div className="univers-card-season">Printemps · Aube</div>
@@ -139,7 +139,7 @@ export default function HtmlSections() {
                 </div>
               </div>
               <div className="univers-card">
-                <Image src="/images/bg/background-nature-lac-orage-pluie.png" alt="Automne" fill style={{ objectFit: 'cover' }} />
+                <Image src="/images/bg/background-nature-lac-orage-pluie.png" alt="Automne" fill sizes="(max-width: 768px) 45vw, 320px" style={{ objectFit: 'cover' }} />
                 <div className="univers-card-overlay" />
                 <div className="univers-card-info">
                   <div className="univers-card-season">Automne · Orage</div>
@@ -147,7 +147,7 @@ export default function HtmlSections() {
                 </div>
               </div>
               <div className="univers-card">
-                <Image src="/images/bg/background-nature-coucher-soleil-brume.png" alt="Eté" fill style={{ objectFit: 'cover' }} />
+                <Image src="/images/bg/background-nature-coucher-soleil-brume.png" alt="Eté" fill sizes="(max-width: 768px) 45vw, 320px" style={{ objectFit: 'cover' }} />
                 <div className="univers-card-overlay" />
                 <div className="univers-card-info">
                   <div className="univers-card-season">Été · Coucher de soleil</div>
@@ -155,7 +155,7 @@ export default function HtmlSections() {
                 </div>
               </div>
               <div className="univers-card">
-                <Image src="/images/bg/background-nature-lac-nuit-lune.png" alt="Hiver" fill style={{ objectFit: 'cover' }} />
+                <Image src="/images/bg/background-nature-lac-nuit-lune.png" alt="Hiver" fill sizes="(max-width: 768px) 45vw, 320px" style={{ objectFit: 'cover' }} />
                 <div className="univers-card-overlay" />
                 <div className="univers-card-info">
                   <div className="univers-card-season">Hiver · Nuit</div>

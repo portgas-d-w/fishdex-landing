@@ -58,10 +58,12 @@ export default function CameraRig() {
       rigState.current.rotX = 0; // Looks forward again
     }
 
-    // Apply target positions with damping for smoothness (factor 0.06 is roughly lerp(0.06) at 60fps)
-    // We use THREE.MathUtils.damp with delta to be framerate independent. 
-    // lerp(0.06) at 60fps is ~ damp(lamda=3.7). We use 4.
-    const dampFactor = phase === 'BITING' ? 8 : 4;
+    // Apply target positions with damping for smoothness.
+    // During DIVING the Z target is already the gsap-eased cameraZ (power2.inOut),
+    // so we track it tightly (high lambda) to avoid double-smoothing — a low
+    // factor here made the camera lag behind the ease and float on arrival.
+    // SURFACE keeps a softer follow; BITING stays snappy.
+    const dampFactor = phase === 'BITING' ? 8 : phase === 'DIVING' ? 9 : 4;
     
     camera.position.z = THREE.MathUtils.damp(camera.position.z, rigState.current.z, dampFactor, delta);
     camera.position.y = THREE.MathUtils.damp(camera.position.y, rigState.current.y, dampFactor, delta);

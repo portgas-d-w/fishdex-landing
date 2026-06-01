@@ -1,5 +1,5 @@
 import React, { useRef, useMemo, useEffect } from 'react';
-import { useFrame, useThree, extend, Object3DNode } from '@react-three/fiber';
+import { useFrame, useThree, extend, ThreeElement } from '@react-three/fiber';
 import { useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { Water } from 'three-stdlib';
@@ -8,7 +8,7 @@ extend({ Water });
 
 declare module '@react-three/fiber' {
   interface ThreeElements {
-    water: Object3DNode<Water, typeof Water>;
+    water: ThreeElement<typeof Water>;
   }
 }
 
