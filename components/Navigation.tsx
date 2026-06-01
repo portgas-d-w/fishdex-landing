@@ -1,42 +1,40 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { cinematicEvents, TOTAL_SECTIONS } from './canvas/useScrollProgress';
+import { diveState } from './canvas/useScrollProgress';
+import { SECTION_ANCHORS, TOTAL_SECTIONS } from './canvas/diveConfig';
+
+function scrollToAnchor(index: number) {
+  const clamped = Math.max(0, Math.min(index, TOTAL_SECTIONS - 1));
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  window.scrollTo({ top: SECTION_ANCHORS[clamped] * max, behavior: 'smooth' });
+}
 
 export default function Navigation() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Check mobile
+    // Pas d’indicateur sur mobile / reduced-motion (le fallback DOM gère).
     if (window.matchMedia('(max-width: 768px)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }
-    
-    // We only show navigation once the user leaves the HERO section
-    // Or we can show it immediately. Let's show it immediately.
     setIsVisible(true);
 
-    const handleLeave = (e: Event) => {
-      // cinematicState.activeSection is already updated to the new target
-      import('./canvas/useScrollProgress').then(({ cinematicState }) => {
-        setActiveIndex(cinematicState.activeSection);
-      });
+    // Section active = ancre la plus proche du progress courant (rAF léger).
+    let raf = 0;
+    const tick = () => {
+      let nearest = 0;
+      let best = Infinity;
+      for (let i = 0; i < SECTION_ANCHORS.length; i++) {
+        const dist = Math.abs(SECTION_ANCHORS[i] - diveState.progress);
+        if (dist < best) { best = dist; nearest = i; }
+      }
+      setActiveIndex((prev) => (prev === nearest ? prev : nearest));
+      raf = requestAnimationFrame(tick);
     };
-
-    const handleEnter = (e: Event) => {
-      // Just a fallback
-      const customEvent = e as CustomEvent;
-      setActiveIndex(customEvent.detail.index);
-    };
-
-    cinematicEvents.addEventListener('section_leave', handleLeave);
-    cinematicEvents.addEventListener('section_enter', handleEnter);
-
-    return () => {
-      cinematicEvents.removeEventListener('section_leave', handleLeave);
-      cinematicEvents.removeEventListener('section_enter', handleEnter);
-    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   if (!isVisible) return null;
@@ -58,10 +56,8 @@ export default function Navigation() {
           <button
             key={i}
             onClick={() => {
-              if ((window as any).navigateToSection) {
-                (window as any).navigateToSection(i);
-                setActiveIndex(i); // Update immediately on click
-              }
+              scrollToAnchor(i);
+              setActiveIndex(i); // Update immediately on click
             }}
             style={{
               width: '8px',
@@ -80,22 +76,29 @@ export default function Navigation() {
 
       {/* Bottom Arrow */}
       {activeIndex < TOTAL_SECTIONS - 1 && (
-        <div style={{
-          position: 'fixed',
-          bottom: '40px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 100,
-          opacity: 0.4,
-          animation: 'bounce 2s infinite ease-in-out',
-          pointerEvents: 'none',
-        }}>
+        <button
+          onClick={() => scrollToAnchor(activeIndex + 1)}
+          style={{
+            position: 'fixed',
+            bottom: '40px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 100,
+            opacity: 0.4,
+            animation: 'bounce 2s infinite ease-in-out',
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            padding: 0,
+          }}
+          aria-label="Section suivante"
+        >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M6 9l6 6 6-6" stroke="#F4F0E8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-        </div>
+        </button>
       )}
-      
+
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes bounce {
           0%, 100% { transform: translate(-50%, 0); }

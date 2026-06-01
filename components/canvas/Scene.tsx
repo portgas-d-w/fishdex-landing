@@ -8,71 +8,32 @@ import * as THREE from 'three';
 import GodRays from './GodRays';
 import HtmlSections from './UI/HtmlSections';
 import { useFrame } from '@react-three/fiber';
-import { cinematicState } from './useScrollProgress';
+import { diveState } from './useScrollProgress';
+import { sampleDepthGrading } from './diveConfig';
+import WaterSurface from './WaterSurface';
 
 import UnderwaterBackground from './Environment/UnderwaterBackground';
-import { SECTION_Z_POSITIONS } from './useScrollProgress';
 
 function DynamicEnvironment() {
   const fogRef = useRef<THREE.FogExp2>(null);
   const ambientRef = useRef<THREE.AmbientLight>(null);
 
-  // Depth colors based on section Z targets
-  const colorSurface = new THREE.Color('#051014');
-  const colorSec2 = new THREE.Color('#1a3520'); // Golden green
-  const colorSec4 = new THREE.Color('#0d2820'); // Dark green
-  const colorAbyss = new THREE.Color('#071118'); // Pitch black
-
   useFrame((state, delta) => {
-    const y = state.camera.position.y;
-    const z = state.camera.position.z;
-    
-    // 1. Plunge transition (Y-based)
-    const plungeProgress = THREE.MathUtils.clamp((3.5 - y) / 4.5, 0, 1);
-    
-    // 2. Depth transition (Z-based)
-    const deepProgress = THREE.MathUtils.clamp((-50 - z) / 450, 0, 1);
-    
+    const g = sampleDepthGrading(diveState.progress);
     if (fogRef.current) {
-      const targetDensity = 0.002 + plungeProgress * 0.0035 + deepProgress * 0.002;
-      fogRef.current.density = THREE.MathUtils.damp(fogRef.current.density, targetDensity, 4, delta);
-      
-      const targetColor = new THREE.Color();
-      if (plungeProgress < 1) {
-        targetColor.lerpColors(colorSurface, colorSec2, plungeProgress);
-      } else {
-        if (deepProgress < 0.5) {
-          targetColor.lerpColors(colorSec2, colorSec4, deepProgress * 2);
-        } else {
-          targetColor.lerpColors(colorSec4, colorAbyss, (deepProgress - 0.5) * 2);
-        }
-      }
-      
-      fogRef.current.color.lerp(targetColor, 0.1);
+      fogRef.current.density = THREE.MathUtils.damp(fogRef.current.density, g.fogDensity, 4, delta);
+      fogRef.current.color.lerp(g.fogColor, 1 - Math.exp(-4 * delta));
     }
-    
     if (ambientRef.current) {
-      const targetIntensity = 0.4 - plungeProgress * 0.2 - deepProgress * 0.15;
-      ambientRef.current.intensity = THREE.MathUtils.damp(ambientRef.current.intensity, targetIntensity, 4, delta);
-      
-      const targetColor = new THREE.Color();
-      if (plungeProgress < 1) {
-        targetColor.lerpColors(new THREE.Color('#0f2b38'), colorSec2, plungeProgress);
-      } else {
-        if (deepProgress < 0.5) {
-          targetColor.lerpColors(colorSec2, colorSec4, deepProgress * 2);
-        } else {
-          targetColor.lerpColors(colorSec4, colorAbyss, (deepProgress - 0.5) * 2);
-        }
-      }
-      ambientRef.current.color.lerp(targetColor, 0.1);
+      ambientRef.current.intensity = THREE.MathUtils.damp(ambientRef.current.intensity, g.ambientIntensity, 4, delta);
+      ambientRef.current.color.lerp(g.ambientColor, 1 - Math.exp(-4 * delta));
     }
   });
 
   return (
     <>
-      <fogExp2 ref={fogRef} attach="fog" args={['#051014', 0.002]} />
-      <ambientLight ref={ambientRef} intensity={0.4} color="#0f2b38" />
+      <fogExp2 ref={fogRef} attach="fog" args={['#7a8c84', 0.0025]} />
+      <ambientLight ref={ambientRef} intensity={0.5} color="#9fb8c0" />
     </>
   );
 }
@@ -98,6 +59,9 @@ export default function Scene() {
         distance={500}
         decay={2}
       />
+
+      {/* Surface du lac (visible au-dessus de l’eau) */}
+      <WaterSurface />
 
       {/* 3D Elements */}
       <UnderwaterBackground />

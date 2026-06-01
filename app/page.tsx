@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic'
 
 const Background3D = dynamic(() => import('../components/Background3D'), { ssr: false })
 import Navigation from '../components/Navigation'
-import HeroPortal from '../components/HeroPortal'
 
 export default function Home() {
   useEffect(() => {
@@ -65,9 +64,25 @@ export default function Home() {
       pillar.addEventListener('mouseleave', () => { pillar.style.paddingLeft = '0'; pillar.style.borderLeft = 'none' })
     })
 
+    // Fade the lakeside hero out as the dive begins (gone by ~10% of scroll).
+    const hero = document.getElementById('dive-hero')
+    let heroRaf = 0
+    const fadeHero = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      const p = max > 0 ? window.scrollY / max : 0
+      if (hero) {
+        const o = Math.max(0, 1 - p / 0.10)
+        hero.style.opacity = String(o)
+        hero.style.pointerEvents = o < 0.05 ? 'none' : 'auto'
+      }
+      heroRaf = requestAnimationFrame(fadeHero)
+    }
+    heroRaf = requestAnimationFrame(fadeHero)
+
     return () => {
       window.removeEventListener('scroll', handleNavScroll)
       timelineObserver.disconnect()
+      cancelAnimationFrame(heroRaf)
     }
   }, [])
 
@@ -80,8 +95,8 @@ export default function Home() {
 
       <Navigation />
 
-      {/* HERO PORTAL — layered parallax over the 3D canvas */}
-      <HeroPortal>
+      {/* HERO — bord du lac, overlay fixe par-dessus le canvas (se fond à la plongée) */}
+      <div id="dive-hero" className="dive-hero">
         <div className="hero-badge">
           <span className="hero-badge-dot" />
           Bêta ouverte · 2026
@@ -97,11 +112,15 @@ export default function Home() {
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             Rejoindre la bêta
           </a>
-          <a href="#concept" className="btn-secondary">
+          <a href="#explore" className="btn-secondary">
             Découvrir FishDex <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
         </div>
-      </HeroPortal>
+        <div className="hero-scroll-hint"><span>Plonger</span><div className="hero-scroll-line" /></div>
+      </div>
+
+      {/* SPACER — fabrique la distance de scroll (≈ 8 segments) ; le visuel est le canvas fixe */}
+      <div id="dive-scroll" className="dive-scroll-spacer" aria-hidden="true" />
 
       {/* NAV */}
       <nav id="navbar">

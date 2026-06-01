@@ -1,87 +1,40 @@
-import React, { useRef, useLayoutEffect, useEffect } from 'react';
+import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import gsap from 'gsap';
 import * as THREE from 'three';
-import { useScrollProgress, useScrollVelocity, cinematicState } from './useScrollProgress';
+import { diveState } from './useScrollProgress';
+import { cameraPosAt, cameraLookAt } from './diveConfig';
 
 export default function CameraRig() {
-  const scrollProgress = useScrollProgress();
-  const scrollVelocity = useScrollVelocity();
-  const lastVelocity = useRef(0);
-  
-  // Cinematic camera values (target values we interpolate towards)
-  const rigState = useRef({
-    y: 5,
-    z: 5,
-    rotX: -0.3 // ~ -17 degrees (looking down)
-  });
+  const smoothVel = useRef(0);
+  const tmpLook = useRef(new THREE.Vector3());
+  const lookCurrent = useRef(new THREE.Vector3(0, 0, -1));
 
   useFrame((state, delta) => {
-    // Smooth velocity for inertial effects
-    lastVelocity.current = THREE.MathUtils.damp(lastVelocity.current, scrollVelocity.current, 2, delta);
+    const { progress, velocity } = diveState;
+    smoothVel.current = THREE.MathUtils.damp(smoothVel.current, velocity, 3, delta);
 
     const camera = state.camera;
-    const { phase, biteProgress } = cinematicState;
 
-    // Determine target positions based on state
-    if (phase === 'SURFACE') {
-      // Act 1: Hovering above water at the edge of the lake
-      rigState.current.y = 3.5;
-      rigState.current.z = 100;
-      rigState.current.rotX = -0.35; // Looking down at the float
-      
-    } else if (phase === 'BITING') {
-      // Bite cinematic (total 1800ms mapped to 0->1)
-      // 0-0.055 (0-100ms): tension
-      // 0.055-0.138 (100-250ms): plunge of the float (camera doesn't move yet)
-      // 0.138-1.0 (250-1800ms): camera is dragged into the water
-      
-      if (biteProgress <= 0.138) {
-        // Camera holds position during tension and float plunge
-        rigState.current.y = 3.5;
-        rigState.current.z = 100;
-        rigState.current.rotX = -0.35;
-      } else {
-        // Camera plunges in
-        const camP = (biteProgress - 0.138) / (1.0 - 0.138); // 0 to 1
-        const ease = camP * camP; // Accelerating curve
-        
-        rigState.current.y = 3.5 - ease * 4.5; // Drops to -1
-        rigState.current.z = 100 - ease * 15; // Pulled slightly forward on Z
-        rigState.current.rotX = -0.35 - ease * 0.3; // Tilts down into the water
-      }
-      
-    } else if (phase === 'DIVING') {
-      // Act 3: gsap animates cinematicState.cameraZ to each section target
-      rigState.current.y = -1;
-      rigState.current.z = cinematicState.cameraZ;
-      rigState.current.rotX = 0; // Looks forward again
-    }
+    // 1) Position cible sur la courbe (le scrub lisse déjà le progress).
+    const target = cameraPosAt(progress);
+    // Léger damping résiduel pour absorber les micro-saccades de scroll.
+    camera.position.x = THREE.MathUtils.damp(camera.position.x, target.x, 8, delta);
+    camera.position.y = THREE.MathUtils.damp(camera.position.y, target.y, 8, delta);
+    camera.position.z = THREE.MathUtils.damp(camera.position.z, target.z, 9, delta);
 
-    // Apply target positions with damping for smoothness.
-    // During DIVING the Z target is already the gsap-eased cameraZ (power2.inOut),
-    // so we track it tightly (high lambda) to avoid double-smoothing — a low
-    // factor here made the camera lag behind the ease and float on arrival.
-    // SURFACE keeps a softer follow; BITING stays snappy.
-    const dampFactor = phase === 'BITING' ? 8 : phase === 'DIVING' ? 9 : 4;
-    
-    camera.position.z = THREE.MathUtils.damp(camera.position.z, rigState.current.z, dampFactor, delta);
-    camera.position.y = THREE.MathUtils.damp(camera.position.y, rigState.current.y, dampFactor, delta);
-    
-    // No more float effect on X/Y to guarantee absolute stability of texts
+    // 2) Orientation : viser le point d’anticipation + parallaxe souris subtile.
+    const look = cameraLookAt(progress);
+    const mouseX = state.pointer.x * 2.0; // amplitude douce
+    const mouseY = state.pointer.y * 1.2;
+    tmpLook.current.set(look.x + mouseX, look.y + mouseY, look.z);
 
-    // Inertial rotation based on scroll velocity (only during DIVING)
-    let extraRotX = 0;
-    if (phase === 'DIVING') {
-      extraRotX = THREE.MathUtils.clamp(lastVelocity.current * 0.5, -0.05, 0.05);
-    }
+    // Inertie de tangage selon la vélocité de scroll (très légère).
+    const inertia = THREE.MathUtils.clamp(smoothVel.current * 0.4, -0.6, 0.6);
+    tmpLook.current.y -= inertia;
 
-    // Mouse parallax
-    const mouseX = (state.pointer.x * Math.PI) / 60;
-    const mouseY = (state.pointer.y * Math.PI) / 60;
-
-    camera.rotation.x = THREE.MathUtils.damp(camera.rotation.x, rigState.current.rotX + extraRotX + mouseY, 3, delta);
-    camera.rotation.y = THREE.MathUtils.damp(camera.rotation.y, -mouseX, 3, delta);
+    // lookAt amorti : on interpole la cible de visée courante.
+    lookCurrent.current.lerp(tmpLook.current, 1 - Math.exp(-6 * delta));
+    camera.lookAt(lookCurrent.current);
   });
 
   return null;

@@ -42,8 +42,8 @@ export default function WaterSurface() {
     if (ref.current) {
       ref.current.material.uniforms.time.value += delta * 0.2;
       
-      // Hide water when camera plunges past it
-      ref.current.visible = camera.position.y > -2;
+      // Hide water once the camera has plunged below the surface
+      ref.current.visible = camera.position.y > -1;
     }
   });
 

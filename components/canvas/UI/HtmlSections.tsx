@@ -1,61 +1,57 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import { Html } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
 import Image from 'next/image';
-import { cinematicEvents, SECTION_Z_POSITIONS } from '../useScrollProgress';
 import { Search, Camera, Clock, CheckCircle2, ChevronRight, Check } from 'lucide-react';
+import { diveState } from '../useScrollProgress';
+import { SECTIONS, sampleDepthGrading } from '../diveConfig';
+import { sectionVisibility } from '../sectionVisibility';
 
-function HtmlSection({ index, children, distanceFactor = 30, z = SECTION_Z_POSITIONS[index] }: { index: number, children: React.ReactNode, distanceFactor?: number, z?: number }) {
-  const isInitialActive = index === 0;
-  const [visible, setVisible] = useState(isInitialActive);
-  const [active, setActive] = useState(isInitialActive);
+interface LayeredSectionProps {
+  index: number; // 0..7 ; correspond à SECTIONS[index]
+  children: React.ReactNode;
+}
 
-  useEffect(() => {
-    const handleLeave = (e: Event) => {
-      const customEvent = e as CustomEvent;
-      if (customEvent.detail.index === index) {
-        setActive(false);
-        setTimeout(() => setVisible(false), 400); // matches the 0.4s fade-out below
-      }
-    };
+/**
+ * Section = volume posé à SECTIONS[index].sectionZ. La visibilité est pilotée
+ * chaque frame par la distance caméra↔section :
+ * émergence (sort du fog) → lecture (net) → traversée (la caméra pousse à
+ * travers) → réabsorption (assombrie/désaturée + voile de fog).
+ */
+function LayeredSection({ index, children }: LayeredSectionProps) {
+  const cfg = SECTIONS[index];
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-    const handleEnter = (e: Event) => {
-      const customEvent = e as CustomEvent;
-      if (customEvent.detail.index === index) {
-        setVisible(true);
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            setActive(true);
-          });
-        });
-      }
-    };
+  useFrame(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
 
-    cinematicEvents.addEventListener('section_leave', handleLeave);
-    cinematicEvents.addEventListener('section_enter', handleEnter);
+    const d = diveState.cameraZ - cfg.sectionZ;
+    const v = sectionVisibility(d);
 
-    return () => {
-      cinematicEvents.removeEventListener('section_leave', handleLeave);
-      cinematicEvents.removeEventListener('section_enter', handleEnter);
-    };
-  }, [index]);
+    // Réabsorption : on tire vers la couleur du fog courant + on assombrit.
+    const fog = sampleDepthGrading(diveState.progress).fogColor;
+    const fogRGB = `${Math.round(fog.r * 255)}, ${Math.round(fog.g * 255)}, ${Math.round(fog.b * 255)}`;
 
-  if (!visible) return null;
-
-  const wrapperStyle = {
-    pointerEvents: 'auto' as const,
-    opacity: active ? 1 : 0,
-    transform: active ? 'translateY(0) translateZ(0)' : 'translateY(20px) translateZ(-15px)',
-    transition: active
-      ? 'opacity 0.8s ease, transform 1s cubic-bezier(0.2, 1, 0.3, 1)'
-      : 'opacity 0.4s ease, transform 0.4s ease',
-  };
+    el.style.opacity = String(v.opacity);
+    el.style.filter = `blur(${v.blur.toFixed(2)}px) saturate(${(1 - v.desaturate).toFixed(3)}) brightness(${(1 - v.darken * 0.85).toFixed(3)})`;
+    // La caméra « pousse à travers » : la section grossit en traversée/réabsorption.
+    el.style.transform = `scale(${(1 + v.spread * 0.45).toFixed(3)}) translateZ(0)`;
+    // Voile de fog qui « avale » la section en réabsorption (cf. ::after dans globals.css).
+    el.style.setProperty('--fog-rgb', fogRGB);
+    el.style.setProperty('--fog-veil', String(v.darken));
+    // Écartement des sous-couches (parallaxe via translateZ × cette variable).
+    el.style.setProperty('--layer-spread', String(v.spread));
+    el.style.pointerEvents = v.opacity > 0.9 ? 'auto' : 'none';
+    el.style.display = v.opacity <= 0.001 ? 'none' : 'block';
+  });
 
   return (
-    <group position={[0, 0, z]}>
-      <Html transform sprite center distanceFactor={distanceFactor} style={{ width: '100vw', pointerEvents: 'none' }}>
-        <div style={wrapperStyle}>
+    <group position={[0, 0, cfg.sectionZ]}>
+      <Html transform center distanceFactor={cfg.distanceFactor} style={{ width: '100vw', pointerEvents: 'none' }}>
+        <div ref={wrapperRef} className="dive-section-wrapper">
           {children}
         </div>
       </Html>
@@ -67,7 +63,7 @@ export default function HtmlSections() {
   return (
     <group>
       {/* 1: CONCEPT / L'EXPÉRIENCE */}
-      <HtmlSection index={1}>
+      <LayeredSection index={1}>
         <section className="concept" id="concept">
           <div className="section-inner">
             <div className="section-label" style={{ transform: 'translateZ(-25px)' }}>L'Expérience</div>
@@ -114,10 +110,10 @@ export default function HtmlSections() {
             </div>
           </div>
         </section>
-      </HtmlSection>
+      </LayeredSection>
 
       {/* 2: UNIVERS VIVANT */}
-      <HtmlSection index={2}>
+      <LayeredSection index={2}>
         <section className="univers" id="univers">
           <div className="section-inner">
             <div className="univers-header">
@@ -165,10 +161,10 @@ export default function HtmlSections() {
             </div>
           </div>
         </section>
-      </HtmlSection>
+      </LayeredSection>
 
       {/* 3: SESSIONS */}
-      <HtmlSection index={3}>
+      <LayeredSection index={3}>
         <section className="sessions" id="sessions">
           <div className="section-inner">
             <div className="section-label" style={{ transform: 'translateZ(-25px)' }}>Sessions</div>
@@ -214,10 +210,10 @@ export default function HtmlSections() {
             </div>
           </div>
         </section>
-      </HtmlSection>
+      </LayeredSection>
 
       {/* 4: ESPÈCES */}
-      <HtmlSection index={4}>
+      <LayeredSection index={4}>
         <section className="especes" id="especes">
           <div className="section-inner">
             <div className="especes-header" style={{ transform: 'translateZ(15px)' }}>
@@ -252,10 +248,10 @@ export default function HtmlSections() {
             </div>
           </div>
         </section>
-      </HtmlSection>
+      </LayeredSection>
 
       {/* 5: GALERIE */}
-      <HtmlSection index={5}>
+      <LayeredSection index={5}>
         <section className="galerie" id="galerie">
           <div className="section-inner">
             <div className="galerie-header">
@@ -280,10 +276,10 @@ export default function HtmlSections() {
             </div>
           </div>
         </section>
-      </HtmlSection>
+      </LayeredSection>
 
       {/* 6: PREMIUM */}
-      <HtmlSection index={6}>
+      <LayeredSection index={6}>
         <section className="premium" id="premium">
           <div className="section-inner">
             <div className="section-label" style={{ transform: 'translateZ(-25px)' }}>Premium</div>
@@ -339,10 +335,10 @@ export default function HtmlSections() {
             </div>
           </div>
         </section>
-      </HtmlSection>
+      </LayeredSection>
 
       {/* 7 & 8 COMBINED: COMMUNAUTÉ + CTA / FOOTER */}
-      <HtmlSection index={7} distanceFactor={42}>
+      <LayeredSection index={7}>
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', height: '85vh', width: '100vw', padding: '8vh 0 0 0', boxSizing: 'border-box' }}>
           
           <div className="communaute-content" style={{ textAlign: 'center', transform: 'translateZ(-10px)' }}>
@@ -391,7 +387,7 @@ export default function HtmlSections() {
             </div>
           </div>
         </div>
-      </HtmlSection>
+      </LayeredSection>
     </group>
   );
 }
