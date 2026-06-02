@@ -75,12 +75,18 @@ export interface DiveSection {
 // Espacement resserré pour un bon rythme narratif (cf. spec : émergence rapide).
 const READING_PROGRESSES = [0.0, 0.14, 0.27, 0.40, 0.53, 0.66, 0.79, 0.93]; // TUNE
 
+// drei <Html transform> : taille apparente ∝ distanceFactor / distance.
+// La caméra lit à READING_DISTANCE du plan, donc on dimensionne distanceFactor
+// en proportion (ratio ≈ ancien 30/100 = 0.3 qui cadrait bien le contenu).
+const APPARENT_RATIO = 0.3;      // TUNE — taille globale du contenu des sections
+const APPARENT_RATIO_LAST = 0.42; // TUNE — section finale (plus large)
+
 export const SECTIONS: DiveSection[] = READING_PROGRESSES.map((rp, index) => ({
   index,
   readingProgress: rp,
   // Le plan est posé READING_DISTANCE devant la caméra à sa position de lecture.
   sectionZ: cameraPosAt(rp).z - READING_DISTANCE,
-  distanceFactor: index === 7 ? 42 : 30, // TUNE — section finale plus large
+  distanceFactor: READING_DISTANCE * (index === 7 ? APPARENT_RATIO_LAST : APPARENT_RATIO),
 }));
 
 export const SECTION_ANCHORS = SECTIONS.map((s) => s.readingProgress);
