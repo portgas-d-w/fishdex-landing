@@ -226,7 +226,8 @@ export default function HtmlSections() {
             <div className="especes-grid" style={{ pointerEvents: 'none' }}>
               {/* Row 1 */}
               <div className="espece-cell"><Image src="/images/fishes/truite-fario.png" alt="" fill style={{ objectFit: 'contain', padding: '15px' }} /></div>
-              <div className="espece-cell"><Image src="/images/fishes/perche-commune.png" alt="" fill style={{ objectFit: 'contain', padding: '15px' }} /></div>
+              {/* TODO: remplacer par /images/fishes/perche-commune.png (fichier fourni plus tard) */}
+              <div className="espece-cell"><Image src="/assets/generated/fish-silhouette.png" alt="" fill style={{ objectFit: 'contain', padding: '15px' }} /></div>
               <div className="espece-cell"><Image src="/images/fishes/carpe-commune.png" alt="" fill style={{ objectFit: 'contain', padding: '15px' }} /></div>
               <div className="espece-cell"><Image src="/images/fishes/brochet.png" alt="" fill style={{ objectFit: 'contain', padding: '15px' }} /></div>
               <div className="espece-cell"><Image src="/images/fishes/sandre.png" alt="" fill style={{ objectFit: 'contain', padding: '15px' }} /></div>
