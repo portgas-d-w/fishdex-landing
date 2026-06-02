@@ -32,7 +32,7 @@ function LakeEnvironment() {
     scene.backgroundIntensity = THREE.MathUtils.lerp(1.0, 0.0, submerge);
     scene.backgroundBlurriness = THREE.MathUtils.lerp(0.0, 0.4, submerge);
   });
-  return <Environment files="/assets/ultimate/bell_park_pier_4k.hdr" background />;
+  return <Environment files="/assets/ultimate/bell_park_pier_2k.hdr" background />;
 }
 
 /**
