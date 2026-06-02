@@ -76,7 +76,7 @@ export default function Scene({ tier }: { tier: QualityTier }) {
       <HtmlSections />
 
       {/* Post-processing — Bloom + Chromatic Aberration (désactivé en palier bas) */}
-      {params.postProcessing && <PostProcessing />}
+      {params.postProcessing && <PostProcessing dof={params.depthOfField} />}
     </>
   );
 }

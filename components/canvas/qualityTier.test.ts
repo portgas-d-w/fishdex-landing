@@ -33,6 +33,13 @@ describe('detectQualityTier', () => {
       expect(p.particleScale).toBeGreaterThan(0);
       expect(p.waterRes).toBeGreaterThan(0);
       expect(typeof p.postProcessing).toBe('boolean');
+      expect(typeof p.depthOfField).toBe('boolean');
     }
+  });
+
+  it('n’active le DepthOfField que sur le palier high (perf mobile)', () => {
+    expect(QUALITY_TIERS.high.depthOfField).toBe(true);
+    expect(QUALITY_TIERS.med.depthOfField).toBe(false);
+    expect(QUALITY_TIERS.low.depthOfField).toBe(false);
   });
 });

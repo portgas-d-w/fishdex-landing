@@ -2,32 +2,32 @@ import React, { useRef } from 'react';
 import { EffectComposer, Bloom, ChromaticAberration, DepthOfField, Vignette, Noise } from '@react-three/postprocessing';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { diveState } from './useScrollProgress';
-import { SECTIONS } from './diveConfig';
 
-export default function PostProcessing() {
+/**
+ * dof : activé seulement quand le qualityTier l'autorise (palier `high`).
+ * Sur mobile (med/low) on ne paie pas la passe de profondeur du DepthOfField.
+ */
+export default function PostProcessing({ dof }: { dof: boolean }) {
   const dofRef = useRef<any>(null);
   const noiseRef = useRef<any>(null);
   const vignetteRef = useRef<any>(null);
 
+  // Temporaires préalloués (évite des allocations par frame).
+  const focusPoint = useRef(new THREE.Vector3());
+  const viewDir = useRef(new THREE.Vector3());
+
   useFrame((state, delta) => {
-    const { progress } = diveState;
     const camY = state.camera.position.y;
 
-    // 1) DoF : focus sur la section de lecture la plus proche du progress.
-    if (dofRef.current && dofRef.current.target) {
-      let nearest = SECTIONS[0];
-      let best = Infinity;
-      for (const s of SECTIONS) {
-        const dist = Math.abs(s.readingProgress - progress);
-        if (dist < best) { best = dist; nearest = s; }
-      }
-      dofRef.current.target.set(0, 0, nearest.sectionZ);
+    // 1) DoF : focus à 5 unités DEVANT la caméra (point monde = pos + dir * 5).
+    if (dofRef.current?.target) {
+      const cam = state.camera;
+      cam.getWorldDirection(viewDir.current);
+      focusPoint.current.copy(cam.position).addScaledVector(viewDir.current, 5);
+      dofRef.current.target.copy(focusPoint.current);
     }
 
     // 2) Profondeur : grain + vignette croissants une fois immergé.
-    //    (Le franchissement de surface reste discret : pas d’effet spectaculaire,
-    //    la réfraction est portée par cette montée douce + l’aberration statique.)
     const submerged = THREE.MathUtils.clamp((1.5 - camY) / 3.0, 0, 1);
     if (noiseRef.current?.blendMode) {
       const tgt = submerged * 0.03;
@@ -39,16 +39,23 @@ export default function PostProcessing() {
     }
   });
 
-  return (
-    // multisampling={0}: cf. note historique — DoF + MSAA blit invalide.
-    <EffectComposer multisampling={0}>
-      <DepthOfField ref={dofRef} target={new THREE.Vector3(0, 0, 0)} focalLength={0.02} bokehScale={2} />
-      <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.5} intensity={1.2} radius={0.8} mipmapBlur />
-      {/* Aberration chromatique STATIQUE et subtile (réfraction discrète, pas de ref :
-          ChromaticAberration est un wrapEffect déclaratif — l’animer par ref plante). */}
-      <ChromaticAberration offset={new THREE.Vector2(0.0009, 0.0009)} radialModulation={false} modulationOffset={0} />
-      <Noise ref={noiseRef} opacity={0} />
-      <Vignette ref={vignetteRef} eskil={false} offset={0.2} darkness={0} />
-    </EffectComposer>
-  );
+  // Effets de base (toujours présents quand le post-processing est actif).
+  const effects: React.JSX.Element[] = [
+    <Bloom key="bloom" luminanceThreshold={0.8} luminanceSmoothing={0.5} intensity={1.2} radius={0.8} mipmapBlur />,
+    // Aberration chromatique STATIQUE et subtile (réfraction discrète, pas de ref :
+    // ChromaticAberration est un wrapEffect déclaratif — l’animer par ref plante).
+    <ChromaticAberration key="chroma" offset={new THREE.Vector2(0.0009, 0.0009)} radialModulation={false} modulationOffset={0} />,
+    <Noise key="noise" ref={noiseRef} opacity={0} />,
+    <Vignette key="vignette" ref={vignetteRef} eskil={false} offset={0.2} darkness={0} />,
+  ];
+
+  // DepthOfField : passe coûteuse → ajoutée seulement si le palier l'autorise (desktop).
+  if (dof) {
+    effects.unshift(
+      <DepthOfField key="dof" ref={dofRef} target={new THREE.Vector3(0, 0, 0)} focalLength={0.02} bokehScale={2} />
+    );
+  }
+
+  // multisampling={0}: cf. note historique — DoF + MSAA blit invalide.
+  return <EffectComposer multisampling={0}>{effects}</EffectComposer>;
 }
