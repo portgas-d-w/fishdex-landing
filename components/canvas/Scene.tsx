@@ -12,6 +12,7 @@ import { Environment, useTexture } from '@react-three/drei';
 import { diveState } from './useScrollProgress';
 import { sampleDepthGrading } from './diveConfig';
 import WaterSurface from './WaterSurface';
+import UnderwaterAudio from './audio/UnderwaterAudio';
 import FluidLayer from './fluid/FluidLayer';
 import { FluidDisplacementEffect } from './fluid/FluidDisplacementEffect';
 import { QUALITY_TIERS, type QualityTier } from './qualityTier';
@@ -83,6 +84,9 @@ export default function Scene({ tier }: { tier: QualityTier }) {
 
       {/* Surface du lac (visible au-dessus de l’eau) */}
       <WaterSurface />
+
+      {/* Audio spatial (Web Audio API) : surface + abysse, lowpass au passage Y=0 */}
+      <UnderwaterAudio />
 
       {/* 3D Elements */}
       <UnderwaterBackground />
