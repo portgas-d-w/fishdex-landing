@@ -6,10 +6,11 @@ import { SURFACE_CROSSING_PROGRESS } from './diveConfig';
 import { diveState } from './useScrollProgress';
 
 /**
- * Surface du lac — MeshStandardMaterial qui réfléchit l'HDRI (via <Environment>
- * dans Scene.tsx, posé sur scene.environment). Normal map animée pour le flux,
- * + un shader de Ripple injecté par onBeforeCompile qui se déclenche au passage
- * de la surface (déplacement vertical des sommets en anneaux concentriques).
+ * Surface du lac — MeshStandardMaterial qui réfléchit l'IBL procédural (via les
+ * Lightformers de <Environment> dans Scene.tsx, posés sur scene.environment).
+ * Normal map animée pour le flux, + un shader de Ripple injecté par
+ * onBeforeCompile qui se déclenche au passage de la surface (déplacement
+ * vertical des sommets en anneaux concentriques).
  *
  * Remplace l'ancien three-stdlib `Water` (qui faisait une passe de réflexion
  * planaire par frame) → meilleures perfs : ici la réflexion vient de l'IBL.

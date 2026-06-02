@@ -31,12 +31,20 @@ export default function PostProcessing({
   useFrame((state, delta) => {
     const camY = state.camera.position.y;
 
-    // DoF : focus à 5 unités DEVANT la caméra (point monde = pos + dir * 5).
+    // DoF : AU-DESSUS de l'eau (section 1) on regarde le DÉCOR LOINTAIN. Comme le
+    // décor n'écrit pas dans le depth buffer (depthWrite=false), le DoF le voit à
+    // l'infini → hors focus → flou. On COUPE donc le bokeh (bokehScale→0) en
+    // surface pour garder le décor net, puis on le rétablit une fois IMMERGÉ
+    // (bokeh sur le contenu de la plongée, focus rapproché).
+    const submerge = THREE.MathUtils.clamp((1.5 - camY) / 3.0, 0, 1); // 0 au-dessus, 1 immergé
     if (dofRef.current?.target) {
       const cam = state.camera;
       cam.getWorldDirection(viewDir.current);
       focusPoint.current.copy(cam.position).addScaledVector(viewDir.current, 5);
       dofRef.current.target.copy(focusPoint.current);
+    }
+    if (dofRef.current && 'bokehScale' in dofRef.current) {
+      dofRef.current.bokehScale = THREE.MathUtils.lerp(0, 2, submerge);
     }
 
     // Profondeur : grain + vignette croissants une fois immergé.

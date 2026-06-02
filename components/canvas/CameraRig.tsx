@@ -22,11 +22,10 @@ export default function CameraRig() {
     camera.position.y = THREE.MathUtils.damp(camera.position.y, target.y, 8, delta);
     camera.position.z = THREE.MathUtils.damp(camera.position.z, target.z, 9, delta);
 
-    // 2) Orientation : viser le point d’anticipation + parallaxe souris subtile.
+    // 2) Orientation : viser le point d’anticipation (pas de parallaxe souris —
+    //    effet retiré : indésirable sur desktop et inexistant au tactile/mobile).
     const look = cameraLookAt(progress);
-    const mouseX = state.pointer.x * 2.0; // amplitude douce
-    const mouseY = state.pointer.y * 1.2;
-    tmpLook.current.set(look.x + mouseX, look.y + mouseY, look.z);
+    tmpLook.current.set(look.x, look.y, look.z);
 
     // Inertie de tangage selon la vélocité de scroll (très légère).
     const inertia = THREE.MathUtils.clamp(smoothVel.current * 0.4, -0.6, 0.6);

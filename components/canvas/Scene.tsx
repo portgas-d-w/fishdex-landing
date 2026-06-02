@@ -7,8 +7,8 @@ import Caustics from './Environment/Caustics';
 import * as THREE from 'three';
 import GodRays from './GodRays';
 import HtmlSections from './UI/HtmlSections';
-import { useFrame, useThree } from '@react-three/fiber';
-import { Environment } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
+import { Environment, Lightformer } from '@react-three/drei';
 import { diveState } from './useScrollProgress';
 import { sampleDepthGrading } from './diveConfig';
 import WaterSurface from './WaterSurface';
@@ -18,19 +18,43 @@ import { FluidDisplacementEffect } from './fluid/FluidDisplacementEffect';
 import { QUALITY_TIERS, type QualityTier } from './qualityTier';
 
 import UnderwaterBackground from './Environment/UnderwaterBackground';
+import LakeBackdrop from './Environment/LakeBackdrop';
 
-// Skybox 360° (vrai HDRI équirectangulaire Poly Haven, .hdr via RGBELoader) +
-// IBL pour les reflets sur l'eau. Pleine au-dessus de l'eau, s'assombrit en
-// plongeant → se fond dans le fog. PAS de flou (rendu net demandé).
-function LakeEnvironment() {
-  const scene = useThree((s) => s.scene);
-  useFrame((state) => {
-    const y = state.camera.position.y;
-    const submerge = THREE.MathUtils.clamp((1 - y) / 4, 0, 1); // 0 au-dessus, 1 en profondeur
-    scene.backgroundIntensity = THREE.MathUtils.lerp(1.0, 0.0, submerge);
-    scene.backgroundBlurriness = 0; // net — pas d'effet de flou
-  });
-  return <Environment files="/assets/ultimate/bell_park_pier_2k.hdr" background />;
+// IBL only (plus de skybox HDRI 360°) : un petit Environment alimenté par des
+// Lightformers procéduraux (ciel + horizon chaud + soleil) → reflets golden
+// hour sur la surface de l'eau, sans fichier .hdr. `frames={1}` : baké une seule
+// fois (env statique) → coût négligeable. Pas de `background` : sert uniquement
+// scene.environment. Le décor visible est géré par <LakeBackdrop />.
+function LightEnvironment() {
+  return (
+    <Environment resolution={256} frames={1}>
+      {/* Voûte céleste — bleu doux, éclaire par le haut */}
+      <Lightformer
+        form="rect"
+        intensity={0.7}
+        color="#9ec6e8"
+        scale={[120, 120, 1]}
+        position={[0, 60, -40]}
+        rotation={[Math.PI / 2, 0, 0]}
+      />
+      {/* Bande d'horizon chaude (golden hour) */}
+      <Lightformer
+        form="rect"
+        intensity={1.2}
+        color="#ffce95"
+        scale={[160, 12, 1]}
+        position={[0, 4, -90]}
+      />
+      {/* Soleil rasant — reflet doré principal sur l'eau */}
+      <Lightformer
+        form="ring"
+        intensity={3.5}
+        color="#ffb066"
+        scale={[26, 26, 1]}
+        position={[-40, 9, -70]}
+      />
+    </Environment>
+  );
 }
 
 function DynamicEnvironment() {
@@ -66,8 +90,11 @@ export default function Scene({ tier }: { tier: QualityTier }) {
       <CameraRig />
       <DynamicEnvironment />
 
-      {/* Section 1 : skybox HDRI 360° (desktop). Mobile = fond sombre/fog (perf). */}
-      {tier === 'high' && <LakeEnvironment />}
+      {/* Décor cinématographique fixe de bord de lac (tous les tiers WebGL). */}
+      <LakeBackdrop />
+
+      {/* IBL Lightformers pour les reflets sur l'eau (desktop puissant + moyen). */}
+      {(tier === 'high' || tier === 'med') && <LightEnvironment />}
       
       {/* Sun — golden hour */}
       <directionalLight
