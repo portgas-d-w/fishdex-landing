@@ -290,7 +290,7 @@ body::before {
   color: var(--accent-sage);
   margin-bottom: 40px;
   opacity: 0;
-  animation: fade-up 1s 0.3s var(--ease-out) forwards;
+  animation: fade-up 1.4s 0.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .hero-badge-dot {
@@ -310,7 +310,7 @@ body::before {
   color: var(--accent-cream);
   margin-bottom: 28px;
   opacity: 0;
-  animation: fade-up 1.2s 0.5s var(--ease-out) forwards;
+  animation: fade-up 1.4s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .hero-title em {
@@ -326,7 +326,7 @@ body::before {
   margin: 0 auto 52px;
   line-height: 1.7;
   opacity: 0;
-  animation: fade-up 1.2s 0.7s var(--ease-out) forwards;
+  animation: fade-up 1.4s 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .hero-ctas {
@@ -335,7 +335,16 @@ body::before {
   justify-content: center;
   flex-wrap: wrap;
   opacity: 0;
-  animation: fade-up 1.2s 0.9s var(--ease-out) forwards;
+  animation: fade-up 1.4s 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Accessibilité : pas de blur-in animé sous prefers-reduced-motion (texte visible direct) */
+@media (prefers-reduced-motion: reduce) {
+  .hero-badge, .hero-title, .hero-subtitle, .hero-ctas, .hero-scroll-hint {
+    animation: none;
+    opacity: 1;
+    filter: none;
+  }
 }
 
 .btn-primary {
@@ -394,7 +403,7 @@ body::before {
   align-items: center;
   gap: 10px;
   opacity: 0;
-  animation: fade-up 1s 1.5s ease forwards;
+  animation: fade-up 1.4s 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .hero-scroll-hint span {
@@ -416,9 +425,10 @@ body::before {
   50% { opacity: 1; transform: scaleY(1.2); }
 }
 
+/* Apparition des textes : focus/blur reveal (blur 12px → 0, opacité 0 → 1) */
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; filter: blur(12px); }
+  to { opacity: 1; filter: blur(0); }
 }
 
 /* â”€â”€â”€ SECTION UTILS â”€â”€â”€ */
