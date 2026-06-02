@@ -13,13 +13,14 @@ export interface TierParams {
   particleScale: number; // multiplicateur sur le nombre de particules
   postProcessing: boolean;
   depthOfField: boolean; // DoF = passe de profondeur coûteuse → desktop uniquement
+  fluidSim: boolean;     // sim de fluide GPU (curseur) → desktop uniquement
   waterRes: number;      // résolution des render targets de l’eau
 }
 
 export const QUALITY_TIERS: Record<Exclude<QualityTier, 'dom-fallback'>, TierParams> = {
-  high: { dprCap: 2,   particleScale: 1,   postProcessing: true,  depthOfField: true,  waterRes: 512 },
-  med:  { dprCap: 1.5, particleScale: 0.6, postProcessing: true,  depthOfField: false, waterRes: 256 },
-  low:  { dprCap: 1,   particleScale: 0.3, postProcessing: false, depthOfField: false, waterRes: 256 },
+  high: { dprCap: 2,   particleScale: 1,   postProcessing: true,  depthOfField: true,  fluidSim: true,  waterRes: 512 },
+  med:  { dprCap: 1.5, particleScale: 0.6, postProcessing: true,  depthOfField: false, fluidSim: false, waterRes: 256 },
+  low:  { dprCap: 1,   particleScale: 0.3, postProcessing: false, depthOfField: false, fluidSim: false, waterRes: 256 },
 };
 
 export function detectQualityTier(env: DeviceEnv): QualityTier {

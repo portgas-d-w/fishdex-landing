@@ -34,6 +34,7 @@ describe('detectQualityTier', () => {
       expect(p.waterRes).toBeGreaterThan(0);
       expect(typeof p.postProcessing).toBe('boolean');
       expect(typeof p.depthOfField).toBe('boolean');
+      expect(typeof p.fluidSim).toBe('boolean');
     }
   });
 
@@ -41,5 +42,11 @@ describe('detectQualityTier', () => {
     expect(QUALITY_TIERS.high.depthOfField).toBe(true);
     expect(QUALITY_TIERS.med.depthOfField).toBe(false);
     expect(QUALITY_TIERS.low.depthOfField).toBe(false);
+  });
+
+  it('n’active la simulation de fluide que sur le palier high (curseur + GPU)', () => {
+    expect(QUALITY_TIERS.high.fluidSim).toBe(true);
+    expect(QUALITY_TIERS.med.fluidSim).toBe(false);
+    expect(QUALITY_TIERS.low.fluidSim).toBe(false);
   });
 });

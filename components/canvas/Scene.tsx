@@ -12,6 +12,8 @@ import { Environment, useTexture } from '@react-three/drei';
 import { diveState } from './useScrollProgress';
 import { sampleDepthGrading } from './diveConfig';
 import WaterSurface from './WaterSurface';
+import FluidLayer from './fluid/FluidLayer';
+import { FluidDisplacementEffect } from './fluid/FluidDisplacementEffect';
 import { QUALITY_TIERS, type QualityTier } from './qualityTier';
 
 import UnderwaterBackground from './Environment/UnderwaterBackground';
@@ -53,6 +55,8 @@ function DynamicEnvironment() {
 
 export default function Scene({ tier }: { tier: QualityTier }) {
   const params = tier === 'dom-fallback' ? QUALITY_TIERS.low : QUALITY_TIERS[tier];
+  // Effet de displacement partagé entre la sim de fluide et le composer.
+  const fluidEffect = useMemo(() => new FluidDisplacementEffect(0.03), []);
   return (
     <>
       <CameraRig />
@@ -90,8 +94,16 @@ export default function Scene({ tier }: { tier: QualityTier }) {
       {/* 3D UI Layers */}
       <HtmlSections />
 
+      {/* Simulation de fluide interactive (curseur) — desktop uniquement */}
+      {params.fluidSim && <FluidLayer effect={fluidEffect} />}
+
       {/* Post-processing — Bloom + Chromatic Aberration (désactivé en palier bas) */}
-      {params.postProcessing && <PostProcessing dof={params.depthOfField} />}
+      {params.postProcessing && (
+        <PostProcessing
+          dof={params.depthOfField}
+          fluidEffect={params.fluidSim ? fluidEffect : null}
+        />
+      )}
     </>
   );
 }

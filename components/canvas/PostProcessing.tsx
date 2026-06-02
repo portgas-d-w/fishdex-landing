@@ -2,16 +2,24 @@ import React, { useRef } from 'react';
 import { EffectComposer, Bloom, ChromaticAberration, DepthOfField, Vignette, Noise } from '@react-three/postprocessing';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import type { FluidDisplacementEffect } from './fluid/FluidDisplacementEffect';
 
 /**
  * dof : activé seulement quand le qualityTier l'autorise (palier `high`).
- * Sur mobile (med/low) on ne paie pas la passe de profondeur du DepthOfField.
+ * fluidEffect : Effect de displacement de la sim de fluide (ou null hors `high`).
  *
  * NB : les enfants de <EffectComposer> doivent être des éléments JSX DIRECTS
- * (pas un tableau / fragment) — sinon le câblage des passes casse au runtime.
- * D'où les deux variantes explicites du composer ci-dessous.
+ * (pas un tableau) — sinon le câblage des passes casse au runtime. D'où les deux
+ * variantes explicites du composer ci-dessous. L'Effect custom est injecté via
+ * <primitive> (sinon un fragment vide, no-op, pour rester type-safe).
  */
-export default function PostProcessing({ dof }: { dof: boolean }) {
+export default function PostProcessing({
+  dof,
+  fluidEffect = null,
+}: {
+  dof: boolean;
+  fluidEffect?: FluidDisplacementEffect | null;
+}) {
   const dofRef = useRef<any>(null);
   const noiseRef = useRef<any>(null);
   const vignetteRef = useRef<any>(null);
@@ -43,6 +51,8 @@ export default function PostProcessing({ dof }: { dof: boolean }) {
     }
   });
 
+  const fluidPass = fluidEffect ? <primitive object={fluidEffect} dispose={null} /> : <></>;
+
   // Palier high : avec DepthOfField (passe de profondeur). multisampling={0} : cf.
   // note historique — DoF + MSAA blit invalide.
   if (dof) {
@@ -53,6 +63,7 @@ export default function PostProcessing({ dof }: { dof: boolean }) {
         <ChromaticAberration offset={new THREE.Vector2(0.0009, 0.0009)} radialModulation={false} modulationOffset={0} />
         <Noise ref={noiseRef} opacity={0} />
         <Vignette ref={vignetteRef} eskil={false} offset={0.2} darkness={0} />
+        {fluidPass}
       </EffectComposer>
     );
   }
@@ -64,6 +75,7 @@ export default function PostProcessing({ dof }: { dof: boolean }) {
       <ChromaticAberration offset={new THREE.Vector2(0.0009, 0.0009)} radialModulation={false} modulationOffset={0} />
       <Noise ref={noiseRef} opacity={0} />
       <Vignette ref={vignetteRef} eskil={false} offset={0.2} darkness={0} />
+      {fluidPass}
     </EffectComposer>
   );
 }
