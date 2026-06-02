@@ -59,26 +59,43 @@ body::before {
 }
 
 /* â”€â”€â”€ NAV â”€â”€â”€ */
-nav {
+/* Dynamic Island — pilule flottante ancrée en bas, verre dépoli très transparent */
+#navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  bottom: 22px;
+  left: 50%;
+  top: auto;
+  right: auto;
+  transform: translateX(-50%);
   z-index: 100;
-  padding: 20px 48px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  transition: all 0.6s var(--ease-out);
+  gap: 28px;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  padding: 9px 12px 9px 22px;
+  border-radius: 100px;
+  background: rgba(8, 18, 24, 0.32);
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: background 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), padding 0.4s var(--ease-out);
 }
 
-nav.scrolled {
-  background: rgba(7,17,24,0.85);
-  backdrop-filter: blur(24px) saturate(1.4);
-  -webkit-backdrop-filter: blur(24px) saturate(1.4);
-  border-bottom: 1px solid var(--glass-border);
-  padding: 14px 48px;
+/* Léger renforcement au scroll (sans saut visible) */
+#navbar.scrolled {
+  background: rgba(8, 18, 24, 0.45);
+  box-shadow:
+    0 14px 48px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
+
+/* Compactage des enfants pour la pilule */
+#navbar .nav-logo { font-size: 1.15rem; }
+#navbar .nav-links { gap: 22px; }
 
 .nav-logo {
   font-family: var(--font-display);
@@ -130,13 +147,30 @@ nav.scrolled {
   padding: 10px 22px;
   border-radius: 100px;
   font-weight: 500 !important;
-  transition: all 0.3s var(--ease-out) !important;
+  transition: transform 0.3s var(--ease-out), background 0.3s var(--ease-out) !important;
+  /* Glow qui "vibre" doucement en continu */
+  animation: cta-glow 2.6s ease-in-out infinite;
 }
 
 .nav-cta:hover {
   background: var(--accent-cream) !important;
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(143,191,163,0.3);
+  animation-play-state: paused;
+  box-shadow: 0 0 24px 4px rgba(143,191,163,0.55) !important;
+}
+
+@keyframes cta-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px 0 rgba(143,191,163,0.30);
+  }
+  50% {
+    box-shadow: 0 0 20px 3px rgba(143,191,163,0.60), 0 0 38px 9px rgba(143,191,163,0.22);
+  }
+}
+
+/* Respect de prefers-reduced-motion : on coupe le glow pulsé */
+@media (prefers-reduced-motion: reduce) {
+  .nav-cta { animation: none; box-shadow: 0 0 14px 1px rgba(143,191,163,0.4); }
 }
 
 .nav-burger {
@@ -1277,21 +1311,23 @@ footer {
 }
 
 @media (max-width: 768px) {
-  nav { padding: 16px 24px; }
-  nav.scrolled { padding: 12px 24px; }
+  #navbar { bottom: 16px; gap: 14px; padding: 8px 10px 8px 18px; }
   .nav-links {
     display: none;
     position: fixed;
-    top: 64px;
-    left: 0;
-    right: 0;
+    bottom: 78px;
+    top: auto;
+    left: 16px;
+    right: 16px;
     background: rgba(7,17,24,0.97);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     flex-direction: column;
     align-items: center;
     gap: 0;
-    padding: 24px 0;
-    border-bottom: 1px solid var(--glass-border);
+    padding: 16px 0;
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
     z-index: 998;
   }
   .nav-links.open { display: flex; }
