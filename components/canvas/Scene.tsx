@@ -7,7 +7,7 @@ import Caustics from './Environment/Caustics';
 import * as THREE from 'three';
 import GodRays from './GodRays';
 import HtmlSections from './UI/HtmlSections';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import { Environment, useTexture } from '@react-three/drei';
 import { diveState } from './useScrollProgress';
 import { sampleDepthGrading } from './diveConfig';
@@ -23,12 +23,16 @@ import UnderwaterBackground from './Environment/UnderwaterBackground';
 // NB : l'asset livré est un .png (pas .hdr), donc on le charge en texture et on
 // le passe à <Environment map={...}> (le loader `files` de drei ne gère pas .png).
 function LakeEnvironment() {
-  const envMap = useTexture('/assets/ultimate/hdri-lake.png');
-  useMemo(() => {
-    envMap.mapping = THREE.EquirectangularReflectionMapping;
-  }, [envMap]);
-  // IBL uniquement (réflexions discrètes sur l'eau) — pas de skybox visible.
-  return <Environment map={envMap} />;
+  const scene = useThree((s) => s.scene);
+  // Skybox 360° (vrai HDRI équirectangulaire Poly Haven) + IBL pour les reflets.
+  // Pleine au-dessus de l'eau, s'assombrit/floute en plongeant → fond vers le fog.
+  useFrame((state) => {
+    const y = state.camera.position.y;
+    const submerge = THREE.MathUtils.clamp((1 - y) / 4, 0, 1); // 0 au-dessus, 1 en profondeur
+    scene.backgroundIntensity = THREE.MathUtils.lerp(1.0, 0.0, submerge);
+    scene.backgroundBlurriness = THREE.MathUtils.lerp(0.0, 0.4, submerge);
+  });
+  return <Environment files="/assets/ultimate/bell_park_pier_4k.hdr" background />;
 }
 
 /**
@@ -108,11 +112,8 @@ export default function Scene({ tier }: { tier: QualityTier }) {
       <CameraRig />
       <DynamicEnvironment />
 
-      {/* IBL : réflexions discrètes sur l'eau */}
-      <LakeEnvironment />
-
-      {/* Fond plat (paysage du lac) pour la section 1, au-dessus de l'eau */}
-      <LakeBackdrop />
+      {/* Section 1 : skybox HDRI 360° (desktop) ou fond plat léger (mobile, perf) */}
+      {tier === 'high' ? <LakeEnvironment /> : <LakeBackdrop />}
       
       {/* Sun — golden hour */}
       <directionalLight
