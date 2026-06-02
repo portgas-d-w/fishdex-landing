@@ -92,28 +92,19 @@ export default function Home() {
       {/* Foreground Framing (Rocks) pour la perspective de surplomb (scroll up au plongeon) */}
       <div id="foreground-rocks" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh', pointerEvents: 'none', zIndex: 10, transformOrigin: 'bottom center' }}>
         
-        {/* Sol rocheux continu (connecte la gauche et la droite, révèle l'espace quand on agrandit) */}
+        {/* Sol continu — berge de roseaux (image détourée). cover = pas d'étirement */}
         <div style={{ position: 'absolute', bottom: -2, left: 0, right: 0, height: '15vh' }}>
-          <svg preserveAspectRatio="none" style={{ width: '100%', height: '100%' }} viewBox="0 0 1000 100">
-             <path d="M0 100 L0 40 Q250 20 500 50 T1000 30 L1000 100 Z" fill="#040a10"/>
-             <path d="M0 100 L0 70 Q250 60 500 80 T1000 60 L1000 100 Z" fill="#020406"/>
-           </svg>
+          <img src="/assets/ultimate/foreground-bank.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center bottom' }} />
         </div>
 
-        {/* Rocher haut bas gauche (Ne s'étire pas, garde son ratio) */}
+        {/* Coin bas gauche — roseaux (garde son ratio, ancré bas-gauche) */}
         <div style={{ position: 'absolute', bottom: -2, left: 0, height: '40vh', width: 'auto', aspectRatio: '1.2/1' }}>
-          <svg viewBox="0 0 400 300" preserveAspectRatio="xMinYMax meet" style={{ width: '100%', height: '100%' }}>
-            <path d="M0 300 L0 50 Q100 80 200 150 Q250 200 350 280 L400 300 Z" fill="#040a10"/>
-            <path d="M0 300 L0 100 Q80 130 150 200 Q200 240 300 300 Z" fill="#020406"/>
-          </svg>
+          <img src="/assets/ultimate/foreground-left.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'left bottom' }} />
         </div>
 
-        {/* Rocher haut bas droite (Ne s'étire pas, garde son ratio) */}
+        {/* Coin bas droite — roseaux + canne (V2 active ; V1 dispo : foreground-right-v1.png) */}
         <div style={{ position: 'absolute', bottom: -2, right: 0, height: '40vh', width: 'auto', aspectRatio: '1.2/1' }}>
-          <svg viewBox="0 0 400 300" preserveAspectRatio="xMaxYMax meet" style={{ width: '100%', height: '100%' }}>
-            <path d="M400 300 L400 50 Q300 80 200 150 Q150 200 50 280 L0 300 Z" fill="#040a10"/>
-            <path d="M400 300 L400 100 Q320 130 250 200 Q200 240 100 300 Z" fill="#020406"/>
-          </svg>
+          <img src="/assets/ultimate/foreground-right.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'right bottom' }} />
         </div>
       </div>
 
