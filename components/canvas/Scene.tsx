@@ -7,7 +7,7 @@ import Caustics from './Environment/Caustics';
 import * as THREE from 'three';
 import GodRays from './GodRays';
 import HtmlSections from './UI/HtmlSections';
-import { useFrame, useThree } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import { Environment, useTexture } from '@react-three/drei';
 import { diveState } from './useScrollProgress';
 import { sampleDepthGrading } from './diveConfig';
@@ -24,22 +24,55 @@ import UnderwaterBackground from './Environment/UnderwaterBackground';
 // le passe à <Environment map={...}> (le loader `files` de drei ne gère pas .png).
 function LakeEnvironment() {
   const envMap = useTexture('/assets/ultimate/hdri-lake.png');
-  const scene = useThree((s) => s.scene);
   useMemo(() => {
     envMap.mapping = THREE.EquirectangularReflectionMapping;
   }, [envMap]);
+  // IBL uniquement (réflexions discrètes sur l'eau) — pas de skybox visible.
+  return <Environment map={envMap} />;
+}
+
+/**
+ * Fond plat cinématique de la section 1 : un plan attaché à la caméra (toujours
+ * cadré), texturé avec le paysage de lac. Plein au-dessus de l'eau, s'efface à
+ * la plongée (révèle le fond sombre + fog). Pas de fog/depth → toujours net.
+ */
+function LakeBackdrop() {
+  const tex = useTexture('/assets/ultimate/lake-backdrop.png');
+  const meshRef = useRef<THREE.Mesh>(null);
+  const matRef = useRef<THREE.MeshBasicMaterial>(null);
+  const dir = useRef(new THREE.Vector3());
+  const DIST = 60; // TUNE — distance du plan devant la caméra
 
   useFrame((state) => {
-    // Skybox du lac PLEINE au-dessus de l'eau, qui s'assombrit et se floute en
-    // plongeant → se fond dans le fog sous-marin (lié à Y).
-    const y = state.camera.position.y;
-    const submerge = THREE.MathUtils.clamp((1 - y) / 4, 0, 1); // 0 au-dessus, 1 en profondeur
-    scene.backgroundIntensity = THREE.MathUtils.lerp(1.0, 0.0, submerge);
-    scene.backgroundBlurriness = THREE.MathUtils.lerp(0.0, 0.45, submerge);
+    const mesh = meshRef.current;
+    if (!mesh) return;
+    const cam = state.camera as THREE.PerspectiveCamera;
+    cam.getWorldDirection(dir.current);
+    mesh.position.copy(cam.position).addScaledVector(dir.current, DIST);
+    mesh.quaternion.copy(cam.quaternion);
+    // Échelle pour remplir le champ de vision à cette distance.
+    const h = 2 * DIST * Math.tan((cam.fov * Math.PI) / 360);
+    mesh.scale.set(h * cam.aspect, h, 1);
+    if (matRef.current) {
+      const y = cam.position.y;
+      matRef.current.opacity = THREE.MathUtils.clamp((y + 0.5) / 2, 0, 1); // y>1.5→1, y<-0.5→0
+    }
   });
 
-  // background : le paysage HDRI est visible directement (skybox) en plus de l'IBL.
-  return <Environment map={envMap} background />;
+  return (
+    <mesh ref={meshRef} renderOrder={-1000} frustumCulled={false}>
+      <planeGeometry args={[1, 1]} />
+      <meshBasicMaterial
+        ref={matRef}
+        map={tex}
+        transparent
+        depthTest={false}
+        depthWrite={false}
+        toneMapped={false}
+        fog={false}
+      />
+    </mesh>
+  );
 }
 
 function DynamicEnvironment() {
@@ -75,8 +108,11 @@ export default function Scene({ tier }: { tier: QualityTier }) {
       <CameraRig />
       <DynamicEnvironment />
 
-      {/* IBL : la surface d'eau réfléchit le paysage du lac (HDRI) */}
+      {/* IBL : réflexions discrètes sur l'eau */}
       <LakeEnvironment />
+
+      {/* Fond plat (paysage du lac) pour la section 1, au-dessus de l'eau */}
+      <LakeBackdrop />
       
       {/* Sun — golden hour */}
       <directionalLight
