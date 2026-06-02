@@ -5,7 +5,7 @@ import * as THREE from 'three';
 // ---------------------------------------------------------------------------
 export const START_Z = 12;   // TUNE — caméra au bord du lac
 export const END_Z = -150;   // TUNE — fond de la plongée
-const Y_SURFACE = 3.5;       // TUNE — hauteur d’homme au départ
+const Y_SURFACE = 12.0;       // TUNE — hauteur d’homme au départ (surplomb marqué)
 const Y_CRUISE = -1.8;       // TUNE — profondeur de croisière sous l’eau
 const DIVE_END_P = 0.12;     // TUNE — la descente Y se termine à ce progress
 const READING_DISTANCE = 12; // TUNE — distance plan↔caméra en lecture
@@ -53,10 +53,27 @@ export function cameraPosAt(progress: number): THREE.Vector3 {
 
 export function cameraLookAt(progress: number): THREE.Vector3 {
   const pos = cameraPosAt(progress);
-  // Vise devant (Z plus négatif), avec une légère anticipation latérale.
+  
+  // Inclinaison de la tête (Pitch) : On regarde en bas pendant la chute, puis on se redresse.
+  let targetY = pos.y;
+  
+  if (progress < DIVE_END_P) {
+    // Phase de plongeon (0 à 1)
+    const divePhase = progress / DIVE_END_P; 
+    // Arc parabolique : vaut 0 au début et à la fin, vaut 1 au milieu de la chute
+    const tilt = Math.sin(divePhase * Math.PI);
+    
+    // Au sommet de la chute (tilt = 1), on regarde loin vers le fond (Y = -15)
+    // Au début et à la fin (tilt = 0), on regarde l'horizon
+    targetY = THREE.MathUtils.lerp(pos.y, -15, tilt);
+  } else {
+    // Sous l'eau en vitesse de croisière : on vise un peu plus bas que notre ligne de vue
+    targetY = pos.y * 0.6;
+  }
+
   return new THREE.Vector3(
     swimX(progress + 0.02) * 0.5,
-    pos.y * 0.6,
+    targetY,
     pos.z - LOOK_AHEAD
   );
 }

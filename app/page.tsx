@@ -8,12 +8,20 @@ import Navigation from '../components/Navigation'
 
 export default function Home() {
   useEffect(() => {
-    // Nav scroll
+    // Nav scroll & Rocks Parallax
     const navbar = document.getElementById('navbar')
-    const handleNavScroll = () => {
+    const rocks = document.getElementById('foreground-rocks')
+    const handleScroll = () => {
       navbar?.classList.toggle('scrolled', window.scrollY > 60)
+      if (rocks) {
+        // Calcule un pourcentage d'avancement sur les 500 premiers pixels
+        const p = Math.min(window.scrollY / 500, 1)
+        // Les rochers grossissent (se rapprochent), s'écartent vers le bas et disparaissent
+        rocks.style.transform = `scale(${1 + p * 1.5}) translateY(${p * 100}px)`
+        rocks.style.opacity = String(1 - Math.pow(p, 1.5))
+      }
     }
-    window.addEventListener('scroll', handleNavScroll, { passive: true })
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
     // Timeline reveal
     const timelineEntries = document.querySelectorAll('.timeline-entry')
@@ -65,7 +73,7 @@ export default function Home() {
     })
 
     return () => {
-      window.removeEventListener('scroll', handleNavScroll)
+      window.removeEventListener('scroll', handleScroll)
       timelineObserver.disconnect()
     }
   }, [])
@@ -80,6 +88,34 @@ export default function Home() {
       <Navigation />
 
       {/* Hero HTML détruit — l'entrée est désormais la transition physique de surface d'eau (3D) */}
+      
+      {/* Foreground Framing (Rocks) pour la perspective de surplomb (scroll up au plongeon) */}
+      <div id="foreground-rocks" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh', pointerEvents: 'none', zIndex: 10, transformOrigin: 'bottom center' }}>
+        
+        {/* Sol rocheux continu (connecte la gauche et la droite, révèle l'espace quand on agrandit) */}
+        <div style={{ position: 'absolute', bottom: -2, left: 0, right: 0, height: '15vh' }}>
+          <svg preserveAspectRatio="none" style={{ width: '100%', height: '100%' }} viewBox="0 0 1000 100">
+             <path d="M0 100 L0 40 Q250 20 500 50 T1000 30 L1000 100 Z" fill="#040a10"/>
+             <path d="M0 100 L0 70 Q250 60 500 80 T1000 60 L1000 100 Z" fill="#020406"/>
+           </svg>
+        </div>
+
+        {/* Rocher haut bas gauche (Ne s'étire pas, garde son ratio) */}
+        <div style={{ position: 'absolute', bottom: -2, left: 0, height: '40vh', width: 'auto', aspectRatio: '1.2/1' }}>
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMinYMax meet" style={{ width: '100%', height: '100%' }}>
+            <path d="M0 300 L0 50 Q100 80 200 150 Q250 200 350 280 L400 300 Z" fill="#040a10"/>
+            <path d="M0 300 L0 100 Q80 130 150 200 Q200 240 300 300 Z" fill="#020406"/>
+          </svg>
+        </div>
+
+        {/* Rocher haut bas droite (Ne s'étire pas, garde son ratio) */}
+        <div style={{ position: 'absolute', bottom: -2, right: 0, height: '40vh', width: 'auto', aspectRatio: '1.2/1' }}>
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMaxYMax meet" style={{ width: '100%', height: '100%' }}>
+            <path d="M400 300 L400 50 Q300 80 200 150 Q150 200 50 280 L0 300 Z" fill="#040a10"/>
+            <path d="M400 300 L400 100 Q320 130 250 200 Q200 240 100 300 Z" fill="#020406"/>
+          </svg>
+        </div>
+      </div>
 
       {/* SPACER — fabrique la distance de scroll (≈ 8 segments) ; le visuel est le canvas fixe */}
       <div id="dive-scroll" className="dive-scroll-spacer" aria-hidden="true" />
