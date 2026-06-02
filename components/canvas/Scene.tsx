@@ -8,7 +8,7 @@ import * as THREE from 'three';
 import GodRays from './GodRays';
 import HtmlSections from './UI/HtmlSections';
 import { useFrame, useThree } from '@react-three/fiber';
-import { Environment, useTexture } from '@react-three/drei';
+import { Environment } from '@react-three/drei';
 import { diveState } from './useScrollProgress';
 import { sampleDepthGrading } from './diveConfig';
 import WaterSurface from './WaterSurface';
@@ -19,64 +19,18 @@ import { QUALITY_TIERS, type QualityTier } from './qualityTier';
 
 import UnderwaterBackground from './Environment/UnderwaterBackground';
 
-// HDRI du lac (PNG équirectangulaire) → IBL/réflexions pour la surface d'eau.
-// NB : l'asset livré est un .png (pas .hdr), donc on le charge en texture et on
-// le passe à <Environment map={...}> (le loader `files` de drei ne gère pas .png).
+// Skybox 360° (vrai HDRI équirectangulaire Poly Haven, .hdr via RGBELoader) +
+// IBL pour les reflets sur l'eau. Pleine au-dessus de l'eau, s'assombrit en
+// plongeant → se fond dans le fog. PAS de flou (rendu net demandé).
 function LakeEnvironment() {
   const scene = useThree((s) => s.scene);
-  // Skybox 360° (vrai HDRI équirectangulaire Poly Haven) + IBL pour les reflets.
-  // Pleine au-dessus de l'eau, s'assombrit/floute en plongeant → fond vers le fog.
   useFrame((state) => {
     const y = state.camera.position.y;
     const submerge = THREE.MathUtils.clamp((1 - y) / 4, 0, 1); // 0 au-dessus, 1 en profondeur
     scene.backgroundIntensity = THREE.MathUtils.lerp(1.0, 0.0, submerge);
-    scene.backgroundBlurriness = THREE.MathUtils.lerp(0.0, 0.4, submerge);
+    scene.backgroundBlurriness = 0; // net — pas d'effet de flou
   });
   return <Environment files="/assets/ultimate/bell_park_pier_2k.hdr" background />;
-}
-
-/**
- * Fond plat cinématique de la section 1 : un plan attaché à la caméra (toujours
- * cadré), texturé avec le paysage de lac. Plein au-dessus de l'eau, s'efface à
- * la plongée (révèle le fond sombre + fog). Pas de fog/depth → toujours net.
- */
-function LakeBackdrop() {
-  const tex = useTexture('/assets/ultimate/lake-backdrop.png');
-  const meshRef = useRef<THREE.Mesh>(null);
-  const matRef = useRef<THREE.MeshBasicMaterial>(null);
-  const dir = useRef(new THREE.Vector3());
-  const DIST = 60; // TUNE — distance du plan devant la caméra
-
-  useFrame((state) => {
-    const mesh = meshRef.current;
-    if (!mesh) return;
-    const cam = state.camera as THREE.PerspectiveCamera;
-    cam.getWorldDirection(dir.current);
-    mesh.position.copy(cam.position).addScaledVector(dir.current, DIST);
-    mesh.quaternion.copy(cam.quaternion);
-    // Échelle pour remplir le champ de vision à cette distance.
-    const h = 2 * DIST * Math.tan((cam.fov * Math.PI) / 360);
-    mesh.scale.set(h * cam.aspect, h, 1);
-    if (matRef.current) {
-      const y = cam.position.y;
-      matRef.current.opacity = THREE.MathUtils.clamp((y + 0.5) / 2, 0, 1); // y>1.5→1, y<-0.5→0
-    }
-  });
-
-  return (
-    <mesh ref={meshRef} renderOrder={-1000} frustumCulled={false}>
-      <planeGeometry args={[1, 1]} />
-      <meshBasicMaterial
-        ref={matRef}
-        map={tex}
-        transparent
-        depthTest={false}
-        depthWrite={false}
-        toneMapped={false}
-        fog={false}
-      />
-    </mesh>
-  );
 }
 
 function DynamicEnvironment() {
@@ -112,8 +66,8 @@ export default function Scene({ tier }: { tier: QualityTier }) {
       <CameraRig />
       <DynamicEnvironment />
 
-      {/* Section 1 : skybox HDRI 360° (desktop) ou fond plat léger (mobile, perf) */}
-      {tier === 'high' ? <LakeEnvironment /> : <LakeBackdrop />}
+      {/* Section 1 : skybox HDRI 360° (desktop). Mobile = fond sombre/fog (perf). */}
+      {tier === 'high' && <LakeEnvironment />}
       
       {/* Sun — golden hour */}
       <directionalLight
