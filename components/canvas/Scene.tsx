@@ -12,6 +12,7 @@ import { Environment, Lightformer } from '@react-three/drei';
 import { diveState } from './useScrollProgress';
 import { sampleDepthGrading } from './diveConfig';
 import WaterSurface from './WaterSurface';
+import SurfaceMist from './SurfaceMist';
 import UnderwaterAudio from './audio/UnderwaterAudio';
 import FluidLayer from './fluid/FluidLayer';
 import { FluidDisplacementEffect } from './fluid/FluidDisplacementEffect';
@@ -114,6 +115,7 @@ export default function Scene({ tier }: { tier: QualityTier }) {
 
       {/* Surface du lac (visible au-dessus de l’eau) */}
       <WaterSurface />
+      <SurfaceMist />
 
       {/* Audio spatial (Web Audio API) : surface + abysse, lowpass au passage Y=0 */}
       <UnderwaterAudio />

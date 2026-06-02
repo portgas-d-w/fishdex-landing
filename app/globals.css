@@ -62,9 +62,9 @@ body::before {
 /* Dynamic Island — pilule flottante ancrée en bas, verre dépoli très transparent */
 #navbar {
   position: fixed;
-  bottom: 22px;
+  top: 22px;
   left: 50%;
-  top: auto;
+  bottom: auto;
   right: auto;
   transform: translateX(-50%);
   z-index: 100;
@@ -1321,12 +1321,12 @@ footer {
 }
 
 @media (max-width: 768px) {
-  #navbar { bottom: 16px; gap: 14px; padding: 8px 10px 8px 18px; }
+  #navbar { top: 16px; bottom: auto; gap: 14px; padding: 8px 10px 8px 18px; }
   .nav-links {
     display: none;
     position: fixed;
-    bottom: 78px;
-    top: auto;
+    top: 70px;
+    bottom: auto;
     left: 16px;
     right: 16px;
     background: rgba(7,17,24,0.97);

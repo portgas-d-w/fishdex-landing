@@ -6,19 +6,39 @@ import dynamic from 'next/dynamic'
 const Background3D = dynamic(() => import('../components/Background3D'), { ssr: false })
 import Navigation from '../components/Navigation'
 
+// Premier plan « bord de lac » en CALQUES (relief + perspective). Chaque asset est
+// positionné en % (disposition reprise de la composition validée) et reçoit une
+// profondeur `depth` (0 = lointain, 1 = proche) qui pilote la parallaxe au scroll :
+// les calques proches descendent et grossissent plus vite → effet de relief 3D.
+// left/width en % d'une largeur de référence → responsive sans déformation.
+const FG_LAYERS = [
+  { src: 'fg-berge',    left: 0,    width: 100,  depth: 0.15, shadow: 'none' },
+  { src: 'fg-pierres',  left: 0,    width: 39.5, depth: 0.30, shadow: '0 5px 9px rgba(0,0,0,0.30)' },
+  { src: 'fg-herbes-g', left: 4.2,  width: 28.1, depth: 0.45, shadow: '0 6px 11px rgba(0,0,0,0.35)' },
+  { src: 'fg-bois',     left: 55.2, width: 43.8, depth: 0.52, shadow: '0 9px 15px rgba(0,0,0,0.42)' },
+  { src: 'fg-herbes-d', left: 38.5, width: 29.2, depth: 0.62, shadow: '0 7px 12px rgba(0,0,0,0.35)' },
+  { src: 'fg-canne',    left: 50,   width: 47.9, depth: 0.82, shadow: '0 11px 20px rgba(0,0,0,0.45)' },
+] as const
+
 export default function Home() {
   useEffect(() => {
-    // Nav scroll & Rocks Parallax
+    // Nav scroll & parallaxe du premier plan (calques à profondeurs différentes)
     const navbar = document.getElementById('navbar')
     const rocks = document.getElementById('foreground-rocks')
+    const fgLayers = rocks ? Array.from(rocks.querySelectorAll<HTMLElement>('[data-depth]')) : []
     const handleScroll = () => {
       navbar?.classList.toggle('scrolled', window.scrollY > 60)
       if (rocks) {
-        // Calcule un pourcentage d'avancement sur les 500 premiers pixels
+        // Avancement sur les 500 premiers pixels de scroll (entrée dans la plongée).
         const p = Math.min(window.scrollY / 500, 1)
-        // Les rochers grossissent (se rapprochent), s'écartent vers le bas et disparaissent
-        rocks.style.transform = `scale(${1 + p * 1.5}) translateY(${p * 100}px)`
         rocks.style.opacity = String(1 - Math.pow(p, 1.5))
+        // Parallaxe : chaque calque descend et grossit proportionnellement à sa
+        // profondeur → les éléments proches « passent » plus vite que le fond
+        // (relief + perspective d'immersion vers l'eau).
+        for (const layer of fgLayers) {
+          const d = parseFloat(layer.dataset.depth || '0')
+          layer.style.transform = `translateY(${p * 150 * d}px) scale(${1 + p * 0.9 * d})`
+        }
       }
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -89,51 +109,27 @@ export default function Home() {
 
       {/* Hero HTML détruit — l'entrée est désormais la transition physique de surface d'eau (3D) */}
       
-      {/* Foreground Framing (Rocks) pour la perspective de surplomb (scroll up au plongeon) */}
+      {/* Premier plan « bord de lac » en CALQUES (relief + perspective).
+          Chaque asset détouré est positionné en % et ancré en bas ; la parallaxe
+          au scroll (cf. handleScroll) les fait bouger selon leur profondeur. */}
       <div id="foreground-rocks" style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: 10 }}>
-        
-        {/* Sol continu (Bank) — Hauteur bloquée à 22vh. 
-            Ne grossira plus JAMAIS sur 4K. S'il manque de la largeur, il se répète (repeat-x) pour "voir la suite". */}
-        <div style={{
-          position: 'absolute',
-          bottom: '-6vh', /* Cache le vide transparent avec précision */
-          left: 0,
-          width: '100vw',
-          height: '22vh', 
-          backgroundImage: 'url(/assets/ultimate/foreground-bank.png)',
-          backgroundSize: 'auto 100%', /* S'ajuste exactement à la hauteur du conteneur */
-          backgroundPosition: 'bottom left',
-          backgroundRepeat: 'repeat-x', /* La clé pour les grands écrans ! */
-        }} />
-
-        {/* Coin gauche — Hauteur augmentée à 48vh pour des roseaux beaucoup plus majestueux. */}
-        <div style={{
-          position: 'absolute',
-          bottom: '-11vh', /* L'offset vertical grandit proportionnellement à la nouvelle hauteur */
-          left: '-20vh',   /* L'offset latéral grandit aussi pour rester collé au bord */
-          width: '70vw',   /* Plus de largeur pour ne pas couper l'image qui a grossi */
-          height: '48vh',
-          backgroundImage: 'url(/assets/ultimate/foreground-left.png)',
-          backgroundSize: 'auto 100%',
-          backgroundPosition: 'bottom left',
-          backgroundRepeat: 'no-repeat',
-        }} />
-
-        {/* Coin droite — Symétrie parfaite ! 
-            On utilise l'image GAUCHE, mais on retourne tout le conteneur. 
-            L'image va donc pousser de la droite vers la gauche, collée au bord droit ! */}
-        <div style={{
-          position: 'absolute',
-          bottom: '-11vh',
-          right: '-20vh', 
-          width: '70vw',
-          height: '48vh',
-          backgroundImage: 'url(/assets/ultimate/foreground-left.png)', /* On réutilise l'image de gauche ! */
-          backgroundSize: 'auto 100%',
-          backgroundPosition: 'bottom left', 
-          backgroundRepeat: 'no-repeat',
-          transform: 'scaleX(-1)' /* Crée le miroir parfait */
-        }} />
+        {FG_LAYERS.map((l) => (
+          <div
+            key={l.src}
+            data-depth={l.depth}
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              left: `${l.left}%`,
+              width: `${l.width}%`,
+              transformOrigin: 'bottom center',
+              willChange: 'transform',
+              filter: l.shadow === 'none' ? undefined : `drop-shadow(${l.shadow})`,
+            }}
+          >
+            <img src={`/assets/generated/${l.src}.webp`} alt="" style={{ width: '100%', height: 'auto', display: 'block' }} />
+          </div>
+        ))}
       </div>
 
       {/* SPACER — fabrique la distance de scroll (≈ 8 segments) ; le visuel est le canvas fixe */}
