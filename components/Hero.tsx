@@ -25,74 +25,17 @@ export default function Hero() {
 
   return (
     <section id="hero" style={{ position: 'relative', height: '100vh', minHeight: 700, overflow: 'hidden', display: 'flex', alignItems: 'flex-end' }}>
-      {/* Background */}
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg,#060d18 0%,#0a1a2e 35%,#0d2240 60%,#091525 100%)' }} />
-
-      {/* Stars */}
-      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
-        {stars.map((s, i) => (
-          <div
-            key={i}
-            className="star"
-            style={{
-              width: s.size, height: s.size,
-              left: `${s.left}%`, top: `${s.top}%`,
-              ['--d' as string]: `${s.d}s`,
-              ['--delay' as string]: `${s.delay}s`,
-              ['--min' as string]: s.min,
-              ['--max' as string]: s.max,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Glow orbs */}
-      <div className="animate-orbpulse" style={{ position: 'absolute', width: 600, height: 400, background: 'radial-gradient(ellipse,rgba(34,211,238,.07) 0%,transparent 70%)', top: '15%', left: '10%', borderRadius: '50%', filter: 'blur(80px)', ['--od' as string]: '10s' }} />
-      <div className="animate-orbpulse" style={{ position: 'absolute', width: 400, height: 300, background: 'radial-gradient(ellipse,rgba(96,165,250,.06) 0%,transparent 70%)', top: '40%', right: '5%', borderRadius: '50%', filter: 'blur(80px)', ['--od' as string]: '14s' }} />
-
-      {/* Lake SVG */}
-      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
-        <svg viewBox="0 0 1440 500" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" style={{ position: 'absolute', bottom: 0, width: '100%', height: '60%' }}>
-          <defs>
-            <linearGradient id="lakefill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#0d2240" stopOpacity=".9"/>
-              <stop offset="100%" stopColor="#060d18" stopOpacity="1"/>
-            </linearGradient>
-            <linearGradient id="moonreflect" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#22d3ee" stopOpacity=".15"/>
-              <stop offset="100%" stopColor="#22d3ee" stopOpacity="0"/>
-            </linearGradient>
-          </defs>
-          {/* Trees */}
-          <path d="M0 280 Q80 240 120 250 L130 500 L0 500Z" fill="#050c16"/>
-          <path d="M100 250 Q140 200 180 220 Q170 230 160 240 L160 500 L90 500Z" fill="#060d18"/>
-          <path d="M150 230 Q190 180 230 200 Q220 220 210 240 L200 500 L140 500Z" fill="#050c16"/>
-          <path d="M1260 260 Q1300 210 1340 230 L1340 500 L1250 500Z" fill="#050c16"/>
-          <path d="M1310 240 Q1360 190 1400 210 L1440 260 L1440 500 L1300 500Z" fill="#060d18"/>
-          <path d="M1360 220 Q1400 180 1440 200 L1440 500 L1350 500Z" fill="#050c16"/>
-          {/* Lake */}
-          <path d="M0 340 Q360 300 720 320 Q1080 340 1440 310 L1440 500 L0 500Z" fill="url(#lakefill)"/>
-          {/* Moon reflection */}
-          <ellipse cx="720" cy="350" rx="8" ry="60" fill="url(#moonreflect)" opacity=".6"/>
-          {/* Water lines */}
-          <line x1="400" y1="365" x2="550" y2="358" stroke="rgba(180,220,255,.04)" strokeWidth="1"/>
-          <line x1="880" y1="360" x2="1020" y2="368" stroke="rgba(180,220,255,.04)" strokeWidth="1"/>
-          <line x1="600" y1="380" x2="840" y2="372" stroke="rgba(180,220,255,.05)" strokeWidth="1.5"/>
-          <line x1="500" y1="395" x2="700" y2="388" stroke="rgba(180,220,255,.03)" strokeWidth="1"/>
-          <line x1="740" y1="392" x2="920" y2="400" stroke="rgba(180,220,255,.03)" strokeWidth="1"/>
-          {/* Moon */}
-          <circle cx="720" cy="80" r="28" fill="#fff" opacity=".9"/>
-          <circle cx="720" cy="80" r="36" fill="none" stroke="rgba(255,255,255,.08)" strokeWidth="1"/>
-          <circle cx="720" cy="80" r="48" fill="none" stroke="rgba(255,255,255,.04)" strokeWidth="1"/>
+      {/* Foreground Framing (Rocks/Dock) to enhance height perception */}
+      <div style={{ position: 'absolute', bottom: -2, left: 0, right: 0, height: '35vh', pointerEvents: 'none', zIndex: 5 }}>
+        <svg viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" style={{ width: '100%', height: '100%' }}>
+          {/* Rocher bas gauche */}
+          <path d="M0 300 L0 80 Q150 100 250 200 Q300 250 380 300 Z" fill="#020406"/>
+          <path d="M0 300 L0 130 Q100 160 180 250 Q220 280 280 300 Z" fill="#040a10"/>
+          {/* Rocher bas droite */}
+          <path d="M1440 300 L1440 50 Q1200 90 1100 180 Q1050 250 950 300 Z" fill="#020406"/>
+          <path d="M1440 300 L1440 120 Q1280 150 1200 230 Q1160 270 1100 300 Z" fill="#040a10"/>
         </svg>
       </div>
-
-      {/* Mist */}
-      <div className="animate-mistdrift" style={{ position: 'absolute', bottom: '20%', left: 0, right: 0, height: 120, background: 'linear-gradient(to right,transparent,rgba(140,180,220,.04) 30%,rgba(140,180,220,.07) 50%,rgba(140,180,220,.04) 70%,transparent)' }} />
-
-      {/* Overlays */}
-      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 80% 60% at 50% 70%,transparent 0%,rgba(6,13,24,.7) 100%)' }} />
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '60%', background: 'linear-gradient(to top,#060d18 0%,rgba(6,13,24,.8) 40%,transparent 100%)' }} />
 
       {/* Content */}
       <div style={{ position: 'relative', zIndex: 10, padding: '0 60px 100px', maxWidth: 1400, margin: '0 auto', width: '100%' }}>

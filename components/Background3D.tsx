@@ -49,7 +49,7 @@ export default function Background3D() {
       height: '100vh',
       zIndex: -1,
       pointerEvents: 'none',
-      background: '#040a0d' // Fallback color
+      background: 'linear-gradient(to bottom, #0a1922 0%, #1a3c4b 50%, #040a0d 100%)' // Sky gradient fallback
     }}>
       <Canvas
         camera={{ position: [0, 3.5, START_Z], fov: 60 }}

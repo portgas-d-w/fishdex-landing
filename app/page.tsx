@@ -90,17 +90,50 @@ export default function Home() {
       {/* Hero HTML détruit — l'entrée est désormais la transition physique de surface d'eau (3D) */}
       
       {/* Foreground Framing (Rocks) pour la perspective de surplomb (scroll up au plongeon) */}
-      <div id="foreground-rocks" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh', pointerEvents: 'none', zIndex: 10, transformOrigin: 'bottom center' }}>
+      <div id="foreground-rocks" style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: 10 }}>
         
-        {/* Sol continu — pleine largeur, roseaux en bas (le haut de l'image est transparent).
-            width:100% → toujours visible (ne dépend plus du rétrécissement). */}
-        <img src="/assets/ultimate/foreground-bank.png" alt="" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: 'auto', display: 'block' }} />
+        {/* Sol continu (Bank) — Hauteur bloquée à 22vh. 
+            Ne grossira plus JAMAIS sur 4K. S'il manque de la largeur, il se répète (repeat-x) pour "voir la suite". */}
+        <div style={{
+          position: 'absolute',
+          bottom: '-6vh', /* Cache le vide transparent avec précision */
+          left: 0,
+          width: '100vw',
+          height: '22vh', 
+          backgroundImage: 'url(/assets/ultimate/foreground-bank.png)',
+          backgroundSize: 'auto 100%', /* S'ajuste exactement à la hauteur du conteneur */
+          backgroundPosition: 'bottom left',
+          backgroundRepeat: 'repeat-x', /* La clé pour les grands écrans ! */
+        }} />
 
-        {/* Coin bas gauche — taille naturelle ancrée en bas (plus de boîte → ne flotte plus) */}
-        <img src="/assets/ultimate/foreground-left.png" alt="" style={{ position: 'absolute', bottom: 0, left: 0, height: '50vh', width: 'auto', display: 'block' }} />
+        {/* Coin gauche — Hauteur augmentée à 48vh pour des roseaux beaucoup plus majestueux. */}
+        <div style={{
+          position: 'absolute',
+          bottom: '-11vh', /* L'offset vertical grandit proportionnellement à la nouvelle hauteur */
+          left: '-20vh',   /* L'offset latéral grandit aussi pour rester collé au bord */
+          width: '70vw',   /* Plus de largeur pour ne pas couper l'image qui a grossi */
+          height: '48vh',
+          backgroundImage: 'url(/assets/ultimate/foreground-left.png)',
+          backgroundSize: 'auto 100%',
+          backgroundPosition: 'bottom left',
+          backgroundRepeat: 'no-repeat',
+        }} />
 
-        {/* Coin bas droite — V1 active (V2 dispo : foreground-right.png) */}
-        <img src="/assets/ultimate/foreground-right-v1.png" alt="" style={{ position: 'absolute', bottom: 0, right: 0, height: '50vh', width: 'auto', display: 'block' }} />
+        {/* Coin droite — Symétrie parfaite ! 
+            On utilise l'image GAUCHE, mais on retourne tout le conteneur. 
+            L'image va donc pousser de la droite vers la gauche, collée au bord droit ! */}
+        <div style={{
+          position: 'absolute',
+          bottom: '-11vh',
+          right: '-20vh', 
+          width: '70vw',
+          height: '48vh',
+          backgroundImage: 'url(/assets/ultimate/foreground-left.png)', /* On réutilise l'image de gauche ! */
+          backgroundSize: 'auto 100%',
+          backgroundPosition: 'bottom left', 
+          backgroundRepeat: 'no-repeat',
+          transform: 'scaleX(-1)' /* Crée le miroir parfait */
+        }} />
       </div>
 
       {/* SPACER — fabrique la distance de scroll (≈ 8 segments) ; le visuel est le canvas fixe */}
