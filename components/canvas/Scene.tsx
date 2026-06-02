@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useMemo } from 'react';
 import CameraRig from './CameraRig';
 import PostProcessing from './PostProcessing';
 import EnvironmentParticles from './Environment/Particles';
@@ -8,12 +8,24 @@ import * as THREE from 'three';
 import GodRays from './GodRays';
 import HtmlSections from './UI/HtmlSections';
 import { useFrame } from '@react-three/fiber';
+import { Environment, useTexture } from '@react-three/drei';
 import { diveState } from './useScrollProgress';
 import { sampleDepthGrading } from './diveConfig';
 import WaterSurface from './WaterSurface';
 import { QUALITY_TIERS, type QualityTier } from './qualityTier';
 
 import UnderwaterBackground from './Environment/UnderwaterBackground';
+
+// HDRI du lac (PNG équirectangulaire) → IBL/réflexions pour la surface d'eau.
+// NB : l'asset livré est un .png (pas .hdr), donc on le charge en texture et on
+// le passe à <Environment map={...}> (le loader `files` de drei ne gère pas .png).
+function LakeEnvironment() {
+  const envMap = useTexture('/assets/ultimate/hdri-lake.png');
+  useMemo(() => {
+    envMap.mapping = THREE.EquirectangularReflectionMapping;
+  }, [envMap]);
+  return <Environment map={envMap} />;
+}
 
 function DynamicEnvironment() {
   const fogRef = useRef<THREE.FogExp2>(null);
@@ -45,6 +57,9 @@ export default function Scene({ tier }: { tier: QualityTier }) {
     <>
       <CameraRig />
       <DynamicEnvironment />
+
+      {/* IBL : la surface d'eau réfléchit le paysage du lac (HDRI) */}
+      <LakeEnvironment />
       
       {/* Sun — golden hour */}
       <directionalLight
