@@ -6,6 +6,10 @@ import * as THREE from 'three';
 /**
  * dof : activé seulement quand le qualityTier l'autorise (palier `high`).
  * Sur mobile (med/low) on ne paie pas la passe de profondeur du DepthOfField.
+ *
+ * NB : les enfants de <EffectComposer> doivent être des éléments JSX DIRECTS
+ * (pas un tableau / fragment) — sinon le câblage des passes casse au runtime.
+ * D'où les deux variantes explicites du composer ci-dessous.
  */
 export default function PostProcessing({ dof }: { dof: boolean }) {
   const dofRef = useRef<any>(null);
@@ -19,7 +23,7 @@ export default function PostProcessing({ dof }: { dof: boolean }) {
   useFrame((state, delta) => {
     const camY = state.camera.position.y;
 
-    // 1) DoF : focus à 5 unités DEVANT la caméra (point monde = pos + dir * 5).
+    // DoF : focus à 5 unités DEVANT la caméra (point monde = pos + dir * 5).
     if (dofRef.current?.target) {
       const cam = state.camera;
       cam.getWorldDirection(viewDir.current);
@@ -27,7 +31,7 @@ export default function PostProcessing({ dof }: { dof: boolean }) {
       dofRef.current.target.copy(focusPoint.current);
     }
 
-    // 2) Profondeur : grain + vignette croissants une fois immergé.
+    // Profondeur : grain + vignette croissants une fois immergé.
     const submerged = THREE.MathUtils.clamp((1.5 - camY) / 3.0, 0, 1);
     if (noiseRef.current?.blendMode) {
       const tgt = submerged * 0.03;
@@ -39,23 +43,27 @@ export default function PostProcessing({ dof }: { dof: boolean }) {
     }
   });
 
-  // Effets de base (toujours présents quand le post-processing est actif).
-  const effects: React.JSX.Element[] = [
-    <Bloom key="bloom" luminanceThreshold={0.8} luminanceSmoothing={0.5} intensity={1.2} radius={0.8} mipmapBlur />,
-    // Aberration chromatique STATIQUE et subtile (réfraction discrète, pas de ref :
-    // ChromaticAberration est un wrapEffect déclaratif — l’animer par ref plante).
-    <ChromaticAberration key="chroma" offset={new THREE.Vector2(0.0009, 0.0009)} radialModulation={false} modulationOffset={0} />,
-    <Noise key="noise" ref={noiseRef} opacity={0} />,
-    <Vignette key="vignette" ref={vignetteRef} eskil={false} offset={0.2} darkness={0} />,
-  ];
-
-  // DepthOfField : passe coûteuse → ajoutée seulement si le palier l'autorise (desktop).
+  // Palier high : avec DepthOfField (passe de profondeur). multisampling={0} : cf.
+  // note historique — DoF + MSAA blit invalide.
   if (dof) {
-    effects.unshift(
-      <DepthOfField key="dof" ref={dofRef} target={new THREE.Vector3(0, 0, 0)} focalLength={0.02} bokehScale={2} />
+    return (
+      <EffectComposer multisampling={0}>
+        <DepthOfField ref={dofRef} target={new THREE.Vector3(0, 0, 0)} focalLength={0.02} bokehScale={2} />
+        <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.5} intensity={1.2} radius={0.8} mipmapBlur />
+        <ChromaticAberration offset={new THREE.Vector2(0.0009, 0.0009)} radialModulation={false} modulationOffset={0} />
+        <Noise ref={noiseRef} opacity={0} />
+        <Vignette ref={vignetteRef} eskil={false} offset={0.2} darkness={0} />
+      </EffectComposer>
     );
   }
 
-  // multisampling={0}: cf. note historique — DoF + MSAA blit invalide.
-  return <EffectComposer multisampling={0}>{effects}</EffectComposer>;
+  // Paliers sans DoF (mobile med) : on garde le reste du post-processing.
+  return (
+    <EffectComposer multisampling={0}>
+      <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.5} intensity={1.2} radius={0.8} mipmapBlur />
+      <ChromaticAberration offset={new THREE.Vector2(0.0009, 0.0009)} radialModulation={false} modulationOffset={0} />
+      <Noise ref={noiseRef} opacity={0} />
+      <Vignette ref={vignetteRef} eskil={false} offset={0.2} darkness={0} />
+    </EffectComposer>
+  );
 }
