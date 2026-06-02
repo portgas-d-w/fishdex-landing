@@ -7,7 +7,7 @@ import Caustics from './Environment/Caustics';
 import * as THREE from 'three';
 import GodRays from './GodRays';
 import HtmlSections from './UI/HtmlSections';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import { Environment, useTexture } from '@react-three/drei';
 import { diveState } from './useScrollProgress';
 import { sampleDepthGrading } from './diveConfig';
@@ -24,10 +24,22 @@ import UnderwaterBackground from './Environment/UnderwaterBackground';
 // le passe à <Environment map={...}> (le loader `files` de drei ne gère pas .png).
 function LakeEnvironment() {
   const envMap = useTexture('/assets/ultimate/hdri-lake.png');
+  const scene = useThree((s) => s.scene);
   useMemo(() => {
     envMap.mapping = THREE.EquirectangularReflectionMapping;
   }, [envMap]);
-  return <Environment map={envMap} />;
+
+  useFrame((state) => {
+    // Skybox du lac PLEINE au-dessus de l'eau, qui s'assombrit et se floute en
+    // plongeant → se fond dans le fog sous-marin (lié à Y).
+    const y = state.camera.position.y;
+    const submerge = THREE.MathUtils.clamp((1 - y) / 4, 0, 1); // 0 au-dessus, 1 en profondeur
+    scene.backgroundIntensity = THREE.MathUtils.lerp(1.0, 0.0, submerge);
+    scene.backgroundBlurriness = THREE.MathUtils.lerp(0.0, 0.45, submerge);
+  });
+
+  // background : le paysage HDRI est visible directement (skybox) en plus de l'IBL.
+  return <Environment map={envMap} background />;
 }
 
 function DynamicEnvironment() {

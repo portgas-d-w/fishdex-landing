@@ -70,12 +70,12 @@ export default function WaterSurface() {
     <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 5]}>
       <planeGeometry args={[1000, 1000, 48, 48]} />
       <meshStandardMaterial
-        color="#0a1f24"
-        metalness={0.1}
-        roughness={0.15}
-        envMapIntensity={1.1}
+        color="#0e2a30"
+        metalness={0.2}
+        roughness={0.12}
+        envMapIntensity={1.6}
         normalMap={normalMap}
-        normalScale={new THREE.Vector2(0.6, 0.6)}
+        normalScale={new THREE.Vector2(0.9, 0.9)}
         onBeforeCompile={onBeforeCompile}
       />
     </mesh>
