@@ -92,20 +92,15 @@ export default function Home() {
       {/* Foreground Framing (Rocks) pour la perspective de surplomb (scroll up au plongeon) */}
       <div id="foreground-rocks" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh', pointerEvents: 'none', zIndex: 10, transformOrigin: 'bottom center' }}>
         
-        {/* Sol continu — berge de roseaux (image détourée). cover = pas d'étirement */}
-        <div style={{ position: 'absolute', bottom: -2, left: 0, right: 0, height: '15vh' }}>
-          <img src="/assets/ultimate/foreground-bank.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center bottom' }} />
-        </div>
+        {/* Sol continu — pleine largeur, roseaux en bas (le haut de l'image est transparent).
+            width:100% → toujours visible (ne dépend plus du rétrécissement). */}
+        <img src="/assets/ultimate/foreground-bank.png" alt="" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: 'auto', display: 'block' }} />
 
-        {/* Coin bas gauche — roseaux (garde son ratio, ancré bas-gauche) */}
-        <div style={{ position: 'absolute', bottom: -2, left: 0, height: '40vh', width: 'auto', aspectRatio: '1.2/1' }}>
-          <img src="/assets/ultimate/foreground-left.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'left bottom' }} />
-        </div>
+        {/* Coin bas gauche — taille naturelle ancrée en bas (plus de boîte → ne flotte plus) */}
+        <img src="/assets/ultimate/foreground-left.png" alt="" style={{ position: 'absolute', bottom: 0, left: 0, height: '50vh', width: 'auto', display: 'block' }} />
 
-        {/* Coin bas droite — roseaux + canne (V2 active ; V1 dispo : foreground-right-v1.png) */}
-        <div style={{ position: 'absolute', bottom: -2, right: 0, height: '40vh', width: 'auto', aspectRatio: '1.2/1' }}>
-          <img src="/assets/ultimate/foreground-right.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'right bottom' }} />
-        </div>
+        {/* Coin bas droite — V1 active (V2 dispo : foreground-right.png) */}
+        <img src="/assets/ultimate/foreground-right-v1.png" alt="" style={{ position: 'absolute', bottom: 0, right: 0, height: '50vh', width: 'auto', display: 'block' }} />
       </div>
 
       {/* SPACER — fabrique la distance de scroll (≈ 8 segments) ; le visuel est le canvas fixe */}
