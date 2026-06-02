@@ -81,7 +81,7 @@ export default function WaterSurface() {
           color="#1e3a45"           // Teinte de base (lac alpin)
           metalness={0.1}           // Légèrement métallique pour mieux capter l'IBL
           roughness={0.08}          // Très lisse (calme) mais pas miroir parfait
-          envMapIntensity={2.5}     // Capte intensément le ciel procédural
+          envMapIntensity={1.2}     // Réduit pour moins éblouir (était 2.5)
           normalMap={normalMap}
           normalScale={new THREE.Vector2(0.8, 0.8)}
           transmission={0.9}        // Presque totalement transparent au bord

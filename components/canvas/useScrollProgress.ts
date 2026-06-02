@@ -38,13 +38,6 @@ export function initScrollTracking() {
     start: 0,
     end: 'max',
     scrub: 1, // lissage du scrub (~1s de catch-up) → mouvement cinématographique
-    snap: {
-      snapTo: SECTION_ANCHORS,
-      duration: { min: 0.2, max: 0.6 },
-      delay: 0.05,
-      ease: 'power2.inOut',
-      directional: true,
-    },
     onUpdate: (self) => {
       const p = self.progress;
       diveState.progress = p;

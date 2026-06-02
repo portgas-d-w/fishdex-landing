@@ -99,6 +99,7 @@ export default function LakeBackdrop() {
       <meshBasicMaterial
         ref={matRef}
         map={texture}
+        color={new THREE.Color(1.5, 1.5, 1.5)} // Boost de luminosité de +50% pour déboucher les ombres des arbres
         side={THREE.BackSide}
         transparent
         opacity={1}

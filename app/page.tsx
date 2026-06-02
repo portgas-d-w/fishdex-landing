@@ -112,7 +112,7 @@ export default function Home() {
       {/* Premier plan « bord de lac » en CALQUES (relief + perspective).
           Chaque asset détouré est positionné en % et ancré en bas ; la parallaxe
           au scroll (cf. handleScroll) les fait bouger selon leur profondeur. */}
-      <div id="foreground-rocks" style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: 10 }}>
+      <div id="foreground-rocks" style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: 10, display: 'none' }}>
         {FG_LAYERS.map((l) => (
           <div
             key={l.src}

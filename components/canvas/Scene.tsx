@@ -46,13 +46,13 @@ function LightEnvironment() {
         scale={[160, 12, 1]}
         position={[0, 4, -90]}
       />
-      {/* Soleil rasant — reflet doré principal sur l'eau */}
+      {/* Soleil rasant — reflet doré principal sur l'eau (déplacé à droite) */}
       <Lightformer
         form="ring"
-        intensity={3.5}
-        color="#ffb066"
-        scale={[26, 26, 1]}
-        position={[-40, 9, -70]}
+        intensity={1.0} // Encore plus doux car le reflet doit sembler lointain
+        color="#ffce95" // Couleur plus blanche/chaude pour correspondre au ciel droit
+        scale={[35, 10, 1]} // Légèrement aplati pour faire une ligne d'horizon lointaine
+        position={[70, 8, -150]} // X positif = droite, Z très négatif = lointain
       />
     </Environment>
   );
@@ -97,9 +97,9 @@ export default function Scene({ tier }: { tier: QualityTier }) {
       {/* IBL Lightformers pour les reflets sur l'eau (desktop puissant + moyen). */}
       {(tier === 'high' || tier === 'med') && <LightEnvironment />}
       
-      {/* Sun — golden hour */}
+      {/* Sun — golden hour (déplacé à droite) */}
       <directionalLight
-        position={[-30, 2, -100]}
+        position={[80, 30, -100]}
         intensity={1.5}
         color="#FFAA55"
       />
