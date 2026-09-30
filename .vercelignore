@@ -1,0 +1,13 @@
+assets-source
+.migration
+.git
+.env*
+node_modules
+dist
+*.bundle
+*.log
+tests
+docs
+test-results
+playwright-report
+*.zip

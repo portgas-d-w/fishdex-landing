@@ -1,0 +1,66 @@
+{
+  "source": "River fish / TricksUp, supplied by owner",
+  "converter": "4.5.3 LTS",
+  "models": [
+    {
+      "model": "Roach",
+      "triangles": 528,
+      "source_dimensions": [
+        0.5003124475479126,
+        0.08785165846347809,
+        0.2403298318386078
+      ],
+      "display_length": 2.0,
+      "texture": "512x512 PNG embedded",
+      "bytes": 274796
+    },
+    {
+      "model": "EuropeanPerch",
+      "triangles": 480,
+      "source_dimensions": [
+        0.5000741481781006,
+        0.09277866780757904,
+        0.21590879559516907
+      ],
+      "display_length": 2.0,
+      "texture": "512x512 PNG embedded",
+      "bytes": 97492
+    },
+    {
+      "model": "CommonCarp",
+      "triangles": 550,
+      "source_dimensions": [
+        0.4996868073940277,
+        0.08558312058448792,
+        0.21455959975719452
+      ],
+      "display_length": 2.0,
+      "texture": "512x512 PNG embedded",
+      "bytes": 205188
+    },
+    {
+      "model": "NorthernPike",
+      "triangles": 660,
+      "source_dimensions": [
+        0.49992212653160095,
+        0.06960123032331467,
+        0.12449102103710175
+      ],
+      "display_length": 2.0,
+      "texture": "512x512 PNG embedded",
+      "bytes": 160492
+    },
+    {
+      "model": "Zander",
+      "triangles": 554,
+      "source_dimensions": [
+        0.5003896355628967,
+        0.09796503186225891,
+        0.1722038984298706
+      ],
+      "display_length": 2.0,
+      "texture": "512x512 PNG embedded",
+      "bytes": 95408
+    }
+  ]
+}
