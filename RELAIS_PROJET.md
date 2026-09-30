@@ -103,7 +103,8 @@ Paramètres précédents : `.vercel/project-before-migration.json` (privé).
 Ne pas committer `.vercel`, `.env.local`, `.migration` ou `assets-source`.
 
 Préproduction CLI READY : https://fishdex-landing-3nj1ud5e4-portgas-d-ws-projects.vercel.app
-(`dpl_2uxax1Q97qz5s1uhMvsfxgtQDSsK`). Publication en cours : lire la clôture ci-dessous.
+(`dpl_2uxax1Q97qz5s1uhMvsfxgtQDSsK`). Étape initiale conservée pour historique ;
+la version finale et la production sont indiquées ci-dessous.
 
 Corrections : arrêt du moulinet sur `pagehide`, état visuel « reeling » nettoyé
 à l’ouverture des modales, rendu de l’étang suspendu pendant les modales et la pause.
@@ -124,6 +125,30 @@ Après correction du premier rendu : check réussi et E2E 6/6 (24,4 s).
 Le scénario E2E accéléré fige désormais l’auto-simulation pendant ses screenshots,
 car un rendu logiciel lent pouvait faire décrocher le poisson pendant une capture.
 Ne pas exécuter E2E et smoke simultanément (GPU et artefacts partagés).
+Code final committé/poussé : `ffe65508436c882e7e056ef8b893d82214217c11`.
+Préproduction Git `dpl_HvX3f8fhR1ozxzw6jugttRjfDjME`,
+https://fishdex-landing-i6hgrro7f-portgas-d-ws-projects.vercel.app : READY,
+smoke 4/4 (56,2 s), poissons visibles sur captures inspectées. Smoke local final
+4/4 (48,2 s). Le push sur `main` suit cette validation ; branche locale actuelle `main`.
+
+**Clôture de session : jeu publié et vérifié sur https://www.fishdex.fr.**
+Production Git READY `dpl_97wFheK6unbYaN84pT9of1oP7XUG`,
+https://fishdex-landing-4pju52c45-portgas-d-ws-projects.vercel.app, build 19 s.
+Smoke public sans token : **4/4, 52,2 s**, souris + vrai appui tactile Chromium,
+capture et poisson visible, carnet après reload, export/import, cinq GLB intacts,
+aucun modèle au démarrage, interface QA absente et aucune erreur JS/console.
+Capture mobile de production inspectée. HTTP 200 et redirection `fishdex.fr` → www
+confirmés. Requête de logs Vercel erreurs / 15 min : aucun événement (site statique,
+ce n’est pas une mesure de toutes les consoles utilisateurs).
+Les futurs pushes main publient le jeu : prouvé par le déploiement Git de `ffe6550`.
+Un dernier commit de docs pousse ce relais ; les fichiers applicatifs restent identiques.
+Serveur local utilisateur lancé sur 5173 ; build local servi sur 4173.
+Git distant et sauvegarde FishDex conservés, ZIP original jamais ajouté/déployé.
+
+Prochaine tâche pour Claude dimanche : recueillir le test Safari/iPhone réel et les
+sensations du propriétaire (lisibilité/tension/durée), mesurer fluidité/chauffe puis
+suivre P1. Aucun test appareil réel, aucune nouvelle animation, aucun nouveau comportement
+par espèce livrés pendant cette session. Ne pas annoncer ces points comme validés.
 
 ## 7. Prochaine tâche pour Codex sur le PC
 
@@ -145,7 +170,7 @@ monnaies, services ou espèces avant d’avoir rendu cette boucle satisfaisante.
 | Date | Agent | Réalisé | Prochaine action |
 | --- | --- | --- | --- |
 | 2026-09-30 | Codex | Projet 0.1, prototype complet, cinq conversions Blender, tests et docs de relais | Installation sur PC, choix cible Vercel, essai sur téléphone |
-| 2026-09-30 | Codex local Windows | Installation, pauses/commandes/rendu corrigés, 9 tests + 6 E2E + 4 smoke locaux ; sauvegarde FishDex, Vite, préproduction READY | Finir contrôles distants et publication autorisée, puis essai téléphone |
+| 2026-09-30 | Codex local Windows | Installation ; pauses/commandes/premier rendu corrigés ; check 9 tests, E2E 6/6, smoke local 4/4, preview Git 4/4, production Git 4/4 sur www.fishdex.fr ; FishDex conservé | Essai téléphone réel et retour combat ; mesurer fluidité/chauffe avant P1 |
 
 Pour chaque nouvelle session : ajouter les changements, les résultats réels de test,
 les éventuels bugs, la décision prise et la prochaine tâche. Mettre à jour le résumé

@@ -15,6 +15,8 @@ cinq fichiers GLB intacts, aucun modèle au démarrage, archive source exclue.
 Après inspection des captures, le signal `data-loaded` a été corrigé pour attendre
 les matériaux WebGL et une première image. Les captures smoke attendent ensuite 400 ms.
 Publication et résultats définitifs : voir `docs/VERCEL.md` et la clôture du relais.
+Clôture : preview Git corrigée 4/4 (56,2 s), production publique 4/4 (52,2 s),
+poissons visibles sur captures inspectées, redirection/HTTP 200 confirmés.
 Les résultats Linux ci-dessous sont ceux de la livraison initiale, pas ceux de ce PC.
 
 ## Environnement de création
@@ -68,7 +70,6 @@ géométrie statique regroupée par matériau.
 - Objectif de 30 images/s sur téléphone mesuré avec le rendu matériel.
 - Longue session de plusieurs heures, appareil à faible mémoire ou connexion instable.
 - Validation artistique de toutes les faces de tous les modèles.
-- Publication Vercel, domaine réel, intégration au dépôt existant.
 - Mode hors connexion, synchronisation multiappareil automatique.
 - Équilibrage final, progression longue, animation de nage et physique réaliste.
 

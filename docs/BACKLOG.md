@@ -5,7 +5,7 @@
 - [x] Installer et lancer le dossier sur son PC (Node 24.15.0, npm ci, check).
 - [x] Identifier Vercel et son dépôt (`portgas-d-w/fishdex-landing`, `main`).
 - [x] Publier la préproduction (30/09, voir docs/VERCEL.md).
-- [ ] Vérifier la préproduction, remplacer la production autorisée et confirmer le déploiement Git.
+- [x] Vérifier la préproduction, remplacer la production autorisée et confirmer le déploiement Git (30/09, www.fishdex.fr, smoke 4/4).
 - [x] Arrêter le moulinet sur pagehide et suspendre le rendu pendant les modales/pauses.
 - [x] Isoler les E2E sur 5174 ; vérifier le vrai build et les appuis tactiles Chromium.
 - [ ] Tester Safari sur iPhone réel : lancer, touche, maintien, relâchement hors bouton,

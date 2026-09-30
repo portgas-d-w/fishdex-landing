@@ -31,11 +31,28 @@ Avant mutation, vérifier `vercel project inspect --non-interactive`.
 - Préproduction CLI : https://fishdex-landing-3nj1ud5e4-portgas-d-ws-projects.vercel.app
 - ID `dpl_2uxax1Q97qz5s1uhMvsfxgtQDSsK`, READY, build 19 s.
 - Inspecteur : https://vercel.com/portgas-d-ws-projects/fishdex-landing/2uxax1Q97qz5s1uhMvsfxgtQDSsK
-- Production du jeu : en cours ; lire la clôture avant reprise.
+- Production publique du jeu : **https://www.fishdex.fr**, READY, depuis `main`.
+- Déploiement du code testé : `dpl_97wFheK6unbYaN84pT9of1oP7XUG`,
+  https://fishdex-landing-4pju52c45-portgas-d-ws-projects.vercel.app ; build 19 s.
+- Commit applicatif testé : `ffe65508436c882e7e056ef8b893d82214217c11`.
+- Production publique : smoke 4/4 (52,2 s), sans token ni authentification.
+- HTTP 200, redirection du domaine nu vers www et titre du jeu confirmés.
+- Logs Vercel : requête limitée aux erreurs des 15 dernières minutes, aucun événement renvoyé.
+  Site statique : ce n’est pas une télémétrie des navigateurs ; leur console est contrôlée par smoke.
 - Build distant réussi avec `npm ci`, TypeScript, Vite ; avertissement chunk Babylon conservé.
 - `vercel curl` : HTTP 200 ; la CLI a créé son bypass officiel pour cet accès.
 - Windows : `npm run check` réussi (9 tests), E2E 6/6 (16,9 s), smoke build local 4/4 (51,9 s).
 - Préproduction protégée : smoke 4/4 (55,6 s), avec token OIDC court de développement.
+- Préproduction Git définitive, commit `ffe65508436c882e7e056ef8b893d82214217c11` :
+  https://fishdex-landing-i6hgrro7f-portgas-d-ws-projects.vercel.app
+- ID `dpl_HvX3f8fhR1ozxzw6jugttRjfDjME`, READY, build 19 s, smoke 4/4 (56,2 s).
+  Les captures bureau/mobile montrent les poissons ; correction du premier rendu incluse.
+- Le push de cette version sur `main` a été effectué après validation, sans force-push.
+
+La clôture du relais est ensuite poussée dans un commit de documentation : elle ne
+modifie ni les sources, ni le lockfile, ni les ressources du jeu. Les prochains pushes
+sur main utilisent la même intégration Git ; les branches de travail génèrent des previews.
+L’affectation automatique des domaines est active et leur protection est conservée.
 
 Le smoke joue en temps réel sans QA : souris sur bureau, événements tactiles Chromium
 sur mobile, relâchement hors bouton, capture, vrai aperçu GLB, sauvegarde/rechargement,
@@ -55,7 +72,7 @@ npm run test:e2e
 npm run test:smoke
 # Préproduction protégée ; token jamais affiché ni committé.
 vercel env pull .env.local --yes --scope portgas-d-ws-projects
-$env:GAME_URL = 'https://fishdex-landing-3nj1ud5e4-portgas-d-ws-projects.vercel.app'
+$env:GAME_URL = 'https://fishdex-landing-i6hgrro7f-portgas-d-ws-projects.vercel.app'
 node --env-file=.env.local node_modules/@playwright/test/cli.js test --config playwright.smoke.config.ts
 # Production publique : ne pas charger le token de développement.
 $env:GAME_URL = 'https://www.fishdex.fr'
