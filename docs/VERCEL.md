@@ -1,5 +1,21 @@
 # Vercel — migration de FishDex vers Au fil de l’eau
 
+## Mission autonome 0.2.0 — 1 octobre 2026
+
+Cible et liaison revérifiées : `portgas-d-ws-projects/fishdex-landing`, même ID, dépôt et main, Vite/Node 24/npm ci/dist. Aucun domaine ni paramètre de protection modifié.
+
+- Application : commit P4 `3319536`, préproduction Git `b77a4ee4a8dfd6f067d3b920821bf1f1dbd1d76b`.
+- Deux uploads CLI échouent `fetch failed` avant création de déploiement ; publication par l’intégration Git existante.
+- Preview : https://fishdex-landing-9jbp3yk7v-portgas-d-ws-projects.vercel.app
+- ID `dpl_6oo2HHjwRyLiT2FPELsTXyKK7q4e`, READY, build 1 min 14 s.
+- Smoke protégé : **6/6 (1,2 min)**, partie réelle, souris/tactile Chromium, quinze GLB, portraits, achats, aquarium, persistance et transfert du carnet. OIDC local limité à l’origine ; token non affiché/non committé, traces désactivées.
+- Production 0.2 en cours via main après cette validation ; contrôle public à suivre.
+- Retour 0.1 conservé : tag publié `archive/au-fil-de-leau-before-mission-2026-10-01`, commit `f21c700`, déploiement `dpl_Gp7gow3AekUDTWVL9FDBbnmrANse`, https://fishdex-landing-ziwssiubj-portgas-d-ws-projects.vercel.app. Les sauvegardes v2 peuvent s’exporter mais ne sont pas lisibles par l’ancienne application v1 : sauvegarder le JSON avant retour applicatif.
+
+Les quinze GLB restent publics pour le rendu ; ZIP source, .env et archive FishDex exclus. Ancien FishDex et instructions de promotion/restauration conservés ci-dessous.
+
+## Historique de la livraison 0.1
+
 État au 30 septembre 2026, Codex Windows. Le propriétaire a autorisé le remplacement
 après contrôles de préproduction. Ne pas redemander la cible.
 

@@ -1,53 +1,32 @@
-# Architecture du prototype
+# Architecture — version 0.2.0, 1 octobre 2026
 
-## Choix
+Babylon.js 9.28.0 core/loaders cohérents, TypeScript 5.9.3 et Vite 8.3.1 verrouillés. Production statique ; aucun backend, compte ou service externe pendant une partie.
 
-Babylon.js 9.28.0, TypeScript 5.9.3 et Vite 8.3.1, versions exactes et lockfile.
-Pas de React, de backend, de base de données ou de compte joueur pour cette boucle.
-Le serveur Vite sert au développement ; la production est constituée de fichiers statiques.
+## Règles indépendantes du navigateur
 
-## Responsabilités
+- src/game/catalog.ts : quinze espèces, habitats et pondérations appâts/méthodes.
+- src/game/casting.ts : geste normalisé, limites d’eau/portée et habitat par coordonnées.
+- src/game/fishing.ts : machine idle → casting → waiting → bite → fighting → caught/lost ; simulation à pas 1/60 s. Coordonnées de poisson, orientation, puissance de canne, récupération, tension, casse/décrochage et capture contrôlée. Leurre et fond ont des règles distinctes.
+- src/game/specimens.ts : identité individuelle, forme/robe/Mirage et relation longueur/poids.
+- src/game/economy.ts : récompenses, prix, matériel, niveaux et badges centralisés.
+- src/game/save.ts : schéma v2, migration v1, parsing restrictif, records historiques/individuels, unicité et achats. Même clé au-fil-de-leau.save.v1 ; import 5 Mo/10 000 captures, validation et confirmation avant remplacement.
+- src/game/swimming.ts : courbe centrale inextensible de nage ; rendu et DOM indépendants.
+- src/game/fishdex.json : catalogue propre importé des fichiers réels, provenance/SHA256 ; aucune dépendance d’exécution au projet FishDex.
 
-`game/catalog.ts` : espèces et paramètres de gameplay, postes, pondérations d’appâts.
-Les probabilités, tailles et forces sont réglées pour le jeu ; ce n’est pas un simulateur scientifique.
+## Rendu et interface
 
-`game/fishing.ts` : machine à états et combat, indépendante du navigateur.
-Séquence idle → casting → waiting → bite → fighting → caught/lost → idle.
-La simulation avance à pas fixe de 1/60 s, les pauses ne consomment pas la fenêtre de ferrage.
-Les transitions remettent à zéro le maintien du moulinet.
+src/render/world.ts : paysage procédural, shader eau, montage, fil épais attaché à la canne flexible, cible/trajectoire du lancer. Le bouchon s’immerge pendant le combat ; fond/leurre n’en utilisent pas. Eco plafonné à 30 rendus/s et résolution 1,25×, haute qualité à 2×. Limites configurées, pas garantie de fluidité appareil.
 
-`game/save.ts` : schéma v1 du carnet, parsing restrictif, validation et stockage.
-Clé `au-fil-de-leau.save.v1`. Les imports sont limités à 100 Ko et demandent une
-confirmation visible avant de remplacer les prises. Pas de HTML importé depuis le fichier.
+src/render/fish-preview.ts : moteur créé à la première fiche, GLB à la demande, première image attendue après matériaux WebGL. Robe exacte, débattement intermittent, tapis ≥60 cm, photo 480×240. Boucle arrêtée et modèle libéré à la fermeture. src/render/appearance.ts permet de remplacer modèle/forme/robe sans réécrire la progression ; src/render/swim.ts déforme géométrie et normales sans détacher les nageoires.
 
-`render/world.ts` : environnement procédural, caméra fixe, eau par shader,
-ponton, végétation, bouchon, ligne et ondes. Rendu limité à 30 images/s en économie,
-résolution limitée à 1,25× ; qualité élevée jusqu’à 2× et fréquence de l’écran.
-Ce sont des limites visées, pas des performances mesurées sur un téléphone physique.
+src/render/aquarium.ts : scène séparée seulement lorsqu’elle est ouverte, cinq individus maximum, proportion commune et niveaux espacés, trajectoires déphasées, fond/sol/lumière et décor. Chargements tardifs ignorés après fermeture, moteur/scène supprimés. Étang arrêté derrière toutes les modales ; aquarium arrêté derrière une fiche et lorsque la page est cachée.
 
-`render/fish-preview.ts` : deuxième contexte WebGL créé à la première prise pour
-montrer son GLB. Ressources de la prise supprimées à la fermeture, boucle stoppée.
-Pas de nage animée dans cette version : le modèle est présenté avec une caméra oscillante.
+src/main.ts : interface, gestes avec identifiants distincts, clavier, pauses, modales et orchestration. Toute interruption arrête les commandes maintenues. Import confirmé remet la partie au repos avant de charger sa progression. L’interface reste regroupée ici ; extraire des contrôleurs si un changement le justifie.
 
-`main.ts` : DOM, contrôles pointer/keyboard, modales, pause et orchestration.
-`ui/audio.ts` : sons synthétisés via Web Audio, après interaction et si activés.
-Pas de requêtes vers une API de son ou d’image.
+src/ui/photos.ts : Blob IndexedDB indépendants du JSON, ≤100 Ko, 128 dernières images, erreur/délai non bloquant ; un souvenir peut régénérer son portrait. src/ui/audio.ts : Web Audio facultatif après geste, oscillateurs libérés, aucun appel à un service de sons.
 
-## Limites à traiter
+## Validation et limites
 
-- Paysage de prototype, rendu de l’eau simplifié sans réflexion physique.
-- Effets du combat limités au bouchon et à la ligne ; pas de canne animée ni de poisson qui saute.
-- Le module principal regroupe encore beaucoup d’interface. Extraire des contrôleurs
-  d’UI seulement lorsque l’ajout de fonctions le justifie.
-- La scène végétale mérite une mesure de draw calls et de temps GPU sur téléphone.
-- Un contexte supplémentaire pour la prise est acceptable pour ce prototype mais
-  doit être testé sur Safari ; un viewport unique reste une option d’optimisation.
-- Pas de service worker, pas de jeu hors connexion garanti, pas de synchronisation cloud.
-- Pas de progression économique, d’amélioration de matériel ou de cycle météo.
+Tests Node du TypeScript effaçable ; E2E Vite sur 5174 avec QA uniquement DEV + VITE_E2E=1. QA absente du build. Smoke du build et des déploiements en temps réel, sans QA, bureau et Chromium tactile. Une seule suite/worker à la fois sur ce PC en rendu logiciel.
 
-## Contrat de test
-
-Les tests unitaires tournent avec Node et le TypeScript effaçable, sans transpileur de test.
-Playwright lance le serveur Vite avec `VITE_E2E=1`. Une petite interface de test donne
-accès à l’état et à l’avancement de la simulation. Elle n’existe que lorsque
-`import.meta.env.DEV` est vrai et cette variable activée : absente du build de production.
+Nage et robes provisoires sans rig ; respiration, suspension et épuisette absentes. Eau simplifiée sans réflexion physique, pas de météo, PWA ou synchronisation. Mesures locales ~22–24 FPS eco en SwiftShader, pas de test Safari/iPhone réel. Mesurer performances/chauffe puis optimiser avant effets lourds. Journal JSON fini : archivage nécessaire avant 10 000 captures/5 Mo.

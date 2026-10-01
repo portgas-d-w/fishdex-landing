@@ -1,4 +1,6 @@
-# Vérification de la livraison 0.1 — 30 septembre 2026
+# Vérifications — livraisons 0.1 et 0.2
+
+Les résultats actuels du 1 octobre 2026 (version 0.2) sont dans la dernière section. Les résultats 0.1 ci-dessous sont conservés comme historique ; ils ne remplacent pas les mesures récentes.
 
 ## Complément sur le PC Windows — 30 septembre 2026
 
@@ -97,3 +99,5 @@ Node 24.15.0, npm 11.12.1, Playwright 1.58.2/Chromium 145, Windows headless ANGL
 - Build : chunk principal 1 672,35 Ko brut / 405,31 Ko gzip, avertissement Vite ; quinze GLB 1 731 232 octets ; 88 WebP 556 892 octets. Ressources chargées à la demande.
 
 Les tests de logique couvrent cible/refus, orientation, casse/décrochage, capture de toutes les espèces accessibles, migration, unicité, imports invalides, achats, limite des favoris, longueur de la courbe de nage et différences leurre/fond. Les tests ne prouvent pas le plaisir du combat ni la plausibilité anatomique finale. Respiration, suspension, arrivée à l’épuisette et performances réelles restent non validées. Publication distante : docs/VERCEL.md.
+
+Préproduction Git b77a4ee : smoke protégé **6/6 (1,2 min)** sur URL exacte dans VERCEL.md. Même scénarios sans QA que le build local. OIDC uniquement pour l’origine de preview, aucune trace contenant le token ; captures de preview conservées. Première fiche et aquarium effectivement visibles.

@@ -42,3 +42,9 @@ Paysage, eau, favicon et icônes : géométrie/code procédural ou SVG du projet
 Sons : synthèse locale. Polices : polices système, aucune dépendance à un CDN de fontes.
 Tripo n’est pas nécessaire à ce prototype ; conserver son usage pour les objets
 qui apporteraient un bénéfice identifié (canne, cabane, accessoires) après validation du style.
+
+## Extension du 1 octobre 2026 — état actuel
+
+Les informations de préparation ci-dessus décrivent la livraison initiale. La version 0.2 contient quinze modèles, reconvertis avec Blender 5.1.2 puis optimisés en JPEG embarqué 512², 1 731 232 octets au total. L’inventaire des 50 FBX, les associations biologiques, l’atlas et les limites de nage procédurale se trouvent dans ASSETS_POISSONS.md et PACK_INVENTAIRE.json.
+
+88 illustrations statiques réutilisées depuis les fichiers FishDex, optimisées en WebP ; provenance contrôlée, aucun contenu utilisateur ni secret copié. Archive source toujours privée, jamais ajoutée au dépôt ou au déploiement. Les ressources GLB nécessaires au rendu du jeu sont servies publiquement ; elles ne constituent pas une redistribution autonome du pack original.
