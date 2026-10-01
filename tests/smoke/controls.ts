@@ -14,6 +14,7 @@ export async function realFishing(page: Page, context: BrowserContext, mobile: b
   await expect(page.locator('body')).toHaveAttribute('data-phase', 'bite');
   await page.locator('#strike').click();
   await expect(page.locator('body')).toHaveAttribute('data-phase', 'fighting');
+  await expect(page.locator('#tension-display')).toBeVisible();
   const b = (await page.locator('#reel-control').boundingBox())!;
   const cx = b.x + b.width / 2, cy = b.y + b.height / 2;
   const rb = (await page.locator('#rod-control').boundingBox())!;

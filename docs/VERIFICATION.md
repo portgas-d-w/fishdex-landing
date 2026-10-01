@@ -1,6 +1,6 @@
-# Vérifications — livraisons 0.1 et 0.2
+# Vérifications — livraisons 0.1 à 0.3.1
 
-Les résultats actuels du 1 octobre 2026 (version 0.2) sont dans la dernière section. Les résultats 0.1 ci-dessous sont conservés comme historique ; ils ne remplacent pas les mesures récentes.
+Les derniers résultats du 1 octobre 2026 (version 0.3.1) sont dans la dernière section. Les livraisons précédentes ci-dessous sont conservées comme historique ; elles ne remplacent pas les vérifications récentes.
 
 ## Complément sur le PC Windows — 30 septembre 2026
 
@@ -127,3 +127,5 @@ Production publique : main dae5e93, READY, smoke 6/6 (1,5 min), vrais gestes/cap
 ## Précision jauge 0.3.1 — 1 octobre 2026
 
 Dernière instruction utilisateur : ajouter une jauge comme sur l’image. Barre compacte non interactive entre les deux commandes, visible au combat, repère correspondant exactement à la tension de canne ; aucun panneau sur le poisson. npm run check : 23 tests, TypeScript/build réussis. E2E ciblés 9 réussis / 1 ignoré (1,2 min), valeur de jauge comparée à la simulation, hors combat masquée, quatre orientations extrêmes, menus et deux doigts. Portrait 390×844, bureau 1440×900 et paysage 844×390 inspectés ; images gauge-* conservées. Smoke build final sans QA 6/6 (1,5 min), captures réelles souris/tactile, achats/bassin/photos/persistance/export-import et quinze GLB. Règles et schéma v2 inchangés ; aucune nouvelle promesse de performance ni test téléphone physique.
+
+Preview 0.3.1 e2af6e7 READY, smoke protégé 6/6 (2,0 min), jauge visible vérifiée, captures réelles et fonctions conservées.

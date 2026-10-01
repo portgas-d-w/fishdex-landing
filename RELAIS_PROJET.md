@@ -4,9 +4,9 @@
 
 ## Précision utilisateur — jauge compacte 0.3.1
 
-Dernier message : ajouter une jauge comme sur l’image de référence. Cette instruction remplace le retrait de la jauge en 0.3. La barre Tension du fil verte/jaune/orange et son repère sont ajoutés entre les deux commandes, uniquement en combat ; elle montre la même valeur qui courbe la canne, n’intercepte aucun geste et n’ajoute aucun descriptif du poisson. Règles, commandes et sauvegardes inchangées. npm run check réussi : 23 tests, TypeScript, build ; 9 tests navigateur ciblés réussis / 1 ignoré (1,2 min), jauge et commandes inspectées portrait/bureau/paysage, valeur égale à la tension de simulation ; smoke du build final sans QA 6/6 (1,5 min) ; preview/production à effectuer ; le déploiement documentaire 0.3 bd335a6 a été poussé avant cette nouvelle précision.
+Dernier message : ajouter une jauge comme sur l’image de référence. Cette instruction remplace le retrait de la jauge en 0.3. La barre Tension du fil verte/jaune/orange et son repère sont ajoutés entre les deux commandes, uniquement en combat ; elle montre la même valeur qui courbe la canne, n’intercepte aucun geste et n’ajoute aucun descriptif du poisson. Règles, commandes et sauvegardes inchangées. npm run check réussi : 23 tests, TypeScript, build ; 9 tests navigateur ciblés réussis / 1 ignoré (1,2 min), jauge et commandes inspectées portrait/bureau/paysage, valeur égale à la tension de simulation ; smoke du build final sans QA 6/6 (1,5 min) ; application e2af6e7 poussée en preview Git https://fishdex-landing-f8xmkxn5u-portgas-d-ws-projects.vercel.app ; preview READY dpl_Dm6dVWPsknzwA4qF2JPJYZzTzGmy, smoke protégé 6/6 (2,0 min), jauge visible et gestes/captures/persistance conservés. Passage sur main puis vérification publique. Le déploiement documentaire 0.3 bd335a6 a été poussé avant cette nouvelle précision.
 
-## État actuel — correction immersive terminée
+## Livraison 0.3 — correction immersive terminée
 
 Demande et précision par image utilisateur appliquées. Scène entière, Menu et Matériel compacts ; carnet/FishDex, aquarium, boutique, progression et réglages dans des écrans avec retour. Menu suspend le combat et bloque les gestes de scène. Lancer exclusivement par glissement, prévisualisation/cible réelle et annulation/refus hors eau/portée ; aucun bouton/poste automatique.
 
