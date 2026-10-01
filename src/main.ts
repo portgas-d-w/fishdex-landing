@@ -13,6 +13,8 @@ import { ITEMS, BADGES, levelFor } from './game/economy';
 import type { ItemId } from './game/economy';
 import type { Specimen } from './game/specimens';
 import { getPhoto, storePhoto } from './ui/photos';
+import { Aquarium } from './render/aquarium';
+import { Engine } from '@babylonjs/core/Engines/engine';
 
 const icon = (path: string) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
 const icons = {
@@ -55,6 +57,7 @@ el('app').insertAdjacentHTML('beforeend', `
 document.querySelector('.topbar')!.insertAdjacentHTML('afterend', '<nav class="travel-nav" aria-label="Explorer le jeu"><button id="dex-open">Encyclopédie</button><button id="shop-open">Boutique</button><button id="aquarium-open">Aquarium</button><span id="player-progress"></span></nav>');
 el('collection-list').insertAdjacentHTML('afterend', '<h3 class="section-title">Mes spécimens</h3><p class="intro" id="journal-intro"></p><div id="journal-list" class="journal-list"></div><button class="secondary" id="journal-more" hidden>Souvenirs suivants</button><div id="mastery-list" class="tools"></div>');
 el('catch-length').parentElement!.insertAdjacentHTML('afterend', '<p id="catch-weight" class="intro"></p><p id="catch-reward" class="reward-line"></p><p id="photo-state" class="modal-footnote"></p><button id="favorite-catch" class="secondary">Ajouter aux favoris</button>');
+el('app').insertAdjacentHTML('beforeend', '<dialog id="aquarium" class="modal wide-modal"><div class="modal-header"><div><div class="eyebrow">Une pause sous la surface</div><h2>Mon aquarium</h2></div><button class="close" data-close="aquarium" aria-label="Fermer l’aquarium">×</button></div><canvas id="aquarium-canvas" aria-label="Aquarium 3D de vos cinq favoris"></canvas><p class="intro" id="aquarium-state">Choisissez vos spécimens favoris dans le carnet.</p><div class="filters"><select id="aquarium-choice" aria-label="Choisir un spécimen"></select><button class="secondary" id="aquarium-add">Ajouter</button></div><div id="aquarium-favorites" class="collection-list"></div><h3 class="section-title">L’ambiance du bassin</h3><div class="aquarium-settings"><label>Sol<select id="aq-floor"><option value="sand">Sable clair</option><option value="gravel">Gravier sombre</option></select></label><label>Fond<select id="aq-background"><option value="dawn">Aube</option><option value="night">Nuit</option></select></label><label>Lumière<select id="aq-light"><option value="warm">Chaleureuse</option><option value="cool">Fraîche</option></select></label><label><input id="aq-plants" type="checkbox"> Plantes achetées</label><label><input id="aq-rocks" type="checkbox"> Rochers achetés</label></div><p class="modal-footnote">Cinq individus, leurs robes et leurs gabarits. Aucun entretien ni pénalité d’absence. Les plantes et rochers se trouvent en boutique.</p></dialog>');
 let storage: Storage | undefined;
 try { storage = window.localStorage; } catch { /* navigation privée restrictive */ }
 const loaded = storage ? loadSave(storage) : { data: emptySave(), warning: 'Sauvegarde locale indisponible. Pensez à exporter le carnet.' };
@@ -71,6 +74,8 @@ let pendingImport: SaveData | undefined;
 let catchViewRequest = 0;
 let storageWarningShown = false;
 let qaSimulationPaused = false;
+let aquarium: Aquarium | undefined;
+let aquariumRequest = 0;
 let viewedSpecimen: Specimen | undefined;
 let liveCatchView = false;
 let journalLimit = 30;
@@ -122,6 +127,26 @@ function refreshDex() {
 function refreshShop() {
   el('shop-balance').textContent = `${save.coins} écus · Niveau ${levelFor(save.xp)} (${save.xp} XP). Matériel actuel : ${ITEMS.find(i => i.id === save.equipped)!.name}.`;
   el('shop-list').innerHTML = ITEMS.map(i => `<article class="shop-item"><h3>${i.name}</h3><p>${i.description}</p><button class="secondary" data-buy="${i.id}" ${save.inventory.includes(i.id) ? 'disabled' : ''}>${save.inventory.includes(i.id) ? 'Possédé' : `${i.price} écus · Acheter`}</button>${i.kind === 'rod' && save.inventory.includes(i.id) ? `<button class="secondary" data-equip="${i.id}" ${save.equipped === i.id || game.phase !== 'idle' ? 'disabled' : ''}>${save.equipped === i.id ? 'Équipée' : game.phase !== 'idle' ? 'Après cette partie' : 'Équiper'}</button>` : ''}</article>`).join('');
+}
+function refreshAquariumControls() {
+  const favorites = save.favorites.map(id => save.journal.find(s => s.id === id)!);
+  el('aquarium-choice').innerHTML = save.journal.filter(s => !save.favorites.includes(s.id)).slice().reverse().map(s => `<option value="${escape(s.id)}">${SPECIES.find(f => f.id === s.speciesId)!.name} · ${s.length} cm · ${new Date(s.date).toLocaleDateString('fr-FR')}</option>`).join('') || '<option value="">Pêchez un nouveau souvenir</option>';
+  el<HTMLButtonElement>('aquarium-add').disabled = !save.journal.some(s => !save.favorites.includes(s.id));
+  el('aquarium-favorites').innerHTML = favorites.map(s => `<article class="fish-entry"><div><h3>${SPECIES.find(f => f.id === s.speciesId)!.name}</h3><p>${s.length} cm · ${s.weight.toLocaleString('fr-FR')} kg${s.mirage ? ' · Mirage' : ''}</p><button class="secondary" data-aq-view="${escape(s.id)}">Fiche</button><button class="secondary" data-aq-remove="${escape(s.id)}">Retirer</button></div></article>`).join('');
+  el<HTMLSelectElement>('aq-floor').value = save.aquarium.floor; el<HTMLSelectElement>('aq-background').value = save.aquarium.background; el<HTMLSelectElement>('aq-light').value = save.aquarium.light;
+  for (const id of ['plants', 'rocks'] as const) { el<HTMLInputElement>(`aq-${id}`).checked = save.aquarium[id]; el<HTMLInputElement>(`aq-${id}`).disabled = !save.inventory.includes(id); }
+}
+async function loadAquarium() {
+  const request = ++aquariumRequest; aquarium?.dispose(); aquarium = undefined;
+  el('aquarium-canvas').dataset.loaded = 'false'; el('aquarium-state').textContent = 'Le bassin se réveille…'; refreshAquariumControls();
+  try {
+    if (request !== aquariumRequest) return;
+    aquarium = new Aquarium(el<HTMLCanvasElement>('aquarium-canvas'), save.settings.quality); aquarium.customize(save.aquarium);
+    const result = await aquarium.show(save.favorites.map(id => save.journal.find(s => s.id === id)!));
+    if (request !== aquariumRequest) return;
+    el('aquarium-canvas').dataset.loaded = 'true';
+    el('aquarium-state').textContent = `${result.loaded} / 5 favoris dans le bassin.${result.errors ? ' Un modèle n’a pas pu être chargé ; vos favoris sont conservés.' : result.loaded ? ' Une nage paisible, chacun à son rythme.' : ' Ajoutez des spécimens depuis votre carnet.'}`;
+  } catch { if (request === aquariumRequest) el('aquarium-state').textContent = 'Le bassin n’a pas pu démarrer. Fermez et réessayez ; vos favoris sont conservés.'; }
 }
 function refreshSettings() {
   el('sound').setAttribute('aria-pressed', String(save.settings.sound));
@@ -186,6 +211,7 @@ async function photograph(s: Specimen, request: number) {
   if (request === catchViewRequest) el('photo-state').textContent = ok ? 'Photo conservée sur cet appareil. Votre souvenir reste dans le carnet.' : 'Photo indisponible. Votre capture et ses gains sont conservés.';
 }
 async function showSpecimen(s: Specimen) {
+  aquarium?.pause();
   viewedSpecimen = s; liveCatchView = false; const fish = SPECIES.find(f => f.id === s.speciesId)!;
   el('catch-heading').textContent = 'Un souvenir au bord de l’eau'; el('catch-name').textContent = fish.name; el('catch-latin').textContent = fish.latin; el('catch-length').textContent = s.length.toLocaleString('fr-FR'); el('catch-description').textContent = fish.description;
   el('catch-badges').textContent = s.mirage ? 'Mirage · Variante du jeu' : '';
@@ -261,6 +287,20 @@ el('help-open').onclick = () => openModal('help');
 el('dex-open').onclick = () => { refreshDex(); openModal('encyclopedia'); };
 for (const id of ['dex-search', 'dex-category', 'dex-state']) el(id).addEventListener('input', refreshDex);
 el('shop-open').onclick = () => { refreshShop(); openModal('shop'); };
+el('aquarium-open').onclick = () => { openModal('aquarium'); void loadAquarium(); };
+el('aquarium-add').onclick = () => { const id = el<HTMLSelectElement>('aquarium-choice').value; if (!id) return; const error = toggleFavorite(save, id); if (error) { toast(error); return; } saveNow(); refreshCollection(); void loadAquarium(); };
+el('aquarium-favorites').onclick = event => {
+  const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button'); if (!button) return;
+  if (button.dataset.aqRemove) { toggleFavorite(save, button.dataset.aqRemove); saveNow(); refreshCollection(); void loadAquarium(); }
+  if (button.dataset.aqView) { const s = save.journal.find(s => s.id === button.dataset.aqView); if (s) void showSpecimen(s); }
+};
+for (const key of ['floor', 'background', 'light', 'plants', 'rocks'] as const) el(`aq-${key}`).addEventListener('change', () => {
+  if (key === 'plants' || key === 'rocks') save.aquarium[key] = save.inventory.includes(key) && el<HTMLInputElement>(`aq-${key}`).checked;
+  else if (key === 'floor') save.aquarium.floor = el<HTMLSelectElement>('aq-floor').value as SaveData['aquarium']['floor'];
+  else if (key === 'background') save.aquarium.background = el<HTMLSelectElement>('aq-background').value as SaveData['aquarium']['background'];
+  else save.aquarium.light = el<HTMLSelectElement>('aq-light').value as SaveData['aquarium']['light'];
+  saveNow(); aquarium?.customize(save.aquarium);
+});
 el('shop-list').onclick = event => {
   const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button'); if (!button) return;
   if (button.dataset.buy) { const error = purchase(save, button.dataset.buy as ItemId); toast(error || 'Achat ajouté à votre inventaire.'); }
@@ -277,7 +317,8 @@ el('favorite-catch').onclick = () => { if (!viewedSpecimen) return; const error 
 document.querySelectorAll<HTMLButtonElement>('[data-close]').forEach(button => button.onclick = () => closeModal(button.dataset.close!));
 document.querySelectorAll<HTMLDialogElement>('dialog').forEach(dialog => dialog.addEventListener('close', () => {
   overlayPaused = !!document.querySelector('dialog[open]'); release();
-  if (dialog.id === 'caught') { catchViewRequest++; preview?.hide(); viewedSpecimen = undefined; if (liveCatchView) { game.reset(); phaseChanged(); } }
+  if (dialog.id === 'caught') { catchViewRequest++; preview?.hide(); viewedSpecimen = undefined; if (liveCatchView) { game.reset(); phaseChanged(); } if (el<HTMLDialogElement>('aquarium').open) { refreshAquariumControls(); void loadAquarium(); } }
+  if (dialog.id === 'aquarium') { aquariumRequest++; aquarium?.dispose(); aquarium = undefined; }
 }));
 el('release-fish').onclick = () => closeModal('caught');
 el('sound').onclick = () => { save.settings.sound = !save.settings.sound; audio.enabled = save.settings.sound; void audio.unlock(); refreshSettings(); saveNow(); };
@@ -307,10 +348,11 @@ el('confirm-import').onclick = () => {
   saveNow(); refreshCollection(); refreshSettings(); toast('Votre carnet a été restauré.');
 };
 el('cancel-import').onclick = () => { pendingImport = undefined; el('import-review').hidden = true; };
-function pauseManually() { release(); cancelGesture(); if (!overlayPaused) { manualPaused = true; el('paused').hidden = false; } }
+function pauseManually() { release(); cancelGesture(); aquarium?.pause(); preview?.pause(); if (!overlayPaused) { manualPaused = true; el('paused').hidden = false; } }
 window.addEventListener('blur', pauseManually);
 window.addEventListener('pagehide', () => { pauseManually(); preview?.pause(); });
-document.addEventListener('visibilitychange', () => { if (document.hidden) { pauseManually(); preview?.pause(); } else if (el<HTMLDialogElement>('caught').open) preview?.resume(); });
+document.addEventListener('visibilitychange', () => { if (document.hidden) { pauseManually(); preview?.pause(); } else if (el<HTMLDialogElement>('caught').open) preview?.resume(); else if (el<HTMLDialogElement>('aquarium').open) aquarium?.resume(); });
+window.addEventListener('focus', () => { if (el<HTMLDialogElement>('caught').open) preview?.resume(); else if (el<HTMLDialogElement>('aquarium').open) aquarium?.resume(); });
 el('resume').onclick = () => { manualPaused = false; el('paused').hidden = true; };
 
 refreshCollection(); refreshSettings(); renderPhase();
@@ -346,7 +388,7 @@ try {
 if (import.meta.env.DEV && import.meta.env.VITE_E2E === '1') {
   Object.assign(window, { __fishingQA: {
     pauseSimulation: () => { qaSimulationPaused = true; },
-    snapshot: () => ({ phase: game.phase, tension: game.tension, progress: game.progress, reeling: game.reeling, pulling: game.pulling, total: save.total, paused: manualPaused || overlayPaused }),
+    snapshot: () => ({ phase: game.phase, tension: game.tension, progress: game.progress, reeling: game.reeling, pulling: game.pulling, total: save.total, paused: manualPaused || overlayPaused, target: game.target, yaw: game.rodYaw, lift: game.rodLift, aquarium: aquarium?.diagnostics(), engines: Engine.Instances.length }),
     advance: (seconds: number, mode?: 'smart') => { for (let i = 0; i < seconds * 60; i++) { if (mode === 'smart') game.reeling = game.tension < (game.pulling ? 0.35 : 0.65); game.update(1 / 60); phaseChanged(); if (['caught', 'lost', 'bite'].includes(game.phase)) break; } },
   } });
 }

@@ -2,13 +2,13 @@ import { Color3 } from '@babylonjs/core/Maths/math.color';
 import type { AssetContainer } from '@babylonjs/core/assetContainer';
 import type { Specimen } from '../game/specimens';
 import type { SpeciesId } from '../game/catalog';
-// Une seule correspondance remplaçable, indépendante de la progression.
+// Une seule correspondance remplaÃ§able, indÃ©pendante de la progression.
 export const VISUALS: Record<SpeciesId, { model: string; tailSign: number; swim: 'body-wave' }> = {
-  roach: { model: 'Roach', tailSign: -1, swim: 'body-wave' },
-  perch: { model: 'EuropeanPerch', tailSign: -1, swim: 'body-wave' },
-  carp: { model: 'CommonCarp', tailSign: -1, swim: 'body-wave' },
-  pike: { model: 'NorthernPike', tailSign: -1, swim: 'body-wave' },
-  zander: { model: 'Zander', tailSign: -1, swim: 'body-wave' },
+  roach: { model: 'Roach', tailSign: 1, swim: 'body-wave' },
+  perch: { model: 'EuropeanPerch', tailSign: 1, swim: 'body-wave' },
+  carp: { model: 'CommonCarp', tailSign: 1, swim: 'body-wave' },
+  pike: { model: 'NorthernPike', tailSign: 1, swim: 'body-wave' },
+  zander: { model: 'Zander', tailSign: 1, swim: 'body-wave' },
 };
 export function applyAppearance(container: AssetContainer, specimen?: Pick<Specimen, 'coloration' | 'mirage'>) {
   for (const material of container.materials) {
