@@ -23,7 +23,6 @@ export async function realFishing(page: Page, context: BrowserContext, mobile: b
   let rod = { id: 10, x: x0, y: y0 }, reel = { id: 20, x: cx, y: cy };
   if (touch) {
     await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [rod] });
-    
   } else { await page.mouse.move(x0, y0); await page.mouse.down(); }
   const deadline = Date.now() + 85_000;
   while (Date.now() < deadline && await page.locator('body').getAttribute('data-phase') === 'fighting') {

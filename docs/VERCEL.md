@@ -1,5 +1,13 @@
 # Vercel — migration de FishDex vers Au fil de l’eau
 
+## Appui maintenu 0.4.1 — préproduction validée
+
+Projet, liaison et dépôt revérifiés : portgas-d-ws-projects/fishdex-landing, prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, Vite/Node 24/npm ci/build/dist ; CLI disponible 62.0.0. Aucun domaine ou paramètre de protection modifié.
+
+Application 882035b86373c4f419f00a18b6fbdc217f80910e sur codex/mouliner-appui. Preview READY https://fishdex-landing-n7hk9lqag-portgas-d-ws-projects.vercel.app, dpl_2uQcvDbThTWFPdFNcHG9oSktXkfE. Smoke ciblé protégé **2/2 (2,0 min)**, capture réelle bureau/mobile, modèle différé, photo et sauvegarde/transfert. Fusion fast-forward vers main après ce contrôle ; domaine public à vérifier. Token local non affiché, traces désactivées, accès limité à cette origine.
+
+Retour 0.4 préservé : tag publié archive/au-fil-de-leau-before-hold-2026-10-01, base d6d9f907352297b39c685e2e9705ba816af7f728 ; précédent déploiement READY https://fishdex-landing-d5rsa5wmx-portgas-d-ws-projects.vercel.app, dpl_2PorgPdmwgH1qgEwVkqoA7xUqn7j. Même sauvegarde v2, anciens retours conservés.
+
 ## Gestes et combat 0.4.0 — publiée et vérifiée
 
 Projet et liaison revérifiés : portgas-d-ws-projects/fishdex-landing, prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, dépôt portgas-d-w/fishdex-landing, Vite/Node 24/npm ci/build/dist. CLI disponible 62.0.0. Aucun changement de domaines ou de protection.
