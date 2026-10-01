@@ -1,5 +1,13 @@
 # Vercel — migration de FishDex vers Au fil de l’eau
 
+## Gestes et combat 0.4.0 — préproduction vérifiée
+
+Projet et liaison revérifiés : portgas-d-ws-projects/fishdex-landing, prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, dépôt portgas-d-w/fishdex-landing, Vite/Node 24/npm ci/build/dist. CLI disponible 62.0.0. Aucun changement de domaines ou de protection.
+
+Application 3a2d06b19b27dec74cab8728e6952dc6cdf0ae42 sur codex/gestes-combat. Preview READY https://fishdex-landing-561eij874-portgas-d-ws-projects.vercel.app, dpl_7BHB69jgcKBK7x26wiW9DcjyQ4MC, build 27 s. Smoke protégé 6/6 (2,9 min), vraie capture souris/tactile, photos, sauvegarde/export/import, quinze GLB et achats/bassin. Token local limité à l’origine de la preview, traces désactivées ; aucun token affiché ou committé.
+
+Retour 0.3.1 publié : tag archive/au-fil-de-leau-before-touch-combat-2026-10-01, base a6ef66b52b2a9cfe7e540e638d4f1d58a34074f6 ; ancien déploiement READY https://fishdex-landing-52juimmn5-portgas-d-ws-projects.vercel.app, dpl_EjnkbkyJA9GibQ7H7ZHatzyRjr5x. Sauvegarde v2 inchangée. Fusion fast-forward vers main après ce contrôle ; validation publique à consigner ensuite.
+
 ## Jauge 0.3.1 — publiée et vérifiée
 
 Précision utilisateur : jauge compacte entre les commandes, même tension que la canne ; aucun descriptif de comportement. Build local vérifié index-D2VdAQ0C.js SHA256 afa1e0b368ddd2d564cb45af53cfc7e4539e96d6887d648b30936674b1263a3f ; check 23 tests, 9 E2E ciblés / 1 ignoré, smoke build 6/6 (1,5 min).
