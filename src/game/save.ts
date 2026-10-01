@@ -69,7 +69,7 @@ export function parseSave(raw: string): SaveData {
   }
   if (!Array.isArray(data.favorites) || data.favorites.length > 5 || new Set(data.favorites).size !== data.favorites.length || !data.favorites.every(id => typeof id === 'string' && ids.has(id))) throw new Error('Favoris invalides.');
   result.favorites = [...data.favorites]; result.xp = integer(data.xp); result.coins = integer(data.coins);
-  if (!Array.isArray(data.badges) || !data.badges.every(b => typeof b === 'string' && b in BADGES) || new Set(data.badges).size !== data.badges.length) throw new Error('Badges invalides.'); result.badges = [...data.badges];
+  if (!Array.isArray(data.badges) || !data.badges.every(b => typeof b === 'string' && Object.hasOwn(BADGES, b)) || new Set(data.badges).size !== data.badges.length) throw new Error('Badges invalides.'); result.badges = [...data.badges];
   if (!Array.isArray(data.inventory) || !data.inventory.includes('starter') || new Set(data.inventory).size !== data.inventory.length) throw new Error('Inventaire invalide.');
   result.inventory = data.inventory.map(i => choice(i, ITEMS.map(v => v.id)));
   result.equipped = choice(data.equipped, ITEMS.filter(i => i.kind === 'rod').map(i => i.id));

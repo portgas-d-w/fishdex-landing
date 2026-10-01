@@ -30,6 +30,7 @@ export class LakeWorld {
   private rod!: Mesh;
   private thickLine!: Mesh;
   private aimRing!: Mesh;
+  private lure!: Mesh;
   private trajectory!: ReturnType<typeof MeshBuilder.CreateLines>;
   private rodPath = Array.from({ length: 9 }, (_, i) => new Vector3(1.4, 0.8 + i * 0.16, -5.7 + i * 0.56));
   private random() { this.seed = (1664525 * this.seed + 1013904223) >>> 0; return this.seed / 4294967296; }
@@ -61,6 +62,7 @@ export class LakeWorld {
     const lineMat = this.material('#fff2bf'); lineMat.disableLighting = true; lineMat.emissiveColor = Color3.FromHexString('#fff2bf'); this.thickLine.material = lineMat;
     this.aimRing = MeshBuilder.CreateTorus('cast-target', { diameter: 0.8, thickness: 0.035, tessellation: 32 }, this.scene);
     this.aimRing.material = this.material('#f5dda1'); this.aimRing.setEnabled(false);
+    this.lure = MeshBuilder.CreateSphere('surface-lure', { diameter: 0.13, segments: 8 }, this.scene); this.lure.scaling.set(0.45, 0.4, 1.4); this.lure.material = this.material('#d8c476'); this.lure.setEnabled(false);
     this.trajectory = MeshBuilder.CreateLines('trajectory', { points: Array.from({ length: 17 }, () => Vector3.Zero()), updatable: true }, this.scene);
     this.trajectory.color = Color3.FromHexString('#f5dda1'); this.trajectory.setEnabled(false);
     this.bobber = new TransformNode('float', this.scene);
@@ -206,18 +208,22 @@ export class LakeWorld {
     const targetZ = game.target.z;
     this.castPoint.set(targetX, 0, targetZ);
     const show = ['casting', 'waiting', 'bite', 'fighting'].includes(game.phase);
-    this.bobber.setEnabled(show); this.line.setEnabled(false); this.thickLine.setEnabled(show);
+    this.bobber.setEnabled(show && game.method === 'float'); this.line.setEnabled(false); this.thickLine.setEnabled(show);
+    this.lure.setEnabled(show && game.method === 'lure' && game.phase !== 'fighting');
     const fighting = game.phase === 'fighting';
     const base = new Vector3(1.4, 0.8, -5.7);
     this.rodPath = Array.from({ length: 9 }, (_, i) => {
       const t = i / 8;
       return base.add(new Vector3((game.rodYaw * 3 - 0.1) * t + (fighting ? game.direction * game.tension * t * t * 0.7 : 0),
-        (0.8 + game.rodLift * 2.3) * t - (fighting ? game.tension * t * t * 1.1 : 0), 4.5 * t));
+        (0.8 + game.rodLift * 2.3) * t - (fighting ? game.tension * t * t * 1.1 : game.phase === 'bite' ? (0.35 + Math.sin(this.time * 12) * 0.12) * t * t : 0), 4.5 * t));
     });
     MeshBuilder.CreateTube('moving-rod', { path: this.rodPath, instance: this.rod }, this.scene);
     const cast = game.phase === 'casting' ? Math.min(1, game.elapsed / 1.1) : 1;
     this.bobber.position.set(targetX * cast, 0.035 + Math.sin(this.time * 2) * 0.022, -1 + (targetZ + 1) * cast);
     if (game.phase === 'casting') this.bobber.position.y += Math.sin(cast * Math.PI) * 2;
+    if (game.method === 'lure' && ['waiting', 'bite'].includes(game.phase)) this.bobber.position.set(game.fishPosition.x, 0.04, game.fishPosition.z);
+    if (game.method === 'bottom' && ['waiting', 'bite'].includes(game.phase)) this.bobber.position.y = -game.target.z * 0.2;
+    this.lure.position.copyFrom(this.bobber.position); this.lure.rotation.y = game.rodYaw;
     if (game.phase === 'bite') {
       this.bobber.position.y -= Math.abs(Math.sin(this.time * 12)) * 0.1;
       this.bobber.position.x += Math.sin(this.time * 4) * (game.pulling ? 0.28 : 0.05);
@@ -226,7 +232,7 @@ export class LakeWorld {
       this.bobber.position.set(game.fishPosition.x, game.progress > 0.90 ? 0.01 : game.fishPosition.y, game.fishPosition.z);
     }
     this.rings.forEach((ring, i) => {
-      ring.setEnabled(show && game.phase !== 'casting' && (!fighting || game.progress > 0.9));
+      ring.setEnabled(show && game.method !== 'bottom' && game.phase !== 'casting' && (!fighting || game.progress > 0.9));
       const t = (this.time * (game.phase === 'bite' ? 1.8 : 0.5) + i / 3) % 1;
       ring.position.copyFrom(this.bobber.position); ring.position.y = 0.047;
       ring.scaling.setAll(0.25 + t * 2.5);

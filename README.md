@@ -1,91 +1,42 @@
-# Au fil de l’eau — prototype 0.1
+# Au fil de l’eau — 0.2.0
 
-Jeu de pêche 3D solo pour navigateur, pensé d’abord pour le téléphone.
-Nom et direction artistique provisoires. Ce dossier est un chantier fonctionnel, pas un jeu terminé.
+Jeu de pêche 3D solo pour navigateur mobile, Babylon.js + TypeScript + Vite. Nom, décor et équilibrage provisoires. Sans compte, paiement, backend ni clé API.
 
-## Commencer sans écrire de code
+## Jouer et reprendre
 
-1. Extraire tout le dossier `au-fil-de-leau` sur le PC.
-2. Ouvrir ce dossier dans Codex ou Claude Code.
-3. Lui demander de lire `AGENTS.md`, puis `RELAIS_PROJET.md`, et de lancer le projet.
+Production : [www.fishdex.fr](https://www.fishdex.fr), projet existant fishdex-landing. État de la publication 0.2 : docs/VERCEL.md et RELAIS_PROJET.md. Le jeu remplace la landing autorisée ; le projet FishDex de référence reste inchangé.
 
-Le prompt prêt à donner à l’agent se trouve dans `DEMARRER_AVEC_CODEX.md`.
-Les dépendances ont été installées et vérifiées dans l’environnement de création.
-Sur un autre ordinateur, l’agent doit les réinstaller à partir du fichier verrouillé.
-Il ne faut pas ouvrir `index.html` par double-clic.
+Glisser sur l’eau puis relâcher pour lancer. Pendant le combat, orienter la canne sur l’eau et maintenir le bouton avec un second doigt pour mouliner ; souris et espace sur PC. Trois méthodes : attente au flotteur, récupération/animation du leurre, pêche au fond. Choix rapides de poste et bouton de lancer également disponibles.
 
-## Installation pour l’agent
+Quinze espèces du pack, carnet individuel avec photos, records, robes et Mirage. Encyclopédie issue des fichiers FishDex : 96 fiches regroupées en 59 binômes déclarés, contenus non jouables indiqués prévus. XP, badges, écus et boutique de trois cannes/deux décorations. Aquarium personnalisable avec cinq spécimens favoris, nage procédurale provisoire et fiches personnelles.
 
-Prérequis : Node.js 24 LTS recommandé, npm inclus. Minimum technique : Node.js 22.12.
+La sauvegarde appartient au navigateur et au domaine. Migration de l’ancienne version conservant les records ; export/import JSON pour le transfert. Photos locales IndexedDB séparées, non incluses dans le JSON et régénérables depuis les souvenirs. Pas de synchronisation ni PWA hors connexion.
+
+## Installation et commandes
+
+Node.js 24 LTS recommandé, minimum 22.12. Ouvrir le dossier dans Codex ou Claude, lire AGENTS.md puis RELAIS_PROJET.md. Ne pas ouvrir index.html par double-clic.
 
 ```sh
 node scripts/setup.mjs
 npm run dev
 ```
 
-`setup.mjs` exécute `npm ci`, les vérifications TypeScript, les tests et le build.
-Le terminal donne l’adresse locale du jeu. Pour un essai depuis le téléphone,
-utiliser l’adresse réseau du PC affichée par Vite, sur le même Wi-Fi.
-La préproduction Vercel est préférable pour tester Safari en HTTPS.
-
-## Commandes
-
 | Commande | Rôle |
 | --- | --- |
-| `npm ci` | Réinstaller exactement les dépendances du lockfile |
-| `npm run dev` | Serveur de développement, accessible sur le réseau local |
-| `npm run build` | Vérification TypeScript puis production dans `dist/` |
-| `npm run preview` | Essai local du build de production |
-| `npm test` | Tests de combat, sélection des espèces, sauvegarde |
-| `npx playwright install chromium` | Installer le navigateur des essais automatisés, facultatif pour jouer |
-| `npm run test:e2e` | Tests navigateur bureau et viewport mobile |
-| `npm run check` | TypeScript + tests unitaires + build |
+| npm ci | Installer les versions verrouillées |
+| npm run dev | Serveur Vite et adresse réseau pour essai Wi-Fi |
+| npm run check | TypeScript strict, tests de logique et build |
+| npx playwright install chromium | Navigateur des vérifications automatisées |
+| npm run test:e2e | Bureau 1440×900 et Chromium tactile 390×844, serveur dédié 5174 |
+| npm run preview | Servir dist localement après build |
+| npm run test:smoke | Vraie partie sur build servi, sans QA ; GAME_URL pour cible distante |
 
-## Première version
+Exécuter E2E et smoke successivement. Derniers résultats : 19 tests de logique, 20 E2E réussis (2 ignorés selon viewport), smoke local 6/6. Validation distante dans docs/VERCEL.md. Les mesures Chromium logiciel de ce PC (~22–24 FPS eco) ne valident pas les 30 FPS sur iPhone 14 Pro ; Safari, chauffe et autonomie restent à tester sur appareil.
 
-- Étang 3D procédural : eau animée, végétation, relief, ponton et bouchon.
-- Trois postes, deux appâts, cinq espèces accessibles par différentes combinaisons.
-- Lancer → attente → touche → ferrage → combat → prise ou fuite.
-- Maintenir pour mouliner, relâcher pour réduire la tension ; espace sur ordinateur.
-- Carnet des espèces, meilleur record en centimètres, nombre de prises.
-- Sauvegarde locale versionnée, export/import JSON avec validation et confirmation du remplacement.
-- Affichage du poisson capturé avec les modèles réels du pack de l’utilisateur.
-- Son facultatif, qualité graphique réglable, pause en quittant l’onglet.
+## Organisation et ressources
 
-Pas de compte joueur ni de serveur applicatif. Aucune clé API nécessaire.
-La sauvegarde dépend du navigateur et du domaine ; elle ne se synchronise pas automatiquement.
-Le mode hors connexion/PWA n’est pas implémenté.
+Règles indépendantes dans src/game/, scènes dans src/render/, photos et audio dans src/ui/. Quinze GLB et 88 miniatures dans public/. Conversion, inventaire et import reproductible dans scripts/. Tests et documents de reprise dans tests/ et docs/.
 
-## Organisation
+Pack River fish / TricksUp fourni par l’utilisateur sous sa licence d’origine. Archive privée assets-source/ exclue de Git et Vercel, jamais envoyée à un générateur. Quinze GLB optimisés 1,73 Mo, chargés à la demande. Les 50 FBX n’ont pas de rig livré ; respiration, présentation suspendue et épuisette restent à faire. Voir docs/ASSETS_POISSONS.md et docs/MISSION_AUTONOME.md.
 
-```text
-src/game/          Règles, catalogue et sauvegarde, indépendants du rendu
-src/render/        Scène Babylon.js et aperçu 3D de la prise
-src/ui/            Sons locaux
-src/main.ts        Interface, commandes, transitions et orchestration
-src/style.css      Interface responsive
-public/models/    Cinq poissons GLB optimisés et leur manifeste
-assets-source/    Archive originale privée, exclue de Git et de Vercel
-scripts/          Installation et conversion Blender
-tests/            Tests de logique et navigateur
-docs/             Architecture, décisions, déploiement, vérification et tâches
-RELAIS_PROJET.md   Source de vérité pour le relais entre agents
-```
-
-## Hébergement
-
-`vercel.json` configure le build Vite et le dossier `dist/`.
-Voir `docs/VERCEL.md`. Aucun déploiement n’a été effectué, aucun site existant modifié.
-Le choix du projet Vercel et le lien avec son dépôt restent à fournir.
-
-## Poissons et droits
-
-Les poissons proviennent du pack **River fish / TricksUp**, fourni par l’utilisateur.
-Ils restent des ressources tierces sous leur licence d’origine, sans redistribution
-autonome ni nouvelle licence attribuée par ce projet. Voir `docs/ASSETS.md`.
-Le dossier complet est destiné au propriétaire du pack et à son chantier privé.
-
-## Reprise
-
-Lire `RELAIS_PROJET.md` en début de session et le mettre à jour en fin de session.
-Ne pas recommencer le projet à zéro au changement d’agent.
+Pas de test iPhone réel annoncé, pas de nouvelle souscription, pas de modification du dépôt FishDex de référence. Lire et actualiser RELAIS_PROJET.md à chaque session ; suivre docs/BACKLOG.md.

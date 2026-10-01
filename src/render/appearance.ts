@@ -9,6 +9,16 @@ export const VISUALS: Record<SpeciesId, { model: string; tailSign: number; swim:
   carp: { model: 'CommonCarp', tailSign: 1, swim: 'body-wave' },
   pike: { model: 'NorthernPike', tailSign: 1, swim: 'body-wave' },
   zander: { model: 'Zander', tailSign: 1, swim: 'body-wave' },
+  bream: { model: 'CommonBream', tailSign: 1, swim: 'body-wave' },
+  tench: { model: 'Tench', tailSign: 1, swim: 'body-wave' },
+  rudd: { model: 'Rudd', tailSign: 1, swim: 'body-wave' },
+  bleak: { model: 'Bleak', tailSign: 1, swim: 'body-wave' },
+  crucian: { model: 'CrucianCarp', tailSign: 1, swim: 'body-wave' },
+  whitebream: { model: 'WhiteBream', tailSign: 1, swim: 'body-wave' },
+  gudgeon: { model: 'Gudgeon', tailSign: 1, swim: 'body-wave' },
+  chub: { model: 'Chub', tailSign: 1, swim: 'body-wave' },
+  ide: { model: 'Ide', tailSign: 1, swim: 'body-wave' },
+  catfish: { model: 'WelsCatfish', tailSign: 1, swim: 'body-wave' },
 };
 export function applyAppearance(container: AssetContainer, specimen?: Pick<Specimen, 'coloration' | 'mirage'>) {
   for (const material of container.materials) {

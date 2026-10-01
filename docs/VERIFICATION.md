@@ -83,3 +83,17 @@ géométrie statique regroupée par matériau.
 6. Exporter le carnet et vérifier qu’un import restitue les prises.
 
 Noter ce qui semble trop lent, peu clair, trop facile ou désagréable sur le téléphone.
+
+## Livraison autonome 0.2.0 — 1 octobre 2026, Codex
+
+Node 24.15.0, npm 11.12.1, Playwright 1.58.2/Chromium 145, Windows headless ANGLE SwiftShader. Qualité eco, bureau 1440×900 et viewport tactile 390×844. Aucun iPhone/Safari physique.
+
+- npm ci : réussi ; npm audit --omit=dev : zéro vulnérabilité.
+- npm run check : TypeScript strict, 19 tests de logique, build réussis.
+- npm run test:e2e : 20 réussis et 2 ignorés (1 min 30 s). Atlas quinze modèles au bureau ; vrai CDP multitouch uniquement en tactile. Aucun scénario bloquant ignoré.
+- Smoke du build sur 4175 : 6/6, 1 min, sans QA. Vraie capture temps réel souris/tactile, relâchement hors bouton, portraits, export/import, récompenses uniques, équipement, aquarium, décor, reload et intégrité des quinze GLB. Aucun modèle au démarrage, ZIP absent.
+- Captures inspectées et archivées dans apercus/ ; modèle manquant volontairement simulé conserve le journal et permet de revenir à la pêche. Ouvertures répétées du bassin libèrent son moteur, étang réellement suspendu.
+- Mesures de 3 s, aucun seuil de FPS artificiellement validé : étang 22,1/23,5 FPS et aquarium cinq poissons 23,3/22,5 FPS (bureau/mobile). Zéro frame d’étang derrière aquarium. Résultats JSON dans apercus/performance-*.json.
+- Build : chunk principal 1 672,35 Ko brut / 405,31 Ko gzip, avertissement Vite ; quinze GLB 1 731 232 octets ; 88 WebP 556 892 octets. Ressources chargées à la demande.
+
+Les tests de logique couvrent cible/refus, orientation, casse/décrochage, capture de toutes les espèces accessibles, migration, unicité, imports invalides, achats, limite des favoris, longueur de la courbe de nage et différences leurre/fond. Les tests ne prouvent pas le plaisir du combat ni la plausibilité anatomique finale. Respiration, suspension, arrivée à l’épuisette et performances réelles restent non validées. Publication distante : docs/VERCEL.md.

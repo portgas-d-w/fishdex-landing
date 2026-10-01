@@ -20,7 +20,7 @@ export class Aquarium {
   readonly scene: Scene;
   private disposed = false;
   private enabled = true;
-  private fish: { root: TransformNode; wave: BodyWave; lane: number; phase: number; speed: number }[] = [];
+  private fish: { root: TransformNode; wave: BodyWave; baseY: number; height: number; phase: number; speed: number }[] = [];
   private time = 0;
   private frames = 0;
   private light: HemisphericLight;
@@ -34,8 +34,8 @@ export class Aquarium {
     this.scene = new Scene(this.engine);
     const camera = new ArcRotateCamera('aquarium-camera', -Math.PI / 2, Math.PI / 2.4, 10, new Vector3(0, 2, 0), this.scene);
     camera.fov = 0.75;
-    this.light = new HemisphericLight('water-light', new Vector3(0.2, 1, -0.5), this.scene); this.light.intensity = 1.6;
-    const key = new DirectionalLight('water-key', new Vector3(-0.4, -1, 0.7), this.scene); key.intensity = 1.5;
+    this.light = new HemisphericLight('water-light', new Vector3(0.2, 1, -0.5), this.scene); this.light.intensity = 0.95;
+    const key = new DirectionalLight('water-key', new Vector3(-0.4, -1, 0.7), this.scene); key.intensity = 1.0;
     const material = (name: string, hex: string) => { const m = new StandardMaterial(name, this.scene); m.diffuseColor = Color3.FromHexString(hex); m.specularColor = Color3.Black(); return m; };
     this.floor = material('floor-material', '#b7a780');
     const floor = MeshBuilder.CreateBox('aquarium-floor', { width: 8, height: 0.18, depth: 3 }, this.scene); floor.position.set(0, 0, 0.5); floor.material = this.floor;
@@ -57,7 +57,7 @@ export class Aquarium {
       this.time += lastRender ? Math.min((now - lastRender) / 1000, 0.1) : 0; lastRender = now;
       for (const fish of this.fish) {
         const t = this.time * fish.speed + fish.phase;
-        fish.root.position.set(2.6 * Math.cos(t), 0.65 + fish.lane * 0.67 + Math.sin(t * 2) * 0.05, 0.4 + Math.sin(t) * 0.65);
+        fish.root.position.set(2.6 * Math.cos(t), fish.baseY + Math.sin(t * 2) * 0.03, 0.4 + Math.sin(t) * 0.65);
         fish.root.rotation.y = Math.atan2(0.65 * Math.cos(t), 2.6 * Math.sin(t));
         fish.wave.update(this.time + fish.phase);
       }
@@ -82,11 +82,19 @@ export class Aquarium {
         container.addAllToScene(); applyAppearance(container, specimen);
         const root = new TransformNode(`specimen-${specimen.id}`, this.scene);
         for (const node of container.rootNodes) node.parent = root;
-        root.scaling.setAll(Math.max(0.22, Math.min(0.85, specimen.length / 130)));
-        this.fish.push({ root, wave: new BodyWave(container, visual.tailSign), lane: i, phase: i * 1.7, speed: 0.18 + i * 0.025 });
+        root.scaling.setAll(Math.max(0.25, Math.min(1.25, specimen.length / 65)));
+        let minY = Infinity, maxY = -Infinity;
+        for (const mesh of container.meshes) { mesh.computeWorldMatrix(true); const bounds = mesh.getBoundingInfo().boundingBox; minY = Math.min(minY, bounds.minimumWorld.y); maxY = Math.max(maxY, bounds.maximumWorld.y); }
+        this.fish.push({ root, wave: new BodyWave(container, visual.tailSign), baseY: 0.65 + i * 0.67, height: Math.max(0.12, maxY - minY), phase: i * 1.7, speed: 0.18 + i * 0.025 });
       } catch { if (!this.disposed) errors++; }
     }
-    if (!this.disposed) { await this.scene.whenReadyAsync(); this.engine.resize(); this.scene.render(); }
+    if (!this.disposed) {
+      const height = this.fish.reduce((sum, fish) => sum + fish.height, 0);
+      const fit = Math.min(1, (3.5 - this.fish.length * 0.17) / Math.max(0.1, height));
+      let y = 0.3;
+      for (const fish of this.fish) { fish.root.scaling.scaleInPlace(fit); fish.height *= fit; fish.baseY = y + fish.height / 2; y += fish.height + 0.17; }
+      await this.scene.whenReadyAsync(); this.engine.resize(); this.scene.render();
+    }
     return { loaded: this.fish.length, errors };
   }
   pause() { this.enabled = false; }

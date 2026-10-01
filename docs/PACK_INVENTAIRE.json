@@ -1,0 +1,1105 @@
+{
+  "blender": "5.1.2",
+  "models": [
+    {
+      "model": "AmurSleeper",
+      "format": "FBX 7400",
+      "sourceBytes": 1056188,
+      "meshes": 1,
+      "triangles": 586,
+      "dimensions": [
+        [
+          0.49993032217025757,
+          0.07935105264186859,
+          0.19105184078216553
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Asp",
+      "format": "FBX 7400",
+      "sourceBytes": 563388,
+      "meshes": 1,
+      "triangles": 624,
+      "dimensions": [
+        [
+          0.4997875988483429,
+          0.054248176515102386,
+          0.19782644510269165
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Barbel",
+      "format": "FBX 7400",
+      "sourceBytes": 561612,
+      "meshes": 1,
+      "triangles": 688,
+      "dimensions": [
+        [
+          0.4998467266559601,
+          0.0753130316734314,
+          0.1705133318901062
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "BlackBullhead",
+      "format": "FBX 7400",
+      "sourceBytes": 582188,
+      "meshes": 1,
+      "triangles": 704,
+      "dimensions": [
+        [
+          0.4998943507671356,
+          0.06482382118701935,
+          0.2176416516304016
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Bleak",
+      "format": "FBX 7400",
+      "sourceBytes": 456556,
+      "meshes": 1,
+      "triangles": 550,
+      "dimensions": [
+        [
+          0.49960458278656006,
+          0.06387288868427277,
+          0.1876063197851181
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "BlueBream",
+      "format": "FBX 7400",
+      "sourceBytes": 595452,
+      "meshes": 1,
+      "triangles": 574,
+      "dimensions": [
+        [
+          0.5002667903900146,
+          0.059301331639289856,
+          0.242770716547966
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "BrownTrout",
+      "format": "FBX 7400",
+      "sourceBytes": 326572,
+      "meshes": 1,
+      "triangles": 584,
+      "dimensions": [
+        [
+          0.500097930431366,
+          0.06389397382736206,
+          0.12282969057559967
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Burbot",
+      "format": "FBX 7400",
+      "sourceBytes": 525340,
+      "meshes": 1,
+      "triangles": 706,
+      "dimensions": [
+        [
+          0.4999334216117859,
+          0.07761456817388535,
+          0.13963474333286285
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Chub",
+      "format": "FBX 7400",
+      "sourceBytes": 461244,
+      "meshes": 1,
+      "triangles": 452,
+      "dimensions": [
+        [
+          0.49994733929634094,
+          0.04676853120326996,
+          0.18937118351459503
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "CommonBream",
+      "format": "FBX 7400",
+      "sourceBytes": 1084172,
+      "meshes": 1,
+      "triangles": 600,
+      "dimensions": [
+        [
+          0.49986201524734497,
+          0.10190203785896301,
+          0.24464599788188934
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "CommonCarp",
+      "format": "FBX 7400",
+      "sourceBytes": 702172,
+      "meshes": 1,
+      "triangles": 550,
+      "dimensions": [
+        [
+          0.4996868073940277,
+          0.08558312058448792,
+          0.21455959975719452
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "CommonNase",
+      "format": "FBX 7400",
+      "sourceBytes": 829724,
+      "meshes": 1,
+      "triangles": 546,
+      "dimensions": [
+        [
+          0.5004571676254272,
+          0.05691028758883476,
+          0.16511446237564087
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "CrucianCarp",
+      "format": "FBX 7400",
+      "sourceBytes": 753484,
+      "meshes": 1,
+      "triangles": 602,
+      "dimensions": [
+        [
+          0.4999130964279175,
+          0.08767103403806686,
+          0.255642831325531
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Dace",
+      "format": "FBX 7400",
+      "sourceBytes": 375148,
+      "meshes": 1,
+      "triangles": 448,
+      "dimensions": [
+        [
+          0.5004464387893677,
+          0.05687325447797775,
+          0.21429851651191711
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "DanubeSalmon",
+      "format": "FBX 7400",
+      "sourceBytes": 494172,
+      "meshes": 1,
+      "triangles": 638,
+      "dimensions": [
+        [
+          0.500327467918396,
+          0.06300118565559387,
+          0.1583041101694107
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "DanubeSturgeon",
+      "format": "FBX 7400",
+      "sourceBytes": 361068,
+      "meshes": 1,
+      "triangles": 736,
+      "dimensions": [
+        [
+          0.500206708908081,
+          0.04911990463733673,
+          0.10592339932918549
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "EuropeanBitterling",
+      "format": "FBX 7400",
+      "sourceBytes": 712172,
+      "meshes": 1,
+      "triangles": 504,
+      "dimensions": [
+        [
+          0.5001503229141235,
+          0.054311301559209824,
+          0.19086480140686035
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "EuropeanBullhead",
+      "format": "FBX 7400",
+      "sourceBytes": 568860,
+      "meshes": 1,
+      "triangles": 608,
+      "dimensions": [
+        [
+          0.5001614689826965,
+          0.07588377594947815,
+          0.1290152221918106
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "EuropeanEel",
+      "format": "FBX 7400",
+      "sourceBytes": 235260,
+      "meshes": 1,
+      "triangles": 458,
+      "dimensions": [
+        [
+          0.49968698620796204,
+          0.033404767513275146,
+          0.03994050994515419
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "EuropeanMinnow",
+      "format": "FBX 7400",
+      "sourceBytes": 454076,
+      "meshes": 1,
+      "triangles": 542,
+      "dimensions": [
+        [
+          0.500234842300415,
+          0.0720561146736145,
+          0.1676044464111328
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "EuropeanPerch",
+      "format": "FBX 7400",
+      "sourceBytes": 311516,
+      "meshes": 1,
+      "triangles": 480,
+      "dimensions": [
+        [
+          0.5000741481781006,
+          0.09277866780757904,
+          0.21590879559516907
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "EuropeanPikeperch",
+      "format": "FBX 7400",
+      "sourceBytes": 732124,
+      "meshes": 1,
+      "triangles": 610,
+      "dimensions": [
+        [
+          0.4996950328350067,
+          0.07445827126502991,
+          0.17989400029182434
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "EuropeanSmelt",
+      "format": "FBX 7400",
+      "sourceBytes": 419484,
+      "meshes": 1,
+      "triangles": 472,
+      "dimensions": [
+        [
+          0.49957066774368286,
+          0.06497225165367126,
+          0.15682944655418396
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "EuropeanWhitefish",
+      "format": "FBX 7400",
+      "sourceBytes": 470972,
+      "meshes": 1,
+      "triangles": 584,
+      "dimensions": [
+        [
+          0.4999290108680725,
+          0.07062794268131256,
+          0.1601712852716446
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "GrassCarp",
+      "format": "FBX 7400",
+      "sourceBytes": 595532,
+      "meshes": 1,
+      "triangles": 508,
+      "dimensions": [
+        [
+          0.49983400106430054,
+          0.06277462095022202,
+          0.18042287230491638
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Grayling",
+      "format": "FBX 7400",
+      "sourceBytes": 910844,
+      "meshes": 1,
+      "triangles": 698,
+      "dimensions": [
+        [
+          0.499885231256485,
+          0.06969345360994339,
+          0.23172369599342346
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Gudgeon",
+      "format": "FBX 7400",
+      "sourceBytes": 575116,
+      "meshes": 1,
+      "triangles": 626,
+      "dimensions": [
+        [
+          0.49965372681617737,
+          0.06166648119688034,
+          0.16776221990585327
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Huchen",
+      "format": "FBX 7400",
+      "sourceBytes": 473180,
+      "meshes": 1,
+      "triangles": 626,
+      "dimensions": [
+        [
+          0.5004603266716003,
+          0.06930819898843765,
+          0.13135254383087158
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Ide",
+      "format": "FBX 7400",
+      "sourceBytes": 763084,
+      "meshes": 1,
+      "triangles": 592,
+      "dimensions": [
+        [
+          0.49996739625930786,
+          0.05860903486609459,
+          0.2502402663230896
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "MonkeyGoby",
+      "format": "FBX 7400",
+      "sourceBytes": 501292,
+      "meshes": 1,
+      "triangles": 558,
+      "dimensions": [
+        [
+          0.5003244280815125,
+          0.0846937969326973,
+          0.1479160040616989
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "NorthernPike",
+      "format": "FBX 7400",
+      "sourceBytes": 515180,
+      "meshes": 1,
+      "triangles": 660,
+      "dimensions": [
+        [
+          0.49992212653160095,
+          0.06960123032331467,
+          0.12449102103710175
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "NorthernSnakehead",
+      "format": "FBX 7400",
+      "sourceBytes": 613132,
+      "meshes": 1,
+      "triangles": 510,
+      "dimensions": [
+        [
+          0.49975448846817017,
+          0.08350293338298798,
+          0.12608280777931213
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "PrussianCarp",
+      "format": "FBX 7400",
+      "sourceBytes": 1015788,
+      "meshes": 1,
+      "triangles": 598,
+      "dimensions": [
+        [
+          0.49956199526786804,
+          0.06309668719768524,
+          0.2782401442527771
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "RainbowTrout",
+      "format": "FBX 7400",
+      "sourceBytes": 593836,
+      "meshes": 1,
+      "triangles": 582,
+      "dimensions": [
+        [
+          0.500343918800354,
+          0.06902216374874115,
+          0.17852267622947693
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Roach",
+      "format": "FBX 7400",
+      "sourceBytes": 1004556,
+      "meshes": 1,
+      "triangles": 528,
+      "dimensions": [
+        [
+          0.5003124475479126,
+          0.08785165846347809,
+          0.2403298318386078
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Rudd",
+      "format": "FBX 7400",
+      "sourceBytes": 678380,
+      "meshes": 1,
+      "triangles": 636,
+      "dimensions": [
+        [
+          0.4998106062412262,
+          0.07806190848350525,
+          0.2257937490940094
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Ruffe",
+      "format": "FBX 7400",
+      "sourceBytes": 430732,
+      "meshes": 1,
+      "triangles": 632,
+      "dimensions": [
+        [
+          0.5001571178436279,
+          0.10167112946510315,
+          0.24523666501045227
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Sabrefish",
+      "format": "FBX 7400",
+      "sourceBytes": 903932,
+      "meshes": 1,
+      "triangles": 580,
+      "dimensions": [
+        [
+          0.4998614192008972,
+          0.08131016790866852,
+          0.17292311787605286
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "SilverCarp",
+      "format": "FBX 7400",
+      "sourceBytes": 907660,
+      "meshes": 1,
+      "triangles": 606,
+      "dimensions": [
+        [
+          0.4998575448989868,
+          0.06909708678722382,
+          0.13372698426246643
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Sterlet",
+      "format": "FBX 7400",
+      "sourceBytes": 282764,
+      "meshes": 1,
+      "triangles": 790,
+      "dimensions": [
+        [
+          0.4999306797981262,
+          0.021553128957748413,
+          0.07826046645641327
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Sunbleak",
+      "format": "FBX 7400",
+      "sourceBytes": 375068,
+      "meshes": 1,
+      "triangles": 450,
+      "dimensions": [
+        [
+          0.5001413226127625,
+          0.057807568460702896,
+          0.12565003335475922
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Tench",
+      "format": "FBX 7400",
+      "sourceBytes": 645564,
+      "meshes": 1,
+      "triangles": 552,
+      "dimensions": [
+        [
+          0.500237226486206,
+          0.0590241476893425,
+          0.20321239531040192
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "ThreeSpinedStickleback",
+      "format": "FBX 7400",
+      "sourceBytes": 648364,
+      "meshes": 1,
+      "triangles": 524,
+      "dimensions": [
+        [
+          0.4995845854282379,
+          0.09160879254341125,
+          0.16690894961357117
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "VimbaBream",
+      "format": "FBX 7400",
+      "sourceBytes": 612188,
+      "meshes": 1,
+      "triangles": 542,
+      "dimensions": [
+        [
+          0.5003442764282227,
+          0.06452375650405884,
+          0.22810125350952148
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "VolgaUndermouth",
+      "format": "FBX 7400",
+      "sourceBytes": 559516,
+      "meshes": 1,
+      "triangles": 600,
+      "dimensions": [
+        [
+          0.49995824694633484,
+          0.06389051675796509,
+          0.2007574737071991
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Weatherfish",
+      "format": "FBX 7400",
+      "sourceBytes": 421820,
+      "meshes": 1,
+      "triangles": 628,
+      "dimensions": [
+        [
+          0.5001609325408936,
+          0.060188159346580505,
+          0.11589903384447098
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "WelsCatfish",
+      "format": "FBX 7400",
+      "sourceBytes": 549180,
+      "meshes": 1,
+      "triangles": 752,
+      "dimensions": [
+        [
+          0.49994200468063354,
+          0.08410431444644928,
+          0.14776243269443512
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "WhiteBream",
+      "format": "FBX 7400",
+      "sourceBytes": 552108,
+      "meshes": 1,
+      "triangles": 518,
+      "dimensions": [
+        [
+          0.4995591640472412,
+          0.0588969811797142,
+          0.2401522397994995
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "WhitefinGudgeon",
+      "format": "FBX 7400",
+      "sourceBytes": 447228,
+      "meshes": 1,
+      "triangles": 640,
+      "dimensions": [
+        [
+          0.5003381967544556,
+          0.07520045340061188,
+          0.16668149828910828
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    },
+    {
+      "model": "Zander",
+      "format": "FBX 7400",
+      "sourceBytes": 316764,
+      "meshes": 1,
+      "triangles": 554,
+      "dimensions": [
+        [
+          0.5003896355628967,
+          0.09796503186225891,
+          0.1722038984298706
+        ]
+      ],
+      "armatures": 0,
+      "actions": 0,
+      "textures": [
+        [
+          1024,
+          1024
+        ]
+      ]
+    }
+  ]
+}

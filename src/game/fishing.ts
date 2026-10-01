@@ -24,6 +24,10 @@ export class FishingGame {
   equipmentPower = 1;
   equipment = 'starter';
   method: MethodId = 'float';
+  retrieveProgress = 0;
+  private waitingActivity = 0;
+  private lureAnimation = 0;
+  appearance: Pick<Specimen, 'coloration' | 'mirage'> = { coloration: 'natural', mirage: false };
   private size = 20;
   private controlled = true;
   reeling = false;
@@ -37,10 +41,13 @@ export class FishingGame {
   constructor(random: () => number = Math.random) { this.random = random; }
 
   setSpot(spot: SpotId) { if (this.phase === 'idle') this.spot = spot; }
-  setBait(bait: BaitId) { if (this.phase === 'idle') this.bait = bait; }
+  setBait(bait: BaitId) { if (this.phase === 'idle') { this.bait = bait; if (bait === 'lure') this.method = 'lure'; else if (this.method === 'lure') this.method = 'float'; } }
+  get fishLength() { return this.size; }
   orient(yaw: number, lift: number) {
+    this.lureAnimation = Math.min(1, this.lureAnimation + Math.abs(yaw - this.rodYaw) + Math.abs(lift - this.rodLift));
     this.rodYaw = Math.max(-1, Math.min(1, yaw)); this.rodLift = Math.max(0, Math.min(1, lift));
   }
+  setMethod(method: MethodId) { if (this.phase !== 'idle') return; this.method = method; this.bait = method === 'lure' ? 'lure' : 'worm'; }
   cast(point?: WaterPoint) {
     if (this.phase !== 'idle') return false;
     const aim = inspectTarget(point ?? { x: this.spot === 'reeds' ? -1.5 : this.spot === 'willow' ? 3 : 0, z: this.spot === 'open' ? 14 : 7 });
@@ -49,15 +56,18 @@ export class FishingGame {
     this.distance = Math.hypot(aim.point.x, aim.point.z + 1);
     this.fishPosition = { ...aim.point, y: -aim.depth * 0.5 };
     this.result = null;
-    this.fish = pickSpecies(this.spot, this.bait, this.random());
+    this.fish = pickSpecies(this.spot, this.bait, this.random(), this.method);
     this.size = Math.round((this.fish.min + Math.pow(this.random(), 1.6) * (this.fish.max - this.fish.min)) * 10) / 10;
     this.controlled = true;
+    this.retrieveProgress = 0; this.waitingActivity = 0; this.lureAnimation = 0;
+    this.appearance = { coloration: this.random() > 0.96 ? 'golden' : 'natural', mirage: this.random() > 0.995 };
     this.waitDuration = 3 + this.random() * 4;
     this.transition('casting');
     return true;
   }
   strike() {
     if (this.phase !== 'bite') return;
+    if (this.method === 'lure') { this.target = { x: this.fishPosition.x, z: Math.max(1.5, this.fishPosition.z) }; this.distance = Math.hypot(this.target.x, this.target.z + 1); }
     this.tension = 0.32; this.progress = 0; this.slackTime = 0; this.highTensionTime = 0;
     this.rodYaw = 0; this.rodLift = 0.5;
     this.transition('fighting');
@@ -74,10 +84,19 @@ export class FishingGame {
     const dt = Math.min(Math.max(delta, 0), 0.05);
     this.elapsed += dt;
     if (this.phase === 'casting' && this.elapsed >= 1.1) this.transition('waiting');
-    else if (this.phase === 'waiting' && this.elapsed >= this.waitDuration) this.transition('bite');
+    else if (this.phase === 'waiting') {
+      this.lureAnimation = Math.max(0, this.lureAnimation - dt * 0.5);
+      this.waitingActivity += this.method === 'lure' ? this.reeling ? dt * (0.50 + this.lureAnimation) : 0 : dt * (this.method === 'bottom' ? 0.75 : 1);
+      if (this.method === 'lure' && this.reeling) {
+        this.retrieveProgress = Math.min(1, this.retrieveProgress + dt * 0.035);
+        this.fishPosition.x = this.target.x * (1 - this.retrieveProgress); this.fishPosition.z = this.target.z * (1 - this.retrieveProgress);
+      }
+      if (this.waitingActivity >= this.waitDuration) this.transition('bite');
+      else if (this.retrieveProgress >= 1) this.reset();
+    }
     else if (this.phase === 'bite' && this.elapsed >= 4.5) this.lose('Il a relâché l’appât. La prochaine touche sera la bonne.');
     else if (this.phase === 'fighting' && this.fish) {
-      const cycle = this.fish.id === 'perch' ? 3.6 : this.fish.id === 'carp' ? 6.2 : this.fish.id === 'pike' ? 4.2 : this.fish.id === 'zander' ? 5.4 : 4.8;
+      const cycle = this.fish.id === 'perch' ? 3.6 : ['carp', 'catfish', 'tench'].includes(this.fish.id) ? 6.2 : this.fish.id === 'pike' ? 4.2 : this.fish.id === 'zander' ? 5.4 : 4.8;
       this.pulling = this.elapsed % cycle > cycle * 0.60;
       const sizeFactor = 0.85 + (this.size - this.fish.min) / (this.fish.max - this.fish.min) * 0.3;
       const force = this.fish.strength * Math.max(0.75, Math.min(1.15, sizeFactor));
@@ -100,7 +119,7 @@ export class FishingGame {
       else if (this.slackTime > 4) this.lose('Le poisson s’est décroché. Garde un peu de tension dans le fil.');
       else if (this.elapsed > 90) this.lose('Le poisson a trouvé refuge. Essaie de mouliner entre ses départs.');
       else if (remaining <= 1.81 && this.tension > 0.04 && this.tension < 0.94) {
-        this.result = { id: uniqueId(), speciesId: this.fish.id, length: Math.max(this.fish.min, Math.min(this.fish.max, this.size)), date: new Date().toISOString(), coloration: this.random() > 0.96 ? 'golden' : 'natural', mirage: this.random() > 0.995, method: this.method, equipment: this.equipment, bait: this.bait, target: { ...this.target }, controlled: this.controlled };
+        this.result = { id: uniqueId(), speciesId: this.fish.id, length: Math.max(this.fish.min, Math.min(this.fish.max, this.size)), date: new Date().toISOString(), ...this.appearance, method: this.method, equipment: this.equipment, bait: this.bait, target: { ...this.target }, controlled: this.controlled };
         this.transition('caught');
       }
     }

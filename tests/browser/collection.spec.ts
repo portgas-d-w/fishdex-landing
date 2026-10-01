@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { emptySave, recordCatch } from '../../src/game/save';
+import { SPECIES } from '../../src/game/catalog';
 test('Spécimens, photo locale, boutique, filtres et export sans doubler les gains', async ({ page }, info) => {
   const errors: string[] = []; page.on('pageerror', e => errors.push(e.message));
   const seed = emptySave();
@@ -17,7 +18,7 @@ test('Spécimens, photo locale, boutique, filtres et export sans doubler les gai
   expect(stored.total).toBe(5); expect(stored.xp).toBe(seed.xp); expect(stored.coins).toBe(seed.coins - 70); expect(stored.equipped).toBe('balanced'); expect(stored.favorites).toEqual(['known-0']);
   await page.locator('#collection-open').click(); await expect(page.locator('[data-photo="known-0"] img')).toBeVisible();
   await page.screenshot({ path: `test-results/${info.project.name}-journal.png` }); await page.locator('[data-close="collection"]').click();
-  await page.locator('#dex-open').click(); await page.locator('#dex-state').selectOption('playable'); await expect(page.locator('.dex-card')).toHaveCount(5);
+  await page.locator('#dex-open').click(); await page.locator('#dex-state').selectOption('playable'); await expect(page.locator('.dex-card')).toHaveCount(SPECIES.length);
   await page.locator('#dex-search').fill('gardon'); await expect(page.locator('.dex-card')).toHaveCount(1); await page.locator('.dex-card summary').click();
   await page.screenshot({ path: `test-results/${info.project.name}-encyclopedia.png` }); expect(errors).toEqual([]);
 });

@@ -4,7 +4,7 @@ import { SPECIES } from '../../src/game/catalog';
 test('Cinq favoris, décorations, fiches et navigations sans accumulation de moteurs', async ({ page }, info) => {
   const errors: string[] = []; page.on('pageerror', e => errors.push(e.message));
   const seed = emptySave();
-  for (const [i, fish] of SPECIES.entries()) { recordCatch(seed, { id: `favorite-${i}`, speciesId: fish.id, length: fish.min + 10, date: '2026-10-01T12:00:00Z', coloration: i === 2 ? 'golden' : 'natural' }); seed.favorites.push(`favorite-${i}`); }
+  for (const [i, fish] of SPECIES.slice(0, 5).entries()) { recordCatch(seed, { id: `favorite-${i}`, speciesId: fish.id, length: fish.min + 10, date: '2026-10-01T12:00:00Z', coloration: i === 2 ? 'golden' : 'natural' }); seed.favorites.push(`favorite-${i}`); }
   recordCatch(seed, { id: 'sixth', speciesId: 'roach', length: 25, date: '2026-10-01T12:00:00Z' });
   purchase(seed, 'plants'); purchase(seed, 'rocks');
   await page.addInitScript(data => { if (!localStorage.getItem('au-fil-de-leau.save.v1')) localStorage.setItem('au-fil-de-leau.save.v1', JSON.stringify(data)); }, seed);
@@ -17,7 +17,7 @@ test('Cinq favoris, décorations, fiches et navigations sans accumulation de mot
     if (i === 0) {
       await page.locator('#aq-plants').check(); await page.locator('#aq-rocks').check(); await page.locator('#aq-floor').selectOption('gravel'); await page.locator('#aq-background').selectOption('night'); await page.locator('#aq-light').selectOption('cool');
       const state = await page.evaluate(() => (window as any).__fishingQA.snapshot()); expect(state.aquarium.plants).toBe(true); expect(state.aquarium.rocks).toBe(true);
-      await page.screenshot({ path: `test-results/${info.project.name}-aquarium.png` });
+      await page.locator('#aquarium').evaluate(e => e.scrollTop = 0); await page.screenshot({ path: `test-results/${info.project.name}-aquarium.png` });
     }
     await page.locator('[data-close="aquarium"]').click(); await expect.poll(() => page.evaluate(() => (window as any).__fishingQA.snapshot().engines)).toBe(1);
   }

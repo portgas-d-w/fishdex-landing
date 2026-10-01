@@ -1,6 +1,6 @@
 {
   "source": "River fish / TricksUp, supplied by owner",
-  "converter": "4.5.3 LTS",
+  "converter": "5.1.2",
   "models": [
     {
       "model": "Roach",
@@ -10,9 +10,11 @@
         0.08785165846347809,
         0.2403298318386078
       ],
+      "armatures": 0,
+      "source_animations": 0,
       "display_length": 2.0,
-      "texture": "512x512 PNG embedded",
-      "bytes": 274796
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 186548
     },
     {
       "model": "EuropeanPerch",
@@ -22,9 +24,11 @@
         0.09277866780757904,
         0.21590879559516907
       ],
+      "armatures": 0,
+      "source_animations": 0,
       "display_length": 2.0,
-      "texture": "512x512 PNG embedded",
-      "bytes": 97492
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 60236
     },
     {
       "model": "CommonCarp",
@@ -34,9 +38,11 @@
         0.08558312058448792,
         0.21455959975719452
       ],
+      "armatures": 0,
+      "source_animations": 0,
       "display_length": 2.0,
-      "texture": "512x512 PNG embedded",
-      "bytes": 205188
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 122928
     },
     {
       "model": "NorthernPike",
@@ -46,9 +52,11 @@
         0.06960123032331467,
         0.12449102103710175
       ],
+      "armatures": 0,
+      "source_animations": 0,
       "display_length": 2.0,
-      "texture": "512x512 PNG embedded",
-      "bytes": 160492
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 99212
     },
     {
       "model": "Zander",
@@ -58,9 +66,151 @@
         0.09796503186225891,
         0.1722038984298706
       ],
+      "armatures": 0,
+      "source_animations": 0,
       "display_length": 2.0,
-      "texture": "512x512 PNG embedded",
-      "bytes": 95408
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 68080
+    },
+    {
+      "model": "CommonBream",
+      "triangles": 600,
+      "source_dimensions": [
+        0.49986201524734497,
+        0.10190203785896301,
+        0.24464599788188934
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2.0,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 184996
+    },
+    {
+      "model": "Tench",
+      "triangles": 552,
+      "source_dimensions": [
+        0.500237226486206,
+        0.0590241476893425,
+        0.20321239531040192
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2.0,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 117160
+    },
+    {
+      "model": "Rudd",
+      "triangles": 636,
+      "source_dimensions": [
+        0.4998106062412262,
+        0.07806190848350525,
+        0.2257937490940094
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2.0,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 121692
+    },
+    {
+      "model": "Bleak",
+      "triangles": 550,
+      "source_dimensions": [
+        0.49960458278656006,
+        0.06387288868427277,
+        0.1876063197851181
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2.0,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 92552
+    },
+    {
+      "model": "CrucianCarp",
+      "triangles": 602,
+      "source_dimensions": [
+        0.4999130964279175,
+        0.08767103403806686,
+        0.255642831325531
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2.0,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 126996
+    },
+    {
+      "model": "WhiteBream",
+      "triangles": 518,
+      "source_dimensions": [
+        0.4995591640472412,
+        0.0588969811797142,
+        0.2401522397994995
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2.0,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 105216
+    },
+    {
+      "model": "Gudgeon",
+      "triangles": 626,
+      "source_dimensions": [
+        0.49965372681617737,
+        0.06166648119688034,
+        0.16776221990585327
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2.0,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 111096
+    },
+    {
+      "model": "Chub",
+      "triangles": 452,
+      "source_dimensions": [
+        0.49994733929634094,
+        0.04676853120326996,
+        0.18937118351459503
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2.0,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 88144
+    },
+    {
+      "model": "Ide",
+      "triangles": 592,
+      "source_dimensions": [
+        0.49996739625930786,
+        0.05860903486609459,
+        0.2502402663230896
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2.0,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 134596
+    },
+    {
+      "model": "WelsCatfish",
+      "triangles": 752,
+      "source_dimensions": [
+        0.49994200468063354,
+        0.08410431444644928,
+        0.14776243269443512
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2.0,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 111780
     }
   ]
 }

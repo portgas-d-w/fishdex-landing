@@ -16,8 +16,8 @@ export class BodyWave {
       this.parts.push({ mesh, original, normals: baseline, positions: output, rotatedNormals });
     }
   }
-  update(time: number, fast = false) {
-    const curve = swimSections(time * (fast ? 1.7 : 1), fast ? 0.24 : 0.14, this.tailSign);
+  update(time: number, fast = false, intensity = 1) {
+    const curve = swimSections(time * (fast ? 1.7 : 1), (fast ? 0.24 : 0.14) * intensity, this.tailSign);
     for (const p of this.parts) {
       for (let i = 0; i < p.original.length; i += 3) {
         const longitudinal = p.original[i] * this.tailSign;

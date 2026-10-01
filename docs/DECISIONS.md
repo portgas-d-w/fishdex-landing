@@ -17,6 +17,11 @@
 | 2026-09-30 | Suspendre le rendu de l’étang pendant modales/pause | Éviter le rendu inutile, notamment derrière le poisson ; gain FPS téléphone non mesuré |
 | 2026-09-30 | E2E sur 5174, 1 worker ; smoke du build sans hook QA | Éviter le serveur normal sans QA et la concurrence du rendu logiciel Windows |
 | 2026-09-30 | Signaler le poisson prêt après matériaux WebGL et première image | Les captures smoke ont révélé un canvas vide malgré le fichier GLB chargé |
+| 2026-10-01 | Mission autonome P0–P4, économie virtuelle et aquarium autorisés | Remplace l’attente de retour téléphone pour poursuivre ; appareil réel toujours non validé |
+| 2026-10-01 | Lancer libre, canne/fil comme indices du combat, bouchon immergé | Correction prioritaire explicite ; victoire liée à proximité et contrôle |
+| 2026-10-01 | Sauvegarde v2 avec même clé, photos Blob séparées et récompenses uniques | Préserve v1 sans inventer d’individus ni rejouer les gains |
+| 2026-10-01 | 96 fiches FishDex, 59 binômes déclarés, 15 espèces du pack jouables | Contenu réel inspecté, variétés et ressources absentes marquées prévues |
+| 2026-10-01 | Trois méthodes effectives, nage procédurale provisoire | Flotteur, récupération du leurre, fond ; aucun rig livré dans les 50 FBX |
 
 La plaisance du combat, la direction artistique et la longévité de la boucle
 doivent encore être validées par l’utilisateur. Ne pas confondre un prototype

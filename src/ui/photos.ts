@@ -3,8 +3,11 @@ const DB_NAME = 'au-fil-de-leau.photos';
 async function openDB(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
     const r = indexedDB.open(DB_NAME, 1);
+    let settled = false;
+    const timer = window.setTimeout(() => { settled = true; reject(new Error('Stockage photo indisponible.')); }, 4000);
     r.onupgradeneeded = () => r.result.createObjectStore('photos', { keyPath: 'id' });
-    r.onsuccess = () => resolve(r.result); r.onerror = () => reject(r.error);
+    r.onsuccess = () => { window.clearTimeout(timer); if (settled) r.result.close(); else { settled = true; resolve(r.result); } };
+    r.onerror = r.onblocked = () => { window.clearTimeout(timer); settled = true; reject(r.error ?? new Error('Stockage photo bloqué.')); };
   });
 }
 export async function storePhoto(id: string, blob: Blob): Promise<boolean> {

@@ -7,11 +7,12 @@ import json
 import math
 import tempfile
 import zipfile
+import os
 from pathlib import Path
 from mathutils import Vector
 
 ROOT = Path(__file__).resolve().parents[1]
-NAMES = ['Roach', 'EuropeanPerch', 'CommonCarp', 'NorthernPike', 'Zander']
+NAMES = os.environ.get('FISH_MODELS', 'Roach,EuropeanPerch,CommonCarp,NorthernPike,Zander').split(',')
 OUT = ROOT / 'public' / 'models'
 OUT.mkdir(parents=True, exist_ok=True)
 report = []
@@ -25,6 +26,8 @@ with tempfile.TemporaryDirectory(prefix='riverfish-') as tmp:
         bpy.ops.wm.read_factory_settings(use_empty=True)
         bpy.ops.import_scene.fbx(filepath=str(tmp / (name + '.fbx')), use_image_search=True)
         meshes = [o for o in bpy.context.scene.objects if o.type == 'MESH']
+        armatures = len([o for o in bpy.context.scene.objects if o.type == 'ARMATURE'])
+        animations = len(bpy.data.actions)
         if not meshes:
             raise RuntimeError(f'{name}: aucune géométrie')
         bpy.ops.object.select_all(action='DESELECT')
@@ -74,7 +77,7 @@ with tempfile.TemporaryDirectory(prefix='riverfish-') as tmp:
         output = OUT / (name + '.glb')
         bpy.ops.export_scene.gltf(filepath=str(output), export_format='GLB', use_selection=True,
                                   export_animations=False, export_yup=True, export_image_format='AUTO')
-        report.append({'model': name, 'triangles': len(obj.data.loop_triangles), 'source_dimensions': original_dimensions,
+        report.append({'model': name, 'triangles': len(obj.data.loop_triangles), 'source_dimensions': original_dimensions, 'armatures': armatures, 'source_animations': animations,
                        'display_length': 2.0, 'texture': '512x512 PNG embedded', 'bytes': output.stat().st_size})
         print('CONVERTED', name, report[-1])
 

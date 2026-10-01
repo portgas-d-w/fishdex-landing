@@ -8,7 +8,7 @@ export const ITEMS = [
   { id: 'rocks', name: 'Rochers de rivière', price: 40, kind: 'decor', power: 1, description: 'Un abri minéral dans votre aquarium.' },
 ] as const;
 export type ItemId = typeof ITEMS[number]['id'];
-export const REWARD_BASE = { roach: 12, perch: 15, carp: 22, pike: 25, zander: 20 };
+export const REWARD_BASE = { roach: 12, perch: 15, carp: 22, pike: 25, zander: 20, bream: 16, tench: 18, rudd: 12, bleak: 10, crucian: 14, whitebream: 13, gudgeon: 10, chub: 17, ide: 17, catfish: 28 };
 export function rewardFor(s: Specimen, first: boolean, record: boolean): Reward {
   const species = SPECIES.find(f => f.id === s.speciesId)!;
   const size = (s.length - species.min) / (species.max - species.min);
@@ -17,4 +17,4 @@ export function rewardFor(s: Specimen, first: boolean, record: boolean): Reward 
   return { base, discovery, record: best, coins: base + discovery + best, xp: 20 + Math.round(size * 15) + (first ? 20 : 0) };
 }
 export const levelFor = (xp: number) => 1 + Math.floor(Math.sqrt(xp / 80));
-export const BADGES = { first: 'Première rencontre', diversity: 'Les cinq de l’étang', contact: 'Main légère : combat contrôlé', lure: 'Au leurre', bottom: 'Au fond', collector: 'Dix souvenirs', record: 'Un nouveau record' };
+export const BADGES = { first: 'Première rencontre', diversity: 'Les espèces de l’étang', contact: 'Main légère : combat contrôlé', lure: 'Au leurre', bottom: 'Au fond', collector: 'Dix souvenirs', record: 'Un nouveau record' };

@@ -1,39 +1,39 @@
-# Priorités du chantier
+# Priorités du chantier — état du 1 octobre 2026
 
-## P0 — Mettre le prototype entre les mains du propriétaire
+La mission autonome explicite autorise les fonctionnalités suivantes et remplace l’attente du premier retour appareil pour avancer. Une prise ou une sauvegarde cassée reste prioritaire sur le contenu.
 
-- [x] Installer et lancer le dossier sur son PC (Node 24.15.0, npm ci, check).
-- [x] Identifier Vercel et son dépôt (`portgas-d-w/fishdex-landing`, `main`).
-- [x] Publier la préproduction (30/09, voir docs/VERCEL.md).
-- [x] Vérifier la préproduction, remplacer la production autorisée et confirmer le déploiement Git (30/09, www.fishdex.fr, smoke 4/4).
-- [x] Arrêter le moulinet sur pagehide et suspendre le rendu pendant les modales/pauses.
-- [x] Isoler les E2E sur 5174 ; vérifier le vrai build et les appuis tactiles Chromium.
-- [ ] Tester Safari sur iPhone réel : lancer, touche, maintien, relâchement hors bouton,
-      verrouillage/reprise, audio après geste, import/export, portrait et paysage.
-- [ ] Relever fluidité, chauffe et temps de chargement sur vrai téléphone.
+## Réalisé et vérifié en 0.2.0
 
-## P1 — Améliorer la sensation et le rendu à partir du test
+- [x] Installation Node 24, npm ci, TypeScript, tests et build.
+- [x] Lancer libre tactile/souris, prévisualisation, refus et annulation ; habitats par coordonnées.
+- [x] Combat spatial lisible par canne/fil ; bouchon immergé, deux doigts indépendants, avertissement avant casse et décrochage, capture proche contrôlée.
+- [x] Arrêt des commandes sur interruption, focus, pause et pagehide.
+- [x] Catalogue réel FishDex, recherche/catégories/filtres et contenu prévu distinct ; quinze espèces jouables.
+- [x] Journal individuel, poids cohérent, robes/Mirage, photos locales, records, migration v1/v2, export/import et récompense unique.
+- [x] Niveaux, sept badges, monnaie virtuelle, achats et trois cannes utilisables ; base gratuite réutilisable.
+- [x] Aquarium cinq individus maximum, ajout/retrait/remplacement, fiches, proportions, nage, sol/fond/lumière et décor acheté sauvegardés.
+- [x] Flotteur, leurre avec récupération/animation effective et fond sans bouchon.
+- [x] Inventaire des 50 sources, quinze GLB optimisés, atlas inspecté, chargements à la demande.
+- [x] Nage procédurale corps/queue provisoire, débattement intermittent et tapis pour gros spécimens ; sons locaux facultatifs.
+- [x] Tests de navigation/moteurs/pauses, erreur de modèle, portraits et deux doigts réels Chromium ; mesures logiciel conservées.
+- [ ] Publier et vérifier preview puis production 0.2.0 ; cible confirmée fishdex-landing, domaines et retour arrière conservés.
 
-- [ ] Demander un retour concret : combat lisible ? trop lent ? trop facile ? décor agréable ?
-- [ ] Donner plus de poids aux départs : flexion de canne, mouvement de ligne, son de moulinet.
-- [ ] Distinguer les comportements des cinq espèces au-delà du simple coefficient de force.
-- [ ] Optimiser les draw calls et le rendu selon les mesures, avant d’ajouter des effets.
-- [ ] Préparer une animation de nage locale sur un poisson, puis valider le résultat.
+## Prochaine priorité : test propriétaire et appareil
 
-## P2 — Une raison de revenir, une fois la pêche agréable
+- [ ] Safari/iPhone 14 Pro réel : glissements, deux doigts, relâchement hors bouton, rotation, verrouillage/reprise, audio, import/export.
+- [ ] Mesurer FPS, chauffe, mémoire et chargement sur appareil ; cible 30 FPS stable, pas encore validée.
+- [ ] Recueillir plaisir/lisibilité/durée des combats et vitesse de progression ; ajuster paramètres centralisés.
+- [ ] Mesurer puis réduire chunk Babylon/appels de rendu si cela aide le téléphone ; garder chargement différé.
 
-- [ ] Petits objectifs de collection non quotidiens : première carpe, cinq espèces,
-      record personnel. Récompenses déterministes et compréhensibles.
-- [ ] Une amélioration de matériel avec effet tangible et équilibré.
-- [ ] Deuxième lieu seulement après avoir rendu le premier intéressant.
-- [ ] Choisir progressivement d’autres poissons du pack selon les lieux.
+## Animation et collection à poursuivre après mesures
 
-## Hors périmètre actuel
+- [ ] Respiration anatomique bouche/opercules ; rig ou régions de géométrie vérifiées.
+- [ ] Présentation suspendue des petits poissons, poisson au bord et arrivée à l’épuisette.
+- [ ] Affiner nage/virages sans intersections ; l’animation livrée est procédurale provisoire.
+- [ ] Archivage du journal avant 10 000 captures/5 Mo, sans perte de progression individuelle.
+- [ ] Variétés réellement représentées (miroir/koï etc.) et autres modèles identifiables adaptés au milieu ; 35 sources non intégrées.
+- [ ] Éventuel second lieu uniquement après validation du premier.
 
-Multijoueur, comptes, classement serveur, boutique réelle, lootboxes, publicités,
-abonnement, Steam, monde ouvert, moteur alternatif, génération d’assets à la volée.
+## Hors périmètre
 
-## Règle de priorité
-
-Un bug qui empêche une prise ou une sauvegarde passe avant un nouveau contenu.
-Un rendu fluide et un combat plaisant passent avant les 50 espèces.
+Comptes, multijoueur, classement serveur, boutique réelle, publicités, abonnements, Steam, monde ouvert, changement de moteur, IA externe pendant une partie et génération payante de modèles. Aucun entretien obligatoire de l’aquarium.

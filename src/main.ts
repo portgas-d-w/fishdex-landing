@@ -58,6 +58,14 @@ document.querySelector('.topbar')!.insertAdjacentHTML('afterend', '<nav class="t
 el('collection-list').insertAdjacentHTML('afterend', '<h3 class="section-title">Mes spécimens</h3><p class="intro" id="journal-intro"></p><div id="journal-list" class="journal-list"></div><button class="secondary" id="journal-more" hidden>Souvenirs suivants</button><div id="mastery-list" class="tools"></div>');
 el('catch-length').parentElement!.insertAdjacentHTML('afterend', '<p id="catch-weight" class="intro"></p><p id="catch-reward" class="reward-line"></p><p id="photo-state" class="modal-footnote"></p><button id="favorite-catch" class="secondary">Ajouter aux favoris</button>');
 el('app').insertAdjacentHTML('beforeend', '<dialog id="aquarium" class="modal wide-modal"><div class="modal-header"><div><div class="eyebrow">Une pause sous la surface</div><h2>Mon aquarium</h2></div><button class="close" data-close="aquarium" aria-label="Fermer l’aquarium">×</button></div><canvas id="aquarium-canvas" aria-label="Aquarium 3D de vos cinq favoris"></canvas><p class="intro" id="aquarium-state">Choisissez vos spécimens favoris dans le carnet.</p><div class="filters"><select id="aquarium-choice" aria-label="Choisir un spécimen"></select><button class="secondary" id="aquarium-add">Ajouter</button></div><div id="aquarium-favorites" class="collection-list"></div><h3 class="section-title">L’ambiance du bassin</h3><div class="aquarium-settings"><label>Sol<select id="aq-floor"><option value="sand">Sable clair</option><option value="gravel">Gravier sombre</option></select></label><label>Fond<select id="aq-background"><option value="dawn">Aube</option><option value="night">Nuit</option></select></label><label>Lumière<select id="aq-light"><option value="warm">Chaleureuse</option><option value="cool">Fraîche</option></select></label><label><input id="aq-plants" type="checkbox"> Plantes achetées</label><label><input id="aq-rocks" type="checkbox"> Rochers achetés</label></div><p class="modal-footnote">Cinq individus, leurs robes et leurs gabarits. Aucun entretien ni pénalité d’absence. Les plantes et rochers se trouvent en boutique.</p></dialog>');
+document.querySelector('.spots')!.insertAdjacentHTML('beforebegin', '<div class="methods" aria-label="Méthode de pêche"><button data-method="float" aria-pressed="true">Au flotteur</button><button data-method="lure" aria-pressed="false">Au leurre</button><button data-method="bottom" aria-pressed="false">Au fond</button></div>');
+el('key-hint').insertAdjacentHTML('afterend', '<button id="cancel-cast" class="cancel-cast" hidden>Ramener la ligne · Annuler</button>');
+const steps = document.querySelectorAll('.help-step');
+steps[0].querySelector('strong')!.textContent = 'Choisissez votre méthode et votre cible.';
+steps[0].querySelector('p')!.textContent = 'Glissez sur l’eau vers le haut, puis relâchez. La distance et la direction du geste règlent le lancer. Une cible hors de l’eau est refusée. Le bouton offre un lancer vers le poste choisi.';
+steps[1].querySelector('strong')!.textContent = 'Observez votre montage.';
+steps[1].querySelector('p')!.textContent = 'Au flotteur, attendez qu’il plonge. Au fond, regardez la pointe de la canne. Au leurre, maintenez le moulinet et glissez pour animer : la récupération déclenche les rencontres. Ferrez dès la touche.';
+steps[2].querySelector('p')!.textContent = 'Le bouchon reste immergé pendant le combat. Glissez sur l’eau pour orienter et relever la canne, et moulinez avec l’autre doigt (ou espace au clavier). Relâchez pendant un départ. Fil détendu : reprenez contact ; fil très tendu : amortissez avec la canne.';
 let storage: Storage | undefined;
 try { storage = window.localStorage; } catch { /* navigation privée restrictive */ }
 const loaded = storage ? loadSave(storage) : { data: emptySave(), warning: 'Sauvegarde locale indisponible. Pensez à exporter le carnet.' };
@@ -71,11 +79,14 @@ let manualPaused = false;
 let lastPhase = game.phase;
 let toastTimer = 0;
 let pendingImport: SaveData | undefined;
+let importRequest = 0;
 let catchViewRequest = 0;
 let storageWarningShown = false;
 let qaSimulationPaused = false;
 let aquarium: Aquarium | undefined;
 let aquariumRequest = 0;
+let lakeFrames = 0;
+let lastReelSound = 0;
 let viewedSpecimen: Specimen | undefined;
 let liveCatchView = false;
 let journalLimit = 30;
@@ -158,21 +169,27 @@ function renderPhase() {
   document.body.dataset.phase = game.phase;
   const phase = game.phase;
   const messages = {
-    idle: ['À vous de jouer', 'L’eau vous attend.', 'Choisissez un coin, lancez votre ligne et prenez le temps.', 'Lancer la ligne'],
+    idle: ['À vous de jouer', 'L’eau vous attend.', 'Glissez vers l’eau : direction et distance. Relâchez pour lancer.', 'Lancer la ligne'],
     casting: ['La ligne s’envole', 'Juste là…', 'Le bouchon rejoint votre coin de pêche.', 'Lancer en cours…'],
     waiting: ['À l’écoute de l’eau', 'Un peu de patience.', 'Gardez un œil sur le bouchon. La touche arrive.', 'En attente d’une touche…'],
     bite: ['Ça mord !', 'À vous de ferrer !', 'Le bouchon plonge. Appuyez maintenant pour accrocher le poisson.', 'Ferrer !'],
-    fighting: ['Le combat commence', 'Gardez le fil.', 'Maintenez pour mouliner. Relâchez quand la tension monte.', 'Maintenir pour mouliner'],
+    fighting: ['Le combat commence', 'Gardez le fil.', 'Glissez pour orienter la canne ; moulinez avec l’autre doigt.', 'Maintenir pour mouliner'],
     caught: ['Une rencontre de plus', 'Bien joué.', 'Votre prise rejoint le carnet.', 'Poisson capturé'],
     lost: ['Ce n’est que partie remise', 'Il a filé…', game.failure, 'Retenter ma chance'],
   }[phase];
+  if (phase === 'waiting' && game.method === 'lure') { messages[1] = 'Animez votre leurre.'; messages[2] = 'Maintenez pour récupérer, glissez pour animer. Les pauses arrêtent la récupération.'; messages[3] = 'Maintenir pour récupérer'; }
+  if (phase === 'waiting' && game.method === 'bottom') { messages[1] = 'La ligne repose au fond.'; messages[2] = 'La canne détecte la touche. Observez sa pointe.'; }
+  if (phase === 'bite' && game.method !== 'float') messages[2] = 'La pointe se courbe. Ferrez maintenant.';
   el('status').textContent = messages[0]; el('instruction').textContent = messages[1]; el('hint').textContent = messages[2]; el('action-label').textContent = messages[3];
-  el<HTMLButtonElement>('action').disabled = ['casting', 'waiting', 'caught'].includes(phase);
+  el<HTMLButtonElement>('action').disabled = ['casting', 'caught'].includes(phase) || phase === 'waiting' && game.method !== 'lure';
   el('action').classList.toggle('bite', phase === 'bite'); el('progress-ui').hidden = phase !== 'fighting';
-  document.querySelectorAll<HTMLButtonElement>('[data-spot], [data-bait]').forEach(button => button.disabled = phase !== 'idle');
+  document.querySelectorAll<HTMLButtonElement>('[data-spot], [data-bait], [data-method]').forEach(button => button.disabled = phase !== 'idle');
+  document.querySelectorAll<HTMLElement>('[data-method]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.method === game.method)));
+  document.querySelectorAll<HTMLElement>('[data-bait]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.bait === game.bait)));
+  el('cancel-cast').hidden = !['casting', 'waiting', 'bite'].includes(phase);
   el('water-label').hidden = phase !== 'idle' && phase !== 'waiting';
   el('water-text').textContent = phase === 'waiting' ? 'Écoutez le calme' : 'Votre coin de pêche';
-  el('key-hint').innerHTML = phase === 'fighting' ? 'Maintenez, puis relâchez · Au doigt ou au clavier' : 'Un geste pour lancer. Un peu de patience pour la suite.';
+  el('key-hint').textContent = phase === 'fighting' ? 'Canne au doigt · Moulinet au second doigt ou avec espace' : game.method === 'lure' && phase === 'waiting' ? 'Glissez pour animer · Espace ou bouton pour récupérer' : 'Glissez sur l’eau · Le bouton lance vers le poste choisi';
 }
 async function showCatch() {
   if (!game.result || !game.fish) return;
@@ -238,7 +255,7 @@ let gesture: { id: number; x: number; y: number; yaw: number; lift: number; cast
 function cancelGesture() { gesture = undefined; world?.aim(); }
 function release() { reelPointer = undefined; game.release(); el('action').classList.remove('reeling'); }
 function hold() {
-  if (game.phase === 'fighting' && !overlayPaused && !manualPaused) { game.reeling = true; el('action').classList.add('reeling'); void audio.unlock(); }
+  if ((game.phase === 'fighting' || game.phase === 'waiting' && game.method === 'lure') && !overlayPaused && !manualPaused) { game.reeling = true; el('action').classList.add('reeling'); void audio.unlock(); }
 }
 el('action').addEventListener('click', activate);
 el('action').addEventListener('pointerdown', event => { if (event.button !== 0) return; reelPointer = event.pointerId; el('action').setPointerCapture(event.pointerId); hold(); });
@@ -246,7 +263,7 @@ for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) el('act
 window.addEventListener('pointerup', event => { if (event.pointerId === reelPointer) release(); });
 const canvas = el<HTMLCanvasElement>('world');
 canvas.addEventListener('pointerdown', event => {
-  if (event.button !== 0 || gesture || overlayPaused || manualPaused || !['idle', 'fighting'].includes(game.phase)) return;
+  if (event.button !== 0 || gesture || overlayPaused || manualPaused || !(['idle', 'fighting'].includes(game.phase) || game.phase === 'waiting' && game.method === 'lure')) return;
   gesture = { id: event.pointerId, x: event.clientX, y: event.clientY, yaw: game.rodYaw, lift: game.rodLift, casting: game.phase === 'idle' };
   canvas.setPointerCapture(event.pointerId); void audio.unlock();
 });
@@ -270,7 +287,7 @@ window.addEventListener('resize', cancelGesture);
 window.addEventListener('keydown', event => {
   if (event.code !== 'Space' || event.repeat || event.target instanceof HTMLInputElement || overlayPaused || manualPaused) return;
   if (event.target instanceof HTMLElement && event.target.closest('button') && event.target !== el('action')) return;
-  event.preventDefault(); if (game.phase === 'fighting') hold(); else activate();
+  event.preventDefault(); if (game.phase === 'fighting' || game.phase === 'waiting' && game.method === 'lure') hold(); else activate();
 });
 window.addEventListener('keyup', event => { if (event.code === 'Space') { event.preventDefault(); release(); } });
 document.querySelectorAll<HTMLButtonElement>('[data-spot]').forEach(button => button.addEventListener('click', () => {
@@ -281,7 +298,10 @@ document.querySelectorAll<HTMLButtonElement>('[data-spot]').forEach(button => bu
 document.querySelectorAll<HTMLButtonElement>('[data-bait]').forEach(button => button.addEventListener('click', () => {
   game.setBait(button.dataset.bait as BaitId);
   document.querySelectorAll<HTMLElement>('[data-bait]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.bait === game.bait)));
+  renderPhase();
 }));
+document.querySelectorAll<HTMLButtonElement>('[data-method]').forEach(button => button.onclick = () => { game.setMethod(button.dataset.method as Specimen['method']); renderPhase(); });
+el('cancel-cast').onclick = () => { release(); cancelGesture(); game.reset(); phaseChanged(); };
 el('collection-open').onclick = () => { refreshCollection(); openModal('collection'); };
 el('help-open').onclick = () => openModal('help');
 el('dex-open').onclick = () => { refreshDex(); openModal('encyclopedia'); };
@@ -332,16 +352,18 @@ el('import-save').onclick = () => el<HTMLInputElement>('save-file').click();
 el<HTMLInputElement>('save-file').onchange = async event => {
   const input = event.target as HTMLInputElement; const file = input.files?.[0];
   if (!file) return;
+  const request = ++importRequest; pendingImport = undefined; el('import-review').hidden = true;
   try {
     if (file.size > MAX_SAVE_BYTES) throw new Error('Fichier trop volumineux.');
-    pendingImport = parseSave(await file.text());
+    const parsed = parseSave(await file.text()); if (request !== importRequest) return; pendingImport = parsed;
     el('import-description').textContent = `Ce carnet contient ${pendingImport.total} prise(s). Il remplacera votre carnet actuel (${save.total} prise(s)). Exportez le vôtre avant de continuer si vous souhaitez le garder.`;
     el('import-review').hidden = false;
-  } catch (error) { toast(error instanceof Error ? error.message : 'Fichier invalide.'); }
+  } catch (error) { if (request === importRequest) toast(error instanceof Error ? error.message : 'Fichier invalide.'); }
   input.value = '';
 };
 el('confirm-import').onclick = () => {
   if (!pendingImport) return;
+  game.reset(); release(); cancelGesture(); phaseChanged();
   save = pendingImport; pendingImport = undefined; el('import-review').hidden = true;
   equip();
   audio.enabled = save.settings.sound; world?.setQuality(save.settings.quality);
@@ -362,6 +384,7 @@ try {
   world.engine.runRenderLoop(() => {
     const now = performance.now(); const dt = Math.min((now - lastTime) / 1000, 0.1); lastTime = now;
     if (document.hidden) { accumulator = 0; return; }
+    if (game.reeling && !overlayPaused && !manualPaused && now - lastReelSound > 180) { audio.tone('reel'); lastReelSound = now; }
     if (!overlayPaused && !manualPaused && !qaSimulationPaused) {
       accumulator += dt;
       while (accumulator >= 1 / 60) { game.update(1 / 60); phaseChanged(); accumulator -= 1 / 60; }
@@ -370,11 +393,11 @@ try {
       const tension = Math.round(game.tension * 100); const progress = Math.round(game.progress * 100);
       el('tension-label').textContent = `${tension} %`; el('tension-pointer').style.left = `${Math.max(1, Math.min(99, tension))}%`;
       el('tension-meter').setAttribute('aria-valuenow', String(tension)); el('catch-meter').setAttribute('aria-valuenow', String(progress));
-      el('distance-fill').style.width = `${progress}%`; el('fight-note').textContent = game.pulling ? 'Il tire ! Relâchez pour protéger le fil.' : 'Il se calme. C’est le moment de mouliner.';
+      el('distance-fill').style.width = `${progress}%`; el('fight-note').textContent = tension >= 85 ? 'Attention à la casse ! Relâchez et relevez la canne.' : tension < 5 ? 'Le fil est mou : reprenez contact au moulinet.' : game.pulling ? 'Il tire ! Relâchez pour protéger le fil.' : 'Il se calme. C’est le moment de mouliner.';
     }
     if (!overlayPaused && !manualPaused && now - lastRender >= (save.settings.quality === 'eco' ? 1000 / 30 : 0)) {
       world!.update((now - lastRender) / 1000 > 0.1 ? 1 / 30 : (now - lastRender) / 1000, game);
-      world!.scene.render(); lastRender = now;
+      world!.scene.render(); lakeFrames++; lastRender = now;
     }
   });
   world.scene.executeWhenReady(() => { el('loading').hidden = true; document.body.dataset.ready = 'true'; if (loaded.warning) toast(loaded.warning); });
@@ -388,7 +411,7 @@ try {
 if (import.meta.env.DEV && import.meta.env.VITE_E2E === '1') {
   Object.assign(window, { __fishingQA: {
     pauseSimulation: () => { qaSimulationPaused = true; },
-    snapshot: () => ({ phase: game.phase, tension: game.tension, progress: game.progress, reeling: game.reeling, pulling: game.pulling, total: save.total, paused: manualPaused || overlayPaused, target: game.target, yaw: game.rodYaw, lift: game.rodLift, aquarium: aquarium?.diagnostics(), engines: Engine.Instances.length }),
+    snapshot: () => ({ phase: game.phase, tension: game.tension, progress: game.progress, reeling: game.reeling, pulling: game.pulling, total: save.total, paused: manualPaused || overlayPaused, target: game.target, yaw: game.rodYaw, lift: game.rodLift, aquarium: aquarium?.diagnostics(), engines: Engine.Instances.length, lakeFrames, meshes: world?.scene.getActiveMeshes().length }),
     advance: (seconds: number, mode?: 'smart') => { for (let i = 0; i < seconds * 60; i++) { if (mode === 'smart') game.reeling = game.tension < (game.pulling ? 0.35 : 0.65); game.update(1 / 60); phaseChanged(); if (['caught', 'lost', 'bite'].includes(game.phase)) break; } },
   } });
 }

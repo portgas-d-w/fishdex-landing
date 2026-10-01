@@ -36,7 +36,7 @@ for (const file of ['024_species_seed.sql', '025_species_enrichment_complet.sql'
     if (techniques) row.techniques = [...techniques[1].matchAll(/'((?:[^']|'')*)'/g)].map(x => x[1].replaceAll("''", "'"));
   }
 }
-const aliases = { 'carpe-commune': 'carp', gardon: 'roach', perche: 'perch', brochet: 'pike', sandre: 'zander' };
+const aliases = { 'carpe-commune': 'carp', gardon: 'roach', perche: 'perch', brochet: 'pike', sandre: 'zander', 'breme-commune': 'bream', tanche: 'tench', rotengle: 'rudd', ablette: 'bleak', carassin: 'crucian', 'breme-bordeliere': 'whitebream', goujon: 'gudgeon', chevesne: 'chub', 'ide-melanote': 'ide', 'silure-glane': 'catfish' };
 const groups = new Map();
 const entries = [...rows.values()].map(row => {
   const latin = row.nom_scientifique.split(/\s+/).slice(0, 2).join(' ');

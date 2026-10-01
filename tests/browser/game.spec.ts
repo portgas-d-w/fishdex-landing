@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { SPECIES } from '../../src/game/catalog';
 
 test('Une partie complète enregistre la prise et la conserve après rechargement', async ({ page }, info) => {
   const errors: string[] = [];
@@ -33,7 +34,7 @@ test('Une partie complète enregistre la prise et la conserve après rechargemen
   expect(await page.evaluate(() => (window as any).__fishingQA.snapshot().total)).toBe(1);
   await page.locator('#release-fish').click();
   await page.reload(); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
-  await expect(page.locator('#collection-count')).toHaveText('1 / 5');
+  await expect(page.locator('#collection-count')).toHaveText(`1 / ${SPECIES.length}`);
   await page.locator('#collection-open').click(); await expect(page.locator('.fish-entry:not(.undiscovered)')).toHaveCount(1);
   expect(errors).toEqual([]);
 });

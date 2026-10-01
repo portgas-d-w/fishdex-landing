@@ -49,7 +49,7 @@
         "Pêche à la mouche sèche",
         "Streamer ultra-light"
       ],
-      "gameId": null,
+      "gameId": "bleak",
       "image": "/encyclopedia/ablette.webp",
       "weightA": 0.0082,
       "weightB": 3.01
@@ -70,7 +70,7 @@
         "Pêche au coup",
         "Pêche au feeder léger"
       ],
-      "gameId": null,
+      "gameId": "whitebream",
       "image": "/encyclopedia/breme-bordeliere.webp",
       "weightA": 0.0191,
       "weightB": 2.99
@@ -114,7 +114,7 @@
         "Pêche au coup au grand pivot",
         "Pêche à la bolognaise"
       ],
-      "gameId": null,
+      "gameId": "bream",
       "image": "/encyclopedia/breme-commune.webp",
       "weightA": 0.018,
       "weightB": 2.94
@@ -135,7 +135,7 @@
         "Pêche au coup",
         "Pêche à la grande canne"
       ],
-      "gameId": null,
+      "gameId": "crucian",
       "image": "/encyclopedia/carassin.webp",
       "weightA": null,
       "weightB": null
@@ -158,7 +158,7 @@
         "Pêche à la cerise / pain",
         "Pêche à la fouettée"
       ],
-      "gameId": null,
+      "gameId": "chub",
       "image": "/encyclopedia/chevesne.webp",
       "weightA": 0.0123,
       "weightB": 3
@@ -245,7 +245,7 @@
         "Pêche au toc / au plomb",
         "Pêche au coup en rivière"
       ],
-      "gameId": null,
+      "gameId": "gudgeon",
       "image": "/encyclopedia/goujon.webp",
       "weightA": 0.0082,
       "weightB": 3.07
@@ -266,7 +266,7 @@
         "Pêche au coup",
         "Pêche à la mouche sèche"
       ],
-      "gameId": null,
+      "gameId": "rudd",
       "image": "/encyclopedia/rotengle.webp",
       "weightA": 0.0177,
       "weightB": 3
@@ -288,7 +288,7 @@
         "Pêche au coup à fond",
         "Pêche à la grande canne"
       ],
-      "gameId": null,
+      "gameId": "tench",
       "image": "/encyclopedia/tanche.webp",
       "weightA": 0.021,
       "weightB": 2.89
@@ -483,7 +483,7 @@
         "Pêche au leurre léger",
         "Pêche à la mouche"
       ],
-      "gameId": null,
+      "gameId": "ide",
       "image": "/encyclopedia/ide-melanote.webp",
       "weightA": 0.01,
       "weightB": 3.06
@@ -1094,7 +1094,7 @@
         "Pêche au vif sur posée",
         "Pêche au leurre lourd"
       ],
-      "gameId": null,
+      "gameId": "catfish",
       "image": "/encyclopedia/silure-glane.webp",
       "weightA": 0.0621,
       "weightB": 2.73
