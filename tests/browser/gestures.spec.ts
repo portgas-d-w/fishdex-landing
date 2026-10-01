@@ -1,0 +1,21 @@
+import { test, expect } from '@playwright/test';
+test('Glissement réel, refus, interruption et deux commandes indépendantes', async ({ page }) => {
+  await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
+  await page.evaluate(() => (window as any).__fishingQA.pauseSimulation());
+  const errors: string[] = []; page.on('pageerror', e => errors.push(e.message));
+  const canvas = page.locator('#world');
+  await page.mouse.move(170, 420); await page.mouse.down(); await page.mouse.move(190, 310);
+  await canvas.dispatchEvent('pointercancel', { pointerId: 1 }); await page.mouse.up();
+  await expect(page.locator('body')).toHaveAttribute('data-phase', 'idle');
+  await page.mouse.move(180, 410); await page.mouse.down(); await page.mouse.move(185, 408); await page.mouse.up();
+  await expect(page.locator('#toast')).toContainText('Glissez');
+  await page.mouse.move(180, 410); await page.mouse.down(); await page.mouse.move(200, 280); await page.mouse.up();
+  await expect(page.locator('body')).toHaveAttribute('data-phase', 'casting');
+  await page.evaluate(() => (window as any).__fishingQA.advance(10)); await page.locator('#action').click();
+  await page.keyboard.down('Space');
+  await page.mouse.move(180, 360); await page.mouse.down(); await page.mouse.move(240, 320); await page.mouse.up();
+  expect(await page.evaluate(() => (window as any).__fishingQA.snapshot().reeling)).toBe(true);
+  await page.keyboard.up('Space');
+  expect(await page.evaluate(() => (window as any).__fishingQA.snapshot().reeling)).toBe(false);
+  expect(errors).toEqual([]);
+});

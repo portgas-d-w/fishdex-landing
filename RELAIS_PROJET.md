@@ -167,6 +167,10 @@ monnaies, services ou espèces avant d’avoir rendu cette boucle satisfaisante.
 
 ## 9. Journal de session à maintenir
 
+### Mission autonome en cours — 1 octobre 2026, Codex
+
+Mission explicite `docs/MISSION_CODEX_AUTONOME_AU_FIL_DE_LEAU.md` : P0 à P4 autorisés, y compris économie purement virtuelle et aquarium. Elle remplace l’attente de retour téléphone pour progresser ; les mesures appareil restent à faire. Branche `codex/mission-autonome-2026-10-01`, FishDex en lecture seule. `npm ci` : réussi, 0 vulnérabilité. Check initial : 9/9 + build. P0 : lancer libre normalisé, habitats par coordonnées, orientation de canne, comportement spatial par espèce, fil épais attaché à la canne et montage immergé, capture proche sous contrôle. Check P0 : 12 tests à vérifier. Premier E2E perturbé par une modification pendant son exécution (rechargement Vite) : 5/6, rerun stable requis. Voir `docs/MISSION_AUTONOME.md` pour la suite.
+
 | Date | Agent | Réalisé | Prochaine action |
 | --- | --- | --- | --- |
 | 2026-09-30 | Codex | Projet 0.1, prototype complet, cinq conversions Blender, tests et docs de relais | Installation sur PC, choix cible Vercel, essai sur téléphone |

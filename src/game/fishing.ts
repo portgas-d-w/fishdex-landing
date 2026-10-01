@@ -1,5 +1,7 @@
 import { pickSpecies } from './catalog.ts';
 import type { BaitId, Species, SpotId } from './catalog.ts';
+import { inspectTarget } from './casting.ts';
+import type { WaterPoint } from './casting.ts';
 
 export type Phase = 'idle' | 'casting' | 'waiting' | 'bite' | 'fighting' | 'caught' | 'lost';
 export interface Catch { speciesId: Species['id']; length: number; date: string }
@@ -11,6 +13,13 @@ export class FishingGame {
   tension = 0.25;
   progress = 0;
   pulling = false;
+  target: WaterPoint = { x: -1.5, z: 7 };
+  fishPosition = { x: -1.5, y: -0.7, z: 7 };
+  rodYaw = 0;
+  rodLift = 0.5;
+  direction = 0;
+  distance = 8;
+  equipmentPower = 1;
   reeling = false;
   failure = '';
   result: Catch | null = null;
@@ -23,16 +32,26 @@ export class FishingGame {
 
   setSpot(spot: SpotId) { if (this.phase === 'idle') this.spot = spot; }
   setBait(bait: BaitId) { if (this.phase === 'idle') this.bait = bait; }
-  cast() {
-    if (this.phase !== 'idle') return;
+  orient(yaw: number, lift: number) {
+    this.rodYaw = Math.max(-1, Math.min(1, yaw)); this.rodLift = Math.max(0, Math.min(1, lift));
+  }
+  cast(point?: WaterPoint) {
+    if (this.phase !== 'idle') return false;
+    const aim = inspectTarget(point ?? { x: this.spot === 'reeds' ? -1.5 : this.spot === 'willow' ? 3 : 0, z: this.spot === 'open' ? 14 : 7 });
+    if (!aim.valid) { this.failure = aim.reason; return false; }
+    this.target = { ...aim.point }; this.spot = aim.habitat;
+    this.distance = Math.hypot(aim.point.x, aim.point.z + 1);
+    this.fishPosition = { ...aim.point, y: -aim.depth * 0.5 };
     this.result = null;
     this.fish = pickSpecies(this.spot, this.bait, this.random());
     this.waitDuration = 3 + this.random() * 4;
     this.transition('casting');
+    return true;
   }
   strike() {
     if (this.phase !== 'bite') return;
     this.tension = 0.32; this.progress = 0; this.slackTime = 0; this.highTensionTime = 0;
+    this.rodYaw = 0; this.rodLift = 0.5;
     this.transition('fighting');
   }
   reset() {
@@ -50,18 +69,27 @@ export class FishingGame {
     else if (this.phase === 'waiting' && this.elapsed >= this.waitDuration) this.transition('bite');
     else if (this.phase === 'bite' && this.elapsed >= 4.5) this.lose('Il a relâché l’appât. La prochaine touche sera la bonne.');
     else if (this.phase === 'fighting' && this.fish) {
-      this.pulling = this.elapsed % 4.8 > 2.8;
+      const cycle = this.fish.id === 'perch' ? 3.6 : this.fish.id === 'carp' ? 6.2 : this.fish.id === 'pike' ? 4.2 : this.fish.id === 'zander' ? 5.4 : 4.8;
+      this.pulling = this.elapsed % cycle > cycle * 0.60;
       const force = this.fish.strength;
-      this.tension += (this.reeling ? (this.pulling ? 0.44 * force : 0.12 * force) : -0.40) * dt;
+      this.direction = Math.sin(this.elapsed * (this.fish.id === 'pike' ? 1.2 : 0.65)) * 0.65;
+      const alignment = 1 - Math.min(1, Math.abs(this.rodYaw - this.direction));
+      const damping = (0.8 + this.rodLift * 0.4) * this.equipmentPower;
+      this.tension += (this.reeling ? (this.pulling ? 0.44 * force / damping : 0.12 * force) : -0.40) * dt;
+      this.tension += (this.pulling ? (1 - alignment) * 0.10 - this.rodLift * 0.045 : 0) * dt;
       this.tension = Math.min(1, Math.max(0, this.tension));
-      const gain = this.pulling ? 0.012 : 0.12 / force;
+      const gain = (this.pulling ? 0.012 : 0.12 / force) * (0.7 + alignment * 0.6) * this.equipmentPower;
       this.progress = Math.min(1, Math.max(0, this.progress + (this.reeling ? gain : -0.012) * dt));
-      this.highTensionTime = this.tension >= 0.97 ? this.highTensionTime + dt : 0;
+      const remaining = this.distance * (1 - this.progress) + 1.8;
+      this.fishPosition.x = this.target.x * (1 - this.progress) + this.direction * Math.min(2, remaining * 0.2);
+      this.fishPosition.z = -1 + Math.sqrt(Math.max(0, remaining ** 2 - this.fishPosition.x ** 2));
+      this.fishPosition.y = -Math.min(1.6, Math.max(0.10, remaining * 0.10)) - (this.pulling ? 0.2 : 0);
+      this.highTensionTime = this.tension >= 0.97 ? this.highTensionTime + dt : Math.max(0, this.highTensionTime - dt);
       this.slackTime = this.tension < 0.025 ? this.slackTime + dt : 0;
-      if (this.highTensionTime > 0.35) this.lose('Le fil a cassé. Relâche le moulinet quand le poisson tire.');
+      if (this.highTensionTime > 0.8) this.lose('Le fil a cassé. Relâche le moulinet quand le poisson tire.');
       else if (this.slackTime > 4) this.lose('Le poisson s’est décroché. Garde un peu de tension dans le fil.');
       else if (this.elapsed > 90) this.lose('Le poisson a trouvé refuge. Essaie de mouliner entre ses départs.');
-      else if (this.progress >= 1) {
+      else if (remaining <= 1.81 && this.tension > 0.04 && this.tension < 0.94) {
         this.result = { speciesId: this.fish.id, length: Math.round((this.fish.min + Math.pow(this.random(), 1.6) * (this.fish.max - this.fish.min)) * 10) / 10, date: new Date().toISOString() };
         this.transition('caught');
       }

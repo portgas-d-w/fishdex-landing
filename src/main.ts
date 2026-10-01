@@ -7,6 +7,7 @@ import type { SaveData } from './game/save';
 import { LakeWorld } from './render/world';
 import { FishPreview } from './render/fish-preview';
 import { GameAudio } from './ui/audio';
+import { aimFromGesture } from './game/casting';
 
 const icon = (path: string) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
 const icons = {
@@ -66,7 +67,7 @@ function saveNow() {
     storageWarningShown = true; toast('Sauvegarde locale impossible. Exportez votre carnet pour le conserver.');
   }
 }
-function openModal(id: string) { release(); overlayPaused = true; el<HTMLDialogElement>(id).showModal(); }
+function openModal(id: string) { release(); cancelGesture(); overlayPaused = true; el<HTMLDialogElement>(id).showModal(); }
 function closeModal(id: string) { el<HTMLDialogElement>(id).close(); }
 function refreshCollection() {
   el('collection-count').textContent = `${Object.keys(save.records).length} / ${SPECIES.length}`;
@@ -134,14 +135,40 @@ function activate() {
   else if (game.phase === 'lost') game.reset();
   phaseChanged();
 }
-function release() { game.release(); el('action').classList.remove('reeling'); }
+let reelPointer: number | undefined;
+let gesture: { id: number; x: number; y: number; yaw: number; lift: number; casting: boolean } | undefined;
+function cancelGesture() { gesture = undefined; world?.aim(); }
+function release() { reelPointer = undefined; game.release(); el('action').classList.remove('reeling'); }
 function hold() {
   if (game.phase === 'fighting' && !overlayPaused && !manualPaused) { game.reeling = true; el('action').classList.add('reeling'); void audio.unlock(); }
 }
 el('action').addEventListener('click', activate);
-el('action').addEventListener('pointerdown', event => { if (event.button !== 0) return; el('action').setPointerCapture(event.pointerId); hold(); });
+el('action').addEventListener('pointerdown', event => { if (event.button !== 0) return; reelPointer = event.pointerId; el('action').setPointerCapture(event.pointerId); hold(); });
 for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) el('action').addEventListener(type, release);
-window.addEventListener('pointerup', release);
+window.addEventListener('pointerup', event => { if (event.pointerId === reelPointer) release(); });
+const canvas = el<HTMLCanvasElement>('world');
+canvas.addEventListener('pointerdown', event => {
+  if (event.button !== 0 || gesture || overlayPaused || manualPaused || !['idle', 'fighting'].includes(game.phase)) return;
+  gesture = { id: event.pointerId, x: event.clientX, y: event.clientY, yaw: game.rodYaw, lift: game.rodLift, casting: game.phase === 'idle' };
+  canvas.setPointerCapture(event.pointerId); void audio.unlock();
+});
+canvas.addEventListener('pointermove', event => {
+  if (!gesture || gesture.id !== event.pointerId) return;
+  const dx = event.clientX - gesture.x; const dy = event.clientY - gesture.y;
+  if (gesture.casting) { const aim = aimFromGesture(dx, dy, innerWidth, innerHeight); world?.aim(aim); el('hint').textContent = aim.valid ? `Cible à ${Math.round(Math.hypot(aim.point.x, aim.point.z))} m · ${aim.depth} m de fond` : aim.reason; }
+  else game.orient(gesture.yaw + dx / innerWidth * 3.5, gesture.lift - dy / innerHeight * 3);
+});
+canvas.addEventListener('pointerup', event => {
+  if (!gesture || gesture.id !== event.pointerId) return;
+  if (gesture.casting) {
+    const aim = aimFromGesture(event.clientX - gesture.x, event.clientY - gesture.y, innerWidth, innerHeight);
+    if (aim.valid && game.cast(aim.point)) { audio.tone('cast'); phaseChanged(); el('spot-name').textContent = SPOTS.find(s => s.id === game.spot)!.name; }
+    else toast(aim.reason);
+  }
+  cancelGesture();
+});
+for (const type of ['pointercancel', 'lostpointercapture']) canvas.addEventListener(type, cancelGesture);
+window.addEventListener('resize', cancelGesture);
 window.addEventListener('keydown', event => {
   if (event.code !== 'Space' || event.repeat || event.target instanceof HTMLInputElement || overlayPaused || manualPaused) return;
   if (event.target instanceof HTMLElement && event.target.closest('button') && event.target !== el('action')) return;
@@ -191,7 +218,7 @@ el('confirm-import').onclick = () => {
   saveNow(); refreshCollection(); refreshSettings(); toast('Votre carnet a été restauré.');
 };
 el('cancel-import').onclick = () => { pendingImport = undefined; el('import-review').hidden = true; };
-function pauseManually() { release(); if (!overlayPaused) { manualPaused = true; el('paused').hidden = false; } }
+function pauseManually() { release(); cancelGesture(); if (!overlayPaused) { manualPaused = true; el('paused').hidden = false; } }
 window.addEventListener('blur', pauseManually);
 window.addEventListener('pagehide', () => { pauseManually(); preview?.pause(); });
 document.addEventListener('visibilitychange', () => { if (document.hidden) { pauseManually(); preview?.pause(); } else if (el<HTMLDialogElement>('caught').open) preview?.resume(); });

@@ -12,6 +12,7 @@ import { ShaderMaterial } from '@babylonjs/core/Materials/shaderMaterial';
 import { Effect } from '@babylonjs/core/Materials/effect';
 import { TransformNode } from '@babylonjs/core/Meshes/transformNode';
 import type { FishingGame } from '../game/fishing';
+import type { CastAim } from '../game/casting';
 
 export class LakeWorld {
   readonly engine: Engine;
@@ -26,6 +27,11 @@ export class LakeWorld {
   private reeds: TransformNode[] = [];
   private resize = () => this.engine.resize();
   private seed = 127;
+  private rod!: Mesh;
+  private thickLine!: Mesh;
+  private aimRing!: Mesh;
+  private trajectory!: ReturnType<typeof MeshBuilder.CreateLines>;
+  private rodPath = Array.from({ length: 9 }, (_, i) => new Vector3(1.4, 0.8 + i * 0.16, -5.7 + i * 0.56));
   private random() { this.seed = (1664525 * this.seed + 1013904223) >>> 0; return this.seed / 4294967296; }
 
   constructor(canvas: HTMLCanvasElement, quality: 'eco' | 'high') {
@@ -49,6 +55,14 @@ export class LakeWorld {
     this.water = this.createWater();
     this.dock();
     this.batchScenery();
+    this.rod = MeshBuilder.CreateTube('moving-rod', { path: this.rodPath, radius: 0.025, tessellation: 6, updatable: true }, this.scene);
+    this.rod.material = this.material('#344337');
+    this.thickLine = MeshBuilder.CreateTube('visible-line', { path: Array.from({ length: 9 }, (_, i) => new Vector3(1, 2, i)), radius: 0.012, tessellation: 4, updatable: true }, this.scene);
+    const lineMat = this.material('#fff2bf'); lineMat.disableLighting = true; lineMat.emissiveColor = Color3.FromHexString('#fff2bf'); this.thickLine.material = lineMat;
+    this.aimRing = MeshBuilder.CreateTorus('cast-target', { diameter: 0.8, thickness: 0.035, tessellation: 32 }, this.scene);
+    this.aimRing.material = this.material('#f5dda1'); this.aimRing.setEnabled(false);
+    this.trajectory = MeshBuilder.CreateLines('trajectory', { points: Array.from({ length: 17 }, () => Vector3.Zero()), updatable: true }, this.scene);
+    this.trajectory.color = Color3.FromHexString('#f5dda1'); this.trajectory.setEnabled(false);
     this.bobber = new TransformNode('float', this.scene);
     const cork = MeshBuilder.CreateSphere('float-red', { diameter: 0.15, segments: 10 }, this.scene);
     cork.scaling.y = 1.65; cork.material = this.material('#dd704a'); cork.parent = this.bobber; cork.position.y = 0.075;
@@ -168,8 +182,6 @@ export class LakeWorld {
       const post = MeshBuilder.CreateCylinder('dock-post', { diameter: 0.20, height: 1.5, tessellation: 8 }, this.scene);
       post.position.set(x, 0.25, z); post.material = woods[2];
     }
-    const rod = MeshBuilder.CreateTube('fishing-rod', { path: [new Vector3(1.4, 0.8, -5.7), new Vector3(1.45, 1.5, -3.8), new Vector3(1.3, 1.8, -2.3)], radius: 0.025, tessellation: 6 }, this.scene);
-    rod.material = this.material('#313e38');
     const grip = MeshBuilder.CreateTube('cork-grip', { path: [new Vector3(1.4, 0.8, -5.7), new Vector3(1.415, 1.0, -5.1)], radius: 0.06, tessellation: 8 }, this.scene);
     grip.material = this.material('#c2a46d');
   }
@@ -177,30 +189,58 @@ export class LakeWorld {
     const dpr = Math.min(window.devicePixelRatio || 1, quality === 'eco' ? 1.25 : 2);
     this.engine.setHardwareScalingLevel(1 / dpr);
   }
+  aim(aim?: CastAim) {
+    this.aimRing.setEnabled(!!aim); this.trajectory.setEnabled(!!aim);
+    if (!aim) return;
+    this.aimRing.position.set(aim.point.x, 0.07, aim.point.z);
+    (this.aimRing.material as StandardMaterial).diffuseColor = Color3.FromHexString(aim.valid ? '#f5dda1' : '#f37c62');
+    const start = this.rodPath[8];
+    MeshBuilder.CreateLines('trajectory', { points: Array.from({ length: 17 }, (_, i) => {
+      const t = i / 16; return Vector3.Lerp(start, new Vector3(aim.point.x, 0.1, aim.point.z), t).add(new Vector3(0, Math.sin(t * Math.PI) * 2.3, 0));
+    }), instance: this.trajectory }, this.scene);
+  }
   update(dt: number, game: FishingGame) {
     this.time += dt;
     this.water.setFloat('time', this.time); this.water.setVector3('eye', this.camera.position);
-    const targetX = game.spot === 'reeds' ? -1.5 : game.spot === 'willow' ? 3 : 0;
-    const targetZ = game.spot === 'open' ? 12 : 7;
+    const targetX = game.target.x;
+    const targetZ = game.target.z;
     this.castPoint.set(targetX, 0, targetZ);
     const show = ['casting', 'waiting', 'bite', 'fighting'].includes(game.phase);
-    this.bobber.setEnabled(show); this.line.setEnabled(show);
+    this.bobber.setEnabled(show); this.line.setEnabled(show); this.thickLine.setEnabled(show);
+    const fighting = game.phase === 'fighting';
+    const base = new Vector3(1.4, 0.8, -5.7);
+    this.rodPath = Array.from({ length: 9 }, (_, i) => {
+      const t = i / 8;
+      return base.add(new Vector3((game.rodYaw * 3 - 0.1) * t + (fighting ? game.direction * game.tension * t * t * 0.7 : 0),
+        (0.8 + game.rodLift * 2.3) * t - (fighting ? game.tension * t * t * 1.1 : 0), 4.5 * t));
+    });
+    MeshBuilder.CreateTube('moving-rod', { path: this.rodPath, instance: this.rod }, this.scene);
     const cast = game.phase === 'casting' ? Math.min(1, game.elapsed / 1.1) : 1;
-    const distance = game.phase === 'fighting' ? 1 - game.progress * 0.20 : 1;
-    this.bobber.position.set(targetX * cast, 0.035 + Math.sin(this.time * 2) * 0.022, -1 + (targetZ * distance + 1) * cast);
+    this.bobber.position.set(targetX * cast, 0.035 + Math.sin(this.time * 2) * 0.022, -1 + (targetZ + 1) * cast);
     if (game.phase === 'casting') this.bobber.position.y += Math.sin(cast * Math.PI) * 2;
-    if (game.phase === 'bite' || game.phase === 'fighting') {
+    if (game.phase === 'bite') {
       this.bobber.position.y -= Math.abs(Math.sin(this.time * 12)) * 0.1;
       this.bobber.position.x += Math.sin(this.time * 4) * (game.pulling ? 0.28 : 0.05);
     }
+    if (fighting) {
+      this.bobber.position.set(game.fishPosition.x, game.progress > 0.90 ? 0.01 : game.fishPosition.y, game.fishPosition.z);
+    }
     this.rings.forEach((ring, i) => {
-      ring.setEnabled(show && game.phase !== 'casting');
+      ring.setEnabled(show && game.phase !== 'casting' && (!fighting || game.progress > 0.9));
       const t = (this.time * (game.phase === 'bite' ? 1.8 : 0.5) + i / 3) % 1;
       ring.position.copyFrom(this.bobber.position); ring.position.y = 0.047;
       ring.scaling.setAll(0.25 + t * 2.5);
       (ring.material as StandardMaterial).alpha = (1 - t) * 0.3;
     });
-    MeshBuilder.CreateLines('fishing-line', { points: [new Vector3(1.3, 1.8, -2.3), this.bobber.position.add(new Vector3(0, 0.28, 0))], instance: this.line }, this.scene);
+    const end = this.bobber.position.add(new Vector3(0, 0.15, 0));
+    const tip = this.rodPath[8];
+    // Le segment immergé est occulté par l’eau ; le point d’entrée suit le poisson.
+    const path = Array.from({ length: 9 }, (_, i) => {
+      const t = i / 8; const p = Vector3.Lerp(tip, end, t);
+      p.y -= Math.sin(t * Math.PI) * (fighting ? (1 - game.tension) * 0.65 : 0.15); return p;
+    });
+    MeshBuilder.CreateLines('fishing-line', { points: [tip, end], instance: this.line }, this.scene);
+    MeshBuilder.CreateTube('visible-line', { path, instance: this.thickLine }, this.scene);
     this.reeds.forEach((reed, i) => { reed.rotation.z = Math.sin(this.time * 1.2 + i) * 0.035; });
   }
   dispose() { window.removeEventListener('resize', this.resize); this.scene.dispose(); this.engine.dispose(); }
