@@ -9,7 +9,11 @@ Cible et liaison revérifiées : `portgas-d-ws-projects/fishdex-landing`, même 
 - Preview : https://fishdex-landing-9jbp3yk7v-portgas-d-ws-projects.vercel.app
 - ID `dpl_6oo2HHjwRyLiT2FPELsTXyKK7q4e`, READY, build 1 min 14 s.
 - Smoke protégé : **6/6 (1,2 min)**, partie réelle, souris/tactile Chromium, quinze GLB, portraits, achats, aquarium, persistance et transfert du carnet. OIDC local limité à l’origine ; token non affiché/non committé, traces désactivées.
-- Production 0.2 en cours via main après cette validation ; contrôle public à suivre.
+- Production 0.2 publiée par Git main `affa933cc0443f14d45c594863a486006e5fb178` après validation ; application identique à b77a4ee (diff src/public/package/config vide).
+- URL testée : https://fishdex-landing-3xmhe25e1-portgas-d-ws-projects.vercel.app, ID `dpl_2h16DCV5MDADobzftFbXxeuYzxtu`, READY, build 44 s, post-build 18 s.
+- https://www.fishdex.fr : **smoke public 6/6 (1,1 min)** sans token, vrai combat/capture, progression, équipement et aquarium sur bureau/tactile. Captures production inspectées. HTTP 200 ; https://fishdex.fr redirige vers www. Bundle index-r9Mmjvib.js identique au build local et manifeste quinze modèles.
+- Le commit de clôture ne modifie que documentation/captures ; le push main déclenche un déploiement Git de la même application, dont état et fichiers servis sont contrôlés avant fin de session. Les tests complets ci-dessus concernent le déploiement applicatif exact affa933.
+- Contrôle d’identité de l’application publique : SHA256 du bundle principal `b0b1cfbfbf5504ac8b1a7dcf1762d12423dcaf2239c63e949cbcc3da5aafd258`, égal octet par octet au dist vérifié ; manifeste également identique.
 - Retour 0.1 conservé : tag publié `archive/au-fil-de-leau-before-mission-2026-10-01`, commit `f21c700`, déploiement `dpl_Gp7gow3AekUDTWVL9FDBbnmrANse`, https://fishdex-landing-ziwssiubj-portgas-d-ws-projects.vercel.app. Les sauvegardes v2 peuvent s’exporter mais ne sont pas lisibles par l’ancienne application v1 : sauvegarder le JSON avant retour applicatif.
 
 Les quinze GLB restent publics pour le rendu ; ZIP source, .env et archive FishDex exclus. Ancien FishDex et instructions de promotion/restauration conservés ci-dessous.

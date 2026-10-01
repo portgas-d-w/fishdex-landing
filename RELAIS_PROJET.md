@@ -1,6 +1,6 @@
 # RELAIS PROJET — Codex ↔ Claude Code
 
-**Dernière mise à jour : 1 octobre 2026. Agent : Codex. Version : 0.2.0. Publication en cours après validation locale.**
+**Dernière mise à jour : 1 octobre 2026. Agent : Codex. Version : 0.2.0 publiée et vérifiée sur https://www.fishdex.fr.**
 
 ## État actuel prioritaire — mission autonome du 1 octobre
 
@@ -10,7 +10,9 @@ Livré : lancer libre, orientation et moulinage simultanés, combat spatial cann
 
 Validation P4 : `npm run check` **19 tests + TypeScript + build réussis**, E2E **20 réussis/2 ignorés selon viewport (1 min 30 s)** ; smoke du build sans QA **6/6 (1 min)**, vraie capture temps réel souris/tactile, export/import, achats/équipement, aquarium/portrait et quinze GLB. Captures inspectées et conservées dans `docs/apercus/`. Inventaire Blender 5.1.2 : 50 FBX sans rig/animation ; quinze GLB 1 731 232 octets, aucun chargement initial. Chromium/SwiftShader Windows, qualité eco : étang 22,1–23,5 FPS, aquarium 22,5–23,3 FPS, aucune frame de pêche derrière le bassin. Aucun test iPhone physique.
 
-Étape publication : P4 `3319536`, preview Git `b77a4ee` après deux uploads CLI échoués avant création. Preview READY https://fishdex-landing-9jbp3yk7v-portgas-d-ws-projects.vercel.app, **smoke protégé 6/6 (1,2 min)** ; modèle, achats, bassin, souvenirs et vraie capture vérifiés. Token local actualisé, jamais affiché/committé, traces désactivées. Prochaine action : fusion fast-forward main de la même application, push production, smoke public 6 tests et clôture docs/Git. Retour 0.1 conservé par tag publié et déploiement exact dans docs/VERCEL.md. Domaines/protection et ancienne archive FishDex conservés. Après clôture : test Safari/iPhone réel et animations anatomiques encore partielles.
+Publication terminée : P4 `3319536`, preview Git `b77a4ee` après deux uploads CLI échoués avant création. Preview READY https://fishdex-landing-9jbp3yk7v-portgas-d-ws-projects.vercel.app, **smoke protégé 6/6 (1,2 min)**. Fusion fast-forward main `affa933`, production Git READY https://fishdex-landing-3xmhe25e1-portgas-d-ws-projects.vercel.app, **smoke public 6/6 (1,1 min)** sur https://www.fishdex.fr, vraie prise et quinze GLB, achats, bassin, souvenirs et sauvegardes. HTTP 200 et redirection fishdex.fr vers www confirmés, captures inspectées. Application identique à la preview ; seuls les documents changent ensuite. Token local jamais affiché/committé, traces de preview désactivées. Retour 0.1 conservé par tag publié et déploiement exact dans docs/VERCEL.md. Domaines/protection et ancienne archive FishDex conservés.
+
+Prochaine tâche pour Claude/Codex : faire tester le propriétaire sur Safari/iPhone 14 Pro réel, relever lisibilité/durée des combats et FPS/chauffe/chargement, puis ajuster les paramètres avant d’ajouter des effets. Respiration anatomique, présentation suspendue et épuisette restent à développer. Aucun agent n’est programmé pour continuer après cette session. Lancement local : npm run dev ; npm run check puis npm run test:e2e pour reprise. Seul le serveur de preview temporaire 4175 de cette mission est arrêté ; les serveurs utilisateur préexistants ne sont pas arrêtés.
 
 Sources de vérité détaillées : `docs/MISSION_AUTONOME.md`, `docs/ASSETS_POISSONS.md`, `docs/DECISIONS_JEU.md`, `docs/BACKLOG.md`. Journal/import finis (10 000 captures/5 Mo), photos limitées à 128 ; prévoir archivage de très longue durée avant cette limite.
 
@@ -193,6 +195,7 @@ Mission explicite `docs/MISSION_CODEX_AUTONOME_AU_FIL_DE_LEAU.md` : P0 à P4 aut
 | --- | --- | --- | --- |
 | 2026-09-30 | Codex | Projet 0.1, prototype complet, cinq conversions Blender, tests et docs de relais | Installation sur PC, choix cible Vercel, essai sur téléphone |
 | 2026-09-30 | Codex local Windows | Installation ; pauses/commandes/premier rendu corrigés ; check 9 tests, E2E 6/6, smoke local 4/4, preview Git 4/4, production Git 4/4 sur www.fishdex.fr ; FishDex conservé | Essai téléphone réel et retour combat ; mesurer fluidité/chauffe avant P1 |
+| 2026-10-01 | Codex local Windows | Mission P0–P4 : 0.2 publiée, quinze modèles, catalogue/journal/photos, économie, aquarium et trois méthodes ; check 19, E2E 20 + 2 ignorés, smoke local/preview/production 6/6 chacune ; animations partielles documentées, FishDex inchangé | Safari/iPhone 14 Pro réel, mesures et sensations ; respiration/suspension/épuisette après validation |
 
 Pour chaque nouvelle session : ajouter les changements, les résultats réels de test,
 les éventuels bugs, la décision prise et la prochaine tâche. Mettre à jour le résumé

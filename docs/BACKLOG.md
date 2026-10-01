@@ -16,7 +16,7 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 - [x] Inventaire des 50 sources, quinze GLB optimisés, atlas inspecté, chargements à la demande.
 - [x] Nage procédurale corps/queue provisoire, débattement intermittent et tapis pour gros spécimens ; sons locaux facultatifs.
 - [x] Tests de navigation/moteurs/pauses, erreur de modèle, portraits et deux doigts réels Chromium ; mesures logiciel conservées.
-- [ ] Publier et vérifier preview puis production 0.2.0 ; cible confirmée fishdex-landing, domaines et retour arrière conservés.
+- [x] Publier et vérifier preview puis production 0.2.0 ; smoke 6/6 sur chacune, www.fishdex.fr, domaines/protection et retour arrière conservés.
 
 ## Prochaine priorité : test propriétaire et appareil
 

@@ -11,13 +11,14 @@ Agent : Codex. Version 0.2.0. Mission source : MISSION_CODEX_AUTONOME_AU_FIL_DE_
 | P3 aquarium | Terminé | Cinq individus maximum, tailles/robes, nage, décor personnalisable persistant, fiches, remplacement, chargement différé, moteurs libérés et scène cachée suspendue |
 | P4 méthodes et pack | Terminé pour trois méthodes et quinze modèles | Flotteur avec touche/ferrage ; leurre avec récupération/animation nécessaires ; fond avec touche de canne sans bouchon. 50 FBX inventoriés, 15 convertis/optimisés et inspectés |
 | P4 animations et présentation | Partiel et provisoire | Déformation continue corps/queue sans rig, vitesse variable, débattement intermittent, tapis à partir de 60 cm. Respiration bouche/opercules, suspension au fil et arrivée à l’épuisette absentes |
-| Publication | Préproduction vérifiée, production autorisée en cours | Preview Git b77a4ee READY, smoke distant 6/6 (1,2 min). Deux envois CLI avaient échoué fetch failed avant création. Même application vers main après cette validation |
+| Publication | Terminée et vérifiée | Preview Git b77a4ee READY, smoke 6/6 (1,2 min), puis production main affa933 READY, smoke public 6/6 (1,1 min) sur https://www.fishdex.fr. Domaines/protection inchangés, rollback conservé. Deux uploads CLI échoués avant recours à Git |
 
 ## Vérifications finales locales
 
 - npm run check : TypeScript strict, **19 tests de logique réussis**, build 0.2.0 réussi.
 - npm run test:e2e : **20 réussis, 2 ignorés volontairement, 1 min 30 s**. Atlas des quinze modèles testé au bureau ; test CDP à deux doigts sur viewport tactile uniquement. Autres scénarios sur 1440×900 et 390×844.
 - Captures inspectées dans docs/apercus/, y compris poissons-atlas.jpg.
+- Smoke du build local **6/6 (1 min)**, préproduction protégée **6/6 (1,2 min)**, production publique **6/6 (1,1 min)** : vraie capture temps réel sans QA et progression complète. URLs/IDs dans VERCEL.md ; captures production-mobile-*.png.
 - Mesures de trois secondes : étang 22,1 FPS bureau / 23,5 mobile ; aquarium cinq poissons 23,3 / 22,5 FPS. Chromium headless ANGLE SwiftShader sur Windows, qualité eco. Aucun rendu de l’étang pendant l’aquarium. Ces chiffres ne sont pas des mesures iPhone.
 - Aucun test Safari ou iPhone 14 Pro physique disponible. Objectif 30 FPS appareil, chauffe et autonomie restent non validés.
 - Chunk principal 1 672,35 Ko brut / 405,31 Ko gzip : avertissement Vite de taille, pas erreur de build. Aucun GLB téléchargé au démarrage ; quinze fichiers totalisent 1 731 232 octets.
