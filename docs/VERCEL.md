@@ -1,5 +1,12 @@
 # Vercel — migration de FishDex vers Au fil de l’eau
 
+## Jauge 0.3.1 — publication en cours
+
+Précision utilisateur : jauge compacte entre les commandes, même tension que la canne ; aucun descriptif de comportement. Build local vérifié index-D2VdAQ0C.js SHA256 afa1e0b368ddd2d564cb45af53cfc7e4539e96d6887d648b30936674b1263a3f ; check 23 tests, 9 E2E ciblés / 1 ignoré, smoke build 6/6 (1,5 min).
+
+Retour avant jauge : tag archive/au-fil-de-leau-before-gauge-2026-10-01, base bd335a6b235b585a3b3cd35814dfba4aaea8ea0f ; production 0.3 READY https://fishdex-landing-krqp4rbrw-portgas-d-ws-projects.vercel.app. Sauvegarde v2 inchangée. Même projet/main/domaines/protection ; preview vérifiée avant publication de la jauge.
+
+
 ## Correction immersive 0.3 — publiée et vérifiée
 
 Cible revérifiée par CLI 62.0.0 : portgas-d-ws-projects/fishdex-landing, prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, Node 24, Vite, npm ci/build/dist ; même dépôt et main. Publication via intégration Git après preview protégée vérifiée. Aucun changement de domaines/protection.

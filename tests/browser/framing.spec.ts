@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { castByGesture } from './helpers';
 
-test('Canne visible aux quatre orientations et deux commandes sans jauge', async ({ page }, info) => {
+test('Canne visible aux quatre orientations et deux commandes avec jauge compacte', async ({ page }, info) => {
   await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
   await page.evaluate(() => (window as any).__fishingQA.pauseSimulation());
   await castByGesture(page); await page.evaluate(() => (window as any).__fishingQA.advance(10)); await page.locator('#strike').click();

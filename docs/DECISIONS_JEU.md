@@ -1,5 +1,7 @@
 # Décisions de gameplay — 1 octobre 2026
 
+- Dernière précision 0.3.1 : jauge compacte Tension du fil entre les deux commandes, gradient vert/jaune/orange et repère mobile. Visible en combat seulement, non interactive, même valeur que la courbure de canne. Remplace la suppression de jauge ci-dessous ; aucun panneau de comportement du poisson. Règles et sauvegarde inchangées.
+
 - Mission autonome explicite prioritaire sur l’ancien backlog : économie virtuelle, aquarium et trois familles de pêche autorisés, sans compte ni paiement.
 - Lancer : delta du geste normalisé par viewport, portée 23 unités, eau jouable x ±11 et z 1,5–22. Lancer exclusivement par le geste : aucun bouton ni poste prédéfini. Les habitats dérivent des coordonnées.
 - Commandes 0.3 : référence visuelle du propriétaire, deux cercles en bas : canne à gauche, moulinet à droite. Canne glissée, second doigt circulaire ; scène toujours glissable, PC souris + molette. Aucun appui maintenu, panneau décrivant le poisson, jauge ni flèche de solution. Les quatre petits triangles indiquent uniquement les directions de la commande. Excursion de canne : 32 px pour la pleine orientation, 64 px pour la pleine hauteur ; cercle utile rayon 14–60 px, sauts >90° ignorés.

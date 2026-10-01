@@ -2,6 +2,12 @@
 
 La mission autonome explicite autorise les fonctionnalités suivantes et remplace l’attente du premier retour appareil pour avancer. Une prise ou une sauvegarde cassée reste prioritaire sur le contenu.
 
+## Précision jauge 0.3.1 — en vérification
+
+- [x] Barre verte/jaune/orange et repère entre les deux commandes, uniquement au combat.
+- [x] Même tension que la canne, aucun descriptif du poisson, gestes non interceptés.
+- [ ] Inspecter portrait/paysage et vérifier puis publier la précision.
+
 ## Réalisé et publié en 0.3
 
 - [x] Scène entière, menu compact, préparation hors combat et retours avec pause.

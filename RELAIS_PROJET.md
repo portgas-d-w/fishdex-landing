@@ -1,6 +1,10 @@
 # RELAIS PROJET — Codex ↔ Claude Code
 
-**Dernière mise à jour : 1 octobre 2026. Agent : Codex. Version : 0.3.0 publiée et vérifiée sur https://www.fishdex.fr.**
+**Dernière mise à jour : 1 octobre 2026. Agent : Codex. Version : 0.3.1 en cours ; production 0.3.0 publiée et vérifiée sur https://www.fishdex.fr.**
+
+## Précision utilisateur — jauge compacte 0.3.1
+
+Dernier message : ajouter une jauge comme sur l’image de référence. Cette instruction remplace le retrait de la jauge en 0.3. La barre Tension du fil verte/jaune/orange et son repère sont ajoutés entre les deux commandes, uniquement en combat ; elle montre la même valeur qui courbe la canne, n’intercepte aucun geste et n’ajoute aucun descriptif du poisson. Règles, commandes et sauvegardes inchangées. npm run check réussi : 23 tests, TypeScript, build ; 9 tests navigateur ciblés réussis / 1 ignoré (1,2 min), jauge et commandes inspectées portrait/bureau/paysage, valeur égale à la tension de simulation ; smoke du build final sans QA 6/6 (1,5 min) ; preview/production à effectuer ; le déploiement documentaire 0.3 bd335a6 a été poussé avant cette nouvelle précision.
 
 ## État actuel — correction immersive terminée
 

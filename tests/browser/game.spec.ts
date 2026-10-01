@@ -6,17 +6,20 @@ test('Prise par geste, commandes compactes et carnet conservé', async ({ page }
  await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready','true');
  await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation()); await page.waitForTimeout(5200);
  expect(await page.locator('#action').count()).toBe(0); expect(await page.locator('.play-card,.topbar,.travel-nav,footer').count()).toBe(0);
- expect(await page.locator('#tension-meter,#fight-note').count()).toBe(0);
+ expect(await page.locator('#fight-note').count()).toBe(0);await expect(page.locator('#tension-display')).toBeHidden();
  await expect(page.locator('#menu-open')).toBeVisible(); await expect(page.locator('#collection-open')).toBeHidden();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await page.screenshot({path:`test-results/immersion-${info.project.name}-lake.png`});
  await castByGesture(page); await page.evaluate(()=>(window as any).__fishingQA.advance(10)); await page.locator('#strike').click();
  await expect(page.locator('#prepare-open')).toBeHidden(); await expect(page.locator('#reel-control')).toBeVisible();
  await expect(page.locator('#rod-control')).toBeVisible();
+ await expect(page.locator('#tension-display')).toBeVisible();
+ await expect(page.locator('#tension-meter')).toHaveAttribute('aria-valuenow','32');
  await turnMouseReel(page); await page.locator('#reel-control').dispatchEvent('pointercancel',{pointerId:1}); await page.mouse.up();
  expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(false);
  await page.waitForTimeout(5200); await page.screenshot({path:`test-results/immersion-${info.project.name}-fight.png`});
  await page.evaluate(()=>(window as any).__fishingQA.advance(80,'smart'));
+ await expect(page.locator('#tension-display')).toBeHidden();
  await expect(page.locator('#caught')).toBeVisible(); await expect(page.locator('#fish-preview')).toHaveAttribute('data-loaded','true');
  await expect(page.locator('#preview-error')).toBeHidden(); expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().total)).toBe(1);
  await page.screenshot({path:`test-results/immersion-${info.project.name}-catch.png`}); await page.locator('#release-fish').click();
@@ -46,6 +49,9 @@ test('Interruptions du cercle, molette et fermeture de page',async({page})=>{
   await page.locator('#reel-control').dispatchEvent(type,{pointerId:1});expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(false);await page.mouse.up();
  }
  await page.mouse.move(150,300);await page.mouse.wheel(0,100);expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(true);
+ await page.evaluate(()=>(window as any).__fishingQA.advance(.1));
+ const tension=await page.evaluate(()=>Math.round((window as any).__fishingQA.snapshot().tension*100));
+ await expect(page.locator('#tension-meter')).toHaveAttribute('aria-valuenow',String(tension));
  await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pagehide',{persisted:true})));
  const paused=await page.evaluate(()=>(window as any).__fishingQA.snapshot());expect(paused.reeling).toBe(false);expect(paused.paused).toBe(true);
  await page.locator('#resume').click();expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().paused)).toBe(false);

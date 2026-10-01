@@ -122,3 +122,8 @@ Comparaison reproductible : scripts/compare-combat.mts et docs/apercus/immersion
 Preview Vercel protégée : 9347d75, READY, smoke 6/6 (1,7 min), mêmes commandes réelles et fonctionnalités ; détails exacts dans docs/VERCEL.md.
 
 Production publique : main dae5e93, READY, smoke 6/6 (1,5 min), vrais gestes/captures/persistance et quinze fichiers GLB intacts. HTTP 200 et redirection vers www ; bundle index-CX0qA7ip.js SHA256 104b4e5a1ad703ddfec262791acc566b443fb6acbb52817494c8851d9eb3406e et manifeste identiques au dist vérifié. Captures de production inspectées/conservées ; clôture uniquement documentaire, contrôle d’identité répété sur le dernier déploiement.
+
+
+## Précision jauge 0.3.1 — 1 octobre 2026
+
+Dernière instruction utilisateur : ajouter une jauge comme sur l’image. Barre compacte non interactive entre les deux commandes, visible au combat, repère correspondant exactement à la tension de canne ; aucun panneau sur le poisson. npm run check : 23 tests, TypeScript/build réussis. E2E ciblés 9 réussis / 1 ignoré (1,2 min), valeur de jauge comparée à la simulation, hors combat masquée, quatre orientations extrêmes, menus et deux doigts. Portrait 390×844, bureau 1440×900 et paysage 844×390 inspectés ; images gauge-* conservées. Smoke build final sans QA 6/6 (1,5 min), captures réelles souris/tactile, achats/bassin/photos/persistance/export-import et quinze GLB. Règles et schéma v2 inchangés ; aucune nouvelle promesse de performance ni test téléphone physique.

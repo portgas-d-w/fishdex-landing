@@ -30,6 +30,8 @@
 
 | 2026-10-01 | Cadrage de canne adapté au champ horizontal, sans modifier les forces | Pointe visible aux extrêmes portrait/bureau ; indication de tension préservée |
 
+| 2026-10-01 | Précision 0.3.1 : rétablir une jauge compacte comme sur l’image, entre les deux commandes | Dernière instruction utilisateur remplace le retrait de jauge en 0.3 ; aucun descriptif de poisson |
+
 La plaisance du combat, la direction artistique et la longévité de la boucle
 doivent encore être validées par l’utilisateur. Ne pas confondre un prototype
 fonctionnel avec un jeu prêt à diffuser largement.

@@ -46,3 +46,10 @@ Validation locale : npm run check réussi, 23 tests + TypeScript + build. Smoke 
 Rendu logiciel Chromium/SwiftShader Windows ; profil mobile émulé, aucun test Safari/iPhone physique. Appareil réel, FPS/chauffe et ressenti restent à mesurer. Mesures E2E sur échantillons de 3 s : étang 23,2–23,8 FPS ; bassin 6,9 FPS bureau / 22,2 FPS mobile. Variabilité du rendu logiciel Windows, aucun gain téléphone revendiqué ; zéro frame de pêche derrière le bassin.
 
 Projet Vercel confirmé : fishdex-landing, même dépôt/main/domaines/protection. Preview applicative 9347d75 READY, smoke protégé 6/6 (1,7 min) ; production main dae5e93 READY, smoke public 6/6 (1,5 min) sur [www.fishdex.fr](https://www.fishdex.fr), même application que la preview et le dist local. Résultats définitifs dans VERCEL.md et RELAIS_PROJET.md.
+
+
+## Dernière précision — jauge 0.3.1
+
+Le propriétaire a ensuite demandé de rétablir une jauge comme sur son image. Cette instruction remplace le retrait de jauge en 0.3. La barre compacte Tension du fil verte/jaune/orange et son repère mobile sont affichés entre les deux commandes, uniquement pendant un combat ; aucun encadré décrivant le poisson. Elle affiche exactement la valeur qui courbe la canne et n’intercepte pas les gestes. Règles, captures et sauvegardes inchangées.
+
+[Portrait](apercus/gauge-mobile-fight.png), [bureau](apercus/gauge-desktop-fight.png), [paysage](apercus/gauge-mobile-landscape-fight.png) inspectés. npm run check réussi (23 tests, TypeScript et build), 9 tests navigateur ciblés réussis / 1 ignoré (1,2 min), incluant la valeur de jauge liée à la simulation, son masquage hors combat, quatre orientations extrêmes et deux doigts simultanés. Smoke du build final sans QA 6/6 (1,5 min), captures réelles et sauvegardes/achats/bassin conservés ; déploiement à effectuer. Profil mobile Chromium émulé, aucun test iPhone physique.

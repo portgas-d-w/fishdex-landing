@@ -25,6 +25,7 @@ app.innerHTML = `
 <button id="strike" class="compact strike-control" hidden>Ferrer</button>
 <button id="rod-control" class="rod-control" aria-label="Canne : glissez dans les quatre directions" hidden><span class="rod-arrows" aria-hidden="true"><i>▴</i><i>▸</i><i>▾</i><i>◂</i></span><span class="rod-thumb" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M12 39 Q22 13 40 8 M14 34L9 32L6 39L12 41 M21 23L25 25 M29 15L32 18"/></svg></span></button>
 <button id="reel-control" class="reel-control" aria-label="Moulinet : tournez autour du centre ; molette sur ordinateur" hidden><span class="reel-disc"><span class="reel-handle"></span></span><span class="reel-label">Mouliner</span></button>
+<div id="tension-display" class="tension-display" hidden><span id="tension-label">Tension du fil</span><div id="tension-meter" class="tension-meter" role="progressbar" aria-labelledby="tension-label" aria-valuemin="0" aria-valuemax="100" aria-valuenow="32"><span class="tension-rest"></span><span class="tension-marker"></span></div></div>
 <button id="cancel-cast" class="compact cancel-control" hidden>Ramener</button>
 <button id="retry" class="compact retry-control" hidden>Reprendre</button>
 </div>
@@ -161,6 +162,7 @@ function renderPhase() {
   el('strike').hidden = phase !== 'bite';
   el('reel-control').hidden = !(phase === 'fighting' || phase === 'waiting' && game.method === 'lure');
   el('rod-control').hidden = el('reel-control').hidden;
+  el('tension-display').hidden = phase !== 'fighting';
   el('cancel-cast').hidden = !['casting', 'waiting', 'bite'].includes(phase);
   el('retry').hidden = phase !== 'lost';
   document.querySelectorAll<HTMLButtonElement>('[data-bait], [data-method]').forEach(b => b.disabled = phase !== 'idle');
@@ -418,7 +420,10 @@ try {
     reel.classList.toggle('reeling', game.reeling);
     if (game.phase === 'fighting' && !overlayPaused && !manualPaused) {
       const angle = Math.round(Math.atan2(game.fishPosition.x, game.fishPosition.z + 1) * 180 / Math.PI);
-      // Équivalent non visuel du fil pour les lecteurs d’écran ; aucune jauge à l’écran.
+      // Le repère de la jauge affiche exactement la tension qui courbe la canne.
+      const percent = Math.round(game.tension * 100);
+      el('tension-display').style.setProperty('--tension', `${percent}%`);
+      el('tension-meter').setAttribute('aria-valuenow', String(percent));
       canvas.setAttribute('aria-description', `Fil à ${angle} degrés, tension ${Math.round(game.tension * 100)} pour cent.`);
       const danger = game.tension > 0.85 ? 'Fil trop tendu' : game.tension < 0.04 ? 'Contact perdu' : '';
       if (danger && danger !== lastLineAlert && now > alertUntil + 2000) { el('line-alert').textContent = danger; el('line-alert').hidden = false; alertUntil = now + 1800; }
