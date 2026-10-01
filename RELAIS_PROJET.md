@@ -1,10 +1,16 @@
 # RELAIS PROJET — Codex ↔ Claude Code
 
-**Dernière mise à jour : 1 octobre 2026. Agent : Codex. Version : 0.3.1 en cours ; production 0.3.0 publiée et vérifiée sur https://www.fishdex.fr.**
+**Dernière mise à jour : 1 octobre 2026. Agent : Codex. Version : 0.3.1 publiée et vérifiée sur https://www.fishdex.fr.**
 
 ## Précision utilisateur — jauge compacte 0.3.1
 
-Dernier message : ajouter une jauge comme sur l’image de référence. Cette instruction remplace le retrait de la jauge en 0.3. La barre Tension du fil verte/jaune/orange et son repère sont ajoutés entre les deux commandes, uniquement en combat ; elle montre la même valeur qui courbe la canne, n’intercepte aucun geste et n’ajoute aucun descriptif du poisson. Règles, commandes et sauvegardes inchangées. npm run check réussi : 23 tests, TypeScript, build ; 9 tests navigateur ciblés réussis / 1 ignoré (1,2 min), jauge et commandes inspectées portrait/bureau/paysage, valeur égale à la tension de simulation ; smoke du build final sans QA 6/6 (1,5 min) ; application e2af6e7 poussée en preview Git https://fishdex-landing-f8xmkxn5u-portgas-d-ws-projects.vercel.app ; preview READY dpl_Dm6dVWPsknzwA4qF2JPJYZzTzGmy, smoke protégé 6/6 (2,0 min), jauge visible et gestes/captures/persistance conservés. Passage sur main puis vérification publique. Le déploiement documentaire 0.3 bd335a6 a été poussé avant cette nouvelle précision.
+Dernier message : ajouter une jauge comme sur l’image de référence. Cette instruction remplace le retrait de jauge en 0.3. Barre Tension du fil verte/jaune/orange et repère mobile entre les deux commandes, uniquement en combat ; même valeur que la courbure de canne, aucun descriptif du poisson ni interception des gestes. Règles, commandes et sauvegarde v2 inchangées.
+
+Validation 0.3.1 : npm run check **23 tests + TypeScript + build réussis** ; **9 E2E ciblés réussis / 1 ignoré (1,2 min)**, jauge égale à la simulation, masquée hors combat, extrêmes de canne, annulations et deux doigts ; rendu portrait/bureau/paysage inspecté. Smoke final local sans QA **6/6 (1,5 min)**. Aucun test iPhone physique. Captures gauge-* dans docs/apercus, détails dans docs/INTERFACE_COMBAT.md.
+
+Application `e2af6e7688901cf59271b1ed3dad3fafb90132ef`, preview READY https://fishdex-landing-f8xmkxn5u-portgas-d-ws-projects.vercel.app, dpl_Dm6dVWPsknzwA4qF2JPJYZzTzGmy ; **smoke protégé 6/6 (2,0 min)**. Fusion fast-forward main `6431fb23742d0409f4ad5f31ecf603489e375993`, production READY https://fishdex-landing-n1kgqi4fm-portgas-d-ws-projects.vercel.app, dpl_5pZsvDXk4HwvcFjsWibzvz55M6iG ; **smoke public 6/6 (1,7 min)** sur www.fishdex.fr. Jauge visible, capture souris et tactile réel Chromium, portraits, progression, achats/bassin, sauvegarde/reload/export/import et quinze GLB conservés. Bundle index-D2VdAQ0C.js SHA256 **afa1e0b368ddd2d564cb45af53cfc7e4539e96d6887d648b30936674b1263a3f**, identique au dist vérifié ; manifeste identique. Clôture documentaire seule ensuite, dernier statut/fichiers contrôlés avant fin.
+
+Retour 0.3 publié : tag archive/au-fil-de-leau-before-gauge-2026-10-01, base bd335a6 ; ancien déploiement READY https://fishdex-landing-krqp4rbrw-portgas-d-ws-projects.vercel.app. Projet, domaines, protection et précédents retours conservés. Serveur temporaire 4175 arrêté après tests ; serveurs utilisateur conservés. Prochaine tâche : essai Safari/iPhone réel pour confort des commandes, lisibilité, durée et fluidité/chauffe ; aucune autre fonction ajoutée en attendant. Les informations 0.3 ci-dessous restent l’historique de la correction immersive.
 
 ## Livraison 0.3 — correction immersive terminée
 

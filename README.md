@@ -33,7 +33,7 @@ npm run dev
 | npm run preview | Servir dist localement après build |
 | npm run test:smoke | Vraie partie sur build servi, sans QA ; GAME_URL pour cible distante |
 
-Exécuter E2E et smoke successivement. Derniers résultats : 23 tests de logique, 20 E2E réussis (2 ignorés selon viewport), puis 11 ciblés réussis après cadrage (1 ignoré), smoke local final 6/6. Validation distante dans docs/VERCEL.md. Les mesures Chromium logiciel de ce PC (~22–24 FPS eco) ne valident pas les 30 FPS sur iPhone 14 Pro ; Safari, chauffe et autonomie restent à tester sur appareil.
+Exécuter E2E et smoke successivement. Derniers résultats : 23 tests de logique, 20 E2E réussis (2 ignorés selon viewport), puis 11 ciblés réussis après cadrage (1 ignoré), smoke local final 6/6. Précision de jauge 0.3.1 : 9 contrôles ciblés réussis / 1 ignoré, smoke preview/public 6/6. Validation distante dans docs/VERCEL.md. Les mesures Chromium logiciel de ce PC (~22–24 FPS eco) ne valident pas les 30 FPS sur iPhone 14 Pro ; Safari, chauffe et autonomie restent à tester sur appareil.
 
 ## Organisation et ressources
 
