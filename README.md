@@ -33,7 +33,7 @@ npm run dev
 | npm run preview | Servir dist localement après build |
 | npm run test:smoke | Vraie partie sur build servi, sans QA ; GAME_URL pour cible distante |
 
-Exécuter E2E et smoke successivement. Validation 0.4 : npm run check, 30 tests de logique + TypeScript/build ; 23 scénarios E2E ciblés validés en deux passes finales (1 ignoré selon viewport), dont appuis longs, deux doigts, défilement/saisie, frein et lancer lent/rapide. Résultats du build et des déploiements dans docs/VERIFICATION.md et docs/VERCEL.md. Les mesures Chromium logiciel de ce PC ne valident pas les 30 FPS sur iPhone 14 Pro ; Safari, chauffe et autonomie restent à tester sur appareil.
+Exécuter E2E et smoke successivement. Validation 0.4 : npm run check, 30 tests de logique + TypeScript/build ; 23 scénarios E2E ciblés validés en deux passes finales (1 ignoré selon viewport), dont appuis longs, deux doigts, défilement/saisie, frein et lancer lent/rapide. Smoke du build, de la preview protégée et de la production publique : 6/6 sur chaque cible. Résultats détaillés dans docs/VERIFICATION.md et docs/VERCEL.md. Les mesures Chromium logiciel de ce PC ne valident pas les 30 FPS sur iPhone 14 Pro ; Safari, chauffe et autonomie restent à tester sur appareil.
 
 ## Organisation et ressources
 

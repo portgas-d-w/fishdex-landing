@@ -2,7 +2,7 @@
 
 La mission autonome explicite autorise les fonctionnalités suivantes et remplace l’attente du premier retour appareil pour avancer. Une prise ou une sauvegarde cassée reste prioritaire sur le contenu.
 
-## Correction 0.4 — vérification et publication en cours
+## Correction 0.4 — publiée et vérifiée
 
 - [x] Sélection et appui long bloqués uniquement dans la scène ; glissement natif des images supprimé.
 - [x] Pointeurs indépendants, captures et nettoyage de toutes les interruptions conservés ; annulation globale ajoutée.
@@ -11,7 +11,7 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 - [x] Lancer depuis le tiers bas, préparation continue, vitesse récente et relâchement central ; trajectoire correspondante.
 - [x] Check 30 tests + TypeScript + build ; quinze espèces gérées dans les tests et comparaison actualisée.
 - [x] E2E final, portrait/bureau/paysage inspectés ; smoke du build public 6/6 sans QA.
-- [ ] Vérifier preview protégée puis publier/vérifier production sur le projet autorisé.
+- [x] Preview protégée et production publique vérifiées 6/6 chacune, même projet/domaines/protection ; retour 0.3.1 conservé.
 
 ## Jauge 0.3.1 — publiée et vérifiée
 

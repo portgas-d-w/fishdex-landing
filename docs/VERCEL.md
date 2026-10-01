@@ -1,12 +1,12 @@
 # Vercel — migration de FishDex vers Au fil de l’eau
 
-## Gestes et combat 0.4.0 — préproduction vérifiée
+## Gestes et combat 0.4.0 — publiée et vérifiée
 
 Projet et liaison revérifiés : portgas-d-ws-projects/fishdex-landing, prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, dépôt portgas-d-w/fishdex-landing, Vite/Node 24/npm ci/build/dist. CLI disponible 62.0.0. Aucun changement de domaines ou de protection.
 
 Application 3a2d06b19b27dec74cab8728e6952dc6cdf0ae42 sur codex/gestes-combat. Preview READY https://fishdex-landing-561eij874-portgas-d-ws-projects.vercel.app, dpl_7BHB69jgcKBK7x26wiW9DcjyQ4MC, build 27 s. Smoke protégé 6/6 (2,9 min), vraie capture souris/tactile, photos, sauvegarde/export/import, quinze GLB et achats/bassin. Token local limité à l’origine de la preview, traces désactivées ; aucun token affiché ou committé.
 
-Retour 0.3.1 publié : tag archive/au-fil-de-leau-before-touch-combat-2026-10-01, base a6ef66b52b2a9cfe7e540e638d4f1d58a34074f6 ; ancien déploiement READY https://fishdex-landing-52juimmn5-portgas-d-ws-projects.vercel.app, dpl_EjnkbkyJA9GibQ7H7ZHatzyRjr5x. Sauvegarde v2 inchangée. Fusion fast-forward vers main après ce contrôle ; validation publique à consigner ensuite.
+Retour 0.3.1 publié : tag archive/au-fil-de-leau-before-touch-combat-2026-10-01, base a6ef66b52b2a9cfe7e540e638d4f1d58a34074f6 ; ancien déploiement READY https://fishdex-landing-52juimmn5-portgas-d-ws-projects.vercel.app, dpl_EjnkbkyJA9GibQ7H7ZHatzyRjr5x. Sauvegarde v2 inchangée. Fusion fast-forward vers main après ce contrôle : 2dd0c5ab242088da316af70dcf5bd133d9e71099. Production READY https://fishdex-landing-m21grnm16-portgas-d-ws-projects.vercel.app, dpl_9y5pAom2WLtKxdZhEP3Xxq4qDKco. **Smoke public 6/6 (2,7 min)** sur www.fishdex.fr, sans token ni QA. JavaScript index-DkrQEhJk.js SHA256 111776c16a88eed3f2fec3c331b6e9d7c0a184c4cccb7a5c27346d82e065163c et manifeste quinze modèles identiques au dist testé. Aucun fichier d’application modifié depuis la preview ; clôture documentaire seule ensuite, dernier déploiement READY/fichiers identiques contrôlés avant fin. HTTP 200 sur www ; domaine nu HTTP 307 vers www. Serveur temporaire 4175 arrêté, serveurs utilisateur conservés.
 
 ## Jauge 0.3.1 — publiée et vérifiée
 
