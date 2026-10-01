@@ -1,10 +1,10 @@
 # Vercel — migration de FishDex vers Au fil de l’eau
 
-## Appui maintenu 0.4.1 — préproduction validée
+## Appui maintenu 0.4.1 — publiée et vérifiée
 
 Projet, liaison et dépôt revérifiés : portgas-d-ws-projects/fishdex-landing, prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, Vite/Node 24/npm ci/build/dist ; CLI disponible 62.0.0. Aucun domaine ou paramètre de protection modifié.
 
-Application 882035b86373c4f419f00a18b6fbdc217f80910e sur codex/mouliner-appui. Preview READY https://fishdex-landing-n7hk9lqag-portgas-d-ws-projects.vercel.app, dpl_2uQcvDbThTWFPdFNcHG9oSktXkfE. Smoke ciblé protégé **2/2 (2,0 min)**, capture réelle bureau/mobile, modèle différé, photo et sauvegarde/transfert. Fusion fast-forward vers main après ce contrôle ; domaine public à vérifier. Token local non affiché, traces désactivées, accès limité à cette origine.
+Application 882035b86373c4f419f00a18b6fbdc217f80910e sur codex/mouliner-appui. Preview READY https://fishdex-landing-n7hk9lqag-portgas-d-ws-projects.vercel.app, dpl_2uQcvDbThTWFPdFNcHG9oSktXkfE. Smoke ciblé protégé **2/2 (2,0 min)**, capture réelle bureau/mobile, modèle différé, photo et sauvegarde/transfert. Fusion fast-forward main a815a10f755e611300add63a897237168c3237cb après ce contrôle. Production READY https://fishdex-landing-80jc171um-portgas-d-ws-projects.vercel.app, dpl_8vfANFSZkN3qvZbt4SjN7e2XQFnz ; **smoke public ciblé 2/2 (2,1 min)** sur www.fishdex.fr, sans QA ni token. Captures en temps réel bureau/mobile, appui tactile immobile, modèle différé, photo et sauvegarde/transfert. Bundle public index-C3HMXfaE.js SHA256 1829019d1e0f6d2aeca81d545f837a80bacf9f065a69fa21c5b78b43384b187c et manifeste quinze modèles identiques au dist vérifié. Application identique à la preview, diff src/public/package/config vide. Clôture documentaire seule ensuite ; dernier déploiement READY et fichiers servis identiques contrôlés avant fin. Serveur temporaire 4175 arrêté, serveurs utilisateur conservés. Token local non affiché, traces désactivées, accès limité à cette origine.
 
 Retour 0.4 préservé : tag publié archive/au-fil-de-leau-before-hold-2026-10-01, base d6d9f907352297b39c685e2e9705ba816af7f728 ; précédent déploiement READY https://fishdex-landing-d5rsa5wmx-portgas-d-ws-projects.vercel.app, dpl_2PorgPdmwgH1qgEwVkqoA7xUqn7j. Même sauvegarde v2, anciens retours conservés.
 

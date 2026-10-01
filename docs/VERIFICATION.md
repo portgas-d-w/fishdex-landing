@@ -2,13 +2,13 @@
 
 Les derniers résultats du 1 octobre 2026 (version 0.4.1) sont dans la section suivante. Les livraisons précédentes ci-dessous sont conservées comme historique ; elles ne remplacent pas les vérifications récentes.
 
-## Appui maintenu 0.4.1 — contrôle local
+## Appui maintenu 0.4.1 — publiée et vérifiée
 
 Dernière instruction : appui immobile sur Mouliner, relâchement pour arrêter ; canne au second doigt. Au leurre, même geste pour conserver une commande cohérente. Moulinet animé sans rotation du doigt ; molette PC conservée.
 
 Node 24.15.0, npm ci sans vulnérabilité. npm run check : **31 tests + TypeScript/build réussis**. E2E ciblés game/multitouch/touch/methods/physics/framing : **19 réussis / 1 ignoré (1,9 min)**. Deux doigts CDP, appui long immobile, relâchement individuel, annulation, perte de capture, blur/pagehide/pause/rotation, défilement et texte éditable ; physique et lancer conservés. Portrait 390×844, paysage et bureau 1440×900 inspectés ; captures hold-* dans docs/apercus.
 
-Smoke ciblé du build sans QA (`-g 'Le build permet une vraie prise'`) : **2/2 (1,7 min)**. Vraies captures en temps réel bureau/mobile, moulinage tactile par maintien immobile, modèle différé, photo, sauvegarde/reload/export/import. Les six scénarios de la livraison 0.4 restent l'historique ; cette correction exécute les deux scénarios pertinents. Préproduction protégée : **2/2 (2,0 min)** sur le même build, accès OIDC limité à son origine ; production à vérifier avant clôture. Aucun essai Safari/iPhone physique.
+Smoke ciblé du build sans QA (`-g 'Le build permet une vraie prise'`) : **2/2 (1,7 min)**. Vraies captures en temps réel bureau/mobile, moulinage tactile par maintien immobile, modèle différé, photo, sauvegarde/reload/export/import. Les six scénarios de la livraison 0.4 restent l'historique ; cette correction exécute les deux scénarios pertinents. Préproduction protégée : **2/2 (2,0 min)** sur le même build, accès OIDC limité à son origine ; production publique sur www.fishdex.fr : **2/2 (2,1 min)**, sans token ni QA. JavaScript index-C3HMXfaE.js SHA256 1829019d1e0f6d2aeca81d545f837a80bacf9f065a69fa21c5b78b43384b187c et manifeste quinze modèles identiques au dist local. Rendus de prises publics bureau/mobile inspectés. Aucun essai Safari/iPhone physique.
 
 ## Complément sur le PC Windows — 30 septembre 2026
 

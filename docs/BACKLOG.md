@@ -8,7 +8,7 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 - [x] Capture indépendante de la canne, nettoyage des interruptions et transitions.
 - [x] Libellés/aide cohérents ; tests Node 31/31, TypeScript et build réussis.
 - [x] Contrôles navigateur : 19 réussis / 1 ignoré ; smoke local ciblé 2/2, rendu mobile/paysage/bureau inspecté.
-- [ ] Vérifier la préproduction puis publier et contrôler le domaine public.
+- [x] Préproduction protégée 2/2 puis production publique 2/2 ; fichiers identiques au build vérifié, retour 0.4 préservé.
 
 ## Correction 0.4 — publiée et vérifiée
 
