@@ -7,7 +7,7 @@ import type { SaveData } from './game/save';
 import { LakeWorld } from './render/world';
 import { FishPreview } from './render/fish-preview';
 import { GameAudio } from './ui/audio';
-import { aimFromGesture } from './game/casting';
+import { CastGesture } from './game/casting';
 import { circularTurns, wheelTurns } from './game/reeling';
 import fishdex from './game/fishdex.json';
 import { ITEMS, BADGES, levelFor } from './game/economy';
@@ -50,10 +50,10 @@ el('catch-length').parentElement!.insertAdjacentHTML('afterend', '<p id="catch-w
 el('app').insertAdjacentHTML('beforeend', '<dialog id="aquarium" class="modal wide-modal"><div class="modal-header"><div><div class="eyebrow">Une pause sous la surface</div><h2>Mon aquarium</h2></div><button class="close" data-close="aquarium" aria-label="Fermer l’aquarium">Retour</button></div><canvas id="aquarium-canvas" aria-label="Aquarium 3D de vos cinq favoris"></canvas><p class="intro" id="aquarium-state">Choisissez vos spécimens favoris dans le carnet.</p><div class="filters"><select id="aquarium-choice" aria-label="Choisir un spécimen"></select><button class="secondary" id="aquarium-add">Ajouter</button></div><div id="aquarium-favorites" class="collection-list"></div><h3 class="section-title">L’ambiance du bassin</h3><div class="aquarium-settings"><label>Sol<select id="aq-floor"><option value="sand">Sable clair</option><option value="gravel">Gravier sombre</option></select></label><label>Fond<select id="aq-background"><option value="dawn">Aube</option><option value="night">Nuit</option></select></label><label>Lumière<select id="aq-light"><option value="warm">Chaleureuse</option><option value="cool">Fraîche</option></select></label><label><input id="aq-plants" type="checkbox"> Plantes achetées</label><label><input id="aq-rocks" type="checkbox"> Rochers achetés</label></div><p class="modal-footnote">Cinq individus, leurs robes et leurs gabarits. Aucun entretien ni pénalité d’absence. Les plantes et rochers se trouvent en boutique.</p></dialog>');
 const steps = document.querySelectorAll('.help-step');
 steps[0].querySelector('strong')!.textContent = 'Choisissez votre méthode et votre cible.';
-steps[0].querySelector('p')!.textContent = 'Glissez sur l’eau vers le haut, puis relâchez. La distance et la direction du geste règlent le lancer. Une cible hors de l’eau est refusée. Aucun bouton ne lance à votre place.';
+steps[0].querySelector('p')!.textContent = 'Posez le doigt dans le tiers inférieur, projetez vers l’eau puis relâchez au centre ou plus haut. La vitesse du geste donne sa puissance ; la direction choisit le point de chute. Un relâchement trop bas ou hors de l’eau annule le lancer.';
 steps[1].querySelector('strong')!.textContent = 'Observez votre montage.';
 steps[1].querySelector('p')!.textContent = 'Au flotteur, attendez qu’il plonge. Au fond, regardez la pointe de la canne. Au leurre, tournez le moulinet et glissez pour animer : la récupération déclenche les rencontres. Ferrez dès la touche.';
-steps[2].querySelector('p')!.textContent = 'Le bouchon reste immergé pendant le combat. Suivez le fil avec la canne. Accompagnez un départ en baissant la canne, puis relevez-la pour guider. La commande de canne en bas à gauche oriente dans les quatre directions ; le glissement sur l’eau reste disponible. Un second doigt tourne sur le moulinet à droite ; sur PC, utilisez la molette. Un appui immobile ne récupère pas de fil.';
+steps[2].querySelector('p')!.textContent = 'Suivez le fil avec la canne à gauche et tournez le moulinet à droite avec l’autre doigt ; sur PC, utilisez la molette. Accompagnez les départs : le frein rend du fil sous résistance. Une pression modérée fatigue le poisson. Récupérez le mou s’il revient vers vous, puis ramenez-le au bord quand sa résistance diminue. Un appui immobile ne récupère pas de fil.';
 let storage: Storage | undefined;
 try { storage = window.localStorage; } catch { /* navigation privée restrictive */ }
 const loaded = storage ? loadSave(storage) : { data: emptySave(), warning: 'Sauvegarde locale indisponible. Pensez à exporter le carnet.' };
@@ -237,12 +237,20 @@ function activate() {
 let reelPointer: number | undefined;
 let reelPoint: { x: number; y: number } | undefined;
 let reelAngle = 0;
-let gesture: { id: number; x: number; y: number; yaw: number; lift: number; casting: boolean } | undefined;
+let gesture: { id: number; x: number; y: number; yaw: number; lift: number; casting: boolean; cast?: CastGesture } | undefined;
 const canvas = el<HTMLCanvasElement>('world');
 const reel = el('reel-control');
 const rodControl = el('rod-control');
+// Ces écouteurs ne remontent pas depuis les dialogues, qui sont des frères de la scène.
+for (const surface of [canvas, document.querySelector<HTMLElement>('.scene-controls')!]) {
+  for (const type of ['contextmenu', 'dragstart', 'selectstart']) surface.addEventListener(type, event => event.preventDefault());
+}
+// Les photos restent défilables dans les menus, mais ne démarrent pas un glissement natif.
+el('app').addEventListener('dragstart', event => { if (event.target instanceof HTMLImageElement) event.preventDefault(); });
 function cancelGesture() {
-  const id = gesture?.id; gesture = undefined; world?.aim();
+  const id = gesture?.id;
+  if (gesture?.casting && game.phase === 'idle') game.orient(gesture.yaw, gesture.lift);
+  gesture = undefined; world?.aim();
   if (id !== undefined && canvas.hasPointerCapture(id)) canvas.releasePointerCapture(id);
   if (id !== undefined && rodControl.hasPointerCapture(id)) rodControl.releasePointerCapture(id);
   rodControl.style.setProperty('--stick-x', '0px'); rodControl.style.setProperty('--stick-y', '0px');
@@ -271,6 +279,7 @@ reel.addEventListener('pointermove', e => {
 });
 for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) reel.addEventListener(type, e => { if ((e as PointerEvent).pointerId === reelPointer) release(); });
 window.addEventListener('pointerup', e => { if (e.pointerId === reelPointer) release(); });
+window.addEventListener('pointercancel', e => { if (e.pointerId === reelPointer) release(); if (e.pointerId === gesture?.id) cancelGesture(); });
 rodControl.addEventListener('pointerdown', e => {
   if (e.button !== 0 || gesture || !canReel()) return;
   gesture = { id: e.pointerId, x: e.clientX, y: e.clientY, yaw: game.rodYaw, lift: game.rodLift, casting: false };
@@ -292,19 +301,27 @@ canvas.addEventListener('pointerdown', e => {
   if (game.phase === 'bite') { activate(); return; }
   if (game.phase === 'lost') { game.reset(); phaseChanged(); }
   if (!(['idle', 'fighting'].includes(game.phase) || game.phase === 'waiting' && game.method === 'lure')) return;
+  if (game.phase === 'idle' && !CastGesture.canStart(e.clientY, innerHeight)) return;
   gesture = { id: e.pointerId, x: e.clientX, y: e.clientY, yaw: game.rodYaw, lift: game.rodLift, casting: game.phase === 'idle' };
+  if (gesture.casting) { gesture.cast = new CastGesture({ x: e.clientX, y: e.clientY, time: e.timeStamp }, innerWidth, innerHeight, game.equipmentPower); game.orient(0, 0.15); }
   canvas.setPointerCapture(e.pointerId); void audio.unlock();
 });
 canvas.addEventListener('pointermove', e => {
   if (!gesture || gesture.id !== e.pointerId) return;
   const dx = e.clientX - gesture.x, dy = e.clientY - gesture.y;
-  if (gesture.casting) world?.aim(aimFromGesture(dx, dy, innerWidth, innerHeight));
+  if (gesture.cast) {
+    const sample = { x: e.clientX, y: e.clientY, time: e.timeStamp };
+    const samples = e.getCoalescedEvents?.() ?? [];
+    for (const point of samples) gesture.cast.move({ x: point.clientX, y: point.clientY, time: point.timeStamp });
+    gesture.cast.move(sample); const pose = gesture.cast.pose(sample); game.orient(pose.yaw, pose.lift);
+    world?.aim(gesture.cast.aim(sample));
+  }
   else game.orient(gesture.yaw + dx / (Math.min(600, innerWidth) * 0.28), gesture.lift - dy / (Math.min(600, innerHeight) * 0.35));
 });
 canvas.addEventListener('pointerup', e => {
   if (!gesture || gesture.id !== e.pointerId) return;
   if (gesture.casting) {
-    const aim = aimFromGesture(e.clientX - gesture.x, e.clientY - gesture.y, innerWidth, innerHeight);
+    const aim = gesture.cast!.aim({ x: e.clientX, y: e.clientY, time: e.timeStamp });
     if (aim.valid && game.cast(aim.point)) { audio.tone('cast'); phaseChanged(); }
     else toast(aim.reason);
   }
@@ -412,19 +429,22 @@ try {
   world.engine.runRenderLoop(() => {
     const now = performance.now(); const dt = Math.min((now - lastTime) / 1000, 0.1); lastTime = now;
     if (document.hidden) { accumulator = 0; return; }
-    if (game.reeling && !overlayPaused && !manualPaused && now - lastReelSound > 180) { audio.tone('reel'); lastReelSound = now; }
+    if ((game.reeling || game.phase === 'fighting' && game.dragSpeed > 0.08) && !overlayPaused && !manualPaused && now - lastReelSound > 180) { audio.tone(game.dragSpeed > 0.08 ? 'drag' : 'reel'); lastReelSound = now; }
     if (!overlayPaused && !manualPaused && !qaSimulationPaused) {
       accumulator += dt;
       while (accumulator >= 1 / 60) { game.update(1 / 60); phaseChanged(); accumulator -= 1 / 60; }
     } else accumulator = 0;
     reel.classList.toggle('reeling', game.reeling);
+    if (game.phase === 'fighting' && game.dragSpeed > 0.02 && !overlayPaused && !manualPaused && !qaSimulationPaused) {
+      reelAngle -= game.dragSpeed * dt * 180; reel.style.setProperty('--reel-angle', `${reelAngle}deg`);
+    }
     if (game.phase === 'fighting' && !overlayPaused && !manualPaused) {
       const angle = Math.round(Math.atan2(game.fishPosition.x, game.fishPosition.z + 1) * 180 / Math.PI);
       // Le repère de la jauge affiche exactement la tension qui courbe la canne.
-      const percent = Math.round(game.tension * 100);
+      const percent = Math.round(Math.min(1, game.tension) * 100);
       el('tension-display').style.setProperty('--tension', `${percent}%`);
       el('tension-meter').setAttribute('aria-valuenow', String(percent));
-      canvas.setAttribute('aria-description', `Fil à ${angle} degrés, tension ${Math.round(game.tension * 100)} pour cent.`);
+      canvas.setAttribute('aria-description', `Fil à ${angle} degrés, tension ${percent} pour cent.`);
       const danger = game.tension > 0.85 ? 'Fil trop tendu' : game.tension < 0.04 ? 'Contact perdu' : '';
       if (danger && danger !== lastLineAlert && now > alertUntil + 2000) { el('line-alert').textContent = danger; el('line-alert').hidden = false; alertUntil = now + 1800; }
       lastLineAlert = danger;
@@ -435,7 +455,7 @@ try {
       world!.scene.render(); lakeFrames++; lastRender = now;
     }
   });
-  world.scene.executeWhenReady(() => { el('loading').hidden = true; document.body.dataset.ready = 'true'; if (loaded.warning) toast(loaded.warning); else teach(1, 'Glissez sur l’eau puis relâchez pour lancer. Votre matériel se prépare dans le menu.'); });
+  world.scene.executeWhenReady(() => { el('loading').hidden = true; document.body.dataset.ready = 'true'; if (loaded.warning) toast(loaded.warning); else teach(1, 'Partez du bas, projetez vers l’eau puis relâchez au centre pour lancer.'); });
   el<HTMLCanvasElement>('world').addEventListener('webglcontextlost', () => { pauseManually(); toast('Le rendu 3D a été interrompu. Rechargez la page si l’image ne revient pas.'); });
 } catch (error) {
   console.error(error);
@@ -446,7 +466,8 @@ try {
 if (import.meta.env.DEV && import.meta.env.VITE_E2E === '1') {
   Object.assign(window, { __fishingQA: {
     pauseSimulation: () => { qaSimulationPaused = true; },
-    snapshot: () => ({ phase: game.phase, tension: game.tension, progress: game.progress, reeling: game.reeling, pulling: game.pulling, total: save.total, paused: manualPaused || overlayPaused, direction: game.direction, reelSpeed: game.reelSpeed, alignment: game.alignment, rodTip: world?.rodTipOnScreen(), target: game.target, yaw: game.rodYaw, lift: game.rodLift, aquarium: aquarium?.diagnostics(), engines: Engine.Instances.length, lakeFrames, meshes: world?.scene.getActiveMeshes().length }),
-    advance: (seconds: number, mode?: 'smart') => { for (let i = 0; i < seconds * 60; i++) { if (mode === 'smart') { game.orient(game.direction, game.pulling ? 0.20 : 0.68); game.reel((game.pulling ? 0.1 : 1.6) / 60); } game.update(1 / 60); phaseChanged(); if (['caught', 'lost', 'bite'].includes(game.phase)) break; } },
+    resumeSimulation: () => { qaSimulationPaused = false; },
+    snapshot: () => ({ phase: game.phase, tension: game.tension, fatigue: game.fatigue, slack: game.slack, dragSpeed: game.dragSpeed, lineLength: game.lineLength, fishDistance: game.fishDistance, returning: game.returning, progress: game.progress, reeling: game.reeling, pulling: game.pulling, total: save.total, paused: manualPaused || overlayPaused, direction: game.direction, reelSpeed: game.reelSpeed, alignment: game.alignment, rodTip: world?.rodTipOnScreen(), target: game.target, yaw: game.rodYaw, lift: game.rodLift, aquarium: aquarium?.diagnostics(), engines: Engine.Instances.length, lakeFrames, meshes: world?.scene.getActiveMeshes().length }),
+    advance: (seconds: number, mode?: 'smart') => { for (let i = 0; i < seconds * 60; i++) { if (mode === 'smart') { game.orient(game.direction, game.pulling ? 0.28 : 0.55); if (game.tension < 0.72 || game.slack > 0.05) game.reel(1.6 / 60); } game.update(1 / 60); phaseChanged(); if (['caught', 'lost', 'bite'].includes(game.phase)) break; } },
   } });
 }

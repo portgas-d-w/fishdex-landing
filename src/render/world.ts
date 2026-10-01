@@ -28,6 +28,9 @@ export class LakeWorld {
   private resize = () => this.engine.resize();
   private seed = 127;
   private rod!: Mesh;
+  private grip!: Mesh;
+  private wasCasting = false;
+  private castOrigin = new Vector3();
   private thickLine!: Mesh;
   private aimRing!: Mesh;
   private lure!: Mesh;
@@ -190,8 +193,8 @@ export class LakeWorld {
       const post = MeshBuilder.CreateCylinder('dock-post', { diameter: 0.20, height: 1.5, tessellation: 8 }, this.scene);
       post.position.set(x, 0.25, z); post.material = woods[2];
     }
-    const grip = MeshBuilder.CreateTube('cork-grip', { path: [new Vector3(1.4, 0.8, -5.7), new Vector3(1.415, 1.0, -5.1)], radius: 0.06, tessellation: 8 }, this.scene);
-    grip.material = this.material('#c2a46d');
+    this.grip = MeshBuilder.CreateTube('cork-grip', { path: [new Vector3(1.4, 0.8, -5.7), new Vector3(1.415, 1.0, -5.1)], radius: 0.06, tessellation: 8, updatable: true }, this.scene);
+    this.grip.material = this.material('#c2a46d');
   }
   setQuality(quality: 'eco' | 'high') {
     const dpr = Math.min(window.devicePixelRatio || 1, quality === 'eco' ? 1.25 : 2);
@@ -217,19 +220,24 @@ export class LakeWorld {
     this.bobber.setEnabled(show && game.method === 'float'); this.line.setEnabled(false); this.thickLine.setEnabled(show);
     this.lure.setEnabled(show && game.method === 'lure' && game.phase !== 'fighting');
     const fighting = game.phase === 'fighting';
+    if (game.phase === 'casting' && !this.wasCasting) this.castOrigin.copyFrom(this.rodPath[8]);
+    this.wasCasting = game.phase === 'casting';
+    const cast = game.phase === 'casting' ? Math.min(1, game.elapsed / 1.1) : 1;
+    const lift = game.phase === 'casting' ? game.rodLift * (1 - cast) + 0.5 * cast : game.rodLift;
+    const bend = Math.min(1.1, game.tension);
     // L’amplitude visuelle suit le champ horizontal : la pointe reste visible en portrait.
     // Les règles gardent la même orientation et les mêmes forces sur tous les formats.
     const framing = Math.min(1, this.engine.getAspectRatio(this.camera));
     const base = new Vector3(1.4 * framing ** 1.5, 0.8, -5.7);
     this.rodPath = Array.from({ length: 9 }, (_, i) => {
       const t = i / 8;
-      return base.add(new Vector3((game.rodYaw * 3 * framing ** 2 - 0.1 * framing) * t + (fighting ? game.direction * game.tension * t * t * 0.7 * framing : 0),
-        (0.8 + game.rodLift * 2.3) * t - (fighting ? game.tension * t * t * 1.1 : game.phase === 'bite' ? (0.35 + Math.sin(this.time * 12) * 0.12) * t * t : 0), 4.5 * t));
+      return base.add(new Vector3((game.rodYaw * 3 * framing ** 2 - 0.1 * framing) * t + (fighting ? game.direction * bend * t * t * 0.7 * framing : 0),
+        (0.8 + lift * 2.3) * t - (fighting ? bend * t * t * 1.1 : game.phase === 'bite' ? (0.35 + Math.sin(this.time * 12) * 0.12) * t * t : 0), 4.5 * t));
     });
     MeshBuilder.CreateTube('moving-rod', { path: this.rodPath, instance: this.rod }, this.scene);
-    const cast = game.phase === 'casting' ? Math.min(1, game.elapsed / 1.1) : 1;
+    MeshBuilder.CreateTube('cork-grip', { path: [this.rodPath[0], this.rodPath[1]], instance: this.grip }, this.scene);
     this.bobber.position.set(targetX * cast, 0.035 + Math.sin(this.time * 2) * 0.022, -1 + (targetZ + 1) * cast);
-    if (game.phase === 'casting') this.bobber.position.y += Math.sin(cast * Math.PI) * 2;
+    if (game.phase === 'casting') this.bobber.position.copyFrom(Vector3.Lerp(this.castOrigin, new Vector3(targetX, 0.1, targetZ), cast).add(new Vector3(0, Math.sin(cast * Math.PI) * 2.3, 0)));
     if (game.method === 'lure' && ['waiting', 'bite'].includes(game.phase)) this.bobber.position.set(game.fishPosition.x, 0.04, game.fishPosition.z);
     if (game.method === 'bottom' && ['waiting', 'bite'].includes(game.phase)) this.bobber.position.y = -game.target.z * 0.2;
     this.lure.position.copyFrom(this.bobber.position); this.lure.rotation.y = game.rodYaw;
@@ -252,7 +260,7 @@ export class LakeWorld {
     // Le segment immergé est occulté par l’eau ; le point d’entrée suit le poisson.
     const path = Array.from({ length: 9 }, (_, i) => {
       const t = i / 8; const p = Vector3.Lerp(tip, end, t);
-      p.y -= Math.sin(t * Math.PI) * (fighting ? (1 - game.tension) * 0.65 : 0.15); return p;
+      p.y -= Math.sin(t * Math.PI) * (fighting ? Math.min(2, game.slack * 0.7 + Math.max(0, 1 - game.tension) * 0.2) : 0.15); return p;
     });
     MeshBuilder.CreateLines('fishing-line', { points: [tip, end], instance: this.line }, this.scene);
     MeshBuilder.CreateTube('visible-line', { path, instance: this.thickLine }, this.scene);

@@ -7,8 +7,8 @@ export async function realFishing(page: Page, context: BrowserContext, mobile: b
   const touch = mobile ? await context.newCDPSession(page) : undefined;
   if (touch) {
     const x = size.width * .45;
-    await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ id: 30, x, y: size.height * .60 }] });
-    for (let i = 1; i <= 8; i++) await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ id: 30, x, y: size.height * (.60 - .13 * i / 8) }] });
+    await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ id: 30, x, y: size.height * .80 }] });
+    for (let i = 1; i <= 8; i++) await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ id: 30, x, y: size.height * (.80 - .35 * i / 8) }] });
     await touch.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
   } else await castByGesture(page);
   await expect(page.locator('body')).toHaveAttribute('data-phase', 'bite');
@@ -31,15 +31,15 @@ export async function realFishing(page: Page, context: BrowserContext, mobile: b
     const cue = (await page.locator('#world').getAttribute('aria-description'))?.match(/Fil à (-?\d+) degrés, tension (\d+)/);
     if (cue) {
       const yaw = Math.max(-.9, Math.min(.9, Math.sin(Number(cue[1]) * Math.PI / 180) / .40));
-      const tension = Number(cue[2]), lift = tension > 68 ? .18 : .68;
+      const tension = Number(cue[2]), lift = tension > 68 ? .28 : .55;
       rod = { ...rod, x: x0 + yaw * (mobile ? 32 : Math.min(600, size.width) * .28), y: y0 - (lift - .5) * (mobile ? 64 : Math.min(600, size.height) * .35) };
       if (touch) {
-        if (tension < 80) angle += .85;
+        if (tension < 72) angle += .85;
         reel = { ...reel, x: cx + 28 * Math.cos(angle), y: cy + 28 * Math.sin(angle) };
         await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [rod, reel] });
       } else {
         await page.mouse.move(rod.x, rod.y);
-        if (tension < 80) await page.mouse.wheel(0, 75);
+        if (tension < 72) await page.mouse.wheel(0, 75);
       }
     }
     await page.waitForTimeout(100);

@@ -11,7 +11,7 @@ test('Deux vrais doigts : cercle mobile, canne simultanée, maintien immobile et
  expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(false);
  for(let i=1;i<=5;i++){rod={...rod,x:rx+i*4.5,y:ry-i*3};reel={...reel,x:cx+28*Math.cos(i*Math.PI/10),y:cy+28*Math.sin(i*Math.PI/10)};await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[rod,reel]});}
  const moved=await page.evaluate(()=>(window as any).__fishingQA.snapshot());expect(moved.reeling).toBe(true);expect(moved.yaw).toBeGreaterThan(.5);expect(moved.lift).toBeGreaterThan(.6);
- await page.waitForTimeout(100);await page.evaluate(()=>(window as any).__fishingQA.advance(.5));expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(false);
+ await page.waitForTimeout(1100);expect(await page.evaluate(()=>getSelection()?.toString())).toBe('');await page.evaluate(()=>(window as any).__fishingQA.advance(.5));expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(false);
  reel={...reel,x:cx-14,y:cy+24};await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[rod,reel]});
  await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[rod]});expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(true);
  await session.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(false);

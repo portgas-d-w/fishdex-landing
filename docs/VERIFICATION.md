@@ -1,6 +1,6 @@
-# Vérifications — livraisons 0.1 à 0.3.1
+# Vérifications — livraisons 0.1 à 0.4.0
 
-Les derniers résultats du 1 octobre 2026 (version 0.3.1) sont dans la dernière section. Les livraisons précédentes ci-dessous sont conservées comme historique ; elles ne remplacent pas les vérifications récentes.
+Les derniers résultats du 1 octobre 2026 (version 0.4.0) sont dans la dernière section. Les livraisons précédentes ci-dessous sont conservées comme historique ; elles ne remplacent pas les vérifications récentes.
 
 ## Complément sur le PC Windows — 30 septembre 2026
 
@@ -131,3 +131,15 @@ Dernière instruction utilisateur : ajouter une jauge comme sur l’image. Barre
 Preview 0.3.1 e2af6e7 READY, smoke protégé 6/6 (2,0 min), jauge visible vérifiée, captures réelles et fonctions conservées.
 
 Production 0.3.1 main 6431fb2 READY : smoke public 6/6 (1,7 min), jauge visible, captures réelles et fonctions conservées. Bundle index-D2VdAQ0C.js SHA256 afa1e0b368ddd2d564cb45af53cfc7e4539e96d6887d648b30936674b1263a3f et manifeste identiques au dist local ; captures publiques inspectées et conservées. Clôture documentaire seule, dernier déploiement contrôlé.
+
+## Correction gestes/combat 0.4.0 — 1 octobre 2026
+
+Node 24.15.0 / npm 11.12.1, npm ci sans vulnérabilité. npm run check final : 30 tests réussis, TypeScript et build ; avertissement de taille du chunk Babylon conservé, sans hausse notable. Règles indépendantes dans src/game.
+
+E2E initial complet : 23 réussis / 2 ignorés / 3 échecs, utilisés pour corriger la résistance d’un poisson fatigué et deux attentes de recherche (perche = deux fiches). Vérification finale ciblée : 22 réussis / 1 ignoré, un test mobile de reprise du mou restant ; reprise physique 4/4 (14,2 s) après avoir utilisé le cercle du moulinet sur mobile, au lieu de la molette PC. Au total, 23 scénarios ciblés distincts validés et 1 ignoré, mêmes sources finales. Les parcours modèles, aquarium et collection de la première passe ont également réussi ; ces systèmes n’ont pas changé ensuite.
+
+Appui long ≥1,1 s sur la scène/deux doigts, aucune sélection ; contextmenu/dragstart/selectstart bloqués sur canvas/commandes, user-select/WebKit et touch-action vérifiés. Captures indépendantes, fin/annulation/perte de capture/blur/pagehide/pause/rotation : commandes arrêtées. Défilement réellement natif du carnet et de la boutique par événements tactiles CDP ; recherche, sélection complète du champ, effacement et saisie conservés. Aucun blocage de gestes sur app.
+
+Départ puissant sans moulinage : tension utile et fil sortant ; rotation automatique du moulinet observée en laissant avancer la simulation réelle. Insister crée une tension dangereuse et une casse ; le moulinet récupère le mou pendant le retour du poisson. Quinze captures gérées et comparaison de stratégies archivées. Lancer commencé trop haut ignoré, préparation visible, traversée sans relâchement inopérante, annulation/restauration, projection douce plus courte que rapide. Cadrage portrait 390×844, bureau 1440×900 et paysage inspectés. Captures physics-* dans docs/apercus.
+
+Le support des propriétés Safari est implémenté ; ces mesures sont Chromium/SwiftShader Windows, pas Safari ni iPhone physique. La chauffe et le ressenti humain restent à mesurer. Smoke local du build public sur 4175 : 6/6 (2,3 min), aucune QA, vraie capture souris/tactile, quinze GLB, sauvegarde/rechargement/export/import, achats et aquarium. Publication ajoutée après vérification distante.

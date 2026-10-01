@@ -1,0 +1,537 @@
+{
+  "date": "2026-10-01",
+  "dt": 0.016666666666666666,
+  "equipmentPower": 1.32,
+  "reeling": "identical: 1.6 turns/s when tension < 0.72 or slack > 0.05",
+  "fixed": "yaw 0, lift .5",
+  "follow": "yaw follows fish, lift .28 during burst / .55 otherwise",
+  "fixedCatches": 15,
+  "followCatches": 15,
+  "rows": [
+    {
+      "species": "roach",
+      "name": "Gardon",
+      "encounter": {
+        "spot": "reeds",
+        "bait": "worm",
+        "r": 0
+      },
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 25.7,
+          "length": 20.6,
+          "peakFatigue": 0.83,
+          "maxTension": 0.793,
+          "at2": {
+            "progress": 0.069,
+            "tension": 0.724
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 16.47,
+          "length": 20.6,
+          "peakFatigue": 0.769,
+          "maxTension": 0.836,
+          "at2": {
+            "progress": 0.13,
+            "tension": 0.723
+          }
+        }
+      ]
+    },
+    {
+      "species": "perch",
+      "name": "Perche",
+      "encounter": {
+        "spot": "reeds",
+        "bait": "worm",
+        "r": 0.158
+      },
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 32,
+          "length": 24.9,
+          "peakFatigue": 1,
+          "maxTension": 0.842,
+          "at2": {
+            "progress": 0.069,
+            "tension": 0.725
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 20.53,
+          "length": 24.9,
+          "peakFatigue": 0.961,
+          "maxTension": 0.833,
+          "at2": {
+            "progress": 0.121,
+            "tension": 0.723
+          }
+        }
+      ]
+    },
+    {
+      "species": "carp",
+      "name": "Carpe",
+      "encounter": {
+        "spot": "reeds",
+        "bait": "worm",
+        "r": 0.264
+      },
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 39.02,
+          "length": 49.8,
+          "peakFatigue": 1,
+          "maxTension": 0.873,
+          "at2": {
+            "progress": 0.04,
+            "tension": 0.723
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 24.85,
+          "length": 49.8,
+          "peakFatigue": 1,
+          "maxTension": 0.849,
+          "at2": {
+            "progress": 0.083,
+            "tension": 0.722
+          }
+        }
+      ]
+    },
+    {
+      "species": "pike",
+      "name": "Brochet",
+      "encounter": {
+        "spot": "reeds",
+        "bait": "lure",
+        "r": 0.429
+      },
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 43.45,
+          "length": 63.1,
+          "peakFatigue": 1,
+          "maxTension": 0.878,
+          "at2": {
+            "progress": 0.063,
+            "tension": 0.722
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 26.98,
+          "length": 63.1,
+          "peakFatigue": 1,
+          "maxTension": 0.847,
+          "at2": {
+            "progress": 0.101,
+            "tension": 0.716
+          }
+        }
+      ]
+    },
+    {
+      "species": "zander",
+      "name": "Sandre",
+      "encounter": {
+        "spot": "reeds",
+        "bait": "lure",
+        "r": 0.643
+      },
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 37.25,
+          "length": 48.1,
+          "peakFatigue": 1,
+          "maxTension": 0.817,
+          "at2": {
+            "progress": 0.049,
+            "tension": 0.723
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 23.48,
+          "length": 48.1,
+          "peakFatigue": 1,
+          "maxTension": 0.828,
+          "at2": {
+            "progress": 0.095,
+            "tension": 0.716
+          }
+        }
+      ]
+    },
+    {
+      "species": "bream",
+      "name": "Brème commune",
+      "encounter": {
+        "spot": "reeds",
+        "bait": "worm",
+        "r": 0.29
+      },
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 31.63,
+          "length": 38.1,
+          "peakFatigue": 1,
+          "maxTension": 0.812,
+          "at2": {
+            "progress": 0.059,
+            "tension": 0.716
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 20.53,
+          "length": 38.1,
+          "peakFatigue": 0.961,
+          "maxTension": 0.831,
+          "at2": {
+            "progress": 0.111,
+            "tension": 0.719
+          }
+        }
+      ]
+    },
+    {
+      "species": "tench",
+      "name": "Tanche",
+      "encounter": {
+        "spot": "reeds",
+        "bait": "worm",
+        "r": 0.343
+      },
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 36.3,
+          "length": 33.2,
+          "peakFatigue": 1,
+          "maxTension": 0.85,
+          "at2": {
+            "progress": 0.042,
+            "tension": 0.72
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 22.27,
+          "length": 33.2,
+          "peakFatigue": 1,
+          "maxTension": 0.835,
+          "at2": {
+            "progress": 0.089,
+            "tension": 0.722
+          }
+        }
+      ]
+    },
+    {
+      "species": "rudd",
+      "name": "Rotengle",
+      "encounter": {
+        "spot": "reeds",
+        "bait": "worm",
+        "r": 0.448
+      },
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 26.02,
+          "length": 21.2,
+          "peakFatigue": 0.843,
+          "maxTension": 0.796,
+          "at2": {
+            "progress": 0.068,
+            "tension": 0.719
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 16.7,
+          "length": 21.2,
+          "peakFatigue": 0.781,
+          "maxTension": 0.843,
+          "at2": {
+            "progress": 0.128,
+            "tension": 0.717
+          }
+        }
+      ]
+    },
+    {
+      "species": "bleak",
+      "name": "Ablette",
+      "encounter": {
+        "spot": "reeds",
+        "bait": "worm",
+        "r": 0.579
+      },
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 22.2,
+          "length": 14.9,
+          "peakFatigue": 0.694,
+          "maxTension": 0.78,
+          "at2": {
+            "progress": 0.081,
+            "tension": 0.716
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 14.37,
+          "length": 14.9,
+          "peakFatigue": 0.669,
+          "maxTension": 0.826,
+          "at2": {
+            "progress": 0.146,
+            "tension": 0.717
+          }
+        }
+      ]
+    },
+    {
+      "species": "crucian",
+      "name": "Carassin commun",
+      "encounter": {
+        "spot": "reeds",
+        "bait": "worm",
+        "r": 0.685
+      },
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 29.65,
+          "length": 24.9,
+          "peakFatigue": 0.942,
+          "maxTension": 0.796,
+          "at2": {
+            "progress": 0.063,
+            "tension": 0.724
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 18.43,
+          "length": 24.9,
+          "peakFatigue": 0.862,
+          "maxTension": 0.831,
+          "at2": {
+            "progress": 0.12,
+            "tension": 0.719
+          }
+        }
+      ]
+    },
+    {
+      "species": "whitebream",
+      "name": "Brème bordelière",
+      "encounter": {
+        "spot": "reeds",
+        "bait": "worm",
+        "r": 0.764
+      },
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 26.65,
+          "length": 21.9,
+          "peakFatigue": 0.864,
+          "maxTension": 0.801,
+          "at2": {
+            "progress": 0.067,
+            "tension": 0.719
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 17.08,
+          "length": 21.9,
+          "peakFatigue": 0.798,
+          "maxTension": 0.835,
+          "at2": {
+            "progress": 0.125,
+            "tension": 0.723
+          }
+        }
+      ]
+    },
+    {
+      "species": "gudgeon",
+      "name": "Goujon",
+      "encounter": {
+        "spot": "reeds",
+        "bait": "worm",
+        "r": 0.816
+      },
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 23.63,
+          "length": 12,
+          "peakFatigue": 0.733,
+          "maxTension": 0.786,
+          "at2": {
+            "progress": 0.078,
+            "tension": 0.717
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 14.82,
+          "length": 12,
+          "peakFatigue": 0.691,
+          "maxTension": 0.829,
+          "at2": {
+            "progress": 0.143,
+            "tension": 0.724
+          }
+        }
+      ]
+    },
+    {
+      "species": "chub",
+      "name": "Chevesne",
+      "encounter": {
+        "spot": "reeds",
+        "bait": "worm",
+        "r": 0.895
+      },
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 34.6,
+          "length": 34.8,
+          "peakFatigue": 1,
+          "maxTension": 0.807,
+          "at2": {
+            "progress": 0.058,
+            "tension": 0.728
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 21.4,
+          "length": 34.8,
+          "peakFatigue": 1,
+          "maxTension": 0.847,
+          "at2": {
+            "progress": 0.107,
+            "tension": 0.72
+          }
+        }
+      ]
+    },
+    {
+      "species": "ide",
+      "name": "Ide mélanote",
+      "encounter": {
+        "spot": "reeds",
+        "bait": "worm",
+        "r": 0.948
+      },
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 32.63,
+          "length": 33.2,
+          "peakFatigue": 1,
+          "maxTension": 0.801,
+          "at2": {
+            "progress": 0.058,
+            "tension": 0.722
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 20.92,
+          "length": 33.2,
+          "peakFatigue": 0.98,
+          "maxTension": 0.838,
+          "at2": {
+            "progress": 0.11,
+            "tension": 0.718
+          }
+        }
+      ]
+    },
+    {
+      "species": "catfish",
+      "name": "Silure glane",
+      "encounter": {
+        "spot": "reeds",
+        "bait": "worm",
+        "r": 0.974
+      },
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 46.68,
+          "length": 86.3,
+          "peakFatigue": 1,
+          "maxTension": 0.916,
+          "at2": {
+            "progress": 0.037,
+            "tension": 0.722
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 28.62,
+          "length": 86.3,
+          "peakFatigue": 1,
+          "maxTension": 0.839,
+          "at2": {
+            "progress": 0.071,
+            "tension": 0.723
+          }
+        }
+      ]
+    }
+  ]
+}

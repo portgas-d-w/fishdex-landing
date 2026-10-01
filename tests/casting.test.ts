@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { aimFromGesture, inspectTarget } from '../src/game/casting.ts';
+import { aimFromGesture, inspectTarget, CastGesture } from '../src/game/casting.ts';
 import { FishingGame } from '../src/game/fishing.ts';
 test('Gestes normalisés : court, long, diagonal et hors eau', () => {
   assert.equal(aimFromGesture(2, -5, 390, 844).valid, false);
@@ -17,15 +17,17 @@ test('Une cible refusée conserve l’état ; les coordonnées choisissent l’h
   assert.equal(game.cast({ x: 4.2, z: 8.5 }), true);
   assert.deepEqual(game.target, { x: 4.2, z: 8.5 }); assert.equal(game.spot, 'willow');
 });
-test('La même traction exige de suivre le fil : récupération et tension changent', () => {
-  const make = (follow: boolean) => {
-    const g = new FishingGame(() => 0); g.cast(); g.phase = 'bite'; g.strike();
-    for (let i = 0; i < 600; i++) {
-      g.orient(follow ? g.direction : -1, g.pulling ? 0.2 : 0.68);
-      g.reel((g.pulling ? 0.1 : 1.6) / 60); g.update(1 / 60);
-    } return g;
-  };
-  const aligned = make(true), wrong = make(false);
-  assert.ok(aligned.progress > wrong.progress + 0.25);
-  assert.ok(aligned.tension < wrong.tension);
+test('Le lancer part du tiers bas et exige un relâchement central, vers l’eau', () => {
+ assert.equal(CastGesture.canStart(500,844),false);assert.equal(CastGesture.canStart(700,844),true);
+ const g=new CastGesture({x:180,y:700,time:0},390,844);
+ g.move({x:180,y:600,time:80});assert.equal(g.aim({x:180,y:600,time:90}).valid,false);
+ g.move({x:190,y:400,time:160});assert.equal(g.aim({x:190,y:400,time:170}).valid,true);
+ assert.ok(g.pose({x:210,y:400,time:170}).lift>.5);
+ assert.equal(g.aim({x:190,y:400,time:700}).valid,false);
+});
+test('La vitesse récente domine la puissance ; amplitude, direction et équipement contribuent', () => {
+ const swing=(duration:number, dx=0,power=1)=>{const g=new CastGesture({x:180,y:700,time:0},390,844,power);for(let i=1;i<=100;i++)g.move({x:180+dx*i/100,y:700-300*i/100,time:duration*i/100});return g.aim({x:180+dx,y:400,time:duration+5});};
+ const slow=swing(1800),fast=swing(150);assert.ok(slow.valid && fast.valid);assert.ok(fast.point.z>slow.point.z+8);
+ const diagonal=swing(150,60);assert.ok(diagonal.valid);assert.ok(diagonal.point.x>0);assert.ok(swing(150,0,1.4).point.z>fast.point.z);
+ assert.equal(swing(150,200).valid,false);
 });

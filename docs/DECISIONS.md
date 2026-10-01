@@ -2,6 +2,9 @@
 
 | Date | Décision | Motif / statut |
 | --- | --- | --- |
+| 2026-10-01 | Gestes natifs bloqués seulement sur la scène/commandes | Dernière demande : user-select/WebKit/callout, contextmenu/selectstart ; menus défilables et champs sélectionnables. Images sans glissement natif. |
+| 2026-10-01 | Fil disponible, flexion amortie, fatigue causale et frein automatique | Mission jointe remplace les règles 0.3 : ne pas détendre automatiquement au relâchement ; effets progressifs des angles et force relative au matériel. Capture proche sous contrôle, sans minuteur de victoire. |
+| 2026-10-01 | Départ du lancer dans le tiers inférieur ; projection puis relâchement central/haut | Vitesse récente dominante, amplitude secondaire et portée liée au matériel ; préparation continue, annulation/restauration sur interruption. |
 | 2026-09-30 | Solo, navigateur, priorité mobile | Direction exprimée par l’utilisateur |
 | 2026-09-30 | Codex commence, Claude reprend ensuite | Quota Claude temporairement épuisé ; document commun de relais |
 | 2026-09-30 | Babylon.js + TypeScript + Vite | Projet statique 3D, déploiement Vercel simple |

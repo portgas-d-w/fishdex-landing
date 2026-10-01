@@ -2,6 +2,17 @@
 
 La mission autonome explicite autorise les fonctionnalités suivantes et remplace l’attente du premier retour appareil pour avancer. Une prise ou une sauvegarde cassée reste prioritaire sur le contenu.
 
+## Correction 0.4 — vérification et publication en cours
+
+- [x] Sélection et appui long bloqués uniquement dans la scène ; glissement natif des images supprimé.
+- [x] Pointeurs indépendants, captures et nettoyage de toutes les interruptions conservés ; annulation globale ajoutée.
+- [x] Défilement natif carnet/boutique et sélection/saisie des champs vérifiés sur Chromium.
+- [x] Combat : longueur de ligne, frein, fatigue, trois régimes, force relative, capture proche sans angle binaire.
+- [x] Lancer depuis le tiers bas, préparation continue, vitesse récente et relâchement central ; trajectoire correspondante.
+- [x] Check 30 tests + TypeScript + build ; quinze espèces gérées dans les tests et comparaison actualisée.
+- [x] E2E final, portrait/bureau/paysage inspectés ; smoke du build public 6/6 sans QA.
+- [ ] Vérifier preview protégée puis publier/vérifier production sur le projet autorisé.
+
 ## Jauge 0.3.1 — publiée et vérifiée
 
 - [x] Barre verte/jaune/orange et repère entre les deux commandes, uniquement au combat.

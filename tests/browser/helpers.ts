@@ -1,8 +1,8 @@
 import { expect, type Page } from '@playwright/test';
 export async function castByGesture(page: Page) {
   const size = page.viewportSize()!;
-  await page.mouse.move(size.width * 0.45, size.height * 0.60); await page.mouse.down();
-  await page.mouse.move(size.width * 0.45, size.height * 0.47, { steps: 8 }); await page.mouse.up();
+  await page.mouse.move(size.width * 0.45, size.height * 0.80); await page.mouse.down();
+  await page.mouse.move(size.width * 0.45, size.height * 0.45, { steps: 8 }); await page.mouse.up();
   await expect(page.locator('body')).toHaveAttribute('data-phase', 'casting');
 }
 export async function openMenuPage(page: Page, id: string) {

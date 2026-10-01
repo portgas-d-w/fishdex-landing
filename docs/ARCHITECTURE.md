@@ -1,13 +1,13 @@
-# Architecture — version 0.3.1, 1 octobre 2026
+# Architecture — version 0.4.0, 1 octobre 2026
 
 Babylon.js 9.28.0 core/loaders cohérents, TypeScript 5.9.3 et Vite 8.3.1 verrouillés. Production statique ; aucun backend, compte ou service externe pendant une partie.
 
 ## Règles indépendantes du navigateur
 
 - src/game/catalog.ts : quinze espèces, habitats et pondérations appâts/méthodes.
-- src/game/casting.ts : geste normalisé, limites d’eau/portée et habitat par coordonnées.
+- src/game/casting.ts : CastGesture : tiers inférieur, préparation continue, échantillons récents de projection (180 ms), amplitude secondaire, limite de matériel, relâchement central et limites d’eau/habitat.
 - src/game/fishing.ts : machine idle → casting → waiting → bite → fighting → caught/lost ; simulation à pas 1/60 s. Coordonnées de poisson, orientation, puissance de canne, récupération, tension, casse/décrochage et capture contrôlée. Leurre et fond ont des règles distinctes.
-- src/game/combat.ts : forces communes aux mouvements spatiaux, alignement de canne, hauteur, résistance, récupération et échappée.
+- src/game/combat.ts : stepCombat : distance radiale, longueur de ligne disponible, offset de pointe (hauteur et angle), extension amortie canne/fil, résistance relative au matériel, frein automatique et fatigue sous tension modérée. Nage départ/calme/retour affaiblie par la fatigue. Aucun angle binaire ni durée de victoire.
 - src/game/reeling.ts : tours circulaires, contrôle du rayon/sauts angulaires, conversion de molette ; budget de tours épuisé en moins de 0,2 s.
 - src/game/specimens.ts : identité individuelle, forme/robe/Mirage et relation longueur/poids.
 - src/game/economy.ts : récompenses, prix, matériel, niveaux et badges centralisés.
@@ -23,7 +23,9 @@ src/render/fish-preview.ts : moteur créé à la première fiche, GLB à la dema
 
 src/render/aquarium.ts : scène séparée seulement lorsqu’elle est ouverte, cinq individus maximum, proportion commune et niveaux espacés, trajectoires déphasées, fond/sol/lumière et décor. Chargements tardifs ignorés après fermeture, moteur/scène supprimés. Étang arrêté derrière toutes les modales ; aquarium arrêté derrière une fiche et lorsque la page est cachée.
 
-src/main.ts : interface, gestes avec identifiants distincts, clavier, pauses, modales et orchestration. Deux commandes rondes canne/moulinet avec captures de pointeurs indépendantes ; glissement de scène et molette également disponibles. Aucun moulinage par maintien. Toute interruption annule les captures et vide les tours en attente. Menu et matériel compacts ; modales à retour explicite, aucun panneau de comportement ; jauge de tension compacte entre les commandes, ajoutée sur dernière instruction utilisateur. Elle affiche exactement game.tension et ne prend pas les gestes. Import confirmé remet la partie au repos avant de charger sa progression. L’interface reste regroupée ici ; extraire des contrôleurs si un changement le justifie.
+src/main.ts : interface, gestes avec identifiants distincts, clavier, pauses, modales et orchestration. Deux commandes rondes canne/moulinet avec captures de pointeurs indépendantes ; glissement de scène et molette également disponibles. Aucun moulinage par maintien. Toute interruption annule les captures et vide les tours en attente. Menu et matériel compacts ; modales à retour explicite, aucun panneau de comportement ; jauge de tension compacte entre les commandes, ajoutée sur dernière instruction utilisateur. Elle affiche game.tension, saturée à 100 % en surcharge, et ne prend pas les gestes. Import confirmé remet la partie au repos avant de charger sa progression. L’interface reste regroupée ici ; extraire des contrôleurs si un changement le justifie.
+
+Les protections CSS user-select/WebKit/callout et les événements contextmenu/selectstart sont attachés au canvas et à scene-controls, jamais à app/body qui portent aussi les dialogues. Les champs ont user-select:text, les dialogues défilent verticalement ; les canvas de fiche/bassin autorisent ce défilement. Les images ne déclenchent pas de drag natif. Annulation par doigt ; blur/pagehide/pause/resize nettoient les deux captures et la préparation.
 
 src/ui/photos.ts : Blob IndexedDB indépendants du JSON, ≤100 Ko, 128 dernières images, erreur/délai non bloquant ; un souvenir peut régénérer son portrait. src/ui/audio.ts : Web Audio facultatif après geste, oscillateurs libérés, aucun appel à un service de sons.
 

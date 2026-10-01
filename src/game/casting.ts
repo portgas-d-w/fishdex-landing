@@ -1,5 +1,36 @@
 export interface WaterPoint { x: number; z: number }
 export interface CastAim { point: WaterPoint; valid: boolean; reason: string; depth: number; habitat: 'reeds' | 'open' | 'willow' }
+export interface CastSample { x: number; y: number; time: number }
+export class CastGesture {
+  private samples: CastSample[];
+  readonly start: CastSample;
+  readonly width: number;
+  readonly height: number;
+  readonly power: number;
+  constructor(start: CastSample, width: number, height: number, power = 1) { this.start = start; this.width = width; this.height = height; this.power = power; this.samples = [start]; }
+  static canStart(y: number, height: number) { return y >= height * 2 / 3; }
+  move(sample: CastSample) {
+    if (sample.time < this.samples.at(-1)!.time) return;
+    this.samples.push(sample);
+    while (this.samples.length > 2 && this.samples[1].time < sample.time - 180) this.samples.shift();
+  }
+  pose(sample: CastSample) {
+    const amplitude = Math.max(0, (this.start.y - sample.y) / this.height);
+    return { yaw: Math.max(-1, Math.min(1, (sample.x - this.start.x) / this.width * 3)), lift: Math.max(0.05, Math.min(0.9, 0.15 + amplitude * 1.7)) };
+  }
+  aim(sample: CastSample): CastAim {
+    const first = this.samples.find(s => s.time >= sample.time - 180) ?? this.samples.at(-1)!;
+    const seconds = Math.max(0.016, (sample.time - first.time) / 1000);
+    const dx = (sample.x - this.start.x) / this.width, forward = (this.start.y - sample.y) / this.height;
+    const velocity = Math.max(0, (first.y - sample.y) / this.height / seconds);
+    const energy = Math.min(1, velocity * 0.72) * 0.85 + Math.min(1, forward / 0.55) * Math.min(1, velocity) * 0.15;
+    const distance = 2.5 + energy * Math.min(19, 15 * Math.max(0.5, this.power));
+    const angle = Math.atan2(dx * 1.5, Math.max(0.001, forward));
+    const aim = inspectTarget({ x: Math.sin(angle) * distance, z: Math.cos(angle) * distance - 1 });
+    if (!CastGesture.canStart(this.start.y, this.height) || sample.y < 0 || sample.x < 0 || sample.x > this.width || sample.y > this.height * 0.62 || forward < 0.09 || velocity < 0.06) return { ...aim, valid: false, reason: 'Partez du bas, projetez vers l’eau puis relâchez au centre.' };
+    return aim;
+  }
+}
 export function inspectTarget(point: WaterPoint): CastAim {
   const finite = Number.isFinite(point.x) && Number.isFinite(point.z);
   const distance = Math.hypot(point.x, point.z + 1);
