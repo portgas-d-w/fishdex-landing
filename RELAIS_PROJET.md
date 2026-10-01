@@ -1,6 +1,16 @@
 # RELAIS PROJET — Codex ↔ Claude Code
 
-**Dernière mise à jour : 1 octobre 2026. Agent : Codex. Version : 0.4.1 publiée et vérifiée sur https://www.fishdex.fr.**
+**Dernière mise à jour : 1 octobre 2026. Agent : Codex. Version : 0.5.0 publiée et vérifiée sur https://www.fishdex.fr.**
+
+## Clôture structure complète 0.5.0 — 1 octobre 2026
+
+Mission `MISSION_STRUCTURE_COMPLETE_DU_JEU.md` exécutée sur la branche `codex/structure-complete`, fusionnée fast-forward dans `main` et publiée sur `portgas-d-ws-projects/fishdex-landing`. Commit applicatif `be65152f623de8f6d109c957ff0c128697360bfb`; tag de reprise `archive/au-fil-de-leau-before-structure-2026-10-01` conservé. FishDex de référence contrôlé en lecture seule, six empreintes inchangées.
+
+Structure ajoutée : FishDex principal avec numéros/fiches/variantes/maîtrise, carnet filtrable, catalogues de méthodes/familles/slots, préparation et compatibilités, boutique avec confirmation, lieux et techniques futures, progression/badges/objectifs, aquarium à cinq emplacements et remplacement, sauvegarde v3 migrée depuis v1/v2 avec récupération d'original. Le combat garde la jauge compacte, l'appui maintenu par défaut et le geste circulaire sélectionnable ; les commandes tactiles restent isolées des panneaux défilants. Eau, lumière, matières, ponton, végétation et bassin ont été repris avec qualité haute limitée et mode eco mobile. Captures avant/après dans `docs/apercus/structure/` et détails dans `docs/STRUCTURE_COMPLETE.md`, `docs/EXTENSION_CONTENU.md`, `docs/QUALITE_VISUELLE.md`.
+
+Validation réelle : `npm ci` sans vulnérabilité ; `npm run check` **35 tests + TypeScript/build réussis** ; E2E complet **38 réussis / 2 ignorés** ; rendu/graphismes/récupération **8 réussis** ; smoke local **6/6**, preview protégée **6/6 (2,2 min)**, production publique **6/6 (2,1 min)**. Vérification hébergée : JavaScript `/assets/index-CNngu06Z.js`, SHA256 `62a4bbae2be4bd6325f982c1885e114b3daa7a36385fd114be9f60c493917886`, quinze modèles et manifeste identiques au `dist` contrôlé. Production READY : `https://fishdex-landing-c67y0vcte-portgas-d-ws-projects.vercel.app`, déploiement `dpl_3xuUNgMLk5D8FV1M6QqXpyDkD1qR`, domaines `www.fishdex.fr`, `fishdex.fr` et alias conservés.
+
+Problème restant : mesures Safari/iPhone réel, chauffe, autonomie et ressenti humain non réalisés ; les FPS documentés sont Chromium/SwiftShader Windows. Prochaine tâche : essai appareil réel puis réglages mesurés. Serveur temporaire 4175 à arrêter après clôture ; `.env.local` reste ignoré et le token OIDC n'est pas publié.
 
 ## Mission structure complète — en cours
 

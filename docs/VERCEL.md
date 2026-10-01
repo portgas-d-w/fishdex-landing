@@ -1,5 +1,12 @@
 # Vercel — migration de FishDex vers Au fil de l’eau
 
+## Structure complète 0.5.0 — publiée et vérifiée
+
+Projet confirmé : `portgas-d-ws-projects/fishdex-landing`, Vite/Node 24, dépôt
+`portgas-d-w/fishdex-landing`, production `main`. Commit `be65152f623de8f6d109c957ff0c128697360bfb` après validation de la preview ; déploiement production READY `dpl_3xuUNgMLk5D8FV1M6QqXpyDkD1qR`, URL de déploiement `https://fishdex-landing-c67y0vcte-portgas-d-ws-projects.vercel.app`, alias `https://www.fishdex.fr`. Domaines, protection et paramètres existants conservés.
+
+Preview protégée du même commit : `https://fishdex-landing-ocqxwh3cu-portgas-d-ws-projects.vercel.app`, READY, smoke **6/6 (2,2 min)** avec OIDC limité à l'origine. Production publique : smoke **6/6 (2,1 min)** sans token. Vérification octet par octet de `dist` contre `www.fishdex.fr` : `/assets/index-CNngu06Z.js`, SHA256 `62a4bbae2be4bd6325f982c1885e114b3daa7a36385fd114be9f60c493917886`, manifeste et quinze GLB identiques. Le retour avant mission reste disponible via `archive/au-fil-de-leau-before-structure-2026-10-01` et le déploiement précédent `dpl_7w...` décrit plus bas.
+
 ## Appui maintenu 0.4.1 — publiée et vérifiée
 
 Projet, liaison et dépôt revérifiés : portgas-d-ws-projects/fishdex-landing, prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, Vite/Node 24/npm ci/build/dist ; CLI disponible 62.0.0. Aucun domaine ou paramètre de protection modifié.

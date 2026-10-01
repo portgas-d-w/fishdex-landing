@@ -15,7 +15,7 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 - [x] Migration v1/v2 → v3, préparation et geste persistés, export/import et récupération d'original corrompu.
 - [x] Refonte commune de toutes les interfaces, scène/eau/matières/lumière, illustrations locales, comparaison avant/après.
 - [x] Check 35 tests ; suite navigateur 38 réussis/2 ignorés, compléments graphiques/récupération 4/4, cadrage/performance 4/4, filtres finaux 6/6 et aquarium final 4/4.
-- [ ] Terminer smoke du build sans QA puis valider preview et domaine public.
+- [x] Smoke du build sans QA, preview protégée et domaine public validés : 6/6 chacun.
 - [ ] Safari/iPhone physique : ressenti/30 FPS/chauffe ; aucun résultat appareil annoncé.
 
 Les contenus feeder/mouche/rivière, rig animé/respiration et autres poissons restent à venir conformément à la mission ; leurs interfaces et points d'intégration sont construits. Ils ne bloquent pas les objectifs réalisables de la version actuelle.

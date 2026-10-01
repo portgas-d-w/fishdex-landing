@@ -1,5 +1,24 @@
 # Vérifications — livraisons 0.1 à 0.4.1
 
+## Structure complète 0.5.0 — publiée et vérifiée
+
+`npm ci` passe sans vulnérabilité. `npm run check` passe avec **35 tests, TypeScript et
+build**. La suite navigateur complète passe **38/38 avec 2 scénarios ignorés** ; les
+scénarios rendu/qualité/récupération passent **8/8**. Smoke du build local, de la preview
+protégée et du domaine public : **6/6** chacun, bureau et mobile, avec vraie prise,
+chargement différé, sauvegarde, aquarium, boutique, portraits et quinze GLB.
+
+FishDex, fiches/variantes, carnet filtrable, préparation, équipement, lieux futurs,
+progression, badges, aquarium et migration v3 ont été parcourus. Le jeu conserve le
+geste d'appui par défaut pour le moulinet, le cercle optionnel, la jauge compacte et le
+nettoyage des commandes tactiles ; les panneaux et champs restent défilables/éditables.
+Le domaine public sert exactement le bundle local vérifié : `index-CNngu06Z.js`, SHA256
+`62a4bbae2be4bd6325f982c1885e114b3daa7a36385fd114be9f60c493917886`, manifeste quinze
+modèles identique. Captures avant/après dans `docs/apercus/structure/`.
+
+Mesures visuelles et FPS prises sous Chromium/SwiftShader Windows uniquement. Aucun test
+Safari/iPhone physique, chauffe ou autonomie n'est présenté comme validé.
+
 Les derniers résultats du 1 octobre 2026 (version 0.4.1) sont dans la section suivante. Les livraisons précédentes ci-dessous sont conservées comme historique ; elles ne remplacent pas les vérifications récentes.
 
 ## Appui maintenu 0.4.1 — publiée et vérifiée
