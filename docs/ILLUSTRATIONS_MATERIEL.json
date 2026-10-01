@@ -1,0 +1,26 @@
+[
+  {
+    "source": "public/techniques/grande-canne.png",
+    "sha256": "60b56c9f47506955ba039a1882e741cf161e8b6db74124aadfd5b69b0626f7a4",
+    "output": "/equipment/grande-canne.webp",
+    "bytes": 5568
+  },
+  {
+    "source": "public/techniques/petit-leurre.png",
+    "sha256": "ae3bb56c46b630037fc4d2367afadae8bc35904262f6e2d7f85e3739a6aec1e2",
+    "output": "/equipment/petit-leurre.webp",
+    "bytes": 8614
+  },
+  {
+    "source": "public/techniques/ver-terre.png",
+    "sha256": "ea2342c15c9f89384e2521262c3a962c868b9fa4e86b5caedabf1069893f8f82",
+    "output": "/equipment/ver-terre.webp",
+    "bytes": 10238
+  },
+  {
+    "source": "public/techniques/feeder.png",
+    "sha256": "0d3199d614cdd64f4ab50fb028ba2d7b6f697f43855e68103e8e7fb20e9f4038",
+    "output": "/equipment/feeder.webp",
+    "bytes": 6526
+  }
+]

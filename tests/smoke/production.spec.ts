@@ -91,7 +91,7 @@ test('Le build conserve les favoris, le décor, les achats et les portraits sans
   purchase(seed, 'plants'); purchase(seed, 'rocks');
   await page.addInitScript(data => { if (!localStorage.getItem('au-fil-de-leau.save.v1')) localStorage.setItem('au-fil-de-leau.save.v1', JSON.stringify(data)); }, seed);
   await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
-  await openMenuPage(page, 'shop-open'); await page.locator('[data-buy="balanced"]').click(); await page.locator('[data-equip="balanced"]').click();
+  await openMenuPage(page, 'shop-open'); await page.locator('#shop [data-buy="balanced"]').click(); await page.locator('#purchase-yes').click(); await page.locator('#shop [data-equip="balanced"]').click();
   await expect(page.locator('#shop-balance')).toContainText('Canne souple'); await page.locator('[data-close="shop"]').click();
   await openMenuPage(page, 'aquarium-open'); await expect(page.locator('#aquarium-canvas')).toHaveAttribute('data-loaded', 'true');
   await page.locator('#aq-plants').check(); await page.locator('#aq-rocks').check(); await page.locator('#aq-floor').selectOption('gravel');
@@ -104,7 +104,7 @@ test('Le build conserve les favoris, le décor, les achats et les portraits sans
   expect(stored.total).toBe(5); expect(stored.xp).toBe(seed.xp); expect(stored.coins).toBe(seed.coins - 70); expect(stored.equipped).toBe('balanced');
   expect(stored.favorites).toHaveLength(4); expect(stored.aquarium.floor).toBe('gravel');
   await openMenuPage(page, 'collection-open'); await expect(page.locator('[data-photo="build-2"] img')).toBeVisible(); await page.locator('[data-close="collection"]').click();
-  await openMenuPage(page, 'dex-open'); await page.locator('#dex-state').selectOption('playable'); await expect(page.locator('.dex-card')).toHaveCount(SPECIES.length);
-  await page.locator('#dex-search').fill('gardon'); await expect(page.locator('.dex-card')).toHaveCount(1);
+  await openMenuPage(page, 'dex-open'); await page.locator('#dex-state').selectOption('playable'); await expect(page.locator('.dex-tile')).toHaveCount(SPECIES.length);
+  await page.locator('#dex-search').fill('gardon'); await expect(page.locator('.dex-tile')).toHaveCount(1);
   expect(errors).toEqual([]);
 });

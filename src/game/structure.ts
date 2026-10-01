@@ -1,0 +1,104 @@
+import { SPECIES, SPOTS, type SpeciesId } from './catalog.ts';
+import { ITEMS, levelFor, accessLevel } from './economy.ts';
+import type { SaveData } from './save.ts';
+import type { Specimen, MethodId } from './specimens.ts';
+export const METHODS = [
+    { id: 'float', name: 'Flotteur', available: true, bait: 'worm', slots: ['rod', 'reel', 'line', 'leader', 'hook', 'rig', 'float', 'weight', 'bait', 'landing'], description: 'Attendre la plongée du flotteur, puis ferrer.' },
+    { id: 'bottom', name: 'Fond', available: true, bait: 'worm', slots: ['rod', 'reel', 'line', 'leader', 'hook', 'rig', 'weight', 'bait', 'landing'], description: 'Montage posé, touche visible à la pointe. Favorise les poissons de fond.' },
+    { id: 'lure', name: 'Leurre', available: true, bait: 'lure', slots: ['rod', 'reel', 'line', 'leader', 'lure', 'landing'], description: 'Récupérer et animer pour provoquer une attaque. Le leurre immobile ne suffit pas.' },
+    { id: 'feeder', name: 'Feeder', available: false, bait: 'worm', slots: ['rod', 'reel', 'line', 'leader', 'hook', 'feeder', 'bait', 'groundbait', 'landing'], description: 'À venir : cage d’amorçage et rencontres adaptées. Cette technique ne peut pas encore être lancée.' },
+    { id: 'fly', name: 'Mouche', available: false, bait: 'fly', slots: ['rod', 'reel', 'line', 'leader', 'lure', 'landing'], description: 'À venir : soie, mouches et projection spécifique.' },
+] as const;
+export const FAMILIES = [
+    ['rod', 'Cannes'], ['reel', 'Moulinets'], ['line', 'Lignes'], ['leader', 'Bas de ligne'], ['hook', 'Hameçons'], ['rig', 'Montages'], ['float', 'Flotteurs'], ['weight', 'Plombs'], ['feeder', 'Feeders'], ['bait', 'Appâts naturels'], ['lure', 'Leurres'], ['groundbait', 'Amorces'], ['landing', 'Réception'], ['decor', 'Décorations'],
+] as const;
+export type Family = typeof FAMILIES[number][0];
+export interface Gear {
+    id: string;
+    name: string;
+    family: Family;
+    state: 'available' | 'included' | 'future';
+    price: number;
+    level: number;
+    methods: readonly string[];
+    description: string;
+    purchaseId?: typeof ITEMS[number]['id'];
+}
+const currentMethods = ['float', 'bottom', 'lure'];
+export const GEAR: readonly Gear[] = [
+    ...ITEMS.map(i => ({ id: i.id, name: i.name, family: i.kind === 'rod' ? 'rod' as const : 'decor' as const, state: 'available' as const, price: i.price, level: accessLevel(i.id), methods: i.kind === 'rod' ? currentMethods : [], description: i.description, purchaseId: i.id })),
+    ...([
+        ['reel', 'Moulinet polyvalent', currentMethods, 'Frein automatique et récupération. Inclus dans le kit de bordure.'],
+        ['line', 'Nylon de bordure', currentMethods, 'Élasticité et résistance liées à la canne équipée.'],
+        ['leader', 'Bas de ligne universel', currentMethods, 'Liaison au montage, comprise dans le kit.'],
+        ['hook', 'Hameçon simple', ['float', 'bottom'], 'Pour le ver ; compris dans le montage de base.'],
+        ['rig', 'Montage réutilisable', ['float', 'bottom'], 'Flotteur ou fond selon la méthode choisie.'],
+        ['float', 'Flotteur de bordure', ['float'], 'Signal de touche en surface, immergé pendant le combat.'],
+        ['weight', 'Plomb de montage', ['float', 'bottom'], 'Lest adapté automatiquement à la méthode.'],
+        ['bait', 'Ver', ['float', 'bottom'], 'Réutilisable sans coût, pour les rencontres au naturel.'],
+        ['lure', 'Petit leurre', ['lure'], 'Réutilisable. La récupération et l’animation déclenchent les touches.'],
+        ['landing', 'Tapis de réception', currentMethods, 'Présentation sur tapis pour les spécimens de 60 cm ou plus.'],
+    ] as [
+        Family,
+        string,
+        string[],
+        string
+    ][]).map(([family, name, methods, description]) => ({ id: `base-${family}`, name, family, state: 'included' as const, price: 0, level: 1, methods, description })),
+    { id: 'future-feeder', name: 'Cage feeder', family: 'feeder', state: 'future', price: 0, level: 1, methods: ['feeder'], description: 'À venir avec la technique feeder ; aucun achat possible.' },
+    { id: 'future-groundbait', name: 'Amorce de fond', family: 'groundbait', state: 'future', price: 0, level: 1, methods: ['feeder'], description: 'À venir : attraction simulée et dosage.' },
+    { id: 'future-fly', name: 'Canne à mouche', family: 'rod', state: 'future', price: 0, level: 1, methods: ['fly'], description: 'À venir avec la projection de soie.' },
+];
+export function gearState(g: Gear, save: SaveData) {
+    if (g.state === 'future')
+        return 'future';
+    if (g.state === 'included' || g.purchaseId && save.inventory.includes(g.purchaseId))
+        return 'owned';
+    return levelFor(save.xp) < g.level ? 'locked' : 'available';
+}
+export function preparation(method: string, rod: string, bait: string) {
+    const m = METHODS.find(m => m.id === method), r = GEAR.find(g => g.id === rod);
+    if (!m?.available)
+        return { valid: false, reason: 'Cette méthode est à venir.' };
+    if (!r || !r.methods.includes(method))
+        return { valid: false, reason: 'Canne incompatible avec cette méthode.' };
+    if (bait !== m.bait)
+        return { valid: false, reason: 'Appât incompatible avec ce montage.' };
+    return { valid: true, reason: 'Montage complet, prêt à lancer.' };
+}
+export const LOCATIONS = [
+    { id: 'willow-pond', name: 'L’étang des Saules', available: true, description: 'Un matin calme. Quinze espèces accessibles avec le kit gratuit.', habitats: SPOTS.map(s => ({ id: s.id, name: s.name, description: s.hint, depth: s.id === 'open' ? '2–4 m' : '0,5–2 m' })), conditions: 'Matin fixe, eau calme. La profondeur et la végétation découlent du point de lancer.' },
+    { id: 'running-river', name: 'La rivière des Aulnes', available: false, description: 'À venir : courant, espèces d’eaux vives et techniques adaptées.', habitats: [{ id: 'current', name: 'Courant et graviers', description: 'Scène et simulation à construire', depth: 'À définir' }], conditions: 'À venir, aucun changement de météo réel.' },
+];
+export const BADGE_RULES = [
+    { id: 'first', description: 'Capturer un premier poisson.', target: 1, value: (s: SaveData) => s.total, link: 'dex' },
+    { id: 'diversity', description: 'Découvrir les quinze espèces jouables de l’étang.', target: SPECIES.length, value: (s: SaveData) => Object.keys(s.records).length, link: 'dex' },
+    { id: 'contact', description: 'Terminer un combat avec un contact contrôlé.', target: 1, value: (s: SaveData) => s.journal.filter(f => f.controlled).length, link: 'help' },
+    { id: 'lure', description: 'Réussir une prise au leurre.', target: 1, value: (s: SaveData) => s.journal.filter(f => f.method === 'lure').length, link: 'preparation' },
+    { id: 'bottom', description: 'Réussir une prise au fond.', target: 1, value: (s: SaveData) => s.journal.filter(f => f.method === 'bottom').length, link: 'preparation' },
+    { id: 'collector', description: 'Conserver dix rencontres dans le carnet.', target: 10, value: (s: SaveData) => s.total, link: 'journal' },
+    { id: 'record', description: 'Améliorer un record après la première capture.', target: 1, value: (s: SaveData) => s.journal.filter(f => f.reward.record > 0).length, link: 'journal' },
+];
+export interface JournalFilter {
+    species?: string;
+    variant?: string;
+    rarity?: string;
+    location?: string;
+    method?: string;
+    after?: string;
+    before?: string;
+    minLength?: number;
+    maxLength?: number;
+    minWeight?: number;
+    maxWeight?: number;
+    favorite?: boolean;
+    view?: string;
+    sort?: string;
+}
+export const rarityOf = (s: Specimen) => s.mirage ? 3 : s.coloration === 'golden' ? 2 : 1;
+export function filterJournal(save: SaveData, f: JournalFilter): Specimen[] {
+    const results = save.journal.filter(s => (!f.species || s.speciesId === f.species) && (!f.variant || f.variant === 'mirage' && s.mirage || f.variant === s.coloration) && (!f.rarity || rarityOf(s) === Number(f.rarity)) && (!f.location || s.location === f.location) && (!f.method || s.method === f.method) && (!f.after || s.date.slice(0, 10) >= f.after) && (!f.before || s.date.slice(0, 10) <= f.before) && s.length >= (f.minLength ?? 0) && s.length <= (f.maxLength ?? Infinity) && s.weight >= (f.minWeight ?? 0) && s.weight <= (f.maxWeight ?? Infinity) && (!f.favorite || save.favorites.includes(s.id)) && (!f.view || f.view === 'latest' || f.view === 'records' && s.length === save.records[s.speciesId]?.best || f.view === 'first' && s.reward.discovery > 0 || f.view === 'variants' && (s.mirage || s.coloration !== 'natural') || f.view === 'favorites' && save.favorites.includes(s.id))).sort((a, b) => f.sort === 'weight' ? b.weight - a.weight : f.sort === 'length' ? b.length - a.length : f.sort === 'rarity' ? rarityOf(b) - rarityOf(a) || b.date.localeCompare(a.date) : b.date.localeCompare(a.date));
+    return f.view === 'latest' ? results.slice(0, 10) : results;
+}
+export const speciesMastery = (save: SaveData, id: SpeciesId) => Math.min(5, save.records[id]?.count ?? 0);
+export const ANIMATION_STATES = { calm: 'procedural', fast: 'procedural', suspended: 'absent', mat: 'procedural', breathing: 'absent' } as const;
+export const methodName = (id: MethodId) => METHODS.find(m => m.id === id)!.name;

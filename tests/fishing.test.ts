@@ -45,8 +45,8 @@ test('Un combat géré ramène chacun des quinze poissons', () => {
 });
 test('Le carnet garde le meilleur record et peut être exporté puis restauré', () => {
   const save = emptySave(); const date = '2026-09-30T18:00:00.000Z';
-  assert.deepEqual(recordCatch(save, { speciesId: 'perch', length: 32, date }), { first: true, record: true });
-  assert.deepEqual(recordCatch(save, { speciesId: 'perch', length: 20, date }), { first: false, record: false });
+  assert.deepEqual(recordCatch(save, { speciesId: 'perch', length: 32, date }), { first: true, record: true, variant: true });
+  assert.deepEqual(recordCatch(save, { speciesId: 'perch', length: 20, date }), { first: false, record: false, variant: false });
   assert.equal(save.records.perch!.best, 32); assert.equal(save.total, 2);
   assert.deepEqual(parseSave(JSON.stringify(save)), save);
 });

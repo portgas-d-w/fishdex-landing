@@ -39,3 +39,5 @@
 La plaisance du combat, la direction artistique et la longévité de la boucle
 doivent encore être validées par l’utilisateur. Ne pas confondre un prototype
 fonctionnel avec un jeu prêt à diffuser largement.
+
+- 1 octobre 2026, structure 0.5.0 : document unique prioritaire ; FishDex cœur de navigation, sauvegarde v3 migrée, catalogues communs, achats confirmés et niveau 2 pour précision, modes appui/cercle, contenu futur explicitement non jouable. Détails DECISIONS_JEU.md.

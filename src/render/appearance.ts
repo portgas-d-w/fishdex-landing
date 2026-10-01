@@ -22,7 +22,9 @@ export const VISUALS: Record<SpeciesId, { model: string; tailSign: number; swim:
 };
 export function applyAppearance(container: AssetContainer, specimen?: Pick<Specimen, 'coloration' | 'mirage'>) {
   for (const material of container.materials) {
-    const mat = material as typeof material & { albedoColor?: Color3; emissiveColor?: Color3 };
+    const mat = material as typeof material & { albedoColor?: Color3; emissiveColor?: Color3; metallic?: number; roughness?: number };
+    if (mat.metallic !== undefined) mat.metallic = 0;
+    if (mat.roughness !== undefined) mat.roughness = .72;
     if (mat.albedoColor) mat.albedoColor = specimen?.coloration === 'golden' ? new Color3(1, 0.76, 0.34) : Color3.White();
     if (mat.emissiveColor) mat.emissiveColor = specimen?.mirage ? new Color3(0.08, 0.06, 0.13) : Color3.Black();
   }

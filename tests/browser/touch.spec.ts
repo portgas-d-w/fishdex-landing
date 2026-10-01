@@ -47,9 +47,9 @@ test('Carnet et boutique défilent naturellement ; recherche et sélection reste
   await dialog.evaluate(el=>el.scrollTop=0);await page.locator(`[data-close="${id}"]`).click();
  }
  await openMenuPage(page,'dex-open');const field=page.locator('#dex-search');await field.fill('gardon');
- await expect(page.locator('.dex-card')).toHaveCount(1);
+ await expect(page.locator('.dex-tile')).toHaveCount(1);
  const native=await field.evaluate(el=>{const input=el as HTMLInputElement;input.select();const s=getComputedStyle(el);return {select:s.userSelect,webkit:s.webkitUserSelect,start:input.selectionStart,end:input.selectionEnd,context:el.dispatchEvent(new Event('contextmenu',{bubbles:true,cancelable:true})),selection:el.dispatchEvent(new Event('selectstart',{bubbles:true,cancelable:true})),app:getComputedStyle(document.querySelector('#app')!).touchAction};});
  expect(native).toEqual({select:'text',webkit:'text',start:0,end:6,context:true,selection:true,app:'auto'});
- await field.press('Backspace');await field.pressSequentially('perche');await expect(field).toHaveValue('perche');await expect(page.locator('.dex-card')).toHaveCount(2);
+ await field.press('Backspace');await field.pressSequentially('perche');await expect(field).toHaveValue('perche');await expect(page.locator('.dex-tile')).toHaveCount(2);
  await page.screenshot({path:`test-results/touch-${info.project.name}-search.png`});
 });

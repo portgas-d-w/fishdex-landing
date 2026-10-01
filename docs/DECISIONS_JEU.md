@@ -1,5 +1,21 @@
 # Décisions de gameplay — 1 octobre 2026
 
+## Mission structure complète 0.5.0 — décisions actuelles prioritaires
+
+- Document MISSION_STRUCTURE_COMPLETE_DU_JEU.md remplace les anciens prompts séparés. FishDex principal, carnet secondaire ; tous les espaces reliés au jeu existant, aucune application parallèle.
+- Geste circulaire restauré comme option réelle et testée, indépendante de la canne ; appui maintenu préservé et sélectionnable pour les joueurs existants. Réglage persisté, défaut appui pour préserver le dernier choix explicite du propriétaire ; molette PC conservée. Ces choix remplacent les interdictions historiques ci-dessous.
+- Sauvegarde v3, même clé. Migration v1 agrégats conservés sans faux individus/gains ; v2 journal/XP/argent/photos/favoris conservés, préparation flotteur/ver/étang et commande appui par défaut. v3 persiste méthode/appât/lieu et choix de geste. Aucun changement d'ID de poisson ou de spécimen.
+- Les montages et l'inventaire reposent sur les mêmes familles. Kit gratuit complet et réutilisable, cannes polyvalentes ; emplacements déterminés par la méthode. Feeder et mouche possèdent fiches et slots, disponibles:false. Profondeur automatique selon cible et frein automatique existants ; réglages manuels indiqués à venir, aucun faux réglage.
+- Canne souple 70 écus disponible dès niveau 1. Canne de précision 160 écus au niveau 2 (80 XP), seuil commun accessLevel. Matériel déjà possédé conservé même si une ancienne sauvegarde a un niveau inférieur. Achat confirmé et distinct de l'équipement. Pas de dépense réelle.
+- BADGE_RULES centralise évaluation et fiches. Maîtrise par espèce : cinq rencontres, indépendante de découverte des quinze espèces et de découverte des robes. Futurs poissons exclus du pourcentage réalisable. Records/géants restent gabarits de leur espèce.
+- Rencontres actuelles inchangées : coordonnées du lancer → habitat, méthode et appât → pondérations. Matin calme fixe ; lieux futurs consultables mais non sélectionnables. Rien ne prétend simuler une météo réelle.
+- Récompense unique par ID de capture avant affichage, même si photo indisponible. Gains/records/badges/découvertes en une opération. Photo locale du rendu, régénérable au détail ; import ne crédite jamais de récompense.
+- Filtres du carnet combinables et en mémoire lors des retours ; dates/poids/longueur, espèce, apparence, rareté du jeu, lieu, méthode, favoris et vues rapides. Photos absentes gérées par le rendu à l'ouverture. Ancien carnet v1 reste dans ses agrégats historiques.
+- Aquarium cinq spécimens, cinq slots visibles ; remplacement atomique d'un favori sans supprimer la capture. Personnalisation et déco achetée persistées. Le rendu de pêche est suspendu derrière les dialogues.
+- États owned/available/locked/future distincts ; absence d'implémentation = à venir. Sauvegarde corrompue : fichier original conservé/exportable, sauvegarde de secours avant écriture ; quota impossible = message et export de récupération.
+- Rendu stylisé naturel : eau opaque à ondulations croisées irrégulières, reflets de ciel procéduraux (pas de miroir ou texture de réflexion), rides/4 gouttes au véritable événement d'arrivée. Grain local du ponton, végétation variée et lumière chaude/ambiante fraîche. Ni post-traitement coûteux, ni flou en combat, ni coordonnées logiques modifiées.
+
+
 - Dernière précision 0.3.1 : jauge compacte Tension du fil entre les deux commandes, gradient vert/jaune/orange et repère mobile. Visible en combat seulement, non interactive, même valeur que la courbure de canne. Remplace la suppression de jauge ci-dessous ; aucun panneau de comportement du poisson. Règles et sauvegarde inchangées.
 
 - Mission autonome explicite prioritaire sur l’ancien backlog : économie virtuelle, aquarium et trois familles de pêche autorisés, sans compte ni paiement.

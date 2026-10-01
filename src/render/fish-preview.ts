@@ -34,8 +34,8 @@ export class FishPreview {
     this.camera = new ArcRotateCamera('fish-camera', -Math.PI / 2, Math.PI / 2.15, 3.3, Vector3.Zero(), this.scene);
     this.camera.fov = 0.7;
     const light = new HemisphericLight('fish-softbox', new Vector3(0, 1, -1), this.scene);
-    light.intensity = 1.6; light.groundColor = new Color3(0.4, 0.45, 0.4);
-    const key = new DirectionalLight('fish-key', new Vector3(0.1, -0.4, 1), this.scene); key.intensity = 2.0;
+    light.intensity = 1.15; light.groundColor = new Color3(0.4, 0.45, 0.4);
+    const key = new DirectionalLight('fish-key', new Vector3(0.1, -0.4, 1), this.scene); key.intensity = 1.2;
     window.addEventListener('resize', this.resize);
   }
   async show(species: Species, specimen?: Specimen): Promise<boolean> {

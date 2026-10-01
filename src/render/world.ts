@@ -4,11 +4,13 @@ import { Matrix, Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
 import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
 import { HemisphericLight } from '@babylonjs/core/Lights/hemisphericLight';
+import { ShadowGenerator } from '@babylonjs/core/Lights/Shadows/shadowGenerator';
 import { DirectionalLight } from '@babylonjs/core/Lights/directionalLight';
 import { MeshBuilder } from '@babylonjs/core/Meshes/meshBuilder';
 import { Mesh } from '@babylonjs/core/Meshes/mesh';
 import { StandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
 import { ShaderMaterial } from '@babylonjs/core/Materials/shaderMaterial';
+import { DynamicTexture } from '@babylonjs/core/Materials/Textures/dynamicTexture';
 import { Effect } from '@babylonjs/core/Materials/effect';
 import { TransformNode } from '@babylonjs/core/Meshes/transformNode';
 import type { FishingGame } from '../game/fishing';
@@ -30,6 +32,11 @@ export class LakeWorld {
   private rod!: Mesh;
   private grip!: Mesh;
   private wasCasting = false;
+  private impactAge = 9;
+  private impactPoint = new Vector3();
+  private sun!: DirectionalLight;
+  private shadow?: ShadowGenerator;
+  private splash: Mesh[] = [];
   private castOrigin = new Vector3();
   private thickLine!: Mesh;
   private aimRing!: Mesh;
@@ -47,19 +54,19 @@ export class LakeWorld {
   constructor(canvas: HTMLCanvasElement, quality: 'eco' | 'high') {
     this.engine = new Engine(canvas, true, { preserveDrawingBuffer: false, stencil: false, powerPreference: 'low-power' });
     this.scene = new Scene(this.engine);
-    this.scene.clearColor = Color4.FromHexString('#b8cec4ff');
+    this.scene.clearColor = Color4.FromHexString('#bbd6d7ff');
     this.scene.fogMode = Scene.FOGMODE_EXP2;
-    this.scene.fogColor = Color3.FromHexString('#aec5b5');
-    this.scene.fogDensity = 0.015;
+    this.scene.fogColor = Color3.FromHexString('#a8c5bd');
+    this.scene.fogDensity = 0.007;
     this.camera = new FreeCamera('lake-camera', new Vector3(0, 4.2, -8.5), this.scene);
     this.camera.setTarget(new Vector3(0, 0.1, 5.5));
     this.camera.fov = 0.88;
     this.camera.minZ = 0.1;
     const ambient = new HemisphericLight('sky-light', new Vector3(-0.2, 1, -0.2), this.scene);
-    ambient.intensity = 0.85;
-    ambient.groundColor = Color3.FromHexString('#324c39');
-    const sun = new DirectionalLight('morning-light', new Vector3(-1, -0.7, 0.5), this.scene);
-    sun.diffuse = Color3.FromHexString('#fff0c9'); sun.intensity = 0.65;
+    ambient.intensity = 0.75;
+    ambient.groundColor = Color3.FromHexString('#24483e');
+    const sun = this.sun = new DirectionalLight('morning-light', new Vector3(-1, -0.7, 0.5), this.scene);
+    sun.diffuse = Color3.FromHexString('#fff0c9'); sun.intensity = 0.95;
     this.sky();
     this.landscape();
     this.water = this.createWater();
@@ -84,6 +91,8 @@ export class LakeWorld {
       const mat = this.material('#d2dac0'); mat.alpha = 0.3; mat.disableLighting = true;
       ring.material = mat; this.rings.push(ring);
     }
+    const splashMat = this.material('#c2ddd3'); splashMat.alpha=.45; splashMat.disableLighting=true;
+    for(let i=0;i<4;i++){const drop=MeshBuilder.CreateSphere('arrival-drop',{diameter:.055,segments:4},this.scene);drop.material=splashMat;drop.setEnabled(false);this.splash.push(drop);}
     this.line = MeshBuilder.CreateLines('fishing-line', { points: [new Vector3(1.3, 1.8, -2.3), new Vector3(0, 0.3, 7)], updatable: true }, this.scene);
     this.line.color = Color3.FromHexString('#d2c6a4'); this.line.alpha = 0.55;
     this.setQuality(quality);
@@ -111,11 +120,11 @@ export class LakeWorld {
     this.ellipsoid('sun', new Vector3(-25, 18, 82), new Vector3(3.2, 3.2, 1), sunMat, 24);
   }
   private landscape() {
-    const bank = this.material('#657751'); const edge = this.material('#9b9364');
-    const trunk = this.material('#514f35');
-    const greens = ['#314f42', '#42664c', '#547558', '#294e41'].map(c => this.material(c));
+    const bank = this.material('#4c7449'); const edge = this.material('#b8a572');
+    const trunk = this.material('#61513d');
+    const greens = ['#224d40', '#4a7650', '#6c925e', '#315e47'].map(c => this.material(c));
     for (let layer = 0; layer < 3; layer++) {
-      const hillMat = this.material(['#6e8e7b', '#87a492', '#9db7a4'][layer]);
+      const hillMat = this.material(['#628d79', '#86afa0', '#aac8b9'][layer]);
       for (let i = 0; i < 9; i++) this.ellipsoid('distant-hill', new Vector3((i - 4) * 16, -1, 55 + layer * 14), new Vector3(13, 4 + this.random() * 6, 10), hillMat, 12);
     }
     this.ellipsoid('far-bank', new Vector3(0, -1.3, 33), new Vector3(60, 2.4, 10), bank, 16);
@@ -123,10 +132,10 @@ export class LakeWorld {
       this.ellipsoid('shore-sand', new Vector3(side * 24, -0.25, 9), new Vector3(12, 0.7, 27), edge, 12);
       this.ellipsoid('shore-grass', new Vector3(side * 25, -0.2, 9), new Vector3(12, 1.1, 28), bank, 12);
     }
-    for (let i = 0; i < 70; i++) {
-      const x = i < 42 ? (this.random() - 0.5) * 90 : (i % 2 ? -1 : 1) * (16 + this.random() * 10);
-      const z = i < 42 ? 28 + this.random() * 12 : -1 + this.random() * 29;
-      const h = 2.5 + this.random() * 6;
+    for (let i = 0; i < 52; i++) {
+      const x = i < 32 ? (this.random() - 0.5) * 90 : (i % 2 ? -1 : 1) * (16 + this.random() * 10);
+      const z = i < 32 ? 28 + this.random() * 12 : -1 + this.random() * 29;
+      const h = 3 + this.random() * 5;
       const stem = MeshBuilder.CreateCylinder('tree-trunk', { height: h * 0.75, diameter: 0.28, tessellation: 6 }, this.scene);
       stem.position.set(x, h * 0.375 + 0.3, z); stem.material = trunk;
       if (i % 3 === 0) {
@@ -135,10 +144,13 @@ export class LakeWorld {
           crown.position.set(x, h * (0.44 + j * 0.18), z); crown.material = greens[i % 4];
         }
       } else {
-        this.ellipsoid('leaf-crown', new Vector3(x, h * 0.78, z), new Vector3(h * 0.3, h * 0.4, h * 0.28), greens[i % 4]);
+        const crown = this.ellipsoid('leaf-crown', new Vector3(x, h * 0.78, z), new Vector3(h * 0.38, h * 0.32, h * 0.32), greens[i % 4], 12); crown.rotation.y = this.random() * Math.PI;
+        this.ellipsoid('leaf-crown', new Vector3(x - h * 0.18, h * 0.65, z + .18), new Vector3(h * .28, h * .28, h * .3), greens[(i + 2) % 4], 12);
         this.ellipsoid('leaf-crown', new Vector3(x + h * 0.15, h * 0.62, z), new Vector3(h * 0.26, h * 0.28, h * 0.26), greens[(i + 1) % 4]);
       }
     }
+    const grassMat = this.material('#577c49');
+    for (let i = 0; i < 30; i++) { const side = i % 2 ? -1 : 1; const x = side * (13 + this.random() * 7), z = this.random() * 22; const tuft = MeshBuilder.CreateCylinder('shore-tuft', { height: .35 + this.random() * .4, diameterBottom: .24, diameterTop: 0, tessellation: 5 }, this.scene); tuft.position.set(x,.25,z); tuft.rotation.z=(this.random()-.5)*.3; tuft.material=grassMat; }
     const stalk = this.material('#7d8d53'); const head = this.material('#655332');
     for (let i = 0; i < 44; i++) {
       const side = i % 2 ? -1 : 1;
@@ -162,9 +174,17 @@ export class LakeWorld {
   }
   private createWater() {
     Effect.ShadersStore.lakeWaterVertexShader = `precision highp float; attribute vec3 position; uniform mat4 worldViewProjection; uniform mat4 world; uniform float time; varying vec3 wp; void main(){vec3 p=position; p.y+=sin(p.x*1.5+time*.6)*.018+cos(p.z*2.-time*.75)*.014; wp=(world*vec4(p,1.)).xyz; gl_Position=worldViewProjection*vec4(p,1.);}`;
-    Effect.ShadersStore.lakeWaterFragmentShader = `precision highp float; varying vec3 wp; uniform float time; uniform vec3 eye; void main(){ float d=length(wp-eye); float ripple=sin(wp.z*12.+sin(wp.x*4.+time*.5)*1.6-time)*.5+.5; float streak=pow(ripple,18.); float far=clamp(d/70.,0.,1.); vec3 col=mix(vec3(.10,.30,.28),vec3(.59,.69,.55),far); float reflection=exp(-pow((wp.x+6.)/(2.+d*.08),2.))*smoothstep(7.,50.,wp.z); col+=vec3(.49,.37,.17)*reflection*streak*.62; col+=vec3(.11,.19,.15)*pow(ripple,9.)*.34; gl_FragColor=vec4(col,1.);}`;
+    Effect.ShadersStore.lakeWaterFragmentShader = `precision highp float; varying vec3 wp; uniform float time; uniform vec3 eye;
+float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),f.x),f.y);}
+void main(){vec2 p=wp.xz;float d=length(wp-eye);float n=noise(p*.38+vec2(time*.035,-time*.025));
+float w=sin(dot(p,vec2(.75,1.1))+time*.42+n*3.)*.45+sin(dot(p,vec2(-1.3,.45))-time*.31)*.25+sin(dot(p,vec2(2.7,1.8))+time*.7+n*4.)*.12;
+float shore=smoothstep(8.,16.,abs(p.x));float depth=smoothstep(2.,24.,p.y);vec3 deep=mix(vec3(.055,.22,.25),vec3(.08,.31,.32),n*.6);vec3 col=mix(deep,vec3(.30,.42,.29),shore*.55);
+float fres=pow(1.-max(0.,normalize(eye-wp).y),3.);col=mix(col,vec3(.57,.73,.69),fres*.63);col+=vec3(.04,.075,.065)*w;col+=vec3(.025,.045,.03)*(noise(p*2.1+vec2(n*2.,time*.06))-.5);
+float light=exp(-pow((p.x+6.)/(2.+d*.04),2.))*smoothstep(5.,35.,p.y);float sparkle=pow(max(0.,w+.22),12.);col+=vec3(.65,.48,.23)*light*sparkle*.36;
+col=mix(col,col*vec3(.62,.80,.70),smoothstep(24.,33.,p.y)*(1.-noise(p*.12))*.45);gl_FragColor=vec4(col,1.);}`;
     const mat = new ShaderMaterial('lake-water', this.scene, { vertex: 'lakeWater', fragment: 'lakeWater' }, { attributes: ['position'], uniforms: ['worldViewProjection', 'world', 'time', 'eye'] });
-    const water = MeshBuilder.CreateGround('water', { width: 140, height: 140, subdivisions: 65 }, this.scene);
+    const water = MeshBuilder.CreateGround('water', { width: 140, height: 140, subdivisions: 32 }, this.scene);
     water.position.z = 20; water.material = mat; water.isPickable = false;
     return mat;
   }
@@ -184,7 +204,11 @@ export class LakeWorld {
     }
   }
   private dock() {
-    const woods = ['#867154', '#927c59', '#7a684e'].map(c => this.material(c));
+    const grain = new DynamicTexture('local-timber', {width:512,height:128}, this.scene, false);
+    const ctx=grain.getContext() as CanvasRenderingContext2D; ctx.fillStyle='#bbaa8a';ctx.fillRect(0,0,512,128);
+    for(let i=0;i<100;i++){ctx.strokeStyle=i%3?'#79674733':'#e4d2a433';ctx.lineWidth=.5+this.random();ctx.beginPath();const y=this.random()*128;ctx.moveTo(0,y);ctx.bezierCurveTo(170,y+this.random()*8,340,y-this.random()*8,512,y);ctx.stroke();}
+    for(let i=0;i<5;i++){ctx.strokeStyle='#715c3c66';ctx.beginPath();ctx.ellipse(this.random()*512,this.random()*128,12,3,0,0,Math.PI*2);ctx.stroke();}grain.update();
+    const woods = ['#b39a77', '#a48d6c', '#948264'].map(c => {const mat=this.material(c);mat.diffuseTexture=grain;return mat;});
     for (let i = 0; i < 16; i++) {
       const board = MeshBuilder.CreateBox('dock-plank', { width: 3.5, height: 0.16, depth: 0.39 }, this.scene);
       board.position.set(0, 0.30, -8 + i * 0.43); board.material = woods[i % 3];
@@ -197,8 +221,11 @@ export class LakeWorld {
     this.grip.material = this.material('#c2a46d');
   }
   setQuality(quality: 'eco' | 'high') {
-    const dpr = Math.min(window.devicePixelRatio || 1, quality === 'eco' ? 1.25 : 2);
-    this.engine.setHardwareScalingLevel(1 / dpr);
+    this.shadow?.dispose(); this.shadow=undefined;
+    if(quality==='high'){this.shadow=new ShadowGenerator(512,this.sun);this.shadow.usePercentageCloserFiltering=true;this.shadow.filteringQuality=ShadowGenerator.QUALITY_LOW;this.shadow.setDarkness(.35);for(const mesh of this.scene.meshes){if(['#224d40','#4a7650','#6c925e','#315e47','#61513d'].some(c=>mesh.name.includes(c)))this.shadow.addShadowCaster(mesh);if(mesh.name.includes('#4c7449')||mesh.name.includes('#b8a572'))mesh.receiveShadows=true;}const map=this.shadow.getShadowMap();if(map)map.refreshRate=0;}
+    const dpr = Math.min(window.devicePixelRatio || 1, quality === 'eco' ? 1 : 1.5);
+    const canvas = this.engine.getRenderingCanvas()!;
+    this.engine.setHardwareScalingLevel(Math.max(1 / dpr, quality === 'eco' ? canvas.clientWidth / 1280 : 0));
   }
   aim(aim?: CastAim) {
     this.aimRing.setEnabled(!!aim); this.trajectory.setEnabled(!!aim);
@@ -221,6 +248,10 @@ export class LakeWorld {
     this.lure.setEnabled(show && game.method === 'lure' && game.phase !== 'fighting');
     const fighting = game.phase === 'fighting';
     if (game.phase === 'casting' && !this.wasCasting) this.castOrigin.copyFrom(this.rodPath[8]);
+    if (this.wasCasting && game.phase === 'waiting') { this.impactAge = 0; this.impactPoint.set(targetX, 0, targetZ); }
+    if (fighting && game.progress > .9 && Math.abs(game.fishVelocity) > .05 && this.impactAge > 1.3) { this.impactAge=0; this.impactPoint.set(game.fishPosition.x,0,game.fishPosition.z); }
+    this.impactAge += dt;
+    this.splash.forEach((drop,i)=>{const t=this.impactAge;drop.setEnabled(t<.65 && show);drop.position.set(this.impactPoint.x+Math.cos(i*1.57)*t*.4, .1+Math.sin(t/.65*Math.PI)*.25,this.impactPoint.z+Math.sin(i*1.57)*t*.4);});
     this.wasCasting = game.phase === 'casting';
     const cast = game.phase === 'casting' ? Math.min(1, game.elapsed / 1.1) : 1;
     const lift = game.phase === 'casting' ? game.rodLift * (1 - cast) + 0.5 * cast : game.rodLift;
@@ -249,9 +280,11 @@ export class LakeWorld {
       this.bobber.position.set(game.fishPosition.x, game.progress > 0.90 ? 0.01 : game.fishPosition.y, game.fishPosition.z);
     }
     this.rings.forEach((ring, i) => {
-      ring.setEnabled(show && game.method !== 'bottom' && game.phase !== 'casting' && (!fighting || game.progress > 0.9));
+      const impact = this.impactAge < 1.5;
+      ring.setEnabled(show && (impact || game.method !== 'bottom' && game.phase !== 'casting' && (!fighting || game.progress > 0.9)));
+      if (impact) ring.position.set(this.impactPoint.x, .047, this.impactPoint.z);
       const t = (this.time * (game.phase === 'bite' ? 1.8 : 0.5) + i / 3) % 1;
-      ring.position.copyFrom(this.bobber.position); ring.position.y = 0.047;
+      if (!impact) ring.position.copyFrom(this.bobber.position); ring.position.y = 0.047;
       ring.scaling.setAll(0.25 + t * 2.5);
       (ring.material as StandardMaterial).alpha = (1 - t) * 0.3;
     });

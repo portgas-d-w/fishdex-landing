@@ -1,0 +1,11 @@
+{
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "renderer": "Chromium/ANGLE SwiftShader Windows, eco, echantillons 3s",
+  "lakeFps": 22.542681916127965,
+  "aquariumFps": 23.21493715387165,
+  "lakeDuringAquarium": 0,
+  "meshes": 20
+}

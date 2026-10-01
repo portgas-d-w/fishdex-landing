@@ -1,4 +1,4 @@
-# Au fil de l’eau — 0.4.1
+# Au fil de l’eau — 0.5.0
 
 Jeu de pêche 3D solo pour navigateur mobile, Babylon.js + TypeScript + Vite. Nom, décor et équilibrage provisoires. Sans compte, paiement, backend ni clé API.
 
@@ -6,9 +6,9 @@ Jeu de pêche 3D solo pour navigateur mobile, Babylon.js + TypeScript + Vite. No
 
 Production : [www.fishdex.fr](https://www.fishdex.fr), projet existant fishdex-landing. État de la publication : docs/VERCEL.md et RELAIS_PROJET.md. Le jeu remplace la landing autorisée ; le projet FishDex de référence reste inchangé.
 
-Partir du tiers inférieur, projeter vers l’eau puis relâcher au centre ou plus haut pour lancer. La vitesse récente donne la puissance, l’amplitude contribue et le matériel borne la portée ; cible/trajectoire et refus hors eau conservés. Aucun bouton de lancer automatique. En combat : deux commandes rondes en bas, canne à gauche (glissement dans les quatre directions), moulinet à droite (appui maintenu avec le second doigt). Le glissement sur l’eau continue aussi à orienter la canne. Sur PC : glissement de souris et molette simultanés. Maintenir Mouliner récupère du fil ; relâcher arrête immédiatement ; espace peut ferrer uniquement. Suivre le fil et accompagner les départs : le frein rend du fil sous résistance. La pression modérée fatigue le poisson ; récupérer le mou s’il revient, puis le ramener au bord quand il faiblit. La canne et le fil montrent la traction ; une jauge compacte Tension du fil, verte/jaune/orange, occupe l’espace entre les commandes. Aucun panneau décrivant le poisson.
+Partir du tiers inférieur, projeter vers l’eau puis relâcher au centre ou plus haut pour lancer. La vitesse récente donne la puissance, l’amplitude contribue et le matériel borne la portée ; cible/trajectoire et refus hors eau conservés. Aucun bouton de lancer automatique. En combat : deux commandes rondes en bas, canne à gauche (glissement dans les quatre directions), moulinet à droite (appui maintenu ou geste circulaire avec le second doigt, choisi dans Réglages). Le glissement sur l’eau continue aussi à orienter la canne. Sur PC : glissement de souris et molette simultanés. Maintenir Mouliner récupère du fil ; relâcher arrête immédiatement ; espace peut ferrer uniquement. Suivre le fil et accompagner les départs : le frein rend du fil sous résistance. La pression modérée fatigue le poisson ; récupérer le mou s’il revient, puis le ramener au bord quand il faiblit. La canne et le fil montrent la traction ; une jauge compacte Tension du fil, verte/jaune/orange, occupe l’espace entre les commandes. Aucun panneau décrivant le poisson.
 
-Menu compact : matériel, carnet/FishDex, aquarium, boutique, progression et réglages. Les écrans ont un retour ; le menu suspend le combat et bloque les gestes de scène. Hors combat, accès Matériel direct. Le jeu bloque la sélection et les actions natives d’appui long uniquement sur ses surfaces ; le carnet et la boutique défilent, les champs restent éditables et sélectionnables. Trois méthodes effectives : flotteur, leurre animé/récupéré et fond.
+Menu compact : FishDex principal, matériel, carnet secondaire, lieux, aquarium, boutique, progression et réglages. Les écrans ont un retour ; le menu suspend le combat et bloque les gestes de scène. Hors combat, accès Matériel direct. Le jeu bloque la sélection et les actions natives d’appui long uniquement sur ses surfaces ; le carnet et la boutique défilent, les champs restent éditables et sélectionnables. Trois méthodes effectives : flotteur, leurre animé/récupéré et fond.
 
 Quinze espèces du pack, carnet individuel avec photos, records, robes et Mirage. Encyclopédie issue des fichiers FishDex : 96 fiches regroupées en 59 binômes déclarés, contenus non jouables indiqués prévus. XP, badges, écus et boutique de trois cannes/deux décorations. Aquarium personnalisable avec cinq spécimens favoris, nage procédurale provisoire et fiches personnelles.
 
@@ -33,7 +33,7 @@ npm run dev
 | npm run preview | Servir dist localement après build |
 | npm run test:smoke | Vraie partie sur build servi, sans QA ; GAME_URL pour cible distante |
 
-Exécuter E2E et smoke successivement. Validation 0.4.1 : npm run check, 31 tests de logique + TypeScript/build ; 19 E2E ciblés réussis (1 ignoré selon viewport), dont appui immobile, deux doigts, interruptions, défilement/saisie et combat. Smoke ciblé : 2/2 sur le build local, 2/2 sur la preview protégée et 2/2 sur le domaine public, captures réelles bureau/mobile et sauvegarde/transfert. Résultats détaillés dans docs/VERIFICATION.md et docs/VERCEL.md. Les mesures Chromium logiciel de ce PC ne valident pas les 30 FPS sur iPhone 14 Pro ; Safari, chauffe et autonomie restent à tester sur appareil.
+Exécuter E2E et smoke successivement. Validation 0.5.0 : npm run check, 35 tests + TypeScript/build ; suite navigateur 38 réussis / 2 ignorés, puis compléments graphiques/récupération 4/4, cadrage/performance 4/4 et vérifications finales filtres/aquarium. Smoke final et publication en cours. Résultats détaillés dans docs/VERIFICATION.md et docs/VERCEL.md. Les mesures Chromium logiciel de ce PC ne valident pas les 30 FPS sur iPhone 14 Pro ; Safari, chauffe et autonomie restent à tester sur appareil.
 
 ## Organisation et ressources
 
@@ -42,3 +42,5 @@ Règles indépendantes dans src/game/, scènes dans src/render/, photos et audio
 Pack River fish / TricksUp fourni par l’utilisateur sous sa licence d’origine. Archive privée assets-source/ exclue de Git et Vercel, jamais envoyée à un générateur. Quinze GLB optimisés 1,73 Mo, chargés à la demande. Les 50 FBX n’ont pas de rig livré ; respiration, présentation suspendue et épuisette restent à faire. Voir docs/ASSETS_POISSONS.md et docs/MISSION_AUTONOME.md.
 
 Pas de test iPhone réel annoncé, pas de nouvelle souscription, pas de modification du dépôt FishDex de référence. Lire et actualiser RELAIS_PROJET.md à chaque session ; suivre docs/BACKLOG.md.
+
+Structure complète : docs/STRUCTURE_COMPLETE.md. Ajouts de contenu : docs/EXTENSION_CONTENU.md. Direction artistique et mesures : docs/QUALITE_VISUELLE.md. FishDex principal, carnet secondaire, matériel par familles, lieux et méthodes futures explicites. Sauvegarde v3 migre v1/v2 sans perdre les individus ou gains ; préparation et choix appui/cercle persistés.

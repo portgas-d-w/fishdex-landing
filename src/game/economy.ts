@@ -18,3 +18,5 @@ export function rewardFor(s: Specimen, first: boolean, record: boolean): Reward 
 }
 export const levelFor = (xp: number) => 1 + Math.floor(Math.sqrt(xp / 80));
 export const BADGES = { first: 'Première rencontre', diversity: 'Les espèces de l’étang', contact: 'Main légère : combat contrôlé', lure: 'Au leurre', bottom: 'Au fond', collector: 'Dix souvenirs', record: 'Un nouveau record' };
+
+export const accessLevel = (id: string) => id === 'precision' ? 2 : 1;

@@ -1,0 +1,9 @@
+# Ressources et identités — structure 0.5.0
+
+Référence FishDex consultée en lecture seule. Empreintes des six sources de src/game/fishdex.json revérifiées identiques le 1 octobre 2026. 96 fiches, 59 groupes par binôme scientifique, catégories paisibles/predateurs/eaux-vives ; quinze espèces jouables. Aucun seed SQL/TS exécuté, aucune base ou secret consulté. Les illustrations ne rendent pas une espèce jouable.
+
+Mapping espèce stable → modèle dans SPECIES et VISUALS ; illustration et binôme dans fishdex.json. Manifeste des quinze GLB dans public/models/manifest.json. Inventaire complet du pack dans docs/PACK_INVENTAIRE.json, préparation locale dans ASSETS_POISSONS.md. assets-source reste exclu du build/dépôt. Aucun modèle envoyé à un générateur.
+
+Illustrations de matériel réutilisées localement : grande-canne, petit-leurre, ver-terre, feeder depuis FishDex/public/techniques, copies WebP 384×256 maximum. Empreintes originales, destinations et tailles dans ILLUSTRATIONS_MATERIEL.json. Elles illustrent une famille et n'impliquent aucune technique supplémentaire jouable. Autres familles : pictogrammes SVG construits dans structure.ts. Grain du bois : DynamicTexture local 512×128, partagé entre planches ; aucun téléchargement ou achat.
+
+Animation actuelle, déclarée dans ANIMATION_STATES : nage calme/rapide et débattement sur tapis procéduraux, provisoires ; présentation suspendue et respiration anatomique absentes. BodyWave utilise la géométrie des modèles du pack. Remplacement futur par clip GLB : étendre VISUALS avec références de clips et un adaptateur de lecture dans les rendus ; conserver l'ID d'espèce et le spécimen. Ne pas afficher une disponibilité avant son animation réelle. Photos et aquarium utilisent le même applyAppearance (natural/golden/Mirage) et les mêmes modèles ; gabarit individuel conservé et échelle du bassin bornée.

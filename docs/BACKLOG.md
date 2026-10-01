@@ -2,6 +2,24 @@
 
 La mission autonome explicite autorise les fonctionnalités suivantes et remplace l’attente du premier retour appareil pour avancer. Une prise ou une sauvegarde cassée reste prioritaire sur le contenu.
 
+## Structure complète 0.5.0 — mission prioritaire
+
+- [x] Audit et reprise Git ; carte de tous les espaces, référence FishDex vérifiée en lecture seule.
+- [x] Catalogues méthodes/slots/familles/lieux/badges communs et états futur/verrouillé distincts.
+- [x] FishDex principal, grille/numéros/silhouettes, fiches/variantes/maîtrise et liens carnet/préparation.
+- [x] Carnet secondaire filtrable/tris/vues rapides, premières découvertes réelles, filtres conservés au retour.
+- [x] Matériel complet par familles, kit gratuit, compatibilités, fiches, boutique/catégories/confirmation et déblocage commun.
+- [x] Lieux/habitats et techniques futures avec fiches, aucune fausse sélection ou commande.
+- [x] Capture/gains uniques/découvertes/records, photo, badge/objectifs et résultats reliés au FishDex.
+- [x] Aquarium cinq emplacements, remplacement, fiches et personnalisation persistante ; pêche suspendue.
+- [x] Migration v1/v2 → v3, préparation et geste persistés, export/import et récupération d'original corrompu.
+- [x] Refonte commune de toutes les interfaces, scène/eau/matières/lumière, illustrations locales, comparaison avant/après.
+- [x] Check 35 tests ; suite navigateur 38 réussis/2 ignorés, compléments graphiques/récupération 4/4, cadrage/performance 4/4, filtres finaux 6/6 et aquarium final 4/4.
+- [ ] Terminer smoke du build sans QA puis valider preview et domaine public.
+- [ ] Safari/iPhone physique : ressenti/30 FPS/chauffe ; aucun résultat appareil annoncé.
+
+Les contenus feeder/mouche/rivière, rig animé/respiration et autres poissons restent à venir conformément à la mission ; leurs interfaces et points d'intégration sont construits. Ils ne bloquent pas les objectifs réalisables de la version actuelle.
+
 ## Correction 0.4.1 — moulinage par appui
 
 - [x] Appui maintenu sur Mouliner, arrêt dès le relâchement, sans rotation du doigt.

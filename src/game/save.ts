@@ -1,9 +1,10 @@
+import { BADGE_RULES } from './structure.ts';
 import { SPECIES } from './catalog.ts';
 import type { SpeciesId } from './catalog.ts';
 import type { Catch } from './fishing.ts';
 import { weightFor, uniqueId, ZERO_REWARD, variantKey } from './specimens.ts';
 import type { Specimen } from './specimens.ts';
-import { ITEMS, rewardFor, BADGES } from './economy.ts';
+import { ITEMS, rewardFor, BADGES, levelFor, accessLevel } from './economy.ts';
 import type { ItemId } from './economy.ts';
 
 // Même clé : migration atomique sans abandonner l’ancien carnet.
@@ -11,14 +12,15 @@ export const SAVE_KEY = 'au-fil-de-leau.save.v1';
 export const MAX_SAVE_BYTES = 5_000_000;
 export interface RecordEntry { count: number; best: number; last: string }
 export interface SaveData {
-  version: 2; total: number; records: Partial<Record<SpeciesId, RecordEntry>>;
+  version: 3; total: number; records: Partial<Record<SpeciesId, RecordEntry>>;
   legacyRecords: Partial<Record<SpeciesId, RecordEntry>>; journal: Specimen[]; favorites: string[];
   variants: Record<string, RecordEntry>; xp: number; coins: number; badges: string[];
   inventory: ItemId[]; equipped: ItemId;
   aquarium: { floor: 'sand' | 'gravel'; background: 'dawn' | 'night'; plants: boolean; rocks: boolean; light: 'warm' | 'cool' };
-  settings: { sound: boolean; quality: 'eco' | 'high' };
+  settings: { sound: boolean; quality: 'eco' | 'high'; reelMode: 'hold' | 'circle' };
+  preparation: { method: 'float' | 'lure' | 'bottom'; bait: 'worm' | 'lure'; location: 'willow-pond' };
 }
-export const emptySave = (): SaveData => ({ version: 2, total: 0, records: {}, legacyRecords: {}, journal: [], favorites: [], variants: {}, xp: 0, coins: 0, badges: [], inventory: ['starter'], equipped: 'starter', aquarium: { floor: 'sand', background: 'dawn', plants: false, rocks: false, light: 'warm' }, settings: { sound: false, quality: 'eco' } });
+export const emptySave = (): SaveData => ({ version: 3, total: 0, records: {}, legacyRecords: {}, journal: [], favorites: [], variants: {}, xp: 0, coins: 0, badges: [], inventory: ['starter'], equipped: 'starter', aquarium: { floor: 'sand', background: 'dawn', plants: false, rocks: false, light: 'warm' }, settings: { sound: false, quality: 'eco', reelMode: 'hold' }, preparation: { method: 'float', bait: 'worm', location: 'willow-pond' } });
 function object(v: unknown): Record<string, unknown> { if (!v || typeof v !== 'object' || Array.isArray(v)) throw new Error('Sauvegarde invalide.'); return v as Record<string, unknown>; }
 function integer(v: unknown, max = 1_000_000_000) { if (typeof v !== 'number' || !Number.isSafeInteger(v) || v < 0 || v > max) throw new Error('Valeur de progression invalide.'); return v; }
 function string(v: unknown, max = 150) { if (typeof v !== 'string' || !v.length || v.length > max) throw new Error('Texte de sauvegarde invalide.'); return v; }
@@ -50,12 +52,13 @@ function specimen(value: unknown): Specimen {
 }
 export function parseSave(raw: string): SaveData {
   if (raw.length > MAX_SAVE_BYTES) throw new Error('Fichier de sauvegarde trop volumineux.');
-  const data = object(JSON.parse(raw)); if (data.version !== 1 && data.version !== 2) throw new Error('Format de sauvegarde non pris en charge.');
+  const data = object(JSON.parse(raw)); if (data.version !== 1 && data.version !== 2 && data.version !== 3) throw new Error('Format de sauvegarde non pris en charge.');
   const result = emptySave(); result.records = entries(data.records);
   result.total = Object.values(result.records).reduce((sum, r) => sum + r.count, 0);
   if (result.total !== data.total) throw new Error('Le total de prises est incohérent.');
   const settings = data.settings ? object(data.settings) : {};
-  result.settings = { sound: settings.sound === true, quality: settings.quality === 'high' ? 'high' : 'eco' };
+  result.settings = { sound: settings.sound === true, quality: settings.quality === 'high' ? 'high' : 'eco', reelMode: settings.reelMode === 'circle' ? 'circle' : 'hold' };
+  if (data.version === 3) { const p = object(data.preparation); result.preparation = { method: choice(p.method, ['float','lure','bottom']), bait: choice(p.bait, ['worm','lure']), location: choice(p.location, ['willow-pond']) }; if ((result.preparation.method === 'lure') !== (result.preparation.bait === 'lure')) throw new Error('Montage incompatible.'); }
   if (data.version === 1) { result.legacyRecords = structuredClone(result.records); return result; }
   result.legacyRecords = entries(data.legacyRecords);
   if (!Array.isArray(data.journal) || data.journal.length > 10000) throw new Error('Journal invalide.');
@@ -78,22 +81,23 @@ export function parseSave(raw: string): SaveData {
   if ((result.aquarium.plants && !result.inventory.includes('plants')) || (result.aquarium.rocks && !result.inventory.includes('rocks'))) throw new Error('Décoration non possédée.');
   return result;
 }
-export function recordCatch(save: SaveData, caught: Catch): { first: boolean; record: boolean } {
-  if (caught.id && save.journal.some(s => s.id === caught.id)) return { first: false, record: false };
-  const previous = save.records[caught.speciesId]; const result = { first: !previous, record: !previous || caught.length > previous.best };
+export function recordCatch(save: SaveData, caught: Catch): { first: boolean; record: boolean; variant: boolean } {
+  if (caught.id && save.journal.some(s => s.id === caught.id)) return { first: false, record: false, variant: false };
+  const previous = save.records[caught.speciesId]; const result = { first: !previous, record: !previous || caught.length > previous.best, variant: false };
   const s: Specimen = { id: caught.id ?? uniqueId(), speciesId: caught.speciesId, form: 'common', coloration: caught.coloration ?? 'natural', mirage: caught.mirage ?? false, length: caught.length, weight: weightFor(caught.speciesId, caught.length), date: caught.date, location: 'L’étang des Saules', method: caught.method ?? 'float', equipment: caught.equipment ?? save.equipped, bait: caught.bait ?? 'worm', target: caught.target ?? { x: -1.5, z: 7 }, controlled: caught.controlled ?? false, reward: ZERO_REWARD() };
+  result.variant = !save.variants[variantKey(s)];
   s.reward = rewardFor(s, result.first, result.record);
   addRecord(save.records, s.speciesId, s); addRecord(save.variants, variantKey(s), s);
   save.journal.push(s); save.total++; save.xp += s.reward.xp; save.coins += s.reward.coins;
-  const badges = new Set(save.badges); badges.add('first');
-  if (Object.keys(save.records).length === SPECIES.length) badges.add('diversity');
-  if (s.controlled) badges.add('contact'); if (s.method === 'lure') badges.add('lure'); if (s.method === 'bottom') badges.add('bottom');
-  if (save.total >= 10) badges.add('collector'); if (result.record && !result.first) badges.add('record'); save.badges = [...badges];
+  const badges = new Set(save.badges);
+  for (const rule of BADGE_RULES) if (rule.value(save) >= rule.target) badges.add(rule.id);
+  save.badges = [...badges];
   return result;
 }
 export function purchase(save: SaveData, id: ItemId): string {
   const item = ITEMS.find(i => i.id === id); if (!item) return 'Article inconnu.';
   if (save.inventory.includes(id)) return 'Déjà dans votre inventaire.';
+  if (levelFor(save.xp) < accessLevel(item.id)) return 'Niveau 2 requis.';
   if (save.coins < item.price) return 'Quelques photos de plus pour cet achat.';
   save.coins -= item.price; save.inventory.push(id); return '';
 }
@@ -103,9 +107,10 @@ export function toggleFavorite(save: SaveData, id: string): string {
   if (save.favorites.length >= 5) return 'Cinq favoris maximum. Retirez-en un pour faire une place.';
   save.favorites.push(id); return '';
 }
-export function loadSave(storage: Pick<Storage, 'getItem'>): { data: SaveData; warning: string } {
-  try { const raw = storage.getItem(SAVE_KEY); return { data: raw ? parseSave(raw) : emptySave(), warning: '' }; }
-  catch { return { data: emptySave(), warning: 'La sauvegarde locale est inaccessible ou invalide. Exporte ton carnet pour le conserver.' }; }
+export function loadSave(storage: Pick<Storage, 'getItem'>): { data: SaveData; warning: string; recovery?: string } {
+  let raw: string | null = null;
+  try { raw = storage.getItem(SAVE_KEY); return { data: raw ? parseSave(raw) : emptySave(), warning: '' }; }
+  catch { return { data: emptySave(), warning: 'La sauvegarde locale est inaccessible ou invalide. Un fichier de récupération peut être exporté dans Réglages.', recovery: raw ?? undefined }; }
 }
 export function persistSave(save: SaveData, storage: Pick<Storage, 'setItem'>): boolean {
   try { storage.setItem(SAVE_KEY, JSON.stringify(save)); return true; } catch { return false; }

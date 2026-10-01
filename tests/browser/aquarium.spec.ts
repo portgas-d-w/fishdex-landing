@@ -24,7 +24,8 @@ test('Cinq favoris, décorations, fiches et navigations sans accumulation de mot
   }
   await page.reload(); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true'); await openMenuPage(page, 'aquarium-open'); await expect(page.locator('#aquarium-canvas')).toHaveAttribute('data-loaded', 'true');
   await expect(page.locator('#aq-plants')).toBeChecked(); await expect(page.locator('#aq-floor')).toHaveValue('gravel');
-  await page.locator('[data-aq-remove="favorite-0"]').click(); await expect(page.locator('#aquarium-state')).toContainText('4 / 5');
+  await page.locator('#aquarium-choice').selectOption('sixth'); await page.locator('#aq-replace-slot').selectOption('0'); await page.locator('#aq-replace').click(); await expect(page.locator('#aquarium-state')).toContainText('5 / 5'); expect(await page.evaluate(() => JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!).favorites[0])).toBe('sixth');
+  await page.locator('[data-aq-remove="sixth"]').click(); await expect(page.locator('#aquarium-state')).toContainText('4 / 5');
   await page.locator('#aquarium-choice').selectOption('sixth'); await page.locator('#aquarium-add').click(); await expect(page.locator('#aquarium-state')).toContainText('5 / 5');
   await page.locator('[data-aq-view="sixth"]').click(); await expect(page.locator('#fish-preview')).toHaveAttribute('data-loaded', 'true');
   expect(await page.evaluate(() => (window as any).__fishingQA.snapshot().aquarium.enabled)).toBe(false);

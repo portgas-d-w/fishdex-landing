@@ -1,8 +1,11 @@
 import './style.css';
+import './ui/structure.css';
+import { GameScreens } from './ui/structure';
+import { circularTurns } from './game/reeling';
 import { FishingGame } from './game/fishing';
 import { SPECIES } from './game/catalog';
 import type { BaitId } from './game/catalog';
-import { emptySave, loadSave, persistSave, recordCatch, parseSave, MAX_SAVE_BYTES, purchase, toggleFavorite } from './game/save';
+import { emptySave, loadSave, persistSave, recordCatch, parseSave, MAX_SAVE_BYTES, toggleFavorite } from './game/save';
 import type { SaveData } from './game/save';
 import { LakeWorld } from './render/world';
 import { FishPreview } from './render/fish-preview';
@@ -52,13 +55,16 @@ const steps = document.querySelectorAll('.help-step');
 steps[0].querySelector('strong')!.textContent = 'Choisissez votre méthode et votre cible.';
 steps[0].querySelector('p')!.textContent = 'Posez le doigt dans le tiers inférieur, projetez vers l’eau puis relâchez au centre ou plus haut. La vitesse du geste donne sa puissance ; la direction choisit le point de chute. Un relâchement trop bas ou hors de l’eau annule le lancer.';
 steps[1].querySelector('strong')!.textContent = 'Observez votre montage.';
-steps[1].querySelector('p')!.textContent = 'Au flotteur, attendez qu’il plonge. Au fond, regardez la pointe de la canne. Au leurre, maintenez Mouliner et glissez pour animer : la récupération déclenche les rencontres. Ferrez dès la touche.';
-steps[2].querySelector('p')!.textContent = 'Suivez le fil avec la canne à gauche et maintenez Mouliner à droite avec l’autre doigt ; sur PC, utilisez la molette. Accompagnez les départs : le frein rend du fil sous résistance. Une pression modérée fatigue le poisson. Récupérez le mou s’il revient vers vous, puis ramenez-le au bord quand sa résistance diminue. Relâchez Mouliner dès que vous voulez arrêter la récupération.';
+steps[1].querySelector('p')!.textContent = 'Au flotteur, attendez qu’il plonge. Au fond, regardez la pointe de la canne. Au leurre, utilisez Mouliner selon votre réglage (appui ou cercle) et glissez pour animer : la récupération déclenche les rencontres. Ferrez dès la touche.';
+steps[2].querySelector('p')!.textContent = 'Suivez le fil avec la canne à gauche et utilisez le moulinet à droite avec l’autre doigt (appui ou cercle, réglable ci-dessous) ; sur PC, utilisez la molette. Accompagnez les départs : le frein rend du fil sous résistance. Une pression modérée fatigue le poisson. Récupérez le mou s’il revient vers vous, puis ramenez-le au bord quand sa résistance diminue. Relâchez Mouliner dès que vous voulez arrêter la récupération.';
 let storage: Storage | undefined;
 try { storage = window.localStorage; } catch { /* navigation privée restrictive */ }
-const loaded = storage ? loadSave(storage) : { data: emptySave(), warning: 'Sauvegarde locale indisponible. Pensez à exporter le carnet.' };
+const loaded: ReturnType<typeof loadSave> = storage ? loadSave(storage) : { data: emptySave(), warning: 'Sauvegarde locale indisponible. Pensez à exporter le carnet.' };
 let save = loaded.data;
+let recoveryPreserved = !loaded.recovery;
 const game = new FishingGame();
+game.setMethod(save.preparation.method); game.setBait(save.preparation.bait);
+let hub: GameScreens | undefined;
 const audio = new GameAudio(); audio.enabled = save.settings.sound;
 let world: LakeWorld | undefined;
 let preview: FishPreview | undefined;
@@ -86,11 +92,12 @@ equip();
 
 function toast(message: string) { el('toast').textContent = message; el('toast').hidden = false; window.clearTimeout(toastTimer); toastTimer = window.setTimeout(() => el('toast').hidden = true, 5000); }
 function saveNow() {
+  if (!recoveryPreserved && loaded.recovery) { try { storage?.setItem('au-fil-de-leau.save.recovery', loaded.recovery); recoveryPreserved = !!storage; } catch { toast('Stockage plein. Exportez le fichier de récupération dans Réglages avant de sauvegarder.'); return; } if (!recoveryPreserved) return; }
   if ((!storage || !persistSave(save, storage)) && !storageWarningShown) {
     storageWarningShown = true; toast('Sauvegarde locale impossible. Exportez votre carnet pour le conserver.');
   }
 }
-function openModal(id: string) { release(); cancelGesture(); el('line-alert').hidden = true; overlayPaused = true; if (!el<HTMLDialogElement>(id).open) el<HTMLDialogElement>(id).showModal(); }
+function openModal(id: string) { hub?.opened(id); release(); cancelGesture(); el('line-alert').hidden = true; overlayPaused = true; if (!el<HTMLDialogElement>(id).open) el<HTMLDialogElement>(id).showModal(); }
 function closeModal(id: string) { el<HTMLDialogElement>(id).close(); }
 function refreshCollection() {
   el('player-progress').textContent = `Niveau ${levelFor(save.xp)} · ${save.xp} XP · ${save.coins} écus`;
@@ -102,39 +109,28 @@ function refreshCollection() {
     return `<article class="fish-entry ${record ? '' : 'undiscovered'}"><span class="fish-number">0${i + 1}</span><div><h3>${record ? species.name : 'À découvrir'}</h3><p>${record ? `${record.count} rencontre${record.count > 1 ? 's' : ''} · ${species.latin}` : (i === 0 || i === 2 ? 'Tentez votre chance au ver.' : 'Essayez le petit leurre.')}</p></div><div class="best">${record ? record.best.toLocaleString('fr-FR') : '—'}${record ? '<small> cm</small>' : ''}</div></article>`;
   }).join('');
   for (const url of photoUrls) URL.revokeObjectURL(url); photoUrls.length = 0;
-  const captures = [...save.journal].reverse().slice(0, journalLimit);
+  const matches = hub?.journal() ?? [...save.journal].reverse();
+  const captures = matches.slice(0, journalLimit);
   el('journal-intro').textContent = save.journal.length ? `${save.journal.length} souvenir(s) · ${save.favorites.length} / 5 favoris · ${Object.keys(save.variants).length} apparence(s)` : 'Les prises de l’ancien carnet gardent leurs records. Les nouvelles auront leur fiche et leur photo.';
   el('journal-list').innerHTML = captures.map(s => `<article class="specimen-card"><button class="specimen-view" data-specimen="${escape(s.id)}"><div class="photo-placeholder" data-photo="${escape(s.id)}">Souvenir 3D</div><div><strong>${SPECIES.find(f => f.id === s.speciesId)!.name}${s.mirage ? ' · Mirage' : ''}</strong><p>${s.length} cm · ${s.weight.toLocaleString('fr-FR')} kg · ${s.coloration === 'golden' ? 'Reflets dorés' : 'Robe naturelle'}</p><small>${new Date(s.date).toLocaleDateString('fr-FR')} · ${s.method === 'float' ? 'Flotteur' : s.method === 'lure' ? 'Leurre' : 'Fond'}</small></div></button><button class="secondary" data-favorite="${escape(s.id)}" aria-pressed="${save.favorites.includes(s.id)}">${save.favorites.includes(s.id) ? 'Retirer le favori' : 'Favori'}</button></article>`).join('');
-  el('journal-more').hidden = save.journal.length <= journalLimit;
+  el('journal-more').hidden = matches.length <= journalLimit;
   el('mastery-list').innerHTML = save.badges.map(b => `<span class="badge">${BADGES[b as keyof typeof BADGES]}</span>`).join('');
-  el('progress-badges').innerHTML = el('mastery-list').innerHTML || '<p class="intro">Les premières prises ouvriront vos badges.</p>';
+  hub?.progression(); hub?.dex(); hub?.material();
   for (const s of captures) void getPhoto(s.id).then(blob => {
     const target = Array.from(document.querySelectorAll<HTMLElement>('[data-photo]')).find(e => e.dataset.photo === s.id);
     if (!blob || !target || !target.isConnected) return;
     const url = URL.createObjectURL(blob); photoUrls.push(url); const img = document.createElement('img'); img.src = url; img.alt = `Photo de ${SPECIES.find(f => f.id === s.speciesId)!.name}`; target.replaceChildren(img);
   });
 }
-function refreshDex() {
-  const search = el<HTMLInputElement>('dex-search').value.trim().toLocaleLowerCase('fr');
-  const category = el<HTMLSelectElement>('dex-category').value, state = el<HTMLSelectElement>('dex-state').value;
-  const groups = new Map<string, typeof fishdex.entries>();
-  for (const entry of fishdex.entries) { const rows = groups.get(entry.biologicalId) ?? []; rows.push(entry); groups.set(entry.biologicalId, rows); }
-  const labels: Record<string, string> = { commun: 'Commun', 'peu commun': 'Peu commun', rare: 'Rare', epique: 'Épique', legendaire: 'Légendaire', mirage: 'Mirage' };
-  const cards = [...groups.values()].filter(rows => rows.some(e => (category === 'all' || e.category === category) && (!search || `${e.name} ${e.latin} ${e.techniques.join(' ')}`.toLocaleLowerCase('fr').includes(search))) && (state === 'all' || state === 'mirage' && rows.some(e => e.rarity === 'mirage') || state === 'playable' && rows.some(e => e.gameId) || state === 'discovered' && rows.some(e => e.gameId && save.records[e.gameId as keyof typeof save.records])));
-  el('dex-list').innerHTML = cards.map(rows => {
-    const base = rows.find(e => e.gameId) ?? rows[0], known = base.gameId && save.records[base.gameId as keyof typeof save.records];
-    return `<details class="dex-card"><summary><div class="dex-illustration">${known && base.image ? `<img src="${base.image}" loading="lazy" alt="${escape(base.name)}">` : '<span class="silhouette">◇</span>'}</div><div><strong>${escape(base.name)}</strong><p>${escape(base.latin)}</p><small>${base.gameId ? known ? 'Découverte · Jouable' : 'À découvrir · Jouable' : 'Prévue · Modèle absent'} · ${rows.length} fiche(s)</small></div></summary><p>${escape(base.description)}</p>${base.hint ? `<p>${escape(base.hint)}</p>` : ''}<p>${base.min ?? '—'}–${base.max ?? '—'} cm · ${labels[base.rarity] ?? base.rarity}</p><p>Référence : ${escape(base.techniques.join(' · '))}</p>${rows.length > 1 ? `<div class="variant-list">${rows.map(e => `<span>${escape(e.name)} · ${labels[e.rarity] ?? e.rarity}${e.gameId ? ' · jouable' : ' · prévue'}</span>`).join('')}</div>` : ''}</details>`;
-  }).join('') || '<p class="intro">Aucune fiche avec ces filtres.</p>';
-}
-function refreshShop() {
-  el('shop-balance').textContent = `${save.coins} écus · Niveau ${levelFor(save.xp)} (${save.xp} XP). Matériel actuel : ${ITEMS.find(i => i.id === save.equipped)!.name}.`;
-  el('shop-list').innerHTML = ITEMS.map(i => `<article class="shop-item"><h3>${i.name}</h3><p>${i.description}</p><button class="secondary" data-buy="${i.id}" ${save.inventory.includes(i.id) ? 'disabled' : ''}>${save.inventory.includes(i.id) ? 'Possédé' : `${i.price} écus · Acheter`}</button>${i.kind === 'rod' && save.inventory.includes(i.id) ? `<button class="secondary" data-equip="${i.id}" ${save.equipped === i.id || game.phase !== 'idle' ? 'disabled' : ''}>${save.equipped === i.id ? 'Équipée' : game.phase !== 'idle' ? 'Après cette partie' : 'Équiper'}</button>` : ''}</article>`).join('');
-}
+function refreshDex() { hub?.dex(); }
+function refreshShop() { hub?.shop(); }
 function refreshAquariumControls() {
+  hub?.aquariumSlots();
   const favorites = save.favorites.map(id => save.journal.find(s => s.id === id)!);
   el('aquarium-choice').innerHTML = save.journal.filter(s => !save.favorites.includes(s.id)).slice().reverse().map(s => `<option value="${escape(s.id)}">${SPECIES.find(f => f.id === s.speciesId)!.name} · ${s.length} cm · ${new Date(s.date).toLocaleDateString('fr-FR')}</option>`).join('') || '<option value="">Pêchez un nouveau souvenir</option>';
   el<HTMLButtonElement>('aquarium-add').disabled = !save.journal.some(s => !save.favorites.includes(s.id));
   el('aquarium-favorites').innerHTML = favorites.map(s => `<article class="fish-entry"><div><h3>${SPECIES.find(f => f.id === s.speciesId)!.name}</h3><p>${s.length} cm · ${s.weight.toLocaleString('fr-FR')} kg${s.mirage ? ' · Mirage' : ''}</p><button class="secondary" data-aq-view="${escape(s.id)}">Fiche</button><button class="secondary" data-aq-remove="${escape(s.id)}">Retirer</button></div></article>`).join('');
+  el('aquarium-favorites').insertAdjacentHTML('beforeend', Array.from({length: 5 - favorites.length}, (_, i) => `<article class="fish-entry empty-slot"><div><small>Emplacement ${favorites.length + i + 1}</small><h3>Libre</h3><p>Choisissez un individu déjà capturé.</p></div></article>`).join(''));
   el<HTMLSelectElement>('aq-floor').value = save.aquarium.floor; el<HTMLSelectElement>('aq-background').value = save.aquarium.background; el<HTMLSelectElement>('aq-light').value = save.aquarium.light;
   for (const id of ['plants', 'rocks'] as const) { el<HTMLInputElement>(`aq-${id}`).checked = save.aquarium[id]; el<HTMLInputElement>(`aq-${id}`).disabled = !save.inventory.includes(id); }
 }
@@ -154,6 +150,7 @@ function refreshSettings() {
   el('sound').setAttribute('aria-pressed', String(save.settings.sound));
   el('sound').setAttribute('aria-label', save.settings.sound ? 'Couper le son' : 'Activer le son');
   el('sound').style.opacity = save.settings.sound ? '1' : '.6';
+  el('reel-control').setAttribute('aria-label', save.settings.reelMode === 'circle' ? 'Moulinet : tournez autour du centre ; molette sur ordinateur' : 'Moulinet : maintenez pour mouliner ; relâchez pour arrêter');
   el('quality').textContent = save.settings.quality === 'eco' ? 'Économie mobile' : 'Qualité élevée';
 }
 function renderPhase() {
@@ -169,6 +166,7 @@ function renderPhase() {
   document.querySelectorAll<HTMLElement>('[data-method]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.method === game.method)));
   document.querySelectorAll<HTMLElement>('[data-bait]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.bait === game.bait)));
   el('preparation-note').textContent = phase === 'idle' ? 'Le point de lancer se choisit uniquement par glissement sur l’eau.' : 'Ramenez la ligne avant de modifier le montage.';
+  hub?.material();
   el('fishing-status').textContent = phase === 'bite' ? 'Ça mord. Ferrez.' : phase === 'fighting' ? 'Poisson ferré. Le fil et la canne indiquent sa traction.' : phase === 'waiting' ? game.method === 'lure' ? 'Récupérez et animez le leurre.' : 'Montage en place.' : phase === 'idle' ? 'Prêt à lancer par glissement.' : '';
 }
 let tutorial = 0;
@@ -182,12 +180,14 @@ async function showCatch() {
   const badges = recordCatch(save, game.result); saveNow(); refreshCollection();
   const specimen = save.journal.find(s => s.id === game.result!.id)!;
   viewedSpecimen = specimen; liveCatchView = true;
-  el('catch-heading').textContent = badges.first ? 'Une nouvelle page du carnet' : badges.record ? 'Votre nouveau record' : 'Une belle rencontre';
+  el('caught').classList.toggle('first-discovery', badges.first);
+  const dexNumber = hub?.groups.findIndex(rows => rows.some(e => e.gameId === specimen.speciesId)) ?? -1;
+  el('catch-heading').textContent = badges.first ? `FishDex #${String(dexNumber + 1).padStart(3, '0')} · Nouvelle découverte` : badges.record ? 'Votre nouveau record' : 'Une belle rencontre';
   el('catch-name').textContent = game.fish.name; el('catch-latin').textContent = game.fish.latin;
   el('catch-length').textContent = game.result.length.toLocaleString('fr-FR');
   el('catch-description').textContent = game.fish.description;
   refreshSpecimenInfo(specimen, true);
-  el('catch-badges').innerHTML = `${badges.first ? '<span class="badge">Nouvelle espèce</span>' : ''}${badges.record ? '<span class="badge">Record personnel</span>' : '<span class="badge">Ajouté au carnet</span>'}`;
+  el('catch-badges').innerHTML = `${badges.first ? '<span class="badge">Nouvelle espèce</span>' : badges.variant ? '<span class="badge">Nouvelle apparence</span>' : ''}${badges.record ? '<span class="badge">Record personnel</span>' : '<span class="badge">Ajouté au carnet</span>'}`;
   el('preview-error').hidden = true; el('fish-preview').dataset.loaded = 'false'; openModal('caught'); audio.tone('catch');
   const request = ++catchViewRequest;
   try {
@@ -205,7 +205,7 @@ function refreshSpecimenInfo(s: Specimen, reward: boolean) {
   el('catch-reward').textContent = reward ? `+${r.coins} écus · +${r.xp} XP — Photo ${r.base}${r.discovery ? `, découverte +${r.discovery}` : ''}${r.record ? `, record +${r.record}` : ''}` : `${new Date(s.date).toLocaleString('fr-FR')} · ${s.location} · ${s.method === 'float' ? 'Flotteur' : s.method === 'lure' ? 'Leurre' : 'Fond'} · ${ITEMS.find(i => i.id === s.equipment)?.name ?? 'Canne de bordure'}`;
   el('favorite-catch').textContent = save.favorites.includes(s.id) ? 'Retirer des favoris' : 'Ajouter aux favoris';
   el('photo-state').textContent = 'La photo se prépare…';
-  el('release-fish').textContent = reward ? 'Remettre à l’eau' : el<HTMLDialogElement>('aquarium').open ? 'Retour à l’aquarium' : 'Retour au carnet';
+  el('release-fish').textContent = reward ? 'Continuer à pêcher' : el<HTMLDialogElement>('aquarium').open ? 'Retour à l’aquarium' : 'Retour au carnet';
 }
 async function photograph(s: Specimen, request: number) {
   let blob = await getPhoto(s.id);
@@ -227,7 +227,7 @@ function phaseChanged() {
   lastPhase = game.phase; renderPhase();
   if (!(game.phase === 'fighting' || game.phase === 'waiting' && game.method === 'lure')) { release(); cancelGesture(); }
   if (game.phase === 'bite') { audio.tone('bite'); toast('Ça mord ! Ferrez.'); }
-  if (game.phase === 'fighting') { el('toast').hidden = true; teach(2, 'Glissez sur la commande de canne à gauche, ou sur l’eau. Maintenez Mouliner à droite avec l’autre doigt ; relâchez pour arrêter.'); }
+  if (game.phase === 'fighting') { el('toast').hidden = true; teach(2, save.settings.reelMode === 'circle' ? 'Glissez pour guider la canne à gauche. Tournez le moulinet à droite avec l’autre doigt ; molette sur PC.' : 'Glissez sur la commande de canne à gauche, ou sur l’eau. Maintenez Mouliner à droite avec l’autre doigt ; relâchez pour arrêter.'); }
   if (game.phase === 'lost') toast(game.failure);
   if (game.phase === 'caught') void showCatch();
 }
@@ -236,6 +236,7 @@ function activate() {
   if (game.phase === 'bite') { void audio.unlock(); game.strike(); phaseChanged(); }
 }
 let reelPointer: number | undefined;
+let reelPoint: { x: number; y: number } | undefined;
 let reelAngle = 0;
 let gesture: { id: number; x: number; y: number; yaw: number; lift: number; casting: boolean; cast?: CastGesture } | undefined;
 const canvas = el<HTMLCanvasElement>('world');
@@ -256,7 +257,7 @@ function cancelGesture() {
   rodControl.style.setProperty('--stick-x', '0px'); rodControl.style.setProperty('--stick-y', '0px');
 }
 function release() {
-  const id = reelPointer; reelPointer = undefined; game.release(); reel.classList.remove('reeling');
+  const id = reelPointer; reelPointer = undefined; reelPoint = undefined; game.release(); reel.classList.remove('reeling');
   if (id !== undefined && reel.hasPointerCapture(id)) reel.releasePointerCapture(id);
 }
 function canReel() { return !overlayPaused && !manualPaused && (game.phase === 'fighting' || game.phase === 'waiting' && game.method === 'lure'); }
@@ -268,9 +269,10 @@ el('strike').onclick = activate;
 el('retry').onclick = () => { game.reset(); phaseChanged(); };
 reel.addEventListener('pointerdown', e => {
   if (e.button !== 0 || reelPointer !== undefined || !canReel()) return;
-  reelPointer = e.pointerId; game.holdReel(true); void audio.unlock();
+  reelPointer = e.pointerId; const rect = reel.getBoundingClientRect(); reelPoint = { x: e.clientX - rect.x - rect.width / 2, y: e.clientY - rect.y - rect.height / 2 }; if (save.settings.reelMode === 'hold') game.holdReel(true); void audio.unlock();
   reel.setPointerCapture(e.pointerId);
 });
+reel.addEventListener('pointermove', e => { if (save.settings.reelMode !== 'circle' || e.pointerId !== reelPointer || !reelPoint) return; const rect = reel.getBoundingClientRect(), next = { x: e.clientX - rect.x - rect.width / 2, y: e.clientY - rect.y - rect.height / 2 }; turnReel(circularTurns(reelPoint, next)); reelPoint = next; });
 for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) reel.addEventListener(type, e => { if ((e as PointerEvent).pointerId === reelPointer) release(); });
 window.addEventListener('pointerup', e => { if (e.pointerId === reelPointer) release(); });
 window.addEventListener('pointercancel', e => { if (e.pointerId === reelPointer) release(); if (e.pointerId === gesture?.id) cancelGesture(); });
@@ -331,15 +333,17 @@ window.addEventListener('keydown', e => {
   if (e.code !== 'Space' || e.repeat || overlayPaused || manualPaused || (e.target as HTMLElement).closest?.('input,select,button')) return;
   e.preventDefault(); activate();
 });
+hub = new GameScreens({ save: () => save, game, open: openModal, close: closeModal, persist: saveNow, refresh: refreshCollection, toast });
+if (loaded.recovery) { el('help').insertAdjacentHTML('beforeend', '<div class="recovery-panel"><h3>Récupérer une sauvegarde</h3><p class="warning-line">Le fichier original est conservé. Exportez-le avant de poursuivre ; vous pourrez importer une sauvegarde saine dans le carnet.</p><button id="export-recovery" class="secondary">Exporter le fichier original</button></div>'); el('export-recovery').onclick = () => { const url = URL.createObjectURL(new Blob([loaded.recovery!], {type:'application/json'})), a=document.createElement('a');a.href=url;a.download='au-fil-de-leau-recuperation.json';a.click();window.setTimeout(()=>URL.revokeObjectURL(url),1000);recoveryPreserved=true; }; }
 el('menu-open').onclick = () => openModal('menu');
 el('prepare-open').onclick = el('equipment-open').onclick = () => { renderPhase(); openModal('preparation'); };
 el('progress-open').onclick = () => { refreshCollection(); openModal('progression'); };
 document.querySelectorAll<HTMLButtonElement>('[data-bait]').forEach(button => button.addEventListener('click', () => {
   game.setBait(button.dataset.bait as BaitId);
   document.querySelectorAll<HTMLElement>('[data-bait]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.bait === game.bait)));
-  renderPhase();
+  save.preparation.method = game.method; save.preparation.bait = game.bait; saveNow(); renderPhase();
 }));
-document.querySelectorAll<HTMLButtonElement>('[data-method]').forEach(button => button.onclick = () => { game.setMethod(button.dataset.method as Specimen['method']); renderPhase(); });
+document.querySelectorAll<HTMLButtonElement>('[data-method]').forEach(button => button.onclick = () => { game.setMethod(button.dataset.method as Specimen['method']); save.preparation.method = game.method; save.preparation.bait = game.bait; saveNow(); renderPhase(); });
 el('cancel-cast').onclick = () => { release(); cancelGesture(); game.reset(); phaseChanged(); };
 el('collection-open').onclick = () => { refreshCollection(); openModal('collection'); };
 el('help-open').onclick = () => openModal('help');
@@ -362,10 +366,11 @@ for (const key of ['floor', 'background', 'light', 'plants', 'rocks'] as const) 
 });
 el('shop-list').onclick = event => {
   const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button'); if (!button) return;
-  if (button.dataset.buy) { const error = purchase(save, button.dataset.buy as ItemId); toast(error || 'Achat ajouté à votre inventaire.'); }
+  if (button.dataset.buy) { hub?.buy(button.dataset.buy); return; }
   if (button.dataset.equip && game.phase === 'idle' && save.inventory.includes(button.dataset.equip as ItemId)) { save.equipped = button.dataset.equip as ItemId; equip(); }
   saveNow(); refreshShop(); refreshCollection();
 };
+el('gear-list').onclick = el('shop-list').onclick;
 el('journal-more').onclick = () => { journalLimit += 30; refreshCollection(); };
 el('journal-list').onclick = event => {
   const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button'); if (!button) return;
@@ -404,7 +409,7 @@ el('confirm-import').onclick = () => {
   if (!pendingImport) return;
   game.reset(); release(); cancelGesture(); phaseChanged();
   save = pendingImport; pendingImport = undefined; el('import-review').hidden = true;
-  equip();
+  game.setMethod(save.preparation.method); game.setBait(save.preparation.bait); equip(); renderPhase();
   audio.enabled = save.settings.sound; world?.setQuality(save.settings.quality);
   saveNow(); refreshCollection(); refreshSettings(); toast('Votre carnet a été restauré.');
 };
@@ -429,7 +434,7 @@ try {
       while (accumulator >= 1 / 60) { game.update(1 / 60); phaseChanged(); accumulator -= 1 / 60; }
     } else accumulator = 0;
     reel.classList.toggle('reeling', game.reeling);
-    if (reelPointer !== undefined && canReel() && !qaSimulationPaused) {
+    if (reelPointer !== undefined && canReel() && !qaSimulationPaused && save.settings.reelMode === 'hold') {
       reelAngle += game.reelSpeed * dt * 360; reel.style.setProperty('--reel-angle', `${reelAngle}deg`);
     }
     if (game.phase === 'fighting' && game.dragSpeed > 0.02 && !overlayPaused && !manualPaused && !qaSimulationPaused) {
