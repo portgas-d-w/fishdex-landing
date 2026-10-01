@@ -1,3 +1,4 @@
+import { openMenuPage } from './helpers';
 import { test, expect } from '@playwright/test';
 import { SPECIES } from '../../src/game/catalog';
 import { emptySave, recordCatch } from '../../src/game/save';
@@ -8,7 +9,7 @@ test('Chaque espèce charge son modèle et son portrait ; catalogue sans téléc
   await page.addInitScript(data => localStorage.setItem('au-fil-de-leau.save.v1', JSON.stringify(data)), seed);
   const requests: string[] = [], errors: string[] = []; page.on('request', r => { if (r.url().endsWith('.glb')) requests.push(r.url()); }); page.on('pageerror', e => errors.push(e.message));
   await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true'); expect(requests).toEqual([]);
-  await page.locator('#collection-open').click();
+  await openMenuPage(page, 'collection-open');
   for (const f of SPECIES) {
     await page.locator(`[data-specimen="atlas-${f.id}"]`).click(); await expect(page.locator('#fish-preview')).toHaveAttribute('data-loaded', 'true');
     await expect(page.locator('#catch-name')).toHaveText(f.name); await expect(page.locator('#photo-state')).toContainText('Photo conservée');

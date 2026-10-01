@@ -2,6 +2,16 @@
 
 La mission autonome explicite autorise les fonctionnalités suivantes et remplace l’attente du premier retour appareil pour avancer. Une prise ou une sauvegarde cassée reste prioritaire sur le contenu.
 
+## Correction immersive 0.3 — vérifiée localement, publication en cours
+
+- [x] Scène entière, menu compact, préparation hors combat et retours avec pause.
+- [x] Lancer par geste uniquement, aucun bouton/poste automatique.
+- [x] Deux cercles selon image utilisateur : canne à gauche, moulinet à droite ; ni panneau sur le poisson ni jauge.
+- [x] Tours par cercle/molette, canne causale, deux actions simultanées, annulations.
+- [x] Comparaison quinze mêmes scénarios ; canne fixe ne résout pas systématiquement les combats.
+- [x] Inspection portrait/paysage ; quatre orientations extrêmes visibles et pointe projetée dans le cadre.
+- [ ] Vérifier preview puis publier et vérifier la production 0.3.
+
 ## Réalisé et vérifié en 0.2.0
 
 - [x] Installation Node 24, npm ci, TypeScript, tests et build.

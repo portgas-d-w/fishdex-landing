@@ -1,13 +1,14 @@
 import './style.css';
 import { FishingGame } from './game/fishing';
-import { SPECIES, SPOTS } from './game/catalog';
-import type { SpotId, BaitId } from './game/catalog';
+import { SPECIES } from './game/catalog';
+import type { BaitId } from './game/catalog';
 import { emptySave, loadSave, persistSave, recordCatch, parseSave, MAX_SAVE_BYTES, purchase, toggleFavorite } from './game/save';
 import type { SaveData } from './game/save';
 import { LakeWorld } from './render/world';
 import { FishPreview } from './render/fish-preview';
 import { GameAudio } from './ui/audio';
 import { aimFromGesture } from './game/casting';
+import { circularTurns, wheelTurns } from './game/reeling';
 import fishdex from './game/fishdex.json';
 import { ITEMS, BADGES, levelFor } from './game/economy';
 import type { ItemId } from './game/economy';
@@ -16,56 +17,42 @@ import { getPhoto, storePhoto } from './ui/photos';
 import { Aquarium } from './render/aquarium';
 import { Engine } from '@babylonjs/core/Engines/engine';
 
-const icon = (path: string) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
-const icons = {
-  book: icon('<path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Z"/><path d="M12 5v15M6 8h3M6 11h3M15 8h3M15 11h3"/>'),
-  sound: icon('<path d="m11 4-5 5H3v6h3l5 5V4Z"/><path d="M15 8c3 2 3 6 0 8M18 5c5 4 5 10 0 14"/>'),
-  cast: icon('<path d="M4 21 15 6M12 3c5 0 9 4 9 9v5a3 3 0 0 1-6 0v-2M6 16l3 2"/>'),
-  fish: icon('<path d="M5 12c5-8 12-8 17 0-5 8-12 8-17 0ZM5 12 1 8v8l4-4Z"/><circle cx="17" cy="11" r=".7"/>'),
-};
 const app = document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML = `
-<header class="topbar">
-  <div class="brand"><div class="brand-mark">${icons.fish}</div><div><h1>Au fil de l’eau</h1><div class="eyebrow">Un instant au bord de l’eau</div></div></div>
-  <nav class="nav" aria-label="Menu du jeu"><button id="collection-open" class="nav-button" aria-label="Ouvrir le carnet">${icons.book}<span>Mon carnet</span><small id="collection-count">0 / 5</small></button><button id="sound" class="nav-button icon-button" aria-label="Activer le son" aria-pressed="false">${icons.sound}</button></nav>
-</header>
-<section class="location" aria-label="Lieu de pêche"><div class="eyebrow">L’étang des Saules</div><p id="spot-name">La roselière</p><div class="time"><span class="sun-dot"></span>À l’aube · Eau calme</div></section>
-<aside class="journal-note">Il suffit parfois<br>d’un peu de patience.<small>Votre parenthèse au grand air</small></aside>
-<div class="water-label" id="water-label"><span class="target-ring"></span><span id="water-text">Votre coin de pêche</span></div>
-<main class="bottom">
-  <div class="spots" aria-label="Choisir un poste">${SPOTS.map(s => `<button class="spot" data-spot="${s.id}" aria-pressed="${s.id === 'reeds'}" title="${s.hint}"><span class="number">${s.number}</span>${s.name}</button>`).join('')}</div>
-  <section class="play-card" aria-label="Commandes de pêche">
-    <div class="card-heading"><span class="status-tag" id="status">À vous de jouer</span><div class="bait-switch" aria-label="Choisir un appât"><button data-bait="worm" aria-pressed="true">Ver</button><button data-bait="lure" aria-pressed="false">Petit leurre</button></div></div>
-    <h2 class="instruction" id="instruction" aria-live="polite">L’eau vous attend.</h2><p class="hint" id="hint">Choisissez un coin, lancez votre ligne et prenez le temps.</p>
-    <div class="progress-ui" id="progress-ui" hidden><div class="meter-labels"><span>Tension du fil</span><span id="tension-label">32 %</span></div><div class="tension-track" role="meter" aria-label="Tension du fil" aria-valuemin="0" aria-valuemax="100" aria-valuenow="32" id="tension-meter"><div class="tension-pointer" id="tension-pointer"></div></div><div class="distance-track" role="progressbar" aria-label="Poisson ramené" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="catch-meter"><div class="distance-fill" id="distance-fill"></div></div><p class="fight-note" id="fight-note">Moulinez entre ses départs.</p></div>
-    <button id="action" class="action">${icons.cast}<span id="action-label">Lancer la ligne</span></button>
-    <p class="key-hint" id="key-hint">Un geste pour lancer. Un peu de patience pour la suite.</p>
-  </section>
-  <footer class="footer"><span id="total-catches">Aucune prise, tout à découvrir</span><button id="help-open">Comment jouer&nbsp; ↗</button></footer>
-</main>
+<div class="scene-controls" aria-label="Commandes de pêche">
+<button id="menu-open" class="compact menu-toggle" aria-label="Ouvrir le menu">☰ <span>Menu</span></button>
+<button id="prepare-open" class="compact prepare-toggle">Matériel</button>
+<button id="strike" class="compact strike-control" hidden>Ferrer</button>
+<button id="rod-control" class="rod-control" aria-label="Canne : glissez dans les quatre directions" hidden><span class="rod-arrows" aria-hidden="true"><i>▴</i><i>▸</i><i>▾</i><i>◂</i></span><span class="rod-thumb" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M12 39 Q22 13 40 8 M14 34L9 32L6 39L12 41 M21 23L25 25 M29 15L32 18"/></svg></span></button>
+<button id="reel-control" class="reel-control" aria-label="Moulinet : tournez autour du centre ; molette sur ordinateur" hidden><span class="reel-disc"><span class="reel-handle"></span></span><span class="reel-label">Mouliner</span></button>
+<button id="cancel-cast" class="compact cancel-control" hidden>Ramener</button>
+<button id="retry" class="compact retry-control" hidden>Reprendre</button>
+</div>
+<div id="fishing-status" class="sr-only" role="status" aria-live="polite"></div>
 <div class="toast" id="toast" role="status" hidden></div>
-<div class="paused-banner" id="paused" hidden>Votre partie est en pause.<button id="resume">Reprendre au bord de l’eau</button></div>
-<dialog id="collection" class="modal"><div class="modal-header"><div><div class="eyebrow">Les souvenirs de l’étang</div><h2>Mon carnet</h2></div><button class="close" data-close="collection" aria-label="Fermer le carnet">×</button></div><p class="intro">Chaque nouvelle espèce ouvre une page. Chaque belle prise peut devenir votre record.</p><div id="collection-list" class="collection-list"></div><div class="tools"><button class="secondary" id="export-save">Exporter le carnet</button><button class="secondary" id="import-save">Importer un carnet</button></div><input id="save-file" type="file" accept=".json,application/json" hidden><div id="import-review" hidden><p id="import-description" class="warning-line"></p><button class="secondary" id="confirm-import">Remplacer mon carnet</button><button class="secondary" id="cancel-import">Annuler</button></div><p class="modal-footnote">Votre carnet reste dans ce navigateur. Exportez-le pour le conserver ou le transférer sur un autre appareil.</p></dialog>
-<dialog id="help" class="modal"><div class="modal-header"><h2>Le plaisir de la prise.</h2><button class="close" data-close="help" aria-label="Fermer l’aide">×</button></div><div class="help-steps"><div class="help-step"><b>01</b><div><strong>Trouvez votre coin.</strong><p>Le ver attire gardons, perches et carpes. Le petit leurre intéresse les perches, brochets et sandres. Changez de poste pour varier les rencontres.</p></div></div><div class="help-step"><b>02</b><div><strong>Gardez un œil sur le bouchon.</strong><p>Lancez, puis attendez la touche. Appuyez sur « Ferrer » dès que le poisson mord.</p></div></div><div class="help-step"><b>03</b><div><strong>Ressentez le combat.</strong><p>Maintenez le bouton pour mouliner. Relâchez quand le poisson tire ou que la tension monte. Si le fil reste détendu trop longtemps, le poisson se décroche.</p></div></div></div><p class="modal-footnote">Sur ordinateur : espace pour lancer, ferrer et maintenir le moulinet. Tous les poissons sont remis à l’eau.</p><div class="setting-row"><span>Qualité graphique</span><button id="quality">Économie mobile</button></div></dialog>
+<div class="line-alert" id="line-alert" role="status" hidden></div>
+<div class="paused-banner" id="paused" hidden>Partie en pause<button id="resume">Reprendre</button></div>
+<dialog id="menu" class="modal menu-modal"><div class="modal-header"><div><div class="eyebrow">Au fil de l’eau</div><h2>Menu</h2></div><button class="close" data-close="menu">Pêcher</button></div><nav class="menu-links" aria-label="Navigation du jeu"><button id="equipment-open">Matériel <small>Préparer la prochaine ligne</small></button><button id="collection-open">Carnet <small id="collection-count">0 / 15</small></button><button id="dex-open">FishDex <small>Encyclopédie</small></button><button id="aquarium-open">Aquarium <small>Mes cinq favoris</small></button><button id="shop-open">Boutique <small>Cannes et décorations</small></button><button id="progress-open">Progression <small>Niveaux et badges</small></button><button id="help-open">Réglages et aide <small>Son, qualité et gestes</small></button></nav><p class="modal-footnote">La pêche est en pause tant que ce menu est ouvert.</p></dialog>
+<dialog id="preparation" class="modal"><div class="modal-header"><h2>Mon matériel</h2><button class="close" data-close="preparation">Retour</button></div><p class="intro" id="equipment-summary"></p><h3 class="section-title">Méthode</h3><div class="methods"> <button data-method="float" aria-pressed="true">Flotteur</button><button data-method="lure" aria-pressed="false">Leurre</button><button data-method="bottom" aria-pressed="false">Fond</button></div><h3 class="section-title">Appât</h3><div class="bait-switch"><button data-bait="worm" aria-pressed="true">Ver</button><button data-bait="lure" aria-pressed="false">Petit leurre</button></div><p id="preparation-note" class="intro">Choisissez le point de lancer directement sur l’eau.</p><p class="modal-footnote">Les bordures, les arbres et la profondeur influencent les rencontres. La cible est choisie par votre geste.</p></dialog>
+<dialog id="progression" class="modal"><div class="modal-header"><h2>Ma progression</h2><button class="close" data-close="progression">Retour</button></div><p id="player-progress" class="progress-summary"></p><p id="total-catches" class="intro"></p><div id="progress-badges" class="tools"></div></dialog>
+<dialog id="collection" class="modal"><div class="modal-header"><div><div class="eyebrow">Les souvenirs de l’étang</div><h2>Mon carnet</h2></div><button class="close" data-close="collection" aria-label="Fermer le carnet">Retour</button></div><p class="intro">Chaque nouvelle espèce ouvre une page. Chaque belle prise peut devenir votre record.</p><div id="collection-list" class="collection-list"></div><div class="tools"><button class="secondary" id="export-save">Exporter le carnet</button><button class="secondary" id="import-save">Importer un carnet</button></div><input id="save-file" type="file" accept=".json,application/json" hidden><div id="import-review" hidden><p id="import-description" class="warning-line"></p><button class="secondary" id="confirm-import">Remplacer mon carnet</button><button class="secondary" id="cancel-import">Annuler</button></div><p class="modal-footnote">Votre carnet reste dans ce navigateur. Exportez-le pour le conserver ou le transférer sur un autre appareil.</p></dialog>
+<dialog id="help" class="modal"><div class="modal-header"><h2>Réglages et aide</h2><button class="close" data-close="help" aria-label="Fermer l’aide">Retour</button></div><div class="help-steps"><div class="help-step"><b>01</b><div><strong>Trouvez votre coin.</strong><p>Le ver attire gardons, perches et carpes. Le petit leurre intéresse les perches, brochets et sandres. Changez de poste pour varier les rencontres.</p></div></div><div class="help-step"><b>02</b><div><strong>Gardez un œil sur le bouchon.</strong><p>Lancez, puis attendez la touche. Appuyez sur « Ferrer » dès que le poisson mord.</p></div></div><div class="help-step"><b>03</b><div><strong>Ressentez le combat.</strong><p>Maintenez le bouton pour mouliner. Relâchez quand le poisson tire ou que la tension monte. Si le fil reste détendu trop longtemps, le poisson se décroche.</p></div></div></div><p class="modal-footnote">Sur ordinateur : glissez pour lancer et guider la canne, tournez la molette pour récupérer ; espace peut ferrer. Tous les poissons sont remis à l’eau.</p><div class="setting-row"><span>Son</span><button id="sound" aria-pressed="false">Activer / couper</button></div><div class="setting-row"><span>Qualité graphique</span><button id="quality">Économie mobile</button></div></dialog>
 <dialog id="caught" class="modal catch-modal"><div class="eyebrow" id="catch-heading">Une belle rencontre</div><h2 id="catch-name"></h2><p class="latin" id="catch-latin"></p><canvas class="fish-preview" id="fish-preview" aria-label="Aperçu 3D du poisson capturé"></canvas><p class="warning-line" id="preview-error" hidden>Aperçu indisponible. Votre prise est bien enregistrée.</p><p class="catch-size"><span id="catch-length"></span> <small>cm</small></p><div class="catch-badges" id="catch-badges"></div><p class="catch-description" id="catch-description"></p><button id="release-fish" class="action">Remettre à l’eau</button><p class="modal-footnote">La rencontre reste dans votre carnet.</p></dialog>
 <div class="loading" id="loading"><div class="spinner"></div><h2>Au fil de l’eau</h2><p>Un instant… l’étang se réveille.</p></div>`;
 
 const el = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
 el('app').insertAdjacentHTML('beforeend', `
-<dialog id="encyclopedia" class="modal wide-modal"><div class="modal-header"><div><div class="eyebrow">Les pages de FishDex</div><h2>Encyclopédie</h2></div><button class="close" data-close="encyclopedia" aria-label="Fermer l’encyclopédie">×</button></div><p class="intro">${fishdex.provenance.biologicalGroups} groupes biologiques · ${fishdex.provenance.sourceEntries} fiches avec variétés. ${SPECIES.length} espèces jouables. Les autres sont prévues.</p><div class="filters"><input id="dex-search" type="search" placeholder="Nom, variété ou technique" aria-label="Rechercher un poisson"><select id="dex-category" aria-label="Catégorie"><option value="all">Toutes les eaux</option><option value="paisibles">Paisibles</option><option value="predateurs">Prédateurs</option><option value="eaux-vives">Eaux vives</option></select><select id="dex-state" aria-label="Découvertes"><option value="all">Toutes les fiches</option><option value="playable">Jouables</option><option value="discovered">Découvertes</option><option value="mirage">Variantes Mirage</option></select></div><div id="dex-list"></div><p class="modal-footnote">Référence locale FishDex. La rareté est une règle de rencontre du jeu, distincte de la conservation des espèces.</p></dialog>
-<dialog id="shop" class="modal"><div class="modal-header"><div><div class="eyebrow">Le matériel du bord</div><h2>Boutique</h2></div><button class="close" data-close="shop" aria-label="Fermer la boutique">×</button></div><p class="intro" id="shop-balance"></p><div id="shop-list" class="collection-list"></div><p class="modal-footnote">Monnaie virtuelle gagnée avec vos souvenirs de pêche. Canne et appâts de base réutilisables, toujours disponibles.</p></dialog>`);
-document.querySelector('.topbar')!.insertAdjacentHTML('afterend', '<nav class="travel-nav" aria-label="Explorer le jeu"><button id="dex-open">Encyclopédie</button><button id="shop-open">Boutique</button><button id="aquarium-open">Aquarium</button><span id="player-progress"></span></nav>');
+<dialog id="encyclopedia" class="modal wide-modal"><div class="modal-header"><div><div class="eyebrow">Les pages de FishDex</div><h2>Encyclopédie</h2></div><button class="close" data-close="encyclopedia" aria-label="Fermer l’encyclopédie">Retour</button></div><p class="intro">${fishdex.provenance.biologicalGroups} groupes biologiques · ${fishdex.provenance.sourceEntries} fiches avec variétés. ${SPECIES.length} espèces jouables. Les autres sont prévues.</p><div class="filters"><input id="dex-search" type="search" placeholder="Nom, variété ou technique" aria-label="Rechercher un poisson"><select id="dex-category" aria-label="Catégorie"><option value="all">Toutes les eaux</option><option value="paisibles">Paisibles</option><option value="predateurs">Prédateurs</option><option value="eaux-vives">Eaux vives</option></select><select id="dex-state" aria-label="Découvertes"><option value="all">Toutes les fiches</option><option value="playable">Jouables</option><option value="discovered">Découvertes</option><option value="mirage">Variantes Mirage</option></select></div><div id="dex-list"></div><p class="modal-footnote">Référence locale FishDex. La rareté est une règle de rencontre du jeu, distincte de la conservation des espèces.</p></dialog>
+<dialog id="shop" class="modal"><div class="modal-header"><div><div class="eyebrow">Le matériel du bord</div><h2>Boutique</h2></div><button class="close" data-close="shop" aria-label="Fermer la boutique">Retour</button></div><p class="intro" id="shop-balance"></p><div id="shop-list" class="collection-list"></div><p class="modal-footnote">Monnaie virtuelle gagnée avec vos souvenirs de pêche. Canne et appâts de base réutilisables, toujours disponibles.</p></dialog>`);
 el('collection-list').insertAdjacentHTML('afterend', '<h3 class="section-title">Mes spécimens</h3><p class="intro" id="journal-intro"></p><div id="journal-list" class="journal-list"></div><button class="secondary" id="journal-more" hidden>Souvenirs suivants</button><div id="mastery-list" class="tools"></div>');
 el('catch-length').parentElement!.insertAdjacentHTML('afterend', '<p id="catch-weight" class="intro"></p><p id="catch-reward" class="reward-line"></p><p id="photo-state" class="modal-footnote"></p><button id="favorite-catch" class="secondary">Ajouter aux favoris</button>');
-el('app').insertAdjacentHTML('beforeend', '<dialog id="aquarium" class="modal wide-modal"><div class="modal-header"><div><div class="eyebrow">Une pause sous la surface</div><h2>Mon aquarium</h2></div><button class="close" data-close="aquarium" aria-label="Fermer l’aquarium">×</button></div><canvas id="aquarium-canvas" aria-label="Aquarium 3D de vos cinq favoris"></canvas><p class="intro" id="aquarium-state">Choisissez vos spécimens favoris dans le carnet.</p><div class="filters"><select id="aquarium-choice" aria-label="Choisir un spécimen"></select><button class="secondary" id="aquarium-add">Ajouter</button></div><div id="aquarium-favorites" class="collection-list"></div><h3 class="section-title">L’ambiance du bassin</h3><div class="aquarium-settings"><label>Sol<select id="aq-floor"><option value="sand">Sable clair</option><option value="gravel">Gravier sombre</option></select></label><label>Fond<select id="aq-background"><option value="dawn">Aube</option><option value="night">Nuit</option></select></label><label>Lumière<select id="aq-light"><option value="warm">Chaleureuse</option><option value="cool">Fraîche</option></select></label><label><input id="aq-plants" type="checkbox"> Plantes achetées</label><label><input id="aq-rocks" type="checkbox"> Rochers achetés</label></div><p class="modal-footnote">Cinq individus, leurs robes et leurs gabarits. Aucun entretien ni pénalité d’absence. Les plantes et rochers se trouvent en boutique.</p></dialog>');
-document.querySelector('.spots')!.insertAdjacentHTML('beforebegin', '<div class="methods" aria-label="Méthode de pêche"><button data-method="float" aria-pressed="true">Au flotteur</button><button data-method="lure" aria-pressed="false">Au leurre</button><button data-method="bottom" aria-pressed="false">Au fond</button></div>');
-el('key-hint').insertAdjacentHTML('afterend', '<button id="cancel-cast" class="cancel-cast" hidden>Ramener la ligne · Annuler</button>');
+el('app').insertAdjacentHTML('beforeend', '<dialog id="aquarium" class="modal wide-modal"><div class="modal-header"><div><div class="eyebrow">Une pause sous la surface</div><h2>Mon aquarium</h2></div><button class="close" data-close="aquarium" aria-label="Fermer l’aquarium">Retour</button></div><canvas id="aquarium-canvas" aria-label="Aquarium 3D de vos cinq favoris"></canvas><p class="intro" id="aquarium-state">Choisissez vos spécimens favoris dans le carnet.</p><div class="filters"><select id="aquarium-choice" aria-label="Choisir un spécimen"></select><button class="secondary" id="aquarium-add">Ajouter</button></div><div id="aquarium-favorites" class="collection-list"></div><h3 class="section-title">L’ambiance du bassin</h3><div class="aquarium-settings"><label>Sol<select id="aq-floor"><option value="sand">Sable clair</option><option value="gravel">Gravier sombre</option></select></label><label>Fond<select id="aq-background"><option value="dawn">Aube</option><option value="night">Nuit</option></select></label><label>Lumière<select id="aq-light"><option value="warm">Chaleureuse</option><option value="cool">Fraîche</option></select></label><label><input id="aq-plants" type="checkbox"> Plantes achetées</label><label><input id="aq-rocks" type="checkbox"> Rochers achetés</label></div><p class="modal-footnote">Cinq individus, leurs robes et leurs gabarits. Aucun entretien ni pénalité d’absence. Les plantes et rochers se trouvent en boutique.</p></dialog>');
 const steps = document.querySelectorAll('.help-step');
 steps[0].querySelector('strong')!.textContent = 'Choisissez votre méthode et votre cible.';
-steps[0].querySelector('p')!.textContent = 'Glissez sur l’eau vers le haut, puis relâchez. La distance et la direction du geste règlent le lancer. Une cible hors de l’eau est refusée. Le bouton offre un lancer vers le poste choisi.';
+steps[0].querySelector('p')!.textContent = 'Glissez sur l’eau vers le haut, puis relâchez. La distance et la direction du geste règlent le lancer. Une cible hors de l’eau est refusée. Aucun bouton ne lance à votre place.';
 steps[1].querySelector('strong')!.textContent = 'Observez votre montage.';
-steps[1].querySelector('p')!.textContent = 'Au flotteur, attendez qu’il plonge. Au fond, regardez la pointe de la canne. Au leurre, maintenez le moulinet et glissez pour animer : la récupération déclenche les rencontres. Ferrez dès la touche.';
-steps[2].querySelector('p')!.textContent = 'Le bouchon reste immergé pendant le combat. Glissez sur l’eau pour orienter et relever la canne, et moulinez avec l’autre doigt (ou espace au clavier). Relâchez pendant un départ. Fil détendu : reprenez contact ; fil très tendu : amortissez avec la canne.';
+steps[1].querySelector('p')!.textContent = 'Au flotteur, attendez qu’il plonge. Au fond, regardez la pointe de la canne. Au leurre, tournez le moulinet et glissez pour animer : la récupération déclenche les rencontres. Ferrez dès la touche.';
+steps[2].querySelector('p')!.textContent = 'Le bouchon reste immergé pendant le combat. Suivez le fil avec la canne. Accompagnez un départ en baissant la canne, puis relevez-la pour guider. La commande de canne en bas à gauche oriente dans les quatre directions ; le glissement sur l’eau reste disponible. Un second doigt tourne sur le moulinet à droite ; sur PC, utilisez la molette. Un appui immobile ne récupère pas de fil.';
 let storage: Storage | undefined;
 try { storage = window.localStorage; } catch { /* navigation privée restrictive */ }
 const loaded = storage ? loadSave(storage) : { data: emptySave(), warning: 'Sauvegarde locale indisponible. Pensez à exporter le carnet.' };
@@ -87,6 +74,7 @@ let aquarium: Aquarium | undefined;
 let aquariumRequest = 0;
 let lakeFrames = 0;
 let lastReelSound = 0;
+let lastLineAlert = ''; let alertUntil = 0;
 let viewedSpecimen: Specimen | undefined;
 let liveCatchView = false;
 let journalLimit = 30;
@@ -101,10 +89,11 @@ function saveNow() {
     storageWarningShown = true; toast('Sauvegarde locale impossible. Exportez votre carnet pour le conserver.');
   }
 }
-function openModal(id: string) { release(); cancelGesture(); overlayPaused = true; el<HTMLDialogElement>(id).showModal(); }
+function openModal(id: string) { release(); cancelGesture(); el('line-alert').hidden = true; overlayPaused = true; if (!el<HTMLDialogElement>(id).open) el<HTMLDialogElement>(id).showModal(); }
 function closeModal(id: string) { el<HTMLDialogElement>(id).close(); }
 function refreshCollection() {
-  el('player-progress').textContent = `Niv. ${levelFor(save.xp)} · ${save.coins} écus`;
+  el('player-progress').textContent = `Niveau ${levelFor(save.xp)} · ${save.xp} XP · ${save.coins} écus`;
+  el('equipment-summary').textContent = ITEMS.find(i => i.id === save.equipped)!.name;
   el('collection-count').textContent = `${Object.keys(save.records).length} / ${SPECIES.length}`;
   el('total-catches').textContent = save.total ? `${save.total} rencontre${save.total > 1 ? 's' : ''} · ${Object.keys(save.records).length} espèce${Object.keys(save.records).length > 1 ? 's' : ''}` : 'Aucune prise, tout à découvrir';
   el('collection-list').innerHTML = SPECIES.map((species, i) => {
@@ -117,6 +106,7 @@ function refreshCollection() {
   el('journal-list').innerHTML = captures.map(s => `<article class="specimen-card"><button class="specimen-view" data-specimen="${escape(s.id)}"><div class="photo-placeholder" data-photo="${escape(s.id)}">Souvenir 3D</div><div><strong>${SPECIES.find(f => f.id === s.speciesId)!.name}${s.mirage ? ' · Mirage' : ''}</strong><p>${s.length} cm · ${s.weight.toLocaleString('fr-FR')} kg · ${s.coloration === 'golden' ? 'Reflets dorés' : 'Robe naturelle'}</p><small>${new Date(s.date).toLocaleDateString('fr-FR')} · ${s.method === 'float' ? 'Flotteur' : s.method === 'lure' ? 'Leurre' : 'Fond'}</small></div></button><button class="secondary" data-favorite="${escape(s.id)}" aria-pressed="${save.favorites.includes(s.id)}">${save.favorites.includes(s.id) ? 'Retirer le favori' : 'Favori'}</button></article>`).join('');
   el('journal-more').hidden = save.journal.length <= journalLimit;
   el('mastery-list').innerHTML = save.badges.map(b => `<span class="badge">${BADGES[b as keyof typeof BADGES]}</span>`).join('');
+  el('progress-badges').innerHTML = el('mastery-list').innerHTML || '<p class="intro">Les premières prises ouvriront vos badges.</p>';
   for (const s of captures) void getPhoto(s.id).then(blob => {
     const target = Array.from(document.querySelectorAll<HTMLElement>('[data-photo]')).find(e => e.dataset.photo === s.id);
     if (!blob || !target || !target.isConnected) return;
@@ -166,30 +156,24 @@ function refreshSettings() {
   el('quality').textContent = save.settings.quality === 'eco' ? 'Économie mobile' : 'Qualité élevée';
 }
 function renderPhase() {
-  document.body.dataset.phase = game.phase;
-  const phase = game.phase;
-  const messages = {
-    idle: ['À vous de jouer', 'L’eau vous attend.', 'Glissez vers l’eau : direction et distance. Relâchez pour lancer.', 'Lancer la ligne'],
-    casting: ['La ligne s’envole', 'Juste là…', 'Le bouchon rejoint votre coin de pêche.', 'Lancer en cours…'],
-    waiting: ['À l’écoute de l’eau', 'Un peu de patience.', 'Gardez un œil sur le bouchon. La touche arrive.', 'En attente d’une touche…'],
-    bite: ['Ça mord !', 'À vous de ferrer !', 'Le bouchon plonge. Appuyez maintenant pour accrocher le poisson.', 'Ferrer !'],
-    fighting: ['Le combat commence', 'Gardez le fil.', 'Glissez pour orienter la canne ; moulinez avec l’autre doigt.', 'Maintenir pour mouliner'],
-    caught: ['Une rencontre de plus', 'Bien joué.', 'Votre prise rejoint le carnet.', 'Poisson capturé'],
-    lost: ['Ce n’est que partie remise', 'Il a filé…', game.failure, 'Retenter ma chance'],
-  }[phase];
-  if (phase === 'waiting' && game.method === 'lure') { messages[1] = 'Animez votre leurre.'; messages[2] = 'Maintenez pour récupérer, glissez pour animer. Les pauses arrêtent la récupération.'; messages[3] = 'Maintenir pour récupérer'; }
-  if (phase === 'waiting' && game.method === 'bottom') { messages[1] = 'La ligne repose au fond.'; messages[2] = 'La canne détecte la touche. Observez sa pointe.'; }
-  if (phase === 'bite' && game.method !== 'float') messages[2] = 'La pointe se courbe. Ferrez maintenant.';
-  el('status').textContent = messages[0]; el('instruction').textContent = messages[1]; el('hint').textContent = messages[2]; el('action-label').textContent = messages[3];
-  el<HTMLButtonElement>('action').disabled = ['casting', 'caught'].includes(phase) || phase === 'waiting' && game.method !== 'lure';
-  el('action').classList.toggle('bite', phase === 'bite'); el('progress-ui').hidden = phase !== 'fighting';
-  document.querySelectorAll<HTMLButtonElement>('[data-spot], [data-bait], [data-method]').forEach(button => button.disabled = phase !== 'idle');
+  const phase = game.phase; document.body.dataset.phase = phase;
+  el('prepare-open').hidden = phase !== 'idle';
+  el('strike').hidden = phase !== 'bite';
+  el('reel-control').hidden = !(phase === 'fighting' || phase === 'waiting' && game.method === 'lure');
+  el('rod-control').hidden = el('reel-control').hidden;
+  el('cancel-cast').hidden = !['casting', 'waiting', 'bite'].includes(phase);
+  el('retry').hidden = phase !== 'lost';
+  document.querySelectorAll<HTMLButtonElement>('[data-bait], [data-method]').forEach(b => b.disabled = phase !== 'idle');
   document.querySelectorAll<HTMLElement>('[data-method]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.method === game.method)));
   document.querySelectorAll<HTMLElement>('[data-bait]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.bait === game.bait)));
-  el('cancel-cast').hidden = !['casting', 'waiting', 'bite'].includes(phase);
-  el('water-label').hidden = phase !== 'idle' && phase !== 'waiting';
-  el('water-text').textContent = phase === 'waiting' ? 'Écoutez le calme' : 'Votre coin de pêche';
-  el('key-hint').textContent = phase === 'fighting' ? 'Canne au doigt · Moulinet au second doigt ou avec espace' : game.method === 'lure' && phase === 'waiting' ? 'Glissez pour animer · Espace ou bouton pour récupérer' : 'Glissez sur l’eau · Le bouton lance vers le poste choisi';
+  el('preparation-note').textContent = phase === 'idle' ? 'Le point de lancer se choisit uniquement par glissement sur l’eau.' : 'Ramenez la ligne avant de modifier le montage.';
+  el('fishing-status').textContent = phase === 'bite' ? 'Ça mord. Ferrez.' : phase === 'fighting' ? 'Poisson ferré. Le fil et la canne indiquent sa traction.' : phase === 'waiting' ? game.method === 'lure' ? 'Récupérez et animez le leurre.' : 'Montage en place.' : phase === 'idle' ? 'Prêt à lancer par glissement.' : '';
+}
+let tutorial = 0;
+try { tutorial = Number(storage?.getItem('au-fil-de-leau.gestures.v3') ?? 0); } catch { /* facultatif */ }
+function teach(bit: number, message: string) {
+  if (tutorial & bit) return; tutorial |= bit; toast(message);
+  try { storage?.setItem('au-fil-de-leau.gestures.v3', String(tutorial)); } catch { /* session seulement */ }
 }
 async function showCatch() {
   if (!game.result || !game.fish) return;
@@ -219,7 +203,7 @@ function refreshSpecimenInfo(s: Specimen, reward: boolean) {
   el('catch-reward').textContent = reward ? `+${r.coins} écus · +${r.xp} XP — Photo ${r.base}${r.discovery ? `, découverte +${r.discovery}` : ''}${r.record ? `, record +${r.record}` : ''}` : `${new Date(s.date).toLocaleString('fr-FR')} · ${s.location} · ${s.method === 'float' ? 'Flotteur' : s.method === 'lure' ? 'Leurre' : 'Fond'} · ${ITEMS.find(i => i.id === s.equipment)?.name ?? 'Canne de bordure'}`;
   el('favorite-catch').textContent = save.favorites.includes(s.id) ? 'Retirer des favoris' : 'Ajouter aux favoris';
   el('photo-state').textContent = 'La photo se prépare…';
-  el('release-fish').textContent = reward ? 'Remettre à l’eau' : 'Retour au carnet';
+  el('release-fish').textContent = reward ? 'Remettre à l’eau' : el<HTMLDialogElement>('aquarium').open ? 'Retour à l’aquarium' : 'Retour au carnet';
 }
 async function photograph(s: Specimen, request: number) {
   let blob = await getPhoto(s.id);
@@ -239,62 +223,104 @@ async function showSpecimen(s: Specimen) {
 function phaseChanged() {
   if (game.phase === lastPhase) return;
   lastPhase = game.phase; renderPhase();
-  if (game.phase === 'bite') audio.tone('bite');
+  if (game.phase === 'bite') { audio.tone('bite'); toast('Ça mord ! Ferrez.'); }
+  if (game.phase === 'fighting') { el('toast').hidden = true; teach(2, 'Glissez sur la commande de canne à gauche, ou sur l’eau. Tournez le moulinet à droite avec l’autre doigt ; molette sur PC.'); }
+  if (game.phase === 'lost') toast(game.failure);
   if (game.phase === 'caught') void showCatch();
 }
 function activate() {
   if (!world || overlayPaused || manualPaused) return;
-  void audio.unlock();
-  if (game.phase === 'idle') { game.cast(); audio.tone('cast'); }
-  else if (game.phase === 'bite') game.strike();
-  else if (game.phase === 'lost') game.reset();
-  phaseChanged();
+  if (game.phase === 'bite') { void audio.unlock(); game.strike(); phaseChanged(); }
 }
 let reelPointer: number | undefined;
+let reelPoint: { x: number; y: number } | undefined;
+let reelAngle = 0;
 let gesture: { id: number; x: number; y: number; yaw: number; lift: number; casting: boolean } | undefined;
-function cancelGesture() { gesture = undefined; world?.aim(); }
-function release() { reelPointer = undefined; game.release(); el('action').classList.remove('reeling'); }
-function hold() {
-  if ((game.phase === 'fighting' || game.phase === 'waiting' && game.method === 'lure') && !overlayPaused && !manualPaused) { game.reeling = true; el('action').classList.add('reeling'); void audio.unlock(); }
-}
-el('action').addEventListener('click', activate);
-el('action').addEventListener('pointerdown', event => { if (event.button !== 0) return; reelPointer = event.pointerId; el('action').setPointerCapture(event.pointerId); hold(); });
-for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) el('action').addEventListener(type, release);
-window.addEventListener('pointerup', event => { if (event.pointerId === reelPointer) release(); });
 const canvas = el<HTMLCanvasElement>('world');
-canvas.addEventListener('pointerdown', event => {
-  if (event.button !== 0 || gesture || overlayPaused || manualPaused || !(['idle', 'fighting'].includes(game.phase) || game.phase === 'waiting' && game.method === 'lure')) return;
-  gesture = { id: event.pointerId, x: event.clientX, y: event.clientY, yaw: game.rodYaw, lift: game.rodLift, casting: game.phase === 'idle' };
-  canvas.setPointerCapture(event.pointerId); void audio.unlock();
+const reel = el('reel-control');
+const rodControl = el('rod-control');
+function cancelGesture() {
+  const id = gesture?.id; gesture = undefined; world?.aim();
+  if (id !== undefined && canvas.hasPointerCapture(id)) canvas.releasePointerCapture(id);
+  if (id !== undefined && rodControl.hasPointerCapture(id)) rodControl.releasePointerCapture(id);
+  rodControl.style.setProperty('--stick-x', '0px'); rodControl.style.setProperty('--stick-y', '0px');
+}
+function release() {
+  const id = reelPointer; reelPointer = undefined; reelPoint = undefined; game.release(); reel.classList.remove('reeling');
+  if (id !== undefined && reel.hasPointerCapture(id)) reel.releasePointerCapture(id);
+}
+function canReel() { return !overlayPaused && !manualPaused && (game.phase === 'fighting' || game.phase === 'waiting' && game.method === 'lure'); }
+function turnReel(turns: number) {
+  if (!canReel() || !turns) return;
+  game.reel(turns); reelAngle += turns * 360; reel.style.setProperty('--reel-angle', `${reelAngle}deg`); void audio.unlock();
+}
+el('strike').onclick = activate;
+el('retry').onclick = () => { game.reset(); phaseChanged(); };
+reel.addEventListener('pointerdown', e => {
+  if (e.button !== 0 || reelPointer !== undefined || !canReel()) return;
+  const rect = reel.getBoundingClientRect(); reelPointer = e.pointerId;
+  reelPoint = { x: e.clientX - rect.x - rect.width / 2, y: e.clientY - rect.y - rect.height / 2 };
+  reel.setPointerCapture(e.pointerId);
 });
-canvas.addEventListener('pointermove', event => {
-  if (!gesture || gesture.id !== event.pointerId) return;
-  const dx = event.clientX - gesture.x; const dy = event.clientY - gesture.y;
-  if (gesture.casting) { const aim = aimFromGesture(dx, dy, innerWidth, innerHeight); world?.aim(aim); el('hint').textContent = aim.valid ? `Cible à ${Math.round(Math.hypot(aim.point.x, aim.point.z))} m · ${aim.depth} m de fond` : aim.reason; }
-  else game.orient(gesture.yaw + dx / innerWidth * 3.5, gesture.lift - dy / innerHeight * 3);
+reel.addEventListener('pointermove', e => {
+  if (e.pointerId !== reelPointer || !reelPoint) return;
+  const rect = reel.getBoundingClientRect(); const next = { x: e.clientX - rect.x - rect.width / 2, y: e.clientY - rect.y - rect.height / 2 };
+  turnReel(circularTurns(reelPoint, next)); reelPoint = next;
 });
-canvas.addEventListener('pointerup', event => {
-  if (!gesture || gesture.id !== event.pointerId) return;
+for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) reel.addEventListener(type, e => { if ((e as PointerEvent).pointerId === reelPointer) release(); });
+window.addEventListener('pointerup', e => { if (e.pointerId === reelPointer) release(); });
+rodControl.addEventListener('pointerdown', e => {
+  if (e.button !== 0 || gesture || !canReel()) return;
+  gesture = { id: e.pointerId, x: e.clientX, y: e.clientY, yaw: game.rodYaw, lift: game.rodLift, casting: false };
+  rodControl.setPointerCapture(e.pointerId); void audio.unlock();
+});
+rodControl.addEventListener('pointermove', e => {
+  if (!gesture || gesture.id !== e.pointerId || !rodControl.hasPointerCapture(e.pointerId)) return;
+  const dx = e.clientX - gesture.x, dy = e.clientY - gesture.y;
+  // Une excursion de 32 px donne l’amplitude complète, sans répétition automatique.
+  game.orient(gesture.yaw + dx / 32, gesture.lift - dy / 64);
+  const radius = Math.hypot(dx, dy), scale = radius > 22 ? 22 / radius : 1;
+  rodControl.style.setProperty('--stick-x', `${dx * scale}px`); rodControl.style.setProperty('--stick-y', `${dy * scale}px`);
+});
+for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) rodControl.addEventListener(type, e => {
+  if ((e as PointerEvent).pointerId === gesture?.id) cancelGesture();
+});
+canvas.addEventListener('pointerdown', e => {
+  if (e.button !== 0 || gesture || overlayPaused || manualPaused) return;
+  if (game.phase === 'bite') { activate(); return; }
+  if (game.phase === 'lost') { game.reset(); phaseChanged(); }
+  if (!(['idle', 'fighting'].includes(game.phase) || game.phase === 'waiting' && game.method === 'lure')) return;
+  gesture = { id: e.pointerId, x: e.clientX, y: e.clientY, yaw: game.rodYaw, lift: game.rodLift, casting: game.phase === 'idle' };
+  canvas.setPointerCapture(e.pointerId); void audio.unlock();
+});
+canvas.addEventListener('pointermove', e => {
+  if (!gesture || gesture.id !== e.pointerId) return;
+  const dx = e.clientX - gesture.x, dy = e.clientY - gesture.y;
+  if (gesture.casting) world?.aim(aimFromGesture(dx, dy, innerWidth, innerHeight));
+  else game.orient(gesture.yaw + dx / (Math.min(600, innerWidth) * 0.28), gesture.lift - dy / (Math.min(600, innerHeight) * 0.35));
+});
+canvas.addEventListener('pointerup', e => {
+  if (!gesture || gesture.id !== e.pointerId) return;
   if (gesture.casting) {
-    const aim = aimFromGesture(event.clientX - gesture.x, event.clientY - gesture.y, innerWidth, innerHeight);
-    if (aim.valid && game.cast(aim.point)) { audio.tone('cast'); phaseChanged(); el('spot-name').textContent = SPOTS.find(s => s.id === game.spot)!.name; }
+    const aim = aimFromGesture(e.clientX - gesture.x, e.clientY - gesture.y, innerWidth, innerHeight);
+    if (aim.valid && game.cast(aim.point)) { audio.tone('cast'); phaseChanged(); }
     else toast(aim.reason);
   }
   cancelGesture();
 });
-for (const type of ['pointercancel', 'lostpointercapture']) canvas.addEventListener(type, cancelGesture);
-window.addEventListener('resize', cancelGesture);
-window.addEventListener('keydown', event => {
-  if (event.code !== 'Space' || event.repeat || event.target instanceof HTMLInputElement || overlayPaused || manualPaused) return;
-  if (event.target instanceof HTMLElement && event.target.closest('button') && event.target !== el('action')) return;
-  event.preventDefault(); if (game.phase === 'fighting' || game.phase === 'waiting' && game.method === 'lure') hold(); else activate();
+for (const type of ['pointercancel', 'lostpointercapture']) canvas.addEventListener(type, e => { if ((e as PointerEvent).pointerId === gesture?.id) cancelGesture(); });
+window.addEventListener('resize', () => { release(); cancelGesture(); });
+window.addEventListener('wheel', e => {
+  if (!canReel() || !(e.target === canvas || (e.target as HTMLElement).closest?.('#reel-control'))) return;
+  e.preventDefault(); turnReel(wheelTurns(e.deltaY || e.deltaX, e.deltaMode));
+}, { passive: false });
+window.addEventListener('keydown', e => {
+  if (e.code !== 'Space' || e.repeat || overlayPaused || manualPaused || (e.target as HTMLElement).closest?.('input,select,button')) return;
+  e.preventDefault(); activate();
 });
-window.addEventListener('keyup', event => { if (event.code === 'Space') { event.preventDefault(); release(); } });
-document.querySelectorAll<HTMLButtonElement>('[data-spot]').forEach(button => button.addEventListener('click', () => {
-  game.setSpot(button.dataset.spot as SpotId);
-  document.querySelectorAll<HTMLElement>('[data-spot]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.spot === game.spot)));
-  el('spot-name').textContent = SPOTS.find(s => s.id === game.spot)!.name;
-}));
+el('menu-open').onclick = () => openModal('menu');
+el('prepare-open').onclick = el('equipment-open').onclick = () => { renderPhase(); openModal('preparation'); };
+el('progress-open').onclick = () => { refreshCollection(); openModal('progression'); };
 document.querySelectorAll<HTMLButtonElement>('[data-bait]').forEach(button => button.addEventListener('click', () => {
   game.setBait(button.dataset.bait as BaitId);
   document.querySelectorAll<HTMLElement>('[data-bait]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.bait === game.bait)));
@@ -389,18 +415,22 @@ try {
       accumulator += dt;
       while (accumulator >= 1 / 60) { game.update(1 / 60); phaseChanged(); accumulator -= 1 / 60; }
     } else accumulator = 0;
-    if (game.phase === 'fighting') {
-      const tension = Math.round(game.tension * 100); const progress = Math.round(game.progress * 100);
-      el('tension-label').textContent = `${tension} %`; el('tension-pointer').style.left = `${Math.max(1, Math.min(99, tension))}%`;
-      el('tension-meter').setAttribute('aria-valuenow', String(tension)); el('catch-meter').setAttribute('aria-valuenow', String(progress));
-      el('distance-fill').style.width = `${progress}%`; el('fight-note').textContent = tension >= 85 ? 'Attention à la casse ! Relâchez et relevez la canne.' : tension < 5 ? 'Le fil est mou : reprenez contact au moulinet.' : game.pulling ? 'Il tire ! Relâchez pour protéger le fil.' : 'Il se calme. C’est le moment de mouliner.';
-    }
+    reel.classList.toggle('reeling', game.reeling);
+    if (game.phase === 'fighting' && !overlayPaused && !manualPaused) {
+      const angle = Math.round(Math.atan2(game.fishPosition.x, game.fishPosition.z + 1) * 180 / Math.PI);
+      // Équivalent non visuel du fil pour les lecteurs d’écran ; aucune jauge à l’écran.
+      canvas.setAttribute('aria-description', `Fil à ${angle} degrés, tension ${Math.round(game.tension * 100)} pour cent.`);
+      const danger = game.tension > 0.85 ? 'Fil trop tendu' : game.tension < 0.04 ? 'Contact perdu' : '';
+      if (danger && danger !== lastLineAlert && now > alertUntil + 2000) { el('line-alert').textContent = danger; el('line-alert').hidden = false; alertUntil = now + 1800; }
+      lastLineAlert = danger;
+    } else if (game.phase !== 'fighting') { canvas.removeAttribute('aria-description'); el('line-alert').hidden = true; }
+    if (now > alertUntil) el('line-alert').hidden = true;
     if (!overlayPaused && !manualPaused && now - lastRender >= (save.settings.quality === 'eco' ? 1000 / 30 : 0)) {
       world!.update((now - lastRender) / 1000 > 0.1 ? 1 / 30 : (now - lastRender) / 1000, game);
       world!.scene.render(); lakeFrames++; lastRender = now;
     }
   });
-  world.scene.executeWhenReady(() => { el('loading').hidden = true; document.body.dataset.ready = 'true'; if (loaded.warning) toast(loaded.warning); });
+  world.scene.executeWhenReady(() => { el('loading').hidden = true; document.body.dataset.ready = 'true'; if (loaded.warning) toast(loaded.warning); else teach(1, 'Glissez sur l’eau puis relâchez pour lancer. Votre matériel se prépare dans le menu.'); });
   el<HTMLCanvasElement>('world').addEventListener('webglcontextlost', () => { pauseManually(); toast('Le rendu 3D a été interrompu. Rechargez la page si l’image ne revient pas.'); });
 } catch (error) {
   console.error(error);
@@ -411,7 +441,7 @@ try {
 if (import.meta.env.DEV && import.meta.env.VITE_E2E === '1') {
   Object.assign(window, { __fishingQA: {
     pauseSimulation: () => { qaSimulationPaused = true; },
-    snapshot: () => ({ phase: game.phase, tension: game.tension, progress: game.progress, reeling: game.reeling, pulling: game.pulling, total: save.total, paused: manualPaused || overlayPaused, target: game.target, yaw: game.rodYaw, lift: game.rodLift, aquarium: aquarium?.diagnostics(), engines: Engine.Instances.length, lakeFrames, meshes: world?.scene.getActiveMeshes().length }),
-    advance: (seconds: number, mode?: 'smart') => { for (let i = 0; i < seconds * 60; i++) { if (mode === 'smart') game.reeling = game.tension < (game.pulling ? 0.35 : 0.65); game.update(1 / 60); phaseChanged(); if (['caught', 'lost', 'bite'].includes(game.phase)) break; } },
+    snapshot: () => ({ phase: game.phase, tension: game.tension, progress: game.progress, reeling: game.reeling, pulling: game.pulling, total: save.total, paused: manualPaused || overlayPaused, direction: game.direction, reelSpeed: game.reelSpeed, alignment: game.alignment, rodTip: world?.rodTipOnScreen(), target: game.target, yaw: game.rodYaw, lift: game.rodLift, aquarium: aquarium?.diagnostics(), engines: Engine.Instances.length, lakeFrames, meshes: world?.scene.getActiveMeshes().length }),
+    advance: (seconds: number, mode?: 'smart') => { for (let i = 0; i < seconds * 60; i++) { if (mode === 'smart') { game.orient(game.direction, game.pulling ? 0.20 : 0.68); game.reel((game.pulling ? 0.1 : 1.6) / 60); } game.update(1 / 60); phaseChanged(); if (['caught', 'lost', 'bite'].includes(game.phase)) break; } },
   } });
 }

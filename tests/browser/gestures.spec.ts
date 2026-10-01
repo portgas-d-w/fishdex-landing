@@ -1,21 +1,15 @@
-import { test, expect } from '@playwright/test';
-test('Glissement réel, refus, interruption et deux commandes indépendantes', async ({ page }) => {
-  await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
-  await page.evaluate(() => (window as any).__fishingQA.pauseSimulation());
-  const errors: string[] = []; page.on('pageerror', e => errors.push(e.message));
-  const canvas = page.locator('#world');
-  await page.mouse.move(170, 420); await page.mouse.down(); await page.mouse.move(190, 310);
-  await canvas.dispatchEvent('pointercancel', { pointerId: 1 }); await page.mouse.up();
-  await expect(page.locator('body')).toHaveAttribute('data-phase', 'idle');
-  await page.mouse.move(180, 410); await page.mouse.down(); await page.mouse.move(185, 408); await page.mouse.up();
-  await expect(page.locator('#toast')).toContainText('Glissez');
-  await page.mouse.move(180, 410); await page.mouse.down(); await page.mouse.move(200, 280); await page.mouse.up();
-  await expect(page.locator('body')).toHaveAttribute('data-phase', 'casting');
-  await page.evaluate(() => (window as any).__fishingQA.advance(10)); await page.locator('#action').click();
-  await page.keyboard.down('Space');
-  await page.mouse.move(180, 360); await page.mouse.down(); await page.mouse.move(240, 320); await page.mouse.up();
-  expect(await page.evaluate(() => (window as any).__fishingQA.snapshot().reeling)).toBe(true);
-  await page.keyboard.up('Space');
-  expect(await page.evaluate(() => (window as any).__fishingQA.snapshot().reeling)).toBe(false);
-  expect(errors).toEqual([]);
+import {test,expect} from '@playwright/test';
+import {castByGesture} from './helpers';
+test('Gestes courts, hors eau, diagonaux, annulés et redimensionnement',async({page},info)=>{
+ await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());
+ const w=page.viewportSize()!.width,h=page.viewportSize()!.height;const canvas=page.locator('#world');
+ await page.keyboard.press('Space');await expect(page.locator('body')).toHaveAttribute('data-phase','idle');
+ for(const [dx,dy] of [[4,-3],[w*.4,-h*.15],[0,-h*.5]]){
+  await page.mouse.move(w*.4,h*.6);await page.mouse.down();await page.mouse.move(w*.4+dx,h*.6+dy);await page.mouse.up();await expect(page.locator('body')).toHaveAttribute('data-phase','idle');
+ }
+ await page.mouse.move(w*.4,h*.6);await page.mouse.down();await page.mouse.move(w*.45,h*.47);await canvas.dispatchEvent('pointercancel',{pointerId:1});await page.mouse.up();await expect(page.locator('body')).toHaveAttribute('data-phase','idle');
+ await page.setViewportSize({width:844,height:390});await page.waitForTimeout(400);await page.screenshot({path:`test-results/immersion-${info.project.name}-landscape.png`});
+ await page.locator('#menu-open').click();await page.locator('#equipment-open').click();await expect(page.locator('[data-method="lure"]')).toBeVisible();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.locator('[data-close="preparation"]').click();await page.locator('[data-close="menu"]').click();
+ await castByGesture(page);await expect(page.locator('body')).toHaveAttribute('data-phase','casting');
 });

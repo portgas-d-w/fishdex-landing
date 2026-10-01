@@ -1,12 +1,14 @@
-# Au fil de l’eau — 0.2.0
+# Au fil de l’eau — 0.3.0
 
 Jeu de pêche 3D solo pour navigateur mobile, Babylon.js + TypeScript + Vite. Nom, décor et équilibrage provisoires. Sans compte, paiement, backend ni clé API.
 
 ## Jouer et reprendre
 
-Production : [www.fishdex.fr](https://www.fishdex.fr), projet existant fishdex-landing. État de la publication 0.2 : docs/VERCEL.md et RELAIS_PROJET.md. Le jeu remplace la landing autorisée ; le projet FishDex de référence reste inchangé.
+Production : [www.fishdex.fr](https://www.fishdex.fr), projet existant fishdex-landing. État de la publication 0.3 : docs/VERCEL.md et RELAIS_PROJET.md. Le jeu remplace la landing autorisée ; le projet FishDex de référence reste inchangé.
 
-Glisser sur l’eau puis relâcher pour lancer. Pendant le combat, orienter la canne sur l’eau et maintenir le bouton avec un second doigt pour mouliner ; souris et espace sur PC. Trois méthodes : attente au flotteur, récupération/animation du leurre, pêche au fond. Choix rapides de poste et bouton de lancer également disponibles.
+Glisser sur l’eau puis relâcher pour lancer, avec cible/trajectoire et refus hors eau/portée. Aucun bouton de lancer automatique. En combat : deux commandes rondes en bas, canne à gauche (glissement dans les quatre directions), moulinet à droite (second doigt en cercle). Le glissement sur l’eau continue aussi à orienter la canne. Sur PC : glissement de souris et molette simultanés. Un appui immobile ne récupère rien ; espace peut ferrer uniquement. Suivre le fil, abaisser la canne lors des départs, puis relever pour guider. Aucun panneau de combat ni jauge ; la canne et le fil montrent la traction.
+
+Menu compact : matériel, carnet/FishDex, aquarium, boutique, progression et réglages. Les écrans ont un retour ; le menu suspend le combat et bloque les gestes de scène. Hors combat, accès Matériel direct. Trois méthodes effectives : flotteur, leurre animé/récupéré et fond.
 
 Quinze espèces du pack, carnet individuel avec photos, records, robes et Mirage. Encyclopédie issue des fichiers FishDex : 96 fiches regroupées en 59 binômes déclarés, contenus non jouables indiqués prévus. XP, badges, écus et boutique de trois cannes/deux décorations. Aquarium personnalisable avec cinq spécimens favoris, nage procédurale provisoire et fiches personnelles.
 
@@ -31,7 +33,7 @@ npm run dev
 | npm run preview | Servir dist localement après build |
 | npm run test:smoke | Vraie partie sur build servi, sans QA ; GAME_URL pour cible distante |
 
-Exécuter E2E et smoke successivement. Derniers résultats : 19 tests de logique, 20 E2E réussis (2 ignorés selon viewport), smoke local 6/6. Validation distante dans docs/VERCEL.md. Les mesures Chromium logiciel de ce PC (~22–24 FPS eco) ne valident pas les 30 FPS sur iPhone 14 Pro ; Safari, chauffe et autonomie restent à tester sur appareil.
+Exécuter E2E et smoke successivement. Derniers résultats : 23 tests de logique, 20 E2E réussis (2 ignorés selon viewport), smoke local 6/6. Validation distante dans docs/VERCEL.md. Les mesures Chromium logiciel de ce PC (~22–24 FPS eco) ne valident pas les 30 FPS sur iPhone 14 Pro ; Safari, chauffe et autonomie restent à tester sur appareil.
 
 ## Organisation et ressources
 

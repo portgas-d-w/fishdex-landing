@@ -1,3 +1,4 @@
+import { openMenuPage } from './helpers';
 import { test, expect } from '@playwright/test';
 import { writeFile } from 'node:fs/promises';
 import { SPECIES } from '../../src/game/catalog';
@@ -9,7 +10,7 @@ test('Mesures de rendu local et suspension réelle de l’étang derrière le ba
   const a = await page.evaluate(() => ({ at: performance.now(), ...(window as any).__fishingQA.snapshot() })); await page.waitForTimeout(3000);
   const b = await page.evaluate(() => ({ at: performance.now(), ...(window as any).__fishingQA.snapshot() }));
   expect(b.lakeFrames).toBeGreaterThan(a.lakeFrames);
-  await page.locator('#aquarium-open').click(); await expect(page.locator('#aquarium-canvas')).toHaveAttribute('data-loaded', 'true');
+  await openMenuPage(page, 'aquarium-open'); await expect(page.locator('#aquarium-canvas')).toHaveAttribute('data-loaded', 'true');
   const c = await page.evaluate(() => ({ at: performance.now(), ...(window as any).__fishingQA.snapshot() })); await page.waitForTimeout(3000);
   const d = await page.evaluate(() => ({ at: performance.now(), ...(window as any).__fishingQA.snapshot() }));
   expect(d.lakeFrames).toBe(c.lakeFrames); expect(d.aquarium.frames).toBeGreaterThan(c.aquarium.frames);

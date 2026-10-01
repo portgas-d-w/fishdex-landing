@@ -1,5 +1,14 @@
 # Vercel — migration de FishDex vers Au fil de l’eau
 
+## Correction immersive 0.3 — publication en cours
+
+Cible revérifiée par CLI 62.0.0 : portgas-d-ws-projects/fishdex-landing, prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, Node 24, Vite, npm ci/build/dist ; même dépôt et main. Publication via intégration Git après preview protégée vérifiée. Aucun changement de domaines/protection.
+
+Local : npm run check (23 tests), E2E 20/20 + 11 ciblés après cadrage, smoke final sans QA 6/6 (1,2 min). Bundle index-CX0qA7ip.js SHA256 104b4e5a1ad703ddfec262791acc566b443fb6acbb52817494c8851d9eb3406e.
+
+Retour 0.2 conservé avant mise en production : tag archive/au-fil-de-leau-before-immersion-2026-10-01, base 8b2ea0f4806b396cfc24aa32f3489360b5abad11. Déploiement antérieur READY : https://fishdex-landing-6tlapyvw9-portgas-d-ws-projects.vercel.app, dpl_BXmZ3LgpdKPrkZjDs9uegmFfVPGy. Même sauvegarde v2 ; ancien FishDex et retour 0.1 restent conservés ci-dessous.
+
+
 ## Mission autonome 0.2.0 — 1 octobre 2026
 
 Cible et liaison revérifiées : `portgas-d-ws-projects/fishdex-landing`, même ID, dépôt et main, Vite/Node 24/npm ci/dist. Aucun domaine ni paramètre de protection modifié.

@@ -17,11 +17,15 @@ test('Une cible refusée conserve l’état ; les coordonnées choisissent l’h
   assert.equal(game.cast({ x: 4.2, z: 8.5 }), true);
   assert.deepEqual(game.target, { x: 4.2, z: 8.5 }); assert.equal(game.spot, 'willow');
 });
-test('L’orientation influence récupération et amortissement', () => {
-  const make = (yaw: number, lift: number) => {
-    const g = new FishingGame(() => 0); g.cast(); g.phase = 'bite'; g.strike(); g.orient(yaw, lift); g.reeling = true;
-    for (let i = 0; i < 180; i++) g.update(1 / 60); return g;
+test('La même traction exige de suivre le fil : récupération et tension changent', () => {
+  const make = (follow: boolean) => {
+    const g = new FishingGame(() => 0); g.cast(); g.phase = 'bite'; g.strike();
+    for (let i = 0; i < 600; i++) {
+      g.orient(follow ? g.direction : -1, g.pulling ? 0.2 : 0.68);
+      g.reel((g.pulling ? 0.1 : 1.6) / 60); g.update(1 / 60);
+    } return g;
   };
-  const aligned = make(0, 0.8); const wrong = make(-1, 0);
-  assert.notEqual(aligned.progress, wrong.progress); assert.ok(aligned.tension < wrong.tension);
+  const aligned = make(true), wrong = make(false);
+  assert.ok(aligned.progress > wrong.progress + 0.25);
+  assert.ok(aligned.tension < wrong.tension);
 });

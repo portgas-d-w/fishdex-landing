@@ -1,8 +1,18 @@
 # RELAIS PROJET — Codex ↔ Claude Code
 
-**Dernière mise à jour : 1 octobre 2026. Agent : Codex. Version : 0.2.0 publiée et vérifiée sur https://www.fishdex.fr.**
+**Dernière mise à jour : 1 octobre 2026. Agent : Codex. Version : 0.3.0 en vérification ; production encore 0.2.0.**
 
-## État actuel prioritaire — mission autonome du 1 octobre
+## Priorité actuelle — correction immersive autorisée
+
+Branche `codex/peche-immersive`, base propre `8b2ea0f`. Node 24.15.0, npm ci réussi sans vulnérabilité. Interface remplacée : scène entière, Menu et Matériel compacts ; fonctions conservées derrière des modales avec retours. Aucun bouton ni poste automatique pour lancer. Canne glissée + moulinet circulaire tactile/molette PC ; un appui immobile ne récupère rien. Règles indépendantes dans combat.ts/reeling.ts : orientation, hauteur, résistance et départs déterminent récupération, contact et tension. Sauvegarde v2 et photos conservées.
+
+Étape implémentation vérifiée : npm run check réussi (23 tests, TypeScript, build). Correction complémentaire validée par image utilisateur : deux commandes rondes en bas, canne à gauche / moulinet à droite, sans jauge ni état du poisson. Glissement court sur la commande de canne, glissement de scène conservé, deux doigts indépendants ; référence appliquée en CSS/SVG local. Retour de fiche adapté à aquarium/carnet. Smoke intermédiaire : quatre tests réussis ; les deux captures réelles ont eu lieu mais le test attendait ensuite une visibilité du body sans hauteur (scène fixée), attente incorrecte corrigée. Smoke local 6/6 (1,5 min), E2E complet 20 réussis / 2 ignorés (4,3 min). Inspection : canne parfois hors cadre à forte orientation mobile ; cadrage adaptatif appliqué et revalidé par npm run check. Après cadrage : 11 ciblés réussis / 1 ignoré (1,1 min), quatre orientations extrêmes/projection, commandes et paysage ; smoke final local 6/6 (1,2 min). Images avant/après et comparaison reproductible dans docs/INTERFACE_COMBAT.md. Comparaison quinze scénarios avec même moulinage et meilleure canne : canne fixe 0/15, suivi 15/15. Aucun déploiement encore.
+
+
+Prochaine étape : publier la branche en preview Git, smoke protégé puis main/production seulement après réussite. Application locale vérifiée, bundle index-CX0qA7ip.js SHA256 104b4e5a1ad703ddfec262791acc566b443fb6acbb52817494c8851d9eb3406e. Aucun test iPhone physique. Les sections suivantes décrivent la livraison précédente.
+
+
+## Historique 0.2 — mission autonome du 1 octobre
 
 La mission explicite P0–P4 autorise économie virtuelle, aquarium, extension et publication après vérification. Les sections 0.1 ci-dessous sont l’historique initial, pas l’état fonctionnel actuel. Branche `codex/mission-autonome-2026-10-01` ; FishDex de référence conservé en lecture seule.
 

@@ -1,3 +1,4 @@
+import { openMenuPage } from './helpers';
 import { test, expect } from '@playwright/test';
 import { emptySave, recordCatch } from '../../src/game/save';
 import { SPECIES } from '../../src/game/catalog';
@@ -7,18 +8,18 @@ test('Spécimens, photo locale, boutique, filtres et export sans doubler les gai
   for (let i = 0; i < 5; i++) recordCatch(seed, { id: `known-${i}`, speciesId: 'roach', length: 20 + i, date: '2026-10-01T10:00:00Z' });
   await page.addInitScript(data => { if (!localStorage.getItem('au-fil-de-leau.save.v1')) localStorage.setItem('au-fil-de-leau.save.v1', JSON.stringify(data)); }, seed);
   await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
-  await page.locator('#shop-open').click(); await page.locator('[data-buy="balanced"]').click(); await page.locator('[data-equip="balanced"]').click();
+  await openMenuPage(page, 'shop-open'); await page.locator('[data-buy="balanced"]').click(); await page.locator('[data-equip="balanced"]').click();
   await expect(page.locator('#shop-balance')).toContainText('Canne souple'); await page.screenshot({ path: `test-results/${info.project.name}-shop.png` });
-  await page.locator('[data-close="shop"]').click(); await page.locator('#collection-open').click();
+  await page.locator('[data-close="shop"]').click(); await openMenuPage(page, 'collection-open');
   await expect(page.locator('.specimen-card')).toHaveCount(5); await page.locator('[data-favorite="known-0"]').click();
   await page.locator('[data-specimen="known-0"]').click(); await expect(page.locator('#fish-preview')).toHaveAttribute('data-loaded', 'true');
   await expect(page.locator('#photo-state')).toContainText('Photo conservée'); await page.locator('#release-fish').click();
   await page.locator('[data-close="collection"]').click(); await page.reload(); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
   const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!));
   expect(stored.total).toBe(5); expect(stored.xp).toBe(seed.xp); expect(stored.coins).toBe(seed.coins - 70); expect(stored.equipped).toBe('balanced'); expect(stored.favorites).toEqual(['known-0']);
-  await page.locator('#collection-open').click(); await expect(page.locator('[data-photo="known-0"] img')).toBeVisible();
+  await openMenuPage(page, 'collection-open'); await expect(page.locator('[data-photo="known-0"] img')).toBeVisible();
   await page.screenshot({ path: `test-results/${info.project.name}-journal.png` }); await page.locator('[data-close="collection"]').click();
-  await page.locator('#dex-open').click(); await page.locator('#dex-state').selectOption('playable'); await expect(page.locator('.dex-card')).toHaveCount(SPECIES.length);
+  await openMenuPage(page, 'dex-open'); await page.locator('#dex-state').selectOption('playable'); await expect(page.locator('.dex-card')).toHaveCount(SPECIES.length);
   await page.locator('#dex-search').fill('gardon'); await expect(page.locator('.dex-card')).toHaveCount(1); await page.locator('.dex-card summary').click();
   await page.screenshot({ path: `test-results/${info.project.name}-encyclopedia.png` }); expect(errors).toEqual([]);
 });

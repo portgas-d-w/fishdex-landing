@@ -23,6 +23,11 @@
 | 2026-10-01 | 96 fiches FishDex, 59 binômes déclarés, 15 espèces du pack jouables | Contenu réel inspecté, variétés et ressources absentes marquées prévues |
 | 2026-10-01 | Trois méthodes effectives, nage procédurale provisoire | Flotteur, récupération du leurre, fond ; aucun rig livré dans les 50 FBX |
 
+| 2026-10-01 | Correction 0.3 : scène entière, menu en pause, lancer par geste uniquement | Demande explicite ; fonctions et sauvegardes conservées |
+| 2026-10-01 | Deux commandes rondes selon image utilisateur : canne glissée à gauche, moulinet circulaire à droite | Précision utilisateur pendant exécution ; aucun état du poisson ni jauge |
+| 2026-10-01 | Orientation et hauteur déterminent récupération, contact et tension ; tours par mouvement | Supprime le maintien/relâchement dominant ; comparaison contrôlée documentée |
+| 2026-10-01 | Sauvegarde v2 inchangée, conseils par clé locale distincte | Aucun risque de migration inutile ; photos et récompenses préservées |
+
 La plaisance du combat, la direction artistique et la longévité de la boucle
 doivent encore être validées par l’utilisateur. Ne pas confondre un prototype
 fonctionnel avec un jeu prêt à diffuser largement.

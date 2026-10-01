@@ -1,6 +1,6 @@
 import { Engine } from '@babylonjs/core/Engines/engine';
 import { Scene } from '@babylonjs/core/scene';
-import { Vector3 } from '@babylonjs/core/Maths/math.vector';
+import { Matrix, Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
 import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
 import { HemisphericLight } from '@babylonjs/core/Lights/hemisphericLight';
@@ -34,6 +34,12 @@ export class LakeWorld {
   private trajectory!: ReturnType<typeof MeshBuilder.CreateLines>;
   private rodPath = Array.from({ length: 9 }, (_, i) => new Vector3(1.4, 0.8 + i * 0.16, -5.7 + i * 0.56));
   private random() { this.seed = (1664525 * this.seed + 1013904223) >>> 0; return this.seed / 4294967296; }
+
+  rodTipOnScreen() {
+    const width = this.engine.getRenderWidth(), height = this.engine.getRenderHeight();
+    const point = Vector3.Project(this.rodPath[8], Matrix.Identity(), this.scene.getTransformMatrix(), this.camera.viewport.toGlobal(width, height));
+    return { x: point.x / width, y: point.y / height };
+  }
 
   constructor(canvas: HTMLCanvasElement, quality: 'eco' | 'high') {
     this.engine = new Engine(canvas, true, { preserveDrawingBuffer: false, stencil: false, powerPreference: 'low-power' });
@@ -211,10 +217,13 @@ export class LakeWorld {
     this.bobber.setEnabled(show && game.method === 'float'); this.line.setEnabled(false); this.thickLine.setEnabled(show);
     this.lure.setEnabled(show && game.method === 'lure' && game.phase !== 'fighting');
     const fighting = game.phase === 'fighting';
-    const base = new Vector3(1.4, 0.8, -5.7);
+    // L’amplitude visuelle suit le champ horizontal : la pointe reste visible en portrait.
+    // Les règles gardent la même orientation et les mêmes forces sur tous les formats.
+    const framing = Math.min(1, this.engine.getAspectRatio(this.camera));
+    const base = new Vector3(1.4 * framing ** 1.5, 0.8, -5.7);
     this.rodPath = Array.from({ length: 9 }, (_, i) => {
       const t = i / 8;
-      return base.add(new Vector3((game.rodYaw * 3 - 0.1) * t + (fighting ? game.direction * game.tension * t * t * 0.7 : 0),
+      return base.add(new Vector3((game.rodYaw * 3 * framing ** 2 - 0.1 * framing) * t + (fighting ? game.direction * game.tension * t * t * 0.7 * framing : 0),
         (0.8 + game.rodLift * 2.3) * t - (fighting ? game.tension * t * t * 1.1 : game.phase === 'bite' ? (0.35 + Math.sin(this.time * 12) * 0.12) * t * t : 0), 4.5 * t));
     });
     MeshBuilder.CreateTube('moving-rod', { path: this.rodPath, instance: this.rod }, this.scene);

@@ -1,0 +1,13 @@
+{
+  "platform": "win32",
+  "renderer": "Chromium headless, ANGLE SwiftShader, qualité eco",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "lakeFps": 23.2,
+  "aquariumFps": 22.2,
+  "activeLakeMeshes": 20,
+  "lakeFramesDuringAquarium": 0,
+  "note": "Échantillons de 3 secondes sur PC Windows ; aucune certification iPhone ni mesure de chauffe."
+}

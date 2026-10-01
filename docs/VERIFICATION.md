@@ -103,3 +103,18 @@ Les tests de logique couvrent cible/refus, orientation, casse/décrochage, captu
 Préproduction Git b77a4ee : smoke protégé **6/6 (1,2 min)** sur URL exacte dans VERCEL.md. Même scénarios sans QA que le build local. OIDC uniquement pour l’origine de preview, aucune trace contenant le token ; captures de preview conservées. Première fiche et aquarium effectivement visibles.
 
 Production main affa933 : **smoke public 6/6 (1,1 min)** sur www.fishdex.fr sans OIDC. Captures bureau et mobile inspectées, HTTP 200 et redirection domaine nu confirmés. Bundle principal et manifeste servis correspondent au build vérifié. URL/ID exacts dans VERCEL.md. Clôture documentaire uniquement ; contrôle READY et identité des fichiers de l’application après le dernier push, sans répéter des combats déjà validés quand aucune source applicative ne change.
+
+
+## Correction immersive 0.3 — 1 octobre 2026
+
+Node 24.15.0, npm ci sans vulnérabilité. npm run check : 23 tests, TypeScript strict et build réussis. Bundle index-CX0qA7ip.js (1 673,42 Ko brut / 405,42 Ko gzip) ; avertissement Vite de taille >900 Ko conservé, aucune erreur de compilation.
+
+E2E complet : 20 réussis / 2 ignorés selon viewport (4,3 min). Après correction du cadrage mobile : 11 ciblés réussis / 1 ignoré (1,1 min). Quatre orientations extrêmes, pointe projetée dans le cadre, scènes et menus inspectés à 390×844, 1440×900, paysage 844×390 ; lancer manuel/refus/cancel, rod glissé et cercle simultanés via vrais doigts CDP, molette, maintien immobile inopérant, pause/menu/pagehide et capture/reload. Toutes les fonctionnalités précédentes (quinze modèles, carnet/photos, bassin/achats) restent couvertes.
+
+Smoke du build final sans QA : 6/6 (1,2 min). Partie en temps réel sur souris et tactile Chromium : lancer manuel, glissement de scène + molette ou commande gauche + cercle second doigt, capture effective, chargement différé, portrait, sauvegarde/rechargement/export/import. Le contrôleur lit l’équivalent accessible non visuel de l’angle du fil et sa tension, sans API interne ni accélération. Aléa fixé au gardon dans le contexte de test ; cadence réelle. Favoris/décor/achats/photos et intégrité des quinze GLB conservés ; original ZIP exclu.
+
+Les premiers essais ont révélé des attentes asynchrones incorrectes dans les tests (molette/fermeture de modale, visibilité body de hauteur nulle). Corrections des attentes, sans désactiver les scénarios. Les captures ont révélé une canne hors cadre à fort angle portrait : amplitude visuelle adaptée au champ horizontal, forces inchangées ; projection et images aux extrêmes contrôlées ensuite.
+
+Comparaison reproductible : scripts/compare-combat.mts et docs/apercus/immersion-combat-comparison.json. Même poisson/matériel/moulinage, canne fixe 0/15 vs suivi 15/15 dans les quinze scénarios. Tests purs de contact, hauteur, angle, résistance, casse et épuisement de budget ; aucun maintien implicite.
+
+Échantillons 3 s Chromium SwiftShader Windows : étang 23,2–23,8 FPS, aquarium bureau 6,9 / mobile 22,2 FPS ; aucune frame de pêche derrière le bassin. Ces nombres variables ne certifient aucun téléphone. Aucun test Safari/iPhone physique ni mesure de chauffe. Images avant/après dans docs/INTERFACE_COMBAT.md ; résultats distants dans docs/VERCEL.md.
