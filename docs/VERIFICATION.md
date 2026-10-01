@@ -118,3 +118,5 @@ Les premiers essais ont révélé des attentes asynchrones incorrectes dans les 
 Comparaison reproductible : scripts/compare-combat.mts et docs/apercus/immersion-combat-comparison.json. Même poisson/matériel/moulinage, canne fixe 0/15 vs suivi 15/15 dans les quinze scénarios. Tests purs de contact, hauteur, angle, résistance, casse et épuisement de budget ; aucun maintien implicite.
 
 Échantillons 3 s Chromium SwiftShader Windows : étang 23,2–23,8 FPS, aquarium bureau 6,9 / mobile 22,2 FPS ; aucune frame de pêche derrière le bassin. Ces nombres variables ne certifient aucun téléphone. Aucun test Safari/iPhone physique ni mesure de chauffe. Images avant/après dans docs/INTERFACE_COMBAT.md ; résultats distants dans docs/VERCEL.md.
+
+Preview Vercel protégée : 9347d75, READY, smoke 6/6 (1,7 min), mêmes commandes réelles et fonctionnalités ; détails exacts dans docs/VERCEL.md.
