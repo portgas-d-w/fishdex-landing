@@ -11,7 +11,7 @@ Agent : Codex. Version 0.2.0. Mission source : MISSION_CODEX_AUTONOME_AU_FIL_DE_
 | P3 aquarium | Terminé | Cinq individus maximum, tailles/robes, nage, décor personnalisable persistant, fiches, remplacement, chargement différé, moteurs libérés et scène cachée suspendue |
 | P4 méthodes et pack | Terminé pour trois méthodes et quinze modèles | Flotteur avec touche/ferrage ; leurre avec récupération/animation nécessaires ; fond avec touche de canne sans bouchon. 50 FBX inventoriés, 15 convertis/optimisés et inspectés |
 | P4 animations et présentation | Partiel et provisoire | Déformation continue corps/queue sans rig, vitesse variable, débattement intermittent, tapis à partir de 60 cm. Respiration bouche/opercules, suspension au fil et arrivée à l’épuisette absentes |
-| Publication | Validation locale du build en cours | Cible effective vérifiée : portgas-d-ws-projects/fishdex-landing. Préproduction puis production après smoke |
+| Publication | Préproduction via intégration Git en cours | Build local smoke 6/6 ; cible effective vérifiée : portgas-d-ws-projects/fishdex-landing. Deux envois CLI échouent fetch failed avant création, recours à la branche de preview ; main conservée jusqu’au smoke distant |
 
 ## Vérifications finales locales
 
