@@ -1,4 +1,4 @@
-# Au fil de l’eau — 0.4.0
+# Au fil de l’eau — 0.4.1
 
 Jeu de pêche 3D solo pour navigateur mobile, Babylon.js + TypeScript + Vite. Nom, décor et équilibrage provisoires. Sans compte, paiement, backend ni clé API.
 
@@ -6,7 +6,7 @@ Jeu de pêche 3D solo pour navigateur mobile, Babylon.js + TypeScript + Vite. No
 
 Production : [www.fishdex.fr](https://www.fishdex.fr), projet existant fishdex-landing. État de la publication : docs/VERCEL.md et RELAIS_PROJET.md. Le jeu remplace la landing autorisée ; le projet FishDex de référence reste inchangé.
 
-Partir du tiers inférieur, projeter vers l’eau puis relâcher au centre ou plus haut pour lancer. La vitesse récente donne la puissance, l’amplitude contribue et le matériel borne la portée ; cible/trajectoire et refus hors eau conservés. Aucun bouton de lancer automatique. En combat : deux commandes rondes en bas, canne à gauche (glissement dans les quatre directions), moulinet à droite (second doigt en cercle). Le glissement sur l’eau continue aussi à orienter la canne. Sur PC : glissement de souris et molette simultanés. Un appui immobile ne récupère rien ; espace peut ferrer uniquement. Suivre le fil et accompagner les départs : le frein rend du fil sous résistance. La pression modérée fatigue le poisson ; récupérer le mou s’il revient, puis le ramener au bord quand il faiblit. La canne et le fil montrent la traction ; une jauge compacte Tension du fil, verte/jaune/orange, occupe l’espace entre les commandes. Aucun panneau décrivant le poisson.
+Partir du tiers inférieur, projeter vers l’eau puis relâcher au centre ou plus haut pour lancer. La vitesse récente donne la puissance, l’amplitude contribue et le matériel borne la portée ; cible/trajectoire et refus hors eau conservés. Aucun bouton de lancer automatique. En combat : deux commandes rondes en bas, canne à gauche (glissement dans les quatre directions), moulinet à droite (appui maintenu avec le second doigt). Le glissement sur l’eau continue aussi à orienter la canne. Sur PC : glissement de souris et molette simultanés. Maintenir Mouliner récupère du fil ; relâcher arrête immédiatement ; espace peut ferrer uniquement. Suivre le fil et accompagner les départs : le frein rend du fil sous résistance. La pression modérée fatigue le poisson ; récupérer le mou s’il revient, puis le ramener au bord quand il faiblit. La canne et le fil montrent la traction ; une jauge compacte Tension du fil, verte/jaune/orange, occupe l’espace entre les commandes. Aucun panneau décrivant le poisson.
 
 Menu compact : matériel, carnet/FishDex, aquarium, boutique, progression et réglages. Les écrans ont un retour ; le menu suspend le combat et bloque les gestes de scène. Hors combat, accès Matériel direct. Le jeu bloque la sélection et les actions natives d’appui long uniquement sur ses surfaces ; le carnet et la boutique défilent, les champs restent éditables et sélectionnables. Trois méthodes effectives : flotteur, leurre animé/récupéré et fond.
 
@@ -33,7 +33,7 @@ npm run dev
 | npm run preview | Servir dist localement après build |
 | npm run test:smoke | Vraie partie sur build servi, sans QA ; GAME_URL pour cible distante |
 
-Exécuter E2E et smoke successivement. Validation 0.4 : npm run check, 30 tests de logique + TypeScript/build ; 23 scénarios E2E ciblés validés en deux passes finales (1 ignoré selon viewport), dont appuis longs, deux doigts, défilement/saisie, frein et lancer lent/rapide. Smoke du build, de la preview protégée et de la production publique : 6/6 sur chaque cible. Résultats détaillés dans docs/VERIFICATION.md et docs/VERCEL.md. Les mesures Chromium logiciel de ce PC ne valident pas les 30 FPS sur iPhone 14 Pro ; Safari, chauffe et autonomie restent à tester sur appareil.
+Exécuter E2E et smoke successivement. Validation 0.4.1 : npm run check, 31 tests de logique + TypeScript/build ; 19 E2E ciblés réussis (1 ignoré selon viewport), dont appui immobile, deux doigts, interruptions, défilement/saisie et combat. Smoke ciblé du build sans QA : 2/2, captures réelles bureau/mobile et sauvegarde/transfert ; publication en cours. Résultats détaillés dans docs/VERIFICATION.md et docs/VERCEL.md. Les mesures Chromium logiciel de ce PC ne valident pas les 30 FPS sur iPhone 14 Pro ; Safari, chauffe et autonomie restent à tester sur appareil.
 
 ## Organisation et ressources
 

@@ -1,4 +1,4 @@
-# Gestes et combat — 0.4.0, 1 octobre 2026
+# Gestes et combat — 0.4.1, 1 octobre 2026
 
 La mission jointe remplace les calculs 0.3. La jauge compacte demandée en 0.3.1 reste entre les deux boutons, sans panneau de comportement. Sauvegardes v2, quinze modèles et moteur conservés.
 
@@ -6,7 +6,7 @@ La mission jointe remplace les calculs 0.3. La jauge compacte demandée en 0.3.1
 
 Canvas de pêche et commandes : user-select:none, -webkit-user-select:none, -webkit-touch-callout:none ; contextmenu/selectstart/dragstart empêchés sur ces surfaces. Canvas, canne et moulinet : touch-action:none. Aucun touch-action:none sur app/body ou conteneur portant les menus. Dialogues défilables, champs user-select:text et touch-action:auto, événements de sélection/contexte conservés. Les images ne démarrent pas de glissement natif. Les canvas de fiches et de bassin laissent défiler leurs panneaux.
 
-Canne et moulinet ont des identifiants/captures distincts. Une fin ou annulation retire uniquement le doigt concerné ; blur, pagehide, perte de visibilité, pause, redimensionnement et ouverture de menu nettoient les deux gestes et les tours en attente. Un appui immobile ne mouline pas. La préparation de lancer annulée restaure la pose précédente.
+Canne et moulinet ont des identifiants/captures distincts. Une fin ou annulation retire uniquement le doigt concerné ; blur, pagehide, perte de visibilité, pause, redimensionnement et ouverture de menu nettoient les deux gestes et les tours en attente. Dernière instruction utilisateur : un appui immobile maintenu mouline à 1,6 tour/s ; le relâchement arrête aussitôt. Aucun geste circulaire. Même bouton pour récupérer le leurre ; la molette reste utilisable sur ordinateur. La préparation de lancer annulée restaure la pose précédente.
 
 ## Règles de combat
 
@@ -26,7 +26,7 @@ Puissance : vitesse vers l’avant sur les échantillons récents de 180 ms, ave
 
 ## Évidence et limites
 
-npm run check : 30 tests Node, TypeScript et build réussis. Tests dédiés : départ sans moulinage/frein, surcharge, mou/tolérance, retour/reprise de contact, petite force pendant résistance, effets continus des angles, quinze captures gérées, absence de victoire automatique, lancers doux/rapides/diagonaux/annulés.
+npm run check 0.4.1 : 31 tests Node, TypeScript et build réussis. Appui immobile et arrêt immédiat vérifiés ; récupération maintenue à 1,6 tour/s et molette conservée. Tests dédiés : départ sans moulinage/frein, surcharge, mou/tolérance, retour/reprise de contact, petite force pendant résistance, effets continus des angles, quinze captures gérées, absence de victoire automatique, lancers doux/rapides/diagonaux/annulés.
 
 Comparaison reproductible : node --experimental-strip-types scripts/compare-combat.mts ; résultats dans apercus/physics-combat-comparison.json. Quinze rencontres de taille médiane, même matériel 1,32 et mêmes règles de moulinage : canne fixe et suivie peuvent toutes deux capturer ; suivre le fil réduit les durées. Cela remplace le critère ancien 0/15 vs 15/15, devenu incompatible avec des angles progressifs. Ce sont des mesures de simulation, pas du ressenti humain.
 

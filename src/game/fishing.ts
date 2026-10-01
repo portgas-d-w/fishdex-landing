@@ -32,6 +32,7 @@ export class FishingGame {
   private size = 20;
   private controlled = true;
   private queuedTurns = 0;
+  private heldReeling = false;
   reelSpeed = 0;
   alignment = 1;
   fishDistance = 8;
@@ -41,7 +42,11 @@ export class FishingGame {
   dragSpeed = 0;
   fishVelocity = 0;
   returning = false;
-  get reeling() { return this.queuedTurns > 0 || this.reelSpeed > 0; }
+  get reeling() { return this.heldReeling || this.queuedTurns > 0 || this.reelSpeed > 0; }
+  holdReel(active: boolean) {
+    if (!active) { this.release(); return; }
+    this.heldReeling = this.phase === 'fighting' || this.phase === 'waiting' && this.method === 'lure';
+  }
   reel(turns: number) {
     if (!Number.isFinite(turns) || turns <= 0 || !(this.phase === 'fighting' || this.phase === 'waiting' && this.method === 'lure')) return;
     this.queuedTurns = Math.min(0.45, this.queuedTurns + turns);
@@ -95,14 +100,15 @@ export class FishingGame {
     this.tension = 0.25; this.progress = 0; this.pulling = false; this.failure = '';
     this.dragSpeed = 0; this.fatigue = 0; this.slack = 0;
   }
-  release() { this.queuedTurns = 0; this.reelSpeed = 0; }
+  release() { this.heldReeling = false; this.queuedTurns = 0; this.reelSpeed = 0; }
   private transition(phase: Phase) { this.phase = phase; this.elapsed = 0; this.release(); }
   private lose(reason: string) { this.failure = reason; this.transition('lost'); }
   update(delta: number) {
     // Simulation fixed step in the caller; large gaps never consume a bite or break the line.
     const dt = Math.min(Math.max(delta, 0), 0.05);
-    const turns = Math.min(this.queuedTurns, dt * 2.4);
-    this.queuedTurns -= turns; this.reelSpeed = dt > 0 ? turns / dt : 0;
+    const pulse = Math.min(this.queuedTurns, dt * 2.4);
+    const turns = this.heldReeling ? Math.max(pulse, dt * 1.6) : pulse;
+    this.queuedTurns -= pulse; this.reelSpeed = dt > 0 ? turns / dt : 0;
     this.elapsed += dt;
     if (this.phase === 'casting' && this.elapsed >= 1.1) this.transition('waiting');
     else if (this.phase === 'waiting') {

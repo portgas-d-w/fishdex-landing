@@ -2,6 +2,7 @@
 
 | Date | Décision | Motif / statut |
 | --- | --- | --- |
+| 2026-10-01 | Mouliner par appui maintenu, arrêt au relâchement | Dernière demande utilisateur ; remplace le geste circulaire. Canne indépendante et molette PC conservées ; même commande au leurre. |
 | 2026-10-01 | Gestes natifs bloqués seulement sur la scène/commandes | Dernière demande : user-select/WebKit/callout, contextmenu/selectstart ; menus défilables et champs sélectionnables. Images sans glissement natif. |
 | 2026-10-01 | Fil disponible, flexion amortie, fatigue causale et frein automatique | Mission jointe remplace les règles 0.3 : ne pas détendre automatiquement au relâchement ; effets progressifs des angles et force relative au matériel. Capture proche sous contrôle, sans minuteur de victoire. |
 | 2026-10-01 | Départ du lancer dans le tiers inférieur ; projection puis relâchement central/haut | Vitesse récente dominante, amplitude secondaire et portée liée au matériel ; préparation continue, annulation/restauration sur interruption. |

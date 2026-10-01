@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { castByGesture, openMenuPage, turnMouseReel } from './helpers';
+import { castByGesture, openMenuPage, holdMouseReel } from './helpers';
 import { emptySave, recordCatch } from '../../src/game/save';
 
 test('Appui long, glissement et nettoyage : aucune sélection ni menu natif sur le jeu', async ({page,context},info)=>{
@@ -22,7 +22,7 @@ test('Appui long, glissement et nettoyage : aucune sélection ni menu natif sur 
    context:!element.dispatchEvent(new Event('contextmenu',{bubbles:true,cancelable:true})),drag:!element.dispatchEvent(new Event('dragstart',{bubbles:true,cancelable:true})),selection:!element.dispatchEvent(new Event('selectstart',{bubbles:true,cancelable:true}))};
  }));
  for(const surface of protection)expect(surface).toEqual({select:'none',webkit:'none',touch:'none',context:true,drag:true,selection:true});
- await turnMouseReel(page);expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(true);
+ await holdMouseReel(page);expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(true);
  await page.evaluate(()=>window.dispatchEvent(new Event('blur')));await page.mouse.up();
  expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(false);
  await page.locator('#resume').click();await page.mouse.move(w*.5,h*.4);

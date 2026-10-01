@@ -19,11 +19,11 @@ export async function realFishing(page: Page, context: BrowserContext, mobile: b
   const cx = b.x + b.width / 2, cy = b.y + b.height / 2;
   const rb = (await page.locator('#rod-control').boundingBox())!;
   const x0 = mobile ? rb.x + rb.width / 2 : size.width * .42, y0 = mobile ? rb.y + rb.height / 2 : size.height * .47;
-  let angle = 0;
-  let rod = { id: 10, x: x0, y: y0 }, reel = { id: 20, x: cx + 28, y: cy };
+  let reelHeld = false;
+  let rod = { id: 10, x: x0, y: y0 }, reel = { id: 20, x: cx, y: cy };
   if (touch) {
     await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [rod] });
-    await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [rod, reel] });
+    
   } else { await page.mouse.move(x0, y0); await page.mouse.down(); }
   const deadline = Date.now() + 85_000;
   while (Date.now() < deadline && await page.locator('body').getAttribute('data-phase') === 'fighting') {
@@ -34,9 +34,11 @@ export async function realFishing(page: Page, context: BrowserContext, mobile: b
       const tension = Number(cue[2]), lift = tension > 68 ? .28 : .55;
       rod = { ...rod, x: x0 + yaw * (mobile ? 32 : Math.min(600, size.width) * .28), y: y0 - (lift - .5) * (mobile ? 64 : Math.min(600, size.height) * .35) };
       if (touch) {
-        if (tension < 72) angle += .85;
-        reel = { ...reel, x: cx + 28 * Math.cos(angle), y: cy + 28 * Math.sin(angle) };
-        await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [rod, reel] });
+        const shouldReel = tension < 72;
+        if (shouldReel && !reelHeld) await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [rod, reel] });
+        else if (!shouldReel && reelHeld) await touch.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [reel] });
+        reelHeld = shouldReel;
+        await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: reelHeld ? [rod, reel] : [rod] });
       } else {
         await page.mouse.move(rod.x, rod.y);
         if (tension < 72) await page.mouse.wheel(0, 75);

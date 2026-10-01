@@ -2,21 +2,21 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { FishingGame } from '../src/game/fishing.ts';
 import { SPECIES } from '../src/game/catalog.ts';
-import { circularTurns, wheelTurns } from '../src/game/reeling.ts';
+import { wheelTurns } from '../src/game/reeling.ts';
 import { stepCombat } from '../src/game/combat.ts';
 import { hookFish, manageFight } from './support/combat.ts';
 
-test('Le cercle passe la couture angulaire sans saut ; ni maintien ni moyeu ne moulinent', () => {
-  assert.equal(circularTurns({ x: 30, y: 0 }, { x: 30, y: 0 }), 0);
-  assert.equal(circularTurns({ x: 0, y: 0 }, { x: 30, y: 0 }), 0);
-  assert.equal(circularTurns({ x: 100, y: 0 }, { x: 0, y: 100 }), 0);
-  assert.ok(circularTurns({ x: -30, y: 2 }, { x: -30, y: -2 }) < 0.03);
-  assert.equal(circularTurns({ x: 30, y: 0 }, { x: -30, y: 0 }), 0);
-  assert.equal(wheelTurns(-100), wheelTurns(100));
-  assert.equal(wheelTurns(NaN), 0);
-  assert.equal(wheelTurns(10, 1), wheelTurns(160));
+test('La molette accepte les deux sens et normalise ses unités', () => {
+  assert.equal(wheelTurns(-100), wheelTurns(100));assert.equal(wheelTurns(NaN), 0);assert.equal(wheelTurns(10, 1), wheelTurns(160));
 });
-
+test('Un appui immobile récupère du fil jusqu’au relâchement ; transitions et reset arrêtent la commande', () => {
+ const g=hookFish(SPECIES[0]);g.holdReel(true);const before=g.lineLength;
+ for(let i=0;i<30;i++)g.update(1/60);assert.ok(g.lineLength<before);assert.equal(g.reelSpeed,1.6);assert.equal(g.reeling,true);
+ g.holdReel(false);assert.equal(g.reeling,false);g.update(1/60);assert.equal(g.reelSpeed,0);
+ g.holdReel(true);g.reset();assert.equal(g.reeling,false);g.holdReel(true);assert.equal(g.reeling,false);
+ const lure=new FishingGame(()=>0);lure.setMethod('lure');lure.cast();for(let i=0;i<72;i++)lure.update(1/60);lure.holdReel(true);
+ for(let i=0;i<360&&lure.phase==='waiting';i++)lure.update(1/60);assert.equal(lure.phase,'bite');assert.equal(lure.reeling,false);
+});
 test('Une impulsion de molette s’épuise ; release interrompt immédiatement les tours en attente', () => {
   const g = new FishingGame(() => 0); g.cast(); g.phase = 'bite'; g.strike();
   g.reel(0.2); for (let i = 0; i < 15; i++) g.update(1 / 60);

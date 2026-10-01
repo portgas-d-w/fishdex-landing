@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {castByGesture} from './helpers';
-test('Deux vrais doigts : cercle mobile, canne simultanée, maintien immobile et annulation',async({page,context},info)=>{
+test('Deux vrais doigts : appui maintenu, canne simultanée, maintien immobile et annulation',async({page,context},info)=>{
  test.skip(info.project.name!=='mobile','Deux doigts réels sur le profil tactile Chromium.');
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');
  await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());await castByGesture(page);await page.evaluate(()=>(window as any).__fishingQA.advance(10));await page.locator('#strike').click();
@@ -8,10 +8,10 @@ test('Deux vrais doigts : cercle mobile, canne simultanée, maintien immobile et
  const rb=(await page.locator('#rod-control').boundingBox())!,rx=rb.x+rb.width/2,ry=rb.y+rb.height/2;
  let rod={id:10,x:rx,y:ry},reel={id:20,x:cx+28,y:cy};
  await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[rod]});await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[rod,reel]});
- expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(false);
- for(let i=1;i<=5;i++){rod={...rod,x:rx+i*4.5,y:ry-i*3};reel={...reel,x:cx+28*Math.cos(i*Math.PI/10),y:cy+28*Math.sin(i*Math.PI/10)};await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[rod,reel]});}
+ expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(true);
+ for(let i=1;i<=5;i++){rod={...rod,x:rx+i*4.5,y:ry-i*3};await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[rod,reel]});}
  const moved=await page.evaluate(()=>(window as any).__fishingQA.snapshot());expect(moved.reeling).toBe(true);expect(moved.yaw).toBeGreaterThan(.5);expect(moved.lift).toBeGreaterThan(.6);
- await page.waitForTimeout(1100);expect(await page.evaluate(()=>getSelection()?.toString())).toBe('');await page.evaluate(()=>(window as any).__fishingQA.advance(.5));expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(false);
+ await page.waitForTimeout(1100);expect(await page.evaluate(()=>getSelection()?.toString())).toBe('');await page.evaluate(()=>(window as any).__fishingQA.advance(.5));expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(true);
  reel={...reel,x:cx-14,y:cy+24};await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[rod,reel]});
  await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[rod]});expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(true);
  await session.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(false);

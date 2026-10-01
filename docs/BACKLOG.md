@@ -2,6 +2,14 @@
 
 La mission autonome explicite autorise les fonctionnalités suivantes et remplace l’attente du premier retour appareil pour avancer. Une prise ou une sauvegarde cassée reste prioritaire sur le contenu.
 
+## Correction 0.4.1 — moulinage par appui
+
+- [x] Appui maintenu sur Mouliner, arrêt dès le relâchement, sans rotation du doigt.
+- [x] Capture indépendante de la canne, nettoyage des interruptions et transitions.
+- [x] Libellés/aide cohérents ; tests Node 31/31, TypeScript et build réussis.
+- [x] Contrôles navigateur : 19 réussis / 1 ignoré ; smoke local ciblé 2/2, rendu mobile/paysage/bureau inspecté.
+- [ ] Vérifier la préproduction puis publier et contrôler le domaine public.
+
 ## Correction 0.4 — publiée et vérifiée
 
 - [x] Sélection et appui long bloqués uniquement dans la scène ; glissement natif des images supprimé.

@@ -8,7 +8,7 @@ import { LakeWorld } from './render/world';
 import { FishPreview } from './render/fish-preview';
 import { GameAudio } from './ui/audio';
 import { CastGesture } from './game/casting';
-import { circularTurns, wheelTurns } from './game/reeling';
+import { wheelTurns } from './game/reeling';
 import fishdex from './game/fishdex.json';
 import { ITEMS, BADGES, levelFor } from './game/economy';
 import type { ItemId } from './game/economy';
@@ -24,7 +24,7 @@ app.innerHTML = `
 <button id="prepare-open" class="compact prepare-toggle">Matériel</button>
 <button id="strike" class="compact strike-control" hidden>Ferrer</button>
 <button id="rod-control" class="rod-control" aria-label="Canne : glissez dans les quatre directions" hidden><span class="rod-arrows" aria-hidden="true"><i>▴</i><i>▸</i><i>▾</i><i>◂</i></span><span class="rod-thumb" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M12 39 Q22 13 40 8 M14 34L9 32L6 39L12 41 M21 23L25 25 M29 15L32 18"/></svg></span></button>
-<button id="reel-control" class="reel-control" aria-label="Moulinet : tournez autour du centre ; molette sur ordinateur" hidden><span class="reel-disc"><span class="reel-handle"></span></span><span class="reel-label">Mouliner</span></button>
+<button id="reel-control" class="reel-control" aria-label="Moulinet : maintenez pour mouliner ; relâchez pour arrêter" hidden><span class="reel-disc"><span class="reel-handle"></span></span><span class="reel-label">Mouliner</span></button>
 <div id="tension-display" class="tension-display" hidden><span id="tension-label">Tension du fil</span><div id="tension-meter" class="tension-meter" role="progressbar" aria-labelledby="tension-label" aria-valuemin="0" aria-valuemax="100" aria-valuenow="32"><span class="tension-rest"></span><span class="tension-marker"></span></div></div>
 <button id="cancel-cast" class="compact cancel-control" hidden>Ramener</button>
 <button id="retry" class="compact retry-control" hidden>Reprendre</button>
@@ -52,8 +52,8 @@ const steps = document.querySelectorAll('.help-step');
 steps[0].querySelector('strong')!.textContent = 'Choisissez votre méthode et votre cible.';
 steps[0].querySelector('p')!.textContent = 'Posez le doigt dans le tiers inférieur, projetez vers l’eau puis relâchez au centre ou plus haut. La vitesse du geste donne sa puissance ; la direction choisit le point de chute. Un relâchement trop bas ou hors de l’eau annule le lancer.';
 steps[1].querySelector('strong')!.textContent = 'Observez votre montage.';
-steps[1].querySelector('p')!.textContent = 'Au flotteur, attendez qu’il plonge. Au fond, regardez la pointe de la canne. Au leurre, tournez le moulinet et glissez pour animer : la récupération déclenche les rencontres. Ferrez dès la touche.';
-steps[2].querySelector('p')!.textContent = 'Suivez le fil avec la canne à gauche et tournez le moulinet à droite avec l’autre doigt ; sur PC, utilisez la molette. Accompagnez les départs : le frein rend du fil sous résistance. Une pression modérée fatigue le poisson. Récupérez le mou s’il revient vers vous, puis ramenez-le au bord quand sa résistance diminue. Un appui immobile ne récupère pas de fil.';
+steps[1].querySelector('p')!.textContent = 'Au flotteur, attendez qu’il plonge. Au fond, regardez la pointe de la canne. Au leurre, maintenez Mouliner et glissez pour animer : la récupération déclenche les rencontres. Ferrez dès la touche.';
+steps[2].querySelector('p')!.textContent = 'Suivez le fil avec la canne à gauche et maintenez Mouliner à droite avec l’autre doigt ; sur PC, utilisez la molette. Accompagnez les départs : le frein rend du fil sous résistance. Une pression modérée fatigue le poisson. Récupérez le mou s’il revient vers vous, puis ramenez-le au bord quand sa résistance diminue. Relâchez Mouliner dès que vous voulez arrêter la récupération.';
 let storage: Storage | undefined;
 try { storage = window.localStorage; } catch { /* navigation privée restrictive */ }
 const loaded = storage ? loadSave(storage) : { data: emptySave(), warning: 'Sauvegarde locale indisponible. Pensez à exporter le carnet.' };
@@ -225,8 +225,9 @@ async function showSpecimen(s: Specimen) {
 function phaseChanged() {
   if (game.phase === lastPhase) return;
   lastPhase = game.phase; renderPhase();
+  if (!(game.phase === 'fighting' || game.phase === 'waiting' && game.method === 'lure')) { release(); cancelGesture(); }
   if (game.phase === 'bite') { audio.tone('bite'); toast('Ça mord ! Ferrez.'); }
-  if (game.phase === 'fighting') { el('toast').hidden = true; teach(2, 'Glissez sur la commande de canne à gauche, ou sur l’eau. Tournez le moulinet à droite avec l’autre doigt ; molette sur PC.'); }
+  if (game.phase === 'fighting') { el('toast').hidden = true; teach(2, 'Glissez sur la commande de canne à gauche, ou sur l’eau. Maintenez Mouliner à droite avec l’autre doigt ; relâchez pour arrêter.'); }
   if (game.phase === 'lost') toast(game.failure);
   if (game.phase === 'caught') void showCatch();
 }
@@ -235,7 +236,6 @@ function activate() {
   if (game.phase === 'bite') { void audio.unlock(); game.strike(); phaseChanged(); }
 }
 let reelPointer: number | undefined;
-let reelPoint: { x: number; y: number } | undefined;
 let reelAngle = 0;
 let gesture: { id: number; x: number; y: number; yaw: number; lift: number; casting: boolean; cast?: CastGesture } | undefined;
 const canvas = el<HTMLCanvasElement>('world');
@@ -256,7 +256,7 @@ function cancelGesture() {
   rodControl.style.setProperty('--stick-x', '0px'); rodControl.style.setProperty('--stick-y', '0px');
 }
 function release() {
-  const id = reelPointer; reelPointer = undefined; reelPoint = undefined; game.release(); reel.classList.remove('reeling');
+  const id = reelPointer; reelPointer = undefined; game.release(); reel.classList.remove('reeling');
   if (id !== undefined && reel.hasPointerCapture(id)) reel.releasePointerCapture(id);
 }
 function canReel() { return !overlayPaused && !manualPaused && (game.phase === 'fighting' || game.phase === 'waiting' && game.method === 'lure'); }
@@ -268,14 +268,8 @@ el('strike').onclick = activate;
 el('retry').onclick = () => { game.reset(); phaseChanged(); };
 reel.addEventListener('pointerdown', e => {
   if (e.button !== 0 || reelPointer !== undefined || !canReel()) return;
-  const rect = reel.getBoundingClientRect(); reelPointer = e.pointerId;
-  reelPoint = { x: e.clientX - rect.x - rect.width / 2, y: e.clientY - rect.y - rect.height / 2 };
+  reelPointer = e.pointerId; game.holdReel(true); void audio.unlock();
   reel.setPointerCapture(e.pointerId);
-});
-reel.addEventListener('pointermove', e => {
-  if (e.pointerId !== reelPointer || !reelPoint) return;
-  const rect = reel.getBoundingClientRect(); const next = { x: e.clientX - rect.x - rect.width / 2, y: e.clientY - rect.y - rect.height / 2 };
-  turnReel(circularTurns(reelPoint, next)); reelPoint = next;
 });
 for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) reel.addEventListener(type, e => { if ((e as PointerEvent).pointerId === reelPointer) release(); });
 window.addEventListener('pointerup', e => { if (e.pointerId === reelPointer) release(); });
@@ -435,6 +429,9 @@ try {
       while (accumulator >= 1 / 60) { game.update(1 / 60); phaseChanged(); accumulator -= 1 / 60; }
     } else accumulator = 0;
     reel.classList.toggle('reeling', game.reeling);
+    if (reelPointer !== undefined && canReel() && !qaSimulationPaused) {
+      reelAngle += game.reelSpeed * dt * 360; reel.style.setProperty('--reel-angle', `${reelAngle}deg`);
+    }
     if (game.phase === 'fighting' && game.dragSpeed > 0.02 && !overlayPaused && !manualPaused && !qaSimulationPaused) {
       reelAngle -= game.dragSpeed * dt * 180; reel.style.setProperty('--reel-angle', `${reelAngle}deg`);
     }

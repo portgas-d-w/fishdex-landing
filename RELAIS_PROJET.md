@@ -2,6 +2,10 @@
 
 **Dernière mise à jour : 1 octobre 2026. Agent : Codex. Version : 0.4.0 publiée et vérifiée sur https://www.fishdex.fr.**
 
+## Correction 0.4.1 — appui maintenu, en cours
+
+1 octobre 2026, Codex. Dernière instruction utilisateur : remplacer la rotation du doigt par un appui pour mouliner. Appui maintenu dès le contact, récupération constante 1,6 tour/s, arrêt immédiat au relâchement/annulation/perte de capture/focus/pause et changement de phase. Canne au second doigt et molette PC conservées. Même bouton au leurre pour conserver un geste cohérent. Aide et libellés actualisés. Node 24.15.0, npm ci sans vulnérabilité ; npm run check : 31 tests + TypeScript/build réussis. E2E ciblés : 19 réussis / 1 ignoré (1,9 min), appui immobile, deux doigts, interruptions, menus/saisie et physique. Smoke local du build sans QA : 2/2 (1,7 min), captures réelles bureau/mobile et sauvegarde/transfert. Portrait 390×844, paysage et bureau inspectés, captures hold-* dans docs/apercus. Préproduction puis publication à vérifier. Cette décision remplace les passages historiques indiquant qu’un appui immobile ne récupère pas de fil.
+
 ## Livraison 0.4 — gestes et combat publiés
 
 1 octobre 2026, Codex. Travail parti de main a6ef66b, branche codex/gestes-combat puis fusion fast-forward vers main ; Git propre à la clôture. FishDex de référence inchangé. Babylon/TypeScript/Vite, sauvegarde v2, quinze modèles et jauge compacte conservés.

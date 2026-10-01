@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-import {castByGesture,turnMouseReel} from './helpers';
+import {castByGesture,holdMouseReel} from './helpers';
 async function start(page:any) {
  await page.addInitScript(()=>{Math.random=()=>.999;localStorage.setItem('au-fil-de-leau.gestures.v3','3');});
  await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());
@@ -22,7 +22,7 @@ test('Départ puissant : traction et frein sans moulinage ; insister crée un ri
  await page.mouse.move(cx-32,cy-32);await page.mouse.up();await page.mouse.move(150,300);
  let peak=0;
  for(let i=0;i<120;i++){
-  if(info.project.name==='mobile')await turnMouseReel(page);else await page.mouse.wheel(0,240);
+  if(info.project.name==='mobile')await holdMouseReel(page);else await page.mouse.wheel(0,240);
   await page.waitForTimeout(50);await page.evaluate(()=>(window as any).__fishingQA.advance(.1));
   if(info.project.name==='mobile')await page.mouse.up();
   const s=await page.evaluate(()=>(window as any).__fishingQA.snapshot());peak=Math.max(peak,s.tension);if(s.phase==='lost')break;
@@ -33,8 +33,8 @@ test('Retour vers le joueur : le moulinet reprend le mou et rétablit le contact
  await start(page);await page.evaluate(()=>(window as any).__fishingQA.advance(3));
  const before=await page.evaluate(()=>(window as any).__fishingQA.snapshot());expect(before.returning).toBe(true);expect(before.slack).toBeGreaterThan(.1);
  await page.mouse.move(150,300);
- for(let i=0;i<5;i++){
-  if(info.project.name==='mobile')await turnMouseReel(page);else await page.mouse.wheel(0,120);
+ for(let i=0;i<8;i++){
+  if(info.project.name==='mobile')await holdMouseReel(page);else await page.mouse.wheel(0,120);
   await page.waitForTimeout(50);await page.evaluate(()=>(window as any).__fishingQA.advance(.1));
   if(info.project.name==='mobile')await page.mouse.up();
  }
