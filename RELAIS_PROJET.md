@@ -169,6 +169,8 @@ monnaies, services ou espèces avant d’avoir rendu cette boucle satisfaisante.
 
 ### Mission autonome en cours — 1 octobre 2026, Codex
 
+Étape P1/P2 : check **16/16 + TypeScript + build**, E2E **10/10 (26,2 s)**. Migration v1/v2, journal individuel, unicité des récompenses, achats et équipement, cinq favoris, poids cohérent, images IndexedDB séparées. Catalogue local importé : 96 fiches, 59 groupes biologiques déclarés, 88 illustrations/557 Ko ; cinq espèces jouables. FishDex inchangé. Photos limitées à 128 Blob, régénération depuis un souvenir après transfert JSON. Captures mobile/bureau inspectées. Détails dans `docs/DECISIONS_JEU.md` et `docs/ASSETS_POISSONS.md`. Prochaine étape : aquarium puis méthodes et extension/animations.
+
 Mission explicite `docs/MISSION_CODEX_AUTONOME_AU_FIL_DE_LEAU.md` : P0 à P4 autorisés, y compris économie purement virtuelle et aquarium. Elle remplace l’attente de retour téléphone pour progresser ; les mesures appareil restent à faire. Branche `codex/mission-autonome-2026-10-01`, FishDex en lecture seule. `npm ci` : réussi, 0 vulnérabilité. Check initial : 9/9 + build. P0 : lancer libre normalisé, habitats par coordonnées, orientation de canne, comportement spatial par espèce, fil épais attaché à la canne et montage immergé, capture proche sous contrôle. Check P0 : 12 tests à vérifier. Premier E2E perturbé par une modification pendant son exécution (rechargement Vite) : 5/6, rerun stable requis. Voir `docs/MISSION_AUTONOME.md` pour la suite.
 
 | Date | Agent | Réalisé | Prochaine action |

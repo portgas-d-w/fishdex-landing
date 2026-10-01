@@ -206,7 +206,7 @@ export class LakeWorld {
     const targetZ = game.target.z;
     this.castPoint.set(targetX, 0, targetZ);
     const show = ['casting', 'waiting', 'bite', 'fighting'].includes(game.phase);
-    this.bobber.setEnabled(show); this.line.setEnabled(show); this.thickLine.setEnabled(show);
+    this.bobber.setEnabled(show); this.line.setEnabled(false); this.thickLine.setEnabled(show);
     const fighting = game.phase === 'fighting';
     const base = new Vector3(1.4, 0.8, -5.7);
     this.rodPath = Array.from({ length: 9 }, (_, i) => {

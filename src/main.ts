@@ -2,12 +2,17 @@ import './style.css';
 import { FishingGame } from './game/fishing';
 import { SPECIES, SPOTS } from './game/catalog';
 import type { SpotId, BaitId } from './game/catalog';
-import { emptySave, loadSave, persistSave, recordCatch, parseSave } from './game/save';
+import { emptySave, loadSave, persistSave, recordCatch, parseSave, MAX_SAVE_BYTES, purchase, toggleFavorite } from './game/save';
 import type { SaveData } from './game/save';
 import { LakeWorld } from './render/world';
 import { FishPreview } from './render/fish-preview';
 import { GameAudio } from './ui/audio';
 import { aimFromGesture } from './game/casting';
+import fishdex from './game/fishdex.json';
+import { ITEMS, BADGES, levelFor } from './game/economy';
+import type { ItemId } from './game/economy';
+import type { Specimen } from './game/specimens';
+import { getPhoto, storePhoto } from './ui/photos';
 
 const icon = (path: string) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
 const icons = {
@@ -44,6 +49,12 @@ app.innerHTML = `
 <div class="loading" id="loading"><div class="spinner"></div><h2>Au fil de l’eau</h2><p>Un instant… l’étang se réveille.</p></div>`;
 
 const el = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+el('app').insertAdjacentHTML('beforeend', `
+<dialog id="encyclopedia" class="modal wide-modal"><div class="modal-header"><div><div class="eyebrow">Les pages de FishDex</div><h2>Encyclopédie</h2></div><button class="close" data-close="encyclopedia" aria-label="Fermer l’encyclopédie">×</button></div><p class="intro">${fishdex.provenance.biologicalGroups} groupes biologiques · ${fishdex.provenance.sourceEntries} fiches avec variétés. ${SPECIES.length} espèces jouables. Les autres sont prévues.</p><div class="filters"><input id="dex-search" type="search" placeholder="Nom, variété ou technique" aria-label="Rechercher un poisson"><select id="dex-category" aria-label="Catégorie"><option value="all">Toutes les eaux</option><option value="paisibles">Paisibles</option><option value="predateurs">Prédateurs</option><option value="eaux-vives">Eaux vives</option></select><select id="dex-state" aria-label="Découvertes"><option value="all">Toutes les fiches</option><option value="playable">Jouables</option><option value="discovered">Découvertes</option><option value="mirage">Variantes Mirage</option></select></div><div id="dex-list"></div><p class="modal-footnote">Référence locale FishDex. La rareté est une règle de rencontre du jeu, distincte de la conservation des espèces.</p></dialog>
+<dialog id="shop" class="modal"><div class="modal-header"><div><div class="eyebrow">Le matériel du bord</div><h2>Boutique</h2></div><button class="close" data-close="shop" aria-label="Fermer la boutique">×</button></div><p class="intro" id="shop-balance"></p><div id="shop-list" class="collection-list"></div><p class="modal-footnote">Monnaie virtuelle gagnée avec vos souvenirs de pêche. Canne et appâts de base réutilisables, toujours disponibles.</p></dialog>`);
+document.querySelector('.topbar')!.insertAdjacentHTML('afterend', '<nav class="travel-nav" aria-label="Explorer le jeu"><button id="dex-open">Encyclopédie</button><button id="shop-open">Boutique</button><button id="aquarium-open">Aquarium</button><span id="player-progress"></span></nav>');
+el('collection-list').insertAdjacentHTML('afterend', '<h3 class="section-title">Mes spécimens</h3><p class="intro" id="journal-intro"></p><div id="journal-list" class="journal-list"></div><button class="secondary" id="journal-more" hidden>Souvenirs suivants</button><div id="mastery-list" class="tools"></div>');
+el('catch-length').parentElement!.insertAdjacentHTML('afterend', '<p id="catch-weight" class="intro"></p><p id="catch-reward" class="reward-line"></p><p id="photo-state" class="modal-footnote"></p><button id="favorite-catch" class="secondary">Ajouter aux favoris</button>');
 let storage: Storage | undefined;
 try { storage = window.localStorage; } catch { /* navigation privée restrictive */ }
 const loaded = storage ? loadSave(storage) : { data: emptySave(), warning: 'Sauvegarde locale indisponible. Pensez à exporter le carnet.' };
@@ -60,6 +71,13 @@ let pendingImport: SaveData | undefined;
 let catchViewRequest = 0;
 let storageWarningShown = false;
 let qaSimulationPaused = false;
+let viewedSpecimen: Specimen | undefined;
+let liveCatchView = false;
+let journalLimit = 30;
+const photoUrls: string[] = [];
+const escape = (s: string) => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+function equip() { const item = ITEMS.find(i => i.id === save.equipped)!; game.equipment = item.id; game.equipmentPower = item.power; }
+equip();
 
 function toast(message: string) { el('toast').textContent = message; el('toast').hidden = false; window.clearTimeout(toastTimer); toastTimer = window.setTimeout(() => el('toast').hidden = true, 5000); }
 function saveNow() {
@@ -70,12 +88,40 @@ function saveNow() {
 function openModal(id: string) { release(); cancelGesture(); overlayPaused = true; el<HTMLDialogElement>(id).showModal(); }
 function closeModal(id: string) { el<HTMLDialogElement>(id).close(); }
 function refreshCollection() {
+  el('player-progress').textContent = `Niv. ${levelFor(save.xp)} · ${save.coins} écus`;
   el('collection-count').textContent = `${Object.keys(save.records).length} / ${SPECIES.length}`;
   el('total-catches').textContent = save.total ? `${save.total} rencontre${save.total > 1 ? 's' : ''} · ${Object.keys(save.records).length} espèce${Object.keys(save.records).length > 1 ? 's' : ''}` : 'Aucune prise, tout à découvrir';
   el('collection-list').innerHTML = SPECIES.map((species, i) => {
     const record = save.records[species.id];
     return `<article class="fish-entry ${record ? '' : 'undiscovered'}"><span class="fish-number">0${i + 1}</span><div><h3>${record ? species.name : 'À découvrir'}</h3><p>${record ? `${record.count} rencontre${record.count > 1 ? 's' : ''} · ${species.latin}` : (i === 0 || i === 2 ? 'Tentez votre chance au ver.' : 'Essayez le petit leurre.')}</p></div><div class="best">${record ? record.best.toLocaleString('fr-FR') : '—'}${record ? '<small> cm</small>' : ''}</div></article>`;
   }).join('');
+  for (const url of photoUrls) URL.revokeObjectURL(url); photoUrls.length = 0;
+  const captures = [...save.journal].reverse().slice(0, journalLimit);
+  el('journal-intro').textContent = save.journal.length ? `${save.journal.length} souvenir(s) · ${save.favorites.length} / 5 favoris · ${Object.keys(save.variants).length} apparence(s)` : 'Les prises de l’ancien carnet gardent leurs records. Les nouvelles auront leur fiche et leur photo.';
+  el('journal-list').innerHTML = captures.map(s => `<article class="specimen-card"><button class="specimen-view" data-specimen="${escape(s.id)}"><div class="photo-placeholder" data-photo="${escape(s.id)}">Souvenir 3D</div><div><strong>${SPECIES.find(f => f.id === s.speciesId)!.name}${s.mirage ? ' · Mirage' : ''}</strong><p>${s.length} cm · ${s.weight.toLocaleString('fr-FR')} kg · ${s.coloration === 'golden' ? 'Reflets dorés' : 'Robe naturelle'}</p><small>${new Date(s.date).toLocaleDateString('fr-FR')} · ${s.method === 'float' ? 'Flotteur' : s.method === 'lure' ? 'Leurre' : 'Fond'}</small></div></button><button class="secondary" data-favorite="${escape(s.id)}" aria-pressed="${save.favorites.includes(s.id)}">${save.favorites.includes(s.id) ? 'Retirer le favori' : 'Favori'}</button></article>`).join('');
+  el('journal-more').hidden = save.journal.length <= journalLimit;
+  el('mastery-list').innerHTML = save.badges.map(b => `<span class="badge">${BADGES[b as keyof typeof BADGES]}</span>`).join('');
+  for (const s of captures) void getPhoto(s.id).then(blob => {
+    const target = Array.from(document.querySelectorAll<HTMLElement>('[data-photo]')).find(e => e.dataset.photo === s.id);
+    if (!blob || !target || !target.isConnected) return;
+    const url = URL.createObjectURL(blob); photoUrls.push(url); const img = document.createElement('img'); img.src = url; img.alt = `Photo de ${SPECIES.find(f => f.id === s.speciesId)!.name}`; target.replaceChildren(img);
+  });
+}
+function refreshDex() {
+  const search = el<HTMLInputElement>('dex-search').value.trim().toLocaleLowerCase('fr');
+  const category = el<HTMLSelectElement>('dex-category').value, state = el<HTMLSelectElement>('dex-state').value;
+  const groups = new Map<string, typeof fishdex.entries>();
+  for (const entry of fishdex.entries) { const rows = groups.get(entry.biologicalId) ?? []; rows.push(entry); groups.set(entry.biologicalId, rows); }
+  const labels: Record<string, string> = { commun: 'Commun', 'peu commun': 'Peu commun', rare: 'Rare', epique: 'Épique', legendaire: 'Légendaire', mirage: 'Mirage' };
+  const cards = [...groups.values()].filter(rows => rows.some(e => (category === 'all' || e.category === category) && (!search || `${e.name} ${e.latin} ${e.techniques.join(' ')}`.toLocaleLowerCase('fr').includes(search))) && (state === 'all' || state === 'mirage' && rows.some(e => e.rarity === 'mirage') || state === 'playable' && rows.some(e => e.gameId) || state === 'discovered' && rows.some(e => e.gameId && save.records[e.gameId as keyof typeof save.records])));
+  el('dex-list').innerHTML = cards.map(rows => {
+    const base = rows.find(e => e.gameId) ?? rows[0], known = base.gameId && save.records[base.gameId as keyof typeof save.records];
+    return `<details class="dex-card"><summary><div class="dex-illustration">${known && base.image ? `<img src="${base.image}" loading="lazy" alt="${escape(base.name)}">` : '<span class="silhouette">◇</span>'}</div><div><strong>${escape(base.name)}</strong><p>${escape(base.latin)}</p><small>${base.gameId ? known ? 'Découverte · Jouable' : 'À découvrir · Jouable' : 'Prévue · Modèle absent'} · ${rows.length} fiche(s)</small></div></summary><p>${escape(base.description)}</p>${base.hint ? `<p>${escape(base.hint)}</p>` : ''}<p>${base.min ?? '—'}–${base.max ?? '—'} cm · ${labels[base.rarity] ?? base.rarity}</p><p>Référence : ${escape(base.techniques.join(' · '))}</p>${rows.length > 1 ? `<div class="variant-list">${rows.map(e => `<span>${escape(e.name)} · ${labels[e.rarity] ?? e.rarity}${e.gameId ? ' · jouable' : ' · prévue'}</span>`).join('')}</div>` : ''}</details>`;
+  }).join('') || '<p class="intro">Aucune fiche avec ces filtres.</p>';
+}
+function refreshShop() {
+  el('shop-balance').textContent = `${save.coins} écus · Niveau ${levelFor(save.xp)} (${save.xp} XP). Matériel actuel : ${ITEMS.find(i => i.id === save.equipped)!.name}.`;
+  el('shop-list').innerHTML = ITEMS.map(i => `<article class="shop-item"><h3>${i.name}</h3><p>${i.description}</p><button class="secondary" data-buy="${i.id}" ${save.inventory.includes(i.id) ? 'disabled' : ''}>${save.inventory.includes(i.id) ? 'Possédé' : `${i.price} écus · Acheter`}</button>${i.kind === 'rod' && save.inventory.includes(i.id) ? `<button class="secondary" data-equip="${i.id}" ${save.equipped === i.id || game.phase !== 'idle' ? 'disabled' : ''}>${save.equipped === i.id ? 'Équipée' : game.phase !== 'idle' ? 'Après cette partie' : 'Équiper'}</button>` : ''}</article>`).join('');
 }
 function refreshSettings() {
   el('sound').setAttribute('aria-pressed', String(save.settings.sound));
@@ -106,20 +152,46 @@ function renderPhase() {
 async function showCatch() {
   if (!game.result || !game.fish) return;
   const badges = recordCatch(save, game.result); saveNow(); refreshCollection();
+  const specimen = save.journal.find(s => s.id === game.result!.id)!;
+  viewedSpecimen = specimen; liveCatchView = true;
   el('catch-heading').textContent = badges.first ? 'Une nouvelle page du carnet' : badges.record ? 'Votre nouveau record' : 'Une belle rencontre';
   el('catch-name').textContent = game.fish.name; el('catch-latin').textContent = game.fish.latin;
   el('catch-length').textContent = game.result.length.toLocaleString('fr-FR');
   el('catch-description').textContent = game.fish.description;
+  refreshSpecimenInfo(specimen, true);
   el('catch-badges').innerHTML = `${badges.first ? '<span class="badge">Nouvelle espèce</span>' : ''}${badges.record ? '<span class="badge">Record personnel</span>' : '<span class="badge">Ajouté au carnet</span>'}`;
   el('preview-error').hidden = true; el('fish-preview').dataset.loaded = 'false'; openModal('caught'); audio.tone('catch');
   const request = ++catchViewRequest;
   try {
     preview ??= new FishPreview(el<HTMLCanvasElement>('fish-preview'));
-    const ok = await preview.show(game.fish);
+    const ok = await preview.show(game.fish, specimen);
     if (request === catchViewRequest) { el('preview-error').hidden = ok; el('fish-preview').dataset.loaded = String(ok); }
+    if (ok && request === catchViewRequest) await photograph(specimen, request);
   } catch {
     if (request === catchViewRequest) el('preview-error').hidden = false;
   }
+}
+function refreshSpecimenInfo(s: Specimen, reward: boolean) {
+  el('catch-weight').textContent = `${s.weight.toLocaleString('fr-FR')} kg · ${s.coloration === 'golden' ? 'Reflets dorés' : 'Robe naturelle'}${s.mirage ? ' · Mirage' : ''}`;
+  const r = s.reward;
+  el('catch-reward').textContent = reward ? `+${r.coins} écus · +${r.xp} XP — Photo ${r.base}${r.discovery ? `, découverte +${r.discovery}` : ''}${r.record ? `, record +${r.record}` : ''}` : `${new Date(s.date).toLocaleString('fr-FR')} · ${s.location} · ${s.method === 'float' ? 'Flotteur' : s.method === 'lure' ? 'Leurre' : 'Fond'} · ${ITEMS.find(i => i.id === s.equipment)?.name ?? 'Canne de bordure'}`;
+  el('favorite-catch').textContent = save.favorites.includes(s.id) ? 'Retirer des favoris' : 'Ajouter aux favoris';
+  el('photo-state').textContent = 'La photo se prépare…';
+  el('release-fish').textContent = reward ? 'Remettre à l’eau' : 'Retour au carnet';
+}
+async function photograph(s: Specimen, request: number) {
+  let blob = await getPhoto(s.id);
+  if (!blob && request === catchViewRequest) blob = await preview?.photo() ?? undefined;
+  const ok = !!blob && await storePhoto(s.id, blob);
+  if (request === catchViewRequest) el('photo-state').textContent = ok ? 'Photo conservée sur cet appareil. Votre souvenir reste dans le carnet.' : 'Photo indisponible. Votre capture et ses gains sont conservés.';
+}
+async function showSpecimen(s: Specimen) {
+  viewedSpecimen = s; liveCatchView = false; const fish = SPECIES.find(f => f.id === s.speciesId)!;
+  el('catch-heading').textContent = 'Un souvenir au bord de l’eau'; el('catch-name').textContent = fish.name; el('catch-latin').textContent = fish.latin; el('catch-length').textContent = s.length.toLocaleString('fr-FR'); el('catch-description').textContent = fish.description;
+  el('catch-badges').textContent = s.mirage ? 'Mirage · Variante du jeu' : '';
+  refreshSpecimenInfo(s, false); el('fish-preview').dataset.loaded = 'false'; el('preview-error').hidden = true; openModal('caught');
+  const request = ++catchViewRequest;
+  try { preview ??= new FishPreview(el<HTMLCanvasElement>('fish-preview')); const ok = await preview.show(fish, s); if (request === catchViewRequest) { el('fish-preview').dataset.loaded = String(ok); el('preview-error').hidden = ok; if (ok) await photograph(s, request); } } catch { if (request === catchViewRequest) el('preview-error').hidden = false; }
 }
 function phaseChanged() {
   if (game.phase === lastPhase) return;
@@ -186,10 +258,26 @@ document.querySelectorAll<HTMLButtonElement>('[data-bait]').forEach(button => bu
 }));
 el('collection-open').onclick = () => { refreshCollection(); openModal('collection'); };
 el('help-open').onclick = () => openModal('help');
+el('dex-open').onclick = () => { refreshDex(); openModal('encyclopedia'); };
+for (const id of ['dex-search', 'dex-category', 'dex-state']) el(id).addEventListener('input', refreshDex);
+el('shop-open').onclick = () => { refreshShop(); openModal('shop'); };
+el('shop-list').onclick = event => {
+  const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button'); if (!button) return;
+  if (button.dataset.buy) { const error = purchase(save, button.dataset.buy as ItemId); toast(error || 'Achat ajouté à votre inventaire.'); }
+  if (button.dataset.equip && game.phase === 'idle' && save.inventory.includes(button.dataset.equip as ItemId)) { save.equipped = button.dataset.equip as ItemId; equip(); }
+  saveNow(); refreshShop(); refreshCollection();
+};
+el('journal-more').onclick = () => { journalLimit += 30; refreshCollection(); };
+el('journal-list').onclick = event => {
+  const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button'); if (!button) return;
+  if (button.dataset.specimen) { const s = save.journal.find(s => s.id === button.dataset.specimen); if (s) void showSpecimen(s); }
+  if (button.dataset.favorite) { const error = toggleFavorite(save, button.dataset.favorite); if (error) toast(error); saveNow(); refreshCollection(); }
+};
+el('favorite-catch').onclick = () => { if (!viewedSpecimen) return; const error = toggleFavorite(save, viewedSpecimen.id); if (error) toast(error); saveNow(); refreshCollection(); el('favorite-catch').textContent = save.favorites.includes(viewedSpecimen.id) ? 'Retirer des favoris' : 'Ajouter aux favoris'; };
 document.querySelectorAll<HTMLButtonElement>('[data-close]').forEach(button => button.onclick = () => closeModal(button.dataset.close!));
 document.querySelectorAll<HTMLDialogElement>('dialog').forEach(dialog => dialog.addEventListener('close', () => {
   overlayPaused = !!document.querySelector('dialog[open]'); release();
-  if (dialog.id === 'caught') { catchViewRequest++; preview?.hide(); game.reset(); phaseChanged(); }
+  if (dialog.id === 'caught') { catchViewRequest++; preview?.hide(); viewedSpecimen = undefined; if (liveCatchView) { game.reset(); phaseChanged(); } }
 }));
 el('release-fish').onclick = () => closeModal('caught');
 el('sound').onclick = () => { save.settings.sound = !save.settings.sound; audio.enabled = save.settings.sound; void audio.unlock(); refreshSettings(); saveNow(); };
@@ -204,7 +292,7 @@ el<HTMLInputElement>('save-file').onchange = async event => {
   const input = event.target as HTMLInputElement; const file = input.files?.[0];
   if (!file) return;
   try {
-    if (file.size > 100_000) throw new Error('Fichier trop volumineux.');
+    if (file.size > MAX_SAVE_BYTES) throw new Error('Fichier trop volumineux.');
     pendingImport = parseSave(await file.text());
     el('import-description').textContent = `Ce carnet contient ${pendingImport.total} prise(s). Il remplacera votre carnet actuel (${save.total} prise(s)). Exportez le vôtre avant de continuer si vous souhaitez le garder.`;
     el('import-review').hidden = false;
@@ -214,6 +302,7 @@ el<HTMLInputElement>('save-file').onchange = async event => {
 el('confirm-import').onclick = () => {
   if (!pendingImport) return;
   save = pendingImport; pendingImport = undefined; el('import-review').hidden = true;
+  equip();
   audio.enabled = save.settings.sound; world?.setQuality(save.settings.quality);
   saveNow(); refreshCollection(); refreshSettings(); toast('Votre carnet a été restauré.');
 };
