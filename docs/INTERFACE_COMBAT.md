@@ -45,4 +45,4 @@ Validation locale : npm run check réussi, 23 tests + TypeScript + build. Smoke 
 
 Rendu logiciel Chromium/SwiftShader Windows ; profil mobile émulé, aucun test Safari/iPhone physique. Appareil réel, FPS/chauffe et ressenti restent à mesurer. Mesures E2E sur échantillons de 3 s : étang 23,2–23,8 FPS ; bassin 6,9 FPS bureau / 22,2 FPS mobile. Variabilité du rendu logiciel Windows, aucun gain téléphone revendiqué ; zéro frame de pêche derrière le bassin.
 
-Projet Vercel confirmé : fishdex-landing, même dépôt/main/domaines/protection. Preview applicative 9347d75 READY, smoke protégé 6/6 (1,7 min) ; production à publier après cette validation. Résultats définitifs dans VERCEL.md et RELAIS_PROJET.md.
+Projet Vercel confirmé : fishdex-landing, même dépôt/main/domaines/protection. Preview applicative 9347d75 READY, smoke protégé 6/6 (1,7 min) ; production main dae5e93 READY, smoke public 6/6 (1,5 min) sur [www.fishdex.fr](https://www.fishdex.fr), même application que la preview et le dist local. Résultats définitifs dans VERCEL.md et RELAIS_PROJET.md.

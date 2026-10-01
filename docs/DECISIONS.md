@@ -28,6 +28,8 @@
 | 2026-10-01 | Orientation et hauteur déterminent récupération, contact et tension ; tours par mouvement | Supprime le maintien/relâchement dominant ; comparaison contrôlée documentée |
 | 2026-10-01 | Sauvegarde v2 inchangée, conseils par clé locale distincte | Aucun risque de migration inutile ; photos et récompenses préservées |
 
+| 2026-10-01 | Cadrage de canne adapté au champ horizontal, sans modifier les forces | Pointe visible aux extrêmes portrait/bureau ; indication de tension préservée |
+
 La plaisance du combat, la direction artistique et la longévité de la boucle
 doivent encore être validées par l’utilisateur. Ne pas confondre un prototype
 fonctionnel avec un jeu prêt à diffuser largement.

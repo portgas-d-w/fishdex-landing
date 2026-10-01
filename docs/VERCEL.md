@@ -1,10 +1,12 @@
 # Vercel — migration de FishDex vers Au fil de l’eau
 
-## Correction immersive 0.3 — publication en cours
+## Correction immersive 0.3 — publiée et vérifiée
 
 Cible revérifiée par CLI 62.0.0 : portgas-d-ws-projects/fishdex-landing, prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, Node 24, Vite, npm ci/build/dist ; même dépôt et main. Publication via intégration Git après preview protégée vérifiée. Aucun changement de domaines/protection.
 
-Préproduction applicative : commit 9347d750e8f5f0cc1709e5e095e5fe3466fb603d, https://fishdex-landing-j1s16fb54-portgas-d-ws-projects.vercel.app, ID dpl_2RG6wgaLULPseUF5PXrXjEZN1v9q, READY, build 19 s. Smoke protégé 6/6 (1,7 min), vraie capture et deux commandes, portraits, sauvegarde/import/export, achats et bassin. Token OIDC local limité à cette origine, traces désactivées et valeur jamais affichée/committée. Production à publier sur main.
+Préproduction applicative : commit 9347d750e8f5f0cc1709e5e095e5fe3466fb603d, https://fishdex-landing-j1s16fb54-portgas-d-ws-projects.vercel.app, ID dpl_2RG6wgaLULPseUF5PXrXjEZN1v9q, READY, build 19 s. Smoke protégé 6/6 (1,7 min), vraie capture et deux commandes, portraits, sauvegarde/import/export, achats et bassin. Token OIDC local limité à cette origine, traces désactivées et valeur jamais affichée/committée. Production Git main dae5e9371fee6e1ba3d2c3b89b3ec04d2a52dcf9, après fusion fast-forward : https://fishdex-landing-q9hvlj65k-portgas-d-ws-projects.vercel.app, ID dpl_GSB2NcKv2ApQsswD8WMvgEeVXycs, READY, build 19 s. **Smoke public 6/6 (1,5 min)** sur https://www.fishdex.fr, sans token ; captures réelles souris/deux commandes tactiles et fonctionnalités. HTTP 200, domaine nu redirigé vers www. Application inchangée depuis la preview (diff src/public/package/config vide). Bundle public et manifeste identiques au dist local, SHA256 ci-dessous.
+
+Le commit de clôture ne change que documents/captures. Son déploiement Git de la même application est contrôlé READY et fichiers identiques avant fin de session ; le smoke complet concerne dae5e93 exact.
 
 Local : npm run check (23 tests), E2E 20/20 + 11 ciblés après cadrage, smoke final sans QA 6/6 (1,2 min). Bundle index-CX0qA7ip.js SHA256 104b4e5a1ad703ddfec262791acc566b443fb6acbb52817494c8851d9eb3406e.
 

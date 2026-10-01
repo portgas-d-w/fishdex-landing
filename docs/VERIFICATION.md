@@ -120,3 +120,5 @@ Comparaison reproductible : scripts/compare-combat.mts et docs/apercus/immersion
 Échantillons 3 s Chromium SwiftShader Windows : étang 23,2–23,8 FPS, aquarium bureau 6,9 / mobile 22,2 FPS ; aucune frame de pêche derrière le bassin. Ces nombres variables ne certifient aucun téléphone. Aucun test Safari/iPhone physique ni mesure de chauffe. Images avant/après dans docs/INTERFACE_COMBAT.md ; résultats distants dans docs/VERCEL.md.
 
 Preview Vercel protégée : 9347d75, READY, smoke 6/6 (1,7 min), mêmes commandes réelles et fonctionnalités ; détails exacts dans docs/VERCEL.md.
+
+Production publique : main dae5e93, READY, smoke 6/6 (1,5 min), vrais gestes/captures/persistance et quinze fichiers GLB intacts. HTTP 200 et redirection vers www ; bundle index-CX0qA7ip.js SHA256 104b4e5a1ad703ddfec262791acc566b443fb6acbb52817494c8851d9eb3406e et manifeste identiques au dist vérifié. Captures de production inspectées/conservées ; clôture uniquement documentaire, contrôle d’identité répété sur le dernier déploiement.
