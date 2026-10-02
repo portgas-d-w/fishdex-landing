@@ -48,7 +48,7 @@ Le lecteur 0.7 ne sait pas lire v5. Avant un retour applicatif, exporter le carn
 
 Captures dans apercus/progression : avant issu du build 0.7 vérifié, après 0.8, même caméra de ponton et viewport. Les nouveaux postes et interfaces ont leurs captures dédiées. Les fichiers 0.7 historiques ne sont pas écrasés.
 
-Chromium Windows avec ANGLE/SwiftShader, qualité éco ; 20 échantillons par poste, un worker. Les chiffres CPU sont la soumission Babylon et ne mesurent pas le GPU. Mobile est une fenêtre 390×844, pas un iPhone testé.
+Chromium Windows avec ANGLE/SwiftShader, qualité éco ; 20 échantillons par poste, un worker. Les chiffres CPU sont la soumission Babylon et ne mesurent pas le GPU. Mobile est une fenêtre 390×844, pas un iPhone testé. Le relâchement automatisé d’un geste est sensible aux délais du runner ; un refus observé au bureau a été repris avec succès, sans engagement de montage ni perte. Ce confort reste à tester humainement.
 
 | Poste | Mobile : FPS / draw calls | Bureau : FPS / draw calls |
 | --- | --- | --- |
@@ -56,7 +56,7 @@ Chromium Windows avec ANGLE/SwiftShader, qualité éco ; 20 échantillons par po
 | Anse | 23,3 / 26 | 22,6 / 32 |
 | Rive | 22,8 / 26 | 23,6 / 32 |
 
-Référence 0.7 mobile au ponton : 23,3 FPS, 21 draw calls, 55 294 sommets. Prototype : 57 000 sommets (+3,1 %), mêmes deux textures procédurales 256² et 512×128. CPU médian mobile 0,5 ms, P95 0,6–0,9 ms ; bureau 0,6–0,7 ms, P95 0,8–1,8 ms, rendu interne 1024×640. Les déplacements successifs conservent moteur, scène et nombre total de meshes. Les petites différences de cadence ne démontrent aucun gain de performance sur appareil.
+Référence 0.7 mobile au ponton : 23,3 FPS, 21 draw calls, 55 294 sommets. Prototype : 57 000 sommets (+3,1 %), mêmes deux textures procédurales 256² et 512×128. Dernier relevé : CPU médian mobile 0,5–0,6 ms, P95 0,6–1,2 ms ; bureau 0,6–0,9 ms, P95 1,5–5,9 ms, rendu interne 1024×640. Les déplacements successifs conservent moteur, scène et nombre total de meshes. Les fluctuations et pointes de soumission observées ne démontrent aucun gain de performance sur appareil.
 
 Banc reproductible : node --experimental-strip-types scripts/progression-bench.ts ; détail apercus/progression/simulation-bench.json. Trois individus (gardon/perche/carpe), trois ensembles à moulinet, deux environnements, graine 127 identique : 18 situations par mode. Contrôleur parfait sur la direction et régulation de tension ; les obstacles sont volontairement dégagés. Capture 18/18 dans chaque mode ; manuel 11,08–67,48 s, assisté 11,63–71,63 s. L’assistance n’accélère donc pas uniformément cette stratégie. Six cas au coup : deux captures du gardon ; perche 27 cm et carpe 54 cm rompent avec les deux cannes. Limite de réserve/amortissement visible du prototype, pas une promesse de facilité.
 
@@ -64,7 +64,7 @@ Quatre sessions naturelles de 12 lancers, graine 127, kits gratuits et coût hyp
 
 ## Vérifications et limites
 
-npm run check : TypeScript, 58 tests et build réussis. Première suite navigateur complète : 56 réussis, 3 exclusions prévues, un échec de relâchement lent bureau résolu lors de la reprise ciblée (14/14 : gestes, progression, migration et accrochages). Scénarios 0.7 utilisent un profil migré avec droits anciens ; tests journey partent d’un profil réellement neuf. Build sans QA : 10/10, vraies captures au coup et avec moulinet par souris/tactile, photo/transfert, quinze modèles, achats et favoris. Hébergement : contrôle de preview puis domaine public selon le workflow existant.
+npm run check : TypeScript, 58 tests et build réussis. Première suite navigateur complète : 56 réussis, 3 exclusions prévues, un échec de relâchement lent bureau résolu lors de la reprise ciblée (14/14 : gestes, progression, migration et accrochages). Scénarios 0.7 utilisent un profil migré avec droits anciens ; tests journey partent d’un profil réellement neuf. Build sans QA : 10/10, vraies captures au coup et avec moulinet par souris/tactile, photo/transfert, quinze modèles, achats et favoris. Préproduction READY dpl_HmnPXNX7Y1LbyRBh617f7UWpmMoj, https://fishdex-landing-80wspd47l-portgas-d-ws-projects.vercel.app, application 743cda81109653f32f45f9f1e574a50729db90e9, build 28,9 s. Smoke protégé : 9/10 dans la première passe, lancer bureau refusé avant engagement ; reprise 1/1 (52,9 s), donc tous les dix scénarios vérifiés, incluant vraie prise au coup et avec moulinet. OIDC limité à cette origine ; token non committé, traces désactivées. Tag archive/au-fil-de-leau-before-progression-2026-10-02 publié sur e300814. Domaines et protection conservés. Le contrôle du domaine public suit la publication.
 
 À tester humainement sur Safari/iPhone et téléphone modeste : portée/lecture du cercle, ferrage, rapprochement au coup, confort du pouce, signal des leurres, libération des herbiers, comparaison manuel/assisté, économie, clavier/scroll et reprise après interruption ; chauffe/autonomie/réseau/GPU non mesurés. Pas de 30 FPS garanti.
 

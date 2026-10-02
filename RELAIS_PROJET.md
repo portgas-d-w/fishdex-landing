@@ -18,7 +18,7 @@ Fichiers : game/posts/progression/rarity, adaptations game/fishing/combat/castin
 
 Futurs : pointe/bois, vent/dérive/branches, feeder/mouche/rivière, auto-ferrage, réception avancée et déboîtement. Prototype partiel : forces normalisées, pêcheur procédural sans marche, transition de caméra instantanée. Prochaine tâche Claude : tests humains au toucher sur Safari/iPhone et téléphone modeste, confort du coup/leurres, accroches, cadence/chauffe et économie. Aucun appareil physique, GPU, chauffe/autonomie ou réseau mobile mesuré ; aucun 30 FPS garanti.
 
-Publication : liaison Vercel prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, portgas-d-ws-projects/fishdex-landing, GitHub portgas-d-w/fishdex-landing et main revérifiés. Préproduction et domaine public à contrôler après commit. Projet/domaines/protection conservés.
+Publication : liaison Vercel prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, portgas-d-ws-projects/fishdex-landing, GitHub portgas-d-w/fishdex-landing et main revérifiés. Préproduction READY dpl_HmnPXNX7Y1LbyRBh617f7UWpmMoj, https://fishdex-landing-80wspd47l-portgas-d-ws-projects.vercel.app, application 743cda81109653f32f45f9f1e574a50729db90e9, build 28,9 s. Smoke protégé : 9/10 dans la première passe, lancer bureau refusé avant engagement ; reprise 1/1 (52,9 s), donc tous les dix scénarios vérifiés, incluant vraie prise au coup et avec moulinet. OIDC limité à cette origine ; token non committé, traces désactivées. Tag archive/au-fil-de-leau-before-progression-2026-10-02 publié sur e300814. Domaines et protection conservés. Publication main et domaine public à vérifier ensuite. Projet/domaines/protection conservés.
 
 ## Direction artistique Basalte & Turquoise — 2 octobre 2026, Codex, 0.7.0 publiée et vérifiée
 

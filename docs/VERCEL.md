@@ -1,5 +1,15 @@
 # Vercel — migration de FishDex vers Au fil de l’eau
 
+## Progression/postes/pratiques 0.8.0 — 2 octobre 2026
+
+Projet prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, portgas-d-ws-projects/fishdex-landing, GitHub portgas-d-w/fishdex-landing et production main revérifiés via métadonnées filtrées ; Vite/dist/npm ci/Node24. CLI 62.0.0 réellement installée. Aucun projet, domaine ou réglage de protection ajouté/modifié.
+
+Préproduction READY dpl_HmnPXNX7Y1LbyRBh617f7UWpmMoj, https://fishdex-landing-80wspd47l-portgas-d-ws-projects.vercel.app, application 743cda81109653f32f45f9f1e574a50729db90e9, build 28,9 s. Smoke protégé : 9/10 dans la première passe, lancer bureau refusé avant engagement ; reprise 1/1 (52,9 s), donc tous les dix scénarios vérifiés, incluant vraie prise au coup et avec moulinet. OIDC limité à cette origine ; token non committé, traces désactivées. Tag archive/au-fil-de-leau-before-progression-2026-10-02 publié sur e300814. Domaines et protection conservés.
+
+Local : check 58 tests + TypeScript/build, navigateur complet 56 réussis/3 exclusions/un relâchement bureau repris avec 14/14 ciblés ; build sans QA 10/10 (2,4 min). Format v5, original v4 conservé/exportable ; ancien lecteur incompatible avec v5, export préalable et préservation des deux carnets nécessaires pour retour.
+
+Production publique à vérifier après fusion fast-forward. Rapport PROGRESSION_POSTES_METHODES.md ; aucun résultat appareil physique annoncé.
+
 ## Basalte & Turquoise 0.7.0 — 2 octobre 2026
 
 Projet, dépôt et branche de production revérifiés : portgas-d-ws-projects/fishdex-landing, ID prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, GitHub portgas-d-w/fishdex-landing, main, Vite/dist/npm ci/Node24. CLI 62.0.0 réellement disponible. Domaines et protection conservés.
