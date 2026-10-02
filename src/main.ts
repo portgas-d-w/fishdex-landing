@@ -1,5 +1,7 @@
 import './style.css';
 import {ProfileStorage,wallet} from './game/development';
+import {installTechniqueControls} from './ui/technique-controls';
+import {techniqueById} from './game/techniques';
 import {installDevelopment} from './ui/development';
 import {setPhotoProfile} from './ui/photos';
 declare const __TEST_MODE_ENABLED__:boolean;
@@ -9,7 +11,7 @@ import './ui/journey.css';
 import { GameScreens } from './ui/structure';
 import { specimenRarity, rarityName } from './game/rarity';
 import { postById } from './game/posts';
-import { equipRod } from './game/progression';
+import { equipRod,refreshRights,switchTechnique } from './game/progression';
 import { component, validateRig } from './game/rig';
 import { FishingGame } from './game/fishing';
 import { SPECIES } from './game/catalog';
@@ -74,12 +76,13 @@ const profiles=new ProfileStorage(storage,import.meta.env.DEV||__TEST_MODE_ENABL
 setPhotoProfile(profiles.active);
 const loaded: ReturnType<typeof loadSave> = storage ? profiles.load() : { data: emptySave(), warning: 'Sauvegarde locale indisponible. Pensez à exporter le carnet.' };
 let save = loaded.data;
+try{if(!profiles.getItem('au-fil-de-leau.save.v1')&&!save.development&&!loaded.recovery){refreshRights(save);switchTechnique(save,'coup');}}catch{/* Conservation du kit initial si stockage inaccessible. */}
 // Original pré-migration gardé localement pour un éventuel retour au lecteur v4.
 let migrationBackupPending=false;
-try {const raw=storage?.getItem('au-fil-de-leau.save.v1');migrationBackupPending=!!raw&&JSON.parse(raw).version<5&&!storage?.getItem('au-fil-de-leau.save.before-v5');} catch { /* récupération existante */ }
+try {const raw=storage?.getItem('au-fil-de-leau.save.v1');migrationBackupPending=profiles.active==='normal'&&!!raw&&JSON.parse(raw).version<6&&!storage?.getItem('au-fil-de-leau.save.before-v6');} catch { /* récupération existante */ }
 let recoveryPreserved = !loaded.recovery;
 const game = new FishingGame();
-game.rights=save.progression;game.setMethod(save.preparation.method); game.setBait(save.preparation.bait);game.setPost(save.preparation.post);game.combatMode=save.settings.combatMode;
+game.testMode=!!save.development;game.accessBypass=save.development?.kind==='sandbox';game.rights=save.progression;game.setMethod(save.preparation.method); game.setBait(save.preparation.bait);game.setPost(save.preparation.post);game.combatMode=save.settings.combatMode;
 let hub: GameScreens | undefined;
 const audio = new GameAudio(); audio.enabled = save.settings.sound;
 let world: LakeWorld | undefined;
@@ -108,7 +111,7 @@ equip();
 
 function toast(message: string) { el('toast').textContent = message; el('toast').hidden = false; window.clearTimeout(toastTimer); toastTimer = window.setTimeout(() => el('toast').hidden = true, 5000); }
 function saveNow() {
-  if(migrationBackupPending){try{storage!.setItem('au-fil-de-leau.save.before-v5',storage!.getItem('au-fil-de-leau.save.v1')!);migrationBackupPending=false;}catch{toast('Exportez la progression avant migration : le stockage ne permet pas de conserver l’original.');return;}}
+  if(migrationBackupPending){try{storage!.setItem('au-fil-de-leau.save.before-v6',storage!.getItem('au-fil-de-leau.save.v1')!);migrationBackupPending=false;}catch{toast('Exportez la progression avant migration : le stockage ne permet pas de conserver l’original.');return;}}
   if (!recoveryPreserved && loaded.recovery) { try { storage?.setItem('au-fil-de-leau.save.recovery', loaded.recovery); recoveryPreserved = !!storage; } catch { toast('Stockage plein. Exportez le fichier de récupération dans Réglages avant de sauvegarder.'); return; } if (!recoveryPreserved) return; }
   if ((!storage || !persistSave(save, profiles)) && !storageWarningShown) {
     storageWarningShown = true; toast('Sauvegarde locale impossible. Exportez votre carnet pour le conserver.');
@@ -129,7 +132,7 @@ function refreshCollection() {
   const matches = hub?.journal() ?? [...save.journal].reverse();
   const captures = matches.slice(0, journalLimit);
   el('journal-intro').textContent = save.journal.length ? `${save.journal.length} souvenir(s) · ${save.favorites.length} / 5 favoris · ${Object.keys(save.variants).length} apparence(s)` : 'Les prises de l’ancien carnet gardent leurs records. Les nouvelles auront leur fiche et leur photo.';
-  el('journal-list').innerHTML = captures.map(s => `<article class="specimen-card"><button class="specimen-view" data-specimen="${escape(s.id)}"><div class="photo-placeholder" data-photo="${escape(s.id)}">Souvenir 3D</div><div><strong>${SPECIES.find(f => f.id === s.speciesId)!.name}${s.mirage ? ' · Mirage' : ''}</strong><p>${s.length} cm · ${s.weight.toLocaleString('fr-FR')} kg · ${s.coloration === 'golden' ? 'Reflets dorés' : 'Robe naturelle'}</p><small>${rarityName(specimenRarity(s))} · ${s.post?postById(s.post).name+' · ':''}${new Date(s.date).toLocaleDateString('fr-FR')} · ${s.method==='pole'?'Coup':s.method === 'float' ? 'Flotteur' : s.method === 'lure' ? 'Leurre' : 'Fond'}</small></div></button><button class="secondary" data-favorite="${escape(s.id)}" aria-pressed="${save.favorites.includes(s.id)}">${save.favorites.includes(s.id) ? 'Retirer le favori' : 'Favori'}</button></article>`).join('');
+  el('journal-list').innerHTML = captures.map(s => `<article class="specimen-card"><button class="specimen-view" data-specimen="${escape(s.id)}"><div class="photo-placeholder" data-photo="${escape(s.id)}">Souvenir 3D</div><div><strong>${SPECIES.find(f => f.id === s.speciesId)!.name}${s.mirage ? ' · Mirage' : ''}</strong><p>${s.length} cm · ${s.weight.toLocaleString('fr-FR')} kg · ${s.coloration === 'golden' ? 'Reflets dorés' : 'Robe naturelle'}</p><small>${rarityName(specimenRarity(s))} · ${s.post?postById(s.post).name+' · ':''}${new Date(s.date).toLocaleDateString('fr-FR')} · ${s.technique?techniqueById(s.technique).name:s.method==='pole'?'Coup':s.method === 'float' ? 'Flotteur' : s.method === 'lure' ? 'Leurre' : 'Fond'}</small></div></button><button class="secondary" data-favorite="${escape(s.id)}" aria-pressed="${save.favorites.includes(s.id)}">${save.favorites.includes(s.id) ? 'Retirer le favori' : 'Favori'}</button></article>`).join('');
   el('journal-more').hidden = matches.length <= journalLimit;
   el('mastery-list').innerHTML = save.badges.map(b => `<span class="badge">${BADGES[b as keyof typeof BADGES]}</span>`).join('');
   hub?.progression(); hub?.dex(); hub?.material();
@@ -176,8 +179,8 @@ function renderPhase() {
   const phase = game.phase; document.body.dataset.phase = phase;
   el('prepare-open').hidden = phase !== 'idle';
   el('strike').hidden = phase !== 'bite';
-  el('reel-control').hidden = !game.hasReel || !(phase === 'fighting' || phase === 'waiting' && game.method === 'lure');
-  el('rod-control').hidden = !(phase==='fighting'||phase==='waiting'&&game.method==='lure');
+  el('reel-control').hidden = !game.hasReel || !(phase === 'fighting' || phase === 'waiting' && game.canAnimate);
+  el('rod-control').hidden = !(phase==='fighting'||phase==='waiting'&&game.canAnimate);
   el('map-open').hidden=phase!=='idle';el('groundbait').hidden=!['pole','float'].includes(game.method)||phase!=='waiting';el('retrieve-setting').hidden=game.method!=='lure'||phase!=='waiting';document.body.dataset.method=game.method;document.body.dataset.post=game.post;
   el('tension-display').hidden = phase !== 'fighting';
   el('cancel-cast').hidden = !['casting', 'waiting', 'bite'].includes(phase);
@@ -245,8 +248,8 @@ async function showSpecimen(s: Specimen) {
 function phaseChanged() {
   if (game.phase === lastPhase) return;
   lastPhase = game.phase; renderPhase();
-  if (!(game.phase === 'fighting' || game.phase === 'waiting' && game.method === 'lure')) { release(); cancelGesture(); }
-  if (game.phase === 'bite') { audio.tone('bite'); toast('Ça mord ! Ferrez.'); }
+  if (!(game.phase === 'fighting' || game.phase === 'waiting' && game.canAnimate)) { release(); cancelGesture(); }
+  if (game.phase === 'bite') { audio.tone('bite',game.modern?(game.config.components.float?'float':game.technique.engine==='surface'||game.rig.recipe==='seche'?'surface':['bottom','feeder'].includes(game.technique.engine)?'tip':'contact'):undefined); toast((game.modern?game.technique.signal+' : ':'')+'prise ! Ferrez.'); }
   if (game.phase === 'fighting') { el('toast').hidden = true; teach(2, game.hasReel? 'Glissez sur la commande de canne à gauche, ou sur l’eau. Maintenez Mouliner à droite avec l’autre doigt ; relâchez pour arrêter.':'Au coup, suivez le fil avec la canne. Baissez-la pendant un départ, relevez progressivement pour rapprocher le poisson. Aucun moulinet.'); }
   if (game.phase === 'casting' || game.phase === 'lost' || game.phase === 'idle') saveNow();
   if (game.phase === 'lost') { const losses=Object.entries(save.tackle.active?.losses??{}).map(([id,n])=>`${component(id)?.name} : ${n}`); toast(game.failure+(losses.length?' Perdu : '+losses.join(' · '):' Aucun composant payant perdu.')); }
@@ -280,7 +283,7 @@ function release() {
   const id = reelPointer; reelPointer = undefined; game.release(); reel.classList.remove('reeling');
   if (id !== undefined && reel.hasPointerCapture(id)) reel.releasePointerCapture(id);
 }
-function canRod(){return !overlayPaused&&!manualPaused&&(game.phase==='fighting'||game.phase==='waiting'&&(game.method==='lure'||game.snagged));}
+function canRod(){return !overlayPaused&&!manualPaused&&(game.phase==='fighting'||game.phase==='idle'&&game.modern&&game.technique.engine==='fly'||game.phase==='waiting'&&(game.canAnimate||game.snagged));}
 function canReel() { return game.hasReel&&!overlayPaused && !manualPaused && (game.phase === 'fighting' || game.phase === 'waiting' && game.method === 'lure'); }
 function turnReel(turns: number) {
   if (!canReel() || !turns) return;
@@ -354,6 +357,7 @@ window.addEventListener('keydown', e => {
   e.preventDefault(); activate();
 });
 hub = new GameScreens({ save: () => save, game, open: openModal, close: closeModal, persist: saveNow, refresh: refreshCollection, toast,postChanged:()=>{world?.setPost(game.post);renderPhase();} });
+const updateTechniqueControls=installTechniqueControls({isPaused:()=>overlayPaused||manualPaused,save:()=>save,game,open:openModal,close:closeModal,persist:saveNow,refresh:refreshCollection,toast});
 installDevelopment({save:()=>save,game,open:openModal,close:closeModal,persist:saveNow,refresh:refreshCollection,toast,postChanged:()=>{world?.setPost(game.post);renderPhase();}},profiles);
 if (loaded.recovery) { el('help').insertAdjacentHTML('beforeend', '<div class="recovery-panel"><h3>Récupérer une sauvegarde</h3><p class="warning-line">Le fichier original est conservé. Exportez-le avant de poursuivre ; vous pourrez importer une sauvegarde saine dans le carnet.</p><button id="export-recovery" class="secondary">Exporter le fichier original</button></div>'); el('export-recovery').onclick = () => { const url = URL.createObjectURL(new Blob([loaded.recovery!], {type:'application/json'})), a=document.createElement('a');a.href=url;a.download='au-fil-de-leau-recuperation.json';a.click();window.setTimeout(()=>URL.revokeObjectURL(url),1000);recoveryPreserved=true; }; }
 if (save.tackle.active?.outcome === 'return') saveNow();
@@ -412,7 +416,7 @@ el('export-save').onclick = () => {
   const a = document.createElement('a'); a.href = url; a.download = `au-fil-de-leau-${profiles.active}-carnet-${new Date().toISOString().slice(0, 10)}.json`; a.click();
   window.setTimeout(() => URL.revokeObjectURL(url), 1000);
 };
-el('export-before-progression').onclick=()=>{let raw:string|null=null;try{raw=storage?.getItem('au-fil-de-leau.save.before-v5')??(migrationBackupPending?storage?.getItem('au-fil-de-leau.save.v1')??null:null);}catch{/* export courant disponible */}if(!raw){toast('Aucun carnet ancien sur cet appareil. Exportez votre progression actuelle.');return;}const url=URL.createObjectURL(new Blob([raw],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='au-fil-de-leau-avant-progression.json';a.click();window.setTimeout(()=>URL.revokeObjectURL(url),1000);};
+el('export-before-progression').onclick=()=>{let raw:string|null=null;try{raw=storage?.getItem('au-fil-de-leau.save.before-v6')??storage?.getItem('au-fil-de-leau.save.before-v5')??(migrationBackupPending?storage?.getItem('au-fil-de-leau.save.v1')??null:null);}catch{/* export courant disponible */}if(!raw){toast('Aucun carnet ancien sur cet appareil. Exportez votre progression actuelle.');return;}const url=URL.createObjectURL(new Blob([raw],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='au-fil-de-leau-avant-progression.json';a.click();window.setTimeout(()=>URL.revokeObjectURL(url),1000);};
 el('import-save').onclick = () => el<HTMLInputElement>('save-file').click();
 el<HTMLInputElement>('save-file').onchange = async event => {
   const input = event.target as HTMLInputElement; const file = input.files?.[0];
@@ -454,7 +458,7 @@ try {
       accumulator += dt;
       while (accumulator >= 1 / 60) { game.update(1 / 60); phaseChanged(); accumulator -= 1 / 60; }
     } else accumulator = 0;
-    reel.classList.toggle('reeling', game.reeling);el('snag-release').hidden=!game.snagged;el('rod-control').hidden=!(game.phase==='fighting'||game.phase==='waiting'&&(game.method==='lure'||game.snagged));if(gesture&&!gesture.casting&&!canRod())cancelGesture();const context=`${postById(game.post).name} · ${game.phase==='idle'?(game.method==='pole'?'Placement proche · coup sans moulinet':'Préparez votre présentation'):`${game.presentationDepth.toFixed(1)} m · ${game.hint||(game.microzone==='plants'?'Herbiers':game.microzone==='margin'?'Bordure':'Eau ouverte')}`}`;if(el('fishing-context').textContent!==context)el('fishing-context').textContent=context;
+    reel.classList.toggle('reeling', game.reeling);el('snag-release').hidden=!game.snagged;el('rod-control').hidden=!(game.phase==='fighting'||game.phase==='idle'&&game.modern&&game.technique.engine==='fly'||game.phase==='waiting'&&(game.canAnimate||game.snagged));if(gesture&&!gesture.casting&&!canRod())cancelGesture();updateTechniqueControls();const context=`${postById(game.post).name} · ${game.phase==='idle'?(game.method==='pole'?'Placement proche · coup sans moulinet':'Préparez votre présentation'):`${game.presentationDepth.toFixed(1)} m · ${game.hint||(game.modern&&game.encounterState!=='none'?({approach:'Approche',examine:'Inspection : attendez la prise',follow:'Suit la présentation',attack:'Prise',refuse:'Refus',none:''})[game.encounterState]:'')||(game.microzone==='plants'?'Herbiers':game.microzone==='margin'?'Bordure':'Eau ouverte')}`}`;if(el('fishing-context').textContent!==context)el('fishing-context').textContent=context;
     if (reelPointer !== undefined && canReel() && !qaSimulationPaused) {
       reelAngle += game.reelSpeed * dt * 360; reel.style.setProperty('--reel-angle', `${reelAngle}deg`);
     }
@@ -497,7 +501,7 @@ if (import.meta.env.DEV && import.meta.env.VITE_E2E === '1') {
       textures: world!.scene.textures.map(t => ({ name: t.name, ...t.getSize() })) }),
     pauseSimulation: () => { qaSimulationPaused = true; },
     resumeSimulation: () => { qaSimulationPaused = false; },
-    snapshot: () => ({sceneId:world?.scene.uid,totalMeshes:world?.scene.meshes.length,post:game.post,method:game.method,hasReel:game.hasReel,presentationDepth:game.presentationDepth,microzone:game.microzone,snagged:game.snagged,rights:save.progression,camera:world?.camera.position.asArray(),phase: game.phase, tension: game.tension, fatigue: game.fatigue, slack: game.slack, dragSpeed: game.dragSpeed, lineLength: game.lineLength, fishDistance: game.fishDistance, returning: game.returning, progress: game.progress, reeling: game.reeling, pulling: game.pulling, total: save.total, paused: manualPaused || overlayPaused, direction: game.direction, reelSpeed: game.reelSpeed, alignment: game.alignment, rodTip: world?.rodTipOnScreen(), target: game.target, yaw: game.rodYaw, lift: game.rodLift, aquarium: aquarium?.diagnostics(), engines: Engine.Instances.length, lakeFrames, meshes: world?.scene.getActiveMeshes().length }),
-    advance: (seconds: number, mode?: 'smart') => { for (let i = 0; i < seconds * 60; i++) { if (mode === 'smart') { game.orient(game.direction, game.hasReel?(game.pulling ? 0.28 : 0.55):Math.max(0,Math.min(1,(game.lineLength-game.fishDistance+(game.pulling?.12:.5)*1.1)/Math.max(1.5,game.lineLength-1.3)))); if (game.tension < 0.72 || game.slack > 0.05) game.reel(1.6 / 60); } game.update(1 / 60); phaseChanged(); if (['caught', 'lost', 'bite'].includes(game.phase)) break; } },
+    snapshot: () => ({sceneId:world?.scene.uid,totalMeshes:world?.scene.meshes.length,post:game.post,method:game.method,hasReel:game.hasReel,presentationDepth:game.presentationDepth,microzone:game.microzone,snagged:game.snagged,rights:save.progression,camera:world?.camera.position.asArray(),technique:game.config.technique,recipe:game.config.recipe,boat:game.presentationState.boat,sections:game.rodSections,encounter:game.encounterState,phase: game.phase, tension: game.tension, fatigue: game.fatigue, slack: game.slack, dragSpeed: game.dragSpeed, lineLength: game.lineLength, fishDistance: game.fishDistance, returning: game.returning, progress: game.progress, reeling: game.reeling, pulling: game.pulling, total: save.total, paused: manualPaused || overlayPaused, direction: game.direction, reelSpeed: game.reelSpeed, alignment: game.alignment, rodTip: world?.rodTipOnScreen(), target: game.target, yaw: game.rodYaw, lift: game.rodLift, aquarium: aquarium?.diagnostics(), engines: Engine.Instances.length, lakeFrames, meshes: world?.scene.getActiveMeshes().length }),
+    advance: (seconds: number, mode?: 'smart') => { const initialPhase=game.phase; for (let i = 0; i < seconds * 60; i++) { if (mode === 'smart') { game.orient(game.direction, game.hasReel?(game.pulling ? 0.28 : 0.55):Math.max(0,Math.min(1,(game.lineLength-game.fishDistance+(game.pulling?.12:.5)*1.1)/Math.max(1.5,game.lineLength-1.3)))); if(game.modern&&game.technique.sections)game.holdSections(game.tension<.8); if (game.tension < 0.72 || game.slack > 0.05) game.reel(1.6 / 60); } game.update(1 / 60); phaseChanged(); if ((['caught', 'lost', 'bite'].includes(game.phase)||game.phase==='landing'&&initialPhase!=='landing')) break; } },
   } });
 }

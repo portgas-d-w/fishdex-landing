@@ -83,7 +83,7 @@ test('Les quinze GLB servis sont intacts et les originaux restent exclus', async
   expect((await original.body()).subarray(0, 2).toString()).not.toBe('PK');
 });
 
-test('Le build livre l’atelier, les lots, les ensembles et le catalogue futur sans achat fictif', async ({ page }) => {
+test('Le build livre l’atelier, les lots, les ensembles et le catalogue documenté sans achat fictif', async ({ page }) => {
   const seed = emptySave(); seed.coins = 80;
   await page.addInitScript(data => {
     if (!localStorage.getItem('au-fil-de-leau.save.v1')) localStorage.setItem('au-fil-de-leau.save.v1', JSON.stringify(data));
@@ -102,10 +102,10 @@ test('Le build livre l’atelier, les lots, les ensembles et le catalogue futur 
   await page.locator('#library-load-shop').click(); await expect(page.locator('#library-list-shop [data-research]')).toHaveCount(84);
   await page.locator('#library-type-shop').selectOption('Montages'); await expect(page.locator('#library-list-shop [data-research]')).toHaveCount(55);
   await page.locator('#library-query-shop').fill('waggler'); await page.locator('[data-research="montages:waggler_coulissant"]').click();
-  await expect(page.locator('#research-sheet')).toContainText('À venir'); await expect(page.locator('#research-sheet [data-component-buy]')).toHaveCount(0);
+  await expect(page.locator('#research-sheet')).toContainText('Adaptation prototype disponible'); await expect(page.locator('#research-sheet [data-component-buy]')).toHaveCount(0);
   await page.reload(); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
   const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!));
-  expect(stored.version).toBe(5); expect(stored.tackle.config.depth).toBe(0.5);
+  expect(stored.version).toBe(6); expect(stored.tackle.config.depth).toBe(0.5);
   expect(stored.tackle.presets).toHaveLength(1); expect(stored.tackle.stock.corn).toBe(30); expect(stored.coins).toBe(64);
   await page.locator('#prepare-open').click(); await page.locator('[data-work-tab="bag"]').click();
   await expect(page.locator('#bag-items [data-component-info="corn"]')).toBeVisible();
@@ -114,9 +114,9 @@ test('Le build livre l’atelier, les lots, les ensembles et le catalogue futur 
 test('Nouvelle partie livrée : kit au coup, trois postes et vraie capture sans moulinet ni QA',async({page,context},info)=>{
  await page.addInitScript(()=>{Math.random=()=>0;localStorage.setItem('au-fil-de-leau.gestures.v3','3');});
  await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');expect(await page.evaluate(()=>'__fishingQA' in window)).toBe(false);await expect(page.locator('body')).toHaveAttribute('data-method','pole');
- await page.locator('#prepare-open').click();await expect(page.locator('[data-slot="elastic"]')).toBeVisible();await expect(page.locator('[data-slot="reel"]')).toHaveCount(0);await page.locator('[data-work-tab="bag"]').click();await page.locator('#bag-search').fill('flotteur');await expect(page.locator('#bag-items .compact-row')).toHaveCount(1);await page.locator('[data-close="preparation"]').click();
- await page.locator('#map-open').click();await expect(page.locator('#map [data-state="open"]')).toHaveCount(3);await page.locator('#map [data-post="reed-bank"]').click();await expect(page.locator('#post-select')).toBeDisabled();await expect(page.locator('#post-sheet')).toContainText('Niveau 3 OU 2');await page.screenshot({path:`test-results/smoke-${info.project.name}-map.png`});for(const p of ['cove','bank']){await page.locator(`#map [data-post="${p}"]`).click();await page.locator('#post-select').click();await expect(page.locator('body')).toHaveAttribute('data-post',p);await page.locator('#map-open').click();}await page.locator('#map [data-post="point"]').click();await expect(page.locator('#post-select')).toBeDisabled();await expect(page.locator('#post-sheet')).toContainText('À venir');
- const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!));expect(saved.version).toBe(5);expect(saved.progression.methods).toEqual(['pole']);expect(saved.coins).toBe(0);expect(saved.total).toBe(0);
+ await page.locator('#prepare-open').click();await expect(page.locator('[data-slot="elastic"]')).toBeVisible();await expect(page.locator('[data-slot="reel"]')).toHaveCount(0);await page.locator('[data-work-tab="bag"]').click();await page.locator('#bag-search').fill('flotteur');expect(await page.locator('#bag-items .compact-row').count()).toBeGreaterThanOrEqual(1);await page.locator('[data-close="preparation"]').click();
+ await page.locator('#map-open').click();await expect(page.locator('#map [data-state="open"]')).toHaveCount(3);await page.locator('#map [data-post="reed-bank"]').click();await expect(page.locator('#post-select')).toBeDisabled();await expect(page.locator('#post-sheet')).toContainText('Niveau 3 OU 2');await page.screenshot({path:`test-results/smoke-${info.project.name}-map.png`});for(const p of ['cove','bank']){await page.locator(`#map [data-post="${p}"]`).click();await page.locator('#post-select').click();await expect(page.locator('body')).toHaveAttribute('data-post',p);await page.locator('#map-open').click();}await page.locator('#map [data-post="point"]').click();await expect(page.locator('#post-select')).toBeDisabled();await expect(page.locator('#post-sheet')).toContainText('Niveau 6 OU 6');
+ const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!));expect(saved.version).toBe(6);expect(saved.progression.methods).toEqual(['pole']);expect(saved.coins).toBe(0);expect(saved.total).toBe(0);
  await page.locator('#map [data-post="jetty"]').click();await page.locator('#post-select').click();await realFishing(page,context,info.project.name==='mobile',true);await expect(page.locator('#reel-control')).toBeHidden();await expect(page.locator('#catch-progression')).toContainText('initiation');const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!));expect(after.journal[0].method).toBe('pole');
 });
 

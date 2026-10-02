@@ -1,0 +1,420 @@
+{
+  "baseline": "3b92834",
+  "renderer": "Windows Chromium headless ANGLE SwiftShader, eco, DPR 1; 20 samples; not a phone GPU",
+  "comparison": [
+    {
+      "name": "desktop",
+      "identicalCamera": true,
+      "renderSizeEqual": true,
+      "beforeFps": 22.8,
+      "afterFps": 22.35,
+      "beforeDrawCalls": 27,
+      "afterDrawCalls": 27,
+      "beforeVertices": 57000,
+      "afterVertices": 58023
+    },
+    {
+      "name": "mobile",
+      "identicalCamera": true,
+      "renderSizeEqual": true,
+      "beforeFps": 22.63,
+      "afterFps": 23.21,
+      "beforeDrawCalls": 23,
+      "afterDrawCalls": 23,
+      "beforeVertices": 57000,
+      "afterVertices": 58023
+    }
+  ],
+  "rows": [
+    {
+      "stage": "before",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "label": "jetty",
+      "camera": [
+        0,
+        4.2,
+        -8.5
+      ],
+      "sceneId": "00000000-0000-4000-8000-000000000000",
+      "engines": 1,
+      "totalMeshes": 55,
+      "fps": 22.8,
+      "cpuSubmissionMedianMs": 0.5,
+      "cpuSubmissionP95Ms": 2.300000000745058,
+      "drawCalls": 27,
+      "cpuFrameMs": 0.3999999985098839,
+      "vertices": 57000,
+      "meshes": 27,
+      "width": 1024,
+      "height": 640,
+      "textures": [
+        {
+          "name": "local-soil",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "name": "local-timber",
+          "width": 512,
+          "height": 128
+        }
+      ],
+      "initialModelRequests": [],
+      "errors": []
+    },
+    {
+      "stage": "before",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "label": "jetty",
+      "camera": [
+        0,
+        4.2,
+        -8.5
+      ],
+      "sceneId": "00000000-0000-4000-8000-000000000000",
+      "engines": 1,
+      "totalMeshes": 55,
+      "fps": 22.63,
+      "cpuSubmissionMedianMs": 0.4000000022351742,
+      "cpuSubmissionP95Ms": 0.7999999970197678,
+      "drawCalls": 23,
+      "cpuFrameMs": 0.4000000022351742,
+      "vertices": 57000,
+      "meshes": 23,
+      "width": 390,
+      "height": 844,
+      "textures": [
+        {
+          "name": "local-soil",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "name": "local-timber",
+          "width": 512,
+          "height": 128
+        }
+      ],
+      "initialModelRequests": [],
+      "errors": []
+    },
+    {
+      "stage": "after",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "label": "jetty",
+      "camera": [
+        0,
+        4.2,
+        -8.5
+      ],
+      "sceneId": "00000000-0000-4000-8000-000000000000",
+      "engines": 1,
+      "totalMeshes": 65,
+      "fps": 22.35,
+      "cpuSubmissionMedianMs": 0.5,
+      "cpuSubmissionP95Ms": 0.9000000022351742,
+      "drawCalls": 27,
+      "cpuFrameMs": 0.8000000007450581,
+      "vertices": 58023,
+      "meshes": 27,
+      "width": 1024,
+      "height": 640,
+      "textures": [
+        {
+          "name": "local-soil",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "name": "local-timber",
+          "width": 512,
+          "height": 128
+        }
+      ],
+      "initialModelRequests": [],
+      "errors": []
+    },
+    {
+      "stage": "after",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "label": "river",
+      "camera": [
+        0,
+        4.2,
+        -3.5
+      ],
+      "sceneId": "00000000-0000-4000-8000-000000000000",
+      "engines": 1,
+      "totalMeshes": 65,
+      "fps": 23.24,
+      "cpuSubmissionMedianMs": 0.5999999977648258,
+      "cpuSubmissionP95Ms": 2.399999998509884,
+      "drawCalls": 20,
+      "cpuFrameMs": 0.30000000074505806,
+      "vertices": 58023,
+      "meshes": 20,
+      "width": 1024,
+      "height": 640,
+      "textures": [
+        {
+          "name": "local-soil",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "name": "local-timber",
+          "width": 512,
+          "height": 128
+        }
+      ],
+      "initialModelRequests": [],
+      "errors": []
+    },
+    {
+      "stage": "after",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "label": "deep",
+      "camera": [
+        0,
+        4.2,
+        3.5
+      ],
+      "sceneId": "00000000-0000-4000-8000-000000000000",
+      "engines": 1,
+      "totalMeshes": 65,
+      "fps": 22.79,
+      "cpuSubmissionMedianMs": 0.5,
+      "cpuSubmissionP95Ms": 2.2000000029802322,
+      "drawCalls": 19,
+      "cpuFrameMs": 0.30000000074505806,
+      "vertices": 58023,
+      "meshes": 19,
+      "width": 1024,
+      "height": 640,
+      "textures": [
+        {
+          "name": "local-soil",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "name": "local-timber",
+          "width": 512,
+          "height": 128
+        }
+      ],
+      "initialModelRequests": [],
+      "errors": []
+    },
+    {
+      "stage": "after",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "label": "boat",
+      "camera": [
+        3,
+        4.2,
+        2.5
+      ],
+      "sceneId": "00000000-0000-4000-8000-000000000000",
+      "engines": 1,
+      "totalMeshes": 65,
+      "fps": 23.2,
+      "cpuSubmissionMedianMs": 0.3999999985098839,
+      "cpuSubmissionP95Ms": 2.399999998509884,
+      "drawCalls": 20,
+      "cpuFrameMs": 0.30000000074505806,
+      "vertices": 58023,
+      "meshes": 20,
+      "width": 1024,
+      "height": 640,
+      "textures": [
+        {
+          "name": "local-soil",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "name": "local-timber",
+          "width": 512,
+          "height": 128
+        }
+      ],
+      "initialModelRequests": [],
+      "errors": []
+    },
+    {
+      "stage": "after",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "label": "jetty",
+      "camera": [
+        0,
+        4.2,
+        -8.5
+      ],
+      "sceneId": "00000000-0000-4000-8000-000000000000",
+      "engines": 1,
+      "totalMeshes": 65,
+      "fps": 23.21,
+      "cpuSubmissionMedianMs": 0.5,
+      "cpuSubmissionP95Ms": 1.1000000014901161,
+      "drawCalls": 23,
+      "cpuFrameMs": 0.30000000074505806,
+      "vertices": 58023,
+      "meshes": 23,
+      "width": 390,
+      "height": 844,
+      "textures": [
+        {
+          "name": "local-soil",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "name": "local-timber",
+          "width": 512,
+          "height": 128
+        }
+      ],
+      "initialModelRequests": [],
+      "errors": []
+    },
+    {
+      "stage": "after",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "label": "river",
+      "camera": [
+        0,
+        4.2,
+        -3.5
+      ],
+      "sceneId": "00000000-0000-4000-8000-000000000000",
+      "engines": 1,
+      "totalMeshes": 65,
+      "fps": 22.75,
+      "cpuSubmissionMedianMs": 0.3999999985098839,
+      "cpuSubmissionP95Ms": 1,
+      "drawCalls": 20,
+      "cpuFrameMs": 0.30000000074505806,
+      "vertices": 58023,
+      "meshes": 20,
+      "width": 390,
+      "height": 844,
+      "textures": [
+        {
+          "name": "local-soil",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "name": "local-timber",
+          "width": 512,
+          "height": 128
+        }
+      ],
+      "initialModelRequests": [],
+      "errors": []
+    },
+    {
+      "stage": "after",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "label": "deep",
+      "camera": [
+        0,
+        4.2,
+        3.5
+      ],
+      "sceneId": "00000000-0000-4000-8000-000000000000",
+      "engines": 1,
+      "totalMeshes": 65,
+      "fps": 23.71,
+      "cpuSubmissionMedianMs": 0.5,
+      "cpuSubmissionP95Ms": 0.8999999985098839,
+      "drawCalls": 19,
+      "cpuFrameMs": 0.19999999925494194,
+      "vertices": 58023,
+      "meshes": 19,
+      "width": 390,
+      "height": 844,
+      "textures": [
+        {
+          "name": "local-soil",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "name": "local-timber",
+          "width": 512,
+          "height": 128
+        }
+      ],
+      "initialModelRequests": [],
+      "errors": []
+    },
+    {
+      "stage": "after",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "label": "boat",
+      "camera": [
+        3,
+        4.2,
+        2.5
+      ],
+      "sceneId": "00000000-0000-4000-8000-000000000000",
+      "engines": 1,
+      "totalMeshes": 65,
+      "fps": 23.84,
+      "cpuSubmissionMedianMs": 0.3999999985098839,
+      "cpuSubmissionP95Ms": 0.8999999985098839,
+      "drawCalls": 19,
+      "cpuFrameMs": 0.19999999925494194,
+      "vertices": 58023,
+      "meshes": 19,
+      "width": 390,
+      "height": 844,
+      "textures": [
+        {
+          "name": "local-soil",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "name": "local-timber",
+          "width": 512,
+          "height": 128
+        }
+      ],
+      "initialModelRequests": [],
+      "errors": []
+    }
+  ]
+}

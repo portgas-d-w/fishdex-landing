@@ -1,0 +1,1746 @@
+[
+  {
+    "id": "asticot",
+    "name": "Asticot",
+    "family": "naturel",
+    "techniques": [
+      "coup",
+      "grande_canne",
+      "anglaise",
+      "bolognaise",
+      "fond",
+      "feeder"
+    ],
+    "tags": [
+      "coule",
+      "mobile"
+    ],
+    "diet": [
+      "invertebres"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "pinkie",
+    "name": "Pinkie",
+    "family": "naturel",
+    "techniques": [
+      "coup",
+      "grande_canne",
+      "anglaise",
+      "feeder"
+    ],
+    "tags": [
+      "coule",
+      "mobile",
+      "petit"
+    ],
+    "diet": [
+      "invertebres"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "caster",
+    "name": "Caster",
+    "family": "naturel",
+    "techniques": [
+      "coup",
+      "grande_canne",
+      "anglaise",
+      "feeder"
+    ],
+    "tags": [
+      "coule",
+      "variable"
+    ],
+    "diet": [
+      "invertebres"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "ver_vase",
+    "name": "Ver de vase",
+    "family": "naturel",
+    "techniques": [
+      "coup",
+      "grande_canne",
+      "feeder"
+    ],
+    "tags": [
+      "coule",
+      "mobile",
+      "petit"
+    ],
+    "diet": [
+      "invertebres_benthiques"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "fouillis",
+    "name": "Fouillis de vers de vase",
+    "family": "amorcage",
+    "techniques": [
+      "coup",
+      "grande_canne",
+      "feeder"
+    ],
+    "tags": [
+      "particules",
+      "fond"
+    ],
+    "diet": [
+      "invertebres_benthiques"
+    ],
+    "consumption": "portion_amorcage",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "ver_terre",
+    "name": "Ver de terre",
+    "family": "naturel",
+    "techniques": [
+      "fond",
+      "feeder",
+      "toc",
+      "coup",
+      "anglaise",
+      "bombette"
+    ],
+    "tags": [
+      "coule",
+      "mobile"
+    ],
+    "diet": [
+      "invertebres"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup",
+      "tech_toc"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "petit_ver",
+    "name": "Petit ver",
+    "family": "naturel",
+    "techniques": [
+      "coup",
+      "grande_canne",
+      "anglaise",
+      "feeder",
+      "toc"
+    ],
+    "tags": [
+      "coule",
+      "mobile",
+      "petit"
+    ],
+    "diet": [
+      "invertebres"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "lombric",
+    "name": "Gros lombric",
+    "family": "naturel",
+    "techniques": [
+      "fond",
+      "toc",
+      "clonk"
+    ],
+    "tags": [
+      "coule",
+      "mobile",
+      "gros"
+    ],
+    "diet": [
+      "invertebres"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_toc",
+      "tech_coup"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "ver_dendro",
+    "name": "Ver dendrobaena",
+    "family": "naturel",
+    "techniques": [
+      "fond",
+      "feeder",
+      "toc",
+      "coup"
+    ],
+    "tags": [
+      "coule",
+      "mobile"
+    ],
+    "diet": [
+      "invertebres"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "teigne",
+    "name": "Teigne",
+    "family": "naturel",
+    "techniques": [
+      "toc",
+      "bombette"
+    ],
+    "tags": [
+      "coule",
+      "mobile"
+    ],
+    "diet": [
+      "invertebres",
+      "insectes"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_toc"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "sauterelle",
+    "name": "Sauterelle",
+    "family": "naturel",
+    "techniques": [
+      "surface",
+      "stalking",
+      "toc"
+    ],
+    "tags": [
+      "surface",
+      "insecte"
+    ],
+    "diet": [
+      "insectes"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_toc"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "grillon",
+    "name": "Grillon",
+    "family": "naturel",
+    "techniques": [
+      "surface",
+      "stalking",
+      "toc"
+    ],
+    "tags": [
+      "surface",
+      "insecte"
+    ],
+    "diet": [
+      "insectes"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_toc"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "larve_aquatique",
+    "name": "Larve aquatique",
+    "family": "naturel",
+    "techniques": [
+      "toc",
+      "coup"
+    ],
+    "tags": [
+      "coule",
+      "petit"
+    ],
+    "diet": [
+      "insectes",
+      "invertebres_benthiques"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_toc"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "mais",
+    "name": "Maïs doux",
+    "family": "vegetal",
+    "techniques": [
+      "coup",
+      "anglaise",
+      "fond",
+      "feeder",
+      "method_feeder",
+      "carpe",
+      "stalking"
+    ],
+    "tags": [
+      "coule",
+      "grain"
+    ],
+    "diet": [
+      "vegetaux",
+      "graines"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup",
+      "tech_bait_catalogue"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "mais_flottant",
+    "name": "Maïs artificiel flottant",
+    "family": "artificiel",
+    "techniques": [
+      "carpe",
+      "method_feeder"
+    ],
+    "tags": [
+      "flotte",
+      "grain"
+    ],
+    "diet": [
+      "imitation_graines"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_bait_catalogue"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "pain",
+    "name": "Pain",
+    "family": "vegetal",
+    "techniques": [
+      "coup",
+      "anglaise",
+      "surface",
+      "stalking",
+      "fond"
+    ],
+    "tags": [
+      "variable",
+      "mou"
+    ],
+    "diet": [
+      "vegetaux"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "mie_pain",
+    "name": "Mie de pain",
+    "family": "vegetal",
+    "techniques": [
+      "coup",
+      "anglaise",
+      "fond"
+    ],
+    "tags": [
+      "variable",
+      "mou"
+    ],
+    "diet": [
+      "vegetaux"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "croute_pain",
+    "name": "Croûte de pain",
+    "family": "vegetal",
+    "techniques": [
+      "surface",
+      "stalking"
+    ],
+    "tags": [
+      "surface"
+    ],
+    "diet": [
+      "vegetaux"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "chenevis",
+    "name": "Chènevis préparé",
+    "family": "vegetal",
+    "techniques": [
+      "coup",
+      "grande_canne",
+      "anglaise",
+      "fond",
+      "feeder",
+      "carpe"
+    ],
+    "tags": [
+      "coule",
+      "grain",
+      "petit"
+    ],
+    "diet": [
+      "graines"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "ble",
+    "name": "Blé préparé",
+    "family": "vegetal",
+    "techniques": [
+      "coup",
+      "anglaise",
+      "fond",
+      "feeder",
+      "carpe"
+    ],
+    "tags": [
+      "coule",
+      "grain"
+    ],
+    "diet": [
+      "graines"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "orge",
+    "name": "Orge préparée",
+    "family": "vegetal",
+    "techniques": [
+      "coup",
+      "feeder",
+      "carpe"
+    ],
+    "tags": [
+      "coule",
+      "grain"
+    ],
+    "diet": [
+      "graines"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "pois",
+    "name": "Pois préparés",
+    "family": "vegetal",
+    "techniques": [
+      "coup",
+      "fond",
+      "carpe"
+    ],
+    "tags": [
+      "coule",
+      "grain"
+    ],
+    "diet": [
+      "vegetaux",
+      "graines"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "noix_tigree",
+    "name": "Noix tigrée préparée",
+    "family": "vegetal",
+    "techniques": [
+      "carpe",
+      "stalking"
+    ],
+    "tags": [
+      "coule",
+      "grain",
+      "dur"
+    ],
+    "diet": [
+      "vegetaux",
+      "graines"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_carp_rigs"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "vegetaux",
+    "name": "Végétaux tendres",
+    "family": "vegetal",
+    "techniques": [
+      "coup",
+      "anglaise",
+      "surface",
+      "stalking"
+    ],
+    "tags": [
+      "variable",
+      "feuille"
+    ],
+    "diet": [
+      "vegetaux"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "bio_herbivore"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "algues",
+    "name": "Filaments végétaux / algues",
+    "family": "vegetal",
+    "techniques": [
+      "coup",
+      "anglaise"
+    ],
+    "tags": [
+      "variable",
+      "filaments"
+    ],
+    "diet": [
+      "algues",
+      "vegetaux"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "bio_hotu",
+      "bio_mulet"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "fromage",
+    "name": "Fromage",
+    "family": "prepare",
+    "techniques": [
+      "fond",
+      "feeder"
+    ],
+    "tags": [
+      "coule",
+      "odorant"
+    ],
+    "diet": [
+      "opportuniste"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "pate_pain",
+    "name": "Pâte de pain",
+    "family": "prepare",
+    "techniques": [
+      "coup",
+      "anglaise",
+      "fond"
+    ],
+    "tags": [
+      "coule",
+      "mou"
+    ],
+    "diet": [
+      "vegetaux"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "pate_truite",
+    "name": "Pâte pour truite",
+    "family": "prepare",
+    "techniques": [
+      "fond",
+      "bombette"
+    ],
+    "tags": [
+      "variable",
+      "odorant"
+    ],
+    "diet": [
+      "opportuniste"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_fly"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "pate_pellet",
+    "name": "Pâte de pellets",
+    "family": "prepare",
+    "techniques": [
+      "carpodrome",
+      "coup",
+      "fond"
+    ],
+    "tags": [
+      "coule",
+      "mou"
+    ],
+    "diet": [
+      "opportuniste"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_bait_catalogue"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "pellet",
+    "name": "Pellet de pêche",
+    "family": "prepare",
+    "techniques": [
+      "coup",
+      "anglaise",
+      "feeder",
+      "method_feeder",
+      "carpe"
+    ],
+    "tags": [
+      "coule",
+      "granule"
+    ],
+    "diet": [
+      "opportuniste"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_bait_catalogue"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "pellet_dur",
+    "name": "Pellet dur d'eschage",
+    "family": "prepare",
+    "techniques": [
+      "anglaise",
+      "method_feeder",
+      "carpe"
+    ],
+    "tags": [
+      "coule",
+      "dur"
+    ],
+    "diet": [
+      "opportuniste"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_wafter",
+      "tech_bait_catalogue"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "pellet_mou",
+    "name": "Pellet mou",
+    "family": "prepare",
+    "techniques": [
+      "coup",
+      "carpodrome",
+      "feeder"
+    ],
+    "tags": [
+      "coule",
+      "mou"
+    ],
+    "diet": [
+      "opportuniste"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_bait_catalogue"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "pellet_esturgeon",
+    "name": "Pellet pour étang à esturgeons",
+    "family": "prepare",
+    "techniques": [
+      "fond",
+      "feeder"
+    ],
+    "tags": [
+      "coule",
+      "granule"
+    ],
+    "diet": [
+      "opportuniste"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "bio_baeri"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "bouillette",
+    "name": "Bouillette coulante",
+    "family": "prepare",
+    "techniques": [
+      "carpe",
+      "stalking"
+    ],
+    "tags": [
+      "coule",
+      "bille"
+    ],
+    "diet": [
+      "opportuniste"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_boilie",
+      "tech_carp_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "pop_up",
+    "name": "Pop-up",
+    "family": "prepare",
+    "techniques": [
+      "carpe"
+    ],
+    "tags": [
+      "flotte",
+      "bille"
+    ],
+    "diet": [
+      "opportuniste"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_ronnie",
+      "tech_chod"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "wafter",
+    "name": "Wafter",
+    "family": "prepare",
+    "techniques": [
+      "method_feeder",
+      "carpe"
+    ],
+    "tags": [
+      "equilibre",
+      "bille"
+    ],
+    "diet": [
+      "opportuniste"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_wafter"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "dumbell",
+    "name": "Dumbell d'eschage",
+    "family": "prepare",
+    "techniques": [
+      "method_feeder",
+      "carpe"
+    ],
+    "tags": [
+      "variable",
+      "forme_allongee"
+    ],
+    "diet": [
+      "opportuniste"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_bait_catalogue"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "poisson_mort",
+    "name": "Poisson mort entier",
+    "family": "animal",
+    "techniques": [
+      "fond",
+      "mort_manie"
+    ],
+    "tags": [
+      "coule",
+      "odorant"
+    ],
+    "diet": [
+      "poissons"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "morceau_poisson",
+    "name": "Morceau de poisson",
+    "family": "animal",
+    "techniques": [
+      "fond",
+      "clonk"
+    ],
+    "tags": [
+      "coule",
+      "odorant"
+    ],
+    "diet": [
+      "poissons"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "crevette",
+    "name": "Crevette",
+    "family": "animal",
+    "techniques": [
+      "fond",
+      "feeder"
+    ],
+    "tags": [
+      "coule",
+      "odorant"
+    ],
+    "diet": [
+      "crustaces"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "ecrevisse",
+    "name": "Écrevisse comme appât",
+    "family": "animal",
+    "techniques": [
+      "fond"
+    ],
+    "tags": [
+      "fond",
+      "mobile"
+    ],
+    "diet": [
+      "crustaces"
+    ],
+    "consumption": "portion",
+    "sources": [
+      "bio_bass_petite"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "amorce_fine",
+    "name": "Amorce fine de poissons blancs",
+    "family": "amorcage",
+    "techniques": [
+      "coup",
+      "grande_canne",
+      "anglaise",
+      "feeder"
+    ],
+    "tags": [
+      "particules",
+      "dispersion"
+    ],
+    "diet": [
+      "opportuniste"
+    ],
+    "consumption": "portion_amorcage",
+    "sources": [
+      "tech_bait_catalogue"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "amorce_fond",
+    "name": "Amorce lourde de fond",
+    "family": "amorcage",
+    "techniques": [
+      "coup",
+      "feeder"
+    ],
+    "tags": [
+      "fond",
+      "particules"
+    ],
+    "diet": [
+      "opportuniste"
+    ],
+    "consumption": "portion_amorcage",
+    "sources": [
+      "tech_feeder",
+      "tech_bait_catalogue"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "amorce_method",
+    "name": "Amorce method feeder",
+    "family": "amorcage",
+    "techniques": [
+      "method_feeder"
+    ],
+    "tags": [
+      "fond",
+      "cohesion"
+    ],
+    "diet": [
+      "opportuniste"
+    ],
+    "consumption": "portion_amorcage",
+    "sources": [
+      "tech_feeder",
+      "tech_bait_catalogue"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "micro_pellets",
+    "name": "Micro-pellets d'amorçage",
+    "family": "amorcage",
+    "techniques": [
+      "feeder",
+      "method_feeder",
+      "carpe"
+    ],
+    "tags": [
+      "fond",
+      "granules"
+    ],
+    "diet": [
+      "opportuniste"
+    ],
+    "consumption": "portion_amorcage",
+    "sources": [
+      "tech_bait_catalogue"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "mix_particules",
+    "name": "Mélange de graines préparées",
+    "family": "amorcage",
+    "techniques": [
+      "coup",
+      "feeder",
+      "carpe"
+    ],
+    "tags": [
+      "fond",
+      "graines"
+    ],
+    "diet": [
+      "graines",
+      "vegetaux"
+    ],
+    "consumption": "portion_amorcage",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "liquide_attractant",
+    "name": "Additif liquide",
+    "family": "amorcage",
+    "techniques": [
+      "feeder",
+      "method_feeder",
+      "carpe"
+    ],
+    "tags": [
+      "odorant"
+    ],
+    "diet": [
+      "opportuniste"
+    ],
+    "consumption": "dose",
+    "sources": [
+      "tech_bait_catalogue"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "shad",
+    "name": "Shad souple",
+    "family": "leurre_souple",
+    "techniques": [
+      "leurre",
+      "verticale",
+      "traine"
+    ],
+    "tags": [
+      "nage",
+      "queue_battante"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_soft_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "gros_shad",
+    "name": "Grand shad",
+    "family": "leurre_souple",
+    "techniques": [
+      "leurre",
+      "verticale",
+      "traine"
+    ],
+    "tags": [
+      "nage",
+      "gros"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_soft_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "micro_leurre",
+    "name": "Micro-leurre souple",
+    "family": "leurre_souple",
+    "techniques": [
+      "ultraleger",
+      "leurre"
+    ],
+    "tags": [
+      "nage",
+      "petit"
+    ],
+    "diet": [
+      "imitation_poissons",
+      "imitation_invertebres"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_soft_rigs"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "finesse",
+    "name": "Leurre finesse",
+    "family": "leurre_souple",
+    "techniques": [
+      "leurre",
+      "verticale"
+    ],
+    "tags": [
+      "faible_vibration"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_soft_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "ver_souple",
+    "name": "Ver souple / worm",
+    "family": "leurre_souple",
+    "techniques": [
+      "leurre"
+    ],
+    "tags": [
+      "souple",
+      "allonge"
+    ],
+    "diet": [
+      "imitation_invertebres"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_soft_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "grub",
+    "name": "Grub / virgule",
+    "family": "leurre_souple",
+    "techniques": [
+      "leurre",
+      "ultraleger",
+      "verticale"
+    ],
+    "tags": [
+      "queue_rotative"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_lures"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "ecrevisse_souple",
+    "name": "Écrevisse souple",
+    "family": "leurre_souple",
+    "techniques": [
+      "leurre"
+    ],
+    "tags": [
+      "fond",
+      "appendices"
+    ],
+    "diet": [
+      "imitation_crustaces"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_soft_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "creature",
+    "name": "Creature bait",
+    "family": "leurre_souple",
+    "techniques": [
+      "leurre"
+    ],
+    "tags": [
+      "fond",
+      "appendices"
+    ],
+    "diet": [
+      "imitation_invertebres"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_soft_rigs"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "tube",
+    "name": "Tube souple",
+    "family": "leurre_souple",
+    "techniques": [
+      "leurre",
+      "verticale"
+    ],
+    "tags": [
+      "souple",
+      "franges"
+    ],
+    "diet": [
+      "imitation_invertebres"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_soft_rigs"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "grenouille_souple",
+    "name": "Grenouille souple",
+    "family": "leurre_souple",
+    "techniques": [
+      "leurre"
+    ],
+    "tags": [
+      "surface",
+      "vegetation"
+    ],
+    "diet": [
+      "imitation_amphibiens"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_topwater"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "petit_poisson_nageur",
+    "name": "Petit poisson nageur",
+    "family": "leurre_dur",
+    "techniques": [
+      "leurre",
+      "ultraleger",
+      "traine"
+    ],
+    "tags": [
+      "nage",
+      "bavette",
+      "petit"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_lures"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "crankbait",
+    "name": "Crankbait",
+    "family": "leurre_dur",
+    "techniques": [
+      "leurre",
+      "traine"
+    ],
+    "tags": [
+      "nage",
+      "bavette"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_crank"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "jerkbait",
+    "name": "Jerkbait / minnow",
+    "family": "leurre_dur",
+    "techniques": [
+      "leurre"
+    ],
+    "tags": [
+      "nage",
+      "pauses"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_lures"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "lipless",
+    "name": "Lipless crankbait",
+    "family": "leurre_dur",
+    "techniques": [
+      "leurre",
+      "verticale"
+    ],
+    "tags": [
+      "coule",
+      "vibration"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_lures"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "swimbait",
+    "name": "Swimbait",
+    "family": "leurre",
+    "techniques": [
+      "leurre",
+      "traine"
+    ],
+    "tags": [
+      "nage",
+      "articule"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_lures"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "stickbait",
+    "name": "Stickbait de surface",
+    "family": "leurre_dur",
+    "techniques": [
+      "leurre"
+    ],
+    "tags": [
+      "surface",
+      "zigzag"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_topwater"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "popper",
+    "name": "Popper",
+    "family": "leurre_dur",
+    "techniques": [
+      "leurre"
+    ],
+    "tags": [
+      "surface",
+      "bruit"
+    ],
+    "diet": [
+      "imitation_proie_surface"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_topwater"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "crawler",
+    "name": "Crawler de surface",
+    "family": "leurre_dur",
+    "techniques": [
+      "leurre"
+    ],
+    "tags": [
+      "surface",
+      "agitation"
+    ],
+    "diet": [
+      "imitation_proie_surface"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_topwater"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "cuiller_tournante",
+    "name": "Cuiller tournante",
+    "family": "leurre_metal",
+    "techniques": [
+      "leurre",
+      "ultraleger"
+    ],
+    "tags": [
+      "palette",
+      "vibration"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_lures"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "cuiller_ondulante",
+    "name": "Cuiller ondulante",
+    "family": "leurre_metal",
+    "techniques": [
+      "leurre",
+      "ultraleger",
+      "traine"
+    ],
+    "tags": [
+      "oscillation",
+      "coule"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_lures"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "spinnerbait",
+    "name": "Spinnerbait",
+    "family": "leurre_metal",
+    "techniques": [
+      "leurre"
+    ],
+    "tags": [
+      "palette",
+      "jupe"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_spinner"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "chatterbait",
+    "name": "Jig à palette / bladed jig",
+    "family": "leurre",
+    "techniques": [
+      "leurre"
+    ],
+    "tags": [
+      "palette",
+      "jupe"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_lures"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "buzzbait",
+    "name": "Buzzbait",
+    "family": "leurre_metal",
+    "techniques": [
+      "leurre"
+    ],
+    "tags": [
+      "surface",
+      "helice"
+    ],
+    "diet": [
+      "imitation_proie_surface"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_topwater"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "jig_metal",
+    "name": "Jig métallique",
+    "family": "leurre_metal",
+    "techniques": [
+      "verticale",
+      "leurre"
+    ],
+    "tags": [
+      "coule",
+      "vertical"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_lures"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "lame_vibrante",
+    "name": "Lame vibrante",
+    "family": "leurre_metal",
+    "techniques": [
+      "leurre",
+      "verticale"
+    ],
+    "tags": [
+      "coule",
+      "vibration"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_lures"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "mouche_seche",
+    "name": "Mouche sèche",
+    "family": "mouche",
+    "techniques": [
+      "mouche",
+      "bombette"
+    ],
+    "tags": [
+      "surface",
+      "insecte"
+    ],
+    "diet": [
+      "imitation_insectes"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_fly"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "mouche_noyee",
+    "name": "Mouche noyée",
+    "family": "mouche",
+    "techniques": [
+      "mouche",
+      "bombette"
+    ],
+    "tags": [
+      "immerge",
+      "insecte"
+    ],
+    "diet": [
+      "imitation_insectes"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_fly"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "nymphe",
+    "name": "Nymphe",
+    "family": "mouche",
+    "techniques": [
+      "mouche",
+      "nymphe_fil",
+      "toc",
+      "gambe"
+    ],
+    "tags": [
+      "immerge",
+      "insecte"
+    ],
+    "diet": [
+      "imitation_invertebres"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_fly"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "streamer",
+    "name": "Streamer",
+    "family": "mouche",
+    "techniques": [
+      "mouche"
+    ],
+    "tags": [
+      "nage",
+      "proie"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_fly"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "emerger",
+    "name": "Émergente",
+    "family": "mouche",
+    "techniques": [
+      "mouche"
+    ],
+    "tags": [
+      "pellicule",
+      "insecte"
+    ],
+    "diet": [
+      "imitation_insectes"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_fly"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "mouche_terrestre",
+    "name": "Imitation d'insecte terrestre",
+    "family": "mouche",
+    "techniques": [
+      "mouche"
+    ],
+    "tags": [
+      "surface",
+      "insecte"
+    ],
+    "diet": [
+      "imitation_insectes"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_fly"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "chironomide",
+    "name": "Chironomide artificiel",
+    "family": "mouche",
+    "techniques": [
+      "mouche",
+      "gambe"
+    ],
+    "tags": [
+      "immerge",
+      "insecte"
+    ],
+    "diet": [
+      "imitation_invertebres"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "bio_coregone",
+      "tech_fly"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "mouche_tube",
+    "name": "Mouche sur tube",
+    "family": "mouche",
+    "techniques": [
+      "mouche"
+    ],
+    "tags": [
+      "nage",
+      "proie"
+    ],
+    "diet": [
+      "imitation_poissons"
+    ],
+    "consumption": "reuse_until_loss",
+    "sources": [
+      "tech_fly"
+    ],
+    "research": "needs_research"
+  }
+]

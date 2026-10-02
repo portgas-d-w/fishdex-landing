@@ -2,7 +2,7 @@ import type { SpeciesId, BaitId } from './catalog.ts';
 export type MethodId = 'pole' | 'float' | 'lure' | 'bottom';
 export interface Reward { base: number; discovery: number; record: number; coins: number; xp: number }
 export interface Specimen {
-  id: string; speciesId: SpeciesId; form: 'common'; coloration: 'natural' | 'golden'; mirage: boolean;
+  technique?:import('./techniques.ts').TechniqueId;recipe?:string; id: string; speciesId: SpeciesId; form: 'common'; coloration: 'natural' | 'golden'; mirage: boolean;
   length: number; weight: number; date: string; location: string; method: MethodId;
   equipment: string; bait: BaitId; baitItem?: string; post?: import('./posts.ts').PostId; microzone?: import('./posts.ts').Microzone; target: { x: number; z: number }; controlled: boolean; reward: Reward;
 }

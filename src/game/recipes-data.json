@@ -1,0 +1,1189 @@
+[
+  {
+    "id": "flotteur_fixe",
+    "name": "Flotteur fixe de bordure",
+    "techniques": [
+      "coup",
+      "grande_canne",
+      "anglaise",
+      "bolognaise",
+      "carpodrome"
+    ],
+    "slots": [
+      "main_line",
+      "float",
+      "weight",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Profondeur définie par la position du flotteur.",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "plombee_etalee",
+    "name": "Flotteur à plombée étalée",
+    "techniques": [
+      "coup",
+      "grande_canne",
+      "carpodrome"
+    ],
+    "slots": [
+      "main_line",
+      "float",
+      "weight",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Répartition des lests le long de la ligne.",
+    "sources": [
+      "tech_premiere_ligne"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "plombee_groupee",
+    "name": "Flotteur à plombée groupée",
+    "techniques": [
+      "coup",
+      "grande_canne",
+      "bolognaise"
+    ],
+    "slots": [
+      "main_line",
+      "float",
+      "weight",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Masse principale groupée et réglages de finition.",
+    "sources": [
+      "tech_premiere_ligne",
+      "tech_anglaise_coulissant"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "waggler_fixe",
+    "name": "Waggler fixe",
+    "techniques": [
+      "anglaise"
+    ],
+    "slots": [
+      "main_line",
+      "float",
+      "weight",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Flotteur anglais immobilisé à sa base.",
+    "sources": [
+      "tech_anglaise_fixe"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "waggler_coulissant",
+    "name": "Waggler coulissant",
+    "techniques": [
+      "anglaise"
+    ],
+    "slots": [
+      "main_line",
+      "float",
+      "stop",
+      "bead",
+      "weight",
+      "swivel",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Flotteur coulisse jusqu'au stop.",
+    "sources": [
+      "tech_anglaise_coulissant"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "pellet_waggler",
+    "name": "Pellet waggler préplombé",
+    "techniques": [
+      "anglaise"
+    ],
+    "slots": [
+      "main_line",
+      "float",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Flotteur préplombé conçu pour les pellets.",
+    "sources": [
+      "tech_waggler"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "bolo_derive",
+    "name": "Bolognaise en dérive",
+    "techniques": [
+      "bolognaise"
+    ],
+    "slots": [
+      "main_line",
+      "float",
+      "weight",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Contrôle d'une coulée au flotteur.",
+    "sources": [
+      "tech_bolo"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "fond_coulissant",
+    "name": "Plombée coulissante",
+    "techniques": [
+      "fond"
+    ],
+    "slots": [
+      "main_line",
+      "weight",
+      "bead",
+      "swivel",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Ligne coulisse dans le lest.",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "fond_potence",
+    "name": "Plombée à potence",
+    "techniques": [
+      "fond"
+    ],
+    "slots": [
+      "main_line",
+      "weight",
+      "swivel",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Lest et terminal sur des branches distinctes.",
+    "sources": [
+      "tech_feeder_potence"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "fond_anti_tangle",
+    "name": "Fond sur tube anti-emmêleur",
+    "techniques": [
+      "fond"
+    ],
+    "slots": [
+      "main_line",
+      "tube",
+      "weight",
+      "swivel",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Écarter le terminal du corps de ligne.",
+    "sources": [
+      "tech_feeder"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "feeder_coulissant",
+    "name": "Cage feeder coulissante",
+    "techniques": [
+      "feeder"
+    ],
+    "slots": [
+      "main_line",
+      "feeder",
+      "bead",
+      "swivel",
+      "leader",
+      "hook",
+      "bait",
+      "groundbait"
+    ],
+    "overrides": {},
+    "principle": "Cage coulissante contenant l'amorce.",
+    "sources": [
+      "tech_feeder"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "feeder_potence",
+    "name": "Feeder à potence coulissante",
+    "techniques": [
+      "feeder"
+    ],
+    "slots": [
+      "main_line",
+      "feeder",
+      "boom",
+      "bead",
+      "swivel",
+      "leader",
+      "hook",
+      "bait",
+      "groundbait"
+    ],
+    "overrides": {},
+    "principle": "Potence coulissante portant le feeder.",
+    "sources": [
+      "tech_feeder_potence"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "feeder_helicoptere",
+    "name": "Feeder hélicoptère",
+    "techniques": [
+      "feeder"
+    ],
+    "slots": [
+      "main_line",
+      "feeder",
+      "stop",
+      "swivel",
+      "leader",
+      "hook",
+      "bait",
+      "groundbait"
+    ],
+    "overrides": {},
+    "principle": "Terminal tourne autour du corps de ligne.",
+    "sources": [
+      "tech_feeder"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "method_inline",
+    "name": "Method feeder inline",
+    "techniques": [
+      "method_feeder"
+    ],
+    "slots": [
+      "main_line",
+      "feeder",
+      "leader",
+      "hook",
+      "bait",
+      "groundbait"
+    ],
+    "overrides": {},
+    "principle": "Esche près du bloc d'amorce.",
+    "sources": [
+      "tech_feeder",
+      "tech_wafter"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "method_elastique",
+    "name": "Method feeder avec amortissement",
+    "techniques": [
+      "method_feeder"
+    ],
+    "slots": [
+      "main_line",
+      "feeder",
+      "elastic",
+      "leader",
+      "hook",
+      "bait",
+      "groundbait"
+    ],
+    "overrides": {},
+    "principle": "Amortissement intégré au système method.",
+    "sources": [
+      "tech_feeder"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "cheveu_coulissant",
+    "name": "Carpe au cheveu et plomb coulissant",
+    "techniques": [
+      "carpe"
+    ],
+    "slots": [
+      "main_line",
+      "weight",
+      "bead",
+      "swivel",
+      "leader",
+      "hook",
+      "hair",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Esche déportée sur cheveu, lest coulissant.",
+    "sources": [
+      "tech_carp_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "carpe_clip",
+    "name": "Carpe avec clip-plomb",
+    "techniques": [
+      "carpe"
+    ],
+    "slots": [
+      "main_line",
+      "lead_clip",
+      "weight",
+      "swivel",
+      "leader",
+      "hook",
+      "hair",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Clip pouvant libérer le plomb.",
+    "sources": [
+      "tech_lead_clip",
+      "tech_carp_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "carpe_inline",
+    "name": "Carpe avec plomb inline",
+    "techniques": [
+      "carpe"
+    ],
+    "slots": [
+      "main_line",
+      "weight",
+      "swivel",
+      "leader",
+      "hook",
+      "hair",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Plomb en ligne avec le corps de ligne.",
+    "sources": [
+      "tech_carp_rigs"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "carpe_helicoptere",
+    "name": "Carpe hélicoptère",
+    "techniques": [
+      "carpe"
+    ],
+    "slots": [
+      "main_line",
+      "weight",
+      "stop",
+      "bead",
+      "swivel",
+      "leader",
+      "hook",
+      "hair",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Bas de ligne tourne autour du corps de ligne.",
+    "sources": [
+      "tech_chod",
+      "tech_carp_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "chod",
+    "name": "Chod rig",
+    "techniques": [
+      "carpe"
+    ],
+    "slots": [
+      "main_line",
+      "weight",
+      "stop",
+      "bead",
+      "swivel",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Présentation pop-up sur terminal court et raide.",
+    "sources": [
+      "tech_chod"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "ronnie",
+    "name": "Ronnie / spinner rig",
+    "techniques": [
+      "carpe"
+    ],
+    "slots": [
+      "main_line",
+      "weight",
+      "swivel",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Hameçon articulé avec esche flottante.",
+    "sources": [
+      "tech_ronnie"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "d_rig",
+    "name": "D-rig",
+    "techniques": [
+      "carpe"
+    ],
+    "slots": [
+      "main_line",
+      "weight",
+      "leader",
+      "hook",
+      "hair",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Esche reliée à une boucle en D.",
+    "sources": [
+      "tech_carp_rigs"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "blowback",
+    "name": "Blowback rig",
+    "techniques": [
+      "carpe"
+    ],
+    "slots": [
+      "main_line",
+      "weight",
+      "leader",
+      "hook",
+      "hair",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Cheveu guidé par un anneau sur l'hameçon.",
+    "sources": [
+      "tech_carp_rigs"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "combi",
+    "name": "Combi rig",
+    "techniques": [
+      "carpe"
+    ],
+    "slots": [
+      "main_line",
+      "weight",
+      "leader",
+      "hook",
+      "hair",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Terminal associant sections de rigidités différentes.",
+    "sources": [
+      "tech_carp_rigs"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "pva_solide",
+    "name": "Montage en sac PVA solide",
+    "techniques": [
+      "carpe"
+    ],
+    "slots": [
+      "main_line",
+      "weight",
+      "leader",
+      "hook",
+      "hair",
+      "bait",
+      "pva",
+      "groundbait"
+    ],
+    "overrides": {},
+    "principle": "Amorce et terminal regroupés dans un sac soluble.",
+    "sources": [
+      "tech_pva"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "pva_filet",
+    "name": "Montage avec filet PVA",
+    "techniques": [
+      "carpe"
+    ],
+    "slots": [
+      "main_line",
+      "weight",
+      "leader",
+      "hook",
+      "hair",
+      "bait",
+      "pva",
+      "groundbait"
+    ],
+    "overrides": {},
+    "principle": "Petit amorçage porté par filet soluble.",
+    "sources": [
+      "tech_pva_mesh"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "surface_libre",
+    "name": "Esche de surface sans lest",
+    "techniques": [
+      "surface",
+      "stalking"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Présentation libre d'une esche flottante.",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "surface_controleur",
+    "name": "Surface au contrôleur",
+    "techniques": [
+      "surface",
+      "stalking"
+    ],
+    "slots": [
+      "main_line",
+      "float",
+      "swivel",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Corps porteur pour lancer une esche flottante.",
+    "sources": [
+      "tech_carp_rigs"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "tete_plombee",
+    "name": "Leurre sur tête plombée",
+    "techniques": [
+      "leurre",
+      "ultraleger",
+      "verticale"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "jig_head",
+      "lure"
+    ],
+    "overrides": {},
+    "principle": "Tête lestée avec hameçon portant le souple.",
+    "sources": [
+      "tech_soft_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "weightless",
+    "name": "Leurre souple weightless",
+    "techniques": [
+      "leurre",
+      "ultraleger"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "hook",
+      "lure"
+    ],
+    "overrides": {},
+    "principle": "Leurre sans lest ajouté.",
+    "sources": [
+      "tech_soft_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "texas",
+    "name": "Texas rig",
+    "techniques": [
+      "leurre"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "weight",
+      "hook",
+      "lure"
+    ],
+    "overrides": {},
+    "principle": "Lest balle et hameçon offset.",
+    "sources": [
+      "tech_texas",
+      "tech_soft_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "carolina",
+    "name": "Carolina rig",
+    "techniques": [
+      "leurre"
+    ],
+    "slots": [
+      "main_line",
+      "weight",
+      "bead",
+      "swivel",
+      "leader",
+      "hook",
+      "lure"
+    ],
+    "overrides": {},
+    "principle": "Lest séparé du leurre par un terminal.",
+    "sources": [
+      "tech_soft_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "drop_shot",
+    "name": "Drop-shot",
+    "techniques": [
+      "leurre",
+      "ultraleger",
+      "verticale"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "hook",
+      "lure",
+      "weight"
+    ],
+    "overrides": {},
+    "principle": "Hameçon au-dessus d'un lest terminal.",
+    "sources": [
+      "tech_drop_shot",
+      "tech_soft_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "split_shot",
+    "name": "Split-shot rig",
+    "techniques": [
+      "leurre",
+      "ultraleger"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "weight",
+      "hook",
+      "lure"
+    ],
+    "overrides": {},
+    "principle": "Petit lest placé en amont du souple.",
+    "sources": [
+      "tech_soft_rigs"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "wacky",
+    "name": "Wacky rig",
+    "techniques": [
+      "leurre"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "hook",
+      "lure"
+    ],
+    "overrides": {},
+    "principle": "Ver souple piqué transversalement.",
+    "sources": [
+      "tech_soft_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "neko",
+    "name": "Neko rig",
+    "techniques": [
+      "leurre"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "hook",
+      "nail_weight",
+      "lure"
+    ],
+    "overrides": {},
+    "principle": "Ver souple avec lest inséré à une extrémité.",
+    "sources": [
+      "tech_soft_rigs"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "ned",
+    "name": "Ned rig",
+    "techniques": [
+      "leurre",
+      "ultraleger"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "jig_head",
+      "lure"
+    ],
+    "overrides": {},
+    "principle": "Petit souple sur tête à face plate.",
+    "sources": [
+      "tech_ned"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "tokyo",
+    "name": "Tokyo rig",
+    "techniques": [
+      "leurre"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "hook",
+      "wire_arm",
+      "weight",
+      "lure"
+    ],
+    "overrides": {},
+    "principle": "Lest déporté sur tige sous l'hameçon.",
+    "sources": [
+      "tech_tokyo"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "jig_trailer",
+    "name": "Jig et trailer",
+    "techniques": [
+      "leurre"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "jig_head",
+      "lure"
+    ],
+    "overrides": {},
+    "principle": "Jig habillé complété par un leurre souple.",
+    "sources": [
+      "tech_lures"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "poisson_nageur",
+    "name": "Poisson nageur sur agrafe",
+    "techniques": [
+      "leurre",
+      "ultraleger",
+      "traine"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "snap",
+      "lure"
+    ],
+    "overrides": {},
+    "principle": "Leurre rigide avec hameçons intégrés.",
+    "sources": [
+      "tech_lures",
+      "tech_crank"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "cuiller",
+    "name": "Cuiller et émerillon",
+    "techniques": [
+      "leurre",
+      "ultraleger"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "swivel",
+      "snap",
+      "lure"
+    ],
+    "overrides": {},
+    "principle": "Leurre métallique tournant ou ondulant.",
+    "sources": [
+      "tech_lures"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "spinnerbait",
+    "name": "Spinnerbait direct",
+    "techniques": [
+      "leurre"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "lure"
+    ],
+    "overrides": {},
+    "principle": "Armature avec palettes et hameçon intégré.",
+    "sources": [
+      "tech_spinner"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "topwater",
+    "name": "Leurre de surface",
+    "techniques": [
+      "leurre"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "lure"
+    ],
+    "overrides": {},
+    "principle": "Animation en surface.",
+    "sources": [
+      "tech_topwater"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "mort_manie_monture",
+    "name": "Monture à poisson mort",
+    "techniques": [
+      "mort_manie"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "harness",
+      "weight",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Poisson mort tenu par monture et armement.",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "toc_etage",
+    "name": "Toc à plombée progressive",
+    "techniques": [
+      "toc"
+    ],
+    "slots": [
+      "main_line",
+      "indicator",
+      "weight",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Lests répartis pour dérive adaptée au courant.",
+    "sources": [
+      "tech_toc",
+      "tech_toc_variantes"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "toc_nymphe",
+    "name": "Toc à nymphe",
+    "techniques": [
+      "toc",
+      "nymphe_fil"
+    ],
+    "slots": [
+      "main_line",
+      "indicator",
+      "leader",
+      "tippet",
+      "fly"
+    ],
+    "overrides": {},
+    "principle": "Imitation en dérive contrôlée.",
+    "sources": [
+      "tech_toc",
+      "tech_fly"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "seche",
+    "name": "Mouche sèche",
+    "techniques": [
+      "mouche"
+    ],
+    "slots": [
+      "backing",
+      "fly_line",
+      "leader",
+      "tippet",
+      "fly"
+    ],
+    "overrides": {},
+    "principle": "Imitation évoluant en surface.",
+    "sources": [
+      "tech_fly"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "noyee",
+    "name": "Mouche noyée",
+    "techniques": [
+      "mouche"
+    ],
+    "slots": [
+      "backing",
+      "fly_line",
+      "leader",
+      "tippet",
+      "fly"
+    ],
+    "overrides": {},
+    "principle": "Imitation immergée.",
+    "sources": [
+      "tech_fly"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "nymphe",
+    "name": "Nymphe à la mouche",
+    "techniques": [
+      "mouche",
+      "nymphe_fil"
+    ],
+    "slots": [
+      "backing",
+      "fly_line",
+      "leader",
+      "tippet",
+      "fly"
+    ],
+    "overrides": {
+      "nymphe_fil": [
+        "main_line",
+        "indicator",
+        "leader",
+        "tippet",
+        "fly"
+      ]
+    },
+    "principle": "Imitation de stade aquatique d'insecte.",
+    "sources": [
+      "tech_fly"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "streamer",
+    "name": "Streamer",
+    "techniques": [
+      "mouche"
+    ],
+    "slots": [
+      "backing",
+      "fly_line",
+      "leader",
+      "tippet",
+      "fly"
+    ],
+    "overrides": {},
+    "principle": "Imitation animée de proie.",
+    "sources": [
+      "tech_fly"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "bombette_flot",
+    "name": "Bombette flottante",
+    "techniques": [
+      "bombette"
+    ],
+    "slots": [
+      "main_line",
+      "bombette",
+      "bead",
+      "swivel",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Corps porteur flottant pour esche légère.",
+    "sources": [
+      "tech_bombette"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "bombette_coul",
+    "name": "Bombette plongeante",
+    "techniques": [
+      "bombette"
+    ],
+    "slots": [
+      "main_line",
+      "bombette",
+      "bead",
+      "swivel",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "overrides": {},
+    "principle": "Corps porteur descendant dans l'eau.",
+    "sources": [
+      "tech_bombette"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "gambe_nymphes",
+    "name": "Gambe à nymphes",
+    "techniques": [
+      "gambe"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "weight",
+      "fly"
+    ],
+    "overrides": {},
+    "principle": "Train d'imitations sur empiles.",
+    "sources": [
+      "bio_coregone"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "traine_lac",
+    "name": "Poisson nageur à la traîne",
+    "techniques": [
+      "traine"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "lure"
+    ],
+    "overrides": {},
+    "principle": "Leurre présenté depuis une embarcation mobile.",
+    "sources": [
+      "tech_lures"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "clonk_vertical",
+    "name": "Silure vertical au clonk",
+    "techniques": [
+      "clonk"
+    ],
+    "slots": [
+      "main_line",
+      "leader",
+      "weight",
+      "hook",
+      "bait",
+      "clonk"
+    ],
+    "overrides": {},
+    "principle": "Présentation verticale associée à une sollicitation sonore.",
+    "sources": [
+      "bio_silure"
+    ],
+    "research": "needs_research"
+  }
+]

@@ -1,17 +1,20 @@
 import { emptySave, loadSave, persistSave, type SaveData, SAVE_KEY } from './save.ts';
-import { COMPONENTS } from './rig.ts';
+import { COMPONENTS,techniqueConfig } from './rig.ts';
 import { ITEMS } from './economy.ts';
-import { POSTS } from './posts.ts';
+import { ALL_POSTS as POSTS } from './posts.ts';
+import {TECHNIQUE_IDS} from './techniques.ts';
 
 export const TEST_SAVE_KEY = 'au-fil-de-leau.test.save.v1';
 export const PROFILE_KEY = 'au-fil-de-leau.active-profile';
 export interface DevelopmentProfile { kind:'sandbox'|'rules'; unlimitedMoney:boolean; unlimitedStock:boolean; theoreticalCost:number }
 export function createTestSave(kind:DevelopmentProfile['kind']='sandbox'):SaveData {
   const save=emptySave();
+  save.tackle.config=techniqueConfig('coup');save.progression.techniques=['coup'];save.progression.techniqueMastery={};
   save.development={kind,unlimitedMoney:kind==='sandbox',unlimitedStock:false,theoreticalCost:0};
   if(kind==='sandbox') {
     save.progression.methods=['pole','float','bottom','lure'];
     save.progression.posts=POSTS.filter(p=>p.implemented).map(p=>p.id);
+    save.progression.techniques=[...TECHNIQUE_IDS];save.progression.techniqueMastery={};
     save.inventory=ITEMS.filter(i=>i.price===0).map(i=>i.id);
   }
   return save;

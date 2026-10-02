@@ -1,0 +1,556 @@
+[
+  {
+    "id": "coup",
+    "name": "Coup à canne télescopique",
+    "requiresReel": false,
+    "slots": [
+      "main_line",
+      "float",
+      "weight",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "rodTypes": [
+      "telescopique"
+    ],
+    "context": [
+      "bord"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "grande_canne",
+    "name": "Grande canne à emmanchements",
+    "requiresReel": false,
+    "slots": [
+      "elastic",
+      "main_line",
+      "float",
+      "weight",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "rodTypes": [
+      "grande_canne"
+    ],
+    "context": [
+      "bord"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_coup",
+      "tech_elastic"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "anglaise",
+    "name": "Anglaise au waggler",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "float",
+      "weight",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "rodTypes": [
+      "match",
+      "polyvalente"
+    ],
+    "context": [
+      "bord"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_anglaise_fixe",
+      "tech_anglaise_coulissant"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "bolognaise",
+    "name": "Bolognaise",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "float",
+      "weight",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "rodTypes": [
+      "bolognaise"
+    ],
+    "context": [
+      "riviere"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_bolo"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "fond",
+    "name": "Fond / plombée",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "weight",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "rodTypes": [
+      "fond",
+      "polyvalente",
+      "carpe"
+    ],
+    "context": [
+      "bord"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "feeder",
+    "name": "Feeder à cage",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "feeder",
+      "leader",
+      "hook",
+      "bait",
+      "groundbait"
+    ],
+    "rodTypes": [
+      "feeder",
+      "polyvalente"
+    ],
+    "context": [
+      "bord"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_feeder",
+      "tech_feeder_potence"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "method_feeder",
+    "name": "Method feeder",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "feeder",
+      "leader",
+      "hook",
+      "bait",
+      "groundbait"
+    ],
+    "rodTypes": [
+      "feeder"
+    ],
+    "context": [
+      "bord"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_feeder",
+      "tech_wafter"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "carpe",
+    "name": "Carpe au posé",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "weight",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "rodTypes": [
+      "carpe",
+      "fond"
+    ],
+    "context": [
+      "bord"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_carp_rigs",
+      "tech_lead_clip"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "stalking",
+    "name": "Approche de bordure / stalking",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "rodTypes": [
+      "carpe",
+      "polyvalente",
+      "match"
+    ],
+    "context": [
+      "bordure"
+    ],
+    "kind": "approach",
+    "sources": [
+      "tech_carp_rigs"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "surface",
+    "name": "Carpe et poissons blancs en surface",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "rodTypes": [
+      "carpe",
+      "polyvalente",
+      "match"
+    ],
+    "context": [
+      "surface"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "leurre",
+    "name": "Lancer aux leurres",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "leader",
+      "lure"
+    ],
+    "rodTypes": [
+      "spinning",
+      "casting",
+      "polyvalente"
+    ],
+    "context": [
+      "bord"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_lures",
+      "tech_soft_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "verticale",
+    "name": "Leurre en verticale",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "leader",
+      "lure"
+    ],
+    "rodTypes": [
+      "verticale",
+      "spinning",
+      "casting"
+    ],
+    "context": [
+      "ponton_profond",
+      "bateau_futur"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_lures"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "mort_manie",
+    "name": "Poisson mort manié",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "leader",
+      "weight",
+      "harness",
+      "bait"
+    ],
+    "rodTypes": [
+      "spinning",
+      "casting"
+    ],
+    "context": [
+      "bord"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_coup"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "toc",
+    "name": "Toc aux appâts naturels",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "indicator",
+      "weight",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "rodTypes": [
+      "toc"
+    ],
+    "context": [
+      "riviere"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_toc",
+      "tech_toc_variantes"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "mouche",
+    "name": "Mouche",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "backing",
+      "fly_line",
+      "leader",
+      "tippet",
+      "fly"
+    ],
+    "rodTypes": [
+      "mouche"
+    ],
+    "context": [
+      "riviere",
+      "lac"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_fly"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "nymphe_fil",
+    "name": "Nymphe au fil",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "indicator",
+      "leader",
+      "tippet",
+      "fly"
+    ],
+    "rodTypes": [
+      "mouche",
+      "nymphe"
+    ],
+    "context": [
+      "riviere"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_fly",
+      "tech_toc"
+    ],
+    "research": "partial"
+  },
+  {
+    "id": "bombette",
+    "name": "Bombette",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "bombette",
+      "swivel",
+      "leader",
+      "bait"
+    ],
+    "rodTypes": [
+      "bombette",
+      "match"
+    ],
+    "context": [
+      "lac"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_bombette"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "gambe",
+    "name": "Gambe / train de nymphes",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "leader",
+      "weight",
+      "fly"
+    ],
+    "rodTypes": [
+      "gambe",
+      "verticale"
+    ],
+    "context": [
+      "lac_profond"
+    ],
+    "kind": "method",
+    "sources": [
+      "bio_coregone"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "traine",
+    "name": "Traîne",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "leader",
+      "lure"
+    ],
+    "rodTypes": [
+      "traine"
+    ],
+    "context": [
+      "bateau_futur"
+    ],
+    "kind": "method",
+    "sources": [
+      "tech_lures"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "clonk",
+    "name": "Silure au clonk",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "leader",
+      "weight",
+      "hook",
+      "bait",
+      "clonk"
+    ],
+    "rodTypes": [
+      "silure"
+    ],
+    "context": [
+      "bateau_futur"
+    ],
+    "kind": "method",
+    "sources": [
+      "bio_silure"
+    ],
+    "research": "needs_research"
+  },
+  {
+    "id": "ultraleger",
+    "name": "Leurre ultraléger",
+    "requiresReel": true,
+    "slots": [
+      "reel",
+      "main_line",
+      "leader",
+      "lure"
+    ],
+    "rodTypes": [
+      "spinning_ul"
+    ],
+    "context": [
+      "bord"
+    ],
+    "kind": "approach",
+    "sources": [
+      "tech_lures",
+      "tech_soft_rigs"
+    ],
+    "research": "documented"
+  },
+  {
+    "id": "carpodrome",
+    "name": "Carpodrome à grande canne",
+    "requiresReel": false,
+    "slots": [
+      "elastic",
+      "main_line",
+      "float",
+      "weight",
+      "leader",
+      "hook",
+      "bait"
+    ],
+    "rodTypes": [
+      "grande_canne"
+    ],
+    "context": [
+      "plan_eau_amenage"
+    ],
+    "kind": "approach",
+    "sources": [
+      "tech_elastic",
+      "tech_coup"
+    ],
+    "research": "partial"
+  }
+]

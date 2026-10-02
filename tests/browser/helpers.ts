@@ -1,6 +1,7 @@
 import { expect, type Page } from '@playwright/test';
 export async function chooseMethod(page:Page,method:string) {
   await page.locator('[data-slot="method"]').click();
+  if(!await page.locator(`[data-choose-method="${method}"]`).isVisible())await page.locator("#component-sheet details summary").click();
   await page.locator(`[data-choose-method="${method}"]`).click();
 }
 export async function castByGesture(page: Page) {

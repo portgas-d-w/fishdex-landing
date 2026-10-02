@@ -9,9 +9,9 @@ export class GameAudio {
       if (this.context.state === 'suspended') await this.context.resume();
     } catch { /* Audio optionnel, le jeu reste utilisable. */ }
   }
-  tone(kind: 'cast' | 'bite' | 'catch' | 'reel' | 'drag') {
+  tone(kind: 'cast' | 'bite' | 'catch' | 'reel' | 'drag',signal?:'float'|'tip'|'contact'|'surface') {
     if (!this.enabled || !this.context || this.context.state !== 'running') return;
-    const notes = kind === 'catch' ? [523, 659, 784] : kind === 'bite' ? [680, 860] : kind === 'drag' ? [110, 140] : kind === 'reel' ? [180] : [260];
+    const notes = kind === 'catch' ? [523, 659, 784] : kind === 'bite' ? signal==='tip'?[430,520]:signal==='contact'?[330,390,330]:signal==='surface'?[740]:[680,860] : kind === 'drag' ? [110, 140] : kind === 'reel' ? [180] : [260];
     notes.forEach((frequency, index) => {
       const context = this.context!;
       const osc = context.createOscillator(); const gain = context.createGain();

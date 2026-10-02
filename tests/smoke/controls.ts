@@ -14,6 +14,11 @@ export async function realFishing(page: Page, context: BrowserContext, mobile: b
   await expect(page.locator('body')).toHaveAttribute('data-phase', 'bite');
   await page.locator('#strike').click();
   await expect(page.locator('body')).toHaveAttribute('data-phase', 'fighting');
+  await realCombat(page,context,mobile,pole);
+}
+
+export async function realCombat(page:Page,context:BrowserContext,mobile:boolean,pole=false){
+  const size=page.viewportSize()!,touch=mobile?await context.newCDPSession(page):undefined;
   await expect(page.locator('#tension-display')).toBeVisible();
   const b = pole?{x:0,y:0,width:0,height:0}:(await page.locator('#reel-control').boundingBox())!;
   const cx = b.x + b.width / 2, cy = b.y + b.height / 2;
@@ -49,5 +54,8 @@ export async function realFishing(page: Page, context: BrowserContext, mobile: b
   }
   if (touch) await touch.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
   else await page.mouse.up();
+  if(await page.locator('body').getAttribute('data-phase')==='landing'){
+    await expect(page.locator('#tech-land')).toBeEnabled();await page.locator('#tech-land').click();
+  }
   await expect(page.locator('#caught')).toBeVisible();
 }

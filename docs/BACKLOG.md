@@ -6,9 +6,10 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 
 - [x] Audit 22 méthodes/55 recettes, validation du dossier et référence 0.8.
 - [x] Mode test indépendant, argent ∞, transactions/stock/casse/scénarios, vérifications d'isolation.
-- [ ] Techniques et recettes fonctionnelles, contextes courant/profondeur/embarcation.
-- [ ] Réception, frein, effets des composants, progression et chaîne complète de chaque méthode.
-- [ ] Matrice vérifiée, parcours tactiles émulés, preuve hébergée et procédure téléphone.
+- [x] 22 techniques et 55 recettes fonctionnelles, contextes courant/profondeur/embarcation.
+- [x] Réception distincte, frein, effets des composants, progression et chaîne complète de chaque méthode ; 97 tests Node + TypeScript/build.
+- [x] Matrice méthode/système, parcours tactiles émulés, 44 prises UI/photo/reload, procédure téléphone et captures avant/après identiques.
+- [ ] Préproduction protégée, publication du build normal et empreintes publiques V2.
 - [ ] Essais humains sur appareil, économie et sensations.
 
 ## Progression, postes et pratiques 0.8.0
@@ -23,7 +24,7 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 - [x] Préproduction : dix scénarios vérifiés après une reprise ; production publique sans token 10/10, 45 JS/CSS et manifeste identiques, retour conservé.
 - [ ] Essais humains téléphone : confort, plaisir, durée, amorçage/accroches, progression et économie.
 - [ ] Équilibrer le revenu du coup/leurres après retours ; individus puissants au coup et maîtrise de l’amortissement.
-- [ ] Pointe/bois et vent/dérive/branches, feeder/mouche, réception et déboîtement.
+- [x] Pointe/bois et vent/dérive/branches, feeder/mouche, réception et déboîtement : implémentés et contrôlés en V2.
 
 ## Basalte & Turquoise 0.7.0
 
@@ -46,7 +47,8 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 - [x] Quinze profils sourcés, variations individuelles ; retrait du cercle, gestes et annulations préservés.
 - [x] Check 47 tests + TypeScript/build ; navigateur 48 réussis/2 exclusions, atelier final 6/6 ; smoke local, preview protégée et public 8/8 chacun ; publication main et retour conservé.
 - [ ] Essai Safari/iPhone réel, économie des lots et plaisir/équilibre des combats.
-- [ ] Future extension : réglages de frein, graphes spécialistes, observation, autres habitats et GLB confirmés.
+- [x] V2 : réglages de frein, graphes spécialistes, observation, rivière/lac profond/embarcation.
+- [ ] Autres espèces et GLB confirmés : ajout seulement après audit des assets et des profils.
 
 ## Structure complète 0.5.0 — mission prioritaire
 
@@ -64,7 +66,7 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 - [x] Smoke du build sans QA, preview protégée et domaine public validés : 6/6 chacun.
 - [ ] Safari/iPhone physique : ressenti/30 FPS/chauffe ; aucun résultat appareil annoncé.
 
-Les contenus feeder/mouche/rivière, rig animé/respiration et autres poissons restent à venir conformément à la mission ; leurs interfaces et points d'intégration sont construits. Ils ne bloquent pas les objectifs réalisables de la version actuelle.
+Historique 0.5 : feeder/mouche/rivière étaient préparés. La V2 ci-dessus les rend jouables ; les autres espèces sans modèle restent prévues.
 
 ## Correction 0.4.1 — moulinage par appui
 

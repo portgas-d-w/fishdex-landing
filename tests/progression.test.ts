@@ -6,7 +6,7 @@ import { weightFor } from '../src/game/specimens.ts';
 const caught = (id: string, length = 24) => ({ id, speciesId: 'roach' as const, length, date: '2026-10-01T12:00:00.000Z' });
 test('Migration v1 conserve total et records sans fabriquer des individus ou gains', () => {
   const legacy = { version: 1, total: 8, records: { roach: { count: 8, best: 30, last: '2026-09-30T10:00:00Z' } }, settings: { sound: true, quality: 'eco' } };
-  const save = parseSave(JSON.stringify(legacy)); assert.equal(save.version,5); assert.equal(save.total, 8); assert.equal(save.records.roach?.best, 30);
+  const save = parseSave(JSON.stringify(legacy)); assert.equal(save.version,6); assert.equal(save.total, 8); assert.equal(save.records.roach?.best, 30);
   assert.equal(save.journal.length, 0); assert.equal(save.coins, 0); assert.equal(save.xp, 0);
   recordCatch(save, caught('new')); assert.equal(save.total, 9); assert.deepEqual(parseSave(JSON.stringify(save)), save);
 });

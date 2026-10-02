@@ -59,3 +59,14 @@ fonctionnel avec un jeu prêt à diffuser largement.
 ## 2 octobre 2026 — périmètre V2 et profil de test
 
 La demande V2 remplace les limites historiques à deux pratiques. Les quatre familles historiques restent des adaptateurs de moteur, les 22 identifiants de techniques et 55 recettes du dossier sont conservés séparément. Mode test explicite et contrôlé par build, sauvegarde/photo séparées, portefeuille illimité par indicateur et coûts théoriques finis ; achats, incompatibilités et pertes restent réels. Aucun transfert vers le profil normal.
+
+## 2 octobre 2026 — catalogue V2 fonctionnel, version 0.9.0
+
+- Les 22 techniques et 55 recettes partagent des moteurs et variables physiques ; chaque approche modifie présentation, contexte ou équipement. Les recherches complétées et limites sont dans RECHERCHE_TECHNIQUES_V2.md ; les SKU incomplets ne deviennent pas des achats paramétrés arbitrairement.
+- Sauvegarde v6 à même clé, lecture v1–v5, original avant-v6 exportable. Droits acquis conservés ; les captures historiques sans ID de technique n'obtiennent pas une maîtrise rétroactive inventée. Profil TEST et photos distincts, disponibilité dev/preview, production normale sans entrée test.
+- Réception après arrivée réelle, séparée de la récompense ; même poisson, petite prise/épuisette/tapis, sections ramenées au kit. Le coup ne récupère jamais au moulinet ; grande canne et carpodrome déboîtent graduellement sous tension.
+- Six postes d'étang désormais implémentés, plus rivière/lac profond/embarcation, même scène/moteur ; courant/vent, profondeur accessible, obstacles et parcours borné du bateau effectifs. Aucun multiplicateur de puissance d'espèce par difficulté du poste.
+- 33 emplacements de montage, 80 appâts/amorce/leurres, portance/masse, diffusion/PVA/tenue, soie/pointe/potences et pertes localisées. Mon sac filtre les composants compatibles avec le montage actif. Les kits gratuits sont renouvelables sans argent/XP ; pièces payantes et réserves restent finies.
+- Quinze espèces actuelles uniquement. Mouche sur espèces compatibles du pack ; gambe perche avec une branche ferrée/une prise. Truite/corégone sans modèle restent futurs. Bateau, soie et réception procéduraux/simplifiés, aucun nouvel asset 3D généré.
+- Assistance de récupération toujours expérimentale. Banc naturel à contrôleur idéal et rendu SwiftShader distinguent vérification de logique, équilibre humain et performance téléphone. Aucune garantie de 30 FPS ni test iPhone physique.
+- Préproduction reconstruite avec Mode test ; production reconstruite depuis main avec Mode test désactivé. Ne pas promouvoir le binaire preview en production. Retour à 0.8 : préserver les exports v6 et original avant-v6, car la version ancienne ne lit pas v6.

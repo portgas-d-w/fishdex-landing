@@ -1,4 +1,4 @@
-import { component } from '../game/rig';
+import { component,floatLoad } from '../game/rig';
 import { POSTS, postById, worldPoint, type PostId } from '../game/posts';
 import { Engine } from '@babylonjs/core/Engines/engine';
 import { Scene } from '@babylonjs/core/scene';
@@ -24,6 +24,10 @@ export class LakeWorld {
   readonly camera: FreeCamera;
   private fishingRoot!:TransformNode;
   private activePost:PostId='jetty';
+  private boat!:Mesh;private landingNet!:Mesh;private landingMat!:Mesh;private landingFish!:Mesh;
+  private branchFlies:Mesh[]=[];
+  private branchLines:ReturnType<typeof MeshBuilder.CreateLines>[]=[];
+  private clonkPulse=0;
   private npc!:TransformNode;
   private precisionCircle!:Mesh;
   private bobber: TransformNode;
@@ -105,6 +109,13 @@ export class LakeWorld {
     this.line = MeshBuilder.CreateLines('fishing-line', { points: [new Vector3(1.3, 1.8, -2.3), new Vector3(0, 0.3, 7)], updatable: true }, this.scene);
     this.line.color = Color3.FromHexString('#d2c6a4'); this.line.alpha = 0.55;
     this.fishingRoot=new TransformNode('post-fishing-root',this.scene);
+    this.boat=MeshBuilder.CreateBox('procedural-boat',{width:2.4,depth:3.3,height:.45},this.scene);this.boat.material=this.material('#435b5d');this.boat.position.set(0,.1,-3.2);this.boat.parent=this.fishingRoot;this.boat.setEnabled(false);
+    this.landingNet=MeshBuilder.CreateTorus('landing-net',{diameter:1.1,thickness:.025,tessellation:16},this.scene);this.landingNet.parent=this.fishingRoot;this.landingNet.material=this.material('#4cc6c2');this.landingNet.position.set(.6,.08,.7);this.landingNet.setEnabled(false);
+    this.landingMat=MeshBuilder.CreateBox('landing-mat',{width:1.4,depth:.8,height:.05},this.scene);this.landingMat.parent=this.fishingRoot;this.landingMat.material=this.material('#394845');this.landingMat.position.set(-.6,.05,-.5);this.landingMat.setEnabled(false);
+    // Recycled procedural silhouette only during reception. The species GLB remains
+    // lazy-loaded in the photo sheet; this marker does not create a second specimen.
+    this.landingFish=MeshBuilder.CreateSphere('landing-fish-silhouette',{diameter:1,segments:8},this.scene);this.landingFish.parent=this.fishingRoot;this.landingFish.material=this.material('#b7c9c5');this.landingFish.setEnabled(false);
+    for(let n=0;n<3;n++){const fly=MeshBuilder.CreateSphere('gambe-fly-'+n,{diameter:.07,segments:4},this.scene);fly.material=this.material('#caa37a');fly.parent=this.fishingRoot;fly.setEnabled(false);this.branchFlies.push(fly);const branch=MeshBuilder.CreateLines('gambe-branch-'+n,{points:[Vector3.Zero(),new Vector3(.3,0,0)],updatable:true},this.scene);branch.parent=this.fishingRoot;branch.color=Color3.FromHexString('#ebddb3');branch.setEnabled(false);this.branchLines.push(branch);}
     for(const mesh of [this.rod,this.grip,this.bobber,this.line,this.thickLine,this.aimRing,this.trajectory,this.lure,...this.rings,...this.splash])mesh.parent=this.fishingRoot;
     this.precisionCircle=MeshBuilder.CreateTorus('precision-placement',{diameter:2.4,thickness:.014,tessellation:32},this.scene);this.precisionCircle.position.set(0,.05,3.2);this.precisionCircle.material=this.material('#4cc6c2');
     this.npc=new TransformNode('fisher-at-reeds',this.scene);this.npc.position.set(-11,.25,7);
@@ -289,6 +300,12 @@ col=mix(col,col*vec3(.72,.79,.72),smoothstep(23.,34.,p.y)*(1.-n)*.45);gl_FragCol
   }
   update(dt: number, game: FishingGame) {
     if(game.post!==this.activePost)this.setPost(game.post);
+    this.boat.setEnabled(game.post==='boat');
+    if(game.post==='boat'){const p=postById(game.post),move=game.presentationState.boat;this.fishingRoot.position.set(p.origin.x+move.x,0,p.origin.z+1+move.z);const eye=worldPoint(game.post,{x:move.x,z:move.z-8.5}),look=worldPoint(game.post,{x:move.x,z:move.z+5.5});this.camera.position.set(eye.x,4.2,eye.z);this.camera.setTarget(new Vector3(look.x,.1,look.z));}
+    this.landingNet.setEnabled(game.phase==='landing'&&game.fishLength>25);this.landingMat.setEnabled(game.phase==='landing'&&game.fishLength>65);this.landingFish.setEnabled(game.phase==='landing');
+    if(game.phase==='landing'){const size=Math.max(.18,game.fishLength*.012);this.landingFish.scaling.set(size*.24,size*.32,size);this.landingFish.position.set(game.fishPosition.x,.06+Math.min(1,game.elapsed)*.18,game.fishPosition.z);this.landingFish.rotation.y=game.direction;this.landingNet.position.set(game.fishPosition.x,.06,game.fishPosition.z);}
+    if(game.clonkPulse!==this.clonkPulse){this.clonkPulse=game.clonkPulse;this.impactAge=0;this.impactPoint.set(game.target.x,0,game.target.z);}
+    this.branchFlies.forEach((fly,n)=>{const show=game.modern&&game.technique.id==='gambe'&&game.phase==='waiting'&&n<game.presentationState.branches.length;fly.setEnabled(show);this.branchLines[n].setEnabled(show);if(show){const y=-game.presentationState.branches[n];fly.position.set(game.fishPosition.x+.3,y,game.fishPosition.z);MeshBuilder.CreateLines('gambe-branch-'+n,{points:[new Vector3(game.fishPosition.x,y,game.fishPosition.z),fly.position],instance:this.branchLines[n]},this.scene);}});
     this.npc.setEnabled(!game.rights?.posts.includes('reed-bank'));
     this.precisionCircle.setEnabled(game.post==='jetty'&&game.method==='pole'&&['idle','casting','waiting'].includes(game.phase));
     this.time += dt;
@@ -296,10 +313,10 @@ col=mix(col,col*vec3(.72,.79,.72),smoothstep(23.,34.,p.y)*(1.-n)*.45);gl_FragCol
     const targetX = game.target.x;
     const targetZ = game.target.z;
     this.castPoint.set(targetX, 0, targetZ);
-    const show = ['casting', 'waiting', 'bite', 'fighting'].includes(game.phase);
-    this.bobber.setEnabled(show && ['pole','float'].includes(game.method)); this.line.setEnabled(false); this.thickLine.setEnabled(show);
-    this.lure.setEnabled(show && game.method === 'lure' && game.phase !== 'fighting');
-    const fighting = game.phase === 'fighting';
+    const show = ['casting', 'waiting', 'bite', 'fighting','landing'].includes(game.phase);
+    this.bobber.setEnabled(show && (game.modern?!!game.config.components.float||!!game.config.components.indicator: ['pole','float'].includes(game.method))); this.line.setEnabled(false); this.thickLine.setEnabled(show);
+    this.lure.setEnabled(show && (game.modern?!!game.config.components.lure||!!game.config.components.fly||game.technique.engine==='surface':game.method === 'lure') && !['fighting','landing'].includes(game.phase));
+    const fighting = game.phase === 'fighting'||game.phase==='landing';
     if (game.phase === 'casting' && !this.wasCasting) this.castOrigin.copyFrom(this.rodPath[8]);
     if (this.wasCasting && game.phase === 'waiting') { this.impactAge = 0; this.impactPoint.set(targetX, 0, targetZ); }
     if (fighting && game.progress > .9 && Math.abs(game.fishVelocity) > .05 && this.impactAge > 1.3) { this.impactAge=0; this.impactPoint.set(game.fishPosition.x,0,game.fishPosition.z); }
@@ -313,20 +330,21 @@ col=mix(col,col*vec3(.72,.79,.72),smoothstep(23.,34.,p.y)*(1.-n)*.45);gl_FragCol
     // L’amplitude visuelle suit le champ horizontal : la pointe reste visible en portrait.
     // Les règles gardent la même orientation et les mêmes forces sur tous les formats.
     const framing = Math.min(1, this.engine.getAspectRatio(this.camera));
-    const base = new Vector3(1.4 * framing ** 1.5, 0.8, -5.7);
+    const base = new Vector3(1.4 * framing ** 1.5, 0.8, -5.7),sectionScale=game.modern&&game.technique.sections?Math.max(.4,game.rodSections/game.reach):1;
     this.rodPath = Array.from({ length: 9 }, (_, i) => {
       const t = i / 8;
       return base.add(new Vector3((game.rodYaw * 3 * framing ** 2 - 0.1 * framing) * t + (fighting ? game.direction * bend * t * t * 0.7 * framing : 0),
-        (0.8 + lift * 2.3) * t - (fighting ? bend * t * t * 1.1 : game.phase === 'bite' ? (0.35 + Math.sin(this.time * 12) * 0.12) * t * t : 0), 4.5 * t));
+        (0.8 + lift * 2.3) * t - (fighting ? bend * t * t * 1.1 : game.phase === 'bite' ? (0.35 + Math.sin(this.time * 12) * 0.12) * t * t : 0), 4.5 * t*sectionScale));
     });
     MeshBuilder.CreateTube('moving-rod', { path: this.rodPath, instance: this.rod }, this.scene);
     MeshBuilder.CreateTube('cork-grip', { path: [this.rodPath[0], this.rodPath[1]], instance: this.grip }, this.scene);
     this.bobber.position.set(targetX * cast, 0.035 + Math.sin(this.time * 2) * 0.022, -1 + (targetZ + 1) * cast);
     if (game.phase === 'casting') this.bobber.position.copyFrom(Vector3.Lerp(this.castOrigin, new Vector3(targetX, 0.1, targetZ), cast).add(new Vector3(0, Math.sin(cast * Math.PI) * 2.3, 0)));
     if (game.method === 'lure' && ['waiting', 'bite'].includes(game.phase)) this.bobber.position.set(game.fishPosition.x, 0.04, game.fishPosition.z);
+    if(game.modern&&['waiting','bite'].includes(game.phase)){this.bobber.position.set(game.fishPosition.x,game.config.components.float?.04:game.config.components.indicator?.25:-game.presentationDepth,game.fishPosition.z);if(game.technique.engine==='surface'||game.rig.recipe==='seche')this.bobber.position.y=.04;}
     if (!['pole','float'].includes(game.method) && ['waiting', 'bite'].includes(game.phase)) this.bobber.position.y = -game.presentationDepth;
-    if(['pole','float'].includes(game.method) && ['waiting','bite'].includes(game.phase)) { const f=component(game.rig.components.float??''),w=component(game.rig.components.weight??'');this.bobber.position.y-=Math.max(0,(w?.mass??0)+(f?.integrated??0)+.15-(f?.capacity??2))*.2; }
-    this.lure.position.copyFrom(this.bobber.position); this.lure.rotation.y = game.rodYaw;
+    if(['pole','float'].includes(game.method) && ['waiting','bite'].includes(game.phase)) { const f=component(game.rig.components.float??'');this.bobber.position.y-=Math.max(0,floatLoad(game.rig)-(f?.capacity??2))*.2; }
+    this.lure.position.copyFrom(this.bobber.position); this.lure.rotation.y = game.rodYaw+(game.modern?game.presentationState.terminalAngle:0);this.lure.rotation.z=game.modern&&['ned','neko','tokyo'].includes(game.rig.recipe??'')?-Math.PI/2:0;
     if (game.phase === 'bite') {
       this.bobber.position.y -= Math.abs(Math.sin(this.time * 12)) * 0.1;
       this.bobber.position.x += Math.sin(this.time * 4) * (game.pulling ? 0.28 : 0.05);
