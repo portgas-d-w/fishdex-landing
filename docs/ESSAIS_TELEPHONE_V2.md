@@ -5,7 +5,7 @@ Les URL vérifiées sont consignées dans `PUBLICATION_V2.md` après publication
 
 ## Ouvrir le Mode test
 
-1. Ouvrir l'URL de **préproduction V2** dans Safari ou Chrome sur le téléphone.
+1. Ouvrir la [préproduction V2 avec Mode test](https://fishdex-landing-3dta83925-portgas-d-ws-projects.vercel.app) dans Safari ou Chrome sur le téléphone.
    Si Vercel demande une connexion, utiliser le compte propriétaire déjà autorisé.
    La protection du projet est conservée.
 2. Toucher **Menu → Réglages et aide → Mode test → Ouvrir mon profil de test**.

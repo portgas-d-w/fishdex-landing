@@ -1,18 +1,18 @@
-# Au fil de l’eau — 0.5.0
+# Au fil de l’eau — 0.9.0
 
 Jeu de pêche 3D solo pour navigateur mobile, Babylon.js + TypeScript + Vite. Nom, décor et équilibrage provisoires. Sans compte, paiement, backend ni clé API.
 
 ## Jouer et reprendre
 
-Production : [www.fishdex.fr](https://www.fishdex.fr), projet existant fishdex-landing. État de la publication : docs/VERCEL.md et RELAIS_PROJET.md. Le jeu remplace la landing autorisée ; le projet FishDex de référence reste inchangé.
+Production normale : [www.fishdex.fr](https://www.fishdex.fr), projet existant fishdex-landing. [Revue V2 avec Mode test](https://fishdex-landing-3dta83925-portgas-d-ws-projects.vercel.app) : Menu → Réglages et aide → Mode test → Ouvrir mon profil de test. Profil séparé, ∞, stock/casse et compatibilités conservés. Procédure téléphone : [ESSAIS_TELEPHONE_V2.md](docs/ESSAIS_TELEPHONE_V2.md). Publication et retour : [PUBLICATION_V2.md](docs/PUBLICATION_V2.md) et RELAIS_PROJET.md. Le projet FishDex de référence reste inchangé.
 
-Partir du tiers inférieur, projeter vers l’eau puis relâcher au centre ou plus haut pour lancer. La vitesse récente donne la puissance, l’amplitude contribue et le matériel borne la portée ; cible/trajectoire et refus hors eau conservés. Aucun bouton de lancer automatique. En combat : deux commandes rondes en bas, canne à gauche (glissement dans les quatre directions), moulinet à droite (appui maintenu ou geste circulaire avec le second doigt, choisi dans Réglages). Le glissement sur l’eau continue aussi à orienter la canne. Sur PC : glissement de souris et molette simultanés. Maintenir Mouliner récupère du fil ; relâcher arrête immédiatement ; espace peut ferrer uniquement. Suivre le fil et accompagner les départs : le frein rend du fil sous résistance. La pression modérée fatigue le poisson ; récupérer le mou s’il revient, puis le ramener au bord quand il faiblit. La canne et le fil montrent la traction ; une jauge compacte Tension du fil, verte/jaune/orange, occupe l’espace entre les commandes. Aucun panneau décrivant le poisson.
+Partir du tiers inférieur, projeter vers l’eau puis relâcher au centre ou plus haut. La vitesse récente et le matériel bornent la distance. En combat : canne glissée à gauche et, si le montage en possède un, moulinet à droite par appui maintenu au second doigt. Sur PC : glissement et molette simultanés. Relâcher arrête immédiatement la récupération. Accompagner le fil, surveiller la tension et ajuster le frein : une tension utile fatigue le poisson. Le coup n'a pas de moulinet ; grande canne/carpodrome déboîtent jusqu'au kit. Après rapprochement réel, toucher Recevoir pour la petite prise, l'épuisette ou le tapis. Photo, gains et souvenir suivent une réception réussie, une seule fois.
 
-Menu compact : FishDex principal, matériel, carnet secondaire, lieux, aquarium, boutique, progression et réglages. Les écrans ont un retour ; le menu suspend le combat et bloque les gestes de scène. Hors combat, accès Matériel direct. Le jeu bloque la sélection et les actions natives d’appui long uniquement sur ses surfaces ; le carnet et la boutique défilent, les champs restent éditables et sélectionnables. Trois méthodes effectives : flotteur, leurre animé/récupéré et fond.
+Menu compact : FishDex principal, Ma canne/montage/Mon sac/Ensembles, carnet, lieux, aquarium, Boutique, progression et réglages. Les écrans ont un retour ; le menu suspend la pêche. Les champs restent sélectionnables et les panneaux défilables. Les **22 pratiques et 55 recettes** sont jouables avec préparation/signaux/actions propres ; six postes d'étang, rivière à courant, lac profond et embarcation mobile bornée. Disponibilité progressive dans la partie normale, accès libre dans le bac à sable de revue. Couverture et limites : [MATRICE_V2.md](docs/MATRICE_V2.md).
 
-Quinze espèces du pack, carnet individuel avec photos, records, robes et Mirage. Encyclopédie issue des fichiers FishDex : 96 fiches regroupées en 59 binômes déclarés, contenus non jouables indiqués prévus. XP, badges, écus et boutique de trois cannes/deux décorations. Aquarium personnalisable avec cinq spécimens favoris, nage procédurale provisoire et fiches personnelles.
+Quinze espèces du pack, carnet individuel avec photos, records, robes et Mirage. Encyclopédie issue des fichiers FishDex : 96 fiches regroupées en 59 binômes déclarés ; les espèces sans asset restent prévues. XP, maîtrises, badges, écus, cannes et composants spécialisés, secours gratuit. Aquarium personnalisable avec cinq favoris, nage procédurale et fiches personnelles.
 
-La sauvegarde appartient au navigateur et au domaine. Migration de l’ancienne version conservant les records ; export/import JSON pour le transfert. Photos locales IndexedDB séparées, non incluses dans le JSON et régénérables depuis les souvenirs. Pas de synchronisation ni PWA hors connexion.
+La sauvegarde v6 appartient au navigateur et au domaine, lit v1–v5 et conserve les droits/records/stock/captures. Original pré-migration exportable. Normal et TEST ont clés/photos séparées et imports croisés refusés. Export/import JSON pour le transfert ; photos locales IndexedDB non incluses dans le JSON, régénérables depuis les souvenirs. Pas de synchronisation ni PWA hors connexion.
 
 ## Installation et commandes
 
@@ -33,14 +33,14 @@ npm run dev
 | npm run preview | Servir dist localement après build |
 | npm run test:smoke | Vraie partie sur build servi, sans QA ; GAME_URL pour cible distante |
 
-Exécuter E2E et smoke successivement. Validation 0.5.0 : npm run check, 35 tests + TypeScript/build ; suite navigateur 38 réussis / 2 ignorés, puis compléments graphiques/récupération 4/4, cadrage/performance 4/4 et vérifications finales filtres/aquarium. Smoke final et publication en cours. Résultats détaillés dans docs/VERIFICATION.md et docs/VERCEL.md. Les mesures Chromium logiciel de ce PC ne valident pas les 30 FPS sur iPhone 14 Pro ; Safari, chauffe et autonomie restent à tester sur appareil.
+Exécuter E2E et smoke successivement. V2 : **97 tests Node + TypeScript/build**, chaînes naturelles 22 pratiques/55 recettes ; navigateur initial avec échecs repris, 38/38 puis 10/10 ; preview hébergée sans QA **14/14**. Banc naturel fini : 235 captures/264 lancers avec contrôleur idéal. Historique, références et mesures dans [IMPLEMENTATION_V2.md](docs/IMPLEMENTATION_V2.md). Les mesures Chromium/SwiftShader PC ne garantissent pas 30 FPS téléphone ; Safari, gestes humains, chauffe et autonomie restent à tester physiquement.
 
 ## Organisation et ressources
 
 Règles indépendantes dans src/game/, scènes dans src/render/, photos et audio dans src/ui/. Quinze GLB et 88 miniatures dans public/. Conversion, inventaire et import reproductible dans scripts/. Tests et documents de reprise dans tests/ et docs/.
 
-Pack River fish / TricksUp fourni par l’utilisateur sous sa licence d’origine. Archive privée assets-source/ exclue de Git et Vercel, jamais envoyée à un générateur. Quinze GLB optimisés 1,73 Mo, chargés à la demande. Les 50 FBX n’ont pas de rig livré ; respiration, présentation suspendue et épuisette restent à faire. Voir docs/ASSETS_POISSONS.md et docs/MISSION_AUTONOME.md.
+Pack River fish / TricksUp fourni sous sa licence d'origine. Archive privée assets-source/ exclue de Git et Vercel, jamais envoyée à un générateur. Quinze GLB optimisés 1,73 Mo, chargés à la demande. Les 50 FBX n'ont pas de rig livré ; présentation et réception utilisent des animations procédurales provisoires. Aucun nouveau modèle généré. Voir docs/ASSETS_POISSONS.md.
 
 Pas de test iPhone réel annoncé, pas de nouvelle souscription, pas de modification du dépôt FishDex de référence. Lire et actualiser RELAIS_PROJET.md à chaque session ; suivre docs/BACKLOG.md.
 
-Structure complète : docs/STRUCTURE_COMPLETE.md. Ajouts de contenu : docs/EXTENSION_CONTENU.md. Direction artistique et mesures : docs/QUALITE_VISUELLE.md. FishDex principal, carnet secondaire, matériel par familles, lieux et méthodes futures explicites. Sauvegarde v3 migre v1/v2 sans perdre les individus ou gains ; préparation et choix appui/cercle persistés.
+Structure : docs/STRUCTURE_COMPLETE.md. DA Basalte & Turquoise : docs/QUALITE_VISUELLE.md et docs/BASALTE_TURQUOISE.md. Ces rapports historiques restent des preuves de leurs versions ; la V2 remplace les anciennes limites de méthodes et la commande circulaire. Reprise courante : RELAIS_PROJET.md et docs/BACKLOG.md.
