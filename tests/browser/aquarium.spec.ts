@@ -1,3 +1,4 @@
+import {ensureLegacyProfile} from './helpers';
 import { openMenuPage } from './helpers';
 import { test, expect } from '@playwright/test';
 import { emptySave, recordCatch, purchase } from '../../src/game/save';
@@ -9,7 +10,7 @@ test('Cinq favoris, décorations, fiches et navigations sans accumulation de mot
   recordCatch(seed, { id: 'sixth', speciesId: 'roach', length: 25, date: '2026-10-01T12:00:00Z' });
   purchase(seed, 'plants'); purchase(seed, 'rocks');
   await page.addInitScript(data => { if (!localStorage.getItem('au-fil-de-leau.save.v1')) localStorage.setItem('au-fil-de-leau.save.v1', JSON.stringify(data)); }, seed);
-  await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
+  await ensureLegacyProfile(page); await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
   for (let i = 0; i < 3; i++) {
     await openMenuPage(page, 'aquarium-open'); await expect(page.locator('#aquarium-canvas')).toHaveAttribute('data-loaded', 'true');
     const before = await page.evaluate(() => (window as any).__fishingQA.snapshot());
@@ -35,7 +36,7 @@ test('Un modèle manquant ne perd pas le spécimen et permet de revenir à la p�
   const seed = emptySave(); recordCatch(seed, { id: 'missing', speciesId: 'zander', length: 40, date: '2026-10-01T12:00:00Z' }); seed.favorites.push('missing');
   await page.addInitScript(data => localStorage.setItem('au-fil-de-leau.save.v1', JSON.stringify(data)), seed);
   await page.route('**/models/Zander.glb', route => route.abort());
-  await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true'); await openMenuPage(page, 'aquarium-open');
+  await ensureLegacyProfile(page); await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true'); await openMenuPage(page, 'aquarium-open');
   await expect(page.locator('#aquarium-state')).toContainText('Un modèle n’a pas pu'); await page.locator('[data-close="aquarium"]').click();
   await openMenuPage(page, 'collection-open'); await page.locator('[data-specimen="missing"]').click(); await expect(page.locator('#preview-error')).toBeVisible();
   expect(await page.evaluate(() => (window as any).__fishingQA.snapshot().total)).toBe(1); await page.locator('#release-fish').click(); await page.locator('[data-close="collection"]').click();

@@ -1,6 +1,24 @@
 # RELAIS PROJET — Codex ↔ Claude Code
 
-**Dernière mise à jour : 2 octobre 2026. Agent : Codex. Version 0.7.0 Basalte & Turquoise publiée et vérifiée sur www.fishdex.fr.**
+**Dernière mise à jour : 2 octobre 2026. Agent : Codex. Version 0.8.0 progression/postes/méthodes vérifiée localement, publication en préparation.**
+
+## Progression, postes et pratiques 0.8.0 — 2 octobre 2026, Codex
+
+Spec archivée et audit détaillé dans docs/PROGRESSION_POSTES_METHODES.md. Base e300814, branche codex/progression-postes-methodes. Babylon 9.28.0, Node 24.15.0, Vite 8.3.1 inchangés ; npm ci sans vulnérabilité. DEMARRER_AVEC_CODEX.md préexistant préservé et exclu des commits.
+
+Implémenté : raretés éditoriales séparées des droits/capacités ; six postes définis dans une scène partagée, trois ouverts ; pêcheur et ouverture permanente des roseaux par niveau 3 OU deux prises au coup dans le cercle ; populations/microzones/présentations, amorçage local ; coup sans reel ni récupération fictive et leurres avec descente/vitesse/pauses/animations ; flotteur/fond conservés. Adaptateurs communs et mode de récupération assistée explicitement expérimental. Ma canne/montage/Mon sac/Ensembles/Boutique existants adaptés ; recettes mémorisées, recherche, conditions exactes et secours compatible.
+
+Format v5 lit v1–v4 : gains, stock, captures/favoris/photos et droits antérieurs conservés. Original avant migration conservé localement et exportable dans Réglages. V4 ne lit pas v5 : exporter courant et ancien avant retour ; importer l’ancien sur 0.7 et préserver le v5 pour reprise. Réservation, reprise conservatrice et pertes aval idempotentes vérifiées ; secours ne paie ni gain ni XP.
+
+Contrôles réels : npm run check (58 tests + TypeScript/build) ; navigateur complet 56 réussis, 3 exclusions, un lancer lent bureau échoué puis repris avec 14/14 (gestes, nouvelle partie, deux captures/ouverture/reload, initiation/leurres, recettes, migration originale, mode et dégagement réel). Build sans QA 10/10 (2,4 min), captures souris/tactile au coup et avec moulinet, photos/transferts, GLB, atelier/stock/achats et favoris. Sources/matériaux actuels uniquement ; aucune dépendance ou production d’asset ajoutée.
+
+Preuves dans docs/apercus/progression, captures au ponton à cadrage identique aux références 0.7. Mesures Chromium/SwiftShader uniquement : ponton ~23 FPS mobile, 23 draw calls et 57 000 sommets ; trois vues sans nouveau moteur/scène/meshes. Banc 42 combats : 36/36 avec moulinet, 2/6 au coup ; perche 27 cm et carpe 54 cm rompent sur cette configuration. Quatre sessions naturelles de 12 lancers, contrôleur parfait et hypothèse 8 s photo/préparation : coup 58,49 écus/min, leurres 34,91–35,95. Équilibre non validé humainement, assistance pas universellement plus rapide.
+
+Fichiers : game/posts/progression/rarity, adaptations game/fishing/combat/casting/rig/save/economy/specimens/structure ; render/world ; ui/journey et CSS/structure/tackle ; main ; package*.json ; tests Node/browser/smoke et profil de régression legacy ; script progression-bench ; spec/rapport/captures, backlog/décisions. Aucun fichier privé assets-source publié.
+
+Futurs : pointe/bois, vent/dérive/branches, feeder/mouche/rivière, auto-ferrage, réception avancée et déboîtement. Prototype partiel : forces normalisées, pêcheur procédural sans marche, transition de caméra instantanée. Prochaine tâche Claude : tests humains au toucher sur Safari/iPhone et téléphone modeste, confort du coup/leurres, accroches, cadence/chauffe et économie. Aucun appareil physique, GPU, chauffe/autonomie ou réseau mobile mesuré ; aucun 30 FPS garanti.
+
+Publication : liaison Vercel prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, portgas-d-ws-projects/fishdex-landing, GitHub portgas-d-w/fishdex-landing et main revérifiés. Préproduction et domaine public à contrôler après commit. Projet/domaines/protection conservés.
 
 ## Direction artistique Basalte & Turquoise — 2 octobre 2026, Codex, 0.7.0 publiée et vérifiée
 

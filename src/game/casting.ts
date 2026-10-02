@@ -7,7 +7,9 @@ export class CastGesture {
   readonly width: number;
   readonly height: number;
   readonly power: number;
-  constructor(start: CastSample, width: number, height: number, power = 1) { this.start = start; this.width = width; this.height = height; this.power = power; this.samples = [start]; }
+  private inspect:(point:WaterPoint)=>CastAim;
+  private reach:number;
+  constructor(start: CastSample, width: number, height: number, power = 1, inspect=inspectTarget, reach=23) { this.start = start; this.width = width; this.height = height; this.power = power; this.samples = [start];this.inspect=inspect;this.reach=reach; }
   static canStart(y: number, height: number) { return y >= height * 2 / 3; }
   move(sample: CastSample) {
     if (sample.time < this.samples.at(-1)!.time) return;
@@ -24,9 +26,9 @@ export class CastGesture {
     const dx = (sample.x - this.start.x) / this.width, forward = (this.start.y - sample.y) / this.height;
     const velocity = Math.max(0, (first.y - sample.y) / this.height / seconds);
     const energy = Math.min(1, velocity * 0.72) * 0.85 + Math.min(1, forward / 0.55) * Math.min(1, velocity) * 0.15;
-    const distance = 2.5 + energy * Math.min(19, 15 * Math.max(0.5, this.power));
+    const distance = 2.5 + energy * Math.min(this.reach-2.5,19, 15 * Math.max(0.5, this.power));
     const angle = Math.atan2(dx * 1.5, Math.max(0.001, forward));
-    const aim = inspectTarget({ x: Math.sin(angle) * distance, z: Math.cos(angle) * distance - 1 });
+    const aim = this.inspect({ x: Math.sin(angle) * distance, z: Math.cos(angle) * distance - 1 });
     if (!CastGesture.canStart(this.start.y, this.height) || sample.y < 0 || sample.x < 0 || sample.x > this.width || sample.y > this.height * 0.62 || forward < 0.09 || velocity < 0.06) return { ...aim, valid: false, reason: 'Partez du bas, projetez vers l’eau puis relâchez au centre.' };
     return aim;
   }

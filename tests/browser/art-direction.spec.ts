@@ -1,11 +1,13 @@
+import {ensureLegacyProfile} from './helpers';
 import { test, expect, type Page } from '@playwright/test';
 import { mkdir, writeFile } from 'node:fs/promises';
-import { emptySave, recordCatch, purchase } from '../../src/game/save';
+import {recordCatch, purchase} from '../../src/game/save';
 import { SPECIES } from '../../src/game/catalog';
 import { castByGesture, openMenuPage } from './helpers';
 
+import {legacySave as emptySave} from '../support/legacy';
 const stage = process.env.ART_DIRECTION_STAGE || 'after';
-const folder = `docs/apercus/basalte-turquoise/${stage}`;
+const folder = `test-results/regression/basalte-turquoise/${stage}`;
 const snapshot = (page: Page) => page.evaluate(() => ({ at: performance.now(), ...(window as any).__fishingQA.snapshot(), render: (window as any).__fishingQA.rendering() }));
 async function measure(page: Page) {
   const start = await snapshot(page), samples = [];
@@ -26,7 +28,7 @@ test('Référence DA : cadrage constant, parcours complets et mesures de rendu',
   const errors: string[] = []; page.on('pageerror', e => errors.push(e.message));
   page.on('console', m => { if (m.type()==='error') errors.push(m.text()); });
   await page.addInitScript(data => { localStorage.setItem('au-fil-de-leau.save.v1', JSON.stringify(data)); localStorage.setItem('au-fil-de-leau.gestures.v3','3'); Math.random = () => 0; }, seed);
-  await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready','true');
+  await ensureLegacyProfile(page); await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready','true');
   const picture = async (name:string) => { await page.screenshot({ path:`${folder}/${info.project.name}-${name}.png` }); };
   await page.waitForTimeout(1200); await picture('lake'); const idle = await measure(page);
   await page.locator('#menu-open').click(); await picture('menu');
@@ -61,7 +63,7 @@ test('Lisibilité à 320/390/430 px et paysage : panneaux, contrastes et cibles 
   test.skip(stage==='before' || info.project.name!=='mobile', 'Contrôle du thème final et des petits formats.');
   const seed=emptySave(); recordCatch(seed,{id:'lisibilite',speciesId:'roach',length:22,date:'2026-10-02T10:00:00Z'});
   await page.addInitScript(data=>localStorage.setItem('au-fil-de-leau.save.v1',JSON.stringify(data)),seed);
-  await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready','true');
+  await ensureLegacyProfile(page); await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready','true');
   for(const [width,height] of [[320,844],[390,844],[430,844],[844,390]]) {
     await page.setViewportSize({width,height});
     for(const [entry,id] of [['dex-open','encyclopedia'],['equipment-open','preparation'],['shop-open','shop'],['collection-open','collection'],['progress-open','progression'],['locations-open','locations'],['help-open','help']]) {

@@ -1,13 +1,15 @@
+import {ensureLegacyProfile} from './helpers';
 import { openMenuPage } from './helpers';
 import { test, expect } from '@playwright/test';
-import { emptySave, recordCatch } from '../../src/game/save';
+import {legacySave as emptySave} from '../support/legacy';
+import {recordCatch} from '../../src/game/save';
 import { SPECIES } from '../../src/game/catalog';
 test('Spécimens, photo locale, boutique, filtres et export sans doubler les gains', async ({ page }, info) => {
   const errors: string[] = []; page.on('pageerror', e => errors.push(e.message));
   const seed = emptySave();
   for (let i = 0; i < 5; i++) recordCatch(seed, { id: `known-${i}`, speciesId: 'roach', length: 20 + i, date: '2026-10-01T10:00:00Z' });
   await page.addInitScript(data => { if (!localStorage.getItem('au-fil-de-leau.save.v1')) localStorage.setItem('au-fil-de-leau.save.v1', JSON.stringify(data)); }, seed);
-  await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
+  await ensureLegacyProfile(page); await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
   await openMenuPage(page, 'shop-open'); await page.locator('#shop [data-buy="balanced"]').click(); await page.locator('#purchase-yes').click(); await page.locator('#shop [data-equip="balanced"]').click();
   await expect(page.locator('#shop-balance')).toContainText('Canne souple'); await page.screenshot({ path: `test-results/${info.project.name}-shop.png` });
   await page.locator('[data-close="shop"]').click(); await openMenuPage(page, 'collection-open');

@@ -1,4 +1,5 @@
 import { component } from '../game/rig';
+import { POSTS, postById, worldPoint, type PostId } from '../game/posts';
 import { Engine } from '@babylonjs/core/Engines/engine';
 import { Scene } from '@babylonjs/core/scene';
 import { Matrix, Vector3 } from '@babylonjs/core/Maths/math.vector';
@@ -21,6 +22,10 @@ export class LakeWorld {
   readonly engine: Engine;
   readonly scene: Scene;
   readonly camera: FreeCamera;
+  private fishingRoot!:TransformNode;
+  private activePost:PostId='jetty';
+  private npc!:TransformNode;
+  private precisionCircle!:Mesh;
   private bobber: TransformNode;
   private line: ReturnType<typeof MeshBuilder.CreateLines>;
   private rings: Mesh[] = [];
@@ -35,6 +40,7 @@ export class LakeWorld {
   private grip!: Mesh;
   private wasCasting = false;
   private impactAge = 9;
+  private groundbaitPulse=0;
   private impactPoint = new Vector3();
   private sun!: DirectionalLight;
   private shadow?: ShadowGenerator;
@@ -49,7 +55,7 @@ export class LakeWorld {
 
   rodTipOnScreen() {
     const width = this.engine.getRenderWidth(), height = this.engine.getRenderHeight();
-    const point = Vector3.Project(this.rodPath[8], Matrix.Identity(), this.scene.getTransformMatrix(), this.camera.viewport.toGlobal(width, height));
+    const point = Vector3.Project(Vector3.TransformCoordinates(this.rodPath[8],this.fishingRoot.getWorldMatrix()), Matrix.Identity(), this.scene.getTransformMatrix(), this.camera.viewport.toGlobal(width, height));
     return { x: point.x / width, y: point.y / height };
   }
 
@@ -98,6 +104,19 @@ export class LakeWorld {
     for(let i=0;i<4;i++){const drop=MeshBuilder.CreateSphere('arrival-drop',{diameter:.055,segments:4},this.scene);drop.material=splashMat;drop.setEnabled(false);this.splash.push(drop);}
     this.line = MeshBuilder.CreateLines('fishing-line', { points: [new Vector3(1.3, 1.8, -2.3), new Vector3(0, 0.3, 7)], updatable: true }, this.scene);
     this.line.color = Color3.FromHexString('#d2c6a4'); this.line.alpha = 0.55;
+    this.fishingRoot=new TransformNode('post-fishing-root',this.scene);
+    for(const mesh of [this.rod,this.grip,this.bobber,this.line,this.thickLine,this.aimRing,this.trajectory,this.lure,...this.rings,...this.splash])mesh.parent=this.fishingRoot;
+    this.precisionCircle=MeshBuilder.CreateTorus('precision-placement',{diameter:2.4,thickness:.014,tessellation:32},this.scene);this.precisionCircle.position.set(0,.05,3.2);this.precisionCircle.material=this.material('#4cc6c2');
+    this.npc=new TransformNode('fisher-at-reeds',this.scene);this.npc.position.set(-11,.25,7);
+    const body=MeshBuilder.CreateCylinder('fisher-coat',{diameter:.45,height:.8,tessellation:8},this.scene);body.position.y=.6;body.material=this.material('#415255');body.parent=this.npc;
+    const head=MeshBuilder.CreateSphere('fisher-head',{diameter:.32,segments:8},this.scene);head.position.y=1.2;head.material=this.material('#bca68a');head.parent=this.npc;
+    const hat=MeshBuilder.CreateCylinder('fisher-hat',{diameter:.55,height:.1,tessellation:10},this.scene);hat.position.y=1.37;hat.material=this.material('#5f6c48');hat.parent=this.npc;
+    const seat=MeshBuilder.CreateCylinder('fisher-stone',{diameter:1.6,height:.65,tessellation:8},this.scene);seat.position.set(-11,-.07,7);seat.material=this.material('#85877d');
+    // Les mêmes contraintes ont un repère de végétation visible ; un seul maillage partagé.
+    const herb=this.material('#596247');
+    const obstacleReeds:Mesh[]=[];
+    for(const post of POSTS.filter(p=>p.implemented))for(const o of post.obstacles){const at=worldPoint(post.id,o);for(let i=0;i<4;i++){const reed=MeshBuilder.CreateCylinder('post-obstacle-reed',{diameter:.045,height:.75+i*.12,tessellation:4},this.scene);reed.position.set(at.x+Math.cos(i*1.6)*o.radius*.6,.4,at.z+Math.sin(i*1.6)*o.radius*.6);reed.material=herb;obstacleReeds.push(reed);}}
+    const mergedObstacles=Mesh.MergeMeshes(obstacleReeds,true,true);mergedObstacles?.freezeWorldMatrix();
     this.setQuality(quality);
     window.addEventListener('resize', this.resize);
   }
@@ -269,19 +288,23 @@ col=mix(col,col*vec3(.72,.79,.72),smoothstep(23.,34.,p.y)*(1.-n)*.45);gl_FragCol
     }), instance: this.trajectory }, this.scene);
   }
   update(dt: number, game: FishingGame) {
+    if(game.post!==this.activePost)this.setPost(game.post);
+    this.npc.setEnabled(!game.rights?.posts.includes('reed-bank'));
+    this.precisionCircle.setEnabled(game.post==='jetty'&&game.method==='pole'&&['idle','casting','waiting'].includes(game.phase));
     this.time += dt;
     this.water.setFloat('time', this.time); this.water.setVector3('eye', this.camera.position);
     const targetX = game.target.x;
     const targetZ = game.target.z;
     this.castPoint.set(targetX, 0, targetZ);
     const show = ['casting', 'waiting', 'bite', 'fighting'].includes(game.phase);
-    this.bobber.setEnabled(show && game.method === 'float'); this.line.setEnabled(false); this.thickLine.setEnabled(show);
+    this.bobber.setEnabled(show && ['pole','float'].includes(game.method)); this.line.setEnabled(false); this.thickLine.setEnabled(show);
     this.lure.setEnabled(show && game.method === 'lure' && game.phase !== 'fighting');
     const fighting = game.phase === 'fighting';
     if (game.phase === 'casting' && !this.wasCasting) this.castOrigin.copyFrom(this.rodPath[8]);
     if (this.wasCasting && game.phase === 'waiting') { this.impactAge = 0; this.impactPoint.set(targetX, 0, targetZ); }
     if (fighting && game.progress > .9 && Math.abs(game.fishVelocity) > .05 && this.impactAge > 1.3) { this.impactAge=0; this.impactPoint.set(game.fishPosition.x,0,game.fishPosition.z); }
     this.impactAge += dt;
+    if(game.groundbaitPulse!==this.groundbaitPulse){this.groundbaitPulse=game.groundbaitPulse;this.impactAge=0;this.impactPoint.set(targetX,0,targetZ);}
     this.splash.forEach((drop,i)=>{const t=this.impactAge;drop.setEnabled(t<.65 && show);drop.position.set(this.impactPoint.x+Math.cos(i*1.57)*t*.4, .1+Math.sin(t/.65*Math.PI)*.25,this.impactPoint.z+Math.sin(i*1.57)*t*.4);});
     this.wasCasting = game.phase === 'casting';
     const cast = game.phase === 'casting' ? Math.min(1, game.elapsed / 1.1) : 1;
@@ -301,8 +324,8 @@ col=mix(col,col*vec3(.72,.79,.72),smoothstep(23.,34.,p.y)*(1.-n)*.45);gl_FragCol
     this.bobber.position.set(targetX * cast, 0.035 + Math.sin(this.time * 2) * 0.022, -1 + (targetZ + 1) * cast);
     if (game.phase === 'casting') this.bobber.position.copyFrom(Vector3.Lerp(this.castOrigin, new Vector3(targetX, 0.1, targetZ), cast).add(new Vector3(0, Math.sin(cast * Math.PI) * 2.3, 0)));
     if (game.method === 'lure' && ['waiting', 'bite'].includes(game.phase)) this.bobber.position.set(game.fishPosition.x, 0.04, game.fishPosition.z);
-    if (game.method !== 'float' && ['waiting', 'bite'].includes(game.phase)) this.bobber.position.y = -game.presentationDepth;
-    if(game.method==='float' && ['waiting','bite'].includes(game.phase)) { const f=component(game.rig.components.float??''),w=component(game.rig.components.weight??'');this.bobber.position.y-=Math.max(0,(w?.mass??0)+(f?.integrated??0)+.15-(f?.capacity??2))*.2; }
+    if (!['pole','float'].includes(game.method) && ['waiting', 'bite'].includes(game.phase)) this.bobber.position.y = -game.presentationDepth;
+    if(['pole','float'].includes(game.method) && ['waiting','bite'].includes(game.phase)) { const f=component(game.rig.components.float??''),w=component(game.rig.components.weight??'');this.bobber.position.y-=Math.max(0,(w?.mass??0)+(f?.integrated??0)+.15-(f?.capacity??2))*.2; }
     this.lure.position.copyFrom(this.bobber.position); this.lure.rotation.y = game.rodYaw;
     if (game.phase === 'bite') {
       this.bobber.position.y -= Math.abs(Math.sin(this.time * 12)) * 0.1;
@@ -332,4 +355,5 @@ col=mix(col,col*vec3(.72,.79,.72),smoothstep(23.,34.,p.y)*(1.-n)*.45);gl_FragCol
     this.reeds.forEach((reed, i) => { reed.rotation.z = Math.sin(this.time * 1.2 + i) * 0.035; });
   }
   dispose() { window.removeEventListener('resize', this.resize); this.scene.dispose(); this.engine.dispose(); }
+  setPost(id:PostId){const p=postById(id);this.activePost=id;this.fishingRoot.rotation.y=p.angle;this.fishingRoot.position.set(p.origin.x+Math.sin(p.angle),0,p.origin.z+Math.cos(p.angle));this.fishingRoot.computeWorldMatrix(true);const eye=worldPoint(id,{x:0,z:-8.5}),target=worldPoint(id,{x:0,z:5.5});this.camera.position.set(eye.x,4.2,eye.z);this.camera.setTarget(new Vector3(target.x,.1,target.z));this.wasCasting=false;this.impactAge=9;}
 }

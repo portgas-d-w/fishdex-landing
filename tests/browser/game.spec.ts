@@ -1,9 +1,10 @@
+import {ensureLegacyProfile} from './helpers';
 import { test, expect } from '@playwright/test';
 import { SPECIES } from '../../src/game/catalog';
 import { castByGesture, openMenuPage, holdMouseReel } from './helpers';
 test('Prise par geste, commandes compactes et carnet conservé', async ({ page }, info) => {
  const errors: string[]=[]; page.on('pageerror',e=>errors.push(e.message));
- await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready','true');
+ await ensureLegacyProfile(page); await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready','true');
  await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation()); await page.waitForTimeout(5200);
  expect(await page.locator('#action').count()).toBe(0); expect(await page.locator('.play-card,.topbar,.travel-nav,footer').count()).toBe(0);
  expect(await page.locator('#fight-note').count()).toBe(0);await expect(page.locator('#tension-display')).toBeHidden();
@@ -28,7 +29,7 @@ test('Prise par geste, commandes compactes et carnet conservé', async ({ page }
  await expect(page.locator('.fish-entry:not(.undiscovered)')).toHaveCount(1); expect(errors).toEqual([]);
 });
 test('Menu au combat : pause, gestes neutralisés, retours et import invalide',async({page},info)=>{
- await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready','true');
+ await ensureLegacyProfile(page); await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready','true');
  await castByGesture(page); await page.evaluate(()=>(window as any).__fishingQA.advance(45)); await page.locator('#strike').click();
  await page.locator('#menu-open').click(); const before=await page.evaluate(()=>(window as any).__fishingQA.snapshot());
  await page.locator('#world').dispatchEvent('pointerdown',{pointerId:42,button:0,clientX:140,clientY:300});
@@ -42,7 +43,7 @@ test('Menu au combat : pause, gestes neutralisés, retours et import invalide',a
  await page.locator('[data-close="menu"]').click(); await expect.poll(()=>page.evaluate(()=>(window as any).__fishingQA.snapshot().paused)).toBe(false);
 });
 test('Interruptions de l’appui, molette et fermeture de page',async({page})=>{
- await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');
+ await ensureLegacyProfile(page); await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');
  await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());await castByGesture(page);await page.evaluate(()=>(window as any).__fishingQA.advance(45));await page.locator('#strike').click();
  for(const type of ['pointercancel','lostpointercapture']){
   await holdMouseReel(page);expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(true);

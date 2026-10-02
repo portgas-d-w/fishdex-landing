@@ -1,8 +1,9 @@
+import {ensureLegacyProfile} from './helpers';
 import {test,expect} from '@playwright/test';
 import {castByGesture,holdMouseReel} from './helpers';
 async function start(page:any) {
  await page.addInitScript(()=>{Math.random=()=>.999;localStorage.setItem('au-fil-de-leau.gestures.v3','3');});
- await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());
+ await ensureLegacyProfile(page); await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());
  await castByGesture(page);await page.evaluate(()=>(window as any).__fishingQA.advance(45));await page.locator('#strike').click();
 }
 test('Départ puissant : traction et frein sans moulinage ; insister crée un risque de casse',async({page},info)=>{

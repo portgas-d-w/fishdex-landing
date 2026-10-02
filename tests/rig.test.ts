@@ -1,7 +1,8 @@
+import { legacySave as emptySave } from './support/legacy.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { emptyTackle, starterConfig, COMPONENTS, reserveRig, resolveRig, buyComponent, validateRig, applyPreset, changeMethod, rigWarnings, detachedNodes, rigControl } from '../src/game/rig.ts';
-import { emptySave, parseSave, recordCatch } from '../src/game/save.ts';
+import { parseSave, recordCatch } from '../src/game/save.ts';
 import { PROFILES, encounterWeight, presentation } from '../src/game/profiles.ts';
 import { SPECIES } from '../src/game/catalog.ts';
 import { FishingGame } from '../src/game/fishing.ts';
@@ -34,7 +35,7 @@ test('Décrochage consomme une esche, conserve les objets ; kit mélangé ne pro
 test('Migration v3 préserve journal, achats, XP, monnaie et favoris, cercle devient appui',()=>{
   const s=emptySave();s.inventory.push('balanced');s.equipped='balanced';recordCatch(s,{id:'keep',speciesId:'roach',length:25,date:'2026-10-01T12:00:00Z'});s.favorites=['keep'];
   const old={...s,version:3,settings:{...s.settings,reelMode:'circle'},preparation:{...s.preparation,method:'bottom',bait:'worm'}};delete (old as any).tackle;
-  const next=parseSave(JSON.stringify(old));assert.equal(next.version,4);assert.equal(next.settings.reelMode,'hold');assert.equal(next.tackle.config.method,'bottom');assert.deepEqual(next.journal,s.journal);assert.deepEqual(next.inventory,s.inventory);assert.equal(next.xp,s.xp);assert.equal(next.coins,s.coins);assert.deepEqual(next.favorites,s.favorites);
+  const next=parseSave(JSON.stringify(old));assert.equal(next.version,5);assert.equal(next.settings.reelMode,'hold');assert.equal(next.tackle.config.method,'bottom');assert.deepEqual(next.journal,s.journal);assert.deepEqual(next.inventory,s.inventory);assert.equal(next.xp,s.xp);assert.equal(next.coins,s.coins);assert.deepEqual(next.favorites,s.favorites);
 });
 test('Rechargement d’une ligne réservée : retour conservateur, esche consommée une fois, aucune prise',()=>{
   const s=emptySave();s.tackle=paid();reserveRig(s.tackle,'interrupted','starter');const next=parseSave(JSON.stringify(s));assert.equal(next.tackle.stock.corn,14);assert.equal(next.tackle.stock['fine-line'],100);assert.equal(next.total,0);assert.equal(next.tackle.active!.resolved,true);assert.deepEqual(parseSave(JSON.stringify(next)),next);

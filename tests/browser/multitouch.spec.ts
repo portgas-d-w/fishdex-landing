@@ -1,8 +1,9 @@
+import {ensureLegacyProfile} from './helpers';
 import {test,expect} from '@playwright/test';
 import {castByGesture} from './helpers';
 test('Deux vrais doigts : appui maintenu, canne simultanée, maintien immobile et annulation',async({page,context},info)=>{
  test.skip(info.project.name!=='mobile','Deux doigts réels sur le profil tactile Chromium.');
- const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await ensureLegacyProfile(page); await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');
  await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());await castByGesture(page);await page.evaluate(()=>(window as any).__fishingQA.advance(45));await page.locator('#strike').click();
  const b=(await page.locator('#reel-control').boundingBox())!,cx=b.x+b.width/2,cy=b.y+b.height/2,session=await context.newCDPSession(page);
  const rb=(await page.locator('#rod-control').boundingBox())!,rx=rb.x+rb.width/2,ry=rb.y+rb.height/2;

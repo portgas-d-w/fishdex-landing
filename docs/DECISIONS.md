@@ -50,3 +50,8 @@ fonctionnel avec un jeu prêt à diffuser largement.
 - 2 octobre 2026, DA 0.7 : Basalte & Turquoise selon guide du propriétaire. Palette réservée aux interfaces ; monde naturel, poissons fidèles. Police système, headers opaques sans flou plein écran. Aucun changement de gameplay, de caméra, de taxons ou de sauvegarde v4.
 - 2 octobre 2026 : conserver matériaux Standard, regroupement statique, quatre roseaux animés et pools de trois rides/quatre gouttes ; textures procédurales 256²/512×128 calculées une fois. Reflets analytiques mobiles, détail spéculaire optionnel en haute qualité ; aucun miroir de scène ajouté.
 - 2 octobre 2026 : plafond éco grand écran 1024 au lieu de 1280 après baisse mesurée sur le rendu logiciel ; mobile portrait et DOM natif conservés. Mesures CPU de soumission distinguées de la cadence rendue ; aucun chiffre GPU/iPhone inventé.
+
+- 2 octobre 2026, progression 0.8 : pole est une nouvelle pratique sans reel ; float/bottom/lure restent réelles. V5 même clé, droits anciens conservés, copie v4 locale exportable pour retour. Rareté dérivée distincte de l’accès et des forces.
+- Six postes / une scène, trois ouverts, roseaux permanents par niveau 3 OU deux prises au coup dans un cercle accessible. Point/timber restent futurs jusqu’à contraintes implémentées. Aucun multiplicateur de force lié au poste.
+- Distribution par populations + profils + microzones ; amorçage et trajet du leurre influencent la rencontre au moment réel. Configs et tailles sont des hypothèses de jeu versionnées. Aucun trophée garanti.
+- Combat assisté reste expérimental et commandé par l’appui, ignoré au coup. Kit de secours sans gain/vente ; pertes aval et réserve conservées. Banc et émulation ne remplacent pas une session humaine au toucher.

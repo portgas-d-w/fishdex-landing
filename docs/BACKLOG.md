@@ -2,6 +2,20 @@
 
 La mission autonome explicite autorise les fonctionnalités suivantes et remplace l’attente du premier retour appareil pour avancer. Une prise ou une sauvegarde cassée reste prioritaire sur le contenu.
 
+## Progression, postes et pratiques 0.8.0
+
+- [x] Audit des IDs, rareté indépendante, compatibilités et accès côté logique.
+- [x] Format v5 et droits acquis, stock/journal/photos préservés, copie/export pré-migration.
+- [x] Six postes définis, trois ouverts, cercle réalisable et pêcheur pour les roseaux ; carte/scène partagée.
+- [x] Populations locales, microzones, présentation, amorçage local et accroches effectivement simulées.
+- [x] Coup sans moulinet, leurres actifs, pratiques antérieures conservées ; mode assisté expérimental.
+- [x] Atelier adapté, recettes par pratique, recherche du sac, conditions Boutique, pertes locales et secours gratuit.
+- [x] Check 58 tests ; reprise navigateur 14/14 ; build sans QA 10/10 avec vraies captures coup/moulinet.
+- [ ] Préproduction autorisée puis domaine public : contrôles en cours.
+- [ ] Essais humains téléphone : confort, plaisir, durée, amorçage/accroches, progression et économie.
+- [ ] Équilibrer le revenu du coup/leurres après retours ; individus puissants au coup et maîtrise de l’amortissement.
+- [ ] Pointe/bois et vent/dérive/branches, feeder/mouche, réception et déboîtement.
+
 ## Basalte & Turquoise 0.7.0
 
 - [x] Audit et référence de cadrage : repos, lancer, combat, capture, menus, bassin cinq favoris.

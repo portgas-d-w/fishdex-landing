@@ -1,0 +1,81 @@
+{
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "renderer": "Chromium / SwiftShader, pas un téléphone réel",
+  "results": [
+    {
+      "post": "jetty",
+      "fps": 23.233927416026713,
+      "cpuMedianMs": 0.6000000014901161,
+      "cpuP95Ms": 1.199999999254942,
+      "drawCalls": 23,
+      "cpuFrameMs": 0.6999999992549419,
+      "vertices": 57000,
+      "meshes": 23,
+      "width": 390,
+      "height": 844,
+      "textures": [
+        {
+          "name": "local-soil",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "name": "local-timber",
+          "width": 512,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "post": "cove",
+      "fps": 23.314203730275192,
+      "cpuMedianMs": 0.599999999627471,
+      "cpuP95Ms": 0.8000000007450581,
+      "drawCalls": 26,
+      "cpuFrameMs": 0.5,
+      "vertices": 57000,
+      "meshes": 26,
+      "width": 390,
+      "height": 844,
+      "textures": [
+        {
+          "name": "local-soil",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "name": "local-timber",
+          "width": 512,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "post": "bank",
+      "fps": 22.787132668464526,
+      "cpuMedianMs": 0.5,
+      "cpuP95Ms": 0.6000000014901161,
+      "drawCalls": 26,
+      "cpuFrameMs": 0.5,
+      "vertices": 57000,
+      "meshes": 26,
+      "width": 390,
+      "height": 844,
+      "textures": [
+        {
+          "name": "local-soil",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "name": "local-timber",
+          "width": 512,
+          "height": 128
+        }
+      ]
+    }
+  ]
+}

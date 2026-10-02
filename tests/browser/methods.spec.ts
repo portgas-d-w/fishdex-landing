@@ -1,7 +1,8 @@
+import {ensureLegacyProfile} from './helpers';
 import {test,expect} from '@playwright/test';
 import {castByGesture,holdMouseReel,chooseMethod} from './helpers';
 test('Leurre et fond : préparation, molette effective, annulation et prise',async({page},info)=>{
- const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await ensureLegacyProfile(page); await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());
  await page.locator('#prepare-open').click();await chooseMethod(page,'bottom');await page.locator('[data-close="preparation"]').click();await castByGesture(page);await page.evaluate(()=>(window as any).__fishingQA.advance(3));
  await expect(page.locator('#reel-control')).toBeHidden();await page.locator('#cancel-cast').click();await expect(page.locator('body')).toHaveAttribute('data-phase','idle');
  await page.locator('#prepare-open').click();await chooseMethod(page,'lure');await page.locator('[data-close="preparation"]').click();await castByGesture(page);await page.evaluate(()=>(window as any).__fishingQA.advance(12));await expect(page.locator('body')).toHaveAttribute('data-phase','waiting');

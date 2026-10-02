@@ -1,10 +1,10 @@
 import type { SpeciesId, BaitId } from './catalog.ts';
-export type MethodId = 'float' | 'lure' | 'bottom';
+export type MethodId = 'pole' | 'float' | 'lure' | 'bottom';
 export interface Reward { base: number; discovery: number; record: number; coins: number; xp: number }
 export interface Specimen {
   id: string; speciesId: SpeciesId; form: 'common'; coloration: 'natural' | 'golden'; mirage: boolean;
   length: number; weight: number; date: string; location: string; method: MethodId;
-  equipment: string; bait: BaitId; baitItem?: string; target: { x: number; z: number }; controlled: boolean; reward: Reward;
+  equipment: string; bait: BaitId; baitItem?: string; post?: import('./posts.ts').PostId; microzone?: import('./posts.ts').Microzone; target: { x: number; z: number }; controlled: boolean; reward: Reward;
 }
 export const WEIGHT_FORMULA: Record<SpeciesId, [number, number]> = {
   roach: [0.0196, 2.91], perch: [0.0221, 2.86], carp: [0.0149, 2.99], pike: [0.0084, 3.04], zander: [0.0115, 3.02],

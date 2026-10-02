@@ -1,54 +1,57 @@
+import { rodCompatible, type RodId } from './economy.ts';
 import type { MethodId } from './specimens.ts';
 
-export type Slot = 'reel' | 'main_line' | 'leader' | 'float' | 'weight' | 'attachment' | 'hook' | 'bait' | 'lure';
+export type Slot = 'reel' | 'elastic' | 'main_line' | 'leader' | 'float' | 'weight' | 'attachment' | 'hook' | 'bait' | 'lure';
 export interface Component {
   id: string; name: string; slot: Slot; methods: MethodId[]; family: string;
   free: boolean; price: number; pack: number; unit: 'pièce' | 'm' | 'portion';
   strength?: number; control?: number; mass?: number; capacity?: number; integrated?: number;
   diet?: 'invertebrates' | 'plants' | 'fish'; description: string;
 }
-const all: MethodId[] = ['float', 'bottom', 'lure'];
+const all: MethodId[] = ['pole','float', 'bottom', 'lure'];
 // Valeurs de jeu déclarées, pas des fiches de produits commerciaux ni des forces mesurées.
 export const COMPONENTS: Component[] = [
-  { id:'kit-reel', name:'Moulinet d’initiation', slot:'reel', methods:all, family:'moulinet_spinning', free:true, price:0, pack:1, unit:'pièce', control:1, description:'Frein automatique et récupération de base.' },
-  { id:'smooth-reel', name:'Moulinet au frein souple', slot:'reel', methods:all, family:'moulinet_spinning', free:false, price:55, pack:1, unit:'pièce', control:1.12, description:'Récupération et amortissement améliorés de 12 % ; conservé à la casse.' },
+  { id:'kit-elastic',name:'Élastique d’initiation',slot:'elastic',methods:['pole'],family:'elastique',free:true,price:0,pack:1,unit:'pièce',control:1,description:'Amortit le départ au coup ; aucun frein ni récupération de ligne.' },
+  { id:'soft-elastic',name:'Élastique progressif',slot:'elastic',methods:['pole'],family:'elastique',free:false,price:18,pack:1,unit:'pièce',control:1.18,description:'Amortissement accru, conservé sur la canne après rupture du bas de ligne.' },
+  { id:'kit-reel', name:'Moulinet d’initiation', slot:'reel', methods:['float','bottom','lure'], family:'moulinet_spinning', free:true, price:0, pack:1, unit:'pièce', control:1, description:'Frein automatique et récupération de base.' },
+  { id:'smooth-reel', name:'Moulinet au frein souple', slot:'reel', methods:['float','bottom','lure'], family:'moulinet_spinning', free:false, price:55, pack:1, unit:'pièce', control:1.12, description:'Récupération et amortissement améliorés de 12 % ; conservé à la casse.' },
   { id:'kit-line', name:'Nylon d’initiation', slot:'main_line', methods:all, family:'nylon', free:true, price:0, pack:100, unit:'m', strength:1, description:'Bobine gratuite renouvelable ; résistance de jeu 1.' },
   { id:'fine-line', name:'Nylon discret', slot:'main_line', methods:all, family:'nylon', free:false, price:18, pack:100, unit:'m', strength:.82, description:'Plus discret, résistance de jeu 0,82. Seuls les mètres détachés sont perdus.' },
   { id:'strong-line', name:'Nylon renforcé', slot:'main_line', methods:all, family:'nylon', free:false, price:24, pack:100, unit:'m', strength:1.22, description:'Résistance de jeu 1,22 ; présentation moins discrète.' },
   { id:'kit-leader', name:'Bas de ligne d’initiation', slot:'leader', methods:all, family:'bas_nylon', free:true, price:0, pack:10, unit:'m', strength:.9, description:'Segment de 0,6 m. Renouvelable ; protection dentaire limitée.' },
-  { id:'fine-leader', name:'Bas de ligne fin', slot:'leader', methods:['float','bottom'], family:'bas_nylon', free:false, price:12, pack:10, unit:'m', strength:.72, description:'Segment de 0,6 m, discret mais plus fragile.' },
+  { id:'fine-leader', name:'Bas de ligne fin', slot:'leader', methods:['pole','float','bottom'], family:'bas_nylon', free:false, price:12, pack:10, unit:'m', strength:.72, description:'Segment de 0,6 m, discret mais plus fragile.' },
   { id:'tooth-leader', name:'Bas de ligne anti-dents', slot:'leader', methods:['lure'], family:'bas_acier', free:false, price:20, pack:10, unit:'m', strength:1.12, description:'Protection de jeu contre les dents ; plus visible.' },
-  { id:'kit-float', name:'Flotteur 2 g', slot:'float', methods:['float'], family:'flotteur', free:true, price:0, pack:1, unit:'pièce', capacity:2, integrated:0, description:'Portance nominale 2 g, aucun lest intégré.' },
-  { id:'loaded-float', name:'Flotteur préplombé 3 g', slot:'float', methods:['float'], family:'waggler', free:false, price:14, pack:1, unit:'pièce', capacity:3, integrated:2, description:'Portance 3 g, lest intégré 2 g. Réduire la plombée externe.' },
-  { id:'kit-shot', name:'Plombée 1,7 g', slot:'weight', methods:['float'], family:'plombs_fendus', free:true, price:0, pack:1, unit:'pièce', mass:1.7, description:'Petits lests : étalés ou groupés.' },
-  { id:'light-shot', name:'Plombée 0,7 g', slot:'weight', methods:['float'], family:'plombs_fendus', free:false, price:6, pack:5, unit:'pièce', mass:.7, description:'Adaptée au flotteur préplombé ; descente plus lente.' },
-  { id:'heavy-shot', name:'Plombée 3 g', slot:'weight', methods:['float'], family:'plombs_fendus', free:false, price:6, pack:5, unit:'pièce', mass:3, description:'Un excès de masse immerge le flotteur et réduit la lisibilité.' },
+  { id:'kit-float', name:'Flotteur 2 g', slot:'float', methods:['pole','float'], family:'flotteur', free:true, price:0, pack:1, unit:'pièce', capacity:2, integrated:0, description:'Portance nominale 2 g, aucun lest intégré.' },
+  { id:'loaded-float', name:'Flotteur préplombé 3 g', slot:'float', methods:['pole','float'], family:'waggler', free:false, price:14, pack:1, unit:'pièce', capacity:3, integrated:2, description:'Portance 3 g, lest intégré 2 g. Réduire la plombée externe.' },
+  { id:'kit-shot', name:'Plombée 1,7 g', slot:'weight', methods:['pole','float'], family:'plombs_fendus', free:true, price:0, pack:1, unit:'pièce', mass:1.7, description:'Petits lests : étalés ou groupés.' },
+  { id:'light-shot', name:'Plombée 0,7 g', slot:'weight', methods:['pole','float'], family:'plombs_fendus', free:false, price:6, pack:5, unit:'pièce', mass:.7, description:'Adaptée au flotteur préplombé ; descente plus lente.' },
+  { id:'heavy-shot', name:'Plombée 3 g', slot:'weight', methods:['pole','float'], family:'plombs_fendus', free:false, price:6, pack:5, unit:'pièce', mass:3, description:'Un excès de masse immerge le flotteur et réduit la lisibilité.' },
   { id:'kit-bottom', name:'Lest de fond 10 g', slot:'weight', methods:['bottom'], family:'plomb_fond', free:true, price:0, pack:1, unit:'pièce', mass:10, description:'Lest de fond, séparé du bas de ligne.' },
   { id:'paid-bottom', name:'Lest de fond 15 g', slot:'weight', methods:['bottom'], family:'plomb_fond', free:false, price:8, pack:3, unit:'pièce', mass:15, description:'Descente directe ; peut être libéré avec une fixation clip.' },
   { id:'kit-fix', name:'Fixation fixe', slot:'attachment', methods:all, family:'fixation', free:true, price:0, pack:1, unit:'pièce', description:'Le composant reste attaché à son segment.' },
-  { id:'sliding-fix', name:'Fixation coulissante avec stop', slot:'attachment', methods:['float','bottom'], family:'stop', free:false, price:6, pack:5, unit:'pièce', description:'Le stop retient le composant sur le fil principal après une rupture du bas de ligne.' },
+  { id:'sliding-fix', name:'Fixation coulissante avec stop', slot:'attachment', methods:['pole','float','bottom'], family:'stop', free:false, price:6, pack:5, unit:'pièce', description:'Le stop retient le composant sur le fil principal après une rupture du bas de ligne.' },
   { id:'open-slide', name:'Fixation coulissante ouverte', slot:'attachment', methods:['bottom'], family:'fixation', free:false, price:6, pack:5, unit:'pièce', description:'Sans stop terminal, le lest peut sortir après rupture du bas de ligne.' },
   { id:'lead-clip', name:'Clip de libération du lest', slot:'attachment', methods:['bottom'], family:'clip_plomb', free:false, price:8, pack:5, unit:'pièce', description:'Une libération détache seulement le lest.' },
-  { id:'kit-hook', name:'Hameçon sans ardillon', slot:'hook', methods:['float','bottom'], family:'hamecon', free:true, price:0, pack:1, unit:'pièce', description:'Calibre fin de jeu, pour esches de base.' },
-  { id:'wide-hook', name:'Hameçon large', slot:'hook', methods:['float','bottom'], family:'hamecon', free:false, price:8, pack:10, unit:'pièce', description:'Accepte les esches végétales ; petits poissons moins accessibles.' },
-  { id:'kit-worm', name:'Ver d’initiation', slot:'bait', methods:['float','bottom'], family:'ver_terre', free:true, price:0, pack:1, unit:'portion', diet:'invertebrates', description:'Une portion par ligne utilisée ; renouvelable gratuitement.' },
-  { id:'corn', name:'Maïs', slot:'bait', methods:['float','bottom'], family:'mais', free:false, price:8, pack:15, unit:'portion', diet:'plants', description:'Esche végétale ; candidats filtrés par profil, habitat et profondeur.' },
+  { id:'kit-hook', name:'Hameçon sans ardillon', slot:'hook', methods:['pole','float','bottom'], family:'hamecon', free:true, price:0, pack:1, unit:'pièce', description:'Calibre fin de jeu, pour esches de base.' },
+  { id:'wide-hook', name:'Hameçon large', slot:'hook', methods:['pole','float','bottom'], family:'hamecon', free:false, price:8, pack:10, unit:'pièce', description:'Accepte les esches végétales ; petits poissons moins accessibles.' },
+  { id:'kit-worm', name:'Ver d’initiation', slot:'bait', methods:['pole','float','bottom'], family:'ver_terre', free:true, price:0, pack:1, unit:'portion', diet:'invertebrates', description:'Une portion par ligne utilisée ; renouvelable gratuitement.' },
+  { id:'corn', name:'Maïs', slot:'bait', methods:['pole','float','bottom'], family:'mais', free:false, price:8, pack:15, unit:'portion', diet:'plants', description:'Esche végétale ; candidats filtrés par profil, habitat et profondeur.' },
   { id:'kit-lure', name:'Petit leurre d’initiation', slot:'lure', methods:['lure'], family:'leurre_dur', free:true, price:0, pack:1, unit:'pièce', diet:'fish', mass:5, description:'Armement intégré ; récupération par appui, aucune esche séparée.' },
   { id:'minnow', name:'Poisson nageur 7 g', slot:'lure', methods:['lure'], family:'leurre_dur', free:false, price:22, pack:1, unit:'pièce', diet:'fish', mass:7, description:'Plonge davantage pendant la récupération ; perdu seulement si détaché.' },
 ];
 export const component = (id: string) => COMPONENTS.find(c => c.id === id);
-export const SLOT_NAMES: Record<Slot,string> = { reel:'Moulinet', main_line:'Fil', leader:'Bas de ligne', float:'Bouchon', weight:'Plombée / lest', attachment:'Fixation', hook:'Hameçon', bait:'Esche', lure:'Leurre et armement' };
+export const SLOT_NAMES: Record<Slot,string> = { reel:'Moulinet', elastic:'Élastique', main_line:'Fil', leader:'Bas de ligne', float:'Bouchon', weight:'Plombée / lest', attachment:'Fixation', hook:'Hameçon', bait:'Esche', lure:'Leurre et armement' };
 export interface RigConfig { method: MethodId; components: Partial<Record<Slot,string>>; depth: number; distribution:'spread'|'grouped'|'touch' }
-export interface Preset { id:string; name:string; rod:'starter'|'balanced'|'precision'; config:RigConfig }
+export interface Preset { id:string; name:string; rod:RodId; config:RigConfig }
 export interface RigNode { slot:Slot; item:string; parent:Slot|'rod'; quantity:number; attachment:'fixed'|'sliding'|'clip'; retained?:boolean }
 export type Outcome = 'return'|'catch'|'unhook'|'leader'|'main_line'|'hook'|'lead_release';
 export interface ActiveRig { id:string; rod:string; config:RigConfig; nodes:RigNode[]; reserved:Record<string,number>; resolved:boolean; outcome?:Outcome; losses:Record<string,number> }
-export interface Tackle { stock:Record<string,number>; config:RigConfig; presets:Preset[]; active:ActiveRig|null }
-export const slotsFor = (method:MethodId):Slot[] => method === 'lure' ? ['reel','main_line','attachment','leader','lure'] : ['reel','main_line', ...(method === 'float' ? ['float' as Slot] : []),'attachment','weight','leader','hook','bait'];
+export interface Tackle { stock:Record<string,number>; config:RigConfig; presets:Preset[]; setups:Partial<Record<MethodId,{rod:RodId;config:RigConfig}>>; active:ActiveRig|null }
+export const slotsFor = (method:MethodId):Slot[] => method === 'pole' ? ['elastic','main_line','float','attachment','weight','leader','hook','bait'] : method === 'lure' ? ['reel','main_line','attachment','leader','lure'] : ['reel','main_line', ...(method === 'float' ? ['float' as Slot] : []),'attachment','weight','leader','hook','bait'];
 export function starterConfig(method:MethodId = 'float'):RigConfig {
   return {method,depth:1,distribution:'spread',components:Object.fromEntries(slotsFor(method).map(slot=>[slot,slot === 'weight' && method === 'bottom' ? 'kit-bottom' : COMPONENTS.find(c=>c.free && c.slot===slot && c.methods.includes(method))!.id]))};
 }
-export const emptyTackle = ():Tackle => ({stock:{},config:starterConfig(),presets:[],active:null});
+export const emptyTackle = ():Tackle => ({stock:{},config:starterConfig(),presets:[],setups:{},active:null});
 export function changeMethod(t:Tackle, method:MethodId) {
   const old=t.config; const next=starterConfig(method); next.depth=old.depth; next.distribution=old.distribution;
   for(const slot of slotsFor(method)) { const item=component(old.components[slot] ?? ''); if(item?.methods.includes(method)) next.components[slot]=item.id; }
@@ -56,12 +59,12 @@ export function changeMethod(t:Tackle, method:MethodId) {
 }
 export function available(t:Tackle,id:string) { const c=component(id); if(c?.free) return Infinity; return Math.max(0,(t.stock[id]??0)-(t.active && !t.active.resolved ? t.active.reserved[id]??0 : 0)); }
 export function rigWarnings(config:RigConfig):string[] {
-  if(config.method!=='float') return [];
+  if(config.method!=='float'&&config.method!=='pole') return [];
   const f=component(config.components.float??''); const w=component(config.components.weight??'');
   const mass=(w?.mass??0)+(f?.integrated??0)+.15; // hameçon + esche : approximation affichée.
   return mass>(f?.capacity??0)+.15 ? ['Cette plombée immerge le flotteur. Réduisez les lests.'] : mass<(f?.capacity??0)*.6 ? ['Flotteur peu équilibré : touche moins lisible et esche plus lente.'] : [];
 }
-export function validateRig(t:Tackle,config=t.config, metres=45):string[] {
+export function validateRig(t:Tackle,config=t.config, metres=config.method==='pole'?6.4:45):string[] {
   const errors:string[]=[];
   for(const slot of slotsFor(config.method)) {
     const c=component(config.components[slot]??'');
@@ -73,13 +76,13 @@ export function validateRig(t:Tackle,config=t.config, metres=45):string[] {
 }
 export function reserveRig(t:Tackle,id:string,rod:string):string[] {
   if(t.active && !t.active.resolved) return ['Une ligne est déjà en service.'];
-  const errors=validateRig(t); if(errors.length) return errors;
+  const errors=validateRig(t); if(!rodCompatible(rod,t.config.method)) errors.push('Canne incompatible avec cette pratique.'); if(errors.length) return errors;
   const config=structuredClone(t.config), reserved:Record<string,number>={};
   const mode=['sliding-fix','open-slide'].includes(config.components.attachment??'')?'sliding':config.components.attachment==='lead-clip'?'clip':'fixed';
   const nodes=slotsFor(config.method).map((slot):RigNode=>{
-    const item=config.components[slot]!, quantity=slot==='main_line'?45:slot==='leader'?.6:1;
+    const item=config.components[slot]!, quantity=slot==='main_line'?(config.method==='pole'?6.4:45):slot==='leader'?.6:1;
     if(!component(item)!.free) reserved[item]=(reserved[item]??0)+quantity;
-    return {slot,item,quantity,parent:slot==='reel'||slot==='main_line'?'rod':slot==='leader'||slot==='float'||slot==='weight'||slot==='attachment'?'main_line':slot==='bait'?'hook':'leader',attachment:slot==='weight'||slot==='float'?mode:'fixed',retained:config.components.attachment==='sliding-fix'};
+    return {slot,item,quantity,parent:slot==='reel'||slot==='elastic'||slot==='main_line'?'rod':slot==='leader'||slot==='float'||slot==='weight'||slot==='attachment'?'main_line':slot==='bait'?'hook':'leader',attachment:slot==='weight'||slot==='float'?mode:'fixed',retained:config.components.attachment==='sliding-fix'};
   });
   t.active={id,rod,config,nodes,reserved,resolved:false,losses:{}}; return [];
 }
@@ -112,13 +115,14 @@ export function buyComponent(t:Tackle,id:string,coins:number,count=1):{error:str
   t.stock[id]=(t.stock[id]??0)+c.pack*count; return {error:'',coins:coins-cost};
 }
 export function applyPreset(t:Tackle,p:Preset):string[] {
+  if(!rodCompatible(p.rod,p.config.method))return ['Canne incompatible avec cet ensemble.'];
   const errors=validateRig(t,p.config); if(errors.length) return errors;
   t.config=structuredClone(p.config); return [];
 }
 export function rigControl(config:RigConfig):number {
   const line=component(config.components.main_line??'')?.strength??1;
   const leader=component(config.components.leader??'')?.strength??.9;
-  const reel=component(config.components.reel??'')?.control??1;
+  const reel=component(config.components[config.method==='pole'?'elastic':'reel']??'')?.control??1;
   return Math.max(.65,Math.min(1.3,Math.sqrt(Math.min(line,leader)/.9)*reel));
 }
 export function weakestLink(config:RigConfig):'leader'|'main_line' {
@@ -130,7 +134,7 @@ export function parseTackle(value:unknown):Tackle {
   const text=(v:unknown,max=100)=>{if(typeof v!=='string'||!v.length||v.length>max) throw new Error('Référence de matériel invalide.');return v;};
   const number=(v:unknown,min:number,max:number)=>{if(typeof v!=='number'||!Number.isFinite(v)||v<min||v>max)throw new Error('Quantité de matériel invalide.');return v;};
   const config=(v:unknown):RigConfig=>{
-    const c=obj(v); if(!['float','bottom','lure'].includes(c.method as string)||!['spread','grouped','touch'].includes(c.distribution as string))throw new Error('Recette invalide.');
+    const c=obj(v); if(!['pole','float','bottom','lure'].includes(c.method as string)||!['spread','grouped','touch'].includes(c.distribution as string))throw new Error('Recette invalide.');
     const method=c.method as MethodId, components:RigConfig['components']={};
     for(const [slot,id] of Object.entries(obj(c.components))) { const item=component(text(id)); if(!slotsFor(method).includes(slot as Slot)||!item||item.slot!==slot||!item.methods.includes(method)) throw new Error('Composant incompatible.');components[slot as Slot]=item.id; }
     if(slotsFor(method).some(slot=>!components[slot])) throw new Error('Montage incomplet.');
@@ -139,15 +143,16 @@ export function parseTackle(value:unknown):Tackle {
   const d=obj(value), t=emptyTackle();t.config=config(d.config);
   for(const [id,n] of Object.entries(obj(d.stock))) {if(!component(id)||component(id)!.free)throw new Error('Stock inconnu.');t.stock[id]=number(n,0,100000);if(component(id)!.unit!=='m'&&!Number.isSafeInteger(t.stock[id]))throw new Error('Quantité indivisible invalide.');}
   if(!Array.isArray(d.presets)||d.presets.length>12)throw new Error('Ensembles invalides.');
-  const rod=(v:unknown)=>{if(!['starter','balanced','precision'].includes(v as string))throw new Error('Canne inconnue.');return v as Preset['rod'];};
+  const rod=(v:unknown)=>{if(!['pole-starter','pole-elastic','starter','balanced','precision'].includes(v as string))throw new Error('Canne inconnue.');return v as Preset['rod'];};
   t.presets=d.presets.map(v=>{const p=obj(v);return {id:text(p.id),name:text(p.name,40),rod:rod(p.rod),config:config(p.config)};});
   if(new Set(t.presets.map(p=>p.id)).size!==t.presets.length)throw new Error('Ensemble dupliqué.');
+  if(d.setups!==undefined) for(const [method,v] of Object.entries(obj(d.setups))) { if(!['pole','float','bottom','lure'].includes(method))throw new Error('Pratique inconnue.'); const p=obj(v),c=config(p.config),r=rod(p.rod);if(c.method!==method||!rodCompatible(r,method))throw new Error('Ensemble incompatible.');t.setups[method as MethodId]={rod:r,config:c}; }
   if(d.active!==null) {
     const a=obj(d.active); if(typeof a.resolved!=='boolean') throw new Error('Ligne en service invalide.');
     const activeConfig=config(a.config), original=t.config;t.config=activeConfig;
     // Reconstruction du graphe fiable ; aucune attache/quantité importée arbitraire.
     const shadow:Tackle={...t,stock:Object.fromEntries(COMPONENTS.filter(c=>!c.free).map(c=>[c.id,100000])),active:null};
-    reserveRig(shadow,text(a.id),rod(a.rod));t.config=original;
+    if(reserveRig(shadow,text(a.id),rod(a.rod)).length)throw new Error('Ligne réservée incompatible.');t.config=original;
     t.active=shadow.active!;t.active.resolved=a.resolved;
     if(a.resolved) {
       if(!['return','catch','unhook','leader','main_line','hook','lead_release'].includes(a.outcome as string))throw new Error('Résolution invalide.');

@@ -1,12 +1,14 @@
+import {ensureLegacyProfile} from './helpers';
 import { openMenuPage } from './helpers';
 import { test, expect } from '@playwright/test';
 import { writeFile } from 'node:fs/promises';
 import { SPECIES } from '../../src/game/catalog';
-import { emptySave, recordCatch } from '../../src/game/save';
+import {legacySave as emptySave} from '../support/legacy';
+import {recordCatch} from '../../src/game/save';
 test('Mesures de rendu local et suspension réelle de l’étang derrière le bassin', async ({ page }, info) => {
   const seed = emptySave(); for (const [i, fish] of SPECIES.slice(0, 5).entries()) { recordCatch(seed, { id: `perf-${i}`, speciesId: fish.id, length: fish.min + 10, date: '2026-10-01T12:00:00Z' }); seed.favorites.push(`perf-${i}`); }
   await page.addInitScript(data => localStorage.setItem('au-fil-de-leau.save.v1', JSON.stringify(data)), seed);
-  await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
+  await ensureLegacyProfile(page); await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
   const a = await page.evaluate(() => ({ at: performance.now(), ...(window as any).__fishingQA.snapshot() })); await page.waitForTimeout(3000);
   const b = await page.evaluate(() => ({ at: performance.now(), ...(window as any).__fishingQA.snapshot() }));
   expect(b.lakeFrames).toBeGreaterThan(a.lakeFrames);

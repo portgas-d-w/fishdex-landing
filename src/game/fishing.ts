@@ -1,19 +1,31 @@
+import { inspectPostTarget, postById, populationWeight, localSizeExponent, lineObstacle, ENCOUNTER_CONFIG, type PostId, type Microzone } from './posts.ts';
+import type { Rights } from './progression.ts';
 import { SPECIES } from './catalog.ts';
-import { starterConfig, reserveRig, resolveRig, rigControl, weakestLink } from './rig.ts';
+import { starterConfig, reserveRig, resolveRig, rigControl, weakestLink, component } from './rig.ts';
 import type { RigConfig, Tackle, Outcome } from './rig.ts';
 import { PROFILES, presentation, encounterWeight } from './profiles.ts';
 import type { BaitId, Species, SpotId } from './catalog.ts';
-import { inspectTarget } from './casting.ts';
 import type { WaterPoint } from './casting.ts';
 import { uniqueId } from './specimens.ts';
 import type { MethodId, Specimen } from './specimens.ts';
 import { stepCombat } from './combat.ts';
 
 export type Phase = 'idle' | 'casting' | 'waiting' | 'bite' | 'fighting' | 'caught' | 'lost';
-export interface Catch { speciesId: Species['id']; length: number; date: string; id?: string; coloration?: Specimen['coloration']; mirage?: boolean; method?: MethodId; equipment?: string; bait?: BaitId; baitItem?: string; target?: WaterPoint; controlled?: boolean }
+export interface Catch { speciesId: Species['id']; length: number; date: string; id?: string; coloration?: Specimen['coloration']; mirage?: boolean; method?: MethodId; equipment?: string; bait?: BaitId; baitItem?: string; target?: WaterPoint; controlled?: boolean; post?:PostId; microzone?:Microzone }
 export class FishingGame {
   phase: Phase = 'idle';
   spot: SpotId = 'reeds';
+  post:PostId='jetty'; rights?:Rights; microzone:Microzone='margin';
+  combatMode:'manual'|'assisted'='manual'; retrievalSpeed=1.6; snagged=false; private snagTime=0; private snagClear=0;
+  private lurePause=0; private baiting?:{point:WaterPoint;remaining:number};
+  groundbaitPulse=0;
+  get hasReel(){return this.method!=='pole';}
+  get reach(){return this.method==='pole'?6.4:23;}
+  get hint(){return this.snagged?'Ligne accrochée : baissez la canne, orientez-la à l’opposé et dégagez.':this.phase==='waiting'&&this.waitingActivity>12&&!this.fish?'Pas d’activité ici : ajustez profondeur, présentation ou microzone.':'';}
+  inspect(point:WaterPoint){return inspectPostTarget(this.post,point,this.method,this.reach);}
+  setPost(id:PostId){if(this.phase!=='idle'||!postById(id).implemented||this.rights&&!this.rights.posts.includes(id))return false;this.post=id;this.target={x:0,z:3.2};this.baiting=undefined;return true;}
+  groundbait(){if(!['pole','float'].includes(this.method)||!['waiting','idle'].includes(this.phase))return false;this.baiting={point:{...this.target},remaining:ENCOUNTER_CONFIG.groundbaitSeconds};this.groundbaitPulse++;return true;}
+  tryFreeSnag(){if(!this.snagged||this.rodLift>.35||Math.abs(this.rodYaw-this.direction)<.45)return false;this.snagged=false;this.snagTime=0;this.snagClear=4;return true;}
   bait: BaitId = 'worm';
   elapsed = 0;
   tension = 0.25;
@@ -60,10 +72,10 @@ export class FishingGame {
   get reeling() { return this.heldReeling || this.queuedTurns > 0 || this.reelSpeed > 0; }
   holdReel(active: boolean) {
     if (!active) { this.release(); return; }
-    this.heldReeling = this.phase === 'fighting' || this.phase === 'waiting' && this.method === 'lure';
+    this.heldReeling = this.hasReel && (this.phase === 'fighting' || this.phase === 'waiting' && this.method === 'lure');
   }
   reel(turns: number) {
-    if (!Number.isFinite(turns) || turns <= 0 || !(this.phase === 'fighting' || this.phase === 'waiting' && this.method === 'lure')) return;
+    if (!this.hasReel || !Number.isFinite(turns) || turns <= 0 || !(this.phase === 'fighting' || this.phase === 'waiting' && this.method === 'lure')) return;
     this.queuedTurns = Math.min(0.45, this.queuedTurns + turns);
   }
   failure = '';
@@ -76,16 +88,17 @@ export class FishingGame {
   constructor(random: () => number = Math.random) { this.random = random; }
 
   setSpot(spot: SpotId) { if (this.phase === 'idle') this.spot = spot; }
-  setBait(bait: BaitId) { if (this.phase === 'idle') { this.bait = bait; if (bait === 'lure') this.method = 'lure'; else if (this.method === 'lure') this.method = 'float'; } }
+  setBait(bait: BaitId) { if (this.phase === 'idle') {const method=bait==='lure'?'lure':this.method==='lure'?'float':this.method;if(this.rights&&!this.rights.methods.includes(method))return;this.bait = bait;this.method=method; } }
   get fishLength() { return this.size; }
   orient(yaw: number, lift: number) {
     this.lureAnimation = Math.min(1, this.lureAnimation + Math.abs(yaw - this.rodYaw) + Math.abs(lift - this.rodLift));
     this.rodYaw = Math.max(-1, Math.min(1, yaw)); this.rodLift = Math.max(0, Math.min(1, lift));
   }
-  setMethod(method: MethodId) { if (this.phase !== 'idle') return; this.method = method; this.bait = method === 'lure' ? 'lure' : 'worm'; }
+  setMethod(method: MethodId) { if (this.phase !== 'idle'||this.rights&&!this.rights.methods.includes(method)) return; if(method==='pole')this.equipment='pole-starter';else if(this.method==='pole')this.equipment='starter'; this.method = method; this.bait = method === 'lure' ? 'lure' : 'worm'; }
   cast(point?: WaterPoint) {
     if (this.phase !== 'idle') return false;
-    const aim = inspectTarget(point ?? { x: this.spot === 'reeds' ? -1.5 : this.spot === 'willow' ? 3 : 0, z: this.spot === 'open' ? 14 : 7 });
+    if(this.rights&&!this.rights.methods.includes(this.method)){this.failure='Pratique non ouverte.';return false;}
+    const aim = this.inspect(point ?? (this.method==='pole'?{x:0,z:3.2}:{ x: this.spot === 'reeds' ? -1.5 : this.spot === 'willow' ? 3 : 0, z: this.spot === 'open' ? 14 : 7 }));
     if (!aim.valid) { this.failure = aim.reason; return false; }
     this.target = { ...aim.point }; this.spot = aim.habitat;
     this.distance = Math.hypot(aim.point.x, aim.point.z + 1);
@@ -94,7 +107,7 @@ export class FishingGame {
     this.rig = structuredClone(this.tackle?.config ?? starterConfig(this.method));
     this.rig.method = this.method;
     if (this.tackle) { const id = uniqueId(); const errors = reserveRig(this.tackle, id, this.equipment); if(errors.length) { this.failure=errors.join(' '); return false; } this.engagedRig=id; }
-    this.waterDepth=aim.depth; this.presentationDepth=0; this.fish=null;
+    this.waterDepth=aim.depth;this.microzone=aim.microzone; this.presentationDepth=0; this.fish=null;this.snagged=false;this.snagTime=0;this.snagClear=0;this.lurePause=0;
     this.encounterBudget = -Math.log(Math.max(.001,1-this.random()));
     this.individual=.9+this.random()*.2; this.combatSeed=(this.random()*4294967296)>>>0;this.eventRemaining=0;
     this.controlled = true;
@@ -108,9 +121,9 @@ export class FishingGame {
     if (this.phase !== 'bite') return;
     if (this.method === 'lure') { this.target = { x: this.fishPosition.x, z: Math.max(1.5, this.fishPosition.z) }; this.distance = Math.hypot(this.target.x, this.target.z + 1); }
     this.tension = 0.32; this.progress = 0; this.slackTime = 0; this.highTensionTime = 0;
-    this.rodYaw = 0; this.rodLift = 0.5;
-    this.fishDistance = this.distance + 1.8;
-    this.lineLength = this.fishDistance + 0.5 * 0.85 - 0.32 * 0.85;
+    this.rodYaw = 0; this.rodLift = this.hasReel ? 0.5 : 0.18;
+    this.fishDistance = this.distance + (this.hasReel?1.8:0);
+    this.lineLength = this.hasReel?this.fishDistance + 0.5 * 0.85 - 0.32 * 0.85:this.fishDistance+.35;
     this.fatigue = 0; this.slack = 0; this.dragSpeed = 0; this.fishVelocity = 0; this.returning = false;
     this.transition('fighting');
   }
@@ -127,32 +140,35 @@ export class FishingGame {
     // Simulation fixed step in the caller; large gaps never consume a bite or break the line.
     const dt = Math.min(Math.max(delta, 0), 0.05);
     const pulse = Math.min(this.queuedTurns, dt * 2.4);
-    const turns = this.heldReeling ? Math.max(pulse, dt * 1.6) : pulse;
+    const turns = this.heldReeling ? Math.max(pulse, dt * this.retrievalSpeed) : pulse;
     this.queuedTurns -= pulse; this.reelSpeed = dt > 0 ? turns / dt : 0;
-    this.elapsed += dt;
+    this.elapsed += dt;this.snagClear=Math.max(0,this.snagClear-dt);if(this.baiting)this.baiting.remaining-=dt;
+    if(['waiting','fighting'].includes(this.phase)){this.snagged=this.snagClear<=0&&!!lineObstacle(this.post,this.phase==='fighting'?this.fishPosition:this.method==='lure'?this.fishPosition:this.target);this.snagTime=this.snagged?this.snagTime+dt:Math.max(0,this.snagTime-dt);if(this.snagTime>3){this.lose('La ligne a rompu dans les herbiers. Dégagez-la en baissant la canne et en changeant son angle.',weakestLink(this.rig));return;}}
     if (this.phase === 'casting' && this.elapsed >= 1.1) this.transition('waiting');
     else if (this.phase === 'waiting') {
       this.lureAnimation = Math.max(0, this.lureAnimation - dt * 0.5);
-      this.waitingActivity += this.method === 'lure' ? dt * this.reelSpeed * (0.50 + this.lureAnimation) : dt * (this.method === 'bottom' ? 0.75 : 1);
+      this.lurePause=this.reelSpeed>0?1.8:Math.max(0,this.lurePause-dt);
+      const lureActivity=this.reelSpeed>0?this.reelSpeed*(.5+this.lureAnimation):this.lurePause>0&&this.presentationDepth>.3?.28:0;
+      this.waitingActivity += this.method === 'lure' ? dt * lureActivity : dt * (this.method === 'bottom' ? 0.75 : 1);
       if (this.method === 'lure' && this.reelSpeed > 0) {
         this.retrieveProgress = Math.min(1, this.retrieveProgress + dt * this.reelSpeed * 0.035);
         this.fishPosition.x = this.target.x * (1 - this.retrieveProgress); this.fishPosition.z = this.target.z * (1 - this.retrieveProgress);
       }
-      const at=this.method==='lure'?inspectTarget({x:this.fishPosition.x,z:this.fishPosition.z}):inspectTarget(this.target);
+      const at=this.inspect(this.method==='lure'?{x:this.fishPosition.x,z:this.fishPosition.z}:this.target);this.microzone=at.microzone;
       this.waterDepth=at.depth;
       const shown=presentation(this.rig,this.waterDepth);
-      this.presentationDepth=Math.min(shown.depth,this.presentationDepth+dt*shown.sinkSpeed);
+      if(this.method==='lure'){const desired=this.reelSpeed>0?Math.min(this.waterDepth,shown.depth+this.reelSpeed*.18-this.lureAnimation*.35):this.waterDepth;this.presentationDepth=Math.max(.05,Math.min(desired,this.presentationDepth+dt*(.18+(component(this.rig.components.lure??'')?.mass??5)*.035)));}else this.presentationDepth=Math.min(shown.depth,this.presentationDepth+dt*shown.sinkSpeed);
       this.fishPosition.y=-this.presentationDepth;
       if(this.waitingActivity >= this.waitDuration) {
-        const candidates=SPECIES.map(f=>({fish:f,weight:at.valid?encounterWeight(f.id,at.habitat,this.rig,this.waterDepth,this.presentationDepth):0})).filter(f=>f.weight>0);
+        const candidates=SPECIES.map(f=>({fish:f,weight:at.valid?encounterWeight(f.id,at.habitat,this.rig,this.waterDepth,this.presentationDepth)*populationWeight(this.post,f.id,at.microzone)*(this.baiting&&this.baiting.remaining>0&&this.method!=='lure'&&Math.hypot(this.target.x-this.baiting.point.x,this.target.z-this.baiting.point.z)<ENCOUNTER_CONFIG.groundbaitRadius?1.4:1):0})).filter(f=>f.weight>0);
         const total=candidates.reduce((n,c)=>n+c.weight,0);
         // Taux de rencontre par seconde, cumulant l'activité (leurre immobile : aucun événement).
-        const activity=this.method==='lure'?this.reelSpeed*(.5+this.lureAnimation):1;
-        this.encounterBudget-=dt*Math.min(.9,total*.16)*activity;
+        const activity=this.method==='lure'?lureActivity:1;
+        this.encounterBudget-=dt*Math.min(.9,total*ENCOUNTER_CONFIG.rate)*activity;
         if(total>0 && this.encounterBudget<=0) {
           let roll=this.random()*total;this.fish=candidates.at(-1)!.fish;
           for(const c of candidates) {roll-=c.weight;if(roll<=0){this.fish=c.fish;break;}}
-          this.size=Math.round((this.fish.min+Math.pow(this.random(),1.6)*(this.fish.max-this.fish.min))*10)/10;this.transition('bite');
+          this.size=Math.round((this.fish.min+Math.pow(this.random(),localSizeExponent(this.post))*(this.fish.max-this.fish.min))*10)/10;this.transition('bite');
         }
       }
       if (this.phase==='waiting' && this.retrieveProgress >= 1) this.reset();
@@ -174,7 +190,7 @@ export class FishingGame {
       this.direction+=(this.bearingTarget-this.direction)*Math.min(1,dt*(.6+profile.agility));
       this.direction=Math.max(-.9,Math.min(.9,this.direction+Math.sin(this.elapsed*(2+profile.head_shakes*3))*profile.head_shakes*.012));
       const response = stepCombat({ distance: this.fishDistance, lineLength: this.lineLength, tension: this.tension, fatigue: this.fatigue },
-        { yaw: this.rodYaw, lift: this.rodLift, bearing: this.direction, force, power: this.equipmentPower * rigControl(this.rig), reelSpeed: this.reelSpeed, motion: this.motion, endurance: profile.endurance }, dt);
+        { yaw: this.rodYaw, lift: this.rodLift, bearing: this.direction, force, power: this.equipmentPower * rigControl(this.rig), reelSpeed:this.snagged?0:this.reelSpeed,motion:this.motion,endurance:profile.endurance,adapter:this.hasReel?'reel':'pole',assisted:this.hasReel&&this.combatMode==='assisted',elasticity:1.1*(component(this.rig.components.elastic??'')?.control??1) }, dt);
       this.alignment = response.alignment;
       this.tension = response.tension; this.fatigue = response.fatigue;
       this.fishDistance = response.distance; this.lineLength = response.lineLength;
@@ -189,9 +205,9 @@ export class FishingGame {
       this.slackTime = this.tension < 0.025 ? this.slackTime + dt : Math.max(0, this.slackTime - dt * 0.7);
       if (this.highTensionTime > (this.fish.id==='pike' && this.rig.components.leader!=='tooth-leader' ? .65 : .8)) this.lose('Rupture du ' + (weakestLink(this.rig)==='leader'?'bas de ligne':'fil principal') + '. Accompagnez le départ et baissez la canne.', weakestLink(this.rig));
       else if (this.slackTime > 4) this.lose('Le poisson s’est décroché. Garde un peu de tension dans le fil.');
-      else if (remaining > 45) this.lose('Le poisson a trouvé refuge. Ligne détachée ; suivez le fil avec la canne.', this.rig.components.attachment==='lead-clip'?'lead_release':weakestLink(this.rig));
+      else if (remaining > (this.hasReel?45:this.reach+1.3)) this.lose('Le poisson est hors de portée. Ligne détachée ; suivez le fil avec la canne.', this.rig.components.attachment==='lead-clip'?'lead_release':weakestLink(this.rig));
       else if (remaining <= 1.81 && this.tension > 0.08 && this.tension < 0.94) {
-        this.result = { id: uniqueId(), speciesId: this.fish.id, length: Math.max(this.fish.min, Math.min(this.fish.max, this.size)), date: new Date().toISOString(), ...this.appearance, method: this.method, equipment: this.equipment, bait: this.bait, baitItem:this.rig.components[this.method==='lure'?'lure':'bait'], target: { ...this.target }, controlled: this.controlled };
+        this.result = { id: uniqueId(), speciesId: this.fish.id, length: Math.max(this.fish.min, Math.min(this.fish.max, this.size)), date: new Date().toISOString(), ...this.appearance, method: this.method, equipment: this.equipment, bait: this.bait, baitItem:this.rig.components[this.method==='lure'?'lure':'bait'],post:this.post,microzone:this.microzone, target: { ...this.target }, controlled: this.controlled };
         this.resolve('catch'); this.transition('caught');
       }
     }

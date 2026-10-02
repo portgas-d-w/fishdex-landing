@@ -18,3 +18,7 @@ export async function holdMouseReel(page: Page) {
   const x = b.x + b.width / 2, y = b.y + b.height / 2;
   await page.mouse.move(x, y); await page.mouse.down();
 }
+
+import {legacySave} from '../support/legacy';
+// Régressions des parcours déjà ouverts avant 0.8 ; la nouvelle partie a ses tests dédiés.
+export async function ensureLegacyProfile(page:Page){await page.addInitScript(s=>{if(!localStorage.getItem('au-fil-de-leau.save.v1'))localStorage.setItem('au-fil-de-leau.save.v1',JSON.stringify(s));},legacySave());}

@@ -1,16 +1,19 @@
 import { SPECIES, SPOTS, type SpeciesId } from './catalog.ts';
-import { ITEMS, levelFor, accessLevel } from './economy.ts';
+import { ITEMS, accessLevel, rodCompatible } from './economy.ts';
 import type { SaveData } from './save.ts';
 import type { Specimen, MethodId } from './specimens.ts';
+import { itemCondition } from './progression.ts';
+import { RARITIES, specimenRarity } from './rarity.ts';
 export const METHODS = [
-    { id: 'float', name: 'Flotteur', available: true, bait: 'worm', slots: ['rod', 'reel', 'line', 'leader', 'hook', 'rig', 'float', 'weight', 'bait', 'landing'], description: 'Attendre la plongée du flotteur, puis ferrer.' },
-    { id: 'bottom', name: 'Fond', available: true, bait: 'worm', slots: ['rod', 'reel', 'line', 'leader', 'hook', 'rig', 'weight', 'bait', 'landing'], description: 'Montage posé, touche visible à la pointe. Favorise les poissons de fond.' },
-    { id: 'lure', name: 'Leurre', available: true, bait: 'lure', slots: ['rod', 'reel', 'line', 'leader', 'lure', 'landing'], description: 'Récupérer et animer pour provoquer une attaque. Le leurre immobile ne suffit pas.' },
-    { id: 'feeder', name: 'Feeder', available: false, bait: 'worm', slots: ['rod', 'reel', 'line', 'leader', 'hook', 'feeder', 'bait', 'groundbait', 'landing'], description: 'À venir : cage d’amorçage et rencontres adaptées. Cette technique ne peut pas encore être lancée.' },
-    { id: 'fly', name: 'Mouche', available: false, bait: 'fly', slots: ['rod', 'reel', 'line', 'leader', 'lure', 'landing'], description: 'À venir : soie, mouches et projection spécifique.' },
+    {id:'pole',tier:'initiation',name:'Coup sans moulinet',available:true,bait:'worm',slots:['rod','elastic','line','leader','float','weight','hook','bait','groundbait','landing'],description:'Placement proche, profondeur et amorçage local. Canne et élastique après ferrage, aucune récupération au moulinet.'},
+    { id: 'float', tier:'specialisation', name: 'Flotteur', available: true, bait: 'worm', slots: ['rod', 'reel', 'line', 'leader', 'hook', 'rig', 'float', 'weight', 'bait', 'landing'], description: 'Attendre la plongée du flotteur, puis ferrer.' },
+    { id: 'bottom', tier:'specialisation', name: 'Fond', available: true, bait: 'worm', slots: ['rod', 'reel', 'line', 'leader', 'hook', 'rig', 'weight', 'bait', 'landing'], description: 'Montage posé, touche visible à la pointe. Favorise les poissons de fond.' },
+    { id: 'lure', tier:'initiation', name: 'Leurre', available: true, bait: 'lure', slots: ['rod', 'reel', 'line', 'leader', 'lure', 'landing'], description: 'Récupérer et animer pour provoquer une attaque. Le leurre immobile ne suffit pas.' },
+    { id: 'feeder', tier:'specialisation', name: 'Feeder', available: false, bait: 'worm', slots: ['rod', 'reel', 'line', 'leader', 'hook', 'feeder', 'bait', 'groundbait', 'landing'], description: 'À venir : cage d’amorçage et rencontres adaptées. Cette technique ne peut pas encore être lancée.' },
+    { id: 'fly', tier:'specialisation', name: 'Mouche', available: false, bait: 'fly', slots: ['rod', 'reel', 'line', 'leader', 'lure', 'landing'], description: 'À venir : soie, mouches et projection spécifique.' },
 ] as const;
 export const FAMILIES = [
-    ['rod', 'Cannes'], ['reel', 'Moulinets'], ['line', 'Lignes'], ['leader', 'Bas de ligne'], ['hook', 'Hameçons'], ['rig', 'Montages'], ['float', 'Flotteurs'], ['weight', 'Plombs'], ['feeder', 'Feeders'], ['bait', 'Appâts naturels'], ['lure', 'Leurres'], ['groundbait', 'Amorces'], ['landing', 'Réception'], ['decor', 'Décorations'],
+    ['rod', 'Cannes'], ['reel', 'Moulinets'], ['elastic','Élastiques'], ['line', 'Lignes'], ['leader', 'Bas de ligne'], ['hook', 'Hameçons'], ['rig', 'Montages'], ['float', 'Flotteurs'], ['weight', 'Plombs'], ['feeder', 'Feeders'], ['bait', 'Appâts naturels'], ['lure', 'Leurres'], ['groundbait', 'Amorces'], ['landing', 'Réception'], ['decor', 'Décorations'],
 ] as const;
 export type Family = typeof FAMILIES[number][0];
 export interface Gear {
@@ -24,19 +27,21 @@ export interface Gear {
     description: string;
     purchaseId?: typeof ITEMS[number]['id'];
 }
-const currentMethods = ['float', 'bottom', 'lure'];
+const currentMethods = ['pole','float', 'bottom', 'lure'];
 export const GEAR: readonly Gear[] = [
-    ...ITEMS.map(i => ({ id: i.id, name: i.name, family: i.kind === 'rod' ? 'rod' as const : 'decor' as const, state: 'available' as const, price: i.price, level: accessLevel(i.id), methods: i.kind === 'rod' ? currentMethods : [], description: i.description, purchaseId: i.id })),
+    ...ITEMS.map(i => ({ id: i.id, name: i.name, family: i.kind === 'rod' ? 'rod' as const : 'decor' as const, state: 'available' as const, price: i.price, level: accessLevel(i.id), methods: i.kind === 'rod' ? currentMethods.filter(m=>rodCompatible(i.id,m)) : [], description: i.description, purchaseId: i.id })),
     ...([
-        ['reel', 'Moulinet polyvalent', currentMethods, 'Frein automatique et récupération. Inclus dans le kit de bordure.'],
+        ['elastic','Élastique au coup',['pole'],'Amortissement de la canne ; aucun moulinet ni frein.'],
+        ['reel', 'Moulinet polyvalent', ['float','bottom','lure'], 'Frein automatique et récupération. Inclus dans le kit de bordure.'],
         ['line', 'Nylon de bordure', currentMethods, 'Élasticité et résistance liées à la canne équipée.'],
         ['leader', 'Bas de ligne universel', currentMethods, 'Liaison au montage, comprise dans le kit.'],
-        ['hook', 'Hameçon simple', ['float', 'bottom'], 'Pour le ver ; compris dans le montage de base.'],
-        ['rig', 'Montage réutilisable', ['float', 'bottom'], 'Flotteur ou fond selon la méthode choisie.'],
-        ['float', 'Flotteur de bordure', ['float'], 'Signal de touche en surface, immergé pendant le combat.'],
-        ['weight', 'Plomb de montage', ['float', 'bottom'], 'Lest adapté automatiquement à la méthode.'],
-        ['bait', 'Ver', ['float', 'bottom'], 'Réutilisable sans coût, pour les rencontres au naturel.'],
+        ['hook', 'Hameçon simple', ['pole','float', 'bottom'], 'Pour le ver ; compris dans le montage de base.'],
+        ['rig', 'Montage réutilisable', ['pole','float', 'bottom'], 'Flotteur ou fond selon la méthode choisie.'],
+        ['float', 'Flotteur de bordure', ['pole','float'], 'Signal de touche en surface, immergé pendant le combat.'],
+        ['weight', 'Plomb de montage', ['pole','float', 'bottom'], 'Lest adapté automatiquement à la méthode.'],
+        ['bait', 'Ver', ['pole','float', 'bottom'], 'Réutilisable sans coût, pour les rencontres au naturel.'],
         ['lure', 'Petit leurre', ['lure'], 'Réutilisable. La récupération et l’animation déclenchent les touches.'],
+        ['groundbait','Amorçage local',['pole','float'],'Attraction localisée 45 secondes, sans coût ; aucune capture garantie.'],
         ['landing', 'Tapis de réception', currentMethods, 'Présentation sur tapis pour les spécimens de 60 cm ou plus.'],
     ] as [
         Family,
@@ -53,7 +58,7 @@ export function gearState(g: Gear, save: SaveData) {
         return 'future';
     if (g.state === 'included' || g.purchaseId && save.inventory.includes(g.purchaseId))
         return 'owned';
-    return levelFor(save.xp) < g.level ? 'locked' : 'available';
+    return itemCondition(save,g.id) ? 'locked' : 'available';
 }
 export function preparation(method: string, rod: string, bait: string) {
     const m = METHODS.find(m => m.id === method), r = GEAR.find(g => g.id === rod);
@@ -66,7 +71,7 @@ export function preparation(method: string, rod: string, bait: string) {
     return { valid: true, reason: 'Montage complet, prêt à lancer.' };
 }
 export const LOCATIONS = [
-    { id: 'willow-pond', name: 'L’étang des Saules', available: true, description: 'Un matin calme. Quinze espèces accessibles avec le kit gratuit.', habitats: SPOTS.map(s => ({ id: s.id, name: s.name, description: s.hint, depth: s.id === 'open' ? '2–4 m' : '0,5–2 m' })), conditions: 'Matin fixe, eau calme. La profondeur et la végétation découlent du point de lancer.' },
+    { id: 'willow-pond', name: 'L’étang des Saules', available: true, description: 'Un matin calme. Quinze espèces selon poste, profondeur et présentation. Trois postes ouverts au début.', habitats: SPOTS.map(s => ({ id: s.id, name: s.name, description: s.hint, depth: s.id === 'open' ? '2–4 m' : '0,5–2 m' })), conditions: 'Matin fixe, eau calme. La profondeur et la végétation découlent du point de lancer.' },
     { id: 'running-river', name: 'La rivière des Aulnes', available: false, description: 'À venir : courant, espèces d’eaux vives et techniques adaptées.', habitats: [{ id: 'current', name: 'Courant et graviers', description: 'Scène et simulation à construire', depth: 'À définir' }], conditions: 'À venir, aucun changement de météo réel.' },
 ];
 export const BADGE_RULES = [
@@ -94,7 +99,7 @@ export interface JournalFilter {
     view?: string;
     sort?: string;
 }
-export const rarityOf = (s: Specimen) => s.mirage ? 3 : s.coloration === 'golden' ? 2 : 1;
+export const rarityOf = (s: Specimen) => RARITIES.find(r=>r.id===specimenRarity(s))!.rank;
 export function filterJournal(save: SaveData, f: JournalFilter): Specimen[] {
     const results = save.journal.filter(s => (!f.species || s.speciesId === f.species) && (!f.variant || f.variant === 'mirage' && s.mirage || f.variant === s.coloration) && (!f.rarity || rarityOf(s) === Number(f.rarity)) && (!f.location || s.location === f.location) && (!f.method || s.method === f.method) && (!f.after || s.date.slice(0, 10) >= f.after) && (!f.before || s.date.slice(0, 10) <= f.before) && s.length >= (f.minLength ?? 0) && s.length <= (f.maxLength ?? Infinity) && s.weight >= (f.minWeight ?? 0) && s.weight <= (f.maxWeight ?? Infinity) && (!f.favorite || save.favorites.includes(s.id)) && (!f.view || f.view === 'latest' || f.view === 'records' && s.length === save.records[s.speciesId]?.best || f.view === 'first' && s.reward.discovery > 0 || f.view === 'variants' && (s.mirage || s.coloration !== 'natural') || f.view === 'favorites' && save.favorites.includes(s.id))).sort((a, b) => f.sort === 'weight' ? b.weight - a.weight : f.sort === 'length' ? b.length - a.length : f.sort === 'rarity' ? rarityOf(b) - rarityOf(a) || b.date.localeCompare(a.date) : b.date.localeCompare(a.date));
     return f.view === 'latest' ? results.slice(0, 10) : results;

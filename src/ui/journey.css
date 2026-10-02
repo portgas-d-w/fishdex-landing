@@ -1,0 +1,15 @@
+/* Les nouveaux écrans utilisent les mêmes tokens Basalte & Turquoise. */
+.map-toggle{position:absolute;top:calc(65px + env(safe-area-inset-top));left:calc(12px + env(safe-area-inset-left))}
+.fishing-context{position:absolute;left:12px;right:12px;top:calc(121px + env(safe-area-inset-top));font-size:12px;color:var(--fd-text);text-shadow:0 1px 3px var(--fd-bg);pointer-events:none}
+.pond-map{position:relative;max-width:480px;margin:12px auto;aspect-ratio:320/220;background:var(--fd-bg);border-radius:var(--fd-radius-card);border:1px solid var(--fd-border)}
+.pond-map svg{position:absolute;width:100%;height:100%;fill:var(--fd-accent-soft);stroke:var(--fd-accent);stroke-width:1.5}.pond-map .map-bank{fill:none;stroke:var(--fd-text-muted);stroke-dasharray:3 5}
+.map-pin{position:absolute;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--fd-surface);border:1px solid var(--fd-accent);color:var(--fd-text)}
+.map-pin[aria-pressed=true]{background:var(--fd-accent);color:var(--fd-on-accent);outline:2px solid var(--fd-focus);outline-offset:3px}
+.map-pin[data-state=occupied]{border-color:var(--fd-warning)}.map-pin[data-state=future]{border-style:dashed;border-color:var(--fd-text-muted)}
+.map-pin-0{left:51%;top:86%}.map-pin-1{left:19%;top:64%}.map-pin-2{left:81%;top:67%}.map-pin-3{left:19%;top:29%}.map-pin-4{left:82%;top:29%}.map-pin-5{left:51%;top:14%}
+.fisher-dialogue{display:flex;gap:12px;align-items:center;background:var(--fd-bg);border-left:3px solid var(--fd-warning);padding:14px;border-radius:8px;margin-top:16px;font-size:13px;line-height:1.6}.fisher-dialogue>span{font-size:32px;color:var(--fd-text-muted)}
+.groundbait-control,.snag-control{position:absolute;left:calc(12px + env(safe-area-inset-left));bottom:calc(186px + env(safe-area-inset-bottom))}.snag-control{bottom:calc(244px + env(safe-area-inset-bottom));border-color:var(--fd-warning)}
+.retrieve-setting{position:absolute;right:calc(12px + env(safe-area-inset-right));bottom:calc(143px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:8px;background:var(--fd-surface);border:1px solid var(--fd-border);border-radius:8px;padding:4px 8px;font-size:12px}.retrieve-setting select{min-height:44px;background:var(--fd-surface);border:0;max-width:100px}
+body[data-method=pole] .tension-display{width:120px;left:auto;right:24px;transform:none}
+#practice-masteries .compact-row{flex-wrap:wrap}#practice-masteries h3{margin-top:24px}
+@media(max-width:350px){.map-pin{width:44px;height:44px}.pond-map{aspect-ratio:320/240}.fishing-context{font-size:11px}.retrieve-setting{bottom:142px;max-width:150px}}

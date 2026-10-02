@@ -1,10 +1,12 @@
+import {ensureLegacyProfile} from './helpers';
 import { test, expect } from '@playwright/test';
 import { castByGesture, openMenuPage, holdMouseReel } from './helpers';
-import { emptySave, recordCatch } from '../../src/game/save';
+import {legacySave as emptySave} from '../support/legacy';
+import {recordCatch} from '../../src/game/save';
 
 test('Appui long, glissement et nettoyage : aucune sélection ni menu natif sur le jeu', async ({page,context},info)=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');
+ await ensureLegacyProfile(page); await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');
  await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());
  const w=page.viewportSize()!.width,h=page.viewportSize()!.height;
  if(info.project.name==='mobile') {
@@ -32,7 +34,7 @@ test('Appui long, glissement et nettoyage : aucune sélection ni menu natif sur 
 test('Carnet et boutique défilent naturellement ; recherche et sélection restent éditables', async ({page,context},info)=>{
  const seed=emptySave();for(let i=0;i<20;i++)recordCatch(seed,{id:`touch-${i}`,speciesId:'roach',length:20,date:'2026-10-01T10:00:00Z'});
  await page.addInitScript(data=>localStorage.setItem('au-fil-de-leau.save.v1',JSON.stringify(data)),seed);
- await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');
+ await ensureLegacyProfile(page); await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');
  const touch=info.project.name==='mobile'?await context.newCDPSession(page):undefined;
  for(const [opener,id] of [['collection-open','collection'],['shop-open','shop']]) {
   await openMenuPage(page,opener);const dialog=page.locator(`#${id}`);const b=(await dialog.boundingBox())!;
