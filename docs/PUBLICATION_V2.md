@@ -1,7 +1,7 @@
 # Publication V2 — version 0.9.0
 
-2 octobre 2026, Codex. Publication en cours ; cette section n'est pas une preuve
-de livraison hébergée tant que les résultats ci-dessous ne sont pas complétés.
+2 octobre 2026, Codex. Version 0.9.0 publiée et contrôlée sur le domaine public.
+Les limites appareil restent celles de la matrice ; aucun essai physique annoncé.
 
 ## Cible et procédure
 
@@ -40,13 +40,38 @@ Preuves : `apercus/v2/heberge/preview-fingerprints.json` et trois captures mobil
 La première comparaison brute du manifeste a signalé cette différence textuelle ;
 aucune différence de données ou de binaire n'a été masquée.
 
-Production : à compléter après tests publics et comparaison des fichiers.
+Production applicative **READY** : `dpl_D23Cw4keGbrr99W58qefeLCw1fDP`,
+`https://fishdex-landing-jixyx0mdc-portgas-d-ws-projects.vercel.app`, `main`
+`a7b17e46b1d48481a3dd5f1f43d56ce90ee147a2` (code applicatif 134f413 inchangé).
+[fishdex.fr](https://fishdex.fr) redirige vers [www.fishdex.fr](https://www.fishdex.fr/),
+HTTP 200. Contrôles publics **sans token et sans API QA** : **12 réussis en
+2,7 min**, deux scénarios réservés au build de test exclus. Version normale sans
+entrée Mode test, prise au coup et avec moulinet par commandes réelles, réception,
+modèle différé/photo/transfert, sauvegarde v6, ateliers/stock/achats/favoris,
+quinze GLB et exclusion de l'archive source.
+
+Entrée normale `/assets/index-BnHuyJcz.js`, SHA256
+`2a1d6ada494476fd34dd3127f207cbdd7b01fce208b58e1eb371666ff07145c0`.
+**263 JS/CSS et 15 GLB identiques octet par octet** au build normal contrôlé ;
+manifeste identique après normalisation de fins de ligne, détaillée dans le JSON.
+Preuves : `apercus/v2/heberge/production-fingerprints.json` et captures publiques
+mobiles ponton/capture/aquarium. Les commits de clôture suivants sont documentaires,
+ne changent pas le code et conservent cette empreinte applicative ; leur dernier
+déploiement READY et l'entrée publique sont revérifiés avant fin de session.
 
 Contrôles locaux documentés dans `IMPLEMENTATION_V2.md` ; tests du build dans
 `tests/smoke/`, commandes `GAME_URL=... FISHING_TEST_AVAILABLE=1 npm run test:smoke`
 pour la preview et `FISHING_TEST_AVAILABLE=0` pour la production normale.
 En PowerShell, définir ces variables avec `$env:GAME_URL` et
 `$env:FISHING_TEST_AVAILABLE` avant la commande.
+
+Comparer les fichiers servis au build local :
+`node scripts/verify-deployment.mjs https://www.fishdex.fr dist verification.json`.
+Le script vérifie l'entrée HTML, toutes les empreintes JS/CSS/GLB et les seules
+fins de ligne admises pour le manifeste. Pour une preview protégée, charger
+localement l'OIDC avec `node --env-file=.env.local` avant le même script ; il
+limite l'en-tête au seul domaine passé en argument et n'écrit aucun secret.
+Ne pas charger ce token pour les contrôles publics.
 
 ## Retour à 0.8 et sauvegardes
 

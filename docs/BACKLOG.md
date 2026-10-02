@@ -9,7 +9,7 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 - [x] 22 techniques et 55 recettes fonctionnelles, contextes courant/profondeur/embarcation.
 - [x] Réception distincte, frein, effets des composants, progression et chaîne complète de chaque méthode ; 97 tests Node + TypeScript/build.
 - [x] Matrice méthode/système, parcours tactiles émulés, 44 prises UI/photo/reload, procédure téléphone et captures avant/après identiques.
-- [ ] Préproduction protégée, publication du build normal et empreintes publiques V2.
+- [x] Préproduction protégée 14/14 ; build normal public 12 réussis / 2 scénarios de test exclus ; 263 JS/CSS et 15 GLB identiques, manifeste CRLF→LF seulement ; retour 0.8 conservé.
 - [ ] Essais humains sur appareil, économie et sensations.
 
 ## Progression, postes et pratiques 0.8.0
