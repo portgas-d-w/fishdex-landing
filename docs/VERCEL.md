@@ -1,5 +1,19 @@
 # Vercel — migration de FishDex vers Au fil de l’eau
 
+## Canne et montages 0.6.0 — 2 octobre 2026
+
+Projet portgas-d-ws-projects/fishdex-landing, ID prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, dépôt portgas-d-w/fishdex-landing et main revérifiés. Domaines et protection conservés. CLI 62.0.0 disponible ; aucune installation ou nouveau service.
+
+Application c4731a366df7e437db9e95ae412c8a2c90117c4d, Vite/Node24. Preview READY dpl_34hLQuHZBhbpfjFxELwV3WWzMdTR : https://fishdex-landing-lb8daqmwh-portgas-d-ws-projects.vercel.app, build 27 s, smoke protégé 8/8 (1,8 min). Sur Windows env run n’a pas accepté les arguments du runner ; env pull puis node --env-file ont fourni l’accès OIDC limité à cette origine, traces désactivées et token jamais affiché/committé.
+
+Après validation, fusion fast-forward et push main. Production READY dpl_2a3os5G1xDbnUkhiYWpkjNejrfv8 : https://fishdex-landing-50au3tgze-portgas-d-ws-projects.vercel.app, build 24 s, domaine public https://www.fishdex.fr ; smoke public sans token **8/8 (1,8 min)**, captures réelles bureau/mobile, atelier, photos, progression et sauvegardes. Domaine nu redirigé vers www (HTTP final 200).
+
+Les JS et CSS référencés dans index.html sont identiques octet par octet au build local ; principal index-D62PN8yx.js SHA256 f78e9904e5ddfdac50edbb513fc3ad6a1c6dc00e50fad43ac0d902a19fd7ee7d. Manifeste identique en contenu JSON ; fins de ligne Windows/Linux distinctes. Détail : docs/apercus/montages/production-files.json. Scan erreurs 15 min : aucun événement renvoyé. Drains : aucun configuré ; site statique, console navigateur contrôlée par smoke, aucune télémétrie des appareils.
+
+Retour conservé et tag publié archive/au-fil-de-leau-before-montages-2026-10-02, base 8b646ad ; production précédente READY dpl_668C9o4wZNaKFtskyRQ9qR21saFP. Le schéma v4 n’est pas lu par l’ancienne application v3 : exporter la sauvegarde avant un retour applicatif, préserver ce JSON pour la reprise v4. Aucun déploiement supprimé.
+
+Validation locale : npm run check (47 tests + TypeScript/build), suite navigateur 48 réussis / 2 exclusions prévues, atelier final 6/6, smoke sans QA 8/8 et complément visuel 2/2. Aucun résultat Safari/iPhone physique, chauffe ou réseau mobile annoncé. Le commit de clôture concerne seulement documentation et preuves ; son dernier état READY et les fichiers seront contrôlés après push.
+
 ## Structure complète 0.5.0 — publiée et vérifiée
 
 Projet confirmé : `portgas-d-ws-projects/fishdex-landing`, Vite/Node 24, dépôt

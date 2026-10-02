@@ -37,3 +37,5 @@ Ajouter un profil confirmé dans le dossier puis scripts/import-design.py, un ID
 ## Vérifications locales
 
 Dossier : PASS 6 151 contrôles. npm ci : zéro vulnérabilité. npm run check : 47 tests + TypeScript/build réussis. Navigateur : 48 réussis / 2 exclusions prévues, 4,2 min ; complément atelier après correction des cases de filtre 6/6. Smoke build sans QA : 8/8, 1,8 min ; capture/photo/export/import, 15 GLB, favoris/décor/achats, atelier/lots/ensembles/catalogue. Portrait 390×844 et bureau inspectés. Avertissement de taille Babylon conservé : bundle principal 1,81 Mo / 442 Ko gzip, bibliothèque différée 511 Ko / 50 Ko gzip. Aucun résultat iPhone réel.
+
+Publication : commit c4731a3, preview protégée 8/8 puis domaine public www.fishdex.fr 8/8, 1,8 min chaque. Domaines/projet conservés ; retour avant montages disponible. Voir docs/VERCEL.md pour IDs, empreintes et limites de retour des sauvegardes.

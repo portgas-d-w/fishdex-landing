@@ -11,7 +11,7 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 - [x] Migration v4, v1/v2/v3 et reprise conservatrice d’une ligne sans capture gratuite.
 - [x] Profondeur, plombée, présentation, rencontres habitat/régime ; trois méthodes existantes conservées.
 - [x] Quinze profils sourcés, variations individuelles ; retrait du cercle, gestes et annulations préservés.
-- [ ] Terminer suite navigateur complète, check final et smoke local/preview/public avant publication.
+- [x] Check 47 tests + TypeScript/build ; navigateur 48 réussis/2 exclusions, atelier final 6/6 ; smoke local, preview protégée et public 8/8 chacun ; publication main et retour conservé.
 - [ ] Essai Safari/iPhone réel, économie des lots et plaisir/équilibre des combats.
 - [ ] Future extension : réglages de frein, graphes spécialistes, observation, autres habitats et GLB confirmés.
 
