@@ -1,0 +1,828 @@
+{
+  "schema_version": "1.0.0",
+  "research_date": "2026-10-02",
+  "implementation_status": "catalogued_not_verified_in_game",
+  "numerical_parameters_origin": "provisional_game_design_not_biological_measurement",
+  "reference_policy": "Une référence peut documenter une famille, sans valider tous les détails de chaque recette. Lire coverage et research_status.",
+  "entries": [
+    {
+      "id": "bio_ablette",
+      "title": "Ablette — Alburnus alburnus",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Alburnus-alburnus-Ablette-1020/%28rOffset%29/2",
+      "coverage": "Alimentation et description",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_aloses",
+      "title": "Aloses — Alosa alosa / fallax",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Alosa-alosa-fallax-Alose-vraie-Alose-feinte-4490",
+      "coverage": "Différence de régime et arrêt de l'alimentation en remontée",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_argentee",
+      "title": "Carpe argentée — Hypophthalmichthys molitrix",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Hypophthalmichthys-molitrix-Carpe-argentee-3428",
+      "coverage": "Filtration du plancton",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_herbivore",
+      "title": "Amour blanc — Ctenopharyngodon idella",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Ctenopharyngodon-idella-Amour-blanc-3888",
+      "coverage": "Alimentation végétale adulte et habitat",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_marbree",
+      "title": "Carpe à grosse tête — Hypophthalmichthys nobilis",
+      "publisher": "FAO",
+      "url": "https://www.fao.org/fishery/docs/CDrom/aquaculture/I1129m/file/fr/fr_bigheadcarp.htm",
+      "coverage": "Profil d'espèce élevée et écologie ; ne pas généraliser élevage et capture sauvage",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_anguille",
+      "title": "Anguille — Anguilla anguilla",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Anguilla-anguilla-Anguille-856",
+      "coverage": "Alimentation et activité crépusculaire",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_apron",
+      "title": "Apron du Rhône — Zingel asper",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Apron-du-Rhone3/%28rOffset%29/11",
+      "coverage": "Habitat et alimentation",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_aspe",
+      "title": "Aspe — Leuciscus aspius",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Leuciscus-aspius-Aspe-2994/%28rOffset%29/0",
+      "coverage": "Prédation près de la surface ; ancien synonyme Aspius aspius",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_barbeau_meridional",
+      "title": "Barbeau méridional — Barbus meridionalis",
+      "publisher": "FishBase",
+      "url": "https://www.fishbase.se/FieldGuide/FieldGuideSummary.php?GenusName=Barbus&SpeciesName=meridionalis&pda=1&sps=",
+      "coverage": "Habitat courant et petits invertébrés ; synthèse référencée",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_barbeau",
+      "title": "Barbeau commun — Barbus barbus",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Barbeau-commun3",
+      "coverage": "Invertébrés benthiques",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_bass_petite",
+      "title": "Achigan à petite bouche — Micropterus dolomieu",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Micropterus-dolomieu-Achigan-a-petite-bouche-1502",
+      "coverage": "Habitat rocheux et proies",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_bass",
+      "title": "Achigan à grande bouche — Micropterus salmoides",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Micropterus-salmoides-Achigan-a-grande-bouche-2778/%28rOffset%29/17",
+      "coverage": "Alimentation et activité",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_blageon",
+      "title": "Blageon — Leuciscus souffia, aujourd'hui Telestes souffia",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Leuciscus-souffia-Blageon-2168/%28rOffset%29/0",
+      "coverage": "Compétition de banc et proies en dérive",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_bouviere",
+      "title": "Bouvière — Rhodeus amarus",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Rhodeus-amarus-Bouviere-1325/%28rOffset%29/17",
+      "coverage": "Alimentation et lien de reproduction avec les moules",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_bordeliere",
+      "title": "Blicca bjoerkna — alimentation étudiée au lac Balaton",
+      "publisher": "FishBase / Specziár, Tölg et Biró 1997",
+      "url": "https://fishbase.se/TrophicEco/DietCompoSummary.php?dietcode=2139&genusname=Blicca&speciesname=bjoerkna",
+      "coverage": "Composition locale du régime ; ne pas extrapoler les pourcentages à toutes les eaux",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_breme",
+      "title": "Brème commune — Abramis brama",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Abramis-brama-Breme-commune-237/%28rOffset%29/4",
+      "coverage": "Habitat calme et alimentation",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_brochet",
+      "title": "Brochet — Esox lucius",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Esox-lucius-Brochet-366",
+      "coverage": "Chasse à l'affût dans les plantes aquatiques",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_carassins",
+      "title": "Carassins commun, argenté et doré",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Carassius-spp.-Carassin-commun-carassin-argente-et-carassin-dore-2552",
+      "coverage": "Taxons distincts et alimentation commune",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_carpe",
+      "title": "Carpe commune — Cyprinus carpio",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Cyprinus-carpio-Carpe-commune-248/%28rOffset%29/8",
+      "coverage": "Fouille du sédiment, alimentation et formes d'écaillure",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_chabot",
+      "title": "Chabot — Cottus gobio",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Cottus-gobio-Chabot-commun-241",
+      "coverage": "Petits invertébrés benthiques et activité",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_chevesne",
+      "title": "Chevaine — Squalius cephalus",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Squalius-cephalus-Chevaine-615",
+      "coverage": "Régime opportuniste variant avec l'âge",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_coregone",
+      "title": "Corégone — Coregonus lavaretus",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Coregone3/%28rOffset%29/4",
+      "coverage": "Plancton, insectes et capture visuelle ; identités locales à contrôler",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_cristivomer",
+      "title": "Lake trout — Salvelinus namaycush",
+      "publisher": "U.S. Fish & Wildlife Service",
+      "url": "https://www.fws.gov/species/lake-trout-salvelinus-namaycush",
+      "coverage": "Habitat et profil d'espèce",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_eperlan",
+      "title": "Synopsis of biological data on smelt Osmerus eperlanus",
+      "publisher": "FAO",
+      "url": "https://www.fao.org/4/96024e/96024e.pdf",
+      "coverage": "Synopsis historique ; certains traitements taxonomiques demandent une vérification moderne",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_baeri",
+      "title": "Esturgeon sibérien — Acipenser baerii",
+      "publisher": "FAO",
+      "url": "https://www.fao.org/fishery/docs/CDrom/aquaculture/I1129m/file/fr/fr_acipenser.htm",
+      "coverage": "Profil d'aquaculture ; alimentation d'élevage distincte de la pêche sauvage",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_diamant",
+      "title": "Russian sturgeon — Acipenser gueldenstaedtii",
+      "publisher": "Caspian Environment Programme / IW:LEARN",
+      "url": "https://archive.iwlearn.net/caspianenvironment.org/CaspBIS/Taxons/Taxon8254.html?taxonid=4",
+      "coverage": "Recherche benthique et régime ; fiche historique archivée",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_europeen",
+      "title": "Esturgeon européen — Acipenser sturio",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Acipenser-sturio-Esturgeon-europeen-1321",
+      "coverage": "Vie sur le fond et alimentation",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_gardon",
+      "title": "Gardon — Rutilus rutilus",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Rutilus-rutilus-Gardon-289/%28rOffset%29/1",
+      "coverage": "Omnivorie, végétaux adultes et activité de jour",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_goujon",
+      "title": "Goujon — Gobio gobio",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Gobio-gobio-Goujon-363",
+      "coverage": "Invertébrés benthiques et recherche au fond",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_hotu",
+      "title": "Hotu — Chondrostoma nasus",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Chondrostoma-nasus-Hotu-2164/%28rOffset%29/8",
+      "coverage": "Raclage de diatomées sur substrat",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_huchon",
+      "title": "Hucho hucho — ecology summary",
+      "publisher": "FishBase",
+      "url": "https://www.fishbase.se/Ecology/Hucho_hucho",
+      "coverage": "Eaux courantes oxygénées et prédation ; synthèse référencée",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_ide",
+      "title": "Ide mélanote — Leuciscus idus",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Leuciscus-idus-Ide-melanote-2167/%28rOffset%29/6",
+      "coverage": "Régime variant selon âge et milieu",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_lamproie_planer",
+      "title": "Lamproie de Planer — Lampetra planeri",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Lampetra-planeri-Lamproie-de-Planer-1636",
+      "coverage": "Filtration larvaire puis arrêt de l'alimentation",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_lamproie_fluviatile",
+      "title": "Lamproie de rivière — Lampetra fluviatilis",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Lampetra-fluviatilis-Lamproie-de-riviere-1122",
+      "coverage": "Filtration larvaire et parasitisme adulte",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_loche",
+      "title": "Loche franche — Barbatula barbatula",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Barbatula-barbatula-Loche-franche-269",
+      "coverage": "Petits animaux de fond et recherche nocturne",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_lotte",
+      "title": "Lotte de rivière — Lota lota",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Lota-lota-Lotte-de-riviere-204",
+      "coverage": "Prédation au fond et biologie d'eau froide",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_mulet",
+      "title": "Mulet-porc — Chelon ramada",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Chelon-ramada-Mulet-porc-1985",
+      "coverage": "Omnivorie, biofilm et activité diurne ; ne pas confondre avec Chelon labrosus",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_omble_chevalier",
+      "title": "Omble chevalier — Salvelinus alpinus",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Salvelinus-alpinus-Omble-chevalier-1751/%28rOffset%29/18",
+      "coverage": "Eaux fraîches, invertébrés et alevins",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_omble_fontaine",
+      "title": "Omble de fontaine — Salvelinus fontinalis",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Salvelinus-fontinalis-Omble-de-fontaine-1657",
+      "coverage": "Eaux fraîches et invertébrés",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_ombre",
+      "title": "Ombre commun — Thymallus thymallus",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Thymallus-thymallus-Ombre-commun-2169/%28rOffset%29/12",
+      "coverage": "Proies du fond et insectes en dérive",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_perche",
+      "title": "Perche — Perca fluviatilis",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Perca-fluviatilis-Perche-330",
+      "coverage": "Bancs, prédation visuelle et évolution du régime",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_soleil",
+      "title": "Perche-soleil — Lepomis gibbosus",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Lepomis-gibbosus-Perche-soleil-287/",
+      "coverage": "Petites proies et chasse de jour",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_chat",
+      "title": "Poisson-chat — Ameiurus melas",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Ameiurus-melas-Poisson-chat-990/%28rOffset%29/1",
+      "coverage": "Omnivorie et vie au fond",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_pseudorasbora",
+      "title": "Pseudorasbora parva — ecology",
+      "publisher": "FishBase",
+      "url": "https://www.fishbase.se/Ecology/Pseudorasbora_parva",
+      "coverage": "Alimentation surtout animale ; profil partiel",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_rotengle",
+      "title": "Rotengle — Scardinius erythrophthalmus",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Scardinius-erythrophthalmus-Rotengle-1078",
+      "coverage": "Régime omnivore avec tendance végétale adulte",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_sandre",
+      "title": "Sandre — Sander lucioperca",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Sander-lucioperca-Sandre-290",
+      "coverage": "Petits poissons et vision en faible luminosité",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_dore",
+      "title": "Doré jaune — Sander vitreus",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Sander-vitreus-Dore-jaune-1503/%28rOffset%29/11",
+      "coverage": "Espèce nord-américaine distincte du sandre européen",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_saumon",
+      "title": "Saumon atlantique — Salmo salar",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Salmo-salar-Saumon-769",
+      "coverage": "Alimentation en mer et arrêt en remontée adulte",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_saumon_roi",
+      "title": "Chinook salmon — Oncorhynchus tshawytscha",
+      "publisher": "NOAA Fisheries",
+      "url": "https://www.fisheries.noaa.gov/species/chinook-salmon",
+      "coverage": "Profil de l'espèce ; contexte nord-américain",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_silure",
+      "title": "Silure glane — Silurus glanis",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Silurus-glanis-Silure-glane-364",
+      "coverage": "Prédation opportuniste et activité surtout nocturne",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_spirlin",
+      "title": "Spirlin — Alburnoides bipunctatus",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Alburnoides-bipunctatus-Spirlin-2163",
+      "coverage": "Petites proies en courant et en surface",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_tanche",
+      "title": "Tanche — Tinca tinca",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Tinca-tinca-Tanche-249/%28rOffset%29/15",
+      "coverage": "Recherche de nourriture au fond et activité crépusculaire",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_toxostome",
+      "title": "Toxostome — Parachondrostoma toxostoma",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Toxostome3/%28rOffset%29/fiche_fiche.asp?fiche_numero=2164",
+      "coverage": "Raclage des fonds ; source sous ancien nom Chondrostoma toxostoma",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_arc",
+      "title": "Truite arc-en-ciel — Oncorhynchus mykiss",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Oncorhynchus-mykiss-Truite-arc-en-ciel-2308",
+      "coverage": "Invertébrés, poissons et activité diurne",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_fario",
+      "title": "Truite de rivière — Salmo trutta",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Salmo-trutta-fario-Truite-de-riviere-388/%28rOffset%29/8",
+      "coverage": "Régime variant avec l'âge ; source désigne la forme fario",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_vairon",
+      "title": "Vairon — Phoxinus phoxinus",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/Especes/Phoxinus-phoxinus-Vairon-1656",
+      "coverage": "Omnivorie et eaux fraîches ; complexe taxonomique à contrôler",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "bio_vandoise",
+      "title": "Vandoise — Leuciscus leuciscus",
+      "publisher": "DORIS / FFESSM",
+      "url": "https://doris.ffessm.fr/ref/specie/2166",
+      "coverage": "Profil d'espèce",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_coup",
+      "title": "Tackle, methods and bait",
+      "publisher": "Inland Fisheries Ireland",
+      "url": "https://fishinginireland.info/coarse/cbait/",
+      "coverage": "Méthodes généralistes et appâts usuels",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_feeder",
+      "title": "Introduction to feeder fishing",
+      "publisher": "Fishing in Ireland / Blackwood Bait and Tackle",
+      "url": "https://fishinginireland.info/2025/coarse-reports/an-introduction-to-feeder-fishing-by-blackwood-bait-and-tackle/",
+      "coverage": "Pratique feeder ; retour de praticien hébergé par IFI",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_feeder_potence",
+      "title": "Potence feeder coulissante",
+      "publisher": "Caperlan / Decathlon",
+      "url": "https://www.decathlon.fr/p/potence-feeder-coulissante-6cm-ff-p-m/328416/c4m8603429",
+      "coverage": "Fixation coulissante et sensibilité",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_carp_rigs",
+      "title": "Guide des montages carpe",
+      "publisher": "Korda",
+      "url": "https://kordatackle.com/knowledge/a-guide-to-the-best-carp-rigs",
+      "coverage": "Comparaison de recettes ; synthèse de fabricant",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_ronnie",
+      "title": "How to tie the Ronnie rig",
+      "publisher": "Korda",
+      "url": "https://kordatackle.com/knowledge/how-to-tie-the-ronnie-rig-a-step-by-step-guide",
+      "coverage": "Composants et esche pop-up",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_chod",
+      "title": "Spring fishing with chod rigs",
+      "publisher": "Korda",
+      "url": "https://kordatackle.com/knowledge/what-is-a-chod-rig-and-how-do-you-use-them",
+      "coverage": "Montage hélicoptère à présentation surélevée",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_pva",
+      "title": "Solid PVA bags and rigs explained",
+      "publisher": "Korda",
+      "url": "https://kordatackle.com/knowledge/solid-pva-bags-and-pva-bag-rigs",
+      "coverage": "Dissolution et amorçage localisé",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_pva_mesh",
+      "title": "Using PVA mesh for carp fishing",
+      "publisher": "Korda",
+      "url": "https://kordatackle.com/knowledge/using-pva-mesh-for-carp-fishing",
+      "coverage": "Petit amorçage et limitation des emmêlements",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_lead_clip",
+      "title": "Lead clip systems and safety",
+      "publisher": "Korda",
+      "url": "https://kordatackle.com/knowledge/using-lead-clips-for-fishing-what-makes-them-such-a-good-choice-of-lead-system",
+      "coverage": "Libération du plomb selon fixation et résistance",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_fly",
+      "title": "Trout fishing methods",
+      "publisher": "Inland Fisheries Ireland",
+      "url": "https://fishinginireland.info/trout/trmethods/",
+      "coverage": "Mouche et autres approches de la truite",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_waggler",
+      "title": "Loaded pellet wagglers",
+      "publisher": "Drennan",
+      "url": "https://www.drennantackle.com/products/floats/wagglers/loaded-pellet-wagglers/",
+      "coverage": "Flotteurs préplombés et fixation",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_float_weights",
+      "title": "Non-toxic waggler weights",
+      "publisher": "Drennan",
+      "url": "https://www.drennantackle.com/products/tackle/bits-and-pieces/waggler-weights/",
+      "coverage": "Lests pour flotteurs",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_elastic",
+      "title": "Hybrid solid pole elastic",
+      "publisher": "Drennan",
+      "url": "https://www.drennantackle.com/products/pole-accessories/hybrid-solid-pole-elastic-2/",
+      "coverage": "Amortissement par élastique sur grande canne",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_soft_rigs",
+      "title": "Les montages pour leurres souples",
+      "publisher": "Sakura",
+      "url": "https://www.sakura-fishing.com/montages-leurres-souples/",
+      "coverage": "Weightless, Texas, Carolina et montages finesse",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_texas",
+      "title": "Texas rig kit",
+      "publisher": "VMC / Rapala",
+      "url": "https://www.rapala.com/us_en/trk-texas-rig-kit",
+      "coverage": "Composants de la famille Texas",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_drop_shot",
+      "title": "Tungsten round drop shot",
+      "publisher": "Sakura",
+      "url": "https://www.sakura-fishing.com/accessoire/tungsten-round-drop-shot/",
+      "coverage": "Lest et fixation drop-shot",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_tokyo",
+      "title": "Tokyo rig in thick grass",
+      "publisher": "VMC / Rapala",
+      "url": "https://blog.rapala.com/news/land-more-bass-in-thick-grass-with-the-new-vmc-tokyo-rig/",
+      "coverage": "Présentation du Tokyo rig",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_lures",
+      "title": "Leurres artificiels",
+      "publisher": "Sakura",
+      "url": "https://www.sakura-fishing.com/leurres/",
+      "coverage": "Familles commerciales de leurres ; caractéristiques détaillées à confirmer par fiche",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_topwater",
+      "title": "Topwaters — leurres de surface",
+      "publisher": "Sakura",
+      "url": "https://www.sakura-fishing.com/leurres/topwaters-surface/",
+      "coverage": "Famille des leurres de surface",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_spinner",
+      "title": "Cajun spinnerbait",
+      "publisher": "Sakura",
+      "url": "https://www.sakura-fishing.com/leurre/spinnerbaits-cajun/",
+      "coverage": "Vibrations et récupération ; conseils de fabricant",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_crank",
+      "title": "Crankbaits",
+      "publisher": "Sakura",
+      "url": "https://www.sakura-fishing.com/leurres/crankbaits/",
+      "coverage": "Famille des poissons nageurs à bavette",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_wafter",
+      "title": "Band'um wafters",
+      "publisher": "Sonubaits",
+      "url": "https://www.sonubaits.com/de/products/hookbaits/sp-10353",
+      "coverage": "Flottabilité équilibrée entre esche coulante et pop-up",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_bait_catalogue",
+      "title": "Catalogue appâts et amorces",
+      "publisher": "Sonubaits",
+      "url": "https://www.sonubaits.com/fr/products",
+      "coverage": "Pellets, amorces, pop-ups et wafters",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_boilie",
+      "title": "The Source boilies",
+      "publisher": "Dynamite Baits",
+      "url": "https://dynamitebaits.com/cz/product/the-source-boilies/",
+      "coverage": "Famille bouillette ; aucune promesse commerciale reprise",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_anglaise_fixe",
+      "title": "Montage d'un waggler fixe",
+      "publisher": "Garbolino",
+      "url": "https://www.garbolino.fr/peche-a-langlaise-montage-dun-waggler-fixe/",
+      "coverage": "Famille anglaise fixe ; distances de praticien non transposées en limites universelles",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_anglaise_coulissant",
+      "title": "Montage coulissant dit méthode anglaise",
+      "publisher": "Garbolino",
+      "url": "https://www.garbolino.fr/montage-peche-a-langlaise-montage-coulissant-dit-methode-anglaise/",
+      "coverage": "Plombée et waggler coulissant",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_toc",
+      "title": "Comment bien débuter la pêche au toc",
+      "publisher": "Caperlan / Decathlon",
+      "url": "https://conseilsport.decathlon.fr/comment-bien-debuter-la-peche-au-toc",
+      "coverage": "Dérive et adaptation de la plombée au courant",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_toc_variantes",
+      "title": "La pêche au toc",
+      "publisher": "Fédération de pêche des Alpes-Maritimes",
+      "url": "https://www.peche06.fr/4547-la-peche-au-toc.htm",
+      "coverage": "Variantes selon courant ; schémas à consulter avant simulation détaillée",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_ned",
+      "title": "Tête Tungsten Ned Rig",
+      "publisher": "Sakura",
+      "url": "https://www.sakura-fishing.com/accessoire/tungsten-ned-rig-jig-head/",
+      "coverage": "Présentation et tête du Ned rig",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_noeuds",
+      "title": "Guide des nœuds",
+      "publisher": "Rapala / Sufix",
+      "url": "https://www.rapala.fr/eu_fr/knot-tying-guide-fr",
+      "coverage": "Connexions boucle, Palomar et FG ; aucun coefficient de résistance universel",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_bolo",
+      "title": "Flotteur bolognaise SP B10",
+      "publisher": "Garbolino",
+      "url": "https://www.garbolino.fr/produits/univers-coup/flotteurs/flotteurs-anglaise-bolo-competition/flotteur-bolognaise-competition-sp-b10-garbolino/",
+      "coverage": "Famille bolognaise ; référence produit et quille de stabilité",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_bombette",
+      "title": "Comment choisir sa bombette",
+      "publisher": "Caperlan / Decathlon",
+      "url": "https://www.decathlon.fr/c/htc/comment-choisir-sa-bombette_f1c4b6db-1c43-4e78-87c8-1d7021ca862f",
+      "coverage": "Masse de lancer et discrétion ; flottabilité distincte",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_premiere_ligne",
+      "title": "Comment monter ses premières lignes",
+      "publisher": "Caperlan / Decathlon",
+      "url": "https://conseilsport.decathlon.fr/comment-monter-ses-premieres-lignes",
+      "coverage": "Corps de ligne, flotteur, répartition de plombée, terminal et esches fines",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    },
+    {
+      "id": "tech_souples_caperlan",
+      "title": "Leurres souples — tous les montages",
+      "publisher": "Caperlan / Decathlon",
+      "url": "https://conseilsport.decathlon.fr/leurres-souples-tous-les-montages",
+      "coverage": "Présentation des montages souples usuels",
+      "consulted_on": "2026-10-02",
+      "access_type": "web_search_or_open"
+    }
+  ]
+}

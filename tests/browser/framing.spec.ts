@@ -4,7 +4,7 @@ import { castByGesture } from './helpers';
 test('Canne visible aux quatre orientations et deux commandes avec jauge compacte', async ({ page }, info) => {
   await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
   await page.evaluate(() => (window as any).__fishingQA.pauseSimulation());
-  await castByGesture(page); await page.evaluate(() => (window as any).__fishingQA.advance(10)); await page.locator('#strike').click();
+  await castByGesture(page); await page.evaluate(() => (window as any).__fishingQA.advance(45)); await page.locator('#strike').click();
   await page.waitForTimeout(5200);
   for (const [i, dx, dy] of [[0, 32, -32], [1, -64, 64], [2, 64, 0], [3, -64, -64]]) {
     const b = (await page.locator('#rod-control').boundingBox())!, x = b.x + b.width / 2, y = b.y + b.height / 2;

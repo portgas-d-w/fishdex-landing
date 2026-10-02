@@ -1,0 +1,871 @@
+{
+  "schema_version": "1.0.0",
+  "research_date": "2026-10-02",
+  "implementation_status": "catalogued_not_verified_in_game",
+  "numerical_parameters_origin": "provisional_game_design_not_biological_measurement",
+  "note": "Les approches ultraléger, stalking et carpodrome peuvent réutiliser une méthode moteur ; éviter de dupliquer ses règles.",
+  "entries": [
+    {
+      "id": "coup",
+      "name": "Coup à canne télescopique",
+      "family": "flotteur",
+      "rod_types": [
+        "telescopique"
+      ],
+      "requires_reel": false,
+      "required_slots": [
+        "main_line",
+        "float",
+        "weight",
+        "leader",
+        "hook",
+        "bait"
+      ],
+      "principle": "Présentation au flotteur près du bord.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "documented",
+      "context": [
+        "bord"
+      ],
+      "core_slots": [
+        "rod",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "grande_canne",
+      "name": "Grande canne à emmanchements",
+      "family": "flotteur",
+      "rod_types": [
+        "grande_canne"
+      ],
+      "requires_reel": false,
+      "required_slots": [
+        "elastic",
+        "main_line",
+        "float",
+        "weight",
+        "leader",
+        "hook",
+        "bait"
+      ],
+      "principle": "Contrôle de ligne et amortissement par élastique.",
+      "source_ids": [
+        "tech_coup",
+        "tech_elastic"
+      ],
+      "research_status": "documented",
+      "context": [
+        "bord"
+      ],
+      "core_slots": [
+        "rod",
+        "elastic",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "anglaise",
+      "name": "Anglaise au waggler",
+      "family": "flotteur",
+      "rod_types": [
+        "match",
+        "polyvalente"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "float",
+        "weight",
+        "leader",
+        "hook",
+        "bait"
+      ],
+      "principle": "Flotteur fixé par sa base, fixe ou coulissant.",
+      "source_ids": [
+        "tech_anglaise_fixe",
+        "tech_anglaise_coulissant"
+      ],
+      "research_status": "documented",
+      "context": [
+        "bord"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "bolognaise",
+      "name": "Bolognaise",
+      "family": "flotteur",
+      "rod_types": [
+        "bolognaise"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "float",
+        "weight",
+        "leader",
+        "hook",
+        "bait"
+      ],
+      "principle": "Longue canne à anneaux et contrôle de dérive.",
+      "source_ids": [
+        "tech_bolo"
+      ],
+      "research_status": "partial",
+      "context": [
+        "riviere"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "fond",
+      "name": "Fond / plombée",
+      "family": "fond",
+      "rod_types": [
+        "fond",
+        "polyvalente",
+        "carpe"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "weight",
+        "leader",
+        "hook",
+        "bait"
+      ],
+      "principle": "Esche présentée au fond avec lest.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "documented",
+      "context": [
+        "bord"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "feeder",
+      "name": "Feeder à cage",
+      "family": "fond",
+      "rod_types": [
+        "feeder",
+        "polyvalente"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "feeder",
+        "leader",
+        "hook",
+        "bait",
+        "groundbait"
+      ],
+      "principle": "Amorçage au fond et indication par le scion.",
+      "source_ids": [
+        "tech_feeder",
+        "tech_feeder_potence"
+      ],
+      "research_status": "documented",
+      "context": [
+        "bord"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "method_feeder",
+      "name": "Method feeder",
+      "family": "fond",
+      "rod_types": [
+        "feeder"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "feeder",
+        "leader",
+        "hook",
+        "bait",
+        "groundbait"
+      ],
+      "principle": "Esche près de l'amorce portée par le feeder.",
+      "source_ids": [
+        "tech_feeder",
+        "tech_wafter"
+      ],
+      "research_status": "partial",
+      "context": [
+        "bord"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "carpe",
+      "name": "Carpe au posé",
+      "family": "carpe",
+      "rod_types": [
+        "carpe",
+        "fond"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "weight",
+        "leader",
+        "hook",
+        "bait"
+      ],
+      "principle": "Présentation au cheveu et ensemble adapté.",
+      "source_ids": [
+        "tech_carp_rigs",
+        "tech_lead_clip"
+      ],
+      "research_status": "documented",
+      "context": [
+        "bord"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "stalking",
+      "name": "Approche de bordure / stalking",
+      "family": "approche",
+      "rod_types": [
+        "carpe",
+        "polyvalente",
+        "match"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "leader",
+        "hook",
+        "bait"
+      ],
+      "principle": "Approche discrète et présentation près du bord.",
+      "source_ids": [
+        "tech_carp_rigs"
+      ],
+      "research_status": "partial",
+      "context": [
+        "bordure"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "approach"
+    },
+    {
+      "id": "surface",
+      "name": "Carpe et poissons blancs en surface",
+      "family": "surface",
+      "rod_types": [
+        "carpe",
+        "polyvalente",
+        "match"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "leader",
+        "hook",
+        "bait"
+      ],
+      "principle": "Esche flottante ; choix de portée et discrétion.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "partial",
+      "context": [
+        "surface"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "leurre",
+      "name": "Lancer aux leurres",
+      "family": "leurre",
+      "rod_types": [
+        "spinning",
+        "casting",
+        "polyvalente"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "leader",
+        "lure"
+      ],
+      "principle": "Animation d'une proie artificielle.",
+      "source_ids": [
+        "tech_lures",
+        "tech_soft_rigs"
+      ],
+      "research_status": "documented",
+      "context": [
+        "bord"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "verticale",
+      "name": "Leurre en verticale",
+      "family": "leurre",
+      "rod_types": [
+        "verticale",
+        "spinning",
+        "casting"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "leader",
+        "lure"
+      ],
+      "principle": "Présentation sous le point de pêche ; profondeur variable.",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "research_status": "partial",
+      "context": [
+        "ponton_profond",
+        "bateau_futur"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "mort_manie",
+      "name": "Poisson mort manié",
+      "family": "appat_anime",
+      "rod_types": [
+        "spinning",
+        "casting"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "leader",
+        "weight",
+        "harness",
+        "bait"
+      ],
+      "principle": "Animation d'un poisson mort sur monture.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "needs_research",
+      "context": [
+        "bord"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "toc",
+      "name": "Toc aux appâts naturels",
+      "family": "derive",
+      "rod_types": [
+        "toc"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "indicator",
+        "weight",
+        "leader",
+        "hook",
+        "bait"
+      ],
+      "principle": "Dérive réglée par la plombée et la canne.",
+      "source_ids": [
+        "tech_toc",
+        "tech_toc_variantes"
+      ],
+      "research_status": "documented",
+      "context": [
+        "riviere"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "mouche",
+      "name": "Mouche",
+      "family": "mouche",
+      "rod_types": [
+        "mouche"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "backing",
+        "fly_line",
+        "leader",
+        "tippet",
+        "fly"
+      ],
+      "principle": "Ligne spécifique et imitation adaptée à la couche d'eau.",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "research_status": "documented",
+      "context": [
+        "riviere",
+        "lac"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "backing",
+        "fly_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "nymphe_fil",
+      "name": "Nymphe au fil",
+      "family": "mouche",
+      "rod_types": [
+        "mouche",
+        "nymphe"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "indicator",
+        "leader",
+        "tippet",
+        "fly"
+      ],
+      "principle": "Dérive de nymphes contrôlée par le fil.",
+      "source_ids": [
+        "tech_fly",
+        "tech_toc"
+      ],
+      "research_status": "partial",
+      "context": [
+        "riviere"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "bombette",
+      "name": "Bombette",
+      "family": "appat_anime",
+      "rod_types": [
+        "bombette",
+        "match"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "bombette",
+        "swivel",
+        "leader",
+        "bait"
+      ],
+      "principle": "Lancer une esche légère avec un corps porteur.",
+      "source_ids": [
+        "tech_bombette"
+      ],
+      "research_status": "documented",
+      "context": [
+        "lac"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "gambe",
+      "name": "Gambe / train de nymphes",
+      "family": "specialiste",
+      "rod_types": [
+        "gambe",
+        "verticale"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "leader",
+        "weight",
+        "fly"
+      ],
+      "principle": "Plusieurs imitations sur un montage vertical spécialisé.",
+      "source_ids": [
+        "bio_coregone"
+      ],
+      "research_status": "needs_research",
+      "context": [
+        "lac_profond"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "traine",
+      "name": "Traîne",
+      "family": "specialiste",
+      "rod_types": [
+        "traine"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "leader",
+        "lure"
+      ],
+      "principle": "Présentation en déplacement ; embarcation future.",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "research_status": "needs_research",
+      "context": [
+        "bateau_futur"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "clonk",
+      "name": "Silure au clonk",
+      "family": "specialiste",
+      "rod_types": [
+        "silure"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "leader",
+        "weight",
+        "hook",
+        "bait",
+        "clonk"
+      ],
+      "principle": "Approche sonore et verticale spécialisée.",
+      "source_ids": [
+        "bio_silure"
+      ],
+      "research_status": "needs_research",
+      "context": [
+        "bateau_futur"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "method"
+    },
+    {
+      "id": "ultraleger",
+      "name": "Leurre ultraléger",
+      "family": "approche",
+      "rod_types": [
+        "spinning_ul"
+      ],
+      "requires_reel": true,
+      "required_slots": [
+        "reel",
+        "main_line",
+        "leader",
+        "lure"
+      ],
+      "principle": "Même logique leurre avec ensemble léger.",
+      "source_ids": [
+        "tech_lures",
+        "tech_soft_rigs"
+      ],
+      "research_status": "documented",
+      "context": [
+        "bord"
+      ],
+      "core_slots": [
+        "rod",
+        "reel",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "approach"
+    },
+    {
+      "id": "carpodrome",
+      "name": "Carpodrome à grande canne",
+      "family": "approche",
+      "rod_types": [
+        "grande_canne"
+      ],
+      "requires_reel": false,
+      "required_slots": [
+        "elastic",
+        "main_line",
+        "float",
+        "weight",
+        "leader",
+        "hook",
+        "bait"
+      ],
+      "principle": "Variante de grande canne pour poissons robustes.",
+      "source_ids": [
+        "tech_elastic",
+        "tech_coup"
+      ],
+      "research_status": "partial",
+      "context": [
+        "plan_eau_amenage"
+      ],
+      "core_slots": [
+        "rod",
+        "elastic",
+        "main_line"
+      ],
+      "required_slots_scope": "suggested_default_layout_recipe_overrides_terminal_slots",
+      "availability": {
+        "catalogued": true,
+        "playable": false,
+        "purchase_enabled": false,
+        "reason": "Vérifier les systèmes et les lieux du dépôt avant activation."
+      },
+      "kind": "approach"
+    }
+  ]
+}

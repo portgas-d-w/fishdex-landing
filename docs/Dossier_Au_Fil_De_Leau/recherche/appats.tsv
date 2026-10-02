@@ -1,0 +1,81 @@
+id|name|family|presentation_tags|diet_tags|method_ids|consumption_rule|game_proposal|source_ids|research_status
+asticot|Asticot|naturel|coule,mobile|invertebres|coup,grande_canne,anglaise,bolognaise,fond,feeder|portion|Esche polyvalente de petit calibre.|tech_coup|documented
+pinkie|Pinkie|naturel|coule,mobile,petit|invertebres|coup,grande_canne,anglaise,feeder|portion|Petite esche pour présentation fine.|tech_coup|partial
+caster|Caster|naturel|coule,variable|invertebres|coup,grande_canne,anglaise,feeder|portion|Flottabilité à définir par état du produit.|tech_coup|partial
+ver_vase|Ver de vase|naturel|coule,mobile,petit|invertebres_benthiques|coup,grande_canne,feeder|portion|Esche de fond fine et fragile.|tech_coup|partial
+fouillis|Fouillis de vers de vase|amorcage|particules,fond|invertebres_benthiques|coup,grande_canne,feeder|portion_amorcage|Réservé à l'amorçage ; pas un leurre.|tech_coup|partial
+ver_terre|Ver de terre|naturel|coule,mobile|invertebres|fond,feeder,toc,coup,anglaise,bombette|portion|Taille et présentation changent la sélection.|tech_coup,tech_toc|documented
+petit_ver|Petit ver|naturel|coule,mobile,petit|invertebres|coup,grande_canne,anglaise,feeder,toc|portion|Calibre fin ; variante de ver à distinguer de l'espèce.|tech_coup|documented
+lombric|Gros lombric|naturel|coule,mobile,gros|invertebres|fond,toc,clonk|portion|Calibre plus gros ; attraction non exclusive au silure.|tech_toc,tech_coup|partial
+ver_dendro|Ver dendrobaena|naturel|coule,mobile|invertebres|fond,feeder,toc,coup|portion|Variante commercialisable de ver.|tech_coup|partial
+teigne|Teigne|naturel|coule,mobile|invertebres,insectes|toc,bombette|portion|Esche légère ; dérive à préparer.|tech_toc|partial
+sauterelle|Sauterelle|naturel|surface,insecte|insectes|surface,stalking,toc|portion|Proposition de bordure sous végétation.|tech_toc|needs_research
+grillon|Grillon|naturel|surface,insecte|insectes|surface,stalking,toc|portion|Esche de surface à documenter davantage.|tech_toc|needs_research
+larve_aquatique|Larve aquatique|naturel|coule,petit|insectes,invertebres_benthiques|toc,coup|portion|Catégorie abstraite ; identifier la larve avant activation.|tech_toc|partial
+mais|Maïs doux|vegetal|coule,grain|vegetaux,graines|coup,anglaise,fond,feeder,method_feeder,carpe,stalking|portion|Grain visible ; calibre pour hameçon ou cheveu.|tech_coup,tech_bait_catalogue|documented
+mais_flottant|Maïs artificiel flottant|artificiel|flotte,grain|imitation_graines|carpe,method_feeder|reuse_until_loss|Flottabilité réglable avec plusieurs éléments.|tech_bait_catalogue|partial
+pain|Pain|vegetal|variable,mou|vegetaux|coup,anglaise,surface,stalking,fond|portion|État mie/croûte détermine immersion et tenue.|tech_coup|documented
+mie_pain|Mie de pain|vegetal|variable,mou|vegetaux|coup,anglaise,fond|portion|Présentation délicate, tenue à régler.|tech_coup|documented
+croute_pain|Croûte de pain|vegetal|surface|vegetaux|surface,stalking|portion|Esche de surface fragile.|tech_coup|partial
+chenevis|Chènevis préparé|vegetal|coule,grain,petit|graines|coup,grande_canne,anglaise,fond,feeder,carpe|portion|Particule et esche ; préparation abstraite dans le jeu.|tech_coup|documented
+ble|Blé préparé|vegetal|coule,grain|graines|coup,anglaise,fond,feeder,carpe|portion|Particule pour amorçage et eschage.|tech_coup|partial
+orge|Orge préparée|vegetal|coule,grain|graines|coup,feeder,carpe|portion|Catalogue de graines ; recette à confirmer.|tech_coup|needs_research
+pois|Pois préparés|vegetal|coule,grain|vegetaux,graines|coup,fond,carpe|portion|Calibre de grain différent.|tech_coup|partial
+noix_tigree|Noix tigrée préparée|vegetal|coule,grain,dur|vegetaux,graines|carpe,stalking|portion|Cheveu et taille adaptés ; pas de bonus universel.|tech_carp_rigs|partial
+vegetaux|Végétaux tendres|vegetal|variable,feuille|vegetaux|coup,anglaise,surface,stalking|portion|Candidat herbivore ; espèce végétale à préciser.|bio_herbivore|partial
+algues|Filaments végétaux / algues|vegetal|variable,filaments|algues,vegetaux|coup,anglaise|portion|Contenu spécialisé à valider ; aucune prise garantie de hotu.|bio_hotu,bio_mulet|needs_research
+fromage|Fromage|prepare|coule,odorant|opportuniste|fond,feeder|portion|Esche opportuniste de rivière ; efficacité à tester.|tech_coup|partial
+pate_pain|Pâte de pain|prepare|coule,mou|vegetaux|coup,anglaise,fond|portion|Tenue et taille de portion distinctes du pain flottant.|tech_coup|partial
+pate_truite|Pâte pour truite|prepare|variable,odorant|opportuniste|fond,bombette|portion|Densité du produit à préciser.|tech_fly|partial
+pate_pellet|Pâte de pellets|prepare|coule,mou|opportuniste|carpodrome,coup,fond|portion|Fragilité et dispersion graduelle proposées.|tech_bait_catalogue|partial
+pellet|Pellet de pêche|prepare|coule,granule|opportuniste|coup,anglaise,feeder,method_feeder,carpe|portion|Différencier pellet d'eschage et d'amorçage.|tech_bait_catalogue|documented
+pellet_dur|Pellet dur d'eschage|prepare|coule,dur|opportuniste|anglaise,method_feeder,carpe|portion|Attache bande ou cheveu selon variante.|tech_wafter,tech_bait_catalogue|partial
+pellet_mou|Pellet mou|prepare|coule,mou|opportuniste|coup,carpodrome,feeder|portion|Hameçon direct et tenue réduite proposés.|tech_bait_catalogue|partial
+pellet_esturgeon|Pellet pour étang à esturgeons|prepare|coule,granule|opportuniste|fond,feeder|portion|Réservé au contexte d'étang géré ; pas régime sauvage automatique.|bio_baeri|partial
+bouillette|Bouillette coulante|prepare|coule,bille|opportuniste|carpe,stalking|portion|Base de cheveu ; diamètre choisi.|tech_boilie,tech_carp_rigs|documented
+pop_up|Pop-up|prepare|flotte,bille|opportuniste|carpe|portion|Nécessite équilibre de la recette.|tech_ronnie,tech_chod|documented
+wafter|Wafter|prepare|equilibre,bille|opportuniste|method_feeder,carpe|portion|Comportement dépend du poids de l'hameçon.|tech_wafter|documented
+dumbell|Dumbell d'eschage|prepare|variable,forme_allongee|opportuniste|method_feeder,carpe|portion|Déclinaison de forme ; densité à choisir explicitement.|tech_bait_catalogue|partial
+poisson_mort|Poisson mort entier|animal|coule,odorant|poissons|fond,mort_manie|portion|Taille de proie et fraîcheur abstraites.|tech_coup|partial
+morceau_poisson|Morceau de poisson|animal|coule,odorant|poissons|fond,clonk|portion|Esche de fond ; espèce non exclusive.|tech_coup|partial
+crevette|Crevette|animal|coule,odorant|crustaces|fond,feeder|portion|Contenu spécialisé ; usages exacts à confirmer.|tech_coup|needs_research
+ecrevisse|Écrevisse comme appât|animal|fond,mobile|crustaces|fond|portion|Catalogue réservé ; pratique et provenance à valider.|bio_bass_petite|needs_research
+amorce_fine|Amorce fine de poissons blancs|amorcage|particules,dispersion|opportuniste|coup,grande_canne,anglaise,feeder|portion_amorcage|Nuage et zone d'attraction limités, pas spawn direct.|tech_bait_catalogue|documented
+amorce_fond|Amorce lourde de fond|amorcage|fond,particules|opportuniste|coup,feeder|portion_amorcage|Cohésion et vitesse de dispersion réglables.|tech_feeder,tech_bait_catalogue|documented
+amorce_method|Amorce method feeder|amorcage|fond,cohesion|opportuniste|method_feeder|portion_amorcage|Tenue au lancer puis dispersion progressive.|tech_feeder,tech_bait_catalogue|partial
+micro_pellets|Micro-pellets d'amorçage|amorcage|fond,granules|opportuniste|feeder,method_feeder,carpe|portion_amorcage|Temps d'attraction et saturation à équilibrer.|tech_bait_catalogue|documented
+mix_particules|Mélange de graines préparées|amorcage|fond,graines|graines,vegetaux|coup,feeder,carpe|portion_amorcage|Attraction selon régime et quantité.|tech_coup|partial
+liquide_attractant|Additif liquide|amorcage|odorant|opportuniste|feeder,method_feeder,carpe|dose|Ne pas vendre une garantie de touche.|tech_bait_catalogue|partial
+shad|Shad souple|leurre_souple|nage,queue_battante|imitation_poissons|leurre,verticale,traine|reuse_until_loss|Vibration, taille et vitesse influencent rencontre.|tech_soft_rigs|documented
+gros_shad|Grand shad|leurre_souple|nage,gros|imitation_poissons|leurre,verticale,traine|reuse_until_loss|Proie volumineuse ; canne et montage adaptés.|tech_soft_rigs|documented
+micro_leurre|Micro-leurre souple|leurre_souple|nage,petit|imitation_poissons,imitation_invertebres|ultraleger,leurre|reuse_until_loss|Pour petites proies ; pas pour tout micro-poisson.|tech_soft_rigs|partial
+finesse|Leurre finesse|leurre_souple|faible_vibration|imitation_poissons|leurre,verticale|reuse_until_loss|Présentation discrète et animation fine.|tech_soft_rigs|documented
+ver_souple|Ver souple / worm|leurre_souple|souple,allonge|imitation_invertebres|leurre|reuse_until_loss|Texas, weightless ou wacky selon recette.|tech_soft_rigs|documented
+grub|Grub / virgule|leurre_souple|queue_rotative|imitation_poissons|leurre,ultraleger,verticale|reuse_until_loss|Vibration continue en récupération.|tech_lures|partial
+ecrevisse_souple|Écrevisse souple|leurre_souple|fond,appendices|imitation_crustaces|leurre|reuse_until_loss|Animation de fond ; taille et accès au poste.|tech_soft_rigs|documented
+creature|Creature bait|leurre_souple|fond,appendices|imitation_invertebres|leurre|reuse_until_loss|Imitation abstraite, réglages distincts.|tech_soft_rigs|partial
+tube|Tube souple|leurre_souple|souple,franges|imitation_invertebres|leurre,verticale|reuse_until_loss|Catalogue finesse à documenter.|tech_soft_rigs|needs_research
+grenouille_souple|Grenouille souple|leurre_souple|surface,vegetation|imitation_amphibiens|leurre|reuse_until_loss|Variante flottante, armement intégré ou séparé explicite.|tech_topwater|partial
+petit_poisson_nageur|Petit poisson nageur|leurre_dur|nage,bavette,petit|imitation_poissons|leurre,ultraleger,traine|reuse_until_loss|Profondeur réelle par recette et récupération.|tech_lures|documented
+crankbait|Crankbait|leurre_dur|nage,bavette|imitation_poissons|leurre,traine|reuse_until_loss|Couche d'eau dépend du modèle et du fil.|tech_crank|documented
+jerkbait|Jerkbait / minnow|leurre_dur|nage,pauses|imitation_poissons|leurre|reuse_until_loss|Transitions et pauses proposées.|tech_lures|documented
+lipless|Lipless crankbait|leurre_dur|coule,vibration|imitation_poissons|leurre,verticale|reuse_until_loss|Immersion par temps de chute et vitesse.|tech_lures|partial
+swimbait|Swimbait|leurre|nage,articule|imitation_poissons|leurre,traine|reuse_until_loss|Action lente ou continue selon type.|tech_lures|documented
+stickbait|Stickbait de surface|leurre_dur|surface,zigzag|imitation_poissons|leurre|reuse_until_loss|Animation latérale par gestes courts.|tech_topwater|documented
+popper|Popper|leurre_dur|surface,bruit|imitation_proie_surface|leurre|reuse_until_loss|Impulsions espacées ; bruit non toujours favorable.|tech_topwater|documented
+crawler|Crawler de surface|leurre_dur|surface,agitation|imitation_proie_surface|leurre|reuse_until_loss|Contenu futur ; action à documenter.|tech_topwater|partial
+cuiller_tournante|Cuiller tournante|leurre_metal|palette,vibration|imitation_poissons|leurre,ultraleger|reuse_until_loss|Vitesse minimale de rotation à tester.|tech_lures|documented
+cuiller_ondulante|Cuiller ondulante|leurre_metal|oscillation,coule|imitation_poissons|leurre,ultraleger,traine|reuse_until_loss|Oscillation selon récupération et pause.|tech_lures|documented
+spinnerbait|Spinnerbait|leurre_metal|palette,jupe|imitation_poissons|leurre|reuse_until_loss|Vibrations et silhouette ; encombrement mesurable.|tech_spinner|documented
+chatterbait|Jig à palette / bladed jig|leurre|palette,jupe|imitation_poissons|leurre|reuse_until_loss|Catalogue futur ; réglages de vibration à sourcer.|tech_lures|needs_research
+buzzbait|Buzzbait|leurre_metal|surface,helice|imitation_proie_surface|leurre|reuse_until_loss|Catalogue futur de surface.|tech_topwater|partial
+jig_metal|Jig métallique|leurre_metal|coule,vertical|imitation_poissons|verticale,leurre|reuse_until_loss|Animation verticale et contrôle de chute.|tech_lures|partial
+lame_vibrante|Lame vibrante|leurre_metal|coule,vibration|imitation_poissons|leurre,verticale|reuse_until_loss|Catalogue futur de fond et mi-eau.|tech_lures|partial
+mouche_seche|Mouche sèche|mouche|surface,insecte|imitation_insectes|mouche,bombette|reuse_until_loss|Dérive en surface ; taille et silhouette.|tech_fly|documented
+mouche_noyee|Mouche noyée|mouche|immerge,insecte|imitation_insectes|mouche,bombette|reuse_until_loss|Présentation sous la surface.|tech_fly|documented
+nymphe|Nymphe|mouche|immerge,insecte|imitation_invertebres|mouche,nymphe_fil,toc,gambe|reuse_until_loss|Lest de mouche intégré déclaré.|tech_fly|documented
+streamer|Streamer|mouche|nage,proie|imitation_poissons|mouche|reuse_until_loss|Action et densité de ligne modifient profondeur.|tech_fly|documented
+emerger|Émergente|mouche|pellicule,insecte|imitation_insectes|mouche|reuse_until_loss|Présentation à l'interface ; détailler le modèle.|tech_fly|partial
+mouche_terrestre|Imitation d'insecte terrestre|mouche|surface,insecte|imitation_insectes|mouche|reuse_until_loss|Bordures végétales et saison à simuler.|tech_fly|partial
+chironomide|Chironomide artificiel|mouche|immerge,insecte|imitation_invertebres|mouche,gambe|reuse_until_loss|Imitation de lac ; protocole gambe à confirmer.|bio_coregone,tech_fly|partial
+mouche_tube|Mouche sur tube|mouche|nage,proie|imitation_poissons|mouche|reuse_until_loss|Armement distinct ; méthode spécialiste future.|tech_fly|needs_research

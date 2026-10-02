@@ -1,0 +1,107 @@
+import { PROFILE_IDS } from '../game/profiles';
+import { COMPONENTS, SLOT_NAMES, component, slotsFor, available, changeMethod, starterConfig, validateRig, rigWarnings, buyComponent, applyPreset } from '../game/rig';
+import type { Slot } from '../game/rig';
+import { ITEMS } from '../game/economy';
+import { uniqueId } from '../game/specimens';
+import type { MethodId } from '../game/specimens';
+import type { ScreenHooks } from './structure';
+const el=<T extends HTMLElement=HTMLElement>(id:string)=>document.getElementById(id) as T;
+const esc=(s:string)=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
+const methodName=(id:string)=>id==='float'?'Flotteur':id==='bottom'?'Fond':'Leurre';
+type Library = typeof import('../game/research-library.json');
+
+export class TackleWorkshop {
+  private tab='rod';
+  private selected:Slot|'rod'|'method'='rod';
+  private library?:Library;
+  constructor(private h:ScreenHooks) {
+    const panel=el('preparation');
+    panel.innerHTML='<div class="modal-header"><h2>Matériel</h2><button class="close" data-close="preparation">Retour</button></div><nav class="work-tabs" aria-label="Matériel"><button data-work-tab="rod">Ma canne</button><button data-work-tab="bag">Mon sac</button><button data-work-tab="sets">Ensembles</button></nav><p id="equipment-summary" class="intro"></p><p id="preparation-note" class="intro"></p><div id="work-body"></div><div id="gear-list" hidden></div>';
+    el('app').insertAdjacentHTML('beforeend',['rig-sheet','component-sheet','research-sheet'].map(id=>`<dialog id="${id}" class="modal detail-modal"><div class="modal-header"><h2 id="${id}-title"></h2><button class="close" data-close="${id}">Retour</button></div><div id="${id}-body"></div></dialog>`).join(''));
+    panel.addEventListener('click',e=>{
+      const b=(e.target as HTMLElement).closest<HTMLElement>('[data-work-tab],[data-slot],[data-work-rig],[data-preset],[data-starter]');if(!b)return;
+      if(b.dataset.workTab){this.tab=b.dataset.workTab;this.render();}
+      if(b.dataset.slot)this.select(b.dataset.slot as Slot|'rod'|'method');
+      if(b.hasAttribute('data-work-rig'))this.rig();
+      if(b.hasAttribute('data-starter'))this.restoreKit();
+      if(b.dataset.preset)this.usePreset(b.dataset.preset);
+    });
+    el('rig-sheet-body').addEventListener('click',e=>{const b=(e.target as HTMLElement).closest<HTMLElement>('[data-slot]');if(b)this.select(b.dataset.slot as Slot);});
+    for(const id of ['shop','encyclopedia']) {
+      el(id).insertAdjacentHTML('beforeend',`<section class="research-shelf" id="library-${id}"><h3>Catalogue de conception</h3><p class="intro">Fiches présentes, usages futurs explicitement indiqués. Tailles regroupées par famille.</p><div class="filters"><label>Recherche<input id="library-query-${id}" type="search" placeholder="Nom, montage ou appât"></label><label>Catégorie<select id="library-type-${id}">${['Matériel','Méthodes','Montages','Appâts et leurres','Poissons','Apparences'].map(c=>`<option ${id==='encyclopedia'&&c==='Poissons'?'selected':''}>${c}</option>`).join('')}</select></label></div><div id="library-list-${id}" class="compact-list"></div><button class="secondary" id="library-load-${id}">Consulter les fiches</button></section>`);
+      el(`library-load-${id}`).onclick=()=>void this.catalogue(id);
+      for(const kind of ['query','type'])el(`library-${kind}-${id}`).addEventListener('input',()=>void this.catalogue(id));
+    }
+    document.addEventListener('click',e=>{const b=(e.target as HTMLElement).closest<HTMLElement>('[data-component-info],[data-component-buy],[data-research]');if(!b)return;
+      if(b.dataset.componentInfo)this.componentInfo(b.dataset.componentInfo);
+      if(b.dataset.componentBuy)this.confirmBuy(b.dataset.componentBuy);
+      if(b.dataset.research)void this.research(b.dataset.research);
+    });
+  }
+  opened() {this.tab='rod';this.render();}
+  private editable(){if(this.h.game.phase!=='idle'){this.h.toast('Ramenez la ligne avant de modifier l’ensemble en service.');return false;}return true;}
+  private commit(){const s=this.h.save(),g=this.h.game;g.tackle=s.tackle;g.setMethod(s.tackle.config.method);s.preparation.method=g.method;s.preparation.bait=g.bait;const rod=ITEMS.find(i=>i.id===s.equipped)!;g.equipment=s.equipped;g.equipmentPower=rod.power;this.h.persist();this.h.refresh();this.render();}
+  render() {
+    const s=this.h.save(),t=s.tackle,c=t.config;
+    document.querySelectorAll<HTMLElement>('[data-work-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.workTab===this.tab)));
+    const errors=validateRig(t),warnings=rigWarnings(c);
+    const message=errors.length?errors.join(' '):warnings.length?warnings.join(' '):'Montage prêt. Choisissez votre poste par le geste de lancer.';
+    if(this.tab==='rod') {
+      el('work-body').innerHTML=`<div class="rod-workshop"><svg viewBox="0 0 340 340" aria-hidden="true"><path class="rod-blank" d="M174 308Q118 154 184 18"/><path d="M183 22L194 310M148 235L128 239M166 106L184 112M152 181L180 185"/><ellipse cx="147" cy="242" rx="18" ry="23"/></svg><button class="rod-pin pin-rod" data-slot="rod">Canne<small>${esc(ITEMS.find(i=>i.id===s.equipped)!.name)}</small></button><button class="rod-pin pin-method" data-slot="method">Méthode<small>${methodName(c.method)}</small></button><button class="rod-pin pin-reel" data-slot="reel">Moulinet<small>${esc(component(c.components.reel!)!.name)}</small></button><button class="rod-pin pin-line" data-slot="main_line">Fil<small>${esc(component(c.components.main_line!)!.name)}</small></button><button class="rod-pin pin-leader" data-slot="leader">Bas de ligne<small>${esc(component(c.components.leader!)!.name)}</small></button><button class="rod-pin pin-rig" data-work-rig>Montage<small>${methodName(c.method)} · ${c.depth} m</small></button></div><p class="${errors.length||warnings.length?'warning-line':'intro'}" id="rig-validation" aria-live="polite">${esc(message)}</p><div class="tools"><button class="action" data-work-rig>Préparer mon montage</button><button class="secondary" data-starter>Rééquiper le kit gratuit</button></div><details class="filter-panel"><summary>Réception et ligne en service</summary><p class="intro">Réception actuelle conservée. Canne et moulinet ne sont pas perdus à la casse. ${t.active&&!t.active.resolved?'Une ligne est réservée ; la préparation est verrouillée.':'Aucune ligne en service.'}</p></details>${this.lossSummary()}`;
+    } else if(this.tab==='bag') {
+      el('work-body').innerHTML=`<div class="filters"><label>Famille<select id="bag-family"><option value="all">Tout mon sac</option>${Object.entries(SLOT_NAMES).map(([id,n])=>`<option value="${id}">${n}</option>`).join('')}</select></label><label><input type="checkbox" id="bag-compatible"> Compatible avec ma méthode</label><label><input type="checkbox" id="bag-low"> Stock faible</label></div><div id="bag-items" class="compact-list"></div><h3>Cannes et décor possédés</h3><div id="owned-durable" class="compact-list">${ITEMS.filter(i=>s.inventory.includes(i.id)).map(i=>`<div class="compact-row"><strong>${i.name}</strong><span>${i.id===s.equipped?'Équipée':'Possédé'}</span></div>`).join('')}</div>`;
+      const bag=()=>{const family=el<HTMLSelectElement>('bag-family').value;el('bag-items').innerHTML=COMPONENTS.filter(i=>(i.free||(t.stock[i.id]??0)>0)&&(family==='all'||i.slot===family)&&(!el<HTMLInputElement>('bag-compatible').checked||i.methods.includes(c.method))&&(!el<HTMLInputElement>('bag-low').checked||!i.free&&available(t,i.id)<(i.slot==='main_line'?45:i.slot==='leader'?.6:2))).map(i=>this.row(i.id)).join('')||'<p class="intro">Aucun objet dans cette sélection.</p>';};bag();for(const id of ['bag-family','bag-compatible','bag-low'])el(id).onchange=bag;
+    } else {
+      el('work-body').innerHTML=`<p class="intro">Un ensemble mémorise votre canne et sa recette ; il ne copie aucun objet.</p><label class="preset-label">Nom<input id="preset-name" maxlength="40" placeholder="Mon flotteur de bordure"></label><button id="preset-save" class="action" ${t.presets.length>=12?'disabled':''}>Enregistrer cet ensemble</button><div class="compact-list">${t.presets.map(p=>`<div class="compact-row"><div><strong>${esc(p.name)}</strong><small>${methodName(p.config.method)} · ${ITEMS.find(i=>i.id===p.rod)!.name}</small></div><button class="secondary" data-preset="${esc(p.id)}">Équiper</button><button class="secondary" data-delete-preset="${esc(p.id)}" aria-label="Supprimer ${esc(p.name)}">×</button></div>`).join('')||'<p class="intro">Aucun ensemble enregistré.</p>'}</div><p id="preset-error" class="warning-line" aria-live="polite"></p><button class="secondary" data-starter>Utiliser le kit gratuit</button>`;
+      el('preset-save').onclick=()=>{if(!this.editable())return;const name=el<HTMLInputElement>('preset-name').value.trim();if(!name){el('preset-error').textContent='Donnez un nom à cet ensemble.';return;}if(t.presets.length>=12)return;t.presets.push({id:uniqueId(),name,rod:s.equipped as 'starter'|'balanced'|'precision',config:structuredClone(c)});this.commit();};
+      el('work-body').querySelectorAll<HTMLElement>('[data-delete-preset]').forEach(b=>b.onclick=()=>{t.presets=t.presets.filter(p=>p.id!==b.dataset.deletePreset);this.commit();});
+    }
+  }
+  private lossSummary(){const a=this.h.save().tackle.active;if(!a?.resolved)return '';const losses=Object.entries(a.losses);return `<div class="loss-summary"><strong>${a.outcome==='catch'?'Ligne après capture':a.outcome==='return'?'Ligne ramenée':'Ligne après échec'}</strong><p class="intro">${losses.length?losses.map(([id,n])=>`${esc(component(id)!.name)} : ${n} ${component(id)!.unit}`).join(' · '):'Aucun composant payant perdu.'}</p></div>`;}
+  private restoreKit(){if(!this.editable())return;const s=this.h.save();s.equipped='starter';s.tackle.config=starterConfig(s.tackle.config.method);this.commit();if(el<HTMLDialogElement>('rig-sheet').open)this.rig();}
+  private usePreset(id:string){if(!this.editable())return;const s=this.h.save(),p=s.tackle.presets.find(p=>p.id===id);if(!p)return;const missing=s.inventory.includes(p.rod)?applyPreset(s.tackle,p):['Canne non possédée.'];if(missing.length){el('preset-error').textContent=missing.join(' ')+' Choisissez un composant possédé ou le kit gratuit.';return;}s.equipped=p.rod;this.commit();}
+  private row(id:string){const i=component(id)!,t=this.h.save().tackle,n=available(t,id),reserved=t.active&&!t.active.resolved?t.active.reserved[id]??0:0;return `<div class="compact-row"><div><strong>${esc(i.name)}</strong><small>${i.free?'Kit illimité':`${Math.round(n*100)/100} ${i.unit} libres${reserved?` · ${reserved} en service`:''}`} ${Object.values(t.config.components).includes(id)?'· Équipé':''}</small></div><button class="secondary" data-component-info="${id}">Fiche</button></div>`;}
+  select(slot:Slot|'rod'|'method') {
+    this.selected=slot;const s=this.h.save(),c=s.tackle.config;
+    el('component-sheet-title').textContent=slot==='rod'?'Choisir ma canne':slot==='method'?'Méthode compatible':SLOT_NAMES[slot];
+    let body='';
+    if(slot==='rod') body=ITEMS.filter(i=>i.kind==='rod'&&s.inventory.includes(i.id)).map(i=>`<button class="component-choice" data-choose-rod="${i.id}"><strong>${i.name}</strong><small>Flotteur, fond et leurre · contrôle ${i.power}</small></button>`).join('');
+    else if(slot==='method')body=`<p class="intro">Cette canne polyvalente accepte les trois méthodes déjà jouables. Les composants incompatibles seront remplacés par le kit, sans retirer vos possessions.</p>${(['float','bottom','lure'] as MethodId[]).map(m=>`<button class="component-choice" data-choose-method="${m}">${methodName(m)}<small>Jouable</small></button>`).join('')}<button id="future-methods" class="secondary">Consulter les méthodes futures</button>`;
+    else body=COMPONENTS.filter(i=>i.slot===slot&&i.methods.includes(c.method)&&(i.free||(s.tackle.stock[i.id]??0)>0)).map(i=>`<button class="component-choice" data-choose-component="${i.id}"><strong>${esc(i.name)}</strong><small>${esc(i.description)} · ${i.free?'Illimité':`${available(s.tackle,i.id)} ${i.unit}`}</small></button>`).join('')+'<button id="slot-shop" class="secondary">Voir les composants en boutique</button>';
+    el('component-sheet-body').innerHTML=body;
+    el('component-sheet-body').querySelectorAll<HTMLElement>('[data-choose-rod],[data-choose-method],[data-choose-component]').forEach(b=>b.onclick=()=>{
+      if(!this.editable())return;
+      if(b.dataset.chooseRod)s.equipped=b.dataset.chooseRod as typeof s.equipped;
+      if(b.dataset.chooseMethod)changeMethod(s.tackle,b.dataset.chooseMethod as MethodId);
+      if(b.dataset.chooseComponent&&this.selected!=='rod'&&this.selected!=='method')s.tackle.config.components[this.selected]=b.dataset.chooseComponent;
+      this.commit();this.h.close('component-sheet');if(el<HTMLDialogElement>('rig-sheet').open)this.rig();
+    });
+    if(el('slot-shop'))el('slot-shop').onclick=()=>{this.h.close('component-sheet');this.h.open('shop');};
+    if(el('future-methods'))el('future-methods').onclick=()=>{this.h.close('component-sheet');this.h.open('shop');el<HTMLSelectElement>('library-type-shop').value='Méthodes';void this.catalogue('shop');};
+    this.h.open('component-sheet');
+  }
+  rig() {
+    const t=this.h.save().tackle,c=t.config;
+    el('rig-sheet-title').textContent=`Mon montage · ${methodName(c.method)}`;
+    const terminal=slotsFor(c.method).filter(s=>s!=='reel'&&s!=='main_line');
+    el('rig-sheet-body').innerHTML=`<div class="rig-assembly">${terminal.map(slot=>`<button class="rig-part rig-${slot}" data-slot="${slot}"><span>${SLOT_NAMES[slot]}</span><strong>${esc(component(c.components[slot]!)!.name)}</strong></button>`).join('')}</div><div class="filters"><label>Profondeur (m)<input id="rig-depth" type="number" min="0.2" max="4" step="0.1" value="${c.depth}" ${c.method!=='float'?'disabled':''}></label>${c.method==='float'?`<label>Répartition<select id="rig-distribution"><option value="spread">Étalée</option><option value="grouped">Groupée</option><option value="touch">Groupée + plomb de touche</option></select></label>`:''}</div><p class="intro">${c.method==='float'?'Profondeur sous le bouchon, limitée par le fond au poste. Masse hameçon + esche estimée à 0,15 g.':c.method==='bottom'?'Présentation au fond réel du poste.':'Armement intégré au leurre, profondeur liée à sa masse et à sa récupération.'}</p><p id="rig-sheet-validation" class="warning-line" aria-live="polite">${esc([...validateRig(t),...rigWarnings(c)].join(' ')||'Montage prêt.')}</p><button id="rig-done" class="action">Garder ce montage</button>`;
+    el('rig-depth').onchange=()=>{if(!this.editable()){this.rig();return;}const n=Number(el<HTMLInputElement>('rig-depth').value);if(!Number.isFinite(n)||n<.2||n>4){this.rig();return;}c.depth=Math.round(n*10)/10;this.commit();};
+    if(c.method==='float'){el<HTMLSelectElement>('rig-distribution').value=c.distribution;el('rig-distribution').onchange=()=>{if(!this.editable()){this.rig();return;}c.distribution=el<HTMLSelectElement>('rig-distribution').value as typeof c.distribution;this.commit();};}
+    el('rig-done').onclick=()=>{this.h.persist();this.h.close('rig-sheet');this.render();};this.h.open('rig-sheet');
+  }
+  shopComponents(family='all') {
+    const slot=family==='line'?'main_line':family==='rig'?'attachment':family;
+    const items=COMPONENTS.filter(i=>!i.free&&(slot==='all'||i.slot===slot));
+    return `<h3 class="section-title">Composants jouables</h3><p class="intro">Achats en écus du jeu. Le kit gratuit complet reste disponible.</p>${['Durables','Composants remplaçables','Consommables'].map(category=>{
+      const rows=items.filter(i=>(i.slot==='reel'?'Durables':i.slot==='bait'?'Consommables':'Composants remplaçables')===category);
+      return rows.length?`<h4>${category}</h4><div class="compact-list">${rows.map(i=>`<div class="compact-row"><div><strong>${esc(i.name)}</strong><small>${i.pack} ${i.unit} · ${i.price} écus · Stock ${this.h.save().tackle.stock[i.id]??0}</small></div><button class="secondary" data-component-info="${i.id}">Fiche</button><button class="secondary" data-component-buy="${i.id}">Acheter</button></div>`).join('')}</div>`:'';
+    }).join('')}`;
+  }
+  componentInfo(id:string){const i=component(id);if(!i)return;el('component-sheet-title').textContent=i.name;el('component-sheet-body').innerHTML=`<p class="intro">${esc(i.description)}</p><p class="intro">Compatible : ${i.methods.map(methodName).join(' · ')}. ${i.free?'Kit gratuit, renouvelable et non revendable.':`${i.price} écus / ${i.pack} ${i.unit}. Stock : ${this.h.save().tackle.stock[id]??0}.`}</p><p class="intro">Les paramètres sont des réglages du jeu.</p>${i.free?'':`<button class="action" data-component-buy="${id}">Acheter ce lot</button>`}`;this.h.open('component-sheet');}
+  private confirmBuy(id:string) {const i=component(id);if(!i||i.free)return;const s=this.h.save();el('purchase-confirm-title').textContent='Confirmer mon achat';el('purchase-confirm-body').innerHTML=`<h3>${esc(i.name)}</h3><label class="preset-label">Nombre de lots<input id="component-count" type="number" min="1" max="20" value="1"></label><p id="component-total" class="intro"></p><button id="component-confirm" class="action">Confirmer l’achat</button>`;const total=()=>{const n=Number(el<HTMLInputElement>('component-count').value);el('component-total').textContent=`${n*i.pack} ${i.unit} · ${n*i.price} écus · Reste ${s.coins-n*i.price} écus. L’achat n’équipe pas cet objet.`;el<HTMLButtonElement>('component-confirm').disabled=!Number.isSafeInteger(n)||n<1||n>20||s.coins<n*i.price;};total();el('component-count').oninput=total;el('component-confirm').onclick=()=>{const r=buyComponent(s.tackle,id,s.coins,Number(el<HTMLInputElement>('component-count').value));if(r.error){this.h.toast(r.error);return;}s.coins=r.coins;this.h.persist();this.h.refresh();this.h.close('purchase-confirm');if(el<HTMLDialogElement>('component-sheet').open)this.h.close('component-sheet');this.render();this.refreshShopComponents();};this.h.open('purchase-confirm');}
+  refreshShopComponents(){let container=el('shop-components');if(!container){el('shop-list').insertAdjacentHTML('afterend','<section id="shop-components"></section>');container=el('shop-components');}container.innerHTML=this.shopComponents(el<HTMLSelectElement>('shop-family').value);}
+  private async loadLibrary(){this.library??=(await import('../game/research-library.json')).default;return this.library;}
+  async catalogue(host:string){const lib=await this.loadLibrary(),query=el<HTMLInputElement>(`library-query-${host}`).value.toLocaleLowerCase(),category=el<HTMLSelectElement>(`library-type-${host}`).value;el(`library-list-${host}`).innerHTML=lib.entries.filter(e=>e.category===category&&`${e.name} ${e.sourceId}`.toLocaleLowerCase().includes(query)).map(e=>`<div class="compact-row"><div><strong>${esc(e.name)}</strong><small>${e.variants.length?`${e.variants.length} tailles/configurations · `:''}Catalogue · ${this.researchState(e.sourceId)}</small></div><button class="secondary" data-research="${esc(e.id)}">Fiche</button></div>`).join('')||'<p class="intro">Aucune fiche dans cette sélection.</p>';el(`library-load-${host}`).hidden=true;}
+  private researchState(id:string){if(Object.values(PROFILE_IDS).includes(id))return 'Espèce déjà jouable';return ['flotteur_fixe','fond','leurre'].includes(id)?'Adaptation de base jouable':'À venir';}
+  async research(id:string){const lib=await this.loadLibrary(),e=lib.entries.find(e=>e.id===id);if(!e)return;el('research-sheet-title').textContent=e.name;el('research-sheet-body').innerHTML=`<span class="state-pill">${this.researchState(e.sourceId)}</span><p class="intro">${esc(e.description)}</p><p class="intro">${e.category==='Poissons'?'Biologie issue du dossier fourni. Les notes et affinités sont des propositions d’équilibrage.':''} ${e.identity.includes('unresolved')||e.status.includes('identity')?'Identité à confirmer ; aucune activation.':''}</p>${e.slots.length?`<h3>Composants de la recette</h3><p class="intro">${e.slots.map(id=>lib.slots.find(s=>s.id===id)?.name??id).map(esc).join(' · ')}</p>`:''}${e.methods.length?`<p class="intro">Méthodes candidates : ${e.methods.map(esc).join(' · ')}</p>`:''}${e.variants.length?`<h3>Tailles et configurations</h3><div class="compact-list">${e.variants.map(v=>`<div class="compact-row"><strong>${esc(v.name)}</strong><small>À venir · paramètres à définir</small></div>`).join('')}</div>`:''}<p class="warning-line">La présence de cette fiche n’active aucun nouvel achat, modèle ou habitat. Les usages disponibles sont indiqués dans Ma canne et les composants jouables.</p><details><summary>Sources et limites</summary>${e.sources.map(id=>{const source=lib.sources.find(s=>s.id===id);return source?`<p class="intro"><a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.title)}</a> · ${esc(source.coverage)}</p>`:'';}).join('')}<p class="intro">Statut du dossier : ${esc(e.status)}</p></details>`;this.h.open('research-sheet');}
+}

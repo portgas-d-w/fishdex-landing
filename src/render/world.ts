@@ -1,3 +1,4 @@
+import { component } from '../game/rig';
 import { Engine } from '@babylonjs/core/Engines/engine';
 import { Scene } from '@babylonjs/core/scene';
 import { Matrix, Vector3 } from '@babylonjs/core/Maths/math.vector';
@@ -270,7 +271,8 @@ col=mix(col,col*vec3(.62,.80,.70),smoothstep(24.,33.,p.y)*(1.-noise(p*.12))*.45)
     this.bobber.position.set(targetX * cast, 0.035 + Math.sin(this.time * 2) * 0.022, -1 + (targetZ + 1) * cast);
     if (game.phase === 'casting') this.bobber.position.copyFrom(Vector3.Lerp(this.castOrigin, new Vector3(targetX, 0.1, targetZ), cast).add(new Vector3(0, Math.sin(cast * Math.PI) * 2.3, 0)));
     if (game.method === 'lure' && ['waiting', 'bite'].includes(game.phase)) this.bobber.position.set(game.fishPosition.x, 0.04, game.fishPosition.z);
-    if (game.method === 'bottom' && ['waiting', 'bite'].includes(game.phase)) this.bobber.position.y = -game.target.z * 0.2;
+    if (game.method !== 'float' && ['waiting', 'bite'].includes(game.phase)) this.bobber.position.y = -game.presentationDepth;
+    if(game.method==='float' && ['waiting','bite'].includes(game.phase)) { const f=component(game.rig.components.float??''),w=component(game.rig.components.weight??'');this.bobber.position.y-=Math.max(0,(w?.mass??0)+(f?.integrated??0)+.15-(f?.capacity??2))*.2; }
     this.lure.position.copyFrom(this.bobber.position); this.lure.rotation.y = game.rodYaw;
     if (game.phase === 'bite') {
       this.bobber.position.y -= Math.abs(Math.sin(this.time * 12)) * 0.1;

@@ -41,3 +41,8 @@ doivent encore être validées par l’utilisateur. Ne pas confondre un prototyp
 fonctionnel avec un jeu prêt à diffuser largement.
 
 - 1 octobre 2026, structure 0.5.0 : document unique prioritaire ; FishDex cœur de navigation, sauvegarde v3 migrée, catalogues communs, achats confirmés et niveau 2 pour précision, modes appui/cercle, contenu futur explicitement non jouable. Détails DECISIONS_JEU.md.
+
+- 2 octobre 2026 : nouvelle consigne remplace l’ordre méthode/canne et annule tout mode circulaire. Canne → méthode compatible → montage ; Ma canne par défaut, Mon sac uniquement possessions, Ensembles références sans copie de stock.
+- 2 octobre 2026 : version 4 et même clé de sauvegarde ; anciens durables conservés, kit virtuel illimité, composants payants en quantités séparées. Ligne valide réserve avant lancement ; esche débitée à la résolution, réutilisables libérés ; événement unique par instance active. Rechargement ramène la ligne sans nouvelle capture et consomme une portion utilisée une fois.
+- 2 octobre 2026 : catalogues riches chargés à la demande, 274 exemples regroupés dans 84 familles et sans achat ; seuls prototypes fonctionnels ont des paramètres/prix originaux de jeu. Trois méthodes seulement et aucun nouveau modèle. Taxons douteux restent en attente.
+- 2 octobre 2026 : rencontres par présence locale, strate et régime ; notes de combat, strates, variations, tarifs et coefficients de nœud sont des hypothèses d’équilibrage, jamais des faits scientifiques. Forces encore normalisées ; masses en g et stocks de fil en m distincts.

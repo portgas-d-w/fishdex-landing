@@ -1,0 +1,23 @@
+id|name|family|rod_types|requires_reel|required_slots|principle|source_ids|research_status|context
+coup|Coup à canne télescopique|flotteur|telescopique|false|main_line,float,weight,leader,hook,bait|Présentation au flotteur près du bord.|tech_coup|documented|bord
+grande_canne|Grande canne à emmanchements|flotteur|grande_canne|false|elastic,main_line,float,weight,leader,hook,bait|Contrôle de ligne et amortissement par élastique.|tech_coup,tech_elastic|documented|bord
+anglaise|Anglaise au waggler|flotteur|match,polyvalente|true|reel,main_line,float,weight,leader,hook,bait|Flotteur fixé par sa base, fixe ou coulissant.|tech_anglaise_fixe,tech_anglaise_coulissant|documented|bord
+bolognaise|Bolognaise|flotteur|bolognaise|true|reel,main_line,float,weight,leader,hook,bait|Longue canne à anneaux et contrôle de dérive.|tech_bolo|partial|riviere
+fond|Fond / plombée|fond|fond,polyvalente,carpe|true|reel,main_line,weight,leader,hook,bait|Esche présentée au fond avec lest.|tech_coup|documented|bord
+feeder|Feeder à cage|fond|feeder,polyvalente|true|reel,main_line,feeder,leader,hook,bait,groundbait|Amorçage au fond et indication par le scion.|tech_feeder,tech_feeder_potence|documented|bord
+method_feeder|Method feeder|fond|feeder|true|reel,main_line,feeder,leader,hook,bait,groundbait|Esche près de l'amorce portée par le feeder.|tech_feeder,tech_wafter|partial|bord
+carpe|Carpe au posé|carpe|carpe,fond|true|reel,main_line,weight,leader,hook,bait|Présentation au cheveu et ensemble adapté.|tech_carp_rigs,tech_lead_clip|documented|bord
+stalking|Approche de bordure / stalking|approche|carpe,polyvalente,match|true|reel,main_line,leader,hook,bait|Approche discrète et présentation près du bord.|tech_carp_rigs|partial|bordure
+surface|Carpe et poissons blancs en surface|surface|carpe,polyvalente,match|true|reel,main_line,leader,hook,bait|Esche flottante ; choix de portée et discrétion.|tech_coup|partial|surface
+leurre|Lancer aux leurres|leurre|spinning,casting,polyvalente|true|reel,main_line,leader,lure|Animation d'une proie artificielle.|tech_lures,tech_soft_rigs|documented|bord
+verticale|Leurre en verticale|leurre|verticale,spinning,casting|true|reel,main_line,leader,lure|Présentation sous le point de pêche ; profondeur variable.|tech_lures|partial|ponton_profond,bateau_futur
+mort_manie|Poisson mort manié|appat_anime|spinning,casting|true|reel,main_line,leader,weight,harness,bait|Animation d'un poisson mort sur monture.|tech_coup|needs_research|bord
+toc|Toc aux appâts naturels|derive|toc|true|reel,main_line,indicator,weight,leader,hook,bait|Dérive réglée par la plombée et la canne.|tech_toc,tech_toc_variantes|documented|riviere
+mouche|Mouche|mouche|mouche|true|reel,backing,fly_line,leader,tippet,fly|Ligne spécifique et imitation adaptée à la couche d'eau.|tech_fly|documented|riviere,lac
+nymphe_fil|Nymphe au fil|mouche|mouche,nymphe|true|reel,main_line,indicator,leader,tippet,fly|Dérive de nymphes contrôlée par le fil.|tech_fly,tech_toc|partial|riviere
+bombette|Bombette|appat_anime|bombette,match|true|reel,main_line,bombette,swivel,leader,bait|Lancer une esche légère avec un corps porteur.|tech_bombette|documented|lac
+gambe|Gambe / train de nymphes|specialiste|gambe,verticale|true|reel,main_line,leader,weight,fly|Plusieurs imitations sur un montage vertical spécialisé.|bio_coregone|needs_research|lac_profond
+traine|Traîne|specialiste|traine|true|reel,main_line,leader,lure|Présentation en déplacement ; embarcation future.|tech_lures|needs_research|bateau_futur
+clonk|Silure au clonk|specialiste|silure|true|reel,main_line,leader,weight,hook,bait,clonk|Approche sonore et verticale spécialisée.|bio_silure|needs_research|bateau_futur
+ultraleger|Leurre ultraléger|approche|spinning_ul|true|reel,main_line,leader,lure|Même logique leurre avec ensemble léger.|tech_lures,tech_soft_rigs|documented|bord
+carpodrome|Carpodrome à grande canne|approche|grande_canne|false|elastic,main_line,float,weight,leader,hook,bait|Variante de grande canne pour poissons robustes.|tech_elastic,tech_coup|partial|plan_eau_amenage

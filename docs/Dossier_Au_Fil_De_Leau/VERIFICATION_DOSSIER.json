@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "checked_scope": "Dossier uniquement ; jeu non testé",
+  "checks": 6151,
+  "counts": {
+    "profils_poissons": 62,
+    "identites_en_attente": 3,
+    "methodes_et_approches": 22,
+    "recettes_montage": 55,
+    "appats_leurres_amorces": 80,
+    "familles_materiel": 84,
+    "exemples_equipements": 274,
+    "correspondances_images": 101,
+    "apparences_additionnelles_cataloguees": 27,
+    "sources": 91
+  },
+  "errors": []
+}

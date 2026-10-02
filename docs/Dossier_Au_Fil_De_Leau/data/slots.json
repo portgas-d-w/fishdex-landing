@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0.0",
+  "research_date": "2026-10-02",
+  "implementation_status": "catalogued_not_verified_in_game",
+  "numerical_parameters_origin": "provisional_game_design_not_biological_measurement",
+  "entries": [
+    {
+      "id": "rod",
+      "name": "Canne"
+    },
+    {
+      "id": "reel",
+      "name": "Moulinet"
+    },
+    {
+      "id": "elastic",
+      "name": "Élastique"
+    },
+    {
+      "id": "main_line",
+      "name": "Corps de ligne"
+    },
+    {
+      "id": "backing",
+      "name": "Backing"
+    },
+    {
+      "id": "fly_line",
+      "name": "Soie"
+    },
+    {
+      "id": "leader",
+      "name": "Bas de ligne"
+    },
+    {
+      "id": "tippet",
+      "name": "Pointe"
+    },
+    {
+      "id": "float",
+      "name": "Flotteur"
+    },
+    {
+      "id": "weight",
+      "name": "Lest / plombée"
+    },
+    {
+      "id": "feeder",
+      "name": "Feeder"
+    },
+    {
+      "id": "bombette",
+      "name": "Bombette"
+    },
+    {
+      "id": "hook",
+      "name": "Hameçon"
+    },
+    {
+      "id": "bait",
+      "name": "Esche"
+    },
+    {
+      "id": "lure",
+      "name": "Leurre"
+    },
+    {
+      "id": "fly",
+      "name": "Mouche"
+    },
+    {
+      "id": "groundbait",
+      "name": "Amorce"
+    },
+    {
+      "id": "swivel",
+      "name": "Émerillon"
+    },
+    {
+      "id": "snap",
+      "name": "Agrafe"
+    },
+    {
+      "id": "stop",
+      "name": "Stop"
+    },
+    {
+      "id": "bead",
+      "name": "Perle"
+    },
+    {
+      "id": "lead_clip",
+      "name": "Clip-plomb"
+    },
+    {
+      "id": "tube",
+      "name": "Tube"
+    },
+    {
+      "id": "boom",
+      "name": "Potence"
+    },
+    {
+      "id": "hair",
+      "name": "Cheveu"
+    },
+    {
+      "id": "pva",
+      "name": "PVA"
+    },
+    {
+      "id": "indicator",
+      "name": "Indicateur"
+    },
+    {
+      "id": "jig_head",
+      "name": "Tête lestée / jig"
+    },
+    {
+      "id": "nail_weight",
+      "name": "Insert de lest"
+    },
+    {
+      "id": "wire_arm",
+      "name": "Tige"
+    },
+    {
+      "id": "harness",
+      "name": "Monture"
+    },
+    {
+      "id": "clonk",
+      "name": "Clonk"
+    },
+    {
+      "id": "landing",
+      "name": "Réception"
+    },
+    {
+      "id": "tool",
+      "name": "Outil"
+    },
+    {
+      "id": "storage",
+      "name": "Rangement"
+    }
+  ]
+}

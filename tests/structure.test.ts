@@ -1,3 +1,4 @@
+import { starterConfig } from '../src/game/rig.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { emptySave, parseSave, recordCatch, purchase } from '../src/game/save.ts';
@@ -6,8 +7,8 @@ const caught=(id:string,length=20)=>({id,speciesId:'roach' as const,length,date:
 test('Migration v2 conserve individus, favoris et gains et prépare un montage gratuit valide',()=>{
  const s=emptySave();recordCatch(s,caught('kept'));s.favorites=['kept'];
  const old={...s,version:2,settings:{sound:true,quality:'eco'}};delete (old as any).preparation;
- const next=parseSave(JSON.stringify(old));assert.equal(next.version,3);assert.deepEqual(next.journal,s.journal);assert.equal(next.coins,s.coins);assert.deepEqual(next.favorites,s.favorites);assert.equal(next.settings.reelMode,'hold');assert.ok(preparation(next.preparation.method,next.equipped,next.preparation.bait).valid);
- next.preparation={method:'lure',bait:'lure',location:'willow-pond'};next.settings.reelMode='circle';assert.deepEqual(parseSave(JSON.stringify(next)),next);
+ const next=parseSave(JSON.stringify(old));assert.equal(next.version,4);assert.deepEqual(next.journal,s.journal);assert.equal(next.coins,s.coins);assert.deepEqual(next.favorites,s.favorites);assert.equal(next.settings.reelMode,'hold');assert.ok(preparation(next.preparation.method,next.equipped,next.preparation.bait).valid);
+ next.preparation={method:'lure',bait:'lure',location:'willow-pond'};next.settings.reelMode='hold';next.tackle.config=starterConfig('lure');assert.deepEqual(parseSave(JSON.stringify(next)),next);
  next.preparation.bait='worm';assert.throws(()=>parseSave(JSON.stringify(next)),/incompatible/);
 });
 test('Tous les emplacements et familles ont un catalogue, futur distinct de verrouillé',()=>{

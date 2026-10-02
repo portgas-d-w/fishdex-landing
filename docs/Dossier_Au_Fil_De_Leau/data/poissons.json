@@ -1,0 +1,4613 @@
+{
+  "schema_version": "1.0.0",
+  "research_date": "2026-10-02",
+  "implementation_status": "catalogued_not_verified_in_game",
+  "numerical_parameters_origin": "provisional_game_design_not_biological_measurement",
+  "attribute_order": [
+    "burst",
+    "endurance",
+    "agility",
+    "head_shakes",
+    "cover_seeking",
+    "slack_pressure"
+  ],
+  "note": "Les profils sont des espèces/complexes et quelques identités en attente. Une apparence ou un record ne crée pas automatiquement une nouvelle espèce. Les habitats et régimes sont indicatifs ; les actions de combat et affinités sont proposées.",
+  "entries": [
+    {
+      "id": "grande-alose",
+      "name": "Grande alose",
+      "scientific_name": "Alosa alosa",
+      "asset_stems": [
+        "grande-alose"
+      ],
+      "biological_facts": "Consomme principalement du zooplancton en mer ; arrête de s'alimenter pendant la remontée reproductrice.",
+      "habitats": [
+        "estuaire",
+        "riviere_migratoire"
+      ],
+      "diet_tags": [
+        "zooplancton",
+        "plancton"
+      ],
+      "activity": "selon_stade",
+      "archetype": "migrateur",
+      "attributes": {
+        "burst": 0.73,
+        "endurance": 0.74,
+        "agility": 0.71,
+        "head_shakes": 0.65,
+        "cover_seeking": 0.1,
+        "slack_pressure": 0.7
+      },
+      "bait_ids": [],
+      "method_ids": [],
+      "source_ids": [
+        "bio_aloses"
+      ],
+      "discovery_mode": "specialist_future",
+      "combat_proposal": "Espèce distincte de l'alose feinte ; observation et approche spécialiste à définir avant capture.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": [
+        {
+          "stage": "adult_reproductive_return",
+          "hunger_bite_rate": 0,
+          "reaction_to_artificial": "separate_specialist_system_needs_validation"
+        }
+      ]
+    },
+    {
+      "id": "carassin-dore",
+      "name": "Carassin doré / poisson rouge",
+      "scientific_name": "Carassius auratus",
+      "asset_stems": [],
+      "biological_facts": "Omnivore ; taxon distinct du carassin commun et du carassin argenté, même lorsque la coloration varie.",
+      "habitats": [
+        "fond",
+        "herbiers",
+        "eau_calme"
+      ],
+      "diet_tags": [
+        "invertebres",
+        "vegetaux"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "cyprinide_benthique",
+      "attributes": {
+        "burst": 0.4,
+        "endurance": 0.42,
+        "agility": 0.43,
+        "head_shakes": 0.3,
+        "cover_seeking": 0.5,
+        "slack_pressure": 0.4
+      },
+      "bait_ids": [
+        "ver_terre",
+        "mais",
+        "pain"
+      ],
+      "method_ids": [
+        "coup",
+        "anglaise"
+      ],
+      "source_ids": [
+        "bio_carassins"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Petites tractions latérales et pauses ; l'image carassin-doré doit confirmer ce taxon avant rattachement définitif.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "mais",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "pain",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "ablette",
+      "name": "Ablette",
+      "scientific_name": "Alburnus alburnus",
+      "asset_stems": [
+        "ablette"
+      ],
+      "biological_facts": "Omnivore de petite taille consommant invertébrés et débris végétaux.",
+      "habitats": [
+        "surface",
+        "pleine_eau",
+        "eau_calme"
+      ],
+      "diet_tags": [
+        "insectes",
+        "petits_invertebres"
+      ],
+      "activity": "jour",
+      "archetype": "petit_banc",
+      "attributes": {
+        "burst": 0.3,
+        "endurance": 0.16,
+        "agility": 0.7,
+        "head_shakes": 0.25,
+        "cover_seeking": 0.1,
+        "slack_pressure": 0.6
+      },
+      "bait_ids": [
+        "asticot",
+        "pinkie",
+        "ver_vase"
+      ],
+      "method_ids": [
+        "coup",
+        "anglaise"
+      ],
+      "source_ids": [
+        "bio_ablette"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Touches rapides et fuite latérale courte ; combat bref mais mou possible au rapprochement.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "pinkie",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "ver_vase",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "alose-feinte",
+      "name": "Alose feinte",
+      "scientific_name": "Alosa fallax",
+      "asset_stems": [
+        "alose-feinte"
+      ],
+      "biological_facts": "Adulte principalement piscivore en mer ; cesse de se nourrir lors de la remontée reproductrice.",
+      "habitats": [
+        "estuaire",
+        "riviere_migratoire"
+      ],
+      "diet_tags": [
+        "poissons",
+        "plancton"
+      ],
+      "activity": "selon_stade",
+      "archetype": "migrateur",
+      "attributes": {
+        "burst": 0.76,
+        "endurance": 0.63,
+        "agility": 0.78,
+        "head_shakes": 0.66,
+        "cover_seeking": 0.1,
+        "slack_pressure": 0.73
+      },
+      "bait_ids": [],
+      "method_ids": [
+        "leurre",
+        "mouche"
+      ],
+      "source_ids": [
+        "bio_aloses"
+      ],
+      "discovery_mode": "specialist_future",
+      "combat_proposal": "Départs rapides et changements de direction ; réaction aux artificiels distincte de la faim en remontée.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": [
+        {
+          "stage": "adult_reproductive_return",
+          "hunger_bite_rate": 0,
+          "reaction_to_artificial": "separate_specialist_system_needs_validation"
+        }
+      ]
+    },
+    {
+      "id": "amour-argente",
+      "name": "Carpe argentée",
+      "scientific_name": "Hypophthalmichthys molitrix",
+      "asset_stems": [
+        "amour-argente"
+      ],
+      "biological_facts": "Filtre surtout le phytoplancton, avec d'autres petites particules alimentaires.",
+      "habitats": [
+        "pleine_eau",
+        "eau_calme"
+      ],
+      "diet_tags": [
+        "phytoplancton",
+        "plancton"
+      ],
+      "activity": "selon_temperature",
+      "archetype": "filtreur",
+      "attributes": {
+        "burst": 0.72,
+        "endurance": 0.7,
+        "agility": 0.53,
+        "head_shakes": 0.4,
+        "cover_seeking": 0.1,
+        "slack_pressure": 0.42
+      },
+      "bait_ids": [],
+      "method_ids": [],
+      "source_ids": [
+        "bio_argentee"
+      ],
+      "discovery_mode": "observation",
+      "combat_proposal": "Découverte visuelle d'abord ; aucun combat classique activé sans mécanique de capture documentée.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": [
+        {
+          "stage": "adult",
+          "feeding": "filtering",
+          "standard_hook_bait_system": false
+        }
+      ]
+    },
+    {
+      "id": "amour-blanc",
+      "name": "Amour blanc / carpe herbivore",
+      "scientific_name": "Ctenopharyngodon idella",
+      "asset_stems": [
+        "amour-blanc",
+        "carpe-herbivore"
+      ],
+      "biological_facts": "L'adulte consomme principalement des végétaux aquatiques ; jeunes et adultes ont des régimes différents.",
+      "habitats": [
+        "herbiers",
+        "eau_calme"
+      ],
+      "diet_tags": [
+        "vegetaux",
+        "graines"
+      ],
+      "activity": "selon_temperature",
+      "archetype": "cyprinide_puissant",
+      "attributes": {
+        "burst": 0.84,
+        "endurance": 0.76,
+        "agility": 0.52,
+        "head_shakes": 0.45,
+        "cover_seeking": 0.54,
+        "slack_pressure": 0.47
+      },
+      "bait_ids": [
+        "mais",
+        "pain",
+        "vegetaux"
+      ],
+      "method_ids": [
+        "fond",
+        "carpe",
+        "stalking"
+      ],
+      "source_ids": [
+        "bio_herbivore"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Départ puissant, récupération possible puis nouveau départ près du bord ; variation individuelle importante.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "mais",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "pain",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "vegetaux",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": [
+        {
+          "stage": "juvenile_vs_adult",
+          "rule": "Ne pas appliquer le régime végétal adulte à tous les juvéniles."
+        }
+      ]
+    },
+    {
+      "id": "amour-marbre",
+      "name": "Carpe à grosse tête / amour marbré",
+      "scientific_name": "Hypophthalmichthys nobilis",
+      "asset_stems": [
+        "amour-marbre"
+      ],
+      "biological_facts": "Espèce filtrante dont le zooplancton occupe une place importante dans l'alimentation.",
+      "habitats": [
+        "pleine_eau",
+        "eau_calme"
+      ],
+      "diet_tags": [
+        "zooplancton",
+        "plancton"
+      ],
+      "activity": "selon_temperature",
+      "archetype": "filtreur",
+      "attributes": {
+        "burst": 0.62,
+        "endurance": 0.82,
+        "agility": 0.38,
+        "head_shakes": 0.26,
+        "cover_seeking": 0.08,
+        "slack_pressure": 0.32
+      },
+      "bait_ids": [],
+      "method_ids": [],
+      "source_ids": [
+        "bio_marbree"
+      ],
+      "discovery_mode": "observation",
+      "combat_proposal": "Profil visible en collection ; capture spécialisée future, sans préférence universelle pour les bouillettes.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": [
+        {
+          "stage": "adult",
+          "feeding": "filtering",
+          "standard_hook_bait_system": false
+        }
+      ]
+    },
+    {
+      "id": "anguille-europeenne",
+      "name": "Anguille européenne",
+      "scientific_name": "Anguilla anguilla",
+      "asset_stems": [
+        "anguille-europeenne"
+      ],
+      "biological_facts": "Chasse au crépuscule ; consomme invertébrés et poissons. Certaines phases migratoires ne sont plus alimentaires.",
+      "habitats": [
+        "fond",
+        "abris",
+        "eau_calme"
+      ],
+      "diet_tags": [
+        "vers",
+        "invertebres",
+        "poissons"
+      ],
+      "activity": "crepuscule_nuit",
+      "archetype": "benthique_sinueux",
+      "attributes": {
+        "burst": 0.56,
+        "endurance": 0.7,
+        "agility": 0.7,
+        "head_shakes": 0.54,
+        "cover_seeking": 0.91,
+        "slack_pressure": 0.5
+      },
+      "bait_ids": [
+        "ver_terre",
+        "morceau_poisson"
+      ],
+      "method_ids": [
+        "fond"
+      ],
+      "source_ids": [
+        "bio_anguille"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Cherche les abris et oppose des tractions sinueuses ; ne pas confondre avec les départs rectilignes d'un prédateur pélagique.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "morceau_poisson",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "apron-du-rhone",
+      "name": "Apron du Rhône",
+      "scientific_name": "Zingel asper",
+      "asset_stems": [
+        "apron-du-rhone"
+      ],
+      "biological_facts": "Poisson du cours moyen des rivières ; consomme des larves d'insectes et des vers.",
+      "habitats": [
+        "fond",
+        "riviere_courante",
+        "gravier"
+      ],
+      "diet_tags": [
+        "larves",
+        "vers"
+      ],
+      "activity": "a_documenter",
+      "archetype": "petit_benthique",
+      "attributes": {
+        "burst": 0.22,
+        "endurance": 0.26,
+        "agility": 0.32,
+        "head_shakes": 0.21,
+        "cover_seeking": 0.8,
+        "slack_pressure": 0.35
+      },
+      "bait_ids": [],
+      "method_ids": [],
+      "source_ids": [
+        "bio_apron"
+      ],
+      "discovery_mode": "observation",
+      "combat_proposal": "Observation sur le fond ; aucun appât de capture attribué pour cette proposition de découverte.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "aspe",
+      "name": "Aspe",
+      "scientific_name": "Leuciscus aspius",
+      "asset_stems": [
+        "aspe"
+      ],
+      "biological_facts": "L'adulte chasse surtout de petits poissons près de la surface ; les jeunes ont un régime plus invertébré.",
+      "habitats": [
+        "surface",
+        "riviere_courante",
+        "pleine_eau"
+      ],
+      "diet_tags": [
+        "poissons",
+        "insectes"
+      ],
+      "activity": "jour",
+      "archetype": "chasseur_rapide",
+      "attributes": {
+        "burst": 0.95,
+        "endurance": 0.72,
+        "agility": 0.85,
+        "head_shakes": 0.46,
+        "cover_seeking": 0.2,
+        "slack_pressure": 0.73
+      },
+      "bait_ids": [
+        "petit_poisson_nageur",
+        "cuiller_ondulante",
+        "stickbait"
+      ],
+      "method_ids": [
+        "leurre"
+      ],
+      "source_ids": [
+        "bio_aspe"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Départ très rapide, longues traversées et retour vers le joueur pouvant produire du mou.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "petit_poisson_nageur",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "cuiller_ondulante",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "stickbait",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "barbeau-meridional",
+      "name": "Barbeau méridional",
+      "scientific_name": "Barbus meridionalis",
+      "asset_stems": [
+        "barbeau-meridional"
+      ],
+      "biological_facts": "Vit dans des eaux courantes claires et oxygénées ; consomme de petits invertébrés.",
+      "habitats": [
+        "fond",
+        "riviere_courante",
+        "gravier"
+      ],
+      "diet_tags": [
+        "invertebres"
+      ],
+      "activity": "a_documenter",
+      "archetype": "rheophile",
+      "attributes": {
+        "burst": 0.48,
+        "endurance": 0.65,
+        "agility": 0.54,
+        "head_shakes": 0.31,
+        "cover_seeking": 0.53,
+        "slack_pressure": 0.36
+      },
+      "bait_ids": [
+        "ver_terre",
+        "asticot",
+        "nymphe"
+      ],
+      "method_ids": [
+        "coup",
+        "toc",
+        "mouche"
+      ],
+      "source_ids": [
+        "bio_barbeau_meridional"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Résistance orientée vers le courant et maintien près du fond ; moins de force absolue qu'un grand barbeau.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "nymphe",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "barbeau",
+      "name": "Barbeau commun",
+      "scientific_name": "Barbus barbus",
+      "asset_stems": [
+        "barbeau"
+      ],
+      "biological_facts": "Se nourrit surtout d'invertébrés benthiques ; les grands adultes peuvent consommer de petits poissons.",
+      "habitats": [
+        "fond",
+        "riviere_courante",
+        "gravier"
+      ],
+      "diet_tags": [
+        "larves",
+        "invertebres",
+        "poissons"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "rheophile",
+      "attributes": {
+        "burst": 0.78,
+        "endurance": 0.94,
+        "agility": 0.42,
+        "head_shakes": 0.36,
+        "cover_seeking": 0.6,
+        "slack_pressure": 0.33
+      },
+      "bait_ids": [
+        "ver_terre",
+        "pellet",
+        "asticot",
+        "fromage"
+      ],
+      "method_ids": [
+        "feeder",
+        "fond",
+        "coup"
+      ],
+      "source_ids": [
+        "bio_barbeau"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Tient le fond et exploite le courant ; longs efforts et récupération progressive.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "pellet",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "fromage",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "black-bass-petite-bouche",
+      "name": "Achigan à petite bouche",
+      "scientific_name": "Micropterus dolomieu",
+      "asset_stems": [
+        "black-bass-petite-bouche"
+      ],
+      "biological_facts": "Recherche notamment les zones rocheuses ; régime carnivore incluant écrevisses, insectes et poissons.",
+      "habitats": [
+        "roches",
+        "riviere_courante",
+        "pleine_eau"
+      ],
+      "diet_tags": [
+        "ecrevisses",
+        "poissons",
+        "insectes"
+      ],
+      "activity": "jour_crepuscule",
+      "archetype": "carnassier_agile",
+      "attributes": {
+        "burst": 0.86,
+        "endurance": 0.75,
+        "agility": 0.9,
+        "head_shakes": 0.88,
+        "cover_seeking": 0.56,
+        "slack_pressure": 0.86
+      },
+      "bait_ids": [
+        "shad",
+        "ecrevisse_souple",
+        "crankbait",
+        "ver_souple"
+      ],
+      "method_ids": [
+        "leurre"
+      ],
+      "source_ids": [
+        "bio_bass_petite"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Combinaison de déplacements vifs et secousses ; les sauts restent des événements pondérés de gameplay.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "shad",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "ecrevisse_souple",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "crankbait",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "ver_souple",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "black-bass",
+      "name": "Achigan à grande bouche",
+      "scientific_name": "Micropterus salmoides",
+      "asset_stems": [
+        "black-bass"
+      ],
+      "biological_facts": "Carnivore opportuniste consommant poissons et autres proies animales ; chasse notamment de jour.",
+      "habitats": [
+        "herbiers",
+        "abris",
+        "eau_calme"
+      ],
+      "diet_tags": [
+        "poissons",
+        "ecrevisses",
+        "insectes"
+      ],
+      "activity": "jour",
+      "archetype": "carnassier_agile",
+      "attributes": {
+        "burst": 0.84,
+        "endurance": 0.61,
+        "agility": 0.83,
+        "head_shakes": 0.92,
+        "cover_seeking": 0.88,
+        "slack_pressure": 0.87
+      },
+      "bait_ids": [
+        "shad",
+        "ver_souple",
+        "grenouille_souple",
+        "spinnerbait",
+        "crankbait"
+      ],
+      "method_ids": [
+        "leurre"
+      ],
+      "source_ids": [
+        "bio_bass"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Départs courts vers les couverts, secousses et sauts occasionnels ; faibles marges de mou dans ces phases.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "shad",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "ver_souple",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "grenouille_souple",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "spinnerbait",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "crankbait",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "blageon",
+      "name": "Blageon",
+      "scientific_name": "Telestes souffia",
+      "asset_stems": [
+        "blageon",
+        "soufie"
+      ],
+      "biological_facts": "Consomme des proies de surface et du fond ; compétition rapide au sein du banc pour les insectes dérivants.",
+      "habitats": [
+        "riviere_courante",
+        "pleine_eau",
+        "surface"
+      ],
+      "diet_tags": [
+        "insectes",
+        "invertebres",
+        "algues"
+      ],
+      "activity": "jour",
+      "archetype": "petit_banc",
+      "attributes": {
+        "burst": 0.45,
+        "endurance": 0.31,
+        "agility": 0.8,
+        "head_shakes": 0.3,
+        "cover_seeking": 0.17,
+        "slack_pressure": 0.66
+      },
+      "bait_ids": [
+        "asticot",
+        "pinkie",
+        "mouche_seche",
+        "nymphe"
+      ],
+      "method_ids": [
+        "coup",
+        "toc",
+        "mouche"
+      ],
+      "source_ids": [
+        "bio_blageon"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Touches furtives en dérive et courtes accélérations de banc.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "pinkie",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "mouche_seche",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "nymphe",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "bouviere",
+      "name": "Bouvière",
+      "scientific_name": "Rhodeus amarus",
+      "asset_stems": [
+        "bouviere"
+      ],
+      "biological_facts": "Alimentation surtout végétale complétée par de petits invertébrés ; reproduction associée à des moules d'eau douce.",
+      "habitats": [
+        "eau_calme",
+        "herbiers"
+      ],
+      "diet_tags": [
+        "vegetaux",
+        "phytoplancton",
+        "larves"
+      ],
+      "activity": "a_documenter",
+      "archetype": "petit_banc",
+      "attributes": {
+        "burst": 0.16,
+        "endurance": 0.12,
+        "agility": 0.42,
+        "head_shakes": 0.18,
+        "cover_seeking": 0.34,
+        "slack_pressure": 0.47
+      },
+      "bait_ids": [],
+      "method_ids": [],
+      "source_ids": [
+        "bio_bouviere"
+      ],
+      "discovery_mode": "observation",
+      "combat_proposal": "Observation près des plantes et moules ; espèce de découverte, sans combat spectaculaire artificiel.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "breme-bordeliere",
+      "name": "Brème bordelière",
+      "scientific_name": "Blicca bjoerkna",
+      "asset_stems": [
+        "breme-bordeliere"
+      ],
+      "biological_facts": "Une étude au lac Balaton décrit un régime comprenant mollusques, crustacés et insectes ; proportions non généralisées.",
+      "habitats": [
+        "fond",
+        "eau_calme"
+      ],
+      "diet_tags": [
+        "mollusques",
+        "invertebres",
+        "larves"
+      ],
+      "activity": "a_documenter",
+      "archetype": "benthique_lent",
+      "attributes": {
+        "burst": 0.25,
+        "endurance": 0.38,
+        "agility": 0.31,
+        "head_shakes": 0.28,
+        "cover_seeking": 0.12,
+        "slack_pressure": 0.5
+      },
+      "bait_ids": [
+        "ver_vase",
+        "asticot",
+        "ver_terre"
+      ],
+      "method_ids": [
+        "coup",
+        "feeder"
+      ],
+      "source_ids": [
+        "bio_bordeliere"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Traction modérée et mouvements latéraux ; peu de sauts, récupération accessible au matériel léger.",
+      "research_status": "partial",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "ver_vase",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "breme-commune",
+      "name": "Brème commune",
+      "scientific_name": "Abramis brama",
+      "asset_stems": [
+        "breme-commune",
+        "breme-bronze"
+      ],
+      "biological_facts": "Fréquente les eaux calmes ou lentes ; consomme notamment insectes, crustacés, mollusques et plantes.",
+      "habitats": [
+        "fond",
+        "eau_calme",
+        "vase"
+      ],
+      "diet_tags": [
+        "larves",
+        "invertebres",
+        "vegetaux"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "benthique_lent",
+      "attributes": {
+        "burst": 0.3,
+        "endurance": 0.48,
+        "agility": 0.23,
+        "head_shakes": 0.25,
+        "cover_seeking": 0.15,
+        "slack_pressure": 0.51
+      },
+      "bait_ids": [
+        "ver_vase",
+        "asticot",
+        "ver_terre",
+        "mais"
+      ],
+      "method_ids": [
+        "coup",
+        "feeder",
+        "fond"
+      ],
+      "source_ids": [
+        "bio_breme"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Résistance lourde et régulière, mouvements de flanc et accalmies lisibles.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "ver_vase",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "mais",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "brochet",
+      "name": "Brochet",
+      "scientific_name": "Esox lucius",
+      "asset_stems": [
+        "brochet",
+        "brochet-trophee"
+      ],
+      "biological_facts": "Prédateur chassant à l'affût dans les plantes aquatiques ; attaque brusque depuis son couvert.",
+      "habitats": [
+        "herbiers",
+        "abris",
+        "eau_calme"
+      ],
+      "diet_tags": [
+        "poissons"
+      ],
+      "activity": "jour",
+      "archetype": "embuscade",
+      "attributes": {
+        "burst": 0.96,
+        "endurance": 0.66,
+        "agility": 0.73,
+        "head_shakes": 0.92,
+        "cover_seeking": 0.76,
+        "slack_pressure": 0.82
+      },
+      "bait_ids": [
+        "shad",
+        "swimbait",
+        "spinnerbait",
+        "cuiller_ondulante",
+        "poisson_mort"
+      ],
+      "method_ids": [
+        "leurre",
+        "mort_manie",
+        "fond"
+      ],
+      "source_ids": [
+        "bio_brochet"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Premier départ fort, secousses et tentatives de rejoindre un refuge ; protection contre les dents réellement utile.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "shad",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "swimbait",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "spinnerbait",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "cuiller_ondulante",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "poisson_mort",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "carassin-argente",
+      "name": "Carassin argenté",
+      "scientific_name": "Carassius gibelio",
+      "asset_stems": [
+        "carassin-argente"
+      ],
+      "biological_facts": "Taxon distinct du carassin commun ; omnivore consommant végétaux, détritus et petits invertébrés.",
+      "habitats": [
+        "eau_calme",
+        "fond",
+        "herbiers"
+      ],
+      "diet_tags": [
+        "vegetaux",
+        "larves",
+        "invertebres"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "cyprinide_moyen",
+      "attributes": {
+        "burst": 0.39,
+        "endurance": 0.45,
+        "agility": 0.44,
+        "head_shakes": 0.34,
+        "cover_seeking": 0.29,
+        "slack_pressure": 0.46
+      },
+      "bait_ids": [
+        "mais",
+        "asticot",
+        "ver_terre",
+        "pain"
+      ],
+      "method_ids": [
+        "coup",
+        "feeder"
+      ],
+      "source_ids": [
+        "bio_carassins"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Départs courts répétés et résistance moyenne ; la taille fait varier la difficulté.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "mais",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "pain",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "carassin",
+      "name": "Carassin commun",
+      "scientific_name": "Carassius carassius",
+      "asset_stems": [
+        "carassin"
+      ],
+      "biological_facts": "Omnivore de milieux calmes consommant végétaux et invertébrés, notamment larves de chironomes.",
+      "habitats": [
+        "eau_calme",
+        "herbiers",
+        "fond"
+      ],
+      "diet_tags": [
+        "vegetaux",
+        "larves",
+        "invertebres"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "cyprinide_moyen",
+      "attributes": {
+        "burst": 0.35,
+        "endurance": 0.47,
+        "agility": 0.35,
+        "head_shakes": 0.33,
+        "cover_seeking": 0.37,
+        "slack_pressure": 0.44
+      },
+      "bait_ids": [
+        "ver_vase",
+        "mais",
+        "asticot",
+        "ver_terre"
+      ],
+      "method_ids": [
+        "coup",
+        "feeder"
+      ],
+      "source_ids": [
+        "bio_carassins"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Touches discrètes proposées et fuite vers la végétation ; pas de puissance augmentée par une coloration.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "ver_vase",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "mais",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "carpe-commune",
+      "name": "Carpe commune",
+      "scientific_name": "Cyprinus carpio",
+      "asset_stems": [
+        "carpe-commune",
+        "carpe-commune-record"
+      ],
+      "biological_facts": "Omnivore fouillant le sédiment ; consomme invertébrés et matières végétales. Les formes d'écaillure ne sont pas de nouvelles espèces.",
+      "habitats": [
+        "fond",
+        "eau_calme",
+        "vase",
+        "herbiers"
+      ],
+      "diet_tags": [
+        "invertebres",
+        "graines",
+        "vegetaux"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "cyprinide_puissant",
+      "attributes": {
+        "burst": 0.87,
+        "endurance": 0.9,
+        "agility": 0.46,
+        "head_shakes": 0.41,
+        "cover_seeking": 0.7,
+        "slack_pressure": 0.42
+      },
+      "bait_ids": [
+        "mais",
+        "bouillette",
+        "pellet",
+        "wafter",
+        "pop_up",
+        "pain"
+      ],
+      "method_ids": [
+        "carpe",
+        "method_feeder",
+        "fond",
+        "stalking"
+      ],
+      "source_ids": [
+        "bio_carpe"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Longs départs, phases de pression soutenue et relance près de la berge ; prudence variable selon individu.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "mais",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "bouillette",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "pellet",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "wafter",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "pop_up",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "pain",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "chabot",
+      "name": "Chabot commun",
+      "scientific_name": "Cottus gobio",
+      "asset_stems": [
+        "chabot"
+      ],
+      "biological_facts": "Chasse de petits invertébrés du fond ; les œufs et larves de poissons ne sont pas sa nourriture habituelle selon la référence.",
+      "habitats": [
+        "fond",
+        "roches",
+        "riviere_courante"
+      ],
+      "diet_tags": [
+        "invertebres",
+        "larves"
+      ],
+      "activity": "aube_crepuscule",
+      "archetype": "petit_benthique",
+      "attributes": {
+        "burst": 0.25,
+        "endurance": 0.19,
+        "agility": 0.29,
+        "head_shakes": 0.3,
+        "cover_seeking": 0.91,
+        "slack_pressure": 0.35
+      },
+      "bait_ids": [],
+      "method_ids": [],
+      "source_ids": [
+        "bio_chabot"
+      ],
+      "discovery_mode": "observation",
+      "combat_proposal": "Petits déplacements entre les pierres ; découverte par observation proposée.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "chevesne",
+      "name": "Chevesne / chevaine",
+      "scientific_name": "Squalius cephalus",
+      "asset_stems": [
+        "chevesne"
+      ],
+      "biological_facts": "Régime opportuniste : invertébrés, matières végétales puis davantage de petits poissons chez les grands individus.",
+      "habitats": [
+        "riviere_courante",
+        "abris",
+        "surface"
+      ],
+      "diet_tags": [
+        "insectes",
+        "graines",
+        "poissons"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "opportuniste_riviere",
+      "attributes": {
+        "burst": 0.72,
+        "endurance": 0.58,
+        "agility": 0.71,
+        "head_shakes": 0.54,
+        "cover_seeking": 0.65,
+        "slack_pressure": 0.68
+      },
+      "bait_ids": [
+        "pain",
+        "ver_terre",
+        "asticot",
+        "petit_poisson_nageur",
+        "mouche_seche"
+      ],
+      "method_ids": [
+        "coup",
+        "fond",
+        "leurre",
+        "mouche",
+        "stalking"
+      ],
+      "source_ids": [
+        "bio_chevesne"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Premier départ rapide depuis la bordure puis résistance latérale ; bonus au choix de présentation, pas à une canne magique.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "pain",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "petit_poisson_nageur",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "mouche_seche",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "coregone",
+      "name": "Corégone / lavaret — groupe à préciser",
+      "scientific_name": "Coregonus lavaretus sensu source",
+      "asset_stems": [
+        "lavaret",
+        "coregone-palee"
+      ],
+      "biological_facts": "Le profil consulté consomme surtout du zooplancton et aussi des insectes ; identité des populations locales à confirmer.",
+      "habitats": [
+        "lac_froid",
+        "pleine_eau"
+      ],
+      "diet_tags": [
+        "zooplancton",
+        "larves",
+        "insectes"
+      ],
+      "activity": "jour",
+      "archetype": "pelagique_froid",
+      "attributes": {
+        "burst": 0.52,
+        "endurance": 0.57,
+        "agility": 0.62,
+        "head_shakes": 0.45,
+        "cover_seeking": 0.1,
+        "slack_pressure": 0.68
+      },
+      "bait_ids": [
+        "nymphe",
+        "micro_leurre"
+      ],
+      "method_ids": [
+        "gambe",
+        "mouche"
+      ],
+      "source_ids": [
+        "bio_coregone"
+      ],
+      "discovery_mode": "specialist_future",
+      "combat_proposal": "Fuite en pleine eau et faibles variations de profondeur ; technique de gambe non activée sans développement spécifique.",
+      "research_status": "partial",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "nymphe",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "micro_leurre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "cristivomer",
+      "name": "Cristivomer",
+      "scientific_name": "Salvelinus namaycush",
+      "asset_stems": [
+        "cristivomer"
+      ],
+      "biological_facts": "Salmonidé lacustre d'eau froide ; profil de référence nord-américain.",
+      "habitats": [
+        "lac_froid",
+        "fond",
+        "pleine_eau"
+      ],
+      "diet_tags": [
+        "poissons",
+        "invertebres"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "pelagique_froid",
+      "attributes": {
+        "burst": 0.68,
+        "endurance": 0.89,
+        "agility": 0.46,
+        "head_shakes": 0.55,
+        "cover_seeking": 0.21,
+        "slack_pressure": 0.49
+      },
+      "bait_ids": [
+        "shad",
+        "cuiller_ondulante",
+        "streamer"
+      ],
+      "method_ids": [
+        "verticale",
+        "traine",
+        "leurre"
+      ],
+      "source_ids": [
+        "bio_cristivomer"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Résistance profonde et longue remontée ; moins de sauts que les profils de surface dans cette proposition.",
+      "research_status": "partial",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "shad",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "cuiller_ondulante",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "streamer",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "eperlan",
+      "name": "Éperlan d'Europe",
+      "scientific_name": "Osmerus eperlanus",
+      "asset_stems": [
+        "eperlan"
+      ],
+      "biological_facts": "Synopsis FAO d'un petit poisson de banc ; les données historiques ne doivent pas être confondues avec l'éperlan arc-en-ciel.",
+      "habitats": [
+        "estuaire",
+        "pleine_eau",
+        "lac_froid"
+      ],
+      "diet_tags": [
+        "zooplancton",
+        "petits_invertebres"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "petit_banc",
+      "attributes": {
+        "burst": 0.34,
+        "endurance": 0.22,
+        "agility": 0.62,
+        "head_shakes": 0.31,
+        "cover_seeking": 0.09,
+        "slack_pressure": 0.55
+      },
+      "bait_ids": [
+        "micro_leurre"
+      ],
+      "method_ids": [
+        "leurre",
+        "gambe"
+      ],
+      "source_ids": [
+        "bio_eperlan"
+      ],
+      "discovery_mode": "specialist_future",
+      "combat_proposal": "Petite prise de banc et faible effort absolu ; présentation précise à approfondir.",
+      "research_status": "partial",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "micro_leurre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "esturgeon-siberien",
+      "name": "Esturgeon sibérien / Baeri",
+      "scientific_name": "Acipenser baerii",
+      "asset_stems": [
+        "esturgeon-baeri",
+        "esturgeon-siberien"
+      ],
+      "biological_facts": "Profil FAO d'une espèce élevée en aquaculture ; les pellets d'élevage ne constituent pas une preuve d'appât universel.",
+      "habitats": [
+        "fond",
+        "eau_calme",
+        "riviere_courante"
+      ],
+      "diet_tags": [
+        "invertebres"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "grand_benthique",
+      "attributes": {
+        "burst": 0.7,
+        "endurance": 0.95,
+        "agility": 0.29,
+        "head_shakes": 0.28,
+        "cover_seeking": 0.17,
+        "slack_pressure": 0.39
+      },
+      "bait_ids": [
+        "pellet_esturgeon",
+        "ver_terre"
+      ],
+      "method_ids": [
+        "fond"
+      ],
+      "source_ids": [
+        "bio_baeri"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Longue traction au fond et virages larges ; envisager d'abord un lieu de pêche aménagé cohérent.",
+      "research_status": "partial",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "pellet_esturgeon",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": [
+        {
+          "stage": "managed_pond",
+          "rule": "Pellet d’élevage lié au contexte géré, pas préférence sauvage automatique."
+        }
+      ]
+    },
+    {
+      "id": "esturgeon-diamant",
+      "name": "Esturgeon russe / diamant",
+      "scientific_name": "Acipenser gueldenstaedtii",
+      "asset_stems": [
+        "esturgeon-diamant"
+      ],
+      "biological_facts": "Recherche la nourriture sur le fond grâce aux barbillons ; les mollusques font partie de son régime adulte.",
+      "habitats": [
+        "fond",
+        "estuaire"
+      ],
+      "diet_tags": [
+        "mollusques",
+        "invertebres"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "grand_benthique",
+      "attributes": {
+        "burst": 0.67,
+        "endurance": 0.96,
+        "agility": 0.24,
+        "head_shakes": 0.25,
+        "cover_seeking": 0.15,
+        "slack_pressure": 0.35
+      },
+      "bait_ids": [
+        "pellet_esturgeon",
+        "ver_terre"
+      ],
+      "method_ids": [
+        "fond"
+      ],
+      "source_ids": [
+        "bio_diamant"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Résistance régulière et lourde ; accès proposé en lieu aménagé, sans confondre avec l'esturgeon européen.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "pellet_esturgeon",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "esturgeon-europeen",
+      "name": "Esturgeon européen",
+      "scientific_name": "Acipenser sturio",
+      "asset_stems": [
+        "esturgeon-europeen"
+      ],
+      "biological_facts": "Poisson amphihalin vivant sur le fond ; recherche des invertébrés avec rostre et barbillons.",
+      "habitats": [
+        "fond",
+        "estuaire",
+        "riviere_migratoire"
+      ],
+      "diet_tags": [
+        "invertebres",
+        "crustaces",
+        "mollusques"
+      ],
+      "activity": "selon_stade",
+      "archetype": "grand_benthique",
+      "attributes": {
+        "burst": 0.74,
+        "endurance": 0.96,
+        "agility": 0.26,
+        "head_shakes": 0.2,
+        "cover_seeking": 0.16,
+        "slack_pressure": 0.35
+      },
+      "bait_ids": [],
+      "method_ids": [],
+      "source_ids": [
+        "bio_europeen"
+      ],
+      "discovery_mode": "observation",
+      "combat_proposal": "Découverte d'observation proposée ; aucun classement comme trophée ordinaire à partir de la seule rareté.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "gardon",
+      "name": "Gardon",
+      "scientific_name": "Rutilus rutilus",
+      "asset_stems": [
+        "gardon"
+      ],
+      "biological_facts": "Omnivore ; les adultes consomment beaucoup de végétaux. Activité alimentaire surtout diurne et réduite au froid.",
+      "habitats": [
+        "eau_calme",
+        "pleine_eau",
+        "herbiers"
+      ],
+      "diet_tags": [
+        "vegetaux",
+        "insectes",
+        "invertebres"
+      ],
+      "activity": "jour",
+      "archetype": "petit_banc",
+      "attributes": {
+        "burst": 0.39,
+        "endurance": 0.3,
+        "agility": 0.59,
+        "head_shakes": 0.34,
+        "cover_seeking": 0.18,
+        "slack_pressure": 0.56
+      },
+      "bait_ids": [
+        "asticot",
+        "pinkie",
+        "ver_vase",
+        "pain",
+        "chenevis"
+      ],
+      "method_ids": [
+        "coup",
+        "anglaise",
+        "feeder"
+      ],
+      "source_ids": [
+        "bio_gardon"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Petites touches successives et fuite latérale ; les gros spécimens prolongent le combat sans devenir une autre espèce.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "pinkie",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "ver_vase",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "pain",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "chenevis",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "goujon",
+      "name": "Goujon — identification locale à contrôler",
+      "scientific_name": "Gobio gobio sensu source",
+      "asset_stems": [
+        "goujon"
+      ],
+      "biological_facts": "Fouille le fond pour consommer larves, crustacés, vers et mollusques.",
+      "habitats": [
+        "fond",
+        "riviere_courante",
+        "gravier"
+      ],
+      "diet_tags": [
+        "larves",
+        "invertebres",
+        "vers"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "petit_benthique",
+      "attributes": {
+        "burst": 0.23,
+        "endurance": 0.23,
+        "agility": 0.35,
+        "head_shakes": 0.21,
+        "cover_seeking": 0.41,
+        "slack_pressure": 0.35
+      },
+      "bait_ids": [
+        "ver_vase",
+        "petit_ver",
+        "asticot"
+      ],
+      "method_ids": [
+        "coup",
+        "toc"
+      ],
+      "source_ids": [
+        "bio_goujon"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Touches basses et courtes résistances près du fond ; le complexe de goujons doit être confirmé dans le catalogue source.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "ver_vase",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "petit_ver",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "hotu",
+      "name": "Hotu / nase",
+      "scientific_name": "Chondrostoma nasus",
+      "asset_stems": [
+        "hotu",
+        "nase"
+      ],
+      "biological_facts": "Broute les diatomées fixées aux cailloux et galets ; les jeunes sont moins spécialisés.",
+      "habitats": [
+        "fond",
+        "riviere_courante",
+        "gravier"
+      ],
+      "diet_tags": [
+        "algues",
+        "micro_invertebres"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "rheophile",
+      "attributes": {
+        "burst": 0.56,
+        "endurance": 0.76,
+        "agility": 0.39,
+        "head_shakes": 0.27,
+        "cover_seeking": 0.28,
+        "slack_pressure": 0.4
+      },
+      "bait_ids": [
+        "asticot",
+        "chenevis"
+      ],
+      "method_ids": [
+        "coup",
+        "feeder"
+      ],
+      "source_ids": [
+        "bio_hotu"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Traction dans le courant et déplacements bas ; éviter de le traiter comme un carnassier au shad.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "chenevis",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "huchon",
+      "name": "Huchon",
+      "scientific_name": "Hucho hucho",
+      "asset_stems": [
+        "huchon"
+      ],
+      "biological_facts": "Salmonidé d'eau courante froide et oxygénée ; prédateur de grandes proies animales selon la synthèse.",
+      "habitats": [
+        "riviere_courante",
+        "abris",
+        "fond"
+      ],
+      "diet_tags": [
+        "poissons"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "grand_rheophile",
+      "attributes": {
+        "burst": 0.9,
+        "endurance": 0.93,
+        "agility": 0.54,
+        "head_shakes": 0.67,
+        "cover_seeking": 0.58,
+        "slack_pressure": 0.65
+      },
+      "bait_ids": [
+        "swimbait",
+        "streamer"
+      ],
+      "method_ids": [
+        "leurre",
+        "mouche"
+      ],
+      "source_ids": [
+        "bio_huchon"
+      ],
+      "discovery_mode": "specialist_future",
+      "combat_proposal": "Départ lourd et soutenu dans le courant ; lieu et matériel spécialisé requis avant activation.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "swimbait",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "streamer",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "ide-melanote",
+      "name": "Ide mélanote",
+      "scientific_name": "Leuciscus idus",
+      "asset_stems": [
+        "ide-melanote"
+      ],
+      "biological_facts": "Les jeunes consomment beaucoup de végétaux ; les adultes prennent invertébrés et parfois petits poissons.",
+      "habitats": [
+        "riviere_courante",
+        "eau_calme",
+        "pleine_eau"
+      ],
+      "diet_tags": [
+        "insectes",
+        "invertebres",
+        "vegetaux",
+        "poissons"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "opportuniste_riviere",
+      "attributes": {
+        "burst": 0.63,
+        "endurance": 0.61,
+        "agility": 0.6,
+        "head_shakes": 0.38,
+        "cover_seeking": 0.38,
+        "slack_pressure": 0.54
+      },
+      "bait_ids": [
+        "pain",
+        "asticot",
+        "ver_terre",
+        "mouche_seche",
+        "micro_leurre"
+      ],
+      "method_ids": [
+        "coup",
+        "feeder",
+        "mouche",
+        "leurre"
+      ],
+      "source_ids": [
+        "bio_ide"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Fuite en pleine eau plus soutenue qu'un gardon ; varier l'intérêt pour petites esches et artificiels selon le gabarit.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "pain",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "mouche_seche",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "micro_leurre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "lamproie-de-planer",
+      "name": "Lamproie de Planer",
+      "scientific_name": "Lampetra planeri",
+      "asset_stems": [
+        "lamproie-de-planer"
+      ],
+      "biological_facts": "Les larves filtrent des micro-organismes ; après métamorphose, l'individu ne s'alimente plus.",
+      "habitats": [
+        "fond",
+        "riviere_courante",
+        "vase"
+      ],
+      "diet_tags": [
+        "micro_organismes"
+      ],
+      "activity": "selon_stade",
+      "archetype": "non_capture",
+      "attributes": {
+        "burst": 0.0,
+        "endurance": 0.0,
+        "agility": 0.0,
+        "head_shakes": 0.0,
+        "cover_seeking": 0.0,
+        "slack_pressure": 0.0
+      },
+      "bait_ids": [],
+      "method_ids": [],
+      "source_ids": [
+        "bio_lamproie_planer"
+      ],
+      "discovery_mode": "observation",
+      "combat_proposal": "Observation uniquement dans cette conception ; pas de morsure au ver inventée pour l'adulte.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": [
+        {
+          "stage": "larva",
+          "feeding": "filtering"
+        },
+        {
+          "stage": "adult",
+          "hunger_bite_rate": 0
+        }
+      ]
+    },
+    {
+      "id": "lamproie-fluviatile",
+      "name": "Lamproie fluviatile",
+      "scientific_name": "Lampetra fluviatilis",
+      "asset_stems": [
+        "lamproie-fluviatile"
+      ],
+      "biological_facts": "Larve filtrante ; phase adulte parasitaire en mer. Le cycle ne correspond pas à une pêche ordinaire aux esches.",
+      "habitats": [
+        "fond",
+        "estuaire",
+        "riviere_migratoire"
+      ],
+      "diet_tags": [
+        "micro_organismes",
+        "parasitisme"
+      ],
+      "activity": "selon_stade",
+      "archetype": "non_capture",
+      "attributes": {
+        "burst": 0.0,
+        "endurance": 0.0,
+        "agility": 0.0,
+        "head_shakes": 0.0,
+        "cover_seeking": 0.0,
+        "slack_pressure": 0.0
+      },
+      "bait_ids": [],
+      "method_ids": [],
+      "source_ids": [
+        "bio_lamproie_fluviatile"
+      ],
+      "discovery_mode": "observation",
+      "combat_proposal": "Observation et explication du cycle dans le FishDex ; mécanique dédiée seulement si documentée ultérieurement.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": [
+        {
+          "stage": "adult",
+          "feeding": "parasitic_not_standard_bait_search"
+        }
+      ]
+    },
+    {
+      "id": "loche-franche",
+      "name": "Loche franche",
+      "scientific_name": "Barbatula barbatula",
+      "asset_stems": [
+        "loche-franche"
+      ],
+      "biological_facts": "Recherche de nuit de petits animaux vivant sur le fond, à l'aide de ses barbillons.",
+      "habitats": [
+        "fond",
+        "roches",
+        "riviere_courante"
+      ],
+      "diet_tags": [
+        "larves",
+        "vers",
+        "invertebres"
+      ],
+      "activity": "nuit",
+      "archetype": "petit_benthique",
+      "attributes": {
+        "burst": 0.2,
+        "endurance": 0.24,
+        "agility": 0.32,
+        "head_shakes": 0.25,
+        "cover_seeking": 0.87,
+        "slack_pressure": 0.33
+      },
+      "bait_ids": [],
+      "method_ids": [],
+      "source_ids": [
+        "bio_loche"
+      ],
+      "discovery_mode": "observation",
+      "combat_proposal": "Petits déplacements entre les pierres ; découverte naturaliste proposée plutôt que combat surdimensionné.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "lotte",
+      "name": "Lotte de rivière",
+      "scientific_name": "Lota lota",
+      "asset_stems": [
+        "lotte"
+      ],
+      "biological_facts": "Adulte carnassier consommant poissons et petits animaux de fond ; biologie associée aux eaux froides.",
+      "habitats": [
+        "fond",
+        "abris",
+        "lac_froid"
+      ],
+      "diet_tags": [
+        "poissons",
+        "invertebres"
+      ],
+      "activity": "a_documenter",
+      "archetype": "benthique_sinueux",
+      "attributes": {
+        "burst": 0.46,
+        "endurance": 0.75,
+        "agility": 0.41,
+        "head_shakes": 0.43,
+        "cover_seeking": 0.83,
+        "slack_pressure": 0.4
+      },
+      "bait_ids": [
+        "ver_terre",
+        "morceau_poisson",
+        "poisson_mort"
+      ],
+      "method_ids": [
+        "fond"
+      ],
+      "source_ids": [
+        "bio_lotte"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Reste basse, traction lourde et tentatives de rejoindre les abris ; proposer une activité accrue de nuit à tester.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "morceau_poisson",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "poisson_mort",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "mulet-porc",
+      "name": "Mulet-porc",
+      "scientific_name": "Chelon ramada",
+      "asset_stems": [
+        "mulet-porc"
+      ],
+      "biological_facts": "Omnivore adulte consommant notamment biofilm et matière organique benthique ; recherche alimentaire diurne.",
+      "habitats": [
+        "estuaire",
+        "fond",
+        "surface"
+      ],
+      "diet_tags": [
+        "algues",
+        "invertebres",
+        "detritus"
+      ],
+      "activity": "jour",
+      "archetype": "opportuniste_riviere",
+      "attributes": {
+        "burst": 0.81,
+        "endurance": 0.84,
+        "agility": 0.65,
+        "head_shakes": 0.44,
+        "cover_seeking": 0.33,
+        "slack_pressure": 0.65
+      },
+      "bait_ids": [
+        "pain",
+        "petit_ver"
+      ],
+      "method_ids": [
+        "anglaise",
+        "fond"
+      ],
+      "source_ids": [
+        "bio_mulet"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Approche prudente proposée puis longue fuite ; poisson d'estuaire et de rivière, pas résident universel d'un étang.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "pain",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "petit_ver",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "omble-chevalier",
+      "name": "Omble chevalier",
+      "scientific_name": "Salvelinus alpinus",
+      "asset_stems": [
+        "omble-chevalier"
+      ],
+      "biological_facts": "Poisson d'eaux fraîches consommant crustacés planctoniques, mollusques, larves et alevins.",
+      "habitats": [
+        "lac_froid",
+        "pleine_eau"
+      ],
+      "diet_tags": [
+        "invertebres",
+        "poissons",
+        "zooplancton"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "pelagique_froid",
+      "attributes": {
+        "burst": 0.62,
+        "endurance": 0.69,
+        "agility": 0.62,
+        "head_shakes": 0.48,
+        "cover_seeking": 0.19,
+        "slack_pressure": 0.58
+      },
+      "bait_ids": [
+        "nymphe",
+        "cuiller_ondulante",
+        "streamer"
+      ],
+      "method_ids": [
+        "mouche",
+        "leurre",
+        "verticale"
+      ],
+      "source_ids": [
+        "bio_omble_chevalier"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Alternance de plongées et traversées ; présentation à la bonne couche d'eau déterminante.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "nymphe",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "cuiller_ondulante",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "streamer",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "omble-de-fontaine",
+      "name": "Omble de fontaine",
+      "scientific_name": "Salvelinus fontinalis",
+      "asset_stems": [
+        "omble-de-fontaine"
+      ],
+      "biological_facts": "Vit en eaux fraîches et oxygénées ; régime surtout invertébré complété par œufs, alevins et petites proies.",
+      "habitats": [
+        "riviere_courante",
+        "lac_froid",
+        "abris"
+      ],
+      "diet_tags": [
+        "invertebres",
+        "insectes",
+        "poissons"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "salmonide_agile",
+      "attributes": {
+        "burst": 0.66,
+        "endurance": 0.5,
+        "agility": 0.73,
+        "head_shakes": 0.61,
+        "cover_seeking": 0.58,
+        "slack_pressure": 0.71
+      },
+      "bait_ids": [
+        "ver_terre",
+        "nymphe",
+        "mouche_seche",
+        "cuiller_tournante"
+      ],
+      "method_ids": [
+        "toc",
+        "mouche",
+        "leurre"
+      ],
+      "source_ids": [
+        "bio_omble_fontaine"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Départs courts, changements de direction et retour vers les caches ; ne pas copier exactement l'arc-en-ciel.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "nymphe",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "mouche_seche",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "cuiller_tournante",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "ombre",
+      "name": "Ombre commun",
+      "scientific_name": "Thymallus thymallus",
+      "asset_stems": [
+        "ombre"
+      ],
+      "biological_facts": "Consomme de petites proies du fond et en dérive ; peut gober les insectes émergents.",
+      "habitats": [
+        "riviere_courante",
+        "fond",
+        "surface"
+      ],
+      "diet_tags": [
+        "insectes",
+        "larves",
+        "invertebres"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "rheophile",
+      "attributes": {
+        "burst": 0.54,
+        "endurance": 0.67,
+        "agility": 0.66,
+        "head_shakes": 0.51,
+        "cover_seeking": 0.22,
+        "slack_pressure": 0.62
+      },
+      "bait_ids": [
+        "nymphe",
+        "mouche_seche",
+        "mouche_noyee"
+      ],
+      "method_ids": [
+        "mouche",
+        "toc"
+      ],
+      "source_ids": [
+        "bio_ombre"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Résistance dans la veine d'eau et virages larges ; touches sur dérive naturelle plutôt que gros leurres automatiques.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "nymphe",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "mouche_seche",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "mouche_noyee",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "perche",
+      "name": "Perche fluviatile",
+      "scientific_name": "Perca fluviatilis",
+      "asset_stems": [
+        "perche",
+        "perche-fluviatile"
+      ],
+      "biological_facts": "Carnassier souvent en banc, grands sujets plus solitaires ; régime devenant piscivore avec la taille et chasse visuelle.",
+      "habitats": [
+        "abris",
+        "pleine_eau",
+        "herbiers"
+      ],
+      "diet_tags": [
+        "larves",
+        "ecrevisses",
+        "poissons"
+      ],
+      "activity": "jour_aube_crepuscule",
+      "archetype": "carnassier_agile",
+      "attributes": {
+        "burst": 0.62,
+        "endurance": 0.4,
+        "agility": 0.75,
+        "head_shakes": 0.77,
+        "cover_seeking": 0.49,
+        "slack_pressure": 0.74
+      },
+      "bait_ids": [
+        "petit_ver",
+        "shad",
+        "micro_leurre",
+        "cuiller_tournante"
+      ],
+      "method_ids": [
+        "coup",
+        "leurre",
+        "verticale"
+      ],
+      "source_ids": [
+        "bio_perche"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Succession d'accélérations courtes et secousses rapides ; faible endurance relative mais gros sujets réellement plus forts.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "petit_ver",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "shad",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "micro_leurre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "cuiller_tournante",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "perche-soleil",
+      "name": "Perche-soleil",
+      "scientific_name": "Lepomis gibbosus",
+      "asset_stems": [
+        "perche-soleil"
+      ],
+      "biological_facts": "Chasse à vue de jour ; consomme de petites proies aquatiques variées.",
+      "habitats": [
+        "bordure",
+        "herbiers",
+        "eau_calme"
+      ],
+      "diet_tags": [
+        "larves",
+        "insectes",
+        "petits_invertebres"
+      ],
+      "activity": "jour",
+      "archetype": "petit_territorial",
+      "attributes": {
+        "burst": 0.37,
+        "endurance": 0.27,
+        "agility": 0.57,
+        "head_shakes": 0.45,
+        "cover_seeking": 0.47,
+        "slack_pressure": 0.54
+      },
+      "bait_ids": [
+        "petit_ver",
+        "asticot",
+        "micro_leurre"
+      ],
+      "method_ids": [
+        "coup",
+        "leurre"
+      ],
+      "source_ids": [
+        "bio_soleil"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Touches brèves près des bordures et petits virages serrés ; pas de longue lutte pour un minuscule poisson.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "petit_ver",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "micro_leurre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "poisson-chat",
+      "name": "Poisson-chat",
+      "scientific_name": "Ameiurus melas",
+      "asset_stems": [
+        "poisson-chat"
+      ],
+      "biological_facts": "Omnivore de fond consommant de nombreuses ressources animales et végétales ; activité surtout nocturne.",
+      "habitats": [
+        "fond",
+        "vase",
+        "eau_calme"
+      ],
+      "diet_tags": [
+        "vers",
+        "invertebres",
+        "vegetaux"
+      ],
+      "activity": "nuit",
+      "archetype": "benthique_lent",
+      "attributes": {
+        "burst": 0.34,
+        "endurance": 0.45,
+        "agility": 0.29,
+        "head_shakes": 0.37,
+        "cover_seeking": 0.61,
+        "slack_pressure": 0.36
+      },
+      "bait_ids": [
+        "ver_terre",
+        "asticot",
+        "mais"
+      ],
+      "method_ids": [
+        "fond",
+        "feeder",
+        "coup"
+      ],
+      "source_ids": [
+        "bio_chat"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Résistance basse et régulière ; ne pas le rendre aussi puissant qu'un grand silure à poids comparable sans justification.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "mais",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "pseudorasbora",
+      "name": "Pseudorasbora",
+      "scientific_name": "Pseudorasbora parva",
+      "asset_stems": [
+        "pseudorasbora"
+      ],
+      "biological_facts": "La synthèse consultée indique une alimentation surtout animale ; données locales et rythme d'activité à compléter.",
+      "habitats": [
+        "eau_calme",
+        "bordure"
+      ],
+      "diet_tags": [
+        "petits_invertebres"
+      ],
+      "activity": "a_documenter",
+      "archetype": "petit_banc",
+      "attributes": {
+        "burst": 0.18,
+        "endurance": 0.13,
+        "agility": 0.46,
+        "head_shakes": 0.2,
+        "cover_seeking": 0.23,
+        "slack_pressure": 0.47
+      },
+      "bait_ids": [],
+      "method_ids": [],
+      "source_ids": [
+        "bio_pseudorasbora"
+      ],
+      "discovery_mode": "observation",
+      "combat_proposal": "Observation de petits bancs ; aucune préférence détaillée d'appât affirmée par cette recherche partielle.",
+      "research_status": "partial",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "rotengle",
+      "name": "Rotengle",
+      "scientific_name": "Scardinius erythrophthalmus",
+      "asset_stems": [
+        "rotengle"
+      ],
+      "biological_facts": "Omnivore avec préférence végétale plus marquée chez les adultes ; alimentation réduite au froid.",
+      "habitats": [
+        "herbiers",
+        "surface",
+        "eau_calme"
+      ],
+      "diet_tags": [
+        "vegetaux",
+        "insectes",
+        "invertebres"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "petit_banc",
+      "attributes": {
+        "burst": 0.42,
+        "endurance": 0.37,
+        "agility": 0.64,
+        "head_shakes": 0.33,
+        "cover_seeking": 0.54,
+        "slack_pressure": 0.6
+      },
+      "bait_ids": [
+        "pain",
+        "asticot",
+        "mouche_seche"
+      ],
+      "method_ids": [
+        "coup",
+        "anglaise",
+        "mouche"
+      ],
+      "source_ids": [
+        "bio_rotengle"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Touches hautes proposées et fuite vers les herbiers ; distinguer sa présentation préférée de celle du gardon.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "pain",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "mouche_seche",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "sandre",
+      "name": "Sandre",
+      "scientific_name": "Sander lucioperca",
+      "asset_stems": [
+        "sandre",
+        "sandre-geant"
+      ],
+      "biological_facts": "Chasse petits poissons et écrevisses ; vision adaptée aux eaux troubles ou peu lumineuses.",
+      "habitats": [
+        "fond",
+        "pleine_eau",
+        "abris"
+      ],
+      "diet_tags": [
+        "poissons",
+        "ecrevisses"
+      ],
+      "activity": "faible_lumiere",
+      "archetype": "carnassier_profond",
+      "attributes": {
+        "burst": 0.69,
+        "endurance": 0.61,
+        "agility": 0.48,
+        "head_shakes": 0.77,
+        "cover_seeking": 0.46,
+        "slack_pressure": 0.65
+      },
+      "bait_ids": [
+        "shad",
+        "finesse",
+        "poisson_mort",
+        "morceau_poisson"
+      ],
+      "method_ids": [
+        "leurre",
+        "verticale",
+        "fond"
+      ],
+      "source_ids": [
+        "bio_sandre"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Première traction nette, secousses et maintien en profondeur ; le géant reste un gabarit, pas un nouveau taxon.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "shad",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "finesse",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "poisson_mort",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "morceau_poisson",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "saumon-atlantique",
+      "name": "Saumon atlantique",
+      "scientific_name": "Salmo salar",
+      "asset_stems": [
+        "saumon-atlantique"
+      ],
+      "biological_facts": "Les adultes se nourrissent en mer et cessent de s'alimenter lors du retour dans leur rivière.",
+      "habitats": [
+        "riviere_migratoire",
+        "estuaire"
+      ],
+      "diet_tags": [
+        "poissons",
+        "invertebres"
+      ],
+      "activity": "selon_stade",
+      "archetype": "migrateur",
+      "attributes": {
+        "burst": 0.91,
+        "endurance": 0.94,
+        "agility": 0.84,
+        "head_shakes": 0.73,
+        "cover_seeking": 0.22,
+        "slack_pressure": 0.8
+      },
+      "bait_ids": [
+        "mouche_noyee",
+        "streamer",
+        "cuiller_ondulante"
+      ],
+      "method_ids": [
+        "mouche",
+        "leurre"
+      ],
+      "source_ids": [
+        "bio_saumon"
+      ],
+      "discovery_mode": "specialist_future",
+      "combat_proposal": "Longs départs et changements de profondeur ; réaction aux artificiels en remontée séparée de l'attraction alimentaire.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "mouche_noyee",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "streamer",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "cuiller_ondulante",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": [
+        {
+          "stage": "adult_reproductive_return",
+          "hunger_bite_rate": 0,
+          "reaction_to_artificial": "separate_specialist_system_needs_validation"
+        }
+      ]
+    },
+    {
+      "id": "saumon-roi",
+      "name": "Saumon royal / Chinook",
+      "scientific_name": "Oncorhynchus tshawytscha",
+      "asset_stems": [
+        "saumon-roi"
+      ],
+      "biological_facts": "Saumon anadrome du Pacifique ; l'écologie ne doit pas être copiée du saumon atlantique sans contexte.",
+      "habitats": [
+        "riviere_migratoire",
+        "estuaire"
+      ],
+      "diet_tags": [
+        "poissons",
+        "invertebres"
+      ],
+      "activity": "selon_stade",
+      "archetype": "migrateur",
+      "attributes": {
+        "burst": 0.95,
+        "endurance": 0.97,
+        "agility": 0.6,
+        "head_shakes": 0.66,
+        "cover_seeking": 0.22,
+        "slack_pressure": 0.71
+      },
+      "bait_ids": [
+        "cuiller_ondulante",
+        "streamer"
+      ],
+      "method_ids": [
+        "leurre",
+        "mouche",
+        "traine"
+      ],
+      "source_ids": [
+        "bio_saumon_roi"
+      ],
+      "discovery_mode": "specialist_future",
+      "combat_proposal": "Départ puissant et effort long ; espace nord-américain futur, pas mélange automatique avec l'étang initial.",
+      "research_status": "partial",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "cuiller_ondulante",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "streamer",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "silure-glane",
+      "name": "Silure glane",
+      "scientific_name": "Silurus glanis",
+      "asset_stems": [
+        "silure-glane",
+        "silure-wels-record"
+      ],
+      "biological_facts": "Prédateur opportuniste surtout nocturne, consommant poissons et autres animaux ; les jeunes prennent de petits invertébrés.",
+      "habitats": [
+        "fond",
+        "abris",
+        "pleine_eau"
+      ],
+      "diet_tags": [
+        "poissons",
+        "invertebres"
+      ],
+      "activity": "nuit_crepuscule",
+      "archetype": "grand_benthique",
+      "attributes": {
+        "burst": 0.9,
+        "endurance": 0.98,
+        "agility": 0.3,
+        "head_shakes": 0.49,
+        "cover_seeking": 0.8,
+        "slack_pressure": 0.36
+      },
+      "bait_ids": [
+        "ver_terre",
+        "morceau_poisson",
+        "poisson_mort",
+        "gros_shad"
+      ],
+      "method_ids": [
+        "fond",
+        "leurre",
+        "verticale",
+        "clonk"
+      ],
+      "source_ids": [
+        "bio_silure"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Forte pression prolongée, larges virages et plongées ; aucune vitesse maximale exagérée dérivée de sa taille seule.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "morceau_poisson",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "poisson_mort",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "gros_shad",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "spirlin",
+      "name": "Spirlin",
+      "scientific_name": "Alburnoides bipunctatus",
+      "asset_stems": [
+        "spirlin"
+      ],
+      "biological_facts": "Se nourrit de petites proies transportées par le courant et d'insectes pris en surface.",
+      "habitats": [
+        "riviere_courante",
+        "pleine_eau",
+        "surface"
+      ],
+      "diet_tags": [
+        "insectes",
+        "petits_invertebres",
+        "algues"
+      ],
+      "activity": "jour",
+      "archetype": "petit_banc",
+      "attributes": {
+        "burst": 0.38,
+        "endurance": 0.26,
+        "agility": 0.73,
+        "head_shakes": 0.29,
+        "cover_seeking": 0.16,
+        "slack_pressure": 0.62
+      },
+      "bait_ids": [
+        "pinkie",
+        "asticot",
+        "mouche_seche",
+        "nymphe"
+      ],
+      "method_ids": [
+        "coup",
+        "toc",
+        "mouche"
+      ],
+      "source_ids": [
+        "bio_spirlin"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Toucher bref pendant la dérive puis fuite courte dans le courant.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "pinkie",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "mouche_seche",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "nymphe",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "tanche",
+      "name": "Tanche",
+      "scientific_name": "Tinca tinca",
+      "asset_stems": [
+        "tanche"
+      ],
+      "biological_facts": "Omnivore fouillant vase et herbiers ; recherche de nourriture accrue au crépuscule et la nuit.",
+      "habitats": [
+        "fond",
+        "vase",
+        "herbiers",
+        "eau_calme"
+      ],
+      "diet_tags": [
+        "invertebres",
+        "larves"
+      ],
+      "activity": "crepuscule_nuit",
+      "archetype": "cyprinide_puissant",
+      "attributes": {
+        "burst": 0.56,
+        "endurance": 0.75,
+        "agility": 0.34,
+        "head_shakes": 0.36,
+        "cover_seeking": 0.89,
+        "slack_pressure": 0.38
+      },
+      "bait_ids": [
+        "ver_terre",
+        "ver_vase",
+        "mais",
+        "pellet"
+      ],
+      "method_ids": [
+        "coup",
+        "feeder",
+        "fond"
+      ],
+      "source_ids": [
+        "bio_tanche"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Résistance lourde en cercles et recherche d'herbiers proposées ; les touches peuvent demander une lecture fine du flotteur.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "ver_vase",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "mais",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "pellet",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "toxostome",
+      "name": "Toxostome",
+      "scientific_name": "Parachondrostoma toxostoma",
+      "asset_stems": [
+        "toxostome"
+      ],
+      "biological_facts": "Racle algues et diatomées des substrats et consomme des micro-invertébrés associés.",
+      "habitats": [
+        "fond",
+        "riviere_courante",
+        "gravier"
+      ],
+      "diet_tags": [
+        "algues",
+        "micro_invertebres"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "rheophile",
+      "attributes": {
+        "burst": 0.37,
+        "endurance": 0.49,
+        "agility": 0.41,
+        "head_shakes": 0.23,
+        "cover_seeking": 0.26,
+        "slack_pressure": 0.39
+      },
+      "bait_ids": [
+        "asticot"
+      ],
+      "method_ids": [
+        "coup"
+      ],
+      "source_ids": [
+        "bio_toxostome"
+      ],
+      "discovery_mode": "specialist_future",
+      "combat_proposal": "Petite résistance de fond ; acquisition d'une fiche par observation possible avant une technique ciblée.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "truite-arc-en-ciel",
+      "name": "Truite arc-en-ciel",
+      "scientific_name": "Oncorhynchus mykiss",
+      "asset_stems": [
+        "truite-arc-en-ciel"
+      ],
+      "biological_facts": "Consomme invertébrés et petites proies animales ; recherche alimentaire principalement diurne.",
+      "habitats": [
+        "riviere_courante",
+        "lac_froid",
+        "pleine_eau"
+      ],
+      "diet_tags": [
+        "invertebres",
+        "insectes",
+        "poissons"
+      ],
+      "activity": "jour",
+      "archetype": "salmonide_agile",
+      "attributes": {
+        "burst": 0.79,
+        "endurance": 0.65,
+        "agility": 0.88,
+        "head_shakes": 0.79,
+        "cover_seeking": 0.38,
+        "slack_pressure": 0.85
+      },
+      "bait_ids": [
+        "ver_terre",
+        "pate_truite",
+        "nymphe",
+        "mouche_seche",
+        "cuiller_tournante"
+      ],
+      "method_ids": [
+        "toc",
+        "mouche",
+        "leurre",
+        "bombette"
+      ],
+      "source_ids": [
+        "bio_arc"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Changements de direction rapides et sauts pondérés ; pâte à truite liée aux lieux adaptés, pas appât naturel universel.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "pate_truite",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "nymphe",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "mouche_seche",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "cuiller_tournante",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "truite-fario",
+      "name": "Truite commune — formes rivière, lac et mer",
+      "scientific_name": "Salmo trutta",
+      "asset_stems": [
+        "truite-fario",
+        "truite-lacustre",
+        "truite-de-mer"
+      ],
+      "biological_facts": "Le profil de rivière consomme invertébrés et davantage de poissons avec l'âge ; contexte lac/mer à documenter séparément.",
+      "habitats": [
+        "riviere_courante",
+        "abris",
+        "lac_froid"
+      ],
+      "diet_tags": [
+        "invertebres",
+        "insectes",
+        "poissons"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "salmonide_agile",
+      "attributes": {
+        "burst": 0.8,
+        "endurance": 0.67,
+        "agility": 0.79,
+        "head_shakes": 0.73,
+        "cover_seeking": 0.83,
+        "slack_pressure": 0.77
+      },
+      "bait_ids": [
+        "ver_terre",
+        "nymphe",
+        "mouche_seche",
+        "streamer",
+        "cuiller_tournante"
+      ],
+      "method_ids": [
+        "toc",
+        "mouche",
+        "leurre"
+      ],
+      "source_ids": [
+        "bio_fario"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Départ vers les caches, retour dans le courant et secousses ; profil de rivière ne suffit pas aux formes migratrices et lacustres.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "ver_terre",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "nymphe",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "mouche_seche",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "streamer",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "cuiller_tournante",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "vairon",
+      "name": "Vairon — complexe à contrôler",
+      "scientific_name": "Phoxinus phoxinus sensu source",
+      "asset_stems": [
+        "vairon"
+      ],
+      "biological_facts": "Petit omnivore d'eaux fraîches consommant animaux aquatiques, insectes et matières végétales.",
+      "habitats": [
+        "riviere_courante",
+        "bordure",
+        "lac_froid"
+      ],
+      "diet_tags": [
+        "insectes",
+        "invertebres",
+        "vegetaux"
+      ],
+      "activity": "selon_conditions",
+      "archetype": "petit_banc",
+      "attributes": {
+        "burst": 0.27,
+        "endurance": 0.14,
+        "agility": 0.66,
+        "head_shakes": 0.24,
+        "cover_seeking": 0.41,
+        "slack_pressure": 0.54
+      },
+      "bait_ids": [
+        "pinkie",
+        "petit_ver"
+      ],
+      "method_ids": [
+        "coup",
+        "toc"
+      ],
+      "source_ids": [
+        "bio_vairon"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Combat très bref et petites oscillations ; taxon local à confirmer au lieu de forcer tous les vairons dans un seul nom.",
+      "research_status": "documented",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "pinkie",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "petit_ver",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "vandoise",
+      "name": "Vandoise",
+      "scientific_name": "Leuciscus leuciscus",
+      "asset_stems": [
+        "vandoise"
+      ],
+      "biological_facts": "Poisson de rivière traité dans la fiche DORIS ; alimentation précise à compléter dans le profil d'intégration.",
+      "habitats": [
+        "riviere_courante",
+        "pleine_eau"
+      ],
+      "diet_tags": [
+        "insectes",
+        "invertebres"
+      ],
+      "activity": "a_documenter",
+      "archetype": "petit_banc",
+      "attributes": {
+        "burst": 0.42,
+        "endurance": 0.33,
+        "agility": 0.66,
+        "head_shakes": 0.31,
+        "cover_seeking": 0.18,
+        "slack_pressure": 0.55
+      },
+      "bait_ids": [
+        "asticot",
+        "mouche_seche"
+      ],
+      "method_ids": [
+        "coup",
+        "mouche"
+      ],
+      "source_ids": [
+        "bio_vandoise"
+      ],
+      "discovery_mode": "capture",
+      "combat_proposal": "Petite fuite dans le courant et touche en dérive ; préférences initiales de jeu à confirmer.",
+      "research_status": "partial",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "source_taxon_candidate_needs_app_match",
+      "candidate_bait_affinities": [
+        {
+          "bait_id": "asticot",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        },
+        {
+          "bait_id": "mouche_seche",
+          "affinity": 0.65,
+          "origin": "game_proposal_not_observed_bite_probability"
+        }
+      ],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "gobie-a-identifier",
+      "name": "Gobie — espèce à identifier",
+      "scientific_name": "",
+      "asset_stems": [
+        "gobie"
+      ],
+      "biological_facts": "Le nom de fichier ne suffit pas à distinguer les différentes espèces de gobies.",
+      "habitats": [],
+      "diet_tags": [],
+      "activity": "",
+      "archetype": "unresolved",
+      "attributes": {
+        "burst": 0.0,
+        "endurance": 0.0,
+        "agility": 0.0,
+        "head_shakes": 0.0,
+        "cover_seeking": 0.0,
+        "slack_pressure": 0.0
+      },
+      "bait_ids": [],
+      "method_ids": [],
+      "source_ids": [],
+      "discovery_mode": "identity_pending",
+      "combat_proposal": "Aucun profil de combat activé avant identification du taxon dans FishDex.",
+      "research_status": "identity_pending",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "unresolved",
+      "candidate_bait_affinities": [],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "sandre-dore-a-identifier",
+      "name": "Sandre doré — identité à contrôler",
+      "scientific_name": "",
+      "asset_stems": [
+        "sandre-dore"
+      ],
+      "biological_facts": "Peut désigner Sander vitreus ou une apparence du sandre européen ; vérifier le catalogue source, pas seulement l'image.",
+      "habitats": [],
+      "diet_tags": [],
+      "activity": "",
+      "archetype": "unresolved",
+      "attributes": {
+        "burst": 0.0,
+        "endurance": 0.0,
+        "agility": 0.0,
+        "head_shakes": 0.0,
+        "cover_seeking": 0.0,
+        "slack_pressure": 0.0
+      },
+      "bait_ids": [],
+      "method_ids": [],
+      "source_ids": [
+        "bio_dore"
+      ],
+      "discovery_mode": "identity_pending",
+      "combat_proposal": "Si Sander vitreus est confirmé, créer un profil nord-américain distinct ; sinon rattacher l'apparence au taxon correct.",
+      "research_status": "identity_pending",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "unresolved",
+      "candidate_bait_affinities": [],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    },
+    {
+      "id": "silure-mandarin-a-identifier",
+      "name": "Silure mandarin — identité à contrôler",
+      "scientific_name": "",
+      "asset_stems": [
+        "silure-mandarin"
+      ],
+      "biological_facts": "Le nom commercial ou artistique ne permet pas d'établir un taxon et une alimentation.",
+      "habitats": [],
+      "diet_tags": [],
+      "activity": "",
+      "archetype": "unresolved",
+      "attributes": {
+        "burst": 0.0,
+        "endurance": 0.0,
+        "agility": 0.0,
+        "head_shakes": 0.0,
+        "cover_seeking": 0.0,
+        "slack_pressure": 0.0
+      },
+      "bait_ids": [],
+      "method_ids": [],
+      "source_ids": [],
+      "discovery_mode": "identity_pending",
+      "combat_proposal": "Ne pas recopier le silure glane et inventer une nouvelle espèce.",
+      "research_status": "identity_pending",
+      "attribute_origin": "provisional_game_balance",
+      "gameplay_is_proposal": true,
+      "identity_status": "unresolved",
+      "candidate_bait_affinities": [],
+      "combat_variation": {
+        "individual_variation": true,
+        "weights": null,
+        "depends_on": [
+          "body_size",
+          "temperature",
+          "current",
+          "health_and_fatigue",
+          "rig_and_rod"
+        ]
+      },
+      "playable": false,
+      "activation_requirement": "Taxon confirmé, modèle du pack disponible, habitat présent, mécanique et affinités testées ; capture seulement si mode admissible.",
+      "feeding_rules": []
+    }
+  ]
+}

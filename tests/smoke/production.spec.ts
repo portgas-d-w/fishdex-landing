@@ -81,6 +81,34 @@ test('Les quinze GLB servis sont intacts et les originaux restent exclus', async
   expect((await original.body()).subarray(0, 2).toString()).not.toBe('PK');
 });
 
+test('Le build livre l’atelier, les lots, les ensembles et le catalogue futur sans achat fictif', async ({ page }) => {
+  const seed = emptySave(); seed.coins = 80;
+  await page.addInitScript(data => {
+    if (!localStorage.getItem('au-fil-de-leau.save.v1')) localStorage.setItem('au-fil-de-leau.save.v1', JSON.stringify(data));
+  }, seed);
+  await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
+  await page.locator('#prepare-open').click();
+  await expect(page.locator('[data-work-tab="rod"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.rod-pin')).toHaveCount(6);
+  await page.locator('[data-work-rig]').first().click(); await page.locator('#rig-depth').fill('0.5');
+  await page.locator('#rig-depth').dispatchEvent('change'); await page.locator('#rig-done').click();
+  await page.locator('[data-work-tab="sets"]').click(); await page.locator('#preset-name').fill('Bordure livrée');
+  await page.locator('#preset-save').click(); await expect(page.locator('[data-preset]')).toHaveCount(1);
+  await page.locator('[data-close="preparation"]').click(); await openMenuPage(page, 'shop-open');
+  await page.locator('[data-component-buy="corn"]').click(); await page.locator('#component-count').fill('2');
+  await expect(page.locator('#component-total')).toContainText('16 écus'); await page.locator('#component-confirm').click();
+  await page.locator('#library-load-shop').click(); await expect(page.locator('#library-list-shop [data-research]')).toHaveCount(84);
+  await page.locator('#library-type-shop').selectOption('Montages'); await expect(page.locator('#library-list-shop [data-research]')).toHaveCount(55);
+  await page.locator('#library-query-shop').fill('waggler'); await page.locator('[data-research="montages:waggler_coulissant"]').click();
+  await expect(page.locator('#research-sheet')).toContainText('À venir'); await expect(page.locator('#research-sheet [data-component-buy]')).toHaveCount(0);
+  await page.reload(); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
+  const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!));
+  expect(stored.version).toBe(4); expect(stored.tackle.config.depth).toBe(0.5);
+  expect(stored.tackle.presets).toHaveLength(1); expect(stored.tackle.stock.corn).toBe(30); expect(stored.coins).toBe(64);
+  await page.locator('#prepare-open').click(); await page.locator('[data-work-tab="bag"]').click();
+  await expect(page.locator('#bag-items [data-component-info="corn"]')).toBeVisible();
+});
+
 test('Le build conserve les favoris, le décor, les achats et les portraits sans rejouer les récompenses', async ({ page }, info) => {
   const errors: string[] = []; page.on('pageerror', e => errors.push(e.message));
   const seed = emptySave();

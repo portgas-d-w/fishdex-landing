@@ -1,8 +1,10 @@
+import { encounterWeight } from '../src/game/profiles.ts';
+import { starterConfig } from '../src/game/rig.ts';
 import { hookFish, manageFight } from './support/combat.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { FishingGame } from '../src/game/fishing.ts';
-import { SPECIES, pickSpecies } from '../src/game/catalog.ts';
+import { SPECIES } from '../src/game/catalog.ts';
 import { emptySave, loadSave, parseSave, persistSave, recordCatch } from '../src/game/save.ts';
 
 function advance(game: FishingGame, seconds: number) { for (let i = 0; i < seconds * 60; i++) game.update(1 / 60); }
@@ -10,24 +12,25 @@ function hooked(random = 0) {
   const game = new FishingGame(() => random); game.cast(); advance(game, 1.2); advance(game, 7.1); game.strike();
   assert.equal(game.phase, 'fighting'); return game;
 }
-test('Le ver ne sélectionne aucun brochet ni sandre ; le leurre aucune carpe ni gardon', () => {
-  for (const spot of ['reeds', 'open', 'willow'] as const) for (let i = 0; i <= 100; i++) {
-    assert.ok(!['pike', 'zander'].includes(pickSpecies(spot, 'worm', i / 100).id));
-    assert.ok(!['roach', 'carp'].includes(pickSpecies(spot, 'lure', i / 100).id));
-  }
+test('Les appâts proposés respectent le régime ; espèces absentes jamais sélectionnées', () => {
+ const worm=starterConfig(),lure=starterConfig('lure');
+ for (const spot of ['reeds','open','willow'] as const) for(const depth of [.4,1,2,4]) {
+  for(const id of ['pike','zander'] as const)assert.equal(encounterWeight(id,spot,worm,4,depth),0);
+  for(const id of ['roach','carp'] as const)assert.equal(encounterWeight(id,spot,lure,4,depth),0);
+ }
 });
-test('Tous les poissons sont accessibles depuis au moins une combinaison', () => {
-  const found = new Set();
-  for (const spot of ['reeds', 'open', 'willow'] as const) for (const bait of ['worm', 'lure'] as const) for (let i = 0; i < 100; i++) found.add(pickSpecies(spot, bait, i / 100).id);
-  assert.equal(found.size, SPECIES.length);
+test('Chaque poisson reste accessible avec le kit dans un habitat et une strate adaptés',()=>{
+ const found=new Set();for(const spot of ['reeds','open','willow'] as const)for(const method of ['float','bottom','lure'] as const)for(const depth of [.4,1,2,4])for(const fish of SPECIES)if(encounterWeight(fish.id,spot,starterConfig(method),4,depth)>0)found.add(fish.id);
+ assert.equal(found.size,SPECIES.length);
 });
+
 test('Ignorer une touche fait perdre le poisson sans enregistrer de prise', () => {
   const game = new FishingGame(() => 0); game.cast(); advance(game, 10);
   assert.equal(game.phase, 'lost'); assert.equal(game.result, null);
 });
 test('Mouliner en permanence finit par casser le fil', () => {
   const game = hookFish(SPECIES.find(s => s.id === 'pike')!); game.orient(-1, 1); for (let i = 0; i < 1800 && game.phase === 'fighting'; i++) { game.reel(2 / 60); game.update(1 / 60); }
-  assert.equal(game.phase, 'lost'); assert.match(game.failure, /cassé/);
+  assert.equal(game.phase, 'lost'); assert.match(game.failure, /Rupture/);
 });
 test('Laisser le fil détendu trop longtemps fait décrocher le poisson', () => {
   const game = hooked(); game.orient(0, 0); game.lineLength += 8; advance(game, 10); assert.equal(game.phase, 'lost'); assert.match(game.failure, /décroché/);

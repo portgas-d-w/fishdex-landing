@@ -1,0 +1,56 @@
+id|name|method_ids|required_slots|principle|game_use|source_ids|research_status
+flotteur_fixe|Flotteur fixe de bordure|coup,grande_canne,anglaise,bolognaise,carpodrome|main_line,float,weight,leader,hook,bait|Profondeur définie par la position du flotteur.|Base accessible ; profondeur et portance modifiables.|tech_coup|documented
+plombee_etalee|Flotteur à plombée étalée|coup,grande_canne,carpodrome|main_line,float,weight,leader,hook,bait|Répartition des lests le long de la ligne.|Descente progressive de l'esche ; risque d'emmêlement simulé.|tech_premiere_ligne|documented
+plombee_groupee|Flotteur à plombée groupée|coup,grande_canne,bolognaise|main_line,float,weight,leader,hook,bait|Masse principale groupée et réglages de finition.|Atteindre le fond plus directement dans le courant.|tech_premiere_ligne,tech_anglaise_coulissant|documented
+waggler_fixe|Waggler fixe|anglaise|main_line,float,weight,leader,hook,bait|Flotteur anglais immobilisé à sa base.|Portée avec moulinet et profondeur limitée par la présentation.|tech_anglaise_fixe|documented
+waggler_coulissant|Waggler coulissant|anglaise|main_line,float,stop,bead,weight,swivel,leader,hook,bait|Flotteur coulisse jusqu'au stop.|Accès à plus de profondeur ; réglage du stop nécessaire.|tech_anglaise_coulissant|documented
+pellet_waggler|Pellet waggler préplombé|anglaise|main_line,float,leader,hook,bait|Flotteur préplombé conçu pour les pellets.|Ne pas ajouter une seconde fois la masse interne du flotteur.|tech_waggler|documented
+bolo_derive|Bolognaise en dérive|bolognaise|main_line,float,weight,leader,hook,bait|Contrôle d'une coulée au flotteur.|Animation en courant ; méthode à activer après eau courante.|tech_bolo|partial
+fond_coulissant|Plombée coulissante|fond|main_line,weight,bead,swivel,leader,hook,bait|Ligne coulisse dans le lest.|Lecture de touches au fil ; résistance de prise limitée.|tech_coup|documented
+fond_potence|Plombée à potence|fond|main_line,weight,swivel,leader,hook,bait|Lest et terminal sur des branches distinctes.|Graphe de casse avec branche de plomb séparée.|tech_feeder_potence|partial
+fond_anti_tangle|Fond sur tube anti-emmêleur|fond|main_line,tube,weight,swivel,leader,hook,bait|Écarter le terminal du corps de ligne.|Compromis entre présentation et encombrement.|tech_feeder|partial
+feeder_coulissant|Cage feeder coulissante|feeder|main_line,feeder,bead,swivel,leader,hook,bait,groundbait|Cage coulissante contenant l'amorce.|Amorçage local et indication au scion.|tech_feeder|documented
+feeder_potence|Feeder à potence coulissante|feeder|main_line,feeder,boom,bead,swivel,leader,hook,bait,groundbait|Potence coulissante portant le feeder.|Sensibilité et séparation du terminal.|tech_feeder_potence|documented
+feeder_helicoptere|Feeder hélicoptère|feeder|main_line,feeder,stop,swivel,leader,hook,bait,groundbait|Terminal tourne autour du corps de ligne.|Recette avancée ; détails à vérifier avant activation.|tech_feeder|needs_research
+method_inline|Method feeder inline|method_feeder|main_line,feeder,leader,hook,bait,groundbait|Esche près du bloc d'amorce.|Wafter ou pellet ; recette exacte à documenter.|tech_feeder,tech_wafter|partial
+method_elastique|Method feeder avec amortissement|method_feeder|main_line,feeder,elastic,leader,hook,bait,groundbait|Amortissement intégré au système method.|Réserver jusqu'à validation du système de libération.|tech_feeder|needs_research
+cheveu_coulissant|Carpe au cheveu et plomb coulissant|carpe|main_line,weight,bead,swivel,leader,hook,hair,bait|Esche déportée sur cheveu, lest coulissant.|Montage carpe de départ ; adapter taille de l'esche.|tech_carp_rigs|documented
+carpe_clip|Carpe avec clip-plomb|carpe|main_line,lead_clip,weight,swivel,leader,hook,hair,bait|Clip pouvant libérer le plomb.|Libération conditionnelle ; pas d'éjection magique systématique.|tech_lead_clip,tech_carp_rigs|documented
+carpe_inline|Carpe avec plomb inline|carpe|main_line,weight,swivel,leader,hook,hair,bait|Plomb en ligne avec le corps de ligne.|Connexions et libération à spécifier pour chaque variante.|tech_carp_rigs|partial
+carpe_helicoptere|Carpe hélicoptère|carpe|main_line,weight,stop,bead,swivel,leader,hook,hair,bait|Bas de ligne tourne autour du corps de ligne.|Limiter emmêlements ; positions des stops importantes.|tech_chod,tech_carp_rigs|documented
+chod|Chod rig|carpe|main_line,weight,stop,bead,swivel,leader,hook,bait|Présentation pop-up sur terminal court et raide.|Adapter présentation au substrat ; pas universel en herbiers.|tech_chod|documented
+ronnie|Ronnie / spinner rig|carpe|main_line,weight,swivel,leader,hook,bait|Hameçon articulé avec esche flottante.|Présentation pop-up ; composants dédiés dans l'atelier.|tech_ronnie|documented
+d_rig|D-rig|carpe|main_line,weight,leader,hook,hair,bait|Esche reliée à une boucle en D.|Recette carpe avancée, réglages à confirmer.|tech_carp_rigs|partial
+blowback|Blowback rig|carpe|main_line,weight,leader,hook,hair,bait|Cheveu guidé par un anneau sur l'hameçon.|Ne pas attribuer de taux magique de ferrage.|tech_carp_rigs|partial
+combi|Combi rig|carpe|main_line,weight,leader,hook,hair,bait|Terminal associant sections de rigidités différentes.|Présentation et résistance résultent des composants.|tech_carp_rigs|partial
+pva_solide|Montage en sac PVA solide|carpe|main_line,weight,leader,hook,hair,bait,pva,groundbait|Amorce et terminal regroupés dans un sac soluble.|Sac consommé au lancer valide ; temps de dissolution.|tech_pva|documented
+pva_filet|Montage avec filet PVA|carpe|main_line,weight,leader,hook,hair,bait,pva,groundbait|Petit amorçage porté par filet soluble.|Filet consommé une fois ; pas à l'ouverture de l'atelier.|tech_pva_mesh|documented
+surface_libre|Esche de surface sans lest|surface,stalking|main_line,leader,hook,bait|Présentation libre d'une esche flottante.|Portée réduite et importance de la discrétion.|tech_coup|partial
+surface_controleur|Surface au contrôleur|surface,stalking|main_line,float,swivel,leader,hook,bait|Corps porteur pour lancer une esche flottante.|Comparaison portée / impact sur l'eau.|tech_carp_rigs|needs_research
+tete_plombee|Leurre sur tête plombée|leurre,ultraleger,verticale|main_line,leader,jig_head,lure|Tête lestée avec hameçon portant le souple.|Poids et taille d'hameçon adaptés au leurre.|tech_soft_rigs|documented
+weightless|Leurre souple weightless|leurre,ultraleger|main_line,leader,hook,lure|Leurre sans lest ajouté.|Pêche lente proche de la surface selon densité du leurre.|tech_soft_rigs|documented
+texas|Texas rig|leurre|main_line,leader,weight,hook,lure|Lest balle et hameçon offset.|Présentation en obstacles ; résistance toujours calculée.|tech_texas,tech_soft_rigs|documented
+carolina|Carolina rig|leurre|main_line,weight,bead,swivel,leader,hook,lure|Lest séparé du leurre par un terminal.|Explorer le fond avec présentation déportée.|tech_soft_rigs|documented
+drop_shot|Drop-shot|leurre,ultraleger,verticale|main_line,leader,hook,lure,weight|Hameçon au-dessus d'un lest terminal.|Rupture de branche de lest distincte de perte du leurre.|tech_drop_shot,tech_soft_rigs|documented
+split_shot|Split-shot rig|leurre,ultraleger|main_line,leader,weight,hook,lure|Petit lest placé en amont du souple.|Variante finesse ; détails de placement à valider.|tech_soft_rigs|partial
+wacky|Wacky rig|leurre|main_line,leader,hook,lure|Ver souple piqué transversalement.|Chute lente et pulsations ; usure du souple séparée.|tech_soft_rigs|documented
+neko|Neko rig|leurre|main_line,leader,hook,nail_weight,lure|Ver souple avec lest inséré à une extrémité.|Catalogue avancé ; besoin d'une source dédiée.|tech_soft_rigs|needs_research
+ned|Ned rig|leurre,ultraleger|main_line,leader,jig_head,lure|Petit souple sur tête à face plate.|Leurre visible posé ; finesse près du fond.|tech_ned|documented
+tokyo|Tokyo rig|leurre|main_line,leader,hook,wire_arm,weight,lure|Lest déporté sur tige sous l'hameçon.|Présentation dans végétation selon type de terminal.|tech_tokyo|documented
+jig_trailer|Jig et trailer|leurre|main_line,leader,jig_head,lure|Jig habillé complété par un leurre souple.|Animation de proie de fond ; compatibilité de taille.|tech_lures|partial
+poisson_nageur|Poisson nageur sur agrafe|leurre,ultraleger,traine|main_line,leader,snap,lure|Leurre rigide avec hameçons intégrés.|Ne pas ajouter un hameçon terminal fictif dans l'UI.|tech_lures,tech_crank|documented
+cuiller|Cuiller et émerillon|leurre,ultraleger|main_line,leader,swivel,snap,lure|Leurre métallique tournant ou ondulant.|Vrillage et vitesse ; émerillon adapté à la variante.|tech_lures|documented
+spinnerbait|Spinnerbait direct|leurre|main_line,leader,lure|Armature avec palettes et hameçon intégré.|Vibrations en récupération ; pas de plomb externe imposé.|tech_spinner|documented
+topwater|Leurre de surface|leurre|main_line,leader,lure|Animation en surface.|Attaques visibles ; eau libre ou végétation selon modèle.|tech_topwater|documented
+mort_manie_monture|Monture à poisson mort|mort_manie|main_line,leader,harness,weight,bait|Poisson mort tenu par monture et armement.|Graphe d'armement à vérifier avant activation.|tech_coup|needs_research
+toc_etage|Toc à plombée progressive|toc|main_line,indicator,weight,leader,hook,bait|Lests répartis pour dérive adaptée au courant.|Ne pas transformer les plombs en poids de fond fixe.|tech_toc,tech_toc_variantes|documented
+toc_nymphe|Toc à nymphe|toc,nymphe_fil|main_line,indicator,leader,tippet,fly|Imitation en dérive contrôlée.|Recette distincte des appâts ; immersion et contact du fil.|tech_toc,tech_fly|partial
+seche|Mouche sèche|mouche|backing,fly_line,leader,tippet,fly|Imitation évoluant en surface.|Gobages et dérive ; animation de lancer dédiée plus tard.|tech_fly|documented
+noyee|Mouche noyée|mouche|backing,fly_line,leader,tippet,fly|Imitation immergée.|Présentation sous la surface ; densité de ligne.|tech_fly|documented
+nymphe|Nymphe à la mouche|mouche,nymphe_fil|backing,fly_line,leader,tippet,fly|Imitation de stade aquatique d'insecte.|Poids de mouche et courant déterminent immersion.|tech_fly|documented
+streamer|Streamer|mouche|backing,fly_line,leader,tippet,fly|Imitation animée de proie.|Récupération et profondeur selon ligne et imitation.|tech_fly|documented
+bombette_flot|Bombette flottante|bombette|main_line,bombette,bead,swivel,leader,hook,bait|Corps porteur flottant pour esche légère.|Masse de lancer distincte de profondeur d'esche.|tech_bombette|documented
+bombette_coul|Bombette plongeante|bombette|main_line,bombette,bead,swivel,leader,hook,bait|Corps porteur descendant dans l'eau.|Flottabilité et récupération règlent la couche d'eau.|tech_bombette|documented
+gambe_nymphes|Gambe à nymphes|gambe|main_line,leader,weight,fly|Train d'imitations sur empiles.|Plusieurs nymphes ; capacité multiple réservée au futur.|bio_coregone|needs_research
+traine_lac|Poisson nageur à la traîne|traine|main_line,leader,lure|Leurre présenté depuis une embarcation mobile.|Méthode désactivée jusqu'à présence d'un bateau fonctionnel.|tech_lures|needs_research
+clonk_vertical|Silure vertical au clonk|clonk|main_line,leader,weight,hook,bait,clonk|Présentation verticale associée à une sollicitation sonore.|Ne pas garantir une réaction à chaque son.|bio_silure|needs_research

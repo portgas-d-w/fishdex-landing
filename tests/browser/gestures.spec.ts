@@ -12,7 +12,7 @@ test('Départ bas, préparation visible, relâchement seul, refus et annulations
  await canvas.dispatchEvent('pointercancel',{pointerId:1});await page.mouse.up();await expect(page.locator('body')).toHaveAttribute('data-phase','idle');
  expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().lift)).toBe(.5);
  await page.setViewportSize({width:844,height:390});await page.waitForTimeout(400);await page.screenshot({path:`test-results/physics-${info.project.name}-landscape.png`});
- await page.locator('#menu-open').click();await page.locator('#equipment-open').click();await expect(page.locator('[data-method="lure"]')).toBeVisible();
+ await page.locator('#menu-open').click();await page.locator('#equipment-open').click();await expect(page.locator('[data-slot="method"]')).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.locator('[data-close="preparation"]').click();await page.locator('[data-close="menu"]').click();
  await castByGesture(page);await expect(page.locator('body')).toHaveAttribute('data-phase','casting');
 });
@@ -21,7 +21,7 @@ test('Un long lancer lent reste court ; une projection rapide gagne de la distan
  await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());
  const w=page.viewportSize()!.width,h=page.viewportSize()!.height;
  await page.mouse.move(w*.45,h*.8);await page.mouse.down();
- for(let i=1;i<=30;i++){await page.mouse.move(w*.45,h*(.8-.35*i/30));await page.waitForTimeout(50);}
+ for(let i=1;i<=20;i++){await page.mouse.move(w*.45,h*(.8-.35*i/20));await page.waitForTimeout(40);}
  await page.mouse.up();await expect(page.locator('body')).toHaveAttribute('data-phase','casting');
  const slow=await page.evaluate(()=>(window as any).__fishingQA.snapshot().target.z);
  await page.locator('#cancel-cast').click();await castByGesture(page);

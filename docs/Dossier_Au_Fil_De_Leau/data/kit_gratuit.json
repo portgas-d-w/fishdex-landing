@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "research_date": "2026-10-02",
+  "implementation_status": "catalogued_not_verified_in_game",
+  "numerical_parameters_origin": "provisional_game_design_not_biological_measurement",
+  "entries": [
+    {
+      "id": "kit_initiation",
+      "name": "Kit d’initiation toujours disponible",
+      "method_id": "anglaise",
+      "rig_id": "waggler_fixe",
+      "status": "design_to_reconcile_with_current_starter_kit",
+      "allows_resale": false,
+      "infinite_source": true,
+      "components": [
+        {
+          "id": "starter_rod",
+          "slot": "rod",
+          "ownership": "starter_unlimited",
+          "quantity_policy": "virtual_no_depletion"
+        },
+        {
+          "id": "starter_reel",
+          "slot": "reel",
+          "ownership": "starter_unlimited",
+          "quantity_policy": "virtual_no_depletion"
+        },
+        {
+          "id": "starter_main_line",
+          "slot": "main_line",
+          "ownership": "starter_unlimited",
+          "quantity_policy": "virtual_no_depletion"
+        },
+        {
+          "id": "starter_float",
+          "slot": "float",
+          "ownership": "starter_unlimited",
+          "quantity_policy": "virtual_no_depletion"
+        },
+        {
+          "id": "starter_weight",
+          "slot": "weight",
+          "ownership": "starter_unlimited",
+          "quantity_policy": "virtual_no_depletion"
+        },
+        {
+          "id": "starter_leader",
+          "slot": "leader",
+          "ownership": "starter_unlimited",
+          "quantity_policy": "virtual_no_depletion"
+        },
+        {
+          "id": "starter_hook",
+          "slot": "hook",
+          "ownership": "starter_unlimited",
+          "quantity_policy": "virtual_no_depletion"
+        },
+        {
+          "id": "starter_bait",
+          "slot": "bait",
+          "ownership": "starter_unlimited",
+          "quantity_policy": "virtual_no_depletion"
+        }
+      ],
+      "kit_bait": "asticot",
+      "free_components_have_no_resale_value": true,
+      "mixing_paid_and_free": "Les objets payants réellement perdus le restent ; seul le composant gratuit est renouvelé."
+    }
+  ]
+}

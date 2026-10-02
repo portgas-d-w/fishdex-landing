@@ -15,7 +15,7 @@ test('Appui long, glissement et nettoyage : aucune sélection ni menu natif sur 
  } else {await page.mouse.move(w*.45,h*.8);await page.mouse.down();await page.waitForTimeout(1100);await page.mouse.up();}
  await expect(page.locator('body')).toHaveAttribute('data-phase','idle');
  expect(await page.evaluate(()=>getSelection()?.toString())).toBe('');
- await castByGesture(page);await page.evaluate(()=>(window as any).__fishingQA.advance(10));await page.locator('#strike').click();
+ await castByGesture(page);await page.evaluate(()=>(window as any).__fishingQA.advance(45));await page.locator('#strike').click();
  const protection=await page.evaluate(()=>['#world','#rod-control','#reel-control'].map(selector=>{
   const element=document.querySelector(selector)!,style=getComputedStyle(element);
   return {select:style.userSelect,webkit:style.webkitUserSelect,touch:style.touchAction,

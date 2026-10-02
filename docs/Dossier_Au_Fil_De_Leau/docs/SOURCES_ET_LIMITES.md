@@ -1,0 +1,99 @@
+# Sources et portée des recherches
+
+Consultation le 2 octobre 2026. Liens conservés pour contrôler les fiches. Les fiches DORIS et les synthèses FishBase sont des références naturalistes secondaires ; FAO, NOAA, FWS et organismes de pêche fournissent des profils institutionnels. Les guides de fabricants décrivent leurs pratiques ou systèmes et ne constituent pas des preuves de supériorité d’un produit.
+
+Les chiffres de combat, affinités, raretés et économie sont des choix originaux à équilibrer. Une source sur une famille ne valide pas toutes les recettes de cette famille. Certains profils taxonomiques/historiques et méthodes spécialistes sont incomplets ; les statuts les signalent.
+
+Aucun règlement territorial n’est repris comme règle universelle du jeu. Aucun manuel complet, photographie tierce, schéma ou texte de fabricant n’est recopié. Les images appartiennent au catalogue fourni par l’utilisateur et ne sont pas incluses dans cette archive.
+
+- **bio_ablette** — [Ablette — Alburnus alburnus](https://doris.ffessm.fr/Especes/Alburnus-alburnus-Ablette-1020/%28rOffset%29/2), DORIS / FFESSM. Portée : Alimentation et description.
+- **bio_aloses** — [Aloses — Alosa alosa / fallax](https://doris.ffessm.fr/Especes/Alosa-alosa-fallax-Alose-vraie-Alose-feinte-4490), DORIS / FFESSM. Portée : Différence de régime et arrêt de l'alimentation en remontée.
+- **bio_argentee** — [Carpe argentée — Hypophthalmichthys molitrix](https://doris.ffessm.fr/Especes/Hypophthalmichthys-molitrix-Carpe-argentee-3428), DORIS / FFESSM. Portée : Filtration du plancton.
+- **bio_herbivore** — [Amour blanc — Ctenopharyngodon idella](https://doris.ffessm.fr/Especes/Ctenopharyngodon-idella-Amour-blanc-3888), DORIS / FFESSM. Portée : Alimentation végétale adulte et habitat.
+- **bio_marbree** — [Carpe à grosse tête — Hypophthalmichthys nobilis](https://www.fao.org/fishery/docs/CDrom/aquaculture/I1129m/file/fr/fr_bigheadcarp.htm), FAO. Portée : Profil d'espèce élevée et écologie ; ne pas généraliser élevage et capture sauvage.
+- **bio_anguille** — [Anguille — Anguilla anguilla](https://doris.ffessm.fr/Especes/Anguilla-anguilla-Anguille-856), DORIS / FFESSM. Portée : Alimentation et activité crépusculaire.
+- **bio_apron** — [Apron du Rhône — Zingel asper](https://doris.ffessm.fr/Especes/Apron-du-Rhone3/%28rOffset%29/11), DORIS / FFESSM. Portée : Habitat et alimentation.
+- **bio_aspe** — [Aspe — Leuciscus aspius](https://doris.ffessm.fr/Especes/Leuciscus-aspius-Aspe-2994/%28rOffset%29/0), DORIS / FFESSM. Portée : Prédation près de la surface ; ancien synonyme Aspius aspius.
+- **bio_barbeau_meridional** — [Barbeau méridional — Barbus meridionalis](https://www.fishbase.se/FieldGuide/FieldGuideSummary.php?GenusName=Barbus&SpeciesName=meridionalis&pda=1&sps=), FishBase. Portée : Habitat courant et petits invertébrés ; synthèse référencée.
+- **bio_barbeau** — [Barbeau commun — Barbus barbus](https://doris.ffessm.fr/Especes/Barbeau-commun3), DORIS / FFESSM. Portée : Invertébrés benthiques.
+- **bio_bass_petite** — [Achigan à petite bouche — Micropterus dolomieu](https://doris.ffessm.fr/Especes/Micropterus-dolomieu-Achigan-a-petite-bouche-1502), DORIS / FFESSM. Portée : Habitat rocheux et proies.
+- **bio_bass** — [Achigan à grande bouche — Micropterus salmoides](https://doris.ffessm.fr/Especes/Micropterus-salmoides-Achigan-a-grande-bouche-2778/%28rOffset%29/17), DORIS / FFESSM. Portée : Alimentation et activité.
+- **bio_blageon** — [Blageon — Leuciscus souffia, aujourd'hui Telestes souffia](https://doris.ffessm.fr/Especes/Leuciscus-souffia-Blageon-2168/%28rOffset%29/0), DORIS / FFESSM. Portée : Compétition de banc et proies en dérive.
+- **bio_bouviere** — [Bouvière — Rhodeus amarus](https://doris.ffessm.fr/Especes/Rhodeus-amarus-Bouviere-1325/%28rOffset%29/17), DORIS / FFESSM. Portée : Alimentation et lien de reproduction avec les moules.
+- **bio_bordeliere** — [Blicca bjoerkna — alimentation étudiée au lac Balaton](https://fishbase.se/TrophicEco/DietCompoSummary.php?dietcode=2139&genusname=Blicca&speciesname=bjoerkna), FishBase / Specziár, Tölg et Biró 1997. Portée : Composition locale du régime ; ne pas extrapoler les pourcentages à toutes les eaux.
+- **bio_breme** — [Brème commune — Abramis brama](https://doris.ffessm.fr/Especes/Abramis-brama-Breme-commune-237/%28rOffset%29/4), DORIS / FFESSM. Portée : Habitat calme et alimentation.
+- **bio_brochet** — [Brochet — Esox lucius](https://doris.ffessm.fr/Especes/Esox-lucius-Brochet-366), DORIS / FFESSM. Portée : Chasse à l'affût dans les plantes aquatiques.
+- **bio_carassins** — [Carassins commun, argenté et doré](https://doris.ffessm.fr/Especes/Carassius-spp.-Carassin-commun-carassin-argente-et-carassin-dore-2552), DORIS / FFESSM. Portée : Taxons distincts et alimentation commune.
+- **bio_carpe** — [Carpe commune — Cyprinus carpio](https://doris.ffessm.fr/Especes/Cyprinus-carpio-Carpe-commune-248/%28rOffset%29/8), DORIS / FFESSM. Portée : Fouille du sédiment, alimentation et formes d'écaillure.
+- **bio_chabot** — [Chabot — Cottus gobio](https://doris.ffessm.fr/Especes/Cottus-gobio-Chabot-commun-241), DORIS / FFESSM. Portée : Petits invertébrés benthiques et activité.
+- **bio_chevesne** — [Chevaine — Squalius cephalus](https://doris.ffessm.fr/Especes/Squalius-cephalus-Chevaine-615), DORIS / FFESSM. Portée : Régime opportuniste variant avec l'âge.
+- **bio_coregone** — [Corégone — Coregonus lavaretus](https://doris.ffessm.fr/Especes/Coregone3/%28rOffset%29/4), DORIS / FFESSM. Portée : Plancton, insectes et capture visuelle ; identités locales à contrôler.
+- **bio_cristivomer** — [Lake trout — Salvelinus namaycush](https://www.fws.gov/species/lake-trout-salvelinus-namaycush), U.S. Fish & Wildlife Service. Portée : Habitat et profil d'espèce.
+- **bio_eperlan** — [Synopsis of biological data on smelt Osmerus eperlanus](https://www.fao.org/4/96024e/96024e.pdf), FAO. Portée : Synopsis historique ; certains traitements taxonomiques demandent une vérification moderne.
+- **bio_baeri** — [Esturgeon sibérien — Acipenser baerii](https://www.fao.org/fishery/docs/CDrom/aquaculture/I1129m/file/fr/fr_acipenser.htm), FAO. Portée : Profil d'aquaculture ; alimentation d'élevage distincte de la pêche sauvage.
+- **bio_diamant** — [Russian sturgeon — Acipenser gueldenstaedtii](https://archive.iwlearn.net/caspianenvironment.org/CaspBIS/Taxons/Taxon8254.html?taxonid=4), Caspian Environment Programme / IW:LEARN. Portée : Recherche benthique et régime ; fiche historique archivée.
+- **bio_europeen** — [Esturgeon européen — Acipenser sturio](https://doris.ffessm.fr/Especes/Acipenser-sturio-Esturgeon-europeen-1321), DORIS / FFESSM. Portée : Vie sur le fond et alimentation.
+- **bio_gardon** — [Gardon — Rutilus rutilus](https://doris.ffessm.fr/Especes/Rutilus-rutilus-Gardon-289/%28rOffset%29/1), DORIS / FFESSM. Portée : Omnivorie, végétaux adultes et activité de jour.
+- **bio_goujon** — [Goujon — Gobio gobio](https://doris.ffessm.fr/Especes/Gobio-gobio-Goujon-363), DORIS / FFESSM. Portée : Invertébrés benthiques et recherche au fond.
+- **bio_hotu** — [Hotu — Chondrostoma nasus](https://doris.ffessm.fr/Especes/Chondrostoma-nasus-Hotu-2164/%28rOffset%29/8), DORIS / FFESSM. Portée : Raclage de diatomées sur substrat.
+- **bio_huchon** — [Hucho hucho — ecology summary](https://www.fishbase.se/Ecology/Hucho_hucho), FishBase. Portée : Eaux courantes oxygénées et prédation ; synthèse référencée.
+- **bio_ide** — [Ide mélanote — Leuciscus idus](https://doris.ffessm.fr/Especes/Leuciscus-idus-Ide-melanote-2167/%28rOffset%29/6), DORIS / FFESSM. Portée : Régime variant selon âge et milieu.
+- **bio_lamproie_planer** — [Lamproie de Planer — Lampetra planeri](https://doris.ffessm.fr/Especes/Lampetra-planeri-Lamproie-de-Planer-1636), DORIS / FFESSM. Portée : Filtration larvaire puis arrêt de l'alimentation.
+- **bio_lamproie_fluviatile** — [Lamproie de rivière — Lampetra fluviatilis](https://doris.ffessm.fr/Especes/Lampetra-fluviatilis-Lamproie-de-riviere-1122), DORIS / FFESSM. Portée : Filtration larvaire et parasitisme adulte.
+- **bio_loche** — [Loche franche — Barbatula barbatula](https://doris.ffessm.fr/Especes/Barbatula-barbatula-Loche-franche-269), DORIS / FFESSM. Portée : Petits animaux de fond et recherche nocturne.
+- **bio_lotte** — [Lotte de rivière — Lota lota](https://doris.ffessm.fr/Especes/Lota-lota-Lotte-de-riviere-204), DORIS / FFESSM. Portée : Prédation au fond et biologie d'eau froide.
+- **bio_mulet** — [Mulet-porc — Chelon ramada](https://doris.ffessm.fr/Especes/Chelon-ramada-Mulet-porc-1985), DORIS / FFESSM. Portée : Omnivorie, biofilm et activité diurne ; ne pas confondre avec Chelon labrosus.
+- **bio_omble_chevalier** — [Omble chevalier — Salvelinus alpinus](https://doris.ffessm.fr/Especes/Salvelinus-alpinus-Omble-chevalier-1751/%28rOffset%29/18), DORIS / FFESSM. Portée : Eaux fraîches, invertébrés et alevins.
+- **bio_omble_fontaine** — [Omble de fontaine — Salvelinus fontinalis](https://doris.ffessm.fr/Especes/Salvelinus-fontinalis-Omble-de-fontaine-1657), DORIS / FFESSM. Portée : Eaux fraîches et invertébrés.
+- **bio_ombre** — [Ombre commun — Thymallus thymallus](https://doris.ffessm.fr/Especes/Thymallus-thymallus-Ombre-commun-2169/%28rOffset%29/12), DORIS / FFESSM. Portée : Proies du fond et insectes en dérive.
+- **bio_perche** — [Perche — Perca fluviatilis](https://doris.ffessm.fr/Especes/Perca-fluviatilis-Perche-330), DORIS / FFESSM. Portée : Bancs, prédation visuelle et évolution du régime.
+- **bio_soleil** — [Perche-soleil — Lepomis gibbosus](https://doris.ffessm.fr/Especes/Lepomis-gibbosus-Perche-soleil-287/), DORIS / FFESSM. Portée : Petites proies et chasse de jour.
+- **bio_chat** — [Poisson-chat — Ameiurus melas](https://doris.ffessm.fr/Especes/Ameiurus-melas-Poisson-chat-990/%28rOffset%29/1), DORIS / FFESSM. Portée : Omnivorie et vie au fond.
+- **bio_pseudorasbora** — [Pseudorasbora parva — ecology](https://www.fishbase.se/Ecology/Pseudorasbora_parva), FishBase. Portée : Alimentation surtout animale ; profil partiel.
+- **bio_rotengle** — [Rotengle — Scardinius erythrophthalmus](https://doris.ffessm.fr/Especes/Scardinius-erythrophthalmus-Rotengle-1078), DORIS / FFESSM. Portée : Régime omnivore avec tendance végétale adulte.
+- **bio_sandre** — [Sandre — Sander lucioperca](https://doris.ffessm.fr/Especes/Sander-lucioperca-Sandre-290), DORIS / FFESSM. Portée : Petits poissons et vision en faible luminosité.
+- **bio_dore** — [Doré jaune — Sander vitreus](https://doris.ffessm.fr/Especes/Sander-vitreus-Dore-jaune-1503/%28rOffset%29/11), DORIS / FFESSM. Portée : Espèce nord-américaine distincte du sandre européen.
+- **bio_saumon** — [Saumon atlantique — Salmo salar](https://doris.ffessm.fr/Especes/Salmo-salar-Saumon-769), DORIS / FFESSM. Portée : Alimentation en mer et arrêt en remontée adulte.
+- **bio_saumon_roi** — [Chinook salmon — Oncorhynchus tshawytscha](https://www.fisheries.noaa.gov/species/chinook-salmon), NOAA Fisheries. Portée : Profil de l'espèce ; contexte nord-américain.
+- **bio_silure** — [Silure glane — Silurus glanis](https://doris.ffessm.fr/Especes/Silurus-glanis-Silure-glane-364), DORIS / FFESSM. Portée : Prédation opportuniste et activité surtout nocturne.
+- **bio_spirlin** — [Spirlin — Alburnoides bipunctatus](https://doris.ffessm.fr/Especes/Alburnoides-bipunctatus-Spirlin-2163), DORIS / FFESSM. Portée : Petites proies en courant et en surface.
+- **bio_tanche** — [Tanche — Tinca tinca](https://doris.ffessm.fr/Especes/Tinca-tinca-Tanche-249/%28rOffset%29/15), DORIS / FFESSM. Portée : Recherche de nourriture au fond et activité crépusculaire.
+- **bio_toxostome** — [Toxostome — Parachondrostoma toxostoma](https://doris.ffessm.fr/Especes/Toxostome3/%28rOffset%29/fiche_fiche.asp?fiche_numero=2164), DORIS / FFESSM. Portée : Raclage des fonds ; source sous ancien nom Chondrostoma toxostoma.
+- **bio_arc** — [Truite arc-en-ciel — Oncorhynchus mykiss](https://doris.ffessm.fr/Especes/Oncorhynchus-mykiss-Truite-arc-en-ciel-2308), DORIS / FFESSM. Portée : Invertébrés, poissons et activité diurne.
+- **bio_fario** — [Truite de rivière — Salmo trutta](https://doris.ffessm.fr/Especes/Salmo-trutta-fario-Truite-de-riviere-388/%28rOffset%29/8), DORIS / FFESSM. Portée : Régime variant avec l'âge ; source désigne la forme fario.
+- **bio_vairon** — [Vairon — Phoxinus phoxinus](https://doris.ffessm.fr/Especes/Phoxinus-phoxinus-Vairon-1656), DORIS / FFESSM. Portée : Omnivorie et eaux fraîches ; complexe taxonomique à contrôler.
+- **bio_vandoise** — [Vandoise — Leuciscus leuciscus](https://doris.ffessm.fr/ref/specie/2166), DORIS / FFESSM. Portée : Profil d'espèce.
+- **tech_coup** — [Tackle, methods and bait](https://fishinginireland.info/coarse/cbait/), Inland Fisheries Ireland. Portée : Méthodes généralistes et appâts usuels.
+- **tech_feeder** — [Introduction to feeder fishing](https://fishinginireland.info/2025/coarse-reports/an-introduction-to-feeder-fishing-by-blackwood-bait-and-tackle/), Fishing in Ireland / Blackwood Bait and Tackle. Portée : Pratique feeder ; retour de praticien hébergé par IFI.
+- **tech_feeder_potence** — [Potence feeder coulissante](https://www.decathlon.fr/p/potence-feeder-coulissante-6cm-ff-p-m/328416/c4m8603429), Caperlan / Decathlon. Portée : Fixation coulissante et sensibilité.
+- **tech_carp_rigs** — [Guide des montages carpe](https://kordatackle.com/knowledge/a-guide-to-the-best-carp-rigs), Korda. Portée : Comparaison de recettes ; synthèse de fabricant.
+- **tech_ronnie** — [How to tie the Ronnie rig](https://kordatackle.com/knowledge/how-to-tie-the-ronnie-rig-a-step-by-step-guide), Korda. Portée : Composants et esche pop-up.
+- **tech_chod** — [Spring fishing with chod rigs](https://kordatackle.com/knowledge/what-is-a-chod-rig-and-how-do-you-use-them), Korda. Portée : Montage hélicoptère à présentation surélevée.
+- **tech_pva** — [Solid PVA bags and rigs explained](https://kordatackle.com/knowledge/solid-pva-bags-and-pva-bag-rigs), Korda. Portée : Dissolution et amorçage localisé.
+- **tech_pva_mesh** — [Using PVA mesh for carp fishing](https://kordatackle.com/knowledge/using-pva-mesh-for-carp-fishing), Korda. Portée : Petit amorçage et limitation des emmêlements.
+- **tech_lead_clip** — [Lead clip systems and safety](https://kordatackle.com/knowledge/using-lead-clips-for-fishing-what-makes-them-such-a-good-choice-of-lead-system), Korda. Portée : Libération du plomb selon fixation et résistance.
+- **tech_fly** — [Trout fishing methods](https://fishinginireland.info/trout/trmethods/), Inland Fisheries Ireland. Portée : Mouche et autres approches de la truite.
+- **tech_waggler** — [Loaded pellet wagglers](https://www.drennantackle.com/products/floats/wagglers/loaded-pellet-wagglers/), Drennan. Portée : Flotteurs préplombés et fixation.
+- **tech_float_weights** — [Non-toxic waggler weights](https://www.drennantackle.com/products/tackle/bits-and-pieces/waggler-weights/), Drennan. Portée : Lests pour flotteurs.
+- **tech_elastic** — [Hybrid solid pole elastic](https://www.drennantackle.com/products/pole-accessories/hybrid-solid-pole-elastic-2/), Drennan. Portée : Amortissement par élastique sur grande canne.
+- **tech_soft_rigs** — [Les montages pour leurres souples](https://www.sakura-fishing.com/montages-leurres-souples/), Sakura. Portée : Weightless, Texas, Carolina et montages finesse.
+- **tech_texas** — [Texas rig kit](https://www.rapala.com/us_en/trk-texas-rig-kit), VMC / Rapala. Portée : Composants de la famille Texas.
+- **tech_drop_shot** — [Tungsten round drop shot](https://www.sakura-fishing.com/accessoire/tungsten-round-drop-shot/), Sakura. Portée : Lest et fixation drop-shot.
+- **tech_tokyo** — [Tokyo rig in thick grass](https://blog.rapala.com/news/land-more-bass-in-thick-grass-with-the-new-vmc-tokyo-rig/), VMC / Rapala. Portée : Présentation du Tokyo rig.
+- **tech_lures** — [Leurres artificiels](https://www.sakura-fishing.com/leurres/), Sakura. Portée : Familles commerciales de leurres ; caractéristiques détaillées à confirmer par fiche.
+- **tech_topwater** — [Topwaters — leurres de surface](https://www.sakura-fishing.com/leurres/topwaters-surface/), Sakura. Portée : Famille des leurres de surface.
+- **tech_spinner** — [Cajun spinnerbait](https://www.sakura-fishing.com/leurre/spinnerbaits-cajun/), Sakura. Portée : Vibrations et récupération ; conseils de fabricant.
+- **tech_crank** — [Crankbaits](https://www.sakura-fishing.com/leurres/crankbaits/), Sakura. Portée : Famille des poissons nageurs à bavette.
+- **tech_wafter** — [Band'um wafters](https://www.sonubaits.com/de/products/hookbaits/sp-10353), Sonubaits. Portée : Flottabilité équilibrée entre esche coulante et pop-up.
+- **tech_bait_catalogue** — [Catalogue appâts et amorces](https://www.sonubaits.com/fr/products), Sonubaits. Portée : Pellets, amorces, pop-ups et wafters.
+- **tech_boilie** — [The Source boilies](https://dynamitebaits.com/cz/product/the-source-boilies/), Dynamite Baits. Portée : Famille bouillette ; aucune promesse commerciale reprise.
+- **tech_anglaise_fixe** — [Montage d'un waggler fixe](https://www.garbolino.fr/peche-a-langlaise-montage-dun-waggler-fixe/), Garbolino. Portée : Famille anglaise fixe ; distances de praticien non transposées en limites universelles.
+- **tech_anglaise_coulissant** — [Montage coulissant dit méthode anglaise](https://www.garbolino.fr/montage-peche-a-langlaise-montage-coulissant-dit-methode-anglaise/), Garbolino. Portée : Plombée et waggler coulissant.
+- **tech_toc** — [Comment bien débuter la pêche au toc](https://conseilsport.decathlon.fr/comment-bien-debuter-la-peche-au-toc), Caperlan / Decathlon. Portée : Dérive et adaptation de la plombée au courant.
+- **tech_toc_variantes** — [La pêche au toc](https://www.peche06.fr/4547-la-peche-au-toc.htm), Fédération de pêche des Alpes-Maritimes. Portée : Variantes selon courant ; schémas à consulter avant simulation détaillée.
+- **tech_ned** — [Tête Tungsten Ned Rig](https://www.sakura-fishing.com/accessoire/tungsten-ned-rig-jig-head/), Sakura. Portée : Présentation et tête du Ned rig.
+- **tech_noeuds** — [Guide des nœuds](https://www.rapala.fr/eu_fr/knot-tying-guide-fr), Rapala / Sufix. Portée : Connexions boucle, Palomar et FG ; aucun coefficient de résistance universel.
+- **tech_bolo** — [Flotteur bolognaise SP B10](https://www.garbolino.fr/produits/univers-coup/flotteurs/flotteurs-anglaise-bolo-competition/flotteur-bolognaise-competition-sp-b10-garbolino/), Garbolino. Portée : Famille bolognaise ; référence produit et quille de stabilité.
+- **tech_bombette** — [Comment choisir sa bombette](https://www.decathlon.fr/c/htc/comment-choisir-sa-bombette_f1c4b6db-1c43-4e78-87c8-1d7021ca862f), Caperlan / Decathlon. Portée : Masse de lancer et discrétion ; flottabilité distincte.
+- **tech_premiere_ligne** — [Comment monter ses premières lignes](https://conseilsport.decathlon.fr/comment-monter-ses-premieres-lignes), Caperlan / Decathlon. Portée : Corps de ligne, flotteur, répartition de plombée, terminal et esches fines.
+- **tech_souples_caperlan** — [Leurres souples — tous les montages](https://conseilsport.decathlon.fr/leurres-souples-tous-les-montages), Caperlan / Decathlon. Portée : Présentation des montages souples usuels.

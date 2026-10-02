@@ -1,0 +1,1518 @@
+{
+  "schema_version": "1.0.0",
+  "research_date": "2026-10-02",
+  "implementation_status": "catalogued_not_verified_in_game",
+  "numerical_parameters_origin": "provisional_game_design_not_biological_measurement",
+  "note": "Familles originales pour le jeu ; exemples de tailles, aucune spécification commerciale ni prix réel. Exiger les fiches exactes pour une reproduction réaliste de produits.",
+  "entries": [
+    {
+      "id": "canne_polyvalente",
+      "name": "Canne polyvalente",
+      "slot": "rod",
+      "method_ids": [
+        "anglaise",
+        "fond",
+        "feeder",
+        "stalking",
+        "leurre"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "behavior": "Un seul blank, plusieurs approches compatibles ; puissance à vérifier par recette.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "canne_telescopique",
+      "name": "Canne télescopique de coup",
+      "slot": "rod",
+      "method_ids": [
+        "coup"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "behavior": "Sans moulinet ; portée bornée par canne et ligne.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "canne_grande",
+      "name": "Grande canne à emmanchements",
+      "slot": "rod",
+      "method_ids": [
+        "grande_canne",
+        "carpodrome"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "tech_elastic"
+      ],
+      "behavior": "Élastique remplace le frein d'un moulinet.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "canne_match",
+      "name": "Canne anglaise",
+      "slot": "rod",
+      "method_ids": [
+        "anglaise",
+        "surface",
+        "stalking",
+        "bombette"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "tech_anglaise_fixe"
+      ],
+      "behavior": "Portée au waggler ; plage de lancer déclarée séparément.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "canne_bolo",
+      "name": "Canne bolognaise",
+      "slot": "rod",
+      "method_ids": [
+        "bolognaise"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "tech_bolo"
+      ],
+      "behavior": "Contrôle de la dérive avec anneaux.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "canne_fond",
+      "name": "Canne de fond",
+      "slot": "rod",
+      "method_ids": [
+        "fond",
+        "carpe"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "behavior": "Tenue au posé et amortissement.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "canne_feeder",
+      "name": "Canne feeder",
+      "slot": "rod",
+      "method_ids": [
+        "feeder",
+        "method_feeder"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "tech_feeder"
+      ],
+      "behavior": "Scion sensible et plage de masse au lancer.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "canne_carpe",
+      "name": "Canne carpe",
+      "slot": "rod",
+      "method_ids": [
+        "carpe",
+        "stalking",
+        "surface",
+        "fond"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "tech_carp_rigs"
+      ],
+      "behavior": "Courbe de test et masse de lancer distinctes de poids du poisson.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "canne_spinning",
+      "name": "Canne spinning",
+      "slot": "rod",
+      "method_ids": [
+        "leurre",
+        "ultraleger",
+        "verticale",
+        "mort_manie"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "tech_soft_rigs"
+      ],
+      "behavior": "Moulinet à tambour fixe.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "canne_casting",
+      "name": "Canne casting",
+      "slot": "rod",
+      "method_ids": [
+        "leurre",
+        "verticale",
+        "mort_manie"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "tech_soft_rigs"
+      ],
+      "behavior": "Moulinet casting et commandes futures adaptées.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "canne_toc",
+      "name": "Canne au toc",
+      "slot": "rod",
+      "method_ids": [
+        "toc"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "tech_toc"
+      ],
+      "behavior": "Dérive et gestion du contact avec le fil.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "canne_mouche",
+      "name": "Canne à mouche",
+      "slot": "rod",
+      "method_ids": [
+        "mouche",
+        "nymphe_fil"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "behavior": "Numéro de soie et action à définir séparément.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "canne_nymphe",
+      "name": "Canne à nymphe",
+      "slot": "rod",
+      "method_ids": [
+        "nymphe_fil"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "behavior": "Ligne et dérive propres à la recette.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "canne_silure",
+      "name": "Canne silure",
+      "slot": "rod",
+      "method_ids": [
+        "clonk",
+        "fond"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "bio_silure"
+      ],
+      "behavior": "Ensemble fort à activer après combats des grands poissons.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "canne_gambe",
+      "name": "Canne gambe",
+      "slot": "rod",
+      "method_ids": [
+        "gambe"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "bio_coregone"
+      ],
+      "behavior": "Catalogue spécialiste futur.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "canne_traine",
+      "name": "Canne de traîne",
+      "slot": "rod",
+      "method_ids": [
+        "traine"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "behavior": "Usage bateau futur.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "moulinet_fixe",
+      "name": "Moulinet à tambour fixe",
+      "slot": "reel",
+      "method_ids": [
+        "anglaise",
+        "bolognaise",
+        "fond",
+        "feeder",
+        "method_feeder",
+        "carpe",
+        "stalking",
+        "surface",
+        "leurre",
+        "verticale",
+        "toc",
+        "bombette",
+        "ultraleger",
+        "gambe",
+        "mort_manie"
+      ],
+      "dimension": "size_code",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "behavior": "Taille commerciale abstraite ; frein en newtons et récupération réelle à définir.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "moulinet_casting",
+      "name": "Moulinet casting",
+      "slot": "reel",
+      "method_ids": [
+        "leurre",
+        "verticale",
+        "mort_manie"
+      ],
+      "dimension": "size_code",
+      "source_ids": [
+        "tech_soft_rigs"
+      ],
+      "behavior": "Compatibilité canne casting explicite.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "moulinet_carpe",
+      "name": "Moulinet carpe",
+      "slot": "reel",
+      "method_ids": [
+        "carpe",
+        "fond",
+        "stalking",
+        "surface"
+      ],
+      "dimension": "size_code",
+      "source_ids": [
+        "tech_carp_rigs"
+      ],
+      "behavior": "Capacité de ligne et frein séparés du code de taille.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "moulinet_mouche",
+      "name": "Moulinet mouche",
+      "slot": "reel",
+      "method_ids": [
+        "mouche",
+        "nymphe_fil"
+      ],
+      "dimension": "line_class_example",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "behavior": "Classe de soie proposée ; capacité à définir.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "moulinet_silure",
+      "name": "Moulinet fort",
+      "slot": "reel",
+      "method_ids": [
+        "fond",
+        "clonk",
+        "traine"
+      ],
+      "dimension": "size_code",
+      "source_ids": [
+        "bio_silure"
+      ],
+      "behavior": "Limites de frein à équilibrer explicitement.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "nylon",
+      "name": "Nylon de corps de ligne",
+      "slot": "main_line",
+      "method_ids": [
+        "coup",
+        "grande_canne",
+        "anglaise",
+        "bolognaise",
+        "fond",
+        "feeder",
+        "method_feeder",
+        "carpe",
+        "stalking",
+        "surface",
+        "leurre",
+        "toc",
+        "bombette",
+        "carpodrome"
+      ],
+      "dimension": "diameter_mm",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "behavior": "Élasticité et immersion ; diamètre ne fixe pas universellement la résistance.",
+      "variant_count": 5,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "tresse",
+      "name": "Tresse de corps de ligne",
+      "slot": "main_line",
+      "method_ids": [
+        "leurre",
+        "verticale",
+        "carpe",
+        "clonk",
+        "traine",
+        "feeder",
+        "mort_manie"
+      ],
+      "dimension": "diameter_mm",
+      "source_ids": [
+        "tech_noeuds"
+      ],
+      "behavior": "Faible élasticité proposée ; raccord et abrasion dépendent du produit.",
+      "variant_count": 5,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "fluorocarbone",
+      "name": "Fluorocarbone terminal",
+      "slot": "leader",
+      "method_ids": [
+        "leurre",
+        "verticale",
+        "toc",
+        "fond",
+        "anglaise",
+        "carpe",
+        "bombette",
+        "mort_manie"
+      ],
+      "dimension": "diameter_mm",
+      "source_ids": [
+        "tech_noeuds"
+      ],
+      "behavior": "Rigidité et immersion ; jamais protection universelle contre dents du brochet.",
+      "variant_count": 5,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "bas_nylon",
+      "name": "Bas de ligne nylon",
+      "slot": "leader",
+      "method_ids": [
+        "coup",
+        "grande_canne",
+        "anglaise",
+        "bolognaise",
+        "fond",
+        "feeder",
+        "method_feeder",
+        "toc",
+        "carpodrome"
+      ],
+      "dimension": "diameter_mm",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "behavior": "Section consommable en cas de rupture.",
+      "variant_count": 5,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "bas_tresse",
+      "name": "Terminal souple tressé",
+      "slot": "leader",
+      "method_ids": [
+        "carpe",
+        "clonk",
+        "fond"
+      ],
+      "dimension": "diameter_mm",
+      "source_ids": [
+        "tech_carp_rigs"
+      ],
+      "behavior": "Souplesse et résistance déclarées séparément.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "bas_gaine",
+      "name": "Terminal gainé",
+      "slot": "leader",
+      "method_ids": [
+        "carpe"
+      ],
+      "dimension": "diameter_mm",
+      "source_ids": [
+        "tech_carp_rigs"
+      ],
+      "behavior": "Rigidité réglée par sections dénudées dans une recette validée.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "bas_acier",
+      "name": "Avançon métallique",
+      "slot": "leader",
+      "method_ids": [
+        "leurre",
+        "mort_manie",
+        "fond"
+      ],
+      "dimension": "length_cm",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "behavior": "Protection contre coupe à documenter ; encombrement/discrétion compromis.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "bas_titane",
+      "name": "Avançon titane",
+      "slot": "leader",
+      "method_ids": [
+        "leurre",
+        "mort_manie"
+      ],
+      "dimension": "length_cm",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "behavior": "Famille future, ne pas attribuer invincibilité.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "soie_flot",
+      "name": "Soie flottante",
+      "slot": "fly_line",
+      "method_ids": [
+        "mouche"
+      ],
+      "dimension": "line_class_example",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "behavior": "Classe et densité différentes.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "soie_inter",
+      "name": "Soie intermédiaire",
+      "slot": "fly_line",
+      "method_ids": [
+        "mouche"
+      ],
+      "dimension": "line_class_example",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "behavior": "Immersion lente, valeur spécifique à régler.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "soie_plong",
+      "name": "Soie plongeante",
+      "slot": "fly_line",
+      "method_ids": [
+        "mouche"
+      ],
+      "dimension": "line_class_example",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "behavior": "Immersion plus rapide ; profondeur par simulation.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "backing",
+      "name": "Backing",
+      "slot": "backing",
+      "method_ids": [
+        "mouche"
+      ],
+      "dimension": "length_m",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "behavior": "Réserve distincte de la soie.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "pointe",
+      "name": "Pointe de bas de ligne mouche",
+      "slot": "tippet",
+      "method_ids": [
+        "mouche",
+        "nymphe_fil",
+        "toc"
+      ],
+      "dimension": "diameter_mm",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "behavior": "Section remplaçable du terminal.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "flotteur_fusiforme",
+      "name": "Flotteur fusiforme",
+      "slot": "float",
+      "method_ids": [
+        "coup",
+        "grande_canne",
+        "carpodrome"
+      ],
+      "dimension": "buoyancy_g",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "behavior": "Portance et masse propre séparées.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "flotteur_trapu",
+      "name": "Flotteur trapu",
+      "slot": "float",
+      "method_ids": [
+        "coup",
+        "grande_canne",
+        "bolognaise",
+        "carpodrome"
+      ],
+      "dimension": "buoyancy_g",
+      "source_ids": [
+        "tech_coup",
+        "tech_bolo"
+      ],
+      "behavior": "Stabilité et sensibilité à équilibrer.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "waggler",
+      "name": "Waggler non préplombé",
+      "slot": "float",
+      "method_ids": [
+        "anglaise"
+      ],
+      "dimension": "buoyancy_g",
+      "source_ids": [
+        "tech_anglaise_fixe"
+      ],
+      "behavior": "Fixation par base et lest externe.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "waggler_preplombe",
+      "name": "Waggler préplombé",
+      "slot": "float",
+      "method_ids": [
+        "anglaise"
+      ],
+      "dimension": "buoyancy_g",
+      "source_ids": [
+        "tech_waggler"
+      ],
+      "behavior": "Masse interne doit être renseignée avant activation.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "flotteur_coulissant",
+      "name": "Flotteur coulissant",
+      "slot": "float",
+      "method_ids": [
+        "anglaise",
+        "bolognaise"
+      ],
+      "dimension": "buoyancy_g",
+      "source_ids": [
+        "tech_anglaise_coulissant"
+      ],
+      "behavior": "Stop et perle selon recette.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "controleur_surface",
+      "name": "Contrôleur de surface",
+      "slot": "float",
+      "method_ids": [
+        "surface",
+        "stalking"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_carp_rigs"
+      ],
+      "behavior": "Portée ; recette encore à documenter.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "bombette_flot",
+      "name": "Bombette flottante",
+      "slot": "bombette",
+      "method_ids": [
+        "bombette"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_bombette"
+      ],
+      "behavior": "Masse de lancer et flottabilité indépendantes.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "bombette_inter",
+      "name": "Bombette intermédiaire",
+      "slot": "bombette",
+      "method_ids": [
+        "bombette"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_bombette"
+      ],
+      "behavior": "Vitesse d'immersion à définir.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "bombette_plong",
+      "name": "Bombette plongeante",
+      "slot": "bombette",
+      "method_ids": [
+        "bombette"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_bombette"
+      ],
+      "behavior": "Immersion déclarée séparément du grammage.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "plombs_fendus",
+      "name": "Lests fendus",
+      "slot": "weight",
+      "method_ids": [
+        "coup",
+        "grande_canne",
+        "anglaise",
+        "bolognaise",
+        "toc",
+        "carpodrome"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_float_weights",
+        "tech_toc"
+      ],
+      "behavior": "Chaque lest a une position le long du fil.",
+      "variant_count": 4,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "olivette",
+      "name": "Olivette percée",
+      "slot": "weight",
+      "method_ids": [
+        "coup",
+        "bolognaise",
+        "anglaise"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_anglaise_coulissant"
+      ],
+      "behavior": "Masse principale coulissante ou immobilisée selon recette.",
+      "variant_count": 4,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "plomb_poire",
+      "name": "Lest poire",
+      "slot": "weight",
+      "method_ids": [
+        "fond",
+        "carpe"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_carp_rigs"
+      ],
+      "behavior": "Forme et substrat influencent tenue.",
+      "variant_count": 4,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "plomb_plat",
+      "name": "Lest plat",
+      "slot": "weight",
+      "method_ids": [
+        "fond",
+        "carpe"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_carp_rigs"
+      ],
+      "behavior": "Tenue au fond et traînée à régler.",
+      "variant_count": 4,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "plomb_inline",
+      "name": "Lest inline",
+      "slot": "weight",
+      "method_ids": [
+        "carpe"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_carp_rigs"
+      ],
+      "behavior": "Passage de ligne et système de libération explicites.",
+      "variant_count": 4,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "plomb_balle",
+      "name": "Lest balle",
+      "slot": "weight",
+      "method_ids": [
+        "leurre"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_texas"
+      ],
+      "behavior": "Forme adaptée au montage Texas ou Carolina.",
+      "variant_count": 4,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "plomb_drop",
+      "name": "Lest drop-shot",
+      "slot": "weight",
+      "method_ids": [
+        "leurre",
+        "ultraleger",
+        "verticale"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_drop_shot"
+      ],
+      "behavior": "Fixation de branche terminale distincte du leurre.",
+      "variant_count": 4,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "insert_neko",
+      "name": "Insert de lest",
+      "slot": "nail_weight",
+      "method_ids": [
+        "leurre"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_soft_rigs"
+      ],
+      "behavior": "Famille prévue ; recette Neko à documenter.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "cage_feeder",
+      "name": "Cage feeder ouverte",
+      "slot": "feeder",
+      "method_ids": [
+        "feeder"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_feeder"
+      ],
+      "behavior": "Capacité d'amorce et masse pleine calculées séparément.",
+      "variant_count": 4,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "feeder_ferme",
+      "name": "Feeder fermé",
+      "slot": "feeder",
+      "method_ids": [
+        "feeder"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_feeder"
+      ],
+      "behavior": "Contenu et trous conditionnent dispersion proposée.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "feeder_method",
+      "name": "Method feeder",
+      "slot": "feeder",
+      "method_ids": [
+        "method_feeder"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_feeder"
+      ],
+      "behavior": "Poids à vide plus amorce pour masse au lancer.",
+      "variant_count": 4,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "tete_ronde",
+      "name": "Tête plombée ronde",
+      "slot": "jig_head",
+      "method_ids": [
+        "leurre",
+        "verticale",
+        "ultraleger"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_soft_rigs"
+      ],
+      "behavior": "Hameçon intégré à la tête, pas facturé une seconde fois.",
+      "variant_count": 4,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "tete_ned",
+      "name": "Tête Ned",
+      "slot": "jig_head",
+      "method_ids": [
+        "leurre",
+        "ultraleger"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_ned"
+      ],
+      "behavior": "Face plate ; taille d'hameçon à déclarer.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "jig_jupe",
+      "name": "Jig à jupe",
+      "slot": "jig_head",
+      "method_ids": [
+        "leurre"
+      ],
+      "dimension": "mass_g",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "behavior": "Armement intégré, trailer optionnel.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "hamecon_fin",
+      "name": "Hameçon fin sans ardillon",
+      "slot": "hook",
+      "method_ids": [
+        "coup",
+        "grande_canne",
+        "anglaise",
+        "bolognaise",
+        "feeder",
+        "toc",
+        "carpodrome"
+      ],
+      "dimension": "hook_size_label",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "behavior": "Numéro non universel entre modèles ; ouverture réelle à définir.",
+      "variant_count": 4,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "hamecon_fond",
+      "name": "Hameçon de fond sans ardillon",
+      "slot": "hook",
+      "method_ids": [
+        "fond",
+        "feeder",
+        "method_feeder",
+        "bombette"
+      ],
+      "dimension": "hook_size_label",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "behavior": "Ouverture et force mécaniques distinctes.",
+      "variant_count": 4,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "hamecon_carpe",
+      "name": "Hameçon carpe sans ardillon",
+      "slot": "hook",
+      "method_ids": [
+        "carpe",
+        "stalking",
+        "surface"
+      ],
+      "dimension": "hook_size_label",
+      "source_ids": [
+        "tech_carp_rigs"
+      ],
+      "behavior": "Forme de recette et équilibre avec l'esche.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "hamecon_offset",
+      "name": "Hameçon offset sans ardillon",
+      "slot": "hook",
+      "method_ids": [
+        "leurre"
+      ],
+      "dimension": "hook_size_label",
+      "source_ids": [
+        "tech_texas",
+        "tech_soft_rigs"
+      ],
+      "behavior": "Taille adaptée à l'épaisseur du souple.",
+      "variant_count": 4,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "hamecon_drop",
+      "name": "Hameçon drop-shot sans ardillon",
+      "slot": "hook",
+      "method_ids": [
+        "leurre",
+        "ultraleger",
+        "verticale"
+      ],
+      "dimension": "hook_size_label",
+      "source_ids": [
+        "tech_drop_shot"
+      ],
+      "behavior": "Orientation sur le terminal.",
+      "variant_count": 4,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "hamecon_fort",
+      "name": "Hameçon fort sans ardillon",
+      "slot": "hook",
+      "method_ids": [
+        "clonk",
+        "fond"
+      ],
+      "dimension": "hook_size_label",
+      "source_ids": [
+        "bio_silure"
+      ],
+      "behavior": "Résistance à déclarer, pas déduite du poids du poisson.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "emerillon",
+      "name": "Émerillon",
+      "slot": "swivel",
+      "method_ids": [
+        "anglaise",
+        "bolognaise",
+        "fond",
+        "feeder",
+        "carpe",
+        "leurre",
+        "bombette",
+        "mort_manie"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_noeuds"
+      ],
+      "behavior": "Connexion tournante ; résistance du raccord explicite.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "agrafe",
+      "name": "Agrafe",
+      "slot": "snap",
+      "method_ids": [
+        "leurre",
+        "verticale",
+        "ultraleger",
+        "traine"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_noeuds"
+      ],
+      "behavior": "Forme et résistance influencent mobilité du leurre.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "perle",
+      "name": "Perle amortissante",
+      "slot": "bead",
+      "method_ids": [
+        "anglaise",
+        "fond",
+        "feeder",
+        "carpe",
+        "bombette"
+      ],
+      "dimension": "diameter_mm",
+      "source_ids": [
+        "tech_anglaise_coulissant"
+      ],
+      "behavior": "Protège un raccord selon montage, pas multiplicateur de résistance.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "stop",
+      "name": "Stop de ligne",
+      "slot": "stop",
+      "method_ids": [
+        "anglaise",
+        "bolognaise",
+        "carpe"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_anglaise_coulissant",
+        "tech_chod"
+      ],
+      "behavior": "Position explicite ; serrage et coulissement.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "clip_plomb",
+      "name": "Clip-plomb",
+      "slot": "lead_clip",
+      "method_ids": [
+        "carpe"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_lead_clip"
+      ],
+      "behavior": "Seuil de libération à configurer après choix des connexions.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "tube",
+      "name": "Tube anti-emmêleur",
+      "slot": "tube",
+      "method_ids": [
+        "fond",
+        "feeder",
+        "carpe"
+      ],
+      "dimension": "length_cm",
+      "source_ids": [
+        "tech_feeder"
+      ],
+      "behavior": "Géométrie du montage et discrétion proposées.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "potence",
+      "name": "Potence feeder",
+      "slot": "boom",
+      "method_ids": [
+        "feeder"
+      ],
+      "dimension": "length_cm",
+      "source_ids": [
+        "tech_feeder_potence"
+      ],
+      "behavior": "Branche du lest ; casse localisable.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "cheveu",
+      "name": "Cheveu et stop-esche",
+      "slot": "hair",
+      "method_ids": [
+        "carpe",
+        "method_feeder"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_carp_rigs"
+      ],
+      "behavior": "Attaché au terminal ; perte suit le graphe réel.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "elastique",
+      "name": "Élastique de grande canne",
+      "slot": "elastic",
+      "method_ids": [
+        "grande_canne",
+        "carpodrome"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_elastic"
+      ],
+      "behavior": "Limite d'allongement et amortissement, pas moulinet obligatoire.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "indicateur",
+      "name": "Indicateur de dérive",
+      "slot": "indicator",
+      "method_ids": [
+        "toc",
+        "nymphe_fil"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_toc"
+      ],
+      "behavior": "Aide visuelle sur la ligne, pas bouchon de combat.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "sac_pva",
+      "name": "Sac PVA",
+      "slot": "pva",
+      "method_ids": [
+        "carpe"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_pva"
+      ],
+      "behavior": "Consommable à dissolution, une seule unité par lancer validé.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "filet_pva",
+      "name": "Filet PVA",
+      "slot": "pva",
+      "method_ids": [
+        "carpe"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_pva_mesh"
+      ],
+      "behavior": "Consommable par portion de filet, pas perte de tout le rouleau.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "monture_mort",
+      "name": "Monture à poisson mort",
+      "slot": "harness",
+      "method_ids": [
+        "mort_manie"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "behavior": "Catalogue réservé jusqu'à validation des connexions.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "tige_tokyo",
+      "name": "Tige Tokyo",
+      "slot": "wire_arm",
+      "method_ids": [
+        "leurre"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_tokyo"
+      ],
+      "behavior": "Branche de lest séparée de l'hameçon.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "clonk",
+      "name": "Clonk",
+      "slot": "clonk",
+      "method_ids": [
+        "clonk"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "bio_silure"
+      ],
+      "behavior": "Accessoire hors fil ; pas perdu quand le terminal casse.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "epuisette",
+      "name": "Épuisette",
+      "slot": "landing",
+      "method_ids": [
+        "coup",
+        "grande_canne",
+        "anglaise",
+        "bolognaise",
+        "fond",
+        "feeder",
+        "carpe",
+        "leurre",
+        "toc",
+        "mouche"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "behavior": "Limite de réception à définir ; hors graphe de rupture du fil.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "tapis",
+      "name": "Tapis de réception",
+      "slot": "landing",
+      "method_ids": [
+        "fond",
+        "feeder",
+        "carpe",
+        "leurre",
+        "clonk"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_carp_rigs"
+      ],
+      "behavior": "Accessoire de réception hors eau, conservé lors d'une casse.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "pinces",
+      "name": "Pinces de décrochage",
+      "slot": "tool",
+      "method_ids": [
+        "leurre",
+        "fond",
+        "carpe",
+        "mouche"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "behavior": "Outil hors montage ; aucun bonus de touche.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "fronde",
+      "name": "Fronde d'amorçage",
+      "slot": "tool",
+      "method_ids": [
+        "coup",
+        "anglaise",
+        "carpe"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "behavior": "Distribution d'amorce à implémenter plus tard.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "support",
+      "name": "Support de canne",
+      "slot": "tool",
+      "method_ids": [
+        "fond",
+        "feeder",
+        "carpe"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_feeder"
+      ],
+      "behavior": "Usage au posé ; ne multiplie pas le nombre de cannes actives sans système dédié.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    },
+    {
+      "id": "boite",
+      "name": "Boîte de rangement",
+      "slot": "storage",
+      "method_ids": [
+        "coup",
+        "leurre",
+        "carpe"
+      ],
+      "dimension": "variant_label",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "behavior": "Cosmétique / rangement ; pas de blocage artificiel du kit gratuit.",
+      "variant_count": 3,
+      "reference_scope": "generic_family_not_exact_item",
+      "research_status": "design_examples_family_referenced"
+    }
+  ]
+}

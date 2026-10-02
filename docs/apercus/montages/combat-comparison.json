@@ -1,0 +1,462 @@
+{
+  "date": "2026-10-02",
+  "dt": 0.016666666666666666,
+  "equipmentPower": 1.32,
+  "reeling": "identical: 1.6 turns/s when tension < 0.72 or slack > 0.05",
+  "fixed": "yaw 0, lift .5",
+  "follow": "yaw follows fish, lift .28 during burst / .55 otherwise",
+  "fixedCatches": 15,
+  "followCatches": 15,
+  "rows": [
+    {
+      "species": "roach",
+      "name": "Gardon",
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 19.32,
+          "length": 25,
+          "peakFatigue": 0.743,
+          "maxTension": 0.783,
+          "at2": {
+            "progress": 0.026,
+            "tension": 0.759
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 15.48,
+          "length": 25,
+          "peakFatigue": 0.736,
+          "maxTension": 0.837,
+          "at2": {
+            "progress": 0.045,
+            "tension": 0.717
+          }
+        }
+      ]
+    },
+    {
+      "species": "perch",
+      "name": "Perche",
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 31.57,
+          "length": 30,
+          "peakFatigue": 1,
+          "maxTension": 0.834,
+          "at2": {
+            "progress": 0,
+            "tension": 0.773
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 21.8,
+          "length": 30,
+          "peakFatigue": 0.98,
+          "maxTension": 0.838,
+          "at2": {
+            "progress": 0,
+            "tension": 0.721
+          }
+        }
+      ]
+    },
+    {
+      "species": "carp",
+      "name": "Carpe",
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 43.75,
+          "length": 60,
+          "peakFatigue": 1,
+          "maxTension": 0.848,
+          "at2": {
+            "progress": 0,
+            "tension": 0.841
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 30.67,
+          "length": 60,
+          "peakFatigue": 1,
+          "maxTension": 0.834,
+          "at2": {
+            "progress": 0,
+            "tension": 0.72
+          }
+        }
+      ]
+    },
+    {
+      "species": "pike",
+      "name": "Brochet",
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 51.78,
+          "length": 75,
+          "peakFatigue": 1,
+          "maxTension": 0.907,
+          "at2": {
+            "progress": 0,
+            "tension": 0.845
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 35.27,
+          "length": 75,
+          "peakFatigue": 1,
+          "maxTension": 0.841,
+          "at2": {
+            "progress": 0,
+            "tension": 0.743
+          }
+        }
+      ]
+    },
+    {
+      "species": "zander",
+      "name": "Sandre",
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 35.78,
+          "length": 57.5,
+          "peakFatigue": 1,
+          "maxTension": 0.845,
+          "at2": {
+            "progress": 0,
+            "tension": 0.777
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 26.55,
+          "length": 57.5,
+          "peakFatigue": 1,
+          "maxTension": 0.831,
+          "at2": {
+            "progress": 0,
+            "tension": 0.73
+          }
+        }
+      ]
+    },
+    {
+      "species": "bream",
+      "name": "Brème commune",
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 22.88,
+          "length": 47.5,
+          "peakFatigue": 0.879,
+          "maxTension": 0.798,
+          "at2": {
+            "progress": 0,
+            "tension": 0.751
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 20.35,
+          "length": 47.5,
+          "peakFatigue": 0.874,
+          "maxTension": 0.833,
+          "at2": {
+            "progress": 0,
+            "tension": 0.723
+          }
+        }
+      ]
+    },
+    {
+      "species": "tench",
+      "name": "Tanche",
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 35.58,
+          "length": 40,
+          "peakFatigue": 1,
+          "maxTension": 0.822,
+          "at2": {
+            "progress": 0,
+            "tension": 0.799
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 26.77,
+          "length": 40,
+          "peakFatigue": 1,
+          "maxTension": 0.838,
+          "at2": {
+            "progress": 0,
+            "tension": 0.724
+          }
+        }
+      ]
+    },
+    {
+      "species": "rudd",
+      "name": "Rotengle",
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 24.2,
+          "length": 26,
+          "peakFatigue": 0.805,
+          "maxTension": 0.79,
+          "at2": {
+            "progress": 0.017,
+            "tension": 0.769
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 17.45,
+          "length": 26,
+          "peakFatigue": 0.795,
+          "maxTension": 0.827,
+          "at2": {
+            "progress": 0.038,
+            "tension": 0.72
+          }
+        }
+      ]
+    },
+    {
+      "species": "bleak",
+      "name": "Ablette",
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 17.38,
+          "length": 17.5,
+          "peakFatigue": 0.704,
+          "maxTension": 0.766,
+          "at2": {
+            "progress": 0.058,
+            "tension": 0.717
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 13.52,
+          "length": 17.5,
+          "peakFatigue": 0.7,
+          "maxTension": 0.827,
+          "at2": {
+            "progress": 0.087,
+            "tension": 0.723
+          }
+        }
+      ]
+    },
+    {
+      "species": "crucian",
+      "name": "Carassin commun",
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 21.28,
+          "length": 30,
+          "peakFatigue": 0.798,
+          "maxTension": 0.786,
+          "at2": {
+            "progress": 0.012,
+            "tension": 0.75
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 18.33,
+          "length": 30,
+          "peakFatigue": 0.791,
+          "maxTension": 0.831,
+          "at2": {
+            "progress": 0.019,
+            "tension": 0.722
+          }
+        }
+      ]
+    },
+    {
+      "species": "whitebream",
+      "name": "Brème bordelière",
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 17.08,
+          "length": 25.5,
+          "peakFatigue": 0.689,
+          "maxTension": 0.743,
+          "at2": {
+            "progress": 0.158,
+            "tension": 0.722
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 15.22,
+          "length": 25.5,
+          "peakFatigue": 0.69,
+          "maxTension": 0.818,
+          "at2": {
+            "progress": 0.169,
+            "tension": 0.72
+          }
+        }
+      ]
+    },
+    {
+      "species": "gudgeon",
+      "name": "Goujon",
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 14.65,
+          "length": 14,
+          "peakFatigue": 0.641,
+          "maxTension": 0.742,
+          "at2": {
+            "progress": 0.165,
+            "tension": 0.72
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 13,
+          "length": 14,
+          "peakFatigue": 0.645,
+          "maxTension": 0.828,
+          "at2": {
+            "progress": 0.18,
+            "tension": 0.719
+          }
+        }
+      ]
+    },
+    {
+      "species": "chub",
+      "name": "Chevesne",
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 35.82,
+          "length": 42.5,
+          "peakFatigue": 1,
+          "maxTension": 0.837,
+          "at2": {
+            "progress": 0,
+            "tension": 0.816
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 24.32,
+          "length": 42.5,
+          "peakFatigue": 0.991,
+          "maxTension": 0.83,
+          "at2": {
+            "progress": 0,
+            "tension": 0.719
+          }
+        }
+      ]
+    },
+    {
+      "species": "ide",
+      "name": "Ide mélanote",
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 28.68,
+          "length": 40,
+          "peakFatigue": 0.937,
+          "maxTension": 0.812,
+          "at2": {
+            "progress": 0,
+            "tension": 0.81
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 23.52,
+          "length": 40,
+          "peakFatigue": 0.943,
+          "maxTension": 0.836,
+          "at2": {
+            "progress": 0,
+            "tension": 0.721
+          }
+        }
+      ]
+    },
+    {
+      "species": "catfish",
+      "name": "Silure glane",
+      "outcomes": [
+        {
+          "strategy": "fixed",
+          "phase": "caught",
+          "seconds": 54.53,
+          "length": 105,
+          "peakFatigue": 1,
+          "maxTension": 0.869,
+          "at2": {
+            "progress": 0,
+            "tension": 0.857
+          }
+        },
+        {
+          "strategy": "follow",
+          "phase": "caught",
+          "seconds": 41.12,
+          "length": 105,
+          "peakFatigue": 1,
+          "maxTension": 0.836,
+          "at2": {
+            "progress": 0,
+            "tension": 0.76
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -3,14 +3,15 @@ import {castByGesture,holdMouseReel} from './helpers';
 async function start(page:any) {
  await page.addInitScript(()=>{Math.random=()=>.999;localStorage.setItem('au-fil-de-leau.gestures.v3','3');});
  await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());
- await castByGesture(page);await page.evaluate(()=>(window as any).__fishingQA.advance(10));await page.locator('#strike').click();
+ await castByGesture(page);await page.evaluate(()=>(window as any).__fishingQA.advance(45));await page.locator('#strike').click();
 }
 test('Départ puissant : traction et frein sans moulinage ; insister crée un risque de casse',async({page},info)=>{
  await start(page);const b=(await page.locator('#rod-control').boundingBox())!,cx=b.x+b.width/2,cy=b.y+b.height/2;
  await page.mouse.move(cx,cy);await page.mouse.down();
- for(let i=0;i<37;i++){
-  const yaw=await page.evaluate(()=>(window as any).__fishingQA.snapshot().direction);
-  await page.mouse.move(cx+yaw*32,cy+(.5-.28)*64);await page.evaluate(()=>(window as any).__fishingQA.advance(.15));
+ for(let i=0;i<250;i++){
+  const state=await page.evaluate(()=>(window as any).__fishingQA.snapshot());
+  await page.mouse.move(cx+state.direction*32,cy+(.5-.28)*64);await page.evaluate(()=>(window as any).__fishingQA.advance(.08));
+  const now=await page.evaluate(()=>(window as any).__fishingQA.snapshot());if(now.pulling&&now.dragSpeed>.1&&now.fatigue>.05)break;
  }
  const burst=await page.evaluate(()=>(window as any).__fishingQA.snapshot());
  expect(burst.phase).toBe('fighting');expect(burst.pulling).toBe(true);expect(burst.reeling).toBe(false);
@@ -30,7 +31,7 @@ test('Départ puissant : traction et frein sans moulinage ; insister crée un ri
  expect(peak).toBeGreaterThan(.97);await expect(page.locator('body')).toHaveAttribute('data-phase','lost');
 });
 test('Retour vers le joueur : le moulinet reprend le mou et rétablit le contact',async({page},info)=>{
- await start(page);await page.evaluate(()=>(window as any).__fishingQA.advance(3));
+ await start(page);for(let i=0;i<200;i++){await page.evaluate(()=>(window as any).__fishingQA.advance(.08));const s=await page.evaluate(()=>(window as any).__fishingQA.snapshot());if(s.returning&&s.slack>.1)break;}
  const before=await page.evaluate(()=>(window as any).__fishingQA.snapshot());expect(before.returning).toBe(true);expect(before.slack).toBeGreaterThan(.1);
  await page.mouse.move(150,300);
  for(let i=0;i<8;i++){

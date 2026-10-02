@@ -1,6 +1,19 @@
-# Priorités du chantier — état du 1 octobre 2026
+# Priorités du chantier — état du 2 octobre 2026
 
 La mission autonome explicite autorise les fonctionnalités suivantes et remplace l’attente du premier retour appareil pour avancer. Une prise ou une sauvegarde cassée reste prioritaire sur le contenu.
+
+## Canne, montage et profils 0.6.0
+
+- [x] Audit, table d’IDs, six empreintes de référence, validation du dossier.
+- [x] Ma canne / Mon sac / Ensembles, assemblage SVG et choix contextuels.
+- [x] Catalogues complets à états explicites, tailles groupées, bibliothèque différée.
+- [x] Stock commun, achats de lots, réservations, pertes locales, kit mixte, transactions idempotentes.
+- [x] Migration v4, v1/v2/v3 et reprise conservatrice d’une ligne sans capture gratuite.
+- [x] Profondeur, plombée, présentation, rencontres habitat/régime ; trois méthodes existantes conservées.
+- [x] Quinze profils sourcés, variations individuelles ; retrait du cercle, gestes et annulations préservés.
+- [ ] Terminer suite navigateur complète, check final et smoke local/preview/public avant publication.
+- [ ] Essai Safari/iPhone réel, économie des lots et plaisir/équilibre des combats.
+- [ ] Future extension : réglages de frein, graphes spécialistes, observation, autres habitats et GLB confirmés.
 
 ## Structure complète 0.5.0 — mission prioritaire
 

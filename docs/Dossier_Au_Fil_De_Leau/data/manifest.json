@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "research_date": "2026-10-02",
+  "implementation_status": "catalogued_not_verified_in_game",
+  "numerical_parameters_origin": "provisional_game_design_not_biological_measurement",
+  "scope": "Catalogue et spécification ; aucun nombre ne représente le contenu déjà jouable sur fishdex.fr.",
+  "entries": [
+    {
+      "profils_poissons": 62,
+      "identites_en_attente": 3,
+      "methodes_et_approches": 22,
+      "recettes_montage": 55,
+      "appats_leurres_amorces": 80,
+      "familles_materiel": 84,
+      "exemples_equipements": 274,
+      "correspondances_images": 101,
+      "apparences_additionnelles_cataloguees": 27,
+      "sources": 91
+    }
+  ]
+}

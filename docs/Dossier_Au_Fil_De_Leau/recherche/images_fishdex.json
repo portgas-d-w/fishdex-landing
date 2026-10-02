@@ -1,0 +1,507 @@
+[
+  {
+    "path": "public/fishes/ablette.png",
+    "group": "public/fishes",
+    "sha256": "22bf56ff9c3d4b076d28d2c53a24f67b46292c9e603e74369ccadf74799cfa57"
+  },
+  {
+    "path": "public/fishes/alose-feinte.png",
+    "group": "public/fishes",
+    "sha256": "fa4234c253fee87b4d662b0ee876dad095ff7ccdd390b69bf6a559786aa6c1c9"
+  },
+  {
+    "path": "public/fishes/amour-argente.png",
+    "group": "public/fishes",
+    "sha256": "60de6b68fe247c22fd5a1cd159f60af34d6fd260453e5886f6f5d9e3eb8eb07a"
+  },
+  {
+    "path": "public/fishes/amour-blanc.png",
+    "group": "public/fishes",
+    "sha256": "3404134cb0b75bc34498ea0132a938a94d69d9d1f82b02a71b0b6a2228e58cb9"
+  },
+  {
+    "path": "public/fishes/amour-marbre.png",
+    "group": "public/fishes",
+    "sha256": "caf5659dd9babc57e073bd1318b0c58274da06b4e06153ac877b0bbe9db906bb"
+  },
+  {
+    "path": "public/fishes/anguille-europeenne.png",
+    "group": "public/fishes",
+    "sha256": "8cdac4cd7bd690053f364a500b67b1147d357520644d632f21147edbc41c0c3d"
+  },
+  {
+    "path": "public/fishes/apron-du-rhone.png",
+    "group": "public/fishes",
+    "sha256": "454c1d00c274fed56cd48b8e4b2153f2028560daebc9621559b794bab45ed237"
+  },
+  {
+    "path": "public/fishes/aspe.png",
+    "group": "public/fishes",
+    "sha256": "1b100fada16b838709b1ddec3845ba86fc3ad45b48ee2876b4962fd28b08dc16"
+  },
+  {
+    "path": "public/fishes/barbeau-meridional.png",
+    "group": "public/fishes",
+    "sha256": "934ccb17e73dbb0bef82f448746af18c4bc8c6c2cbc2cc026b5c597df4bd2d38"
+  },
+  {
+    "path": "public/fishes/barbeau.png",
+    "group": "public/fishes",
+    "sha256": "0a8dae2685dc85080cc10defdaefad86277cc7a684f883a0ad0c6d651454d6b3"
+  },
+  {
+    "path": "public/fishes/black-bass-petite-bouche.png",
+    "group": "public/fishes",
+    "sha256": "6d630a32b98e403f4ab7e1b33f0d7cac67e8e38420cdf78df898942015db85d5"
+  },
+  {
+    "path": "public/fishes/black-bass.png",
+    "group": "public/fishes",
+    "sha256": "c50fcdcf9fe9900a8a1060d65b8833e9c7f44f2c94f685371fe4b6f3b87473c2"
+  },
+  {
+    "path": "public/fishes/blageon.png",
+    "group": "public/fishes",
+    "sha256": "eb9d80c84fbc735dfd237b9a67959a41b8ea37b27c194722e803ac86e412a5ec"
+  },
+  {
+    "path": "public/fishes/bouviere.png",
+    "group": "public/fishes",
+    "sha256": "babc565419acedd05319b7cd59b9fcf8963498efbac7f2ec6ac80990c5ec8745"
+  },
+  {
+    "path": "public/fishes/breme-bordeliere.png",
+    "group": "public/fishes",
+    "sha256": "d638b8f0778d87d2445693c7e3860c34fb0270b3930880ce11a96b3f338bfe53"
+  },
+  {
+    "path": "public/fishes/breme-bronze.png",
+    "group": "public/fishes",
+    "sha256": "588bdca439994cbe82e064641f358d5cea71d12d7eb2bbe258ae383b0af37594"
+  },
+  {
+    "path": "public/fishes/breme-commune.png",
+    "group": "public/fishes",
+    "sha256": "e3ae67f9fb61831c1570a85f199d3f942a5c653d4d63c668d2db579360ea7530"
+  },
+  {
+    "path": "public/fishes/brochet-trophee.png",
+    "group": "public/fishes",
+    "sha256": "952a6083bdd8de64a257f537f2622d8ac6b026ab52a4f40706d1635d2faa5993"
+  },
+  {
+    "path": "public/fishes/brochet.png",
+    "group": "public/fishes",
+    "sha256": "ea3238035462c23fe607449955cf19f5908bf43f21611075d49931f62f5d14c9"
+  },
+  {
+    "path": "public/fishes/carassin-argente.png",
+    "group": "public/fishes",
+    "sha256": "83aaa579f8a223c06d63e4b8f4e935f05cc1bfa05dbedd63470cb9c1cef57498"
+  },
+  {
+    "path": "public/fishes/carassin.png",
+    "group": "public/fishes",
+    "sha256": "42986f5bf257ff27b3164629d133ba021c93d41cfae90f04c58b79fee6011418"
+  },
+  {
+    "path": "public/fishes/carpe-commune-record.png",
+    "group": "public/fishes",
+    "sha256": "192912075c99b0eb018407143f3c31d94b989329bd92c0728d736340824bbd9e"
+  },
+  {
+    "path": "public/fishes/carpe-commune.png",
+    "group": "public/fishes",
+    "sha256": "ffdc7f190e1b4facc527a8b53b544745e6379fd6a8986df23b11519e0a15dfcb"
+  },
+  {
+    "path": "public/fishes/carpe-herbivore.png",
+    "group": "public/fishes",
+    "sha256": "0fdfba68fea1c514208c3c0cbf17551c0376e840c2287ad65a3d0a655996ebfb"
+  },
+  {
+    "path": "public/fishes/carpe-koi.png",
+    "group": "public/fishes",
+    "sha256": "fa51cdfa5222d0e08e7a59627f7e084741014baab229f126a6e6ee80f9ec8832"
+  },
+  {
+    "path": "public/fishes/chabot.png",
+    "group": "public/fishes",
+    "sha256": "5ece89132c98094ed03942087b9a84b54a043b0e2b71d78fbb0a728bb7f36480"
+  },
+  {
+    "path": "public/fishes/chevesne.png",
+    "group": "public/fishes",
+    "sha256": "548b9cf0bdafbc15ef25c19b331c36ac7f0519bcecdcf42e6613662c9fa494ac"
+  },
+  {
+    "path": "public/fishes/coregone-palee.png",
+    "group": "public/fishes",
+    "sha256": "83406221ca518f20e904c0a6daa5f9175c257d22561eb9de67e23d8b0e71cba4"
+  },
+  {
+    "path": "public/fishes/cristivomer.png",
+    "group": "public/fishes",
+    "sha256": "8d09914c6732a19eb37aba6ceedd1fe8688d564e33242f76e066654ea1135e7a"
+  },
+  {
+    "path": "public/fishes/eperlan.png",
+    "group": "public/fishes",
+    "sha256": "ac01bd07e0331fcdb45856547604ff0cfb5ad904a9d6948cf9d39253ef9537fb"
+  },
+  {
+    "path": "public/fishes/esturgeon-baeri.png",
+    "group": "public/fishes",
+    "sha256": "f09ef24ae36bd26d075e00f65d6a78dda90c9059ec8252ee8eb65d7fbbff6c53"
+  },
+  {
+    "path": "public/fishes/esturgeon-diamant.png",
+    "group": "public/fishes",
+    "sha256": "338cdeca72307b4863f78aba51171839ac71722596d40c19d3471367e5b1a00a"
+  },
+  {
+    "path": "public/fishes/esturgeon-europeen.png",
+    "group": "public/fishes",
+    "sha256": "1f0d0c10301a0fef19a75035a67b49015647b94efecd3b02f6290e1c49e4e33b"
+  },
+  {
+    "path": "public/fishes/esturgeon-siberien.png",
+    "group": "public/fishes",
+    "sha256": "2d2601d1985f57ed7c546a5caa70569a38da65d10ac386bb16818462cc87d16f"
+  },
+  {
+    "path": "public/fishes/gardon.png",
+    "group": "public/fishes",
+    "sha256": "d19c547984008e48eb902d1b0481374e20d7fde3d128f2e6fc9cfc0801f89ae9"
+  },
+  {
+    "path": "public/fishes/gobie.png",
+    "group": "public/fishes",
+    "sha256": "dea7c7b9e07e1b50e333d3529f9063cf1fed09eac7c8c23759b0f25308de34fa"
+  },
+  {
+    "path": "public/fishes/goujon.png",
+    "group": "public/fishes",
+    "sha256": "df1309fff294bdd316eb51298ef05e7b065fd8da0c925c35d2f081620b4f9e82"
+  },
+  {
+    "path": "public/fishes/grande-alose.png",
+    "group": "public/fishes",
+    "sha256": "c19df0278973ba3a78b77df7f61881e800655d187328fa2c8a78df420c4de78f"
+  },
+  {
+    "path": "public/fishes/hotu.png",
+    "group": "public/fishes",
+    "sha256": "b1060328d10b49be6ee5f84a59aeb41902388e0fd5c289697136bfa564114be1"
+  },
+  {
+    "path": "public/fishes/huchon.png",
+    "group": "public/fishes",
+    "sha256": "a6d8e3bf3f68a433188e7b12c8c6cccc3275f2f61ee54ec63e61c0313b155794"
+  },
+  {
+    "path": "public/fishes/ide-melanote.png",
+    "group": "public/fishes",
+    "sha256": "761393dfd96e9918ed14a859dde9ee7374687e70ac086cba614f483bb631e9e8"
+  },
+  {
+    "path": "public/fishes/lamproie-de-planer.png",
+    "group": "public/fishes",
+    "sha256": "bb5a0af057a94dd4ffb016ab570af5da7692847d3f4344802e2e6426e98b4cff"
+  },
+  {
+    "path": "public/fishes/lamproie-fluviatile.png",
+    "group": "public/fishes",
+    "sha256": "08d29160fddc5d3ad0aba2a51afe86b729aed613b90f3b7420f9b54a7a5793dd"
+  },
+  {
+    "path": "public/fishes/lavaret.png",
+    "group": "public/fishes",
+    "sha256": "78040998d1a30ab9eb8b0a48e4e173bd7dd8b7a8768edb545a48f5e185a99669"
+  },
+  {
+    "path": "public/fishes/loche-franche.png",
+    "group": "public/fishes",
+    "sha256": "69d406ae721b1447f5092c837c1f654b8da4c2bd642f1dd7773f8daa791e7ef1"
+  },
+  {
+    "path": "public/fishes/lotte.png",
+    "group": "public/fishes",
+    "sha256": "4abae800c4ddf8a6f32c302d0b71cf618a7cc1310d26f0b87a7ae5f2ed5efa33"
+  },
+  {
+    "path": "public/fishes/mulet-porc.png",
+    "group": "public/fishes",
+    "sha256": "4c5fe3916dc65d449d0b14903a4808e2496df45981619527d3c416baef594e01"
+  },
+  {
+    "path": "public/fishes/nase.png",
+    "group": "public/fishes",
+    "sha256": "0e3b95ebffafa4b237a843cadee346a0cc16e532388b29584f54e63f9761c98d"
+  },
+  {
+    "path": "public/fishes/omble-chevalier.png",
+    "group": "public/fishes",
+    "sha256": "c5fcdc1da28a8603bc322173a6838b73130cfe02e19a71f454a4b81405637972"
+  },
+  {
+    "path": "public/fishes/omble-de-fontaine.png",
+    "group": "public/fishes",
+    "sha256": "cdedc96cf3815926cf7b4ec5489be0f96e006fe5b8470ffe859fafa9bf997357"
+  },
+  {
+    "path": "public/fishes/ombre.png",
+    "group": "public/fishes",
+    "sha256": "518a9e4b54410fbbb218a7d80e1fbb64537ae2830b0956c4516982ce16938c05"
+  },
+  {
+    "path": "public/fishes/perche-fluviatile.png",
+    "group": "public/fishes",
+    "sha256": "e821eb6e22202e6b4001781e215dc760bc31bbcd3d51bb61f20de250d382d2ec"
+  },
+  {
+    "path": "public/fishes/perche-soleil.png",
+    "group": "public/fishes",
+    "sha256": "c4f2fc217badc69b757943fd44ac57b210b3d1308ab2585909fb57ea8b3a90fc"
+  },
+  {
+    "path": "public/fishes/perche.png",
+    "group": "public/fishes",
+    "sha256": "7cad0fd2d87141c5ee99b9d6bcb5e9c80e5abb7660f30e6db5d2c7d692eaa772"
+  },
+  {
+    "path": "public/fishes/poisson-chat.png",
+    "group": "public/fishes",
+    "sha256": "93a54d09d4fd25e934281f1c90cff4fa0ed4aaf4e5b432a045857821081b72e2"
+  },
+  {
+    "path": "public/fishes/pseudorasbora.png",
+    "group": "public/fishes",
+    "sha256": "98e3aa378b376253f5ef355a94cf3d05e7f0fd0ed2b5f07f3de927bc00cd97a8"
+  },
+  {
+    "path": "public/fishes/rotengle.png",
+    "group": "public/fishes",
+    "sha256": "5151fdd31aa18dab4c2ada41fdc55feafc888ab14ce824b8deb525aae2ffc244"
+  },
+  {
+    "path": "public/fishes/sandre-dore.png",
+    "group": "public/fishes",
+    "sha256": "99d010acfaf5eeb5cd404a273e5b86c0100871eac9031f1f1acef653fe6d5978"
+  },
+  {
+    "path": "public/fishes/sandre-geant.png",
+    "group": "public/fishes",
+    "sha256": "342f5dd745b10bee5c025b0cb4eaea19b118574f7a30b2d1039056a14a8a3d92"
+  },
+  {
+    "path": "public/fishes/sandre.png",
+    "group": "public/fishes",
+    "sha256": "bbcb103742476c68b957cd7765cf8a8d77adfa7c2cc68a7d892f4ad040e60306"
+  },
+  {
+    "path": "public/fishes/saumon-atlantique.png",
+    "group": "public/fishes",
+    "sha256": "0d8259c24891cb02bfd058ddfe18b42817ac08c0888858c43944e688927aa685"
+  },
+  {
+    "path": "public/fishes/saumon-roi.png",
+    "group": "public/fishes",
+    "sha256": "0c92e0a8c5db68a9e8e72f84d447e084163209e6876b05ab54d1689a050f867b"
+  },
+  {
+    "path": "public/fishes/silure-glane.png",
+    "group": "public/fishes",
+    "sha256": "6286dab784ca1add550b11da937cb3ef6d72ecbd6d5bf6fb26afadebcc9b4598"
+  },
+  {
+    "path": "public/fishes/silure-mandarin.png",
+    "group": "public/fishes",
+    "sha256": "5d8124857a6c2d2c0720b7b8d9a1ea668252ac19ca5d183e06b088aa7975d336"
+  },
+  {
+    "path": "public/fishes/silure-wels-record.png",
+    "group": "public/fishes",
+    "sha256": "ba11eb985d9096f6de9e6eba5674c5beea9257c1cea626a0dac58250d1523e2d"
+  },
+  {
+    "path": "public/fishes/soufie.png",
+    "group": "public/fishes",
+    "sha256": "035c52d171f41b1b1f5ad190964315b17af28c8d82c5eafe5f43bfa0c797e060"
+  },
+  {
+    "path": "public/fishes/spirlin.png",
+    "group": "public/fishes",
+    "sha256": "363f7c66f1f6f66b9639af63f7f9532e88088fbcc7e9eb1fee20ebfd01951862"
+  },
+  {
+    "path": "public/fishes/tanche.png",
+    "group": "public/fishes",
+    "sha256": "e7d3e4dc77bad13866192cf69c4c8c569f7ce39d32e3341cacdd04260f4c07af"
+  },
+  {
+    "path": "public/fishes/toxostome.png",
+    "group": "public/fishes",
+    "sha256": "cbd5eb43e7cda6bf2e07cc7d404651a3b35f6fdb9613459fee97a097b1576b83"
+  },
+  {
+    "path": "public/fishes/truite-arc-en-ciel.png",
+    "group": "public/fishes",
+    "sha256": "b1142daba89544fb4a75b56526510807e080e6502205fd62abc739a953621e79"
+  },
+  {
+    "path": "public/fishes/truite-de-mer.png",
+    "group": "public/fishes",
+    "sha256": "4e76e5bc51f05d75cc0d67b4ffc9dc09ce777e215c19ea1f1d91985c0ba41e60"
+  },
+  {
+    "path": "public/fishes/truite-fario.png",
+    "group": "public/fishes",
+    "sha256": "ed43d51bcdfb72ca4d8e547019c16635e663fbc176d72c4779b28d637b55fc38"
+  },
+  {
+    "path": "public/fishes/truite-lacustre.png",
+    "group": "public/fishes",
+    "sha256": "47df06aa189f92e5108bffea9d7700c0dcecc4d00c99c260ce9171700dbdbc75"
+  },
+  {
+    "path": "public/fishes/vairon.png",
+    "group": "public/fishes",
+    "sha256": "4286f6befbd04259cdc178d2eccdd56b9cd54b7574ea236686571fda470a16c3"
+  },
+  {
+    "path": "public/fishes/vandoise.png",
+    "group": "public/fishes",
+    "sha256": "663afb36c573b7dee747dff2b790ac27703076463d617c211a37790b9eebe265"
+  },
+  {
+    "path": "public/mutations/carpe-amour-blanc-albinos.png",
+    "group": "public/mutations",
+    "sha256": "8f678f46ef53f1640d33f0bdfe46df1a767103cf5a2ad9d64761c66ed3c44b72"
+  },
+  {
+    "path": "public/mutations/carpe-ghost-miroir.png",
+    "group": "public/mutations",
+    "sha256": "69c24f2759b12c4f3769f8661ab92e3d8a4e878c9ad04ecebefbf548448a0306"
+  },
+  {
+    "path": "public/mutations/esturgeon-albinos.png",
+    "group": "public/mutations",
+    "sha256": "682ebdb8b9874ddb6996a7252de77d9110cecadd81279fb375f4b599f6ab1a98"
+  },
+  {
+    "path": "public/mutations/esturgeon-gold.png",
+    "group": "public/mutations",
+    "sha256": "598c4a51d79a8f91b21f8519f1a4a91d7e1d93fa991fa0d90bac6978fb7ed450"
+  },
+  {
+    "path": "public/mutations/silure-albinos.png",
+    "group": "public/mutations",
+    "sha256": "4ef01599db948ea2f4796f67f397312a8910f2720d799c9ff2fac59769fc3389"
+  },
+  {
+    "path": "public/mutations/silure-gold.png",
+    "group": "public/mutations",
+    "sha256": "5b94df0145741f088f49c49663f01110f68bb04c44097de56a95085256d2b950"
+  },
+  {
+    "path": "public/mutations/truite-albinos.png",
+    "group": "public/mutations",
+    "sha256": "86fd7208229d5a5664276ab53c2b67185c90af8edeb0df4bd46f294806dffa0c"
+  },
+  {
+    "path": "public/mutations/truite-jaune.png",
+    "group": "public/mutations",
+    "sha256": "3f1095041ee2e8d1e127e109c39be43c1fb867cdb7828987ab454ef94bed6b00"
+  },
+  {
+    "path": "public/mutations/truite-tiger.png",
+    "group": "public/mutations",
+    "sha256": "e59847d37eca48ae2f129c98eb0a6d6c5de35a7cf50429e6f0f1d9e74c89f9b1"
+  },
+  {
+    "path": "public/varieties/carassin-dore.png",
+    "group": "public/varieties",
+    "sha256": "244425b10ed1e1589f0395ac566c54a77c8c15c96f61a234202cc1c4aba2fff3"
+  },
+  {
+    "path": "public/varieties/carpe-cuir.png",
+    "group": "public/varieties",
+    "sha256": "5beb0611736b06ae83b55650df2d6ded47dc43104e956021ccfb5fd430ba0de4"
+  },
+  {
+    "path": "public/varieties/carpe-fully-scaled.png",
+    "group": "public/varieties",
+    "sha256": "ef18c479678947d244536b235b0ad6e320f107bef4ccf94d527da3402407dab8"
+  },
+  {
+    "path": "public/varieties/carpe-ghost.png",
+    "group": "public/varieties",
+    "sha256": "8e8112bc1ac17b276fa71132320d043e872c206702abf8fc97cdc8c6c097084b"
+  },
+  {
+    "path": "public/varieties/carpe-koi-kohaku.png",
+    "group": "public/varieties",
+    "sha256": "04c99fc79edd208a04873c1f3cf95e262b9d587c7f9bf63de2ea5beef4e2d712"
+  },
+  {
+    "path": "public/varieties/carpe-koi-ogon.png",
+    "group": "public/varieties",
+    "sha256": "7a6bd3a5f36b808fb6c8bba66a50f6b48a81ef33c91e19865e85381da1ccaf55"
+  },
+  {
+    "path": "public/varieties/carpe-koi-platinum.png",
+    "group": "public/varieties",
+    "sha256": "36a0686a12a01a78556fbda7546dae95ff9e7e5eaf85ac695cd9f88f11540b64"
+  },
+  {
+    "path": "public/varieties/carpe-koi-sanke.png",
+    "group": "public/varieties",
+    "sha256": "9c5d8aa136f26588ce35fedf391117f5b11217cc23ce0451fc600ba8e1b1c0e6"
+  },
+  {
+    "path": "public/varieties/carpe-koi-showa.png",
+    "group": "public/varieties",
+    "sha256": "1c0234be3c26d2698b4aa880e3315c4541b6cd9f643459406dfc7ff89d868c24"
+  },
+  {
+    "path": "public/varieties/carpe-lineaire.png",
+    "group": "public/varieties",
+    "sha256": "537c8b204572abbaf31fe4daedededb7acf61064467c164662a3dbe6284bb308"
+  },
+  {
+    "path": "public/varieties/carpe-miroir.png",
+    "group": "public/varieties",
+    "sha256": "a867933e21bfb538d3c4cb13d825a8e08ac4bff4c52731b610335122edf20467"
+  },
+  {
+    "path": "public/varieties/gardon-rouge.png",
+    "group": "public/varieties",
+    "sha256": "ccac599de4ddf2d9d44f5b865f354d8f8ae43d28b9a91d751790f9fe6e069ec0"
+  },
+  {
+    "path": "public/varieties/gros-gardon.png",
+    "group": "public/varieties",
+    "sha256": "1f9ad638d1f35998f579cbf74528fd92be14f249186ab8941bc02fa74834b14f"
+  },
+  {
+    "path": "public/varieties/gros-rotengle.png",
+    "group": "public/varieties",
+    "sha256": "a5e4cdabc58175541e367b4047bbf24970f342ae1225909f56c0115218a65c82"
+  },
+  {
+    "path": "public/varieties/ide-dore.png",
+    "group": "public/varieties",
+    "sha256": "b65de54d401bbd157c546a8145ea9a2dfa2bdf67abd3ffce4b9a2a7566bd8978"
+  },
+  {
+    "path": "public/varieties/rotengle-gold.png",
+    "group": "public/varieties",
+    "sha256": "879c5998dce3d949589f64c7b019e3b6799d7f6f872e7b76c8e0d552240fecd5"
+  },
+  {
+    "path": "public/varieties/tanche-doree.png",
+    "group": "public/varieties",
+    "sha256": "bc19881ef06a90dbeee0e861f32bb085175b035e48b10015b9b3035a4a2fd539"
+  }
+]

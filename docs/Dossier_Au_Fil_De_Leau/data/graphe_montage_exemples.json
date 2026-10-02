@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "research_date": "2026-10-02",
+  "implementation_status": "catalogued_not_verified_in_game",
+  "numerical_parameters_origin": "provisional_game_design_not_biological_measurement",
+  "note": "Un graphe binaire aval n’est pas suffisant pour un composant coulissant : prévoir ports, stops, orientation, libération et segments. Les textes décrivent les résultats attendus sous les conditions indiquées.",
+  "entries": [
+    {
+      "id": "float_serial",
+      "rig_id": "waggler_fixe",
+      "semantics": "graph_example_requires_port_and_position_model",
+      "serial_nodes": [
+        "rod",
+        "reel",
+        "main_line",
+        "leader",
+        "hook",
+        "bait"
+      ],
+      "attachments": [
+        {
+          "component": "float",
+          "carrier": "main_line",
+          "position": "variable"
+        },
+        {
+          "component": "weight",
+          "carrier": "main_line",
+          "position": "array"
+        }
+      ],
+      "scenarios": [
+        {
+          "break_at": "leader",
+          "outcome": "Hook, bait et segment détaché ; flotteur et plombs fixés au corps de ligne conservés."
+        },
+        {
+          "break_at": "main_line_above_float",
+          "outcome": "Portion terminale et composants attachés en aval perdus ; canne, moulinet et ligne restante conservés."
+        }
+      ]
+    },
+    {
+      "id": "drop_shot_branch",
+      "rig_id": "drop_shot",
+      "semantics": "hook_on_leader_and_weight_below",
+      "connections": [
+        [
+          "main_line",
+          "leader_top"
+        ],
+        [
+          "leader_top",
+          "hook"
+        ],
+        [
+          "hook",
+          "lure"
+        ],
+        [
+          "leader_top",
+          "leader_bottom"
+        ],
+        [
+          "leader_bottom",
+          "weight"
+        ]
+      ],
+      "scenarios": [
+        {
+          "break_at": "leader_bottom",
+          "outcome": "Lest et segment aval perdus ; hameçon et leurre conservés si raccord supérieur intact."
+        }
+      ]
+    },
+    {
+      "id": "lead_clip_release",
+      "rig_id": "carpe_clip",
+      "semantics": "release_threshold_on_weight_branch",
+      "scenarios": [
+        {
+          "break_at": "release_weight",
+          "outcome": "Plomb détaché seulement ; terminal intact si aucune autre rupture."
+        }
+      ]
+    }
+  ]
+}

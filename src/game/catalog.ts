@@ -29,18 +29,3 @@ export const SPOTS: readonly { id: SpotId; name: string; hint: string; number: s
   { id: 'open', name: 'L’eau libre', hint: 'Au-delà des nénuphars', number: '02' },
   { id: 'willow', name: 'Sous le saule', hint: 'Une ombre tranquille', number: '03' },
 ];
-// Pondérations de gameplay, pas des probabilités biologiques.
-const WEIGHTS: Record<SpotId, Record<BaitId, number[]>> = {
-  reeds: { worm: [6, 4, 1, 0, 0, 2, 4, 5, 4, 3, 2, 3, 2, 1, 1], lure: [0, 6, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1] },
-  open: { worm: [3, 2, 3, 0, 0, 6, 1, 2, 4, 2, 4, 2, 2, 2, 2], lure: [0, 2, 0, 3, 5, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2] },
-  willow: { worm: [2, 2, 7, 0, 0, 3, 5, 2, 1, 3, 1, 1, 4, 3, 2], lure: [0, 3, 0, 6, 2, 0, 0, 0, 0, 0, 0, 0, 4, 3, 2] },
-};
-export function pickSpecies(spot: SpotId, bait: BaitId, random: number, method = 'float'): Species {
-  const weights = WEIGHTS[spot][bait].map((weight, i) => method === 'bottom' ? weight * (['carp', 'bream', 'tench', 'crucian', 'whitebream', 'catfish', 'gudgeon'].includes(SPECIES[i].id) ? 1.8 : 0.45) : weight);
-  let roll = Math.min(0.999999, Math.max(0, random)) * weights.reduce((a, b) => a + b, 0);
-  for (let i = 0; i < weights.length; i++) {
-    roll -= weights[i];
-    if (roll < 0) return SPECIES[i];
-  }
-  return SPECIES[SPECIES.length - 1];
-}

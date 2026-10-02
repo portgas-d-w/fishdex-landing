@@ -3,7 +3,7 @@ export function fishBearing(time: number, strength: number): number {
   return clamp(Math.sin(time * 0.48 + strength) * 0.78 + Math.sin(time * 1.65) * 0.12, -0.9, 0.9);
 }
 export interface CombatState { distance: number; lineLength: number; tension: number; fatigue: number }
-export interface CombatInput { yaw: number; lift: number; bearing: number; force: number; power: number; reelSpeed: number; motion: 'burst' | 'cruise' | 'return' }
+export interface CombatInput { yaw: number; lift: number; bearing: number; force: number; power: number; reelSpeed: number; motion: 'burst' | 'cruise' | 'return'; endurance?:number }
 // Unités de jeu : élasticité canne/fil, pression, frein automatique et nage radiale.
 // Aucun angle binaire ni minuteur de victoire : la pression vient du fil disponible.
 export function stepCombat(state: CombatState, input: CombatInput, delta: number) {
@@ -26,7 +26,7 @@ export function stepCombat(state: CombatState, input: CombatInput, delta: number
   const desired = clamp((span - lineLength) / 0.85, 0, 1.25);
   const tension = clamp(state.tension + (desired - state.tension) * Math.min(1, dt * 12), 0, 1.25);
   const slack = Math.max(0, lineLength - span);
-  const work = tension >= 0.12 && tension < 0.95 ? tension * alignment * 0.065 : tension < 0.05 ? -0.008 : 0;
+  const work = tension >= 0.12 && tension < 0.95 ? tension * alignment * 0.065 / (.8 + (input.endurance ?? .5) * .6) : tension < 0.05 ? -0.008 : 0;
   const fatigue = clamp(state.fatigue + work * dt, 0, 1);
   return { distance, lineLength, tension, fatigue, alignment, relativeForce, velocity, dragSpeed, slack };
 }

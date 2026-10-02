@@ -1,0 +1,2815 @@
+{
+  "schema_version": "1.0.0",
+  "research_date": "2026-10-02",
+  "implementation_status": "catalogued_not_verified_in_game",
+  "numerical_parameters_origin": "provisional_game_design_not_biological_measurement",
+  "note": "Les esches naturelles/particules sont des consommables par portion ; artificiels réutilisables jusqu’à perte ou usure explicitement implémentée. Une amorce ne se choisit pas comme esche.",
+  "entries": [
+    {
+      "id": "asticot",
+      "name": "Asticot",
+      "family": "naturel",
+      "presentation_tags": [
+        "coule",
+        "mobile"
+      ],
+      "diet_tags": [
+        "invertebres"
+      ],
+      "method_ids": [
+        "coup",
+        "grande_canne",
+        "anglaise",
+        "bolognaise",
+        "fond",
+        "feeder"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Esche polyvalente de petit calibre.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "pinkie",
+      "name": "Pinkie",
+      "family": "naturel",
+      "presentation_tags": [
+        "coule",
+        "mobile",
+        "petit"
+      ],
+      "diet_tags": [
+        "invertebres"
+      ],
+      "method_ids": [
+        "coup",
+        "grande_canne",
+        "anglaise",
+        "feeder"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Petite esche pour présentation fine.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "caster",
+      "name": "Caster",
+      "family": "naturel",
+      "presentation_tags": [
+        "coule",
+        "variable"
+      ],
+      "diet_tags": [
+        "invertebres"
+      ],
+      "method_ids": [
+        "coup",
+        "grande_canne",
+        "anglaise",
+        "feeder"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Flottabilité à définir par état du produit.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "ver_vase",
+      "name": "Ver de vase",
+      "family": "naturel",
+      "presentation_tags": [
+        "coule",
+        "mobile",
+        "petit"
+      ],
+      "diet_tags": [
+        "invertebres_benthiques"
+      ],
+      "method_ids": [
+        "coup",
+        "grande_canne",
+        "feeder"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Esche de fond fine et fragile.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "fouillis",
+      "name": "Fouillis de vers de vase",
+      "family": "amorcage",
+      "presentation_tags": [
+        "particules",
+        "fond"
+      ],
+      "diet_tags": [
+        "invertebres_benthiques"
+      ],
+      "method_ids": [
+        "coup",
+        "grande_canne",
+        "feeder"
+      ],
+      "consumption_rule": "portion_amorcage",
+      "game_proposal": "Réservé à l'amorçage ; pas un leurre.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "ver_terre",
+      "name": "Ver de terre",
+      "family": "naturel",
+      "presentation_tags": [
+        "coule",
+        "mobile"
+      ],
+      "diet_tags": [
+        "invertebres"
+      ],
+      "method_ids": [
+        "fond",
+        "feeder",
+        "toc",
+        "coup",
+        "anglaise",
+        "bombette"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Taille et présentation changent la sélection.",
+      "source_ids": [
+        "tech_coup",
+        "tech_toc"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "petit_ver",
+      "name": "Petit ver",
+      "family": "naturel",
+      "presentation_tags": [
+        "coule",
+        "mobile",
+        "petit"
+      ],
+      "diet_tags": [
+        "invertebres"
+      ],
+      "method_ids": [
+        "coup",
+        "grande_canne",
+        "anglaise",
+        "feeder",
+        "toc"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Calibre fin ; variante de ver à distinguer de l'espèce.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "lombric",
+      "name": "Gros lombric",
+      "family": "naturel",
+      "presentation_tags": [
+        "coule",
+        "mobile",
+        "gros"
+      ],
+      "diet_tags": [
+        "invertebres"
+      ],
+      "method_ids": [
+        "fond",
+        "toc",
+        "clonk"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Calibre plus gros ; attraction non exclusive au silure.",
+      "source_ids": [
+        "tech_toc",
+        "tech_coup"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "ver_dendro",
+      "name": "Ver dendrobaena",
+      "family": "naturel",
+      "presentation_tags": [
+        "coule",
+        "mobile"
+      ],
+      "diet_tags": [
+        "invertebres"
+      ],
+      "method_ids": [
+        "fond",
+        "feeder",
+        "toc",
+        "coup"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Variante commercialisable de ver.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "teigne",
+      "name": "Teigne",
+      "family": "naturel",
+      "presentation_tags": [
+        "coule",
+        "mobile"
+      ],
+      "diet_tags": [
+        "invertebres",
+        "insectes"
+      ],
+      "method_ids": [
+        "toc",
+        "bombette"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Esche légère ; dérive à préparer.",
+      "source_ids": [
+        "tech_toc"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "sauterelle",
+      "name": "Sauterelle",
+      "family": "naturel",
+      "presentation_tags": [
+        "surface",
+        "insecte"
+      ],
+      "diet_tags": [
+        "insectes"
+      ],
+      "method_ids": [
+        "surface",
+        "stalking",
+        "toc"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Proposition de bordure sous végétation.",
+      "source_ids": [
+        "tech_toc"
+      ],
+      "research_status": "needs_research",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "grillon",
+      "name": "Grillon",
+      "family": "naturel",
+      "presentation_tags": [
+        "surface",
+        "insecte"
+      ],
+      "diet_tags": [
+        "insectes"
+      ],
+      "method_ids": [
+        "surface",
+        "stalking",
+        "toc"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Esche de surface à documenter davantage.",
+      "source_ids": [
+        "tech_toc"
+      ],
+      "research_status": "needs_research",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "larve_aquatique",
+      "name": "Larve aquatique",
+      "family": "naturel",
+      "presentation_tags": [
+        "coule",
+        "petit"
+      ],
+      "diet_tags": [
+        "insectes",
+        "invertebres_benthiques"
+      ],
+      "method_ids": [
+        "toc",
+        "coup"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Catégorie abstraite ; identifier la larve avant activation.",
+      "source_ids": [
+        "tech_toc"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "mais",
+      "name": "Maïs doux",
+      "family": "vegetal",
+      "presentation_tags": [
+        "coule",
+        "grain"
+      ],
+      "diet_tags": [
+        "vegetaux",
+        "graines"
+      ],
+      "method_ids": [
+        "coup",
+        "anglaise",
+        "fond",
+        "feeder",
+        "method_feeder",
+        "carpe",
+        "stalking"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Grain visible ; calibre pour hameçon ou cheveu.",
+      "source_ids": [
+        "tech_coup",
+        "tech_bait_catalogue"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "mais_flottant",
+      "name": "Maïs artificiel flottant",
+      "family": "artificiel",
+      "presentation_tags": [
+        "flotte",
+        "grain"
+      ],
+      "diet_tags": [
+        "imitation_graines"
+      ],
+      "method_ids": [
+        "carpe",
+        "method_feeder"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Flottabilité réglable avec plusieurs éléments.",
+      "source_ids": [
+        "tech_bait_catalogue"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "pain",
+      "name": "Pain",
+      "family": "vegetal",
+      "presentation_tags": [
+        "variable",
+        "mou"
+      ],
+      "diet_tags": [
+        "vegetaux"
+      ],
+      "method_ids": [
+        "coup",
+        "anglaise",
+        "surface",
+        "stalking",
+        "fond"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "État mie/croûte détermine immersion et tenue.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "mie_pain",
+      "name": "Mie de pain",
+      "family": "vegetal",
+      "presentation_tags": [
+        "variable",
+        "mou"
+      ],
+      "diet_tags": [
+        "vegetaux"
+      ],
+      "method_ids": [
+        "coup",
+        "anglaise",
+        "fond"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Présentation délicate, tenue à régler.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "croute_pain",
+      "name": "Croûte de pain",
+      "family": "vegetal",
+      "presentation_tags": [
+        "surface"
+      ],
+      "diet_tags": [
+        "vegetaux"
+      ],
+      "method_ids": [
+        "surface",
+        "stalking"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Esche de surface fragile.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "chenevis",
+      "name": "Chènevis préparé",
+      "family": "vegetal",
+      "presentation_tags": [
+        "coule",
+        "grain",
+        "petit"
+      ],
+      "diet_tags": [
+        "graines"
+      ],
+      "method_ids": [
+        "coup",
+        "grande_canne",
+        "anglaise",
+        "fond",
+        "feeder",
+        "carpe"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Particule et esche ; préparation abstraite dans le jeu.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "ble",
+      "name": "Blé préparé",
+      "family": "vegetal",
+      "presentation_tags": [
+        "coule",
+        "grain"
+      ],
+      "diet_tags": [
+        "graines"
+      ],
+      "method_ids": [
+        "coup",
+        "anglaise",
+        "fond",
+        "feeder",
+        "carpe"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Particule pour amorçage et eschage.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "orge",
+      "name": "Orge préparée",
+      "family": "vegetal",
+      "presentation_tags": [
+        "coule",
+        "grain"
+      ],
+      "diet_tags": [
+        "graines"
+      ],
+      "method_ids": [
+        "coup",
+        "feeder",
+        "carpe"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Catalogue de graines ; recette à confirmer.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "needs_research",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "pois",
+      "name": "Pois préparés",
+      "family": "vegetal",
+      "presentation_tags": [
+        "coule",
+        "grain"
+      ],
+      "diet_tags": [
+        "vegetaux",
+        "graines"
+      ],
+      "method_ids": [
+        "coup",
+        "fond",
+        "carpe"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Calibre de grain différent.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "noix_tigree",
+      "name": "Noix tigrée préparée",
+      "family": "vegetal",
+      "presentation_tags": [
+        "coule",
+        "grain",
+        "dur"
+      ],
+      "diet_tags": [
+        "vegetaux",
+        "graines"
+      ],
+      "method_ids": [
+        "carpe",
+        "stalking"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Cheveu et taille adaptés ; pas de bonus universel.",
+      "source_ids": [
+        "tech_carp_rigs"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "vegetaux",
+      "name": "Végétaux tendres",
+      "family": "vegetal",
+      "presentation_tags": [
+        "variable",
+        "feuille"
+      ],
+      "diet_tags": [
+        "vegetaux"
+      ],
+      "method_ids": [
+        "coup",
+        "anglaise",
+        "surface",
+        "stalking"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Candidat herbivore ; espèce végétale à préciser.",
+      "source_ids": [
+        "bio_herbivore"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "algues",
+      "name": "Filaments végétaux / algues",
+      "family": "vegetal",
+      "presentation_tags": [
+        "variable",
+        "filaments"
+      ],
+      "diet_tags": [
+        "algues",
+        "vegetaux"
+      ],
+      "method_ids": [
+        "coup",
+        "anglaise"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Contenu spécialisé à valider ; aucune prise garantie de hotu.",
+      "source_ids": [
+        "bio_hotu",
+        "bio_mulet"
+      ],
+      "research_status": "needs_research",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "fromage",
+      "name": "Fromage",
+      "family": "prepare",
+      "presentation_tags": [
+        "coule",
+        "odorant"
+      ],
+      "diet_tags": [
+        "opportuniste"
+      ],
+      "method_ids": [
+        "fond",
+        "feeder"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Esche opportuniste de rivière ; efficacité à tester.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "pate_pain",
+      "name": "Pâte de pain",
+      "family": "prepare",
+      "presentation_tags": [
+        "coule",
+        "mou"
+      ],
+      "diet_tags": [
+        "vegetaux"
+      ],
+      "method_ids": [
+        "coup",
+        "anglaise",
+        "fond"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Tenue et taille de portion distinctes du pain flottant.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "pate_truite",
+      "name": "Pâte pour truite",
+      "family": "prepare",
+      "presentation_tags": [
+        "variable",
+        "odorant"
+      ],
+      "diet_tags": [
+        "opportuniste"
+      ],
+      "method_ids": [
+        "fond",
+        "bombette"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Densité du produit à préciser.",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "pate_pellet",
+      "name": "Pâte de pellets",
+      "family": "prepare",
+      "presentation_tags": [
+        "coule",
+        "mou"
+      ],
+      "diet_tags": [
+        "opportuniste"
+      ],
+      "method_ids": [
+        "carpodrome",
+        "coup",
+        "fond"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Fragilité et dispersion graduelle proposées.",
+      "source_ids": [
+        "tech_bait_catalogue"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "pellet",
+      "name": "Pellet de pêche",
+      "family": "prepare",
+      "presentation_tags": [
+        "coule",
+        "granule"
+      ],
+      "diet_tags": [
+        "opportuniste"
+      ],
+      "method_ids": [
+        "coup",
+        "anglaise",
+        "feeder",
+        "method_feeder",
+        "carpe"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Différencier pellet d'eschage et d'amorçage.",
+      "source_ids": [
+        "tech_bait_catalogue"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "pellet_dur",
+      "name": "Pellet dur d'eschage",
+      "family": "prepare",
+      "presentation_tags": [
+        "coule",
+        "dur"
+      ],
+      "diet_tags": [
+        "opportuniste"
+      ],
+      "method_ids": [
+        "anglaise",
+        "method_feeder",
+        "carpe"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Attache bande ou cheveu selon variante.",
+      "source_ids": [
+        "tech_wafter",
+        "tech_bait_catalogue"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "pellet_mou",
+      "name": "Pellet mou",
+      "family": "prepare",
+      "presentation_tags": [
+        "coule",
+        "mou"
+      ],
+      "diet_tags": [
+        "opportuniste"
+      ],
+      "method_ids": [
+        "coup",
+        "carpodrome",
+        "feeder"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Hameçon direct et tenue réduite proposés.",
+      "source_ids": [
+        "tech_bait_catalogue"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "pellet_esturgeon",
+      "name": "Pellet pour étang à esturgeons",
+      "family": "prepare",
+      "presentation_tags": [
+        "coule",
+        "granule"
+      ],
+      "diet_tags": [
+        "opportuniste"
+      ],
+      "method_ids": [
+        "fond",
+        "feeder"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Réservé au contexte d'étang géré ; pas régime sauvage automatique.",
+      "source_ids": [
+        "bio_baeri"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "bouillette",
+      "name": "Bouillette coulante",
+      "family": "prepare",
+      "presentation_tags": [
+        "coule",
+        "bille"
+      ],
+      "diet_tags": [
+        "opportuniste"
+      ],
+      "method_ids": [
+        "carpe",
+        "stalking"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Base de cheveu ; diamètre choisi.",
+      "source_ids": [
+        "tech_boilie",
+        "tech_carp_rigs"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "pop_up",
+      "name": "Pop-up",
+      "family": "prepare",
+      "presentation_tags": [
+        "flotte",
+        "bille"
+      ],
+      "diet_tags": [
+        "opportuniste"
+      ],
+      "method_ids": [
+        "carpe"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Nécessite équilibre de la recette.",
+      "source_ids": [
+        "tech_ronnie",
+        "tech_chod"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "wafter",
+      "name": "Wafter",
+      "family": "prepare",
+      "presentation_tags": [
+        "equilibre",
+        "bille"
+      ],
+      "diet_tags": [
+        "opportuniste"
+      ],
+      "method_ids": [
+        "method_feeder",
+        "carpe"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Comportement dépend du poids de l'hameçon.",
+      "source_ids": [
+        "tech_wafter"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "dumbell",
+      "name": "Dumbell d'eschage",
+      "family": "prepare",
+      "presentation_tags": [
+        "variable",
+        "forme_allongee"
+      ],
+      "diet_tags": [
+        "opportuniste"
+      ],
+      "method_ids": [
+        "method_feeder",
+        "carpe"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Déclinaison de forme ; densité à choisir explicitement.",
+      "source_ids": [
+        "tech_bait_catalogue"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "poisson_mort",
+      "name": "Poisson mort entier",
+      "family": "animal",
+      "presentation_tags": [
+        "coule",
+        "odorant"
+      ],
+      "diet_tags": [
+        "poissons"
+      ],
+      "method_ids": [
+        "fond",
+        "mort_manie"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Taille de proie et fraîcheur abstraites.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "morceau_poisson",
+      "name": "Morceau de poisson",
+      "family": "animal",
+      "presentation_tags": [
+        "coule",
+        "odorant"
+      ],
+      "diet_tags": [
+        "poissons"
+      ],
+      "method_ids": [
+        "fond",
+        "clonk"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Esche de fond ; espèce non exclusive.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "crevette",
+      "name": "Crevette",
+      "family": "animal",
+      "presentation_tags": [
+        "coule",
+        "odorant"
+      ],
+      "diet_tags": [
+        "crustaces"
+      ],
+      "method_ids": [
+        "fond",
+        "feeder"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Contenu spécialisé ; usages exacts à confirmer.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "needs_research",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "ecrevisse",
+      "name": "Écrevisse comme appât",
+      "family": "animal",
+      "presentation_tags": [
+        "fond",
+        "mobile"
+      ],
+      "diet_tags": [
+        "crustaces"
+      ],
+      "method_ids": [
+        "fond"
+      ],
+      "consumption_rule": "portion",
+      "game_proposal": "Catalogue réservé ; pratique et provenance à valider.",
+      "source_ids": [
+        "bio_bass_petite"
+      ],
+      "research_status": "needs_research",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "amorce_fine",
+      "name": "Amorce fine de poissons blancs",
+      "family": "amorcage",
+      "presentation_tags": [
+        "particules",
+        "dispersion"
+      ],
+      "diet_tags": [
+        "opportuniste"
+      ],
+      "method_ids": [
+        "coup",
+        "grande_canne",
+        "anglaise",
+        "feeder"
+      ],
+      "consumption_rule": "portion_amorcage",
+      "game_proposal": "Nuage et zone d'attraction limités, pas spawn direct.",
+      "source_ids": [
+        "tech_bait_catalogue"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "amorce_fond",
+      "name": "Amorce lourde de fond",
+      "family": "amorcage",
+      "presentation_tags": [
+        "fond",
+        "particules"
+      ],
+      "diet_tags": [
+        "opportuniste"
+      ],
+      "method_ids": [
+        "coup",
+        "feeder"
+      ],
+      "consumption_rule": "portion_amorcage",
+      "game_proposal": "Cohésion et vitesse de dispersion réglables.",
+      "source_ids": [
+        "tech_feeder",
+        "tech_bait_catalogue"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "amorce_method",
+      "name": "Amorce method feeder",
+      "family": "amorcage",
+      "presentation_tags": [
+        "fond",
+        "cohesion"
+      ],
+      "diet_tags": [
+        "opportuniste"
+      ],
+      "method_ids": [
+        "method_feeder"
+      ],
+      "consumption_rule": "portion_amorcage",
+      "game_proposal": "Tenue au lancer puis dispersion progressive.",
+      "source_ids": [
+        "tech_feeder",
+        "tech_bait_catalogue"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "micro_pellets",
+      "name": "Micro-pellets d'amorçage",
+      "family": "amorcage",
+      "presentation_tags": [
+        "fond",
+        "granules"
+      ],
+      "diet_tags": [
+        "opportuniste"
+      ],
+      "method_ids": [
+        "feeder",
+        "method_feeder",
+        "carpe"
+      ],
+      "consumption_rule": "portion_amorcage",
+      "game_proposal": "Temps d'attraction et saturation à équilibrer.",
+      "source_ids": [
+        "tech_bait_catalogue"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "mix_particules",
+      "name": "Mélange de graines préparées",
+      "family": "amorcage",
+      "presentation_tags": [
+        "fond",
+        "graines"
+      ],
+      "diet_tags": [
+        "graines",
+        "vegetaux"
+      ],
+      "method_ids": [
+        "coup",
+        "feeder",
+        "carpe"
+      ],
+      "consumption_rule": "portion_amorcage",
+      "game_proposal": "Attraction selon régime et quantité.",
+      "source_ids": [
+        "tech_coup"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "liquide_attractant",
+      "name": "Additif liquide",
+      "family": "amorcage",
+      "presentation_tags": [
+        "odorant"
+      ],
+      "diet_tags": [
+        "opportuniste"
+      ],
+      "method_ids": [
+        "feeder",
+        "method_feeder",
+        "carpe"
+      ],
+      "consumption_rule": "dose",
+      "game_proposal": "Ne pas vendre une garantie de touche.",
+      "source_ids": [
+        "tech_bait_catalogue"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds"
+      ]
+    },
+    {
+      "id": "shad",
+      "name": "Shad souple",
+      "family": "leurre_souple",
+      "presentation_tags": [
+        "nage",
+        "queue_battante"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "leurre",
+        "verticale",
+        "traine"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Vibration, taille et vitesse influencent rencontre.",
+      "source_ids": [
+        "tech_soft_rigs"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "gros_shad",
+      "name": "Grand shad",
+      "family": "leurre_souple",
+      "presentation_tags": [
+        "nage",
+        "gros"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "leurre",
+        "verticale",
+        "traine"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Proie volumineuse ; canne et montage adaptés.",
+      "source_ids": [
+        "tech_soft_rigs"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "micro_leurre",
+      "name": "Micro-leurre souple",
+      "family": "leurre_souple",
+      "presentation_tags": [
+        "nage",
+        "petit"
+      ],
+      "diet_tags": [
+        "imitation_poissons",
+        "imitation_invertebres"
+      ],
+      "method_ids": [
+        "ultraleger",
+        "leurre"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Pour petites proies ; pas pour tout micro-poisson.",
+      "source_ids": [
+        "tech_soft_rigs"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "finesse",
+      "name": "Leurre finesse",
+      "family": "leurre_souple",
+      "presentation_tags": [
+        "faible_vibration"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "leurre",
+        "verticale"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Présentation discrète et animation fine.",
+      "source_ids": [
+        "tech_soft_rigs"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "ver_souple",
+      "name": "Ver souple / worm",
+      "family": "leurre_souple",
+      "presentation_tags": [
+        "souple",
+        "allonge"
+      ],
+      "diet_tags": [
+        "imitation_invertebres"
+      ],
+      "method_ids": [
+        "leurre"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Texas, weightless ou wacky selon recette.",
+      "source_ids": [
+        "tech_soft_rigs"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "grub",
+      "name": "Grub / virgule",
+      "family": "leurre_souple",
+      "presentation_tags": [
+        "queue_rotative"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "leurre",
+        "ultraleger",
+        "verticale"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Vibration continue en récupération.",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "ecrevisse_souple",
+      "name": "Écrevisse souple",
+      "family": "leurre_souple",
+      "presentation_tags": [
+        "fond",
+        "appendices"
+      ],
+      "diet_tags": [
+        "imitation_crustaces"
+      ],
+      "method_ids": [
+        "leurre"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Animation de fond ; taille et accès au poste.",
+      "source_ids": [
+        "tech_soft_rigs"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "creature",
+      "name": "Creature bait",
+      "family": "leurre_souple",
+      "presentation_tags": [
+        "fond",
+        "appendices"
+      ],
+      "diet_tags": [
+        "imitation_invertebres"
+      ],
+      "method_ids": [
+        "leurre"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Imitation abstraite, réglages distincts.",
+      "source_ids": [
+        "tech_soft_rigs"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "tube",
+      "name": "Tube souple",
+      "family": "leurre_souple",
+      "presentation_tags": [
+        "souple",
+        "franges"
+      ],
+      "diet_tags": [
+        "imitation_invertebres"
+      ],
+      "method_ids": [
+        "leurre",
+        "verticale"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Catalogue finesse à documenter.",
+      "source_ids": [
+        "tech_soft_rigs"
+      ],
+      "research_status": "needs_research",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "grenouille_souple",
+      "name": "Grenouille souple",
+      "family": "leurre_souple",
+      "presentation_tags": [
+        "surface",
+        "vegetation"
+      ],
+      "diet_tags": [
+        "imitation_amphibiens"
+      ],
+      "method_ids": [
+        "leurre"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Variante flottante, armement intégré ou séparé explicite.",
+      "source_ids": [
+        "tech_topwater"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "petit_poisson_nageur",
+      "name": "Petit poisson nageur",
+      "family": "leurre_dur",
+      "presentation_tags": [
+        "nage",
+        "bavette",
+        "petit"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "leurre",
+        "ultraleger",
+        "traine"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Profondeur réelle par recette et récupération.",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "crankbait",
+      "name": "Crankbait",
+      "family": "leurre_dur",
+      "presentation_tags": [
+        "nage",
+        "bavette"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "leurre",
+        "traine"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Couche d'eau dépend du modèle et du fil.",
+      "source_ids": [
+        "tech_crank"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "jerkbait",
+      "name": "Jerkbait / minnow",
+      "family": "leurre_dur",
+      "presentation_tags": [
+        "nage",
+        "pauses"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "leurre"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Transitions et pauses proposées.",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "lipless",
+      "name": "Lipless crankbait",
+      "family": "leurre_dur",
+      "presentation_tags": [
+        "coule",
+        "vibration"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "leurre",
+        "verticale"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Immersion par temps de chute et vitesse.",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "swimbait",
+      "name": "Swimbait",
+      "family": "leurre",
+      "presentation_tags": [
+        "nage",
+        "articule"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "leurre",
+        "traine"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Action lente ou continue selon type.",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "stickbait",
+      "name": "Stickbait de surface",
+      "family": "leurre_dur",
+      "presentation_tags": [
+        "surface",
+        "zigzag"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "leurre"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Animation latérale par gestes courts.",
+      "source_ids": [
+        "tech_topwater"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "popper",
+      "name": "Popper",
+      "family": "leurre_dur",
+      "presentation_tags": [
+        "surface",
+        "bruit"
+      ],
+      "diet_tags": [
+        "imitation_proie_surface"
+      ],
+      "method_ids": [
+        "leurre"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Impulsions espacées ; bruit non toujours favorable.",
+      "source_ids": [
+        "tech_topwater"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "crawler",
+      "name": "Crawler de surface",
+      "family": "leurre_dur",
+      "presentation_tags": [
+        "surface",
+        "agitation"
+      ],
+      "diet_tags": [
+        "imitation_proie_surface"
+      ],
+      "method_ids": [
+        "leurre"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Contenu futur ; action à documenter.",
+      "source_ids": [
+        "tech_topwater"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "cuiller_tournante",
+      "name": "Cuiller tournante",
+      "family": "leurre_metal",
+      "presentation_tags": [
+        "palette",
+        "vibration"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "leurre",
+        "ultraleger"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Vitesse minimale de rotation à tester.",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "cuiller_ondulante",
+      "name": "Cuiller ondulante",
+      "family": "leurre_metal",
+      "presentation_tags": [
+        "oscillation",
+        "coule"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "leurre",
+        "ultraleger",
+        "traine"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Oscillation selon récupération et pause.",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "spinnerbait",
+      "name": "Spinnerbait",
+      "family": "leurre_metal",
+      "presentation_tags": [
+        "palette",
+        "jupe"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "leurre"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Vibrations et silhouette ; encombrement mesurable.",
+      "source_ids": [
+        "tech_spinner"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "chatterbait",
+      "name": "Jig à palette / bladed jig",
+      "family": "leurre",
+      "presentation_tags": [
+        "palette",
+        "jupe"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "leurre"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Catalogue futur ; réglages de vibration à sourcer.",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "research_status": "needs_research",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "buzzbait",
+      "name": "Buzzbait",
+      "family": "leurre_metal",
+      "presentation_tags": [
+        "surface",
+        "helice"
+      ],
+      "diet_tags": [
+        "imitation_proie_surface"
+      ],
+      "method_ids": [
+        "leurre"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Catalogue futur de surface.",
+      "source_ids": [
+        "tech_topwater"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "jig_metal",
+      "name": "Jig métallique",
+      "family": "leurre_metal",
+      "presentation_tags": [
+        "coule",
+        "vertical"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "verticale",
+        "leurre"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Animation verticale et contrôle de chute.",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "lame_vibrante",
+      "name": "Lame vibrante",
+      "family": "leurre_metal",
+      "presentation_tags": [
+        "coule",
+        "vibration"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "leurre",
+        "verticale"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Catalogue futur de fond et mi-eau.",
+      "source_ids": [
+        "tech_lures"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "mouche_seche",
+      "name": "Mouche sèche",
+      "family": "mouche",
+      "presentation_tags": [
+        "surface",
+        "insecte"
+      ],
+      "diet_tags": [
+        "imitation_insectes"
+      ],
+      "method_ids": [
+        "mouche",
+        "bombette"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Dérive en surface ; taille et silhouette.",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "mouche_noyee",
+      "name": "Mouche noyée",
+      "family": "mouche",
+      "presentation_tags": [
+        "immerge",
+        "insecte"
+      ],
+      "diet_tags": [
+        "imitation_insectes"
+      ],
+      "method_ids": [
+        "mouche",
+        "bombette"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Présentation sous la surface.",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "nymphe",
+      "name": "Nymphe",
+      "family": "mouche",
+      "presentation_tags": [
+        "immerge",
+        "insecte"
+      ],
+      "diet_tags": [
+        "imitation_invertebres"
+      ],
+      "method_ids": [
+        "mouche",
+        "nymphe_fil",
+        "toc",
+        "gambe"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Lest de mouche intégré déclaré.",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "streamer",
+      "name": "Streamer",
+      "family": "mouche",
+      "presentation_tags": [
+        "nage",
+        "proie"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "mouche"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Action et densité de ligne modifient profondeur.",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "research_status": "documented",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "emerger",
+      "name": "Émergente",
+      "family": "mouche",
+      "presentation_tags": [
+        "pellicule",
+        "insecte"
+      ],
+      "diet_tags": [
+        "imitation_insectes"
+      ],
+      "method_ids": [
+        "mouche"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Présentation à l'interface ; détailler le modèle.",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "mouche_terrestre",
+      "name": "Imitation d'insecte terrestre",
+      "family": "mouche",
+      "presentation_tags": [
+        "surface",
+        "insecte"
+      ],
+      "diet_tags": [
+        "imitation_insectes"
+      ],
+      "method_ids": [
+        "mouche"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Bordures végétales et saison à simuler.",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "chironomide",
+      "name": "Chironomide artificiel",
+      "family": "mouche",
+      "presentation_tags": [
+        "immerge",
+        "insecte"
+      ],
+      "diet_tags": [
+        "imitation_invertebres"
+      ],
+      "method_ids": [
+        "mouche",
+        "gambe"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Imitation de lac ; protocole gambe à confirmer.",
+      "source_ids": [
+        "bio_coregone",
+        "tech_fly"
+      ],
+      "research_status": "partial",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    },
+    {
+      "id": "mouche_tube",
+      "name": "Mouche sur tube",
+      "family": "mouche",
+      "presentation_tags": [
+        "nage",
+        "proie"
+      ],
+      "diet_tags": [
+        "imitation_poissons"
+      ],
+      "method_ids": [
+        "mouche"
+      ],
+      "consumption_rule": "reuse_until_loss",
+      "game_proposal": "Armement distinct ; méthode spécialiste future.",
+      "source_ids": [
+        "tech_fly"
+      ],
+      "research_status": "needs_research",
+      "playable": false,
+      "price_coins": null,
+      "reference_scope": "family_or_food_group_not_a_product_specification",
+      "game_proposal_origin": "design_proposal",
+      "properties_to_define": [
+        "size_mm",
+        "portion_mass_g",
+        "density_relative_to_water",
+        "hook_retention",
+        "decay_seconds",
+        "integrated_hook",
+        "action_profile",
+        "immersion_profile"
+      ]
+    }
+  ]
+}

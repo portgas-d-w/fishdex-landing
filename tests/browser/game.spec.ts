@@ -10,7 +10,7 @@ test('Prise par geste, commandes compactes et carnet conservé', async ({ page }
  await expect(page.locator('#menu-open')).toBeVisible(); await expect(page.locator('#collection-open')).toBeHidden();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await page.screenshot({path:`test-results/immersion-${info.project.name}-lake.png`});
- await castByGesture(page); await page.evaluate(()=>(window as any).__fishingQA.advance(10)); await page.locator('#strike').click();
+ await castByGesture(page); await page.evaluate(()=>(window as any).__fishingQA.advance(45)); await page.locator('#strike').click();
  await expect(page.locator('#prepare-open')).toBeHidden(); await expect(page.locator('#reel-control')).toBeVisible();
  await expect(page.locator('#rod-control')).toBeVisible();
  await expect(page.locator('#tension-display')).toBeVisible();
@@ -29,7 +29,7 @@ test('Prise par geste, commandes compactes et carnet conservé', async ({ page }
 });
 test('Menu au combat : pause, gestes neutralisés, retours et import invalide',async({page},info)=>{
  await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready','true');
- await castByGesture(page); await page.evaluate(()=>(window as any).__fishingQA.advance(10)); await page.locator('#strike').click();
+ await castByGesture(page); await page.evaluate(()=>(window as any).__fishingQA.advance(45)); await page.locator('#strike').click();
  await page.locator('#menu-open').click(); const before=await page.evaluate(()=>(window as any).__fishingQA.snapshot());
  await page.locator('#world').dispatchEvent('pointerdown',{pointerId:42,button:0,clientX:140,clientY:300});
  await page.locator('#world').dispatchEvent('pointermove',{pointerId:42,clientX:200,clientY:200}); await page.mouse.wheel(0,120);
@@ -43,7 +43,7 @@ test('Menu au combat : pause, gestes neutralisés, retours et import invalide',a
 });
 test('Interruptions de l’appui, molette et fermeture de page',async({page})=>{
  await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');
- await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());await castByGesture(page);await page.evaluate(()=>(window as any).__fishingQA.advance(10));await page.locator('#strike').click();
+ await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());await castByGesture(page);await page.evaluate(()=>(window as any).__fishingQA.advance(45));await page.locator('#strike').click();
  for(const type of ['pointercancel','lostpointercapture']){
   await holdMouseReel(page);expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(true);
   await page.locator('#reel-control').dispatchEvent(type,{pointerId:1});expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(false);await page.mouse.up();

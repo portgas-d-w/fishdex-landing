@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "research_date": "2026-10-02",
+  "implementation_status": "catalogued_not_verified_in_game",
+  "numerical_parameters_origin": "provisional_game_design_not_biological_measurement",
+  "note": "Ontology simplifiée de jeu ; le régime indique une plausibilité, pas une garantie de capture ni une exclusivité.",
+  "entries": [
+    {
+      "id": "poissons",
+      "biological_terms": [
+        "poissons",
+        "alevins"
+      ],
+      "offered_terms": [
+        "poissons",
+        "imitation_poissons"
+      ]
+    },
+    {
+      "id": "invertebres",
+      "biological_terms": [
+        "invertebres",
+        "petits_invertebres",
+        "invertebres_benthiques",
+        "vers",
+        "larves",
+        "insectes"
+      ],
+      "offered_terms": [
+        "invertebres",
+        "invertebres_benthiques",
+        "insectes",
+        "imitation_invertebres",
+        "imitation_insectes"
+      ]
+    },
+    {
+      "id": "crustaces",
+      "biological_terms": [
+        "crustaces",
+        "ecrevisses"
+      ],
+      "offered_terms": [
+        "crustaces",
+        "imitation_crustaces"
+      ]
+    },
+    {
+      "id": "vegetaux",
+      "biological_terms": [
+        "vegetaux",
+        "graines",
+        "algues"
+      ],
+      "offered_terms": [
+        "vegetaux",
+        "graines",
+        "imitation_graines"
+      ]
+    },
+    {
+      "id": "plancton",
+      "biological_terms": [
+        "plancton",
+        "phytoplancton",
+        "zooplancton"
+      ],
+      "offered_terms": [],
+      "rule": "Pas de conversion automatique en esche à hameçon."
+    },
+    {
+      "id": "opportuniste",
+      "biological_terms": [],
+      "offered_terms": [
+        "opportuniste"
+      ],
+      "rule": "Doit être validé par affinité d’espèce et contexte ; pas accepté par toute espèce automatiquement."
+    }
+  ]
+}
