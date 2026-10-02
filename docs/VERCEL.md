@@ -8,7 +8,7 @@ Préproduction READY dpl_HmnPXNX7Y1LbyRBh617f7UWpmMoj, https://fishdex-landing-8
 
 Local : check 58 tests + TypeScript/build, navigateur complet 56 réussis/3 exclusions/un relâchement bureau repris avec 14/14 ciblés ; build sans QA 10/10 (2,4 min). Format v5, original v4 conservé/exportable ; ancien lecteur incompatible avec v5, export préalable et préservation des deux carnets nécessaires pour retour.
 
-Production publique à vérifier après fusion fast-forward. Rapport PROGRESSION_POSTES_METHODES.md ; aucun résultat appareil physique annoncé.
+Production READY dpl_FF3R2gxwrp3sAQVaEDEnJyxoXsJh, https://fishdex-landing-po0uh5j96-portgas-d-ws-projects.vercel.app, commit main 2045dce7513fe18188dda82df977920b3d704ec1, build 24,2 s. Sources applicatives 743cda8 inchangées. Smoke public https://www.fishdex.fr sans token : 10/10 (3,5 min), bureau et mobile, captures réelles au coup et au moulinet, photos/transfert, atelier/achats/favoris et quinze GLB. Domaine nu redirigé vers www, HTTP final 200 ; 45 JS/CSS identiques octet par octet au dist et manifeste JSON identique. Principal index-DD79opKe.js SHA256 ab55843a8779b6138b6cd64472b601a1c0b3281e617db113a68fa40c5c1d2f63. Preuves : apercus/progression/production-files.json et production-*.png. Scan Vercel erreurs 15 min : aucun événement renvoyé ; ce site statique ne fournit aucune télémétrie appareil. Serveur temporaire 4175 arrêté ; serveur utilisateur préservé. Les commits de clôture ne changent que ces preuves et la documentation ; le workflow contrôle READY et l’identité des fichiers après leur push. Rapport PROGRESSION_POSTES_METHODES.md ; aucun résultat appareil physique annoncé.
 
 ## Basalte & Turquoise 0.7.0 — 2 octobre 2026
 

@@ -11,7 +11,7 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 - [x] Coup sans moulinet, leurres actifs, pratiques antérieures conservées ; mode assisté expérimental.
 - [x] Atelier adapté, recettes par pratique, recherche du sac, conditions Boutique, pertes locales et secours gratuit.
 - [x] Check 58 tests ; reprise navigateur 14/14 ; build sans QA 10/10 avec vraies captures coup/moulinet.
-- [ ] Préproduction autorisée puis domaine public : contrôles en cours.
+- [x] Préproduction : dix scénarios vérifiés après une reprise ; production publique sans token 10/10, 45 JS/CSS et manifeste identiques, retour conservé.
 - [ ] Essais humains téléphone : confort, plaisir, durée, amorçage/accroches, progression et économie.
 - [ ] Équilibrer le revenu du coup/leurres après retours ; individus puissants au coup et maîtrise de l’amortissement.
 - [ ] Pointe/bois et vent/dérive/branches, feeder/mouche, réception et déboîtement.

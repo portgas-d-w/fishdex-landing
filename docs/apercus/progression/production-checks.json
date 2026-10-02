@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-02T16:37:31.102Z",
+  "applicationCommit": "743cda81109653f32f45f9f1e574a50729db90e9",
+  "mainCommit": "2045dce7513fe18188dda82df977920b3d704ec1",
+  "deployment": "dpl_FF3R2gxwrp3sAQVaEDEnJyxoXsJh",
+  "url": "https://fishdex-landing-po0uh5j96-portgas-d-ws-projects.vercel.app",
+  "state": "READY",
+  "buildSeconds": 24.236,
+  "publicSmoke": {
+    "url": "https://www.fishdex.fr",
+    "token": false,
+    "passed": 10,
+    "failed": 0,
+    "durationMinutes": 3.5
+  },
+  "errorScan": {
+    "sinceMinutes": 15,
+    "returnedEvents": 0
+  },
+  "physicalDevicesTested": false
+}

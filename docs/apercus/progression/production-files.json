@@ -1,0 +1,280 @@
+{
+  "at": "2026-10-02T16:34:10.827Z",
+  "base": "https://www.fishdex.fr",
+  "status": 200,
+  "bareDomainFinalUrl": "https://www.fishdex.fr/",
+  "files": [
+    {
+      "path": "/assets/abstractEngine.pure-rwLfew4P.js",
+      "bytes": 59841,
+      "sha256": "1a7cc1eb07b4bd8d5f2b855d84f95aa91db0adb5373c250bdc21505ee3810463",
+      "identical": true
+    },
+    {
+      "path": "/assets/baseTexture.pure-CEqM3fnj.js",
+      "bytes": 15090,
+      "sha256": "0054795c8ab1245cb1f6a02b913e43ec209cb4f607aad0c01cef8f38475dea1b",
+      "identical": true
+    },
+    {
+      "path": "/assets/buffer.pure-CAWHamCn.js",
+      "bytes": 7575,
+      "sha256": "4d2ab25bc8f84e5e4f6b3da4ee8cacf888d51310e3e88e30ffac9c861c09bbfe",
+      "identical": true
+    },
+    {
+      "path": "/assets/constants-_wyaM_ID.js",
+      "bytes": 11770,
+      "sha256": "da9f73edef0195ab6c2761b2900f2589234bd25d93d050deecb36e7afa87f45e",
+      "identical": true
+    },
+    {
+      "path": "/assets/decorators-BWcttrMP.js",
+      "bytes": 3842,
+      "sha256": "f10fe390de8e9e769f68693cf888b9ca3d63c712fa24de25fe503fc158542287",
+      "identical": true
+    },
+    {
+      "path": "/assets/decorators.serialization-By-MjS0E.js",
+      "bytes": 4720,
+      "sha256": "e642d722d65448d58086dc852d2ab78261cb247fde8b2b28ac8fb08c4478ec73",
+      "identical": true
+    },
+    {
+      "path": "/assets/domManagement-BqltO0ki.js",
+      "bytes": 256,
+      "sha256": "772614714ad7dbd504ea642f4f6decd8bfeb86eb64aea221cfd1d54cd7ebed8a",
+      "identical": true
+    },
+    {
+      "path": "/assets/drawWrapper-DcFZvZep.js",
+      "bytes": 1954,
+      "sha256": "01b0b827385b2a71190b0318c9026ba20c9ed066aa1b29ff17fed9cac18bd293",
+      "identical": true
+    },
+    {
+      "path": "/assets/effectRenderer.pure-BI1DZ9Tg.js",
+      "bytes": 8352,
+      "sha256": "d58fb3f3bb358074dd22fdedf0ec7a78da65d2138380504c9a1df876f7711aa6",
+      "identical": true
+    },
+    {
+      "path": "/assets/engineStore-Bn2tApal.js",
+      "bytes": 3512,
+      "sha256": "4ff4a065e9cbcecc87a977005df2188454cc7e97c65dd733927e9799a464793b",
+      "identical": true
+    },
+    {
+      "path": "/assets/flowGraphAssetsContext-WtUyuDAI.js",
+      "bytes": 736,
+      "sha256": "ebc4a971a3ebe12167f7ca93dea406cf209fec65cdbfd1cd48cb574a5cc52731",
+      "identical": true
+    },
+    {
+      "path": "/assets/flowGraphAsyncExecutionBlock-B8j60x2H.js",
+      "bytes": 669,
+      "sha256": "15ec28b5984e07008544ff8fb1f120d43e49d8b88f630e9c27e34b44b5260556",
+      "identical": true
+    },
+    {
+      "path": "/assets/flowGraphBlock-PiZ78eoL.js",
+      "bytes": 10996,
+      "sha256": "f1af48e79cc62523d1ce73622cd7b420f2607024fa8bc250456de798faf058c2",
+      "identical": true
+    },
+    {
+      "path": "/assets/flowGraphExecutionBlock-z6kKFLAZ.js",
+      "bytes": 2526,
+      "sha256": "7f63a3dee7137ac306d86688f4e05a1bd6e87a351896216e9b6397de0f995b3b",
+      "identical": true
+    },
+    {
+      "path": "/assets/flowGraphExecutionBlockWithOutSignal-ZgpOYOYE.js",
+      "bytes": 159,
+      "sha256": "ae7ba8507abc75101777a63b18ae4b5f8de2013f9b3fbab1ac31a26b6b394cd0",
+      "identical": true
+    },
+    {
+      "path": "/assets/flowGraphInteger.pure-CZmJgkLp.js",
+      "bytes": 558,
+      "sha256": "1b20ccf248396a186581d2dc9e7ebd3b7343159899099922bafb84db69685ee4",
+      "identical": true
+    },
+    {
+      "path": "/assets/flowGraphRichTypes.pure-BKlnX8v7.js",
+      "bytes": 2624,
+      "sha256": "b0e1666c07c90dad7e6436ffac97577b4332c06a9ec3a50ecc68e244cbbd6d2a",
+      "identical": true
+    },
+    {
+      "path": "/assets/guid-BXdVC_j_.js",
+      "bytes": 157,
+      "sha256": "4d0dc9fdce128a6a8c1a144605ccc92ea9fd87deb82baee4477fe956acc98e5f",
+      "identical": true
+    },
+    {
+      "path": "/assets/halfFloat-Ce77JD5z.js",
+      "bytes": 1290,
+      "sha256": "e364d38c88e676a0e9ced31660c08e156b244af07b1729fb8ea38e1ad6cffbb7",
+      "identical": true
+    },
+    {
+      "path": "/assets/imageProcessing-DhXJCESy.js",
+      "bytes": 18609,
+      "sha256": "fcb7dea51c2f484355c19f7333d1d79f3a7c139e23e0b8a1f593a928cb5adf71",
+      "identical": true
+    },
+    {
+      "path": "/assets/index-B3ygT0NY.css",
+      "bytes": 36526,
+      "sha256": "1c0cce6db8ba37a434246300aea5cd64199cf4750f11962486f6efef7dfdcb4c",
+      "identical": true
+    },
+    {
+      "path": "/assets/index-DD79opKe.js",
+      "bytes": 1839183,
+      "sha256": "ab55843a8779b6138b6cd64472b601a1c0b3281e617db113a68fa40c5c1d2f63",
+      "identical": true
+    },
+    {
+      "path": "/assets/internalTexture-ziUdfT1O.js",
+      "bytes": 7747,
+      "sha256": "4b82254077a086e4863600594f242188e9225459aa8467f841e4816ce1f8e042",
+      "identical": true
+    },
+    {
+      "path": "/assets/keyboardEvents-CGYiptFb.js",
+      "bytes": 357,
+      "sha256": "a5244b1dfb47cf04792753301eddc97667f963bf62d0f622aa67df043a568380",
+      "identical": true
+    },
+    {
+      "path": "/assets/lightConstants-DX3sWIWo.js",
+      "bytes": 18247,
+      "sha256": "2c41139f4a8f05ad60eda6d778a353aa214970b38fbc8887eb8aaafa423d8bf8",
+      "identical": true
+    },
+    {
+      "path": "/assets/logger-CuBYPcDK.js",
+      "bytes": 1881,
+      "sha256": "30a999582eace71f2e78a479182e71e943508bbda9574b17e5b29575c49a3b9e",
+      "identical": true
+    },
+    {
+      "path": "/assets/material.pure-CBd1IAR2.js",
+      "bytes": 78814,
+      "sha256": "9d692abc6e3b4088679226360192d53a50f626cc3223759fb2c5d438e5529d04",
+      "identical": true
+    },
+    {
+      "path": "/assets/math.color.pure-Dw4sAYjX.js",
+      "bytes": 76952,
+      "sha256": "f55367db656983e5740ec7c000e0dec91bab6e3fa3d2cc7874415384d9ef6d9b",
+      "identical": true
+    },
+    {
+      "path": "/assets/math.plane-C0ws7YJZ.js",
+      "bytes": 1815,
+      "sha256": "a553163a7a4af409b864f4cf3e11e2eddd6631c5fe5d94ace46b26ea5148641e",
+      "identical": true
+    },
+    {
+      "path": "/assets/math.scalar.functions-D-i-XBaP.js",
+      "bytes": 2190,
+      "sha256": "a2b8e94efef7434d5a7e9b403001af90f15d58aa23d03407916f334be7c559cb",
+      "identical": true
+    },
+    {
+      "path": "/assets/math.size-BHZaDYSv.js",
+      "bytes": 910,
+      "sha256": "dffde6b7f8371eb9e33461bda254623f5a1ac05570e372edcbf84a698e7c045f",
+      "identical": true
+    },
+    {
+      "path": "/assets/node-CixmmZG_.js",
+      "bytes": 11526,
+      "sha256": "1457b2cf4788b402918f17b1acdd78dce358951a6f79d9b3f989ec2f7d7aa138",
+      "identical": true
+    },
+    {
+      "path": "/assets/performanceConfigurator-UtxC_Odd.js",
+      "bytes": 500,
+      "sha256": "18ac183db602e06e8f22bb36ef5a1b0127170dfa0401d3e6aff4f81dc5d76b26",
+      "identical": true
+    },
+    {
+      "path": "/assets/pointerEvents-DFkbNwCB.js",
+      "bytes": 759,
+      "sha256": "50f3697f1705d00bb1a630b37a8939bb657675bcad7c48b6ed362e94bd82a8cb",
+      "identical": true
+    },
+    {
+      "path": "/assets/postProcess.pure-Dr_1HWky.js",
+      "bytes": 18441,
+      "sha256": "9f44ba6c007fcb379ad9384acfadbc4584fa46d1b458e8060d2af69d34c74b76",
+      "identical": true
+    },
+    {
+      "path": "/assets/renderTargetTexture.pure-DPjssmuS.js",
+      "bytes": 32369,
+      "sha256": "e884a4eba7372e04da626af15b2e3258d9dfe5852e58ea1bfea14cf2fff5cee8",
+      "identical": true
+    },
+    {
+      "path": "/assets/sceneComponent-Cn-0uY45.js",
+      "bytes": 17971,
+      "sha256": "620ce797b6781643e7bd998923d6abe94128eefeee6240003c82eb8aca5ca095",
+      "identical": true
+    },
+    {
+      "path": "/assets/shaderStore-D-XQlhUT.js",
+      "bytes": 469,
+      "sha256": "db600316439f2fedb7bfd3bcbc61b24d30c2b2646828dcea1c7c778cd07d5e3e",
+      "identical": true
+    },
+    {
+      "path": "/assets/smartArray-BRfcgNbX.js",
+      "bytes": 1186,
+      "sha256": "8dc20e14af937dfe98d73e0190bd449c7724164eee863b08caa8dd5a4cfc019f",
+      "identical": true
+    },
+    {
+      "path": "/assets/sphericalPolynomial.pure-Dbd-RrB2.js",
+      "bytes": 5736,
+      "sha256": "0c9622eba7789effbb42de95e808653afa5f7d85d333a73dda4f87b1e211e251",
+      "identical": true
+    },
+    {
+      "path": "/assets/texture.pure-BInImR3J.js",
+      "bytes": 19466,
+      "sha256": "da03474060daa761d35d03155ce553d0627b6f460731d5cb738d291148153bc2",
+      "identical": true
+    },
+    {
+      "path": "/assets/thinEngine.pure-DtQqicIX.js",
+      "bytes": 67755,
+      "sha256": "d381bf88809ea28271e7eb69bf3e98a80c09b0289b0bfaff35c5bc7f7ce2766a",
+      "identical": true
+    },
+    {
+      "path": "/assets/tools.functions-Bxv5dhZ_.js",
+      "bytes": 13495,
+      "sha256": "0b9e672dde09a04f54986d154568969e2fdd68bd6668861a3170a55f0d71b6d8",
+      "identical": true
+    },
+    {
+      "path": "/assets/tools.pure-DG9Rzizn.js",
+      "bytes": 34313,
+      "sha256": "be76a0a7497f7875eede8de4a3c081071611ecc3c125d24243ae814e216daa23",
+      "identical": true
+    },
+    {
+      "path": "/assets/typeStore-Cu_sj2zM.js",
+      "bytes": 80,
+      "sha256": "ac5c1cd88e21454d0753d41e04c62cf8a19b88778746954785b5d32d0f1b66d8",
+      "identical": true
+    }
+  ],
+  "manifestContentIdentical": true,
+  "modelCount": 15
+}
