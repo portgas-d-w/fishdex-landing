@@ -27,21 +27,529 @@
         "sha256": "43636406220e9b045f5ec04f9f02ab1bd73182ac58a6448e97848b66b4524a5a"
       }
     ],
-    "sourceEntries": 96,
-    "biologicalGroups": 59,
-    "note": "Catalogue déclaré dans les fichiers ; état de la base distante non consulté. Variétés regroupées par binôme scientifique."
+    "sourceEntries": 110,
+    "biologicalGroups": 64,
+    "note": "Réconciliation explicite ; 15 IDs et gabarits historiques préservés. Apparences, alias, écotypes, hybrides et records séparés.",
+    "canonicalEntries": 66,
+    "research": [
+      {
+        "file": "assets-source/chantier-poissons-fishdex/catalogues/data/poissons.json",
+        "sha256": "657afab5d915490406c63019011191b64e3c05775f68bf4dcb7c4113eb158602"
+      },
+      {
+        "file": "assets-source/chantier-poissons-fishdex/catalogues/data/apparences.json",
+        "sha256": "ee5448212734e76c165bcb3844d70c70cd4c4f1d2e1cda71dac602a6dab318d1"
+      }
+    ],
+    "additionalSources": [
+      {
+        "id": "doris_gobie",
+        "url": "https://doris.ffessm.fr/Especes/Neogobius-melanostomus-Gobie-a-taches-noires-4043",
+        "consulted": "2026-10-02"
+      },
+      {
+        "id": "fws_walleye",
+        "url": "https://www.fws.gov/species/walleye-sander-vitreus",
+        "consulted": "2026-10-02"
+      },
+      {
+        "id": "ncbi_mandarin",
+        "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=175787",
+        "consulted": "2026-10-02"
+      },
+      {
+        "id": "usgs_koi",
+        "url": "https://nas.er.usgs.gov/queries/FactSheet.aspx?SpeciesID=3294",
+        "consulted": "2026-10-02"
+      },
+      {
+        "id": "ec_ghost",
+        "url": "https://food.ec.europa.eu/system/files/2018-05/ia_standards_oie_eu_position_aahsc-report_201805.pdf",
+        "consulted": "2026-10-02"
+      },
+      {
+        "id": "utah_tiger",
+        "url": "https://wildlife.utah.gov/guidebooks/2024_fishing_guidebook.pdf",
+        "consulted": "2026-10-02"
+      },
+      {
+        "id": "ec_palaea",
+        "url": "https://fish-commercial-names.ec.europa.eu/fish-names/species/coregonus-palaea_pl",
+        "consulted": "2026-10-02"
+      },
+      {
+        "id": "ofb_trutta",
+        "url": "https://ofb.gouv.fr/doc/guide-pour-interpretation-des-ecailles-et-estimation-de-age-chez-la-truite-commune-salmo-trutta",
+        "consulted": "2026-10-02"
+      },
+      {
+        "id": "mandarin_diet",
+        "url": "https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2023.1293342/pdf",
+        "consulted": "2026-10-02"
+      }
+    ],
+    "suppliedSources": [
+      {
+        "id": "bio_ablette",
+        "title": "Ablette — Alburnus alburnus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Alburnus-alburnus-Ablette-1020/%28rOffset%29/2",
+        "coverage": "Alimentation et description",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_aloses",
+        "title": "Aloses — Alosa alosa / fallax",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Alosa-alosa-fallax-Alose-vraie-Alose-feinte-4490",
+        "coverage": "Différence de régime et arrêt de l'alimentation en remontée",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_argentee",
+        "title": "Carpe argentée — Hypophthalmichthys molitrix",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Hypophthalmichthys-molitrix-Carpe-argentee-3428",
+        "coverage": "Filtration du plancton",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_herbivore",
+        "title": "Amour blanc — Ctenopharyngodon idella",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Ctenopharyngodon-idella-Amour-blanc-3888",
+        "coverage": "Alimentation végétale adulte et habitat",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_marbree",
+        "title": "Carpe à grosse tête — Hypophthalmichthys nobilis",
+        "publisher": "FAO",
+        "url": "https://www.fao.org/fishery/docs/CDrom/aquaculture/I1129m/file/fr/fr_bigheadcarp.htm",
+        "coverage": "Profil d'espèce élevée et écologie ; ne pas généraliser élevage et capture sauvage",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_anguille",
+        "title": "Anguille — Anguilla anguilla",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Anguilla-anguilla-Anguille-856",
+        "coverage": "Alimentation et activité crépusculaire",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_apron",
+        "title": "Apron du Rhône — Zingel asper",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Apron-du-Rhone3/%28rOffset%29/11",
+        "coverage": "Habitat et alimentation",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_aspe",
+        "title": "Aspe — Leuciscus aspius",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Leuciscus-aspius-Aspe-2994/%28rOffset%29/0",
+        "coverage": "Prédation près de la surface ; ancien synonyme Aspius aspius",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_barbeau_meridional",
+        "title": "Barbeau méridional — Barbus meridionalis",
+        "publisher": "FishBase",
+        "url": "https://www.fishbase.se/FieldGuide/FieldGuideSummary.php?GenusName=Barbus&SpeciesName=meridionalis&pda=1&sps=",
+        "coverage": "Habitat courant et petits invertébrés ; synthèse référencée",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_barbeau",
+        "title": "Barbeau commun — Barbus barbus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Barbeau-commun3",
+        "coverage": "Invertébrés benthiques",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_bass_petite",
+        "title": "Achigan à petite bouche — Micropterus dolomieu",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Micropterus-dolomieu-Achigan-a-petite-bouche-1502",
+        "coverage": "Habitat rocheux et proies",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_bass",
+        "title": "Achigan à grande bouche — Micropterus salmoides",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Micropterus-salmoides-Achigan-a-grande-bouche-2778/%28rOffset%29/17",
+        "coverage": "Alimentation et activité",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_blageon",
+        "title": "Blageon — Leuciscus souffia, aujourd'hui Telestes souffia",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Leuciscus-souffia-Blageon-2168/%28rOffset%29/0",
+        "coverage": "Compétition de banc et proies en dérive",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_bouviere",
+        "title": "Bouvière — Rhodeus amarus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Rhodeus-amarus-Bouviere-1325/%28rOffset%29/17",
+        "coverage": "Alimentation et lien de reproduction avec les moules",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_bordeliere",
+        "title": "Blicca bjoerkna — alimentation étudiée au lac Balaton",
+        "publisher": "FishBase / Specziár, Tölg et Biró 1997",
+        "url": "https://fishbase.se/TrophicEco/DietCompoSummary.php?dietcode=2139&genusname=Blicca&speciesname=bjoerkna",
+        "coverage": "Composition locale du régime ; ne pas extrapoler les pourcentages à toutes les eaux",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_breme",
+        "title": "Brème commune — Abramis brama",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Abramis-brama-Breme-commune-237/%28rOffset%29/4",
+        "coverage": "Habitat calme et alimentation",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_brochet",
+        "title": "Brochet — Esox lucius",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Esox-lucius-Brochet-366",
+        "coverage": "Chasse à l'affût dans les plantes aquatiques",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_carassins",
+        "title": "Carassins commun, argenté et doré",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Carassius-spp.-Carassin-commun-carassin-argente-et-carassin-dore-2552",
+        "coverage": "Taxons distincts et alimentation commune",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_carpe",
+        "title": "Carpe commune — Cyprinus carpio",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Cyprinus-carpio-Carpe-commune-248/%28rOffset%29/8",
+        "coverage": "Fouille du sédiment, alimentation et formes d'écaillure",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_chabot",
+        "title": "Chabot — Cottus gobio",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Cottus-gobio-Chabot-commun-241",
+        "coverage": "Petits invertébrés benthiques et activité",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_chevesne",
+        "title": "Chevaine — Squalius cephalus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Squalius-cephalus-Chevaine-615",
+        "coverage": "Régime opportuniste variant avec l'âge",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_coregone",
+        "title": "Corégone — Coregonus lavaretus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Coregone3/%28rOffset%29/4",
+        "coverage": "Plancton, insectes et capture visuelle ; identités locales à contrôler",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_cristivomer",
+        "title": "Lake trout — Salvelinus namaycush",
+        "publisher": "U.S. Fish & Wildlife Service",
+        "url": "https://www.fws.gov/species/lake-trout-salvelinus-namaycush",
+        "coverage": "Habitat et profil d'espèce",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_eperlan",
+        "title": "Synopsis of biological data on smelt Osmerus eperlanus",
+        "publisher": "FAO",
+        "url": "https://www.fao.org/4/96024e/96024e.pdf",
+        "coverage": "Synopsis historique ; certains traitements taxonomiques demandent une vérification moderne",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_baeri",
+        "title": "Esturgeon sibérien — Acipenser baerii",
+        "publisher": "FAO",
+        "url": "https://www.fao.org/fishery/docs/CDrom/aquaculture/I1129m/file/fr/fr_acipenser.htm",
+        "coverage": "Profil d'aquaculture ; alimentation d'élevage distincte de la pêche sauvage",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_diamant",
+        "title": "Russian sturgeon — Acipenser gueldenstaedtii",
+        "publisher": "Caspian Environment Programme / IW:LEARN",
+        "url": "https://archive.iwlearn.net/caspianenvironment.org/CaspBIS/Taxons/Taxon8254.html?taxonid=4",
+        "coverage": "Recherche benthique et régime ; fiche historique archivée",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_europeen",
+        "title": "Esturgeon européen — Acipenser sturio",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Acipenser-sturio-Esturgeon-europeen-1321",
+        "coverage": "Vie sur le fond et alimentation",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_gardon",
+        "title": "Gardon — Rutilus rutilus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Rutilus-rutilus-Gardon-289/%28rOffset%29/1",
+        "coverage": "Omnivorie, végétaux adultes et activité de jour",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_goujon",
+        "title": "Goujon — Gobio gobio",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Gobio-gobio-Goujon-363",
+        "coverage": "Invertébrés benthiques et recherche au fond",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_hotu",
+        "title": "Hotu — Chondrostoma nasus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Chondrostoma-nasus-Hotu-2164/%28rOffset%29/8",
+        "coverage": "Raclage de diatomées sur substrat",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_huchon",
+        "title": "Hucho hucho — ecology summary",
+        "publisher": "FishBase",
+        "url": "https://www.fishbase.se/Ecology/Hucho_hucho",
+        "coverage": "Eaux courantes oxygénées et prédation ; synthèse référencée",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_ide",
+        "title": "Ide mélanote — Leuciscus idus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Leuciscus-idus-Ide-melanote-2167/%28rOffset%29/6",
+        "coverage": "Régime variant selon âge et milieu",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_lamproie_planer",
+        "title": "Lamproie de Planer — Lampetra planeri",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Lampetra-planeri-Lamproie-de-Planer-1636",
+        "coverage": "Filtration larvaire puis arrêt de l'alimentation",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_lamproie_fluviatile",
+        "title": "Lamproie de rivière — Lampetra fluviatilis",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Lampetra-fluviatilis-Lamproie-de-riviere-1122",
+        "coverage": "Filtration larvaire et parasitisme adulte",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_loche",
+        "title": "Loche franche — Barbatula barbatula",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Barbatula-barbatula-Loche-franche-269",
+        "coverage": "Petits animaux de fond et recherche nocturne",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_lotte",
+        "title": "Lotte de rivière — Lota lota",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Lota-lota-Lotte-de-riviere-204",
+        "coverage": "Prédation au fond et biologie d'eau froide",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_mulet",
+        "title": "Mulet-porc — Chelon ramada",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Chelon-ramada-Mulet-porc-1985",
+        "coverage": "Omnivorie, biofilm et activité diurne ; ne pas confondre avec Chelon labrosus",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_omble_chevalier",
+        "title": "Omble chevalier — Salvelinus alpinus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Salvelinus-alpinus-Omble-chevalier-1751/%28rOffset%29/18",
+        "coverage": "Eaux fraîches, invertébrés et alevins",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_omble_fontaine",
+        "title": "Omble de fontaine — Salvelinus fontinalis",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Salvelinus-fontinalis-Omble-de-fontaine-1657",
+        "coverage": "Eaux fraîches et invertébrés",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_ombre",
+        "title": "Ombre commun — Thymallus thymallus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Thymallus-thymallus-Ombre-commun-2169/%28rOffset%29/12",
+        "coverage": "Proies du fond et insectes en dérive",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_perche",
+        "title": "Perche — Perca fluviatilis",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Perca-fluviatilis-Perche-330",
+        "coverage": "Bancs, prédation visuelle et évolution du régime",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_soleil",
+        "title": "Perche-soleil — Lepomis gibbosus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Lepomis-gibbosus-Perche-soleil-287/",
+        "coverage": "Petites proies et chasse de jour",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_chat",
+        "title": "Poisson-chat — Ameiurus melas",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Ameiurus-melas-Poisson-chat-990/%28rOffset%29/1",
+        "coverage": "Omnivorie et vie au fond",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_pseudorasbora",
+        "title": "Pseudorasbora parva — ecology",
+        "publisher": "FishBase",
+        "url": "https://www.fishbase.se/Ecology/Pseudorasbora_parva",
+        "coverage": "Alimentation surtout animale ; profil partiel",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_rotengle",
+        "title": "Rotengle — Scardinius erythrophthalmus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Scardinius-erythrophthalmus-Rotengle-1078",
+        "coverage": "Régime omnivore avec tendance végétale adulte",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_sandre",
+        "title": "Sandre — Sander lucioperca",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Sander-lucioperca-Sandre-290",
+        "coverage": "Petits poissons et vision en faible luminosité",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_saumon",
+        "title": "Saumon atlantique — Salmo salar",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Salmo-salar-Saumon-769",
+        "coverage": "Alimentation en mer et arrêt en remontée adulte",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_saumon_roi",
+        "title": "Chinook salmon — Oncorhynchus tshawytscha",
+        "publisher": "NOAA Fisheries",
+        "url": "https://www.fisheries.noaa.gov/species/chinook-salmon",
+        "coverage": "Profil de l'espèce ; contexte nord-américain",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_silure",
+        "title": "Silure glane — Silurus glanis",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Silurus-glanis-Silure-glane-364",
+        "coverage": "Prédation opportuniste et activité surtout nocturne",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_spirlin",
+        "title": "Spirlin — Alburnoides bipunctatus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Alburnoides-bipunctatus-Spirlin-2163",
+        "coverage": "Petites proies en courant et en surface",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_tanche",
+        "title": "Tanche — Tinca tinca",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Tinca-tinca-Tanche-249/%28rOffset%29/15",
+        "coverage": "Recherche de nourriture au fond et activité crépusculaire",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_toxostome",
+        "title": "Toxostome — Parachondrostoma toxostoma",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Toxostome3/%28rOffset%29/fiche_fiche.asp?fiche_numero=2164",
+        "coverage": "Raclage des fonds ; source sous ancien nom Chondrostoma toxostoma",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_arc",
+        "title": "Truite arc-en-ciel — Oncorhynchus mykiss",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Oncorhynchus-mykiss-Truite-arc-en-ciel-2308",
+        "coverage": "Invertébrés, poissons et activité diurne",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_fario",
+        "title": "Truite de rivière — Salmo trutta",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Salmo-trutta-fario-Truite-de-riviere-388/%28rOffset%29/8",
+        "coverage": "Régime variant avec l'âge ; source désigne la forme fario",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_vairon",
+        "title": "Vairon — Phoxinus phoxinus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Phoxinus-phoxinus-Vairon-1656",
+        "coverage": "Omnivorie et eaux fraîches ; complexe taxonomique à contrôler",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_vandoise",
+        "title": "Vandoise — Leuciscus leuciscus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/ref/specie/2166",
+        "coverage": "Profil d'espèce",
+        "consulted_on": "2026-10-02"
+      }
+    ]
   },
   "entries": [
     {
       "id": "ablette",
-      "biologicalId": "alburnus-alburnus",
+      "biologicalId": "bleak",
       "name": "Ablette",
       "latin": "Alburnus alburnus",
       "category": "paisibles",
       "rarity": "commun",
       "description": "Petit poisson argenté grégaire, l'ablette anime les surfaces calmes en bancs serrés. Son éclat argenté servait autrefois à fabriquer des fausses perles. Présente partout en France, elle est le maillon nourricier de nombreux prédateurs.",
       "hint": "Cherche les rondes en surface au crépuscule, c'est là qu'elles trahissent leur présence. Un hameçon trop gros, et tu pêcheras dans le vide toute la journée.",
-      "min": 12,
+      "min": 10,
       "max": 25,
       "maxWeight": 0.15,
       "techniques": [
@@ -50,20 +558,29 @@
         "Streamer ultra-light"
       ],
       "gameId": "bleak",
-      "image": "/encyclopedia/ablette.webp",
+      "image": "/fishdex-assets/22bf56ff9c3d4b07.webp",
       "weightA": 0.0082,
-      "weightB": 3.01
+      "weightB": 3.01,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "bleak",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_ablette"
+      ]
     },
     {
       "id": "breme-bordeliere",
-      "biologicalId": "blicca-bjoerkna",
+      "biologicalId": "whitebream",
       "name": "Brème bordelière",
       "latin": "Blicca bjoerkna",
       "category": "paisibles",
       "rarity": "peu commun",
       "description": "Souvent confondue avec la jeune brème commune, la bordelière s'en distingue par ses yeux plus grands et ses nageoires légèrement rougeâtres. Plus petite, plus argentée, elle vit dans les mêmes eaux mais reste discrète.",
       "hint": "Entre brème commune et bordelière, beaucoup de pêcheurs se trompent. La bordelière a l'œil plus grand par rapport à la tête, c'est le signe le plus fiable.",
-      "min": 20,
+      "min": 15,
       "max": 36,
       "maxWeight": 1,
       "techniques": [
@@ -71,43 +588,61 @@
         "Pêche au feeder léger"
       ],
       "gameId": "whitebream",
-      "image": "/encyclopedia/breme-bordeliere.webp",
+      "image": "/fishdex-assets/d638b8f0778d87d2.webp",
       "weightA": 0.0191,
-      "weightB": 2.99
+      "weightB": 2.99,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "whitebream",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_bordeliere"
+      ]
     },
     {
       "id": "breme-bronze",
-      "biologicalId": "abramis-brama",
+      "biologicalId": "bream",
       "name": "Brême bronze",
-      "latin": "Abramis brama (forme bronze)",
+      "latin": "Abramis brama",
       "category": "paisibles",
       "rarity": "commun",
       "description": "Forme adulte de la brême commune aux reflets bronze marqués et au corps profond.",
       "hint": "La brème bronze est souvent confondue avec la brème commune. Plus petite, elle fréquente les mêmes zones mais en eaux légèrement moins profondes. Feeder fin et asticots au fond font merveille.",
-      "min": 25,
-      "max": 70,
+      "min": 20,
+      "max": 75,
       "maxWeight": 7,
       "techniques": [
         "feeder",
         "asticot",
         "mais"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/breme-bronze.webp",
+      "gameId": "bream",
+      "image": "/fishdex-assets/588bdca439994cbe.webp",
       "weightA": 0.018,
-      "weightB": 2.94
+      "weightB": 2.94,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "bream",
+      "appearanceId": "breme-bronze",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_breme"
+      ]
     },
     {
       "id": "breme-commune",
-      "biologicalId": "abramis-brama",
+      "biologicalId": "bream",
       "name": "Brème commune",
       "latin": "Abramis brama",
       "category": "paisibles",
       "rarity": "commun",
       "description": "Poisson au corps haut et comprimé latéralement, la brème commune se déplace en bancs sur les fonds vaseux. Sa silhouette de feuille est inimitable, surtout au printemps lors du frai bruyant.",
       "hint": "Quand tu trouves un banc, reste patient et amorce régulièrement. Les grosses brèmes mordent souvent juste après que les petites se calment.",
-      "min": 40,
-      "max": 80,
+      "min": 20,
+      "max": 75,
       "maxWeight": 8,
       "techniques": [
         "Pêche au feeder",
@@ -115,42 +650,60 @@
         "Pêche à la bolognaise"
       ],
       "gameId": "bream",
-      "image": "/encyclopedia/breme-commune.webp",
+      "image": "/fishdex-assets/e3ae67f9fb61831c.webp",
       "weightA": 0.018,
-      "weightB": 2.94
+      "weightB": 2.94,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "bream",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_breme"
+      ]
     },
     {
       "id": "carassin",
-      "biologicalId": "carassius-carassius",
+      "biologicalId": "crucian",
       "name": "Carassin commun",
       "latin": "Carassius carassius",
       "category": "paisibles",
       "rarity": "rare",
       "description": "Cousin sauvage du carassin doré, le carassin commun se reconnaît à sa coloration brun-bronze et ses formes trapues. De plus en plus rare en France, il subit la concurrence du carassin doré introduit.",
       "hint": "Si tu en captures un, observe-le attentivement avant de le relâcher : il est moins commun qu'autrefois. Les petites eaux abandonnées sont souvent ses derniers refuges.",
-      "min": 20,
-      "max": 50,
+      "min": 15,
+      "max": 45,
       "maxWeight": 3,
       "techniques": [
         "Pêche au coup",
         "Pêche à la grande canne"
       ],
       "gameId": "crucian",
-      "image": "/encyclopedia/carassin.webp",
+      "image": "/fishdex-assets/42986f5bf257ff27.webp",
       "weightA": null,
-      "weightB": null
+      "weightB": null,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "crucian",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_carassins"
+      ]
     },
     {
       "id": "chevesne",
-      "biologicalId": "squalius-cephalus",
+      "biologicalId": "chub",
       "name": "Chevesne",
       "latin": "Squalius cephalus",
       "category": "paisibles",
       "rarity": "commun",
       "description": "Cyprinidé puissant et méfiant, le chevesne combine curiosité d'opportuniste et prudence de poisson chassé. Il monte avaler une cerise tombée d'un arbre, gobe un insecte en surface, mais détale au moindre bruit.",
       "hint": "Le chevesne est l'un des poissons les plus malins de nos rivières. Approche en silence, lance sans projeter d'ombre. Les plus gros sont sous les arbres qui touchent l'eau.",
-      "min": 35,
-      "max": 80,
+      "min": 20,
+      "max": 65,
       "maxWeight": 6,
       "techniques": [
         "Pêche à la mouche",
@@ -159,21 +712,30 @@
         "Pêche à la fouettée"
       ],
       "gameId": "chub",
-      "image": "/encyclopedia/chevesne.webp",
+      "image": "/fishdex-assets/548b9cf0bdafbc15.webp",
       "weightA": 0.0123,
-      "weightB": 3
+      "weightB": 3,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "chub",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_chevesne"
+      ]
     },
     {
       "id": "gardon",
-      "biologicalId": "rutilus-rutilus",
+      "biologicalId": "roach",
       "name": "Gardon",
       "latin": "Rutilus rutilus",
       "category": "paisibles",
       "rarity": "commun",
       "description": "Le poisson de l'initiation. Le gardon, avec ses nageoires rouge orangé et son corps argenté, est souvent la première prise des jeunes pêcheurs. Présent partout en France, grégaire, vorace, il transmet le goût des choses simples.",
       "hint": "Le gardon récompense le calme et la régularité. Une bonne session, c'est avant tout une bonne amorce et une eau lue avec patience.",
-      "min": 18,
-      "max": 50,
+      "min": 12,
+      "max": 38,
       "maxWeight": 2,
       "techniques": [
         "Pêche au coup",
@@ -181,40 +743,58 @@
         "Pêche à la bolognaise"
       ],
       "gameId": "roach",
-      "image": "/encyclopedia/gardon.webp",
+      "image": "/fishdex-assets/d19c547984008e48.webp",
       "weightA": 0.0196,
-      "weightB": 2.91
+      "weightB": 2.91,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "roach",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_gardon"
+      ]
     },
     {
       "id": "gardon-rouge",
-      "biologicalId": "rutilus-rutilus",
+      "biologicalId": "roach",
       "name": "Gardon rouge",
-      "latin": "Rutilus rutilus f. rubra",
+      "latin": "Rutilus rutilus",
       "category": "paisibles",
       "rarity": "commun",
       "description": "Variante du gardon commun aux nageoires d'un rouge particulièrement vif et éclatant.",
       "hint": "Le gardon rouge fréquente les eaux chaudes et très végétalisées. Contrairement au gardon, il monte volontiers en surface. Pêchez près des herbiers avec du pain ou des asticots.",
-      "min": 10,
-      "max": 45,
+      "min": 12,
+      "max": 38,
       "maxWeight": 2,
       "techniques": [
         "asticot",
         "pain",
         "mais"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/gardon-rouge.webp",
+      "gameId": "roach",
+      "image": "/fishdex-assets/ccac599de4ddf2d9.webp",
       "weightA": 0.0196,
-      "weightB": 2.91
+      "weightB": 2.91,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "roach",
+      "appearanceId": "gardon-rouge",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_gardon"
+      ]
     },
     {
       "id": "gobie",
-      "biologicalId": "neogobius-melanostomus",
+      "biologicalId": "gobie",
       "name": "Gobie",
       "latin": "Neogobius melanostomus",
       "category": "paisibles",
       "rarity": "commun",
-      "description": "Petit poisson de fond invasif originaire de la mer Noire, espèce considérée nuisible en Europe.",
+      "description": "Un poisson de fond à tête large, deux dorsales et une tache sombre sur la première.",
       "hint": "Le gobie s'est largement répandu dans les rivières et estuaires européens. Il fouille les fonds rocheux et graveleux. Pêchez très fin, au fond, avec un petit ver ou un asticot.",
       "min": 8,
       "max": 25,
@@ -224,64 +804,92 @@
         "asticot",
         "micro_leurre"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/gobie.webp",
+      "gameId": "gobie",
+      "image": "/fishdex-assets/dea7c7b9e07e1b50.webp",
       "weightA": 0.004,
-      "weightB": 3.1
+      "weightB": 3.1,
+      "sourceDescription": "Petit poisson de fond invasif originaire de la mer Noire, espèce considérée nuisible en Europe.",
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "gobie",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "doris_gobie"
+      ]
     },
     {
       "id": "goujon",
-      "biologicalId": "gobio-gobio",
+      "biologicalId": "gudgeon",
       "name": "Goujon",
       "latin": "Gobio gobio",
       "category": "paisibles",
       "rarity": "commun",
       "description": "Petit poisson de fond aux barbillons caractéristiques, le goujon est un indicateur d'eau saine. Discret, grégaire, il foule les graviers à la recherche de larves. Sa pêche initiatique fait partie du patrimoine des rivières françaises.",
       "hint": "Un ruisseau plein de goujons, c'est un ruisseau qui se porte bien. Profite-en pour montrer aux enfants ce qu'est une vraie pêche : simple, sans batterie, sans écran.",
-      "min": 10,
-      "max": 21,
+      "min": 8,
+      "max": 20,
       "maxWeight": 0.2,
       "techniques": [
         "Pêche au toc / au plomb",
         "Pêche au coup en rivière"
       ],
       "gameId": "gudgeon",
-      "image": "/encyclopedia/goujon.webp",
+      "image": "/fishdex-assets/df1309fff294bdd3.webp",
       "weightA": 0.0082,
-      "weightB": 3.07
+      "weightB": 3.07,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "gudgeon",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_goujon"
+      ]
     },
     {
       "id": "rotengle",
-      "biologicalId": "scardinius-erythrophthalmus",
+      "biologicalId": "rudd",
       "name": "Rotengle",
       "latin": "Scardinius erythrophthalmus",
       "category": "paisibles",
       "rarity": "commun",
       "description": "Souvent confondu avec le gardon, le rotengle s'en distingue par ses nageoires plus rouges et sa bouche légèrement orientée vers le haut. Il fréquente les herbiers où il broute insectes et végétation tendre.",
       "hint": "Cherche les herbiers en pleine eau, c'est là qu'il monte gober. Un petit hameçon, un asticot bien présenté en surface, et tu sentiras la touche franche.",
-      "min": 20,
-      "max": 50,
+      "min": 12,
+      "max": 40,
       "maxWeight": 2,
       "techniques": [
         "Pêche au coup",
         "Pêche à la mouche sèche"
       ],
       "gameId": "rudd",
-      "image": "/encyclopedia/rotengle.webp",
+      "image": "/fishdex-assets/5151fdd31aa18dab.webp",
       "weightA": 0.0177,
-      "weightB": 3
+      "weightB": 3,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "rudd",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_rotengle"
+      ]
     },
     {
       "id": "tanche",
-      "biologicalId": "tinca-tinca",
+      "biologicalId": "tench",
       "name": "Tanche",
       "latin": "Tinca tinca",
       "category": "paisibles",
       "rarity": "peu commun",
       "description": "Poisson trapu à la peau couverte de mucus, à la robe verte sombre tirant sur le bronze. La tanche aime les eaux chaudes et stagnantes, où elle fouille la vase. Discrète et farouche, c'est un poisson qui se mérite.",
       "hint": "La tanche aime les eaux chaudes et les nuits orageuses. Amorçage sucré, esche posée délicatement. Le combat est lent et puissant : ne brusque rien.",
-      "min": 40,
-      "max": 84,
+      "min": 20,
+      "max": 60,
       "maxWeight": 9,
       "techniques": [
         "Pêche au feeder",
@@ -289,60 +897,87 @@
         "Pêche à la grande canne"
       ],
       "gameId": "tench",
-      "image": "/encyclopedia/tanche.webp",
+      "image": "/fishdex-assets/e7d3e4dc77bad138.webp",
       "weightA": 0.021,
-      "weightB": 2.89
+      "weightB": 2.89,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "tench",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_tanche"
+      ]
     },
     {
       "id": "vairon",
-      "biologicalId": "phoxinus-phoxinus",
+      "biologicalId": "vairon",
       "name": "Vairon",
       "latin": "Phoxinus phoxinus",
       "category": "paisibles",
       "rarity": "commun",
       "description": "Petit poisson grégaire des eaux vives, le vairon arbore de superbes couleurs de noces au printemps : ventre rouge orangé, flancs verdâtres, points dorés. Compagnon habituel de la truite, sa présence indique des eaux froides et oxygénées.",
       "hint": "Au printemps, observe les vairons en parade nuptiale : robes rouges et dorées sur fond de graviers — c'est l'un des plus beaux spectacles discrets de nos rivières.",
-      "min": 8,
+      "min": 5,
       "max": 14,
       "maxWeight": 0.03,
       "techniques": [
         "Pêche au toc / petit hameçon"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/vairon.webp",
+      "gameId": "vairon",
+      "image": "/fishdex-assets/4286f6befbd04259.webp",
       "weightA": 0.01,
-      "weightB": 3.04
+      "weightB": 3.04,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "vairon",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_vairon"
+      ]
     },
     {
       "id": "anguille-europeenne",
-      "biologicalId": "anguilla-anguilla",
+      "biologicalId": "anguille-europeenne",
       "name": "Anguille européenne",
       "latin": "Anguilla anguilla",
       "category": "predateurs",
       "rarity": "rare",
       "description": "Cycle de vie mystérieux : née dans la mer des Sargasses, l'anguille migre vers les côtes européennes, remonte les fleuves, vit jusqu'à 30 ans en eau douce, puis retourne mourir en mer. Espèce en danger critique, sa population a chuté de 95% en 30 ans.",
       "hint": "L'anguille est en danger critique d'extinction. Si tu en croises une, relâche-la avec soin : c'est un animal qui a peut-être déjà vécu 15 ou 20 ans dans nos eaux.",
-      "min": 60,
+      "min": 36,
       "max": 150,
       "maxWeight": 6,
       "techniques": [
         "Pêche au ver à la posée (lorsque autorisé)"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/anguille-europeenne.webp",
+      "gameId": "anguille-europeenne",
+      "image": "/fishdex-assets/8cdac4cd7bd69005.webp",
       "weightA": 0.0011,
-      "weightB": 3.05
+      "weightB": 3.05,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "anguille-europeenne",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_anguille"
+      ]
     },
     {
       "id": "barbeau",
-      "biologicalId": "barbus-barbus",
+      "biologicalId": "barbeau",
       "name": "Barbeau",
       "latin": "Barbus barbus",
       "category": "eaux-vives",
       "rarity": "rare",
       "description": "Puissant cyprinidé des rivières courantes à fond graveleux, reconnaissable à ses quatre barbillons. Combat acharné.",
       "hint": "Le barbeau aime les fonds graveleux et les courants vifs. Pêchez au feeder lourd avec un gros ver ou au toc en courant rapide. Ses combats sont puissants et sa prise de courant dévastatrice.",
-      "min": 25,
+      "min": 15,
       "max": 90,
       "maxWeight": 12,
       "techniques": [
@@ -351,21 +986,30 @@
         "bouillette",
         "mais"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/barbeau.webp",
+      "gameId": "barbeau",
+      "image": "/fishdex-assets/0a8dae2685dc8508.webp",
       "weightA": 0.007,
-      "weightB": 3.11
+      "weightB": 3.11,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "barbeau",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_barbeau"
+      ]
     },
     {
       "id": "black-bass",
-      "biologicalId": "micropterus-salmoides",
+      "biologicalId": "black-bass",
       "name": "Black-bass à grande bouche",
       "latin": "Micropterus salmoides",
       "category": "predateurs",
       "rarity": "rare",
       "description": "Originaire d'Amérique du Nord, le black-bass est un prédateur athlétique et combatif. Introduit en France au début du XXe siècle, il reste localisé dans certaines régions du sud et de l'ouest.",
       "hint": "Le black-bass aime les couverts denses : nénuphars, arbres immergés, pontons. Une attaque en surface sur popper, c'est un souvenir qui ne s'oublie pas. Pratique le no-kill.",
-      "min": 35,
+      "min": 21,
       "max": 80,
       "maxWeight": 10,
       "techniques": [
@@ -373,22 +1017,31 @@
         "Pêche au leurre souple texan",
         "Pêche au jig / football"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/black-bass.webp",
+      "gameId": "black-bass",
+      "image": "/fishdex-assets/c50fcdcf9fe9900a.webp",
       "weightA": null,
-      "weightB": null
+      "weightB": null,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "black-bass",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_bass"
+      ]
     },
     {
       "id": "brochet",
-      "biologicalId": "esox-lucius",
+      "biologicalId": "pike",
       "name": "Brochet",
       "latin": "Esox lucius",
       "category": "predateurs",
       "rarity": "peu commun",
       "description": "Prédateur iconique des eaux françaises, le brochet chasse à l'affût, immobile entre les herbiers. Sa silhouette allongée, ses mâchoires armées, son explosion lors de l'attaque : c'est le carnassier qui marque les pêcheurs.",
       "hint": "Le brochet est souvent plus agressif au lever du soleil par temps couvert. Privilégie les bordures avec herbiers. Respecte la fenêtre de fermeture : la reproduction est sacrée.",
-      "min": 60,
-      "max": 150,
+      "min": 40,
+      "max": 110,
       "maxWeight": 25,
       "techniques": [
         "Pêche au jerkbait",
@@ -397,41 +1050,59 @@
         "Pêche au vif (lorsque autorisé)"
       ],
       "gameId": "pike",
-      "image": "/encyclopedia/brochet.webp",
+      "image": "/fishdex-assets/ea3238035462c23f.webp",
       "weightA": 0.0084,
-      "weightB": 3.04
+      "weightB": 3.04,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "pike",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_brochet"
+      ]
     },
     {
       "id": "carassin-dore",
-      "biologicalId": "carassius-auratus",
+      "biologicalId": "carassin-dore",
       "name": "Carassin doré",
       "latin": "Carassius auratus",
       "category": "paisibles",
       "rarity": "commun",
       "description": "Originaire d'Asie, le carassin doré (ancêtre du poisson rouge) s'est largement naturalisé en France. Sa robe varie du bronze sombre à l'orange vif. Très rustique, il colonise les eaux les moins hospitalières.",
       "hint": "Espèce introduite, le carassin doré croise avec le carassin commun et menace sa survie. À prendre en compte si tu pêches dans des eaux fragiles.",
-      "min": 15,
+      "min": 9,
       "max": 45,
       "maxWeight": 2,
       "techniques": [
         "Pêche au coup"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/carassin-dore.webp",
+      "gameId": "carassin-dore",
+      "image": "/fishdex-assets/244425b10ed1e158.webp",
       "weightA": 0.0316,
-      "weightB": 2.92
+      "weightB": 2.92,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "carassin-dore",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_carassins"
+      ]
     },
     {
       "id": "carpe-commune",
-      "biologicalId": "cyprinus-carpio",
+      "biologicalId": "carp",
       "name": "Carpe commune",
       "latin": "Cyprinus carpio",
       "category": "paisibles",
       "rarity": "commun",
       "description": "Poisson emblématique de la pêche en France, la carpe commune a été introduite par les Romains et élevée depuis le Moyen Âge. Intelligente, méfiante, puissante, elle a engendré une culture de pêche à part entière.",
       "hint": "La carpe se mérite par la patience. Une session de 24 ou 48h, c'est aussi un moment de contemplation. Apprends à lire l'eau, à entendre le silence d'un lac.",
-      "min": 50,
-      "max": 120,
+      "min": 30,
+      "max": 90,
       "maxWeight": 40,
       "techniques": [
         "Pêche à la carpe au feeder/cheveu",
@@ -439,21 +1110,30 @@
         "Pêche à la grande canne"
       ],
       "gameId": "carp",
-      "image": "/encyclopedia/carpe-commune.webp",
+      "image": "/fishdex-assets/ffdc7f190e1b4fac.webp",
       "weightA": 0.0149,
-      "weightB": 2.99
+      "weightB": 2.99,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "carp",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_carpe"
+      ]
     },
     {
       "id": "ide-dore",
-      "biologicalId": "leuciscus-idus",
+      "biologicalId": "ide",
       "name": "Ide doré",
-      "latin": "Leuciscus idus var. orfe",
+      "latin": "Leuciscus idus",
       "category": "paisibles",
       "rarity": "rare",
       "description": "Variété ornementale de l'ide mélanote à la robe orangée dorée éclatante, très prisée en bassin et plan d'eau.",
       "hint": "L'ide doré, la forme ornementale de l'ide mélanote, se rencontre parfois dans les plans d'eau. Sa robe dorée brillante le trahit en surface. Même technique que l'ide mélanote.",
-      "min": 25,
-      "max": 70,
+      "min": 20,
+      "max": 60,
       "maxWeight": 6,
       "techniques": [
         "mouche",
@@ -461,22 +1141,31 @@
         "ver",
         "pain"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/ide-dore.webp",
+      "gameId": "ide",
+      "image": "/fishdex-assets/b65de54d401bbd15.webp",
       "weightA": 0.01,
-      "weightB": 3.06
+      "weightB": 3.06,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "ide",
+      "appearanceId": "ide-dore",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_ide"
+      ]
     },
     {
       "id": "ide-melanote",
-      "biologicalId": "leuciscus-idus",
+      "biologicalId": "ide",
       "name": "Ide mélanote",
       "latin": "Leuciscus idus",
       "category": "paisibles",
       "rarity": "rare",
       "description": "Cousin du chevesne dont il diffère par ses nageoires rougeâtres et sa robe argentée, l'ide mélanote vit dans les eaux plus larges. Plus rare en France, présent surtout dans les bassins du Rhin et de la Moselle.",
       "hint": "Si tu pêches dans le Rhin ou en Alsace, garde l'œil : l'ide mélanote est plus présent là-bas. Sa robe argentée aux reflets dorés est inimitable.",
-      "min": 40,
-      "max": 80,
+      "min": 20,
+      "max": 60,
       "maxWeight": 5,
       "techniques": [
         "Pêche au coup",
@@ -484,39 +1173,57 @@
         "Pêche à la mouche"
       ],
       "gameId": "ide",
-      "image": "/encyclopedia/ide-melanote.webp",
+      "image": "/fishdex-assets/761393dfd96e9918.webp",
       "weightA": 0.01,
-      "weightB": 3.06
+      "weightB": 3.06,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "ide",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_ide"
+      ]
     },
     {
       "id": "lotte",
-      "biologicalId": "lota-lota",
+      "biologicalId": "lotte",
       "name": "Lotte de rivière",
       "latin": "Lota lota",
       "category": "predateurs",
       "rarity": "legendaire",
       "description": "Seul gadidé exclusivement d'eau douce, la lotte est un poisson de l'ombre et du froid. Activité nocturne, reproduction sous la glace : c'est une espèce mystérieuse. Quasi disparue de France, elle subsiste dans quelques lacs alpins et le Doubs.",
       "hint": "La lotte est presque introuvable en France aujourd'hui. Si tu en croises une dans le Léman ou le Doubs, c'est un témoignage rare. Photo, relâche immédiate.",
-      "min": 40,
+      "min": 24,
       "max": 100,
       "maxWeight": 8,
       "techniques": [],
-      "gameId": null,
-      "image": "/encyclopedia/lotte.webp",
+      "gameId": "lotte",
+      "image": "/fishdex-assets/4abae800c4ddf8a6.webp",
       "weightA": null,
-      "weightB": null
+      "weightB": null,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "lotte",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_lotte"
+      ]
     },
     {
       "id": "perche",
-      "biologicalId": "perca-fluviatilis",
+      "biologicalId": "perch",
       "name": "Perche commune",
       "latin": "Perca fluviatilis",
       "category": "predateurs",
       "rarity": "commun",
       "description": "Petit prédateur omniprésent dans les eaux françaises, la perche se reconnaît à ses bandes verticales sombres et à ses nageoires rouge orangé. Vorace et grégaire jeune, elle devient plus solitaire en grandissant.",
       "hint": "La perche est un excellent poisson pour débuter le carnassier au leurre. Cherche les bancs en bordure des structures. Les grosses solitaires préfèrent les zones plus profondes.",
-      "min": 20,
-      "max": 60,
+      "min": 15,
+      "max": 45,
       "maxWeight": 4.8,
       "techniques": [
         "Pêche au leurre souple",
@@ -525,42 +1232,60 @@
         "Pêche au drop shot ultra-light"
       ],
       "gameId": "perch",
-      "image": "/encyclopedia/perche.webp",
+      "image": "/fishdex-assets/7cad0fd2d87141c5.webp",
       "weightA": null,
-      "weightB": null
+      "weightB": null,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "perch",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_perche"
+      ]
     },
     {
       "id": "perche-soleil",
-      "biologicalId": "lepomis-gibbosus",
+      "biologicalId": "perche-soleil",
       "name": "Perche soleil",
       "latin": "Lepomis gibbosus",
       "category": "predateurs",
       "rarity": "commun",
       "description": "Originaire d'Amérique du Nord, la perche soleil a été introduite comme poisson d'aquarium au XIXe siècle. Aujourd'hui invasive, elle colonise les eaux calmes. Aux couleurs vives malgré tout — bleu, orange, vert iridescent.",
       "hint": "Espèce invasive : ne la relâche jamais dans une autre eau. C'est aussi un excellent poisson pour initier les enfants à la pêche.",
-      "min": 12,
+      "min": 7,
       "max": 30,
       "maxWeight": 0.6,
       "techniques": [
         "Pêche au coup",
         "Pêche au leurre ultra-light"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/perche-soleil.webp",
+      "gameId": "perche-soleil",
+      "image": "/fishdex-assets/c4f2fc217badc69b.webp",
       "weightA": 0.0231,
-      "weightB": 3.07
+      "weightB": 3.07,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "perche-soleil",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_soleil"
+      ]
     },
     {
       "id": "sandre",
-      "biologicalId": "sander-lucioperca",
+      "biologicalId": "zander",
       "name": "Sandre",
       "latin": "Sander lucioperca",
       "category": "predateurs",
       "rarity": "peu commun",
       "description": "Carnassier sobre et discret, le sandre chasse souvent en groupe et en profondeur. Ses yeux glauques, adaptés à la pénombre, lui permettent de chasser au crépuscule. Plus subtil que le brochet, il demande de la finesse.",
       "hint": "Le sandre est exigeant sur la finesse. Touches très discrètes : sois attentif au moindre tic. Sa prudence à venir mordre récompense les patients.",
-      "min": 50,
-      "max": 130,
+      "min": 30,
+      "max": 85,
       "maxWeight": 15,
       "techniques": [
         "Pêche au leurre souple",
@@ -568,15 +1293,24 @@
         "Pêche à la verticale"
       ],
       "gameId": "zander",
-      "image": "/encyclopedia/sandre.webp",
+      "image": "/fishdex-assets/bbcb103742476c68.webp",
       "weightA": 0.0115,
-      "weightB": 3.02
+      "weightB": 3.02,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "zander",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_sandre"
+      ]
     },
     {
       "id": "tanche-doree",
-      "biologicalId": "tinca-tinca",
+      "biologicalId": "tench",
       "name": "Tanche dorée",
-      "latin": "Tinca tinca var. aurea",
+      "latin": "Tinca tinca",
       "category": "paisibles",
       "rarity": "rare",
       "description": "Variante ornementale de la tanche à la robe dorée éclatante, rare en milieu naturel.",
@@ -590,21 +1324,30 @@
         "asticot",
         "pellet"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/tanche-doree.webp",
+      "gameId": "tench",
+      "image": "/fishdex-assets/bc19881ef06a90db.webp",
       "weightA": 0.021,
-      "weightB": 2.89
+      "weightB": 2.89,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "tench",
+      "appearanceId": "tanche-doree",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_tanche"
+      ]
     },
     {
       "id": "truite-arc-en-ciel",
-      "biologicalId": "oncorhynchus-mykiss",
+      "biologicalId": "truite-arc-en-ciel",
       "name": "Truite arc-en-ciel",
       "latin": "Oncorhynchus mykiss",
       "category": "eaux-vives",
       "rarity": "peu commun",
       "description": "Originaire du Pacifique nord-américain, la truite arc-en-ciel est largement introduite en France. Reconnaissable à sa bande latérale rose iridescente, elle est moins méfiante que la fario et combat plus violemment.",
       "hint": "Plus combative que la fario, l'arc-en-ciel est souvent issue de lâchers. Pour le no-kill, manipule-la peu et délicatement.",
-      "min": 30,
+      "min": 18,
       "max": 100,
       "maxWeight": 10,
       "techniques": [
@@ -612,21 +1355,30 @@
         "Pêche à la mouche",
         "Pêche au toc / lancer"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/truite-arc-en-ciel.webp",
+      "gameId": "truite-arc-en-ciel",
+      "image": "/fishdex-assets/b1142daba89544fb.webp",
       "weightA": 0.0082,
-      "weightB": 3.08
+      "weightB": 3.08,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "truite-arc-en-ciel",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_arc"
+      ]
     },
     {
       "id": "aspe",
-      "biologicalId": "leuciscus-aspius",
+      "biologicalId": "aspe",
       "name": "Aspe",
       "latin": "Leuciscus aspius",
       "category": "paisibles",
       "rarity": "rare",
       "description": "Curiosité de la nature : l'aspe est un cyprinidé piscivore. Introduit en France via le Rhin, il chasse en surface par poursuites énergiques, spécialiste des ablettes. Sa pêche au leurre se développe.",
       "hint": "Les bancs d'ablettes en surface sont ses cantines préférées. Lance ton leurre devant le poisson, récupération rapide. C'est une espèce récente en France, encore mal connue.",
-      "min": 50,
+      "min": 30,
       "max": 120,
       "maxWeight": 12,
       "techniques": [
@@ -634,22 +1386,31 @@
         "Pêche aux leurres durs imitatifs",
         "Pêche à la mouche streamer"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/aspe.webp",
+      "gameId": "aspe",
+      "image": "/fishdex-assets/1b100fada16b8387.webp",
       "weightA": 0.0052,
-      "weightB": 3.16
+      "weightB": 3.16,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "aspe",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_aspe"
+      ]
     },
     {
       "id": "carpe-cuir",
-      "biologicalId": "cyprinus-carpio",
+      "biologicalId": "carp",
       "name": "Carpe cuir",
-      "latin": "Cyprinus carpio var. nudus",
+      "latin": "Cyprinus carpio",
       "category": "paisibles",
       "rarity": "epique",
       "description": "Variante de la carpe commune totalement dépourvue d'écailles, peau lisse comme du cuir. Phénotype rare.",
       "hint": "La carpe cuir est la variante sans écailles de la carpe commune. Technique identique à la carpe miroir. Sa peau lisse la rend plus fragile — manipulez-la avec des mains humides.",
       "min": 30,
-      "max": 120,
+      "max": 90,
       "maxWeight": 40,
       "techniques": [
         "bouillette",
@@ -657,132 +1418,186 @@
         "pellet",
         "feeder"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/carpe-cuir.webp",
+      "gameId": "carp",
+      "image": "/fishdex-assets/5beb0611736b06ae.webp",
       "weightA": 0.0149,
-      "weightB": 2.99
+      "weightB": 2.99,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "carp",
+      "appearanceId": "carpe-cuir",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_carpe"
+      ]
     },
     {
       "id": "carpe-koi",
-      "biologicalId": "cyprinus-rubrofuscus",
+      "biologicalId": "carpe-koi",
       "name": "Carpe koï",
       "latin": "Cyprinus rubrofuscus",
       "category": "paisibles",
       "rarity": "epique",
       "description": "Carpe ornementale japonaise aux couleurs vives, très prisée en bassin et parfois pêchée en eaux libres.",
       "hint": "",
-      "min": 25,
-      "max": 100,
+      "min": 18,
+      "max": 75,
       "maxWeight": 20,
       "techniques": [
         "bouillette",
         "mais",
         "pellet"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/carpe-koi.webp",
+      "gameId": "carpe-koi",
+      "image": "/fishdex-assets/fa51cdfa5222d0e0.webp",
       "weightA": null,
-      "weightB": null
+      "weightB": null,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "carpe-koi",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "usgs_koi"
+      ]
     },
     {
       "id": "carpe-koi-kohaku",
-      "biologicalId": "cyprinus-rubrofuscus",
+      "biologicalId": "carpe-koi",
       "name": "Carpe koï Kohaku",
-      "latin": "Cyprinus rubrofuscus var. kohaku",
+      "latin": "Cyprinus rubrofuscus",
       "category": "paisibles",
       "rarity": "epique",
       "description": "Variété koï à robe blanche immaculée ornée de motifs rouges (hi). Première variété développée au Japon.",
       "hint": "Le Kohaku, à robe blanche et rouge, est le koï le plus iconique. Dans les plans d'eau où ils sont présents, les techniques de la carpe commune s'appliquent : cheveu, bouillette ou maïs. Capture exceptionnelle.",
-      "min": 25,
-      "max": 100,
+      "min": 18,
+      "max": 75,
       "maxWeight": 18,
       "techniques": [
         "bouillette",
         "mais",
         "pellet"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/carpe-koi-kohaku.webp",
+      "gameId": "carpe-koi",
+      "image": "/fishdex-assets/04c99fc79edd208a.webp",
       "weightA": 0.0149,
-      "weightB": 2.99
+      "weightB": 2.99,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "carpe-koi",
+      "appearanceId": "carpe-koi-kohaku",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "usgs_koi"
+      ]
     },
     {
       "id": "carpe-koi-ogon",
-      "biologicalId": "cyprinus-rubrofuscus",
+      "biologicalId": "carpe-koi",
       "name": "Carpe koï Ogon",
-      "latin": "Cyprinus rubrofuscus var. ogon",
+      "latin": "Cyprinus rubrofuscus",
       "category": "paisibles",
       "rarity": "epique",
       "description": "Variété koï à robe métallisée dorée unie et brillante, reflets argentés selon la lumière.",
       "hint": "L'Ogon, à robe dorée ou argentée métallique, est une variante koï monochrome spectaculaire. Même comportement alimentaire que la carpe commune. Sa robe brillante facilite le repérage à vue.",
-      "min": 25,
-      "max": 100,
+      "min": 18,
+      "max": 75,
       "maxWeight": 18,
       "techniques": [
         "bouillette",
         "mais",
         "pellet"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/carpe-koi-ogon.webp",
+      "gameId": "carpe-koi",
+      "image": "/fishdex-assets/7a6bd3a5f36b808f.webp",
       "weightA": 0.0149,
-      "weightB": 2.99
+      "weightB": 2.99,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "carpe-koi",
+      "appearanceId": "carpe-koi-ogon",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "usgs_koi"
+      ]
     },
     {
       "id": "carpe-koi-sanke",
-      "biologicalId": "cyprinus-rubrofuscus",
+      "biologicalId": "carpe-koi",
       "name": "Carpe koï Sanke",
-      "latin": "Cyprinus rubrofuscus var. sanke",
+      "latin": "Cyprinus rubrofuscus",
       "category": "paisibles",
       "rarity": "epique",
       "description": "Variété tricolore : fond blanc avec motifs rouges (hi) et taches noires (sumi). Très équilibrée.",
       "hint": "Le Sanke, à trois couleurs (blanc, rouge, noir), est l'un des koï les plus appréciés. Comportement identique à la carpe commune. La pêche au Sanke en plan d'eau libre est une expérience inoubliable.",
-      "min": 25,
-      "max": 100,
+      "min": 18,
+      "max": 75,
       "maxWeight": 18,
       "techniques": [
         "bouillette",
         "mais",
         "pellet"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/carpe-koi-sanke.webp",
+      "gameId": "carpe-koi",
+      "image": "/fishdex-assets/9c5d8aa136f26588.webp",
       "weightA": 0.0149,
-      "weightB": 2.99
+      "weightB": 2.99,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "carpe-koi",
+      "appearanceId": "carpe-koi-sanke",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "usgs_koi"
+      ]
     },
     {
       "id": "carpe-koi-showa",
-      "biologicalId": "cyprinus-rubrofuscus",
+      "biologicalId": "carpe-koi",
       "name": "Carpe koï Showa",
-      "latin": "Cyprinus rubrofuscus var. showa",
+      "latin": "Cyprinus rubrofuscus",
       "category": "paisibles",
       "rarity": "epique",
       "description": "Variété koï à fond noir dominant avec marques rouges et blanches. Motifs plus contrastés que le Sanke.",
       "hint": "Le Showa se distingue par son fond noir marbré de rouge et blanc. Comportement identique aux autres koï. Sa robe sombre le rend plus discret dans l'eau que les autres variantes.",
-      "min": 25,
-      "max": 100,
+      "min": 18,
+      "max": 75,
       "maxWeight": 18,
       "techniques": [
         "bouillette",
         "mais",
         "pellet"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/carpe-koi-showa.webp",
+      "gameId": "carpe-koi",
+      "image": "/fishdex-assets/1c0234be3c26d269.webp",
       "weightA": 0.0149,
-      "weightB": 2.99
+      "weightB": 2.99,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "carpe-koi",
+      "appearanceId": "carpe-koi-showa",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "usgs_koi"
+      ]
     },
     {
       "id": "carpe-fully-scaled",
-      "biologicalId": "cyprinus-carpio",
+      "biologicalId": "carp",
       "name": "Carpe fully scaled",
-      "latin": "Cyprinus carpio var. squamosus",
+      "latin": "Cyprinus carpio",
       "category": "paisibles",
       "rarity": "epique",
       "description": "Variante de la carpe commune aux grandes écailles régulières et brillantes couvrant tout le corps.",
       "hint": "La carpe fully scaled présente une couverture d'écailles complète et régulière, contrairement à la carpe miroir. Techniques identiques à la carpe commune.",
       "min": 30,
-      "max": 120,
+      "max": 90,
       "maxWeight": 40,
       "techniques": [
         "bouillette",
@@ -790,22 +1605,31 @@
         "pellet",
         "feeder"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/carpe-fully-scaled.webp",
+      "gameId": "carp",
+      "image": "/fishdex-assets/ef18c479678947d2.webp",
       "weightA": 0.0149,
-      "weightB": 2.99
+      "weightB": 2.99,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "carp",
+      "appearanceId": "carpe-fully-scaled",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_carpe"
+      ]
     },
     {
       "id": "carpe-lineaire",
-      "biologicalId": "cyprinus-carpio",
+      "biologicalId": "carp",
       "name": "Carpe linéaire",
-      "latin": "Cyprinus carpio var. linearis",
+      "latin": "Cyprinus carpio",
       "category": "paisibles",
       "rarity": "epique",
       "description": "Variante de la carpe commune avec une rangée d'écailles alignée uniquement le long de la ligne latérale.",
       "hint": "La carpe linéaire porte une rangée unique d'écailles le long de la ligne latérale. Techniques identiques à la carpe commune, avec une préférence pour les zones profondes et les fonds durs.",
       "min": 30,
-      "max": 120,
+      "max": 90,
       "maxWeight": 40,
       "techniques": [
         "bouillette",
@@ -813,22 +1637,31 @@
         "pellet",
         "feeder"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/carpe-lineaire.webp",
+      "gameId": "carp",
+      "image": "/fishdex-assets/537c8b204572abba.webp",
       "weightA": 0.0149,
-      "weightB": 2.99
+      "weightB": 2.99,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "carp",
+      "appearanceId": "carpe-lineaire",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_carpe"
+      ]
     },
     {
       "id": "carpe-miroir",
-      "biologicalId": "cyprinus-carpio",
+      "biologicalId": "carp",
       "name": "Carpe miroir",
-      "latin": "Cyprinus carpio var. specularis",
+      "latin": "Cyprinus carpio",
       "category": "paisibles",
       "rarity": "epique",
       "description": "Variante de la carpe commune à l'écaillure dispersée et irrégulière, grandes écailles éparses sur le corps.",
       "hint": "La carpe miroir se distingue par ses grandes écailles éparses et brillantes. Pêchez identiquement à la carpe commune : amorçage long terme, bouillette ou maïs sur cheveu, fond.",
       "min": 30,
-      "max": 120,
+      "max": 90,
       "maxWeight": 40,
       "techniques": [
         "bouillette",
@@ -836,43 +1669,61 @@
         "pellet",
         "feeder"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/carpe-miroir.webp",
+      "gameId": "carp",
+      "image": "/fishdex-assets/a867933e21bfb538.webp",
       "weightA": 0.0149,
-      "weightB": 2.99
+      "weightB": 2.99,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "carp",
+      "appearanceId": "carpe-miroir",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_carpe"
+      ]
     },
     {
       "id": "esturgeon-diamant",
-      "biologicalId": "acipenser-gueldenstaedtii",
+      "biologicalId": "esturgeon-diamant",
       "name": "Esturgeon diamant",
       "latin": "Acipenser gueldenstaedtii",
       "category": "paisibles",
       "rarity": "epique",
       "description": "Aussi appelé esturgeon russe, fournit le célèbre caviar Osciètre. Très prisé en pêche spécialisée.",
       "hint": "L'esturgeon diamant se pêche au fond avec des vers ou du poisson haché. Il fouille les fonds vaseux avec son rostre. Remise à l'eau obligatoire — vérifiez toujours le statut du plan d'eau.",
-      "min": 60,
-      "max": 230,
+      "min": 36,
+      "max": 200,
       "maxWeight": 115,
       "techniques": [
         "pellet_esturgeon",
         "ver",
         "bouillette_specifique"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/esturgeon-diamant.webp",
+      "gameId": "esturgeon-diamant",
+      "image": "/fishdex-assets/338cdeca72307b48.webp",
       "weightA": 0.0022,
-      "weightB": 3.18
+      "weightB": 3.18,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "esturgeon-diamant",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_diamant"
+      ]
     },
     {
       "id": "esturgeon-siberien",
-      "biologicalId": "acipenser-baerii",
+      "biologicalId": "esturgeon-siberien",
       "name": "Esturgeon sibérien",
       "latin": "Acipenser baerii",
       "category": "paisibles",
       "rarity": "epique",
       "description": "Poisson préhistorique au corps couvert de scutelles osseuses. Présent en eaux fermées ornementales.",
       "hint": "L'esturgeon sibérien, adapté aux eaux froides, pêche principalement au fond. Ver lombric ou poisson haché sont les esches les plus efficaces. Pêche en plan d'eau spécialisé.",
-      "min": 50,
+      "min": 30,
       "max": 200,
       "maxWeight": 100,
       "techniques": [
@@ -880,21 +1731,30 @@
         "ver",
         "bouillette_specifique"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/esturgeon-siberien.webp",
+      "gameId": "esturgeon-siberien",
+      "image": "/fishdex-assets/2d2601d1985f57ed.webp",
       "weightA": 0.002,
-      "weightB": 3.2
+      "weightB": 3.2,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "esturgeon-siberien",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_baeri"
+      ]
     },
     {
       "id": "truite-fario",
-      "biologicalId": "salmo-trutta",
+      "biologicalId": "truite-fario",
       "name": "Truite fario",
-      "latin": "Salmo trutta fario",
+      "latin": "Salmo trutta",
       "category": "eaux-vives",
       "rarity": "peu commun",
       "description": "Reine des rivières françaises, la truite fario est la forme sédentaire de Salmo trutta. Sa robe, constellée de points rouges et noirs, varie selon les rivières. Méfiante, vue perçante, elle exige précision et discrétion.",
       "hint": "Approche en remontant le courant, l'eau cache ton ombre. Lance court, fil tendu, observe avant chaque lancer. La truite fario apprend vite : c'est ce qui fait la beauté de cette pêche.",
-      "min": 25,
+      "min": 15,
       "max": 80,
       "maxWeight": 5,
       "techniques": [
@@ -903,43 +1763,62 @@
         "Pêche au toc",
         "Pêche au leurre ultra-léger"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/truite-fario.webp",
+      "gameId": "truite-fario",
+      "image": "/fishdex-assets/ed43d51bcdfb72ca.webp",
       "weightA": 0.0074,
-      "weightB": 3.1
+      "weightB": 3.1,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "truite-fario",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_fario",
+        "ofb_trutta"
+      ]
     },
     {
       "id": "truite-jaune",
-      "biologicalId": "oncorhynchus-mykiss",
+      "biologicalId": "truite-arc-en-ciel",
       "name": "Truite jaune (gold)",
-      "latin": "Oncorhynchus mykiss f. xanthica",
+      "latin": "Oncorhynchus mykiss",
       "category": "eaux-vives",
       "rarity": "epique",
       "description": "Mutation xanthique de la truite arc-en-ciel, robe entièrement dorée à jaune. Phénomène rarissime en milieu naturel.",
       "hint": "La truite jaune (gold), mutation mélanique inversée de la fario, est l'une des captures les plus rares. Sa robe dorée la trahit au moindre rayon de soleil. Comportement identique à la truite fario.",
-      "min": 20,
-      "max": 90,
+      "min": 18,
+      "max": 100,
       "maxWeight": 15,
       "techniques": [
         "mouche",
         "leurre_souple",
         "cuiller"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/truite-jaune.webp",
+      "gameId": "truite-arc-en-ciel",
+      "image": "/fishdex-assets/3f1095041ee2e8d1.webp",
       "weightA": 0.0074,
-      "weightB": 3.1
+      "weightB": 3.1,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "truite-arc-en-ciel",
+      "appearanceId": "truite-jaune",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_arc"
+      ]
     },
     {
       "id": "ombre",
-      "biologicalId": "thymallus-thymallus",
+      "biologicalId": "ombre",
       "name": "Ombre commun",
       "latin": "Thymallus thymallus",
       "category": "eaux-vives",
       "rarity": "rare",
       "description": "Reconnaissable à sa grande nageoire dorsale colorée comme un voile et son odeur de thym à la sortie de l'eau, l'ombre commun vit dans des rivières d'une qualité d'eau remarquable. Sa pêche à la mouche est un art.",
       "hint": "L'ombre est un poisson de connaisseurs. Vue perçante, méfiance extrême, gobages discrets. Son odeur de thym à la sortie de l'eau est un mystère élégant. Pratique le no-kill.",
-      "min": 35,
+      "min": 21,
       "max": 60,
       "maxWeight": 3,
       "techniques": [
@@ -947,147 +1826,210 @@
         "Pêche à la nymphe au fil",
         "Pêche à la mouche noyée"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/ombre.webp",
+      "gameId": "ombre",
+      "image": "/fishdex-assets/518a9e4b54410fbb.webp",
       "weightA": null,
-      "weightB": null
+      "weightB": null,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "ombre",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_ombre"
+      ]
     },
     {
       "id": "amour-argente",
-      "biologicalId": "hypophthalmichthys-molitrix",
+      "biologicalId": "amour-argente",
       "name": "Carpe amour argenté",
       "latin": "Hypophthalmichthys molitrix",
       "category": "paisibles",
       "rarity": "rare",
       "description": "Originaire d'Asie du Sud-Est, l'amour argenté filtre le plancton par ses branchiospines. Introduit pour contrôler le phytoplancton, il atteint des tailles impressionnantes. Sa capture reste un défi confidentiel en France.",
       "hint": "L'amour argenté ne mange pas d'esches classiques : il filtre l'eau. Certains pêcheurs le capturent au pain flottant. Une prise reste un exploit rarissime en France.",
-      "min": 60,
+      "min": 36,
       "max": 130,
       "maxWeight": 40,
       "techniques": [
         "Pêche au pain / pâte flottante de surface"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/amour-argente.webp",
+      "gameId": "amour-argente",
+      "image": "/fishdex-assets/60de6b68fe247c22.webp",
       "weightA": null,
-      "weightB": null
+      "weightB": null,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "amour-argente",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "observation",
+      "sourceIds": [
+        "bio_argentee"
+      ]
     },
     {
       "id": "amour-blanc",
-      "biologicalId": "ctenopharyngodon-idella",
+      "biologicalId": "amour-blanc",
       "name": "Amour blanc",
       "latin": "Ctenopharyngodon idella",
       "category": "paisibles",
       "rarity": "peu commun",
       "description": "Originaire de Chine, l'amour blanc a été introduit pour son rôle de débroussailleur naturel : il consomme jusqu'à son poids en végétation par jour. Reconnaissable à son corps allongé et sa tête volumineuse.",
       "hint": "Cherche les amours à proximité des herbiers par temps chaud. L'esche végétale est obligatoire. Une fois piqué, c'est un combat de force pure, prépare ton matériel solide.",
-      "min": 60,
+      "min": 36,
       "max": 150,
       "maxWeight": 45,
       "techniques": [
         "Pêche au herbe / pain",
         "Pêche à la carpe (esches végétales)"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/amour-blanc.webp",
+      "gameId": "amour-blanc",
+      "image": "/fishdex-assets/3404134cb0b75bc3.webp",
       "weightA": 0.0067,
-      "weightB": 3.12
+      "weightB": 3.12,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "amour-blanc",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_herbivore"
+      ]
     },
     {
       "id": "amour-marbre",
-      "biologicalId": "hypophthalmichthys-nobilis",
+      "biologicalId": "amour-marbre",
       "name": "Carpe marbré",
       "latin": "Hypophthalmichthys nobilis",
       "category": "paisibles",
       "rarity": "legendaire",
       "description": "Plus grand des poissons du genre Hypophthalmichthys, la carpe marbré se reconnaît à sa robe grise marbrée et sa tête volumineuse. Présente très discrètement en France, sa capture y est un événement rare.",
       "hint": "Sa robe marbrée unique est reconnaissable au premier regard. Captures extrêmement rares en France. Si tu en croises une, prends soin d'elle : c'est une prise d'exception.",
-      "min": 70,
+      "min": 42,
       "max": 150,
       "maxWeight": 50,
       "techniques": [
         "Pêche au pain / pâte de surface"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/amour-marbre.webp",
+      "gameId": "amour-marbre",
+      "image": "/fishdex-assets/caf5659dd9babc57.webp",
       "weightA": null,
-      "weightB": null
+      "weightB": null,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "amour-marbre",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "observation",
+      "sourceIds": [
+        "bio_marbree"
+      ]
     },
     {
       "id": "carpe-koi-platinum",
-      "biologicalId": "cyprinus-rubrofuscus",
+      "biologicalId": "carpe-koi",
       "name": "Carpe koï Platinum",
-      "latin": "Cyprinus rubrofuscus var. platinum",
+      "latin": "Cyprinus rubrofuscus",
       "category": "paisibles",
       "rarity": "legendaire",
       "description": "Variété koï à la robe métallisée blanc argenté pur, brillance extrême. Parmi les koï les plus prisés.",
       "hint": "La koï Platinum, à robe blanc pur et platine, est le graal des amateurs de koï. Extrêmement rare en plan d'eau libre. Techniques identiques aux autres koï. No kill absolu.",
-      "min": 25,
-      "max": 100,
+      "min": 18,
+      "max": 75,
       "maxWeight": 20,
       "techniques": [
         "bouillette",
         "mais",
         "pellet"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/carpe-koi-platinum.webp",
+      "gameId": "carpe-koi",
+      "image": "/fishdex-assets/36a0686a12a01a78.webp",
       "weightA": 0.0149,
-      "weightB": 2.99
+      "weightB": 2.99,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "carpe-koi",
+      "appearanceId": "carpe-koi-platinum",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "usgs_koi"
+      ]
     },
     {
       "id": "esturgeon-baeri",
-      "biologicalId": "acipenser-baerii",
+      "biologicalId": "esturgeon-siberien",
       "name": "Esturgeon baeri",
-      "latin": "Acipenser baerii baerii",
+      "latin": "Acipenser baerii",
       "category": "paisibles",
       "rarity": "legendaire",
       "description": "Sous-espèce du sibérien, très répandu en élevage et en plans d'eau privés. Record de résistance au combat.",
       "hint": "L'esturgeon baeri, à rostre court, est très populaire dans les étangs de pêche sportive. Il se prend principalement avec des vers ou du poisson haché présentés fond.",
-      "min": 50,
+      "min": 30,
       "max": 200,
       "maxWeight": 80,
       "techniques": [
         "pellet_esturgeon",
         "ver"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/esturgeon-baeri.webp",
+      "gameId": "esturgeon-siberien",
+      "image": "/fishdex-assets/f09ef24ae36bd26d.webp",
       "weightA": 0.002,
-      "weightB": 3.2
+      "weightB": 3.2,
+      "identityStatus": "confirmed",
+      "type": "alias",
+      "parent": "esturgeon-siberien",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_baeri"
+      ]
     },
     {
       "id": "esturgeon-gold",
-      "biologicalId": "acipenser-baerii",
+      "biologicalId": "esturgeon-siberien",
       "name": "Esturgeon gold",
-      "latin": "Acipenser baerii f. xanthica",
+      "latin": "Acipenser baerii",
       "category": "paisibles",
       "rarity": "legendaire",
       "description": "Mutation xanthique de l'esturgeon sibérien, robe dorée spectaculaire. Phénomène extrêmement rare.",
       "hint": "L'esturgeon gold, à robe dorée, est une variante rare et spectaculaire. Même comportement alimentaire que les autres esturgeons. Sa capture dans un lac de pêche est un événement mémorable.",
-      "min": 50,
-      "max": 180,
+      "min": 30,
+      "max": 200,
       "maxWeight": 70,
       "techniques": [
         "pellet_esturgeon",
         "ver"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/esturgeon-gold.webp",
+      "gameId": "esturgeon-siberien",
+      "image": null,
       "weightA": 0.002,
-      "weightB": 3.2
+      "weightB": 3.2,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "esturgeon-siberien",
+      "appearanceId": "esturgeon-gold",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_baeri"
+      ]
     },
     {
       "id": "silure-glane",
-      "biologicalId": "silurus-glanis",
+      "biologicalId": "catfish",
       "name": "Silure glane",
       "latin": "Silurus glanis",
       "category": "predateurs",
       "rarity": "rare",
       "description": "Plus grand prédateur d'eau douce français, le silure peut dépasser 2 mètres. Activité nocturne, vie en fosses profondes : il marque les pêcheurs par sa puissance et le mystère qui l'entoure.",
       "hint": "Le silure se mérite. Matériel solide, patience, nuits sur la berge. Respect : remets-le à l'eau délicatement, c'est un animal âgé qui mérite d'autres saisons.",
-      "min": 150,
-      "max": 280,
+      "min": 50,
+      "max": 160,
       "maxWeight": 130,
       "techniques": [
         "Pêche au clonk",
@@ -1095,21 +2037,30 @@
         "Pêche au leurre lourd"
       ],
       "gameId": "catfish",
-      "image": "/encyclopedia/silure-glane.webp",
+      "image": "/fishdex-assets/6286dab784ca1add.webp",
       "weightA": 0.0621,
-      "weightB": 2.73
+      "weightB": 2.73,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "catfish",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_silure"
+      ]
     },
     {
       "id": "silure-gold",
-      "biologicalId": "silurus-glanis",
+      "biologicalId": "catfish",
       "name": "Silure gold",
-      "latin": "Silurus glanis f. xanthica",
+      "latin": "Silurus glanis",
       "category": "predateurs",
       "rarity": "legendaire",
       "description": "Mutation xanthique du silure glane, robe dorée à orangée unique. Capture légendaire.",
       "hint": "Le silure gold, à robe dorée-orange, est une mutation exceptionnelle. Mêmes techniques que le silure glane : clonk nocturne, gros vif au fond.",
-      "min": 60,
-      "max": 250,
+      "min": 50,
+      "max": 160,
       "maxWeight": 100,
       "techniques": [
         "vif",
@@ -1117,131 +2068,188 @@
         "clonk",
         "leurre_lourd"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/silure-gold.webp",
+      "gameId": "catfish",
+      "image": "/fishdex-assets/5b94df0145741f08.webp",
       "weightA": 0.0621,
-      "weightB": 2.73
+      "weightB": 2.73,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "catfish",
+      "appearanceId": "silure-gold",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_silure"
+      ]
     },
     {
       "id": "silure-mandarin",
-      "biologicalId": "leiocassis-longirostris",
+      "biologicalId": "silure-mandarin",
       "name": "Silure mandarin",
       "latin": "Leiocassis longirostris",
       "category": "predateurs",
       "rarity": "legendaire",
-      "description": "Silure asiatique de taille moyenne, occasionnellement présent en eaux fermées privées.",
+      "description": "Un silure asiatique fuselé, muni de barbillons et d’une nageoire adipeuse.",
       "hint": "Le silure mandarin doit son nom à sa robe aux reflets marbrés exceptionnels. Même comportement que le silure glane, mêmes techniques nocturnes.",
-      "min": 30,
-      "max": 100,
+      "min": 25,
+      "max": 90,
       "maxWeight": 15,
       "techniques": [
         "ver",
         "vif",
         "pellet"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/silure-mandarin.webp",
+      "gameId": "silure-mandarin",
+      "image": "/fishdex-assets/5d8124857a6c2d2c.webp",
       "weightA": 0.0621,
-      "weightB": 2.73
+      "weightB": 2.73,
+      "sourceDescription": "Silure asiatique de taille moyenne, occasionnellement présent en eaux fermées privées.",
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "silure-mandarin",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "ncbi_mandarin",
+        "mandarin_diet"
+      ]
     },
     {
       "id": "truite-tiger",
-      "biologicalId": "oncorhynchus-mykiss",
+      "biologicalId": "truite-tiger",
       "name": "Truite tiger",
-      "latin": "Oncorhynchus mykiss × Salvelinus fontinalis",
+      "latin": "Salmo trutta × Salvelinus fontinalis",
       "category": "eaux-vives",
       "rarity": "legendaire",
-      "description": "Hybride stérile entre truite arc-en-ciel et omble de fontaine, motifs vermiculés orange et noir uniques.",
+      "description": "Hybride de truite commune et d’omble de fontaine, reconnaissable à ses motifs sombres réticulés.",
       "hint": "La truite tiger, hybride naturel entre truite fario et omble de fontaine, est rarissime. Vigoureuse et agressivement carnassière, elle répond aux leurres avec une violence impressionnante.",
-      "min": 25,
-      "max": 80,
+      "min": 18,
+      "max": 65,
       "maxWeight": 10,
       "techniques": [
         "mouche",
         "leurre_souple",
         "cuiller"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/truite-tiger.webp",
+      "gameId": "truite-tiger",
+      "image": "/fishdex-assets/e59847d37eca48ae.webp",
       "weightA": 0.0082,
-      "weightB": 3.08
+      "weightB": 3.08,
+      "sourceDescription": "Hybride stérile entre truite arc-en-ciel et omble de fontaine, motifs vermiculés orange et noir uniques.",
+      "identityStatus": "confirmed",
+      "type": "hybrid",
+      "parent": "truite-tiger",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "utah_tiger"
+      ]
     },
     {
       "id": "carpe-ghost",
-      "biologicalId": "cyprinus-carpio",
+      "biologicalId": "carpe-ghost",
       "name": "Carpe ghost",
       "latin": "Cyprinus carpio × Cyprinus rubrofuscus",
       "category": "paisibles",
       "rarity": "mirage",
       "description": "Croisement unique entre carpe commune et koï, robe métallisée fantomatique aux reflets nacrés.",
       "hint": "La carpe ghost doit son nom à sa robe pâle et translucide. Souvent issue de croisements avec des koï, elle se comporte comme une carpe commune. Sa capture dans la nature est un événement rare.",
-      "min": 30,
-      "max": 110,
+      "min": 25,
+      "max": 85,
       "maxWeight": 30,
       "techniques": [
         "bouillette",
         "mais",
         "pellet"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/carpe-ghost.webp",
+      "gameId": "carpe-ghost",
+      "image": "/fishdex-assets/8e8112bc1ac17b27.webp",
       "weightA": 0.0149,
-      "weightB": 2.99
+      "weightB": 2.99,
+      "identityStatus": "confirmed",
+      "type": "hybrid",
+      "parent": "carpe-ghost",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "ec_ghost"
+      ]
     },
     {
       "id": "carpe-ghost-miroir",
-      "biologicalId": "cyprinus-carpio",
+      "biologicalId": "carpe-ghost",
       "name": "Carpe ghost miroir",
-      "latin": "Cyprinus carpio × Cyprinus rubrofuscus (var. specularis)",
+      "latin": "Cyprinus carpio × Cyprinus rubrofuscus",
       "category": "paisibles",
       "rarity": "mirage",
       "description": "Carpe ghost portant en plus l'écaillure de type miroir. Double phénotype rarissime aux grandes écailles éparses.",
       "hint": "La carpe ghost miroir combine les caractéristiques de la carpe ghost (robe pâle) et de la carpe miroir (grandes écailles éparses). Extrêmement rare dans la nature.",
-      "min": 30,
-      "max": 100,
+      "min": 25,
+      "max": 85,
       "maxWeight": 28,
       "techniques": [
         "bouillette",
         "mais",
         "pellet"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/carpe-ghost-miroir.webp",
+      "gameId": "carpe-ghost",
+      "image": "/fishdex-assets/69c24f2759b12c4f.webp",
       "weightA": 0.0149,
-      "weightB": 2.99
+      "weightB": 2.99,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "carpe-ghost",
+      "appearanceId": "carpe-ghost-miroir",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "ec_ghost"
+      ]
     },
     {
       "id": "esturgeon-albinos",
-      "biologicalId": "acipenser-baerii",
+      "biologicalId": "esturgeon-siberien",
       "name": "Esturgeon albinos",
-      "latin": "Acipenser baerii f. albinos",
+      "latin": "Acipenser baerii",
       "category": "paisibles",
       "rarity": "mirage",
       "description": "Mutation albinos de l'esturgeon sibérien, robe d'un blanc immaculé unique. Trouvaille exceptionnelle.",
       "hint": "L'esturgeon albinos, à robe blanc-crème, est une mutation extrêmement rare. Sa capture est un événement unique. Mêmes techniques que les autres esturgeons, manipulation encore plus délicate.",
-      "min": 50,
-      "max": 180,
+      "min": 30,
+      "max": 200,
       "maxWeight": 70,
       "techniques": [
         "pellet_esturgeon",
         "ver"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/esturgeon-albinos.webp",
+      "gameId": "esturgeon-siberien",
+      "image": "/fishdex-assets/682ebdb8b9874ddb.webp",
       "weightA": 0.002,
-      "weightB": 3.2
+      "weightB": 3.2,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "esturgeon-siberien",
+      "appearanceId": "esturgeon-albinos",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_baeri"
+      ]
     },
     {
       "id": "silure-albinos",
-      "biologicalId": "silurus-glanis",
+      "biologicalId": "catfish",
       "name": "Silure albinos",
-      "latin": "Silurus glanis f. albinos",
+      "latin": "Silurus glanis",
       "category": "predateurs",
       "rarity": "mirage",
       "description": "Mutation albinos du silure glane, robe blanche à rosée aux yeux rouges. Capture d'une vie.",
       "hint": "Le silure albinos, à robe blanc-rose, est une mutation extrêmement rare. Même comportement que le silure glane. Sa capture est un événement unique dans une vie de pêcheur.",
-      "min": 60,
-      "max": 250,
+      "min": 50,
+      "max": 160,
       "maxWeight": 100,
       "techniques": [
         "vif",
@@ -1249,104 +2257,149 @@
         "clonk",
         "leurre_lourd"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/silure-albinos.webp",
+      "gameId": "catfish",
+      "image": "/fishdex-assets/4ef01599db948ea2.webp",
       "weightA": 0.0621,
-      "weightB": 2.73
+      "weightB": 2.73,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "catfish",
+      "appearanceId": "silure-albinos",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_silure"
+      ]
     },
     {
       "id": "truite-albinos",
-      "biologicalId": "oncorhynchus-mykiss",
+      "biologicalId": "truite-arc-en-ciel",
       "name": "Truite albinos",
-      "latin": "Oncorhynchus mykiss f. albinos",
+      "latin": "Oncorhynchus mykiss",
       "category": "eaux-vives",
       "rarity": "mirage",
       "description": "Mutation albinos de la truite arc-en-ciel, robe blanche nacrée aux yeux rouges. Phénomène rarissime en milieu naturel.",
       "hint": "La truite albinos, à robe blanc-rose avec yeux rouges, est une mutation rare en rivière. Comportement identique à la fario. Sa capture est un moment exceptionnel.",
-      "min": 20,
-      "max": 90,
+      "min": 18,
+      "max": 100,
       "maxWeight": 15,
       "techniques": [
         "mouche",
         "leurre_souple",
         "cuiller"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/truite-albinos.webp",
+      "gameId": "truite-arc-en-ciel",
+      "image": "/fishdex-assets/86fd7208229d5a56.webp",
       "weightA": 0.0074,
-      "weightB": 3.1
+      "weightB": 3.1,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "truite-arc-en-ciel",
+      "appearanceId": "truite-albinos",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_arc"
+      ]
     },
     {
       "id": "nase",
-      "biologicalId": "chondrostoma-nasus",
+      "biologicalId": "hotu",
       "name": "Nase commun",
       "latin": "Chondrostoma nasus",
       "category": "paisibles",
       "rarity": "commun",
       "description": "Cyprinidé gratteur de fond, reconnaissable à sa bouche en forme de faucille. Vit en bancs dans les rivières courantes à fond graveleux.",
       "hint": "Le nase broute les algues des fonds durs et graveleux. Sa bouche infère et cartilagineuse le distingue de tous les autres cyprinidés. Pêchez au toc avec une présentation ras du fond en courant modéré.",
-      "min": 20,
-      "max": 45,
+      "min": 18,
+      "max": 55,
       "maxWeight": 1.5,
       "techniques": [
         "asticot",
         "vers",
         "pain"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/nase.webp",
+      "gameId": "hotu",
+      "image": "/fishdex-assets/0e3b95ebffafa4b2.webp",
       "weightA": 0.0133,
-      "weightB": 2.99
+      "weightB": 2.99,
+      "identityStatus": "confirmed",
+      "type": "alias",
+      "parent": "hotu",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_hotu"
+      ]
     },
     {
       "id": "spirlin",
-      "biologicalId": "alburnoides-bipunctatus",
+      "biologicalId": "spirlin",
       "name": "Spirlin",
       "latin": "Alburnoides bipunctatus",
       "category": "paisibles",
       "rarity": "rare",
       "description": "Petit cyprinidé d'eaux vives, le spirlin se reconnaît à la ligne sombre qui parcourt ses flancs. Indicateur d'eaux de qualité, il colonise les zones à truite. Sa présence témoigne de la santé écologique d'un cours d'eau.",
       "hint": "Capturer un spirlin signe une rivière en bonne santé. Plus qu'une prise, c'est un témoignage. Relâche-le délicatement, c'est une espèce sensible.",
-      "min": 10,
+      "min": 6,
       "max": 16,
       "maxWeight": 0.05,
       "techniques": [
         "Pêche à la mouche sèche fine",
         "Pêche au coup ultra-léger"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/spirlin.webp",
+      "gameId": "spirlin",
+      "image": "/fishdex-assets/363f7c66f1f6f66b.webp",
       "weightA": 0.009,
-      "weightB": 3.05
+      "weightB": 3.05,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "spirlin",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_spirlin"
+      ]
     },
     {
       "id": "bouviere",
-      "biologicalId": "rhodeus-amarus",
+      "biologicalId": "bouviere",
       "name": "Bouvière",
       "latin": "Rhodeus amarus",
       "category": "paisibles",
       "rarity": "rare",
       "description": "Petit cyprinidé aux couleurs irisées, la bouvière dépend d'un partenaire inattendu pour sa reproduction : la moule d'eau douce. La femelle pond ses œufs dans le siphon de la moule. Cette symbiose unique en fait une espèce vulnérable.",
       "hint": "La bouvière ne se pêche pas en pratique (trop petite). Si tu en aperçois, c'est signe que les moules d'eau douce sont là aussi. Une bonne nouvelle écologique.",
-      "min": 6,
-      "max": 9,
+      "min": 4,
+      "max": 10,
       "maxWeight": 0.01,
       "techniques": [],
-      "gameId": null,
-      "image": "/encyclopedia/bouviere.webp",
+      "gameId": "bouviere",
+      "image": "/fishdex-assets/babc565419acedd0.webp",
       "weightA": 0.025,
-      "weightB": 2.97
+      "weightB": 2.97,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "bouviere",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "observation",
+      "sourceIds": [
+        "bio_bouviere"
+      ]
     },
     {
       "id": "poisson-chat",
-      "biologicalId": "ameiurus-melas",
+      "biologicalId": "poisson-chat",
       "name": "Poisson-chat",
       "latin": "Ameiurus melas",
       "category": "paisibles",
       "rarity": "commun",
       "description": "Espèce introduite d'Amérique du Nord, reconnaissable à ses 8 barbillons. Espèce invasive tolérante à la pollution.",
       "hint": "Le poisson-chat (importé d'Amérique du Nord) est omniprésent dans nos plans d'eau. Il mord sur tout et à toute heure. Pêchez au fond avec des vers ou de l'appât animal fort.",
-      "min": 10,
+      "min": 6,
       "max": 35,
       "maxWeight": 0.8,
       "techniques": [
@@ -1354,103 +2407,148 @@
         "asticot",
         "pellet"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/poisson-chat.webp",
+      "gameId": "poisson-chat",
+      "image": "/fishdex-assets/93a54d09d4fd25e9.webp",
       "weightA": 0.014,
-      "weightB": 3.12
+      "weightB": 3.12,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "poisson-chat",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_chat"
+      ]
     },
     {
       "id": "vandoise",
-      "biologicalId": "leuciscus-leuciscus",
+      "biologicalId": "vandoise",
       "name": "Vandoise",
       "latin": "Leuciscus leuciscus",
       "category": "paisibles",
       "rarity": "peu commun",
       "description": "Cyprinidé élancé aux flancs argentés, la vandoise vit dans les rivières propres à courant modéré. Plus farouche que le gardon, elle gobe les insectes en surface comme une truite. Sa présence indique une qualité d'eau supérieure à la moyenne.",
       "hint": "Quand tu vois des ronds en surface qui ne sont pas ceux d'une truite, c'est souvent la vandoise. Mouche posée délicatement, dérive parfaite : elle pardonne moins qu'un chevesne.",
-      "min": 20,
+      "min": 12,
       "max": 40,
       "maxWeight": 1,
       "techniques": [
         "Pêche à la mouche sèche",
         "Pêche au coup léger"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/vandoise.webp",
+      "gameId": "vandoise",
+      "image": "/fishdex-assets/663afb36c573b7de.webp",
       "weightA": 0.0074,
-      "weightB": 3.15
+      "weightB": 3.15,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "vandoise",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_vandoise"
+      ]
     },
     {
       "id": "loche-franche",
-      "biologicalId": "barbatula-barbatula",
+      "biologicalId": "loche-franche",
       "name": "Loche franche",
       "latin": "Barbatula barbatula",
       "category": "eaux-vives",
       "rarity": "commun",
       "description": "Petit poisson benthique à l'aspect serpentiforme, avec 6 barbillons. Indicateur de bonne qualité d'eau.",
       "hint": "La loche franche est une discrète fouisseuse de fond qui s'active surtout la nuit. Elle se prend accidentellement sur de petits hameçons avec des vers. Indicateur d'une bonne qualité d'eau.",
-      "min": 8,
+      "min": 5,
       "max": 18,
       "maxWeight": 0.08,
       "techniques": [
         "asticot",
         "vers"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/loche-franche.webp",
+      "gameId": "loche-franche",
+      "image": "/fishdex-assets/69d406ae721b1447.webp",
       "weightA": 0.004,
-      "weightB": 3.1
+      "weightB": 3.1,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "loche-franche",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "observation",
+      "sourceIds": [
+        "bio_loche"
+      ]
     },
     {
       "id": "chabot",
-      "biologicalId": "cottus-gobio",
+      "biologicalId": "chabot",
       "name": "Chabot commun",
       "latin": "Cottus gobio",
       "category": "eaux-vives",
       "rarity": "rare",
       "description": "Petit poisson de fond aux yeux saillants et à la grosse tête, le chabot vit caché sous les pierres des ruisseaux frais. Sa présence indique des eaux d'excellente qualité. Espèce d'intérêt patrimonial européen.",
       "hint": "Le chabot ne se pêche pas, c'est une observation. Soulève délicatement une pierre dans un ruisseau à truite : sa présence signe une eau de qualité. Espèce protégée européenne.",
-      "min": 10,
-      "max": 17,
+      "min": 5,
+      "max": 16,
       "maxWeight": 0.1,
       "techniques": [],
-      "gameId": null,
-      "image": "/encyclopedia/chabot.webp",
+      "gameId": "chabot",
+      "image": "/fishdex-assets/5ece89132c98094e.webp",
       "weightA": 0.0085,
-      "weightB": 3.16
+      "weightB": 3.16,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "chabot",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "observation",
+      "sourceIds": [
+        "bio_chabot"
+      ]
     },
     {
       "id": "carpe-herbivore",
-      "biologicalId": "ctenopharyngodon-idella",
+      "biologicalId": "amour-blanc",
       "name": "Carpe herbivore",
       "latin": "Ctenopharyngodon idella",
       "category": "paisibles",
       "rarity": "rare",
       "description": "Géant des eaux douces, introduite comme herbicide biologique. Sa bouche sans barbillons la distingue de la carpe commune.",
       "hint": "La carpe herbivore dévore la végétation aquatique. Elle se prend sur végétaux naturels ou bouillettes végétales. Techniques proches de l'amour blanc.",
-      "min": 30,
-      "max": 120,
+      "min": 36,
+      "max": 150,
       "maxWeight": 40,
       "techniques": [
         "maïs",
         "pellet",
         "aliment-vegetal"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/carpe-herbivore.webp",
+      "gameId": "amour-blanc",
+      "image": "/fishdex-assets/0fdfba68fea1c514.webp",
       "weightA": 0.0072,
-      "weightB": 3.08
+      "weightB": 3.08,
+      "identityStatus": "confirmed",
+      "type": "alias",
+      "parent": "amour-blanc",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_herbivore"
+      ]
     },
     {
       "id": "carassin-argente",
-      "biologicalId": "carassius-gibelio",
+      "biologicalId": "carassin-argente",
       "name": "Carassin argenté",
       "latin": "Carassius gibelio",
       "category": "paisibles",
       "rarity": "rare",
       "description": "Cousin envahissant du carassin, à la livrée argentée. Espèce très résistante, capable de reproduction parthénogénétique.",
       "hint": "Le carassin argenté (Poisson de Prusse) s'est largement naturalisé en France. Rustique et prolifique, il résiste aux eaux peu oxygénées. Techniques identiques au carassin commun.",
-      "min": 15,
+      "min": 9,
       "max": 45,
       "maxWeight": 1.5,
       "techniques": [
@@ -1458,21 +2556,30 @@
         "maïs",
         "pellet"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/carassin-argente.webp",
+      "gameId": "carassin-argente",
+      "image": "/fishdex-assets/83aaa579f8a223c0.webp",
       "weightA": 0.0316,
-      "weightB": 2.92
+      "weightB": 2.92,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "carassin-argente",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_carassins"
+      ]
     },
     {
       "id": "hotu",
-      "biologicalId": "chondrostoma-nasus",
+      "biologicalId": "hotu",
       "name": "Hotu",
       "latin": "Chondrostoma nasus",
       "category": "paisibles",
       "rarity": "peu commun",
       "description": "Reconnaissable à son museau pointu et sa bouche infère adaptée au broutage des pierres, le hotu vit en bancs serrés dans les eaux vives. Il racle inlassablement le biofilm algal des fonds caillouteux.",
       "hint": "Le hotu se trahit par les coups secs qu'il donne sur la ligne avant de gober. Ne ferre pas trop tôt. Une fois piqué, il tire fort vers le courant : laisse-le filer.",
-      "min": 30,
+      "min": 18,
       "max": 55,
       "maxWeight": 2,
       "techniques": [
@@ -1480,62 +2587,89 @@
         "Pêche au toc",
         "Pêche au coup en courant"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/hotu.webp",
+      "gameId": "hotu",
+      "image": "/fishdex-assets/b1060328d10b49be.webp",
       "weightA": 0.0133,
-      "weightB": 2.99
+      "weightB": 2.99,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "hotu",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_hotu"
+      ]
     },
     {
       "id": "toxostome",
-      "biologicalId": "parachondrostoma-toxostoma",
+      "biologicalId": "toxostome",
       "name": "Toxostome",
       "latin": "Parachondrostoma toxostoma",
       "category": "eaux-vives",
       "rarity": "rare",
       "description": "Espèce endémique des rivières du sud de la France, en déclin. Reconnaissable à sa bouche arquée en forme de 'toxo'.",
       "hint": "Le toxostome est un cyprinidé endémique du sud de la France, proche du nase. Il broute les algues avec sa bouche cartilagineuse. Pêchez au toc très fin en courant graveleux.",
-      "min": 15,
+      "min": 9,
       "max": 35,
       "maxWeight": 0.5,
       "techniques": [
         "asticot"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/toxostome.webp",
+      "gameId": "toxostome",
+      "image": "/fishdex-assets/cbd5eb43e7cda6bf.webp",
       "weightA": 0.012,
-      "weightB": 3
+      "weightB": 3,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "toxostome",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_toxostome"
+      ]
     },
     {
       "id": "soufie",
-      "biologicalId": "leuciscus-souffia",
+      "biologicalId": "blageon",
       "name": "Soufie",
-      "latin": "Leuciscus souffia",
+      "latin": "Telestes souffia",
       "category": "eaux-vives",
       "rarity": "rare",
       "description": "Petit cyprinidé des torrents alpins, aux flancs argentés et dorés. Indicateur de la pureté des eaux de montagne.",
       "hint": "La soufie est une espèce endémique proche du nase. Elle fréquente les rivières propres à fond caillouteux. Pêche identique au toxostome : toc fin au fond.",
-      "min": 10,
-      "max": 22,
+      "min": 8,
+      "max": 25,
       "maxWeight": 0.15,
       "techniques": [
         "asticot",
         "mouche"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/soufie.webp",
+      "gameId": "blageon",
+      "image": "/fishdex-assets/035c52d171f41b1b.webp",
       "weightA": 0.009,
-      "weightB": 3.05
+      "weightB": 3.05,
+      "identityStatus": "confirmed",
+      "type": "alias",
+      "parent": "blageon",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_blageon"
+      ]
     },
     {
       "id": "black-bass-petite-bouche",
-      "biologicalId": "micropterus-dolomieu",
+      "biologicalId": "black-bass-petite-bouche",
       "name": "Black-bass à petite bouche",
       "latin": "Micropterus dolomieu",
       "category": "predateurs",
       "rarity": "rare",
       "description": "Cousin du black-bass, préférant les eaux claires et courantes. Combattant acharné, très apprécié en pêche sportive.",
       "hint": "Le black-bass à petite bouche est légèrement plus méfiant que son cousin à grande bouche. Il préfère les eaux fraîches et claires. Les leurres fins et naturels fonctionnent mieux sur ce poisson.",
-      "min": 20,
+      "min": 12,
       "max": 50,
       "maxWeight": 2.5,
       "techniques": [
@@ -1543,42 +2677,60 @@
         "streamer",
         "jig"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/black-bass-petite-bouche.webp",
+      "gameId": "black-bass-petite-bouche",
+      "image": "/fishdex-assets/6d630a32b98e403f.webp",
       "weightA": 0.0135,
-      "weightB": 3.15
+      "weightB": 3.15,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "black-bass-petite-bouche",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_bass_petite"
+      ]
     },
     {
       "id": "omble-fontaine",
-      "biologicalId": "salvelinus-fontinalis",
+      "biologicalId": "omble-de-fontaine",
       "name": "Omble de fontaine",
       "latin": "Salvelinus fontinalis",
       "category": "eaux-vives",
       "rarity": "rare",
       "description": "Originaire de l'est de l'Amérique du Nord, l'omble de fontaine a été introduit dans nos ruisseaux d'altitude. Sa robe est inoubliable : dos vermiculé de marbrures vertes, flancs constellés de points jaunes, rouges et bleus, ventre orangé.",
       "hint": "Cherche l'omble de fontaine dans les ruisseaux d'altitude isolés. Sa robe est une œuvre. Photo, relâche, et garde le silence sur le spot — c'est la règle non écrite.",
-      "min": 25,
+      "min": 15,
       "max": 50,
       "maxWeight": 3,
       "techniques": [
         "Pêche à la mouche",
         "Pêche au toc"
       ],
-      "gameId": null,
-      "image": null,
+      "gameId": "omble-de-fontaine",
+      "image": "/fishdex-assets/cdedc96cf3815926.webp",
       "weightA": null,
-      "weightB": null
+      "weightB": null,
+      "identityStatus": "confirmed",
+      "type": "alias",
+      "parent": "omble-de-fontaine",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_omble_fontaine"
+      ]
     },
     {
       "id": "lavaret",
-      "biologicalId": "coregonus-lavaretus",
+      "biologicalId": "coregone",
       "name": "Lavaret",
       "latin": "Coregonus lavaretus",
       "category": "eaux-vives",
       "rarity": "rare",
       "description": "Corégone des grands lacs alpins, fin et argenté. Pêché traditionnellement au filet, rare à la ligne.",
       "hint": "Le lavaret (corégone) vit en grandes profondeurs des lacs alpins. Il monte la nuit près de la surface en hiver. Pêchez à la traîne profonde ou à la cuillère légère.",
-      "min": 25,
+      "min": 15,
       "max": 60,
       "maxWeight": 2.5,
       "techniques": [
@@ -1586,21 +2738,30 @@
         "vers",
         "mouche"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/lavaret.webp",
+      "gameId": "coregone",
+      "image": "/fishdex-assets/78040998d1a30ab9.webp",
       "weightA": 0.0051,
-      "weightB": 3.17
+      "weightB": 3.17,
+      "identityStatus": "confirmed",
+      "type": "alias",
+      "parent": "coregone",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_coregone"
+      ]
     },
     {
       "id": "grande-alose",
-      "biologicalId": "alosa-alosa",
+      "biologicalId": "grande-alose",
       "name": "Grande alose",
       "latin": "Alosa alosa",
       "category": "predateurs",
       "rarity": "rare",
       "description": "Migrateur anadrôme spectaculaire remontant les grands fleuves pour frayer. Pêche en période de migration au primtemps.",
       "hint": "La grande alose est un poisson migrateur spectaculaire qui remonte les rivières au printemps. Elle mord aux cuillères brillantes et aux mouches spéciales. Sa pêche est soumise à réglementation stricte.",
-      "min": 30,
+      "min": 18,
       "max": 75,
       "maxWeight": 3,
       "techniques": [
@@ -1608,42 +2769,60 @@
         "devon",
         "mouche"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/grande-alose.webp",
+      "gameId": "grande-alose",
+      "image": "/fishdex-assets/c19df0278973ba3a.webp",
       "weightA": 0.0063,
-      "weightB": 3.06
+      "weightB": 3.06,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "grande-alose",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "observation",
+      "sourceIds": [
+        "bio_aloses"
+      ]
     },
     {
       "id": "alose-feinte",
-      "biologicalId": "alosa-fallax",
+      "biologicalId": "alose-feinte",
       "name": "Alose feinte",
       "latin": "Alosa fallax",
       "category": "predateurs",
       "rarity": "rare",
       "description": "Plus petite que la grande alose, elle remonte également les fleuves côtiers. Protégée dans de nombreux pays.",
       "hint": "L'alose feinte est une proche parente de la grande alose, plus petite. Elle remonte moins loin dans les rivières. Techniques identiques à la grande alose, mais avec du matériel plus léger.",
-      "min": 20,
+      "min": 12,
       "max": 55,
       "maxWeight": 1.5,
       "techniques": [
         "cuiller",
         "devon"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/alose-feinte.webp",
+      "gameId": "alose-feinte",
+      "image": "/fishdex-assets/fa4234c253fee87b.webp",
       "weightA": 0.0063,
-      "weightB": 3.08
+      "weightB": 3.08,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "alose-feinte",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "observation",
+      "sourceIds": [
+        "bio_aloses"
+      ]
     },
     {
       "id": "saumon-atlantique",
-      "biologicalId": "salmo-salar",
+      "biologicalId": "saumon-atlantique",
       "name": "Saumon atlantique",
       "latin": "Salmo salar",
       "category": "eaux-vives",
       "rarity": "epique",
       "description": "Roi des salmonidés français, le saumon atlantique est devenu rare. Il naît en rivière, descend en mer pour grandir, puis revient sur sa rivière natale pour se reproduire. En France, il survit dans une poignée de rivières bretonnes et basques.",
       "hint": "Le saumon atlantique est précieux. Quotas stricts, périodes courtes, parfois tirages au sort. Si tu en pêches un, tu rejoins une lignée de pêcheurs qui se battent pour préserver cette espèce.",
-      "min": 70,
+      "min": 42,
       "max": 150,
       "maxWeight": 30,
       "techniques": [
@@ -1651,81 +2830,119 @@
         "Pêche à la cuiller",
         "Pêche au lancer aux leurres"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/saumon-atlantique.webp",
+      "gameId": "saumon-atlantique",
+      "image": "/fishdex-assets/0d8259c24891cb02.webp",
       "weightA": 0.0062,
-      "weightB": 3.11
+      "weightB": 3.11,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "saumon-atlantique",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "observation",
+      "sourceIds": [
+        "bio_saumon"
+      ]
     },
     {
       "id": "truite-de-mer",
-      "biologicalId": "salmo-trutta",
+      "biologicalId": "truite-fario",
       "name": "Truite de mer",
-      "latin": "Salmo trutta trutta",
+      "latin": "Salmo trutta",
       "category": "eaux-vives",
       "rarity": "rare",
       "description": "Cousine migratrice de la truite fario, la truite de mer vit alternativement en eau douce et en mer. Elle revient se reproduire dans sa rivière natale, parfois plusieurs fois. Robe argentée éclatante à la remontée.",
       "hint": "La pêche de la truite de mer se fait souvent de nuit, dans des conditions précises. C'est une école de patience. Comme le saumon, ses populations chutent : pratique le no-kill quand tu peux.",
-      "min": 50,
-      "max": 100,
+      "min": 15,
+      "max": 80,
       "maxWeight": 15,
       "techniques": [
         "Pêche à la mouche de nuit",
         "Pêche à la cuiller"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/truite-de-mer.webp",
+      "gameId": "truite-fario",
+      "image": "/fishdex-assets/4e76e5bc51f05d75.webp",
       "weightA": 0.0074,
-      "weightB": 3.1
+      "weightB": 3.1,
+      "identityStatus": "confirmed",
+      "type": "ecotype",
+      "parent": "truite-fario",
+      "appearanceId": "truite-de-mer",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_fario",
+        "ofb_trutta"
+      ]
     },
     {
       "id": "truite-lac",
-      "biologicalId": "salmo-trutta",
+      "biologicalId": "truite-fario",
       "name": "Truite lacustre",
-      "latin": "Salmo trutta lacustris",
+      "latin": "Salmo trutta",
       "category": "eaux-vives",
       "rarity": "epique",
       "description": "Forme géante de la truite vivant en grands lacs alpins, la truite lacustre descend en profondeur en été et remonte les rivières affluentes pour se reproduire. Robe argentée, taches noires en X, taille impressionnante.",
       "hint": "La truite lacustre en grand lac alpin est une quête. Bateau, sondeur, connaissance fine. Quotas et périodes strictes : respecte-les sans concession.",
-      "min": 50,
-      "max": 120,
+      "min": 15,
+      "max": 80,
       "maxWeight": 18,
       "techniques": [
         "Pêche à la traîne",
         "Pêche à la mouche en rivière (frai)"
       ],
-      "gameId": null,
-      "image": null,
+      "gameId": "truite-fario",
+      "image": "/fishdex-assets/47df06aa189f92e5.webp",
       "weightA": null,
-      "weightB": null
+      "weightB": null,
+      "identityStatus": "confirmed",
+      "type": "ecotype",
+      "parent": "truite-fario",
+      "appearanceId": "truite-lac",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_fario",
+        "ofb_trutta"
+      ]
     },
     {
       "id": "huchon",
-      "biologicalId": "hucho-hucho",
+      "biologicalId": "huchon",
       "name": "Huchon",
       "latin": "Hucho hucho",
       "category": "eaux-vives",
       "rarity": "legendaire",
       "description": "Plus grand salmonidé d'Europe, le huchon (ou saumon du Danube) a été introduit en France dans les années 50 dans la rivière les Usses (Haute-Savoie). Présence aujourd'hui anecdotique voire éteinte localement.",
       "hint": "Le huchon en France relève du mythe. Sa présence actuelle dans les Usses est très incertaine. Si tu en captures un (ce serait extraordinaire), photo, relâche immédiate, signale à la fédération.",
-      "min": 80,
+      "min": 48,
       "max": 150,
       "maxWeight": 50,
       "techniques": [],
-      "gameId": null,
-      "image": "/encyclopedia/huchon.webp",
+      "gameId": "huchon",
+      "image": "/fishdex-assets/a6d8e3bf3f68a433.webp",
       "weightA": 0.006,
-      "weightB": 3.08
+      "weightB": 3.08,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "huchon",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_huchon"
+      ]
     },
     {
       "id": "omble-chevalier",
-      "biologicalId": "salvelinus-alpinus",
+      "biologicalId": "omble-chevalier",
       "name": "Omble chevalier",
       "latin": "Salvelinus alpinus",
       "category": "eaux-vives",
       "rarity": "epique",
       "description": "Relique de la dernière glaciation, l'omble chevalier vit dans les lacs alpins profonds. Sa robe orange-rouge éclatante à la période de frai en fait l'un des plus beaux poissons d'eau douce.",
       "hint": "L'omble chevalier ne se pêche pas n'importe où. Renseigne-toi auprès des fédérations alpines : Bourget, Léman, Annecy ont leurs traditions et leurs périodes.",
-      "min": 40,
+      "min": 24,
       "max": 90,
       "maxWeight": 12,
       "techniques": [
@@ -1733,21 +2950,30 @@
         "Pêche à la gambe (gandolyne)",
         "Pêche à la mouche en surface"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/omble-chevalier.webp",
+      "gameId": "omble-chevalier",
+      "image": "/fishdex-assets/c5fcdc1da28a8603.webp",
       "weightA": 0.0056,
-      "weightB": 3.18
+      "weightB": 3.18,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "omble-chevalier",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_omble_chevalier"
+      ]
     },
     {
       "id": "eperlan",
-      "biologicalId": "osmerus-eperlanus",
+      "biologicalId": "eperlan",
       "name": "Éperlan",
       "latin": "Osmerus eperlanus",
       "category": "eaux-vives",
       "rarity": "epique",
       "description": "Petit salmonidé à l'odeur caractéristique de concombre frais. Vit en bancs dans les estuaires et lacs, remonte les rivières pour frayer.",
       "hint": "L'éperlan remonte les rivières en hiver-printemps pour frayer. Très grégaire, il se pêche en bancs avec du très petit matériel. Son odeur de concombre est caractéristique.",
-      "min": 10,
+      "min": 6,
       "max": 30,
       "maxWeight": 0.2,
       "techniques": [
@@ -1755,237 +2981,337 @@
         "cuiller",
         "toc"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/eperlan.webp",
+      "gameId": "eperlan",
+      "image": "/fishdex-assets/ac01bd07e0331fcd.webp",
       "weightA": 0.0052,
-      "weightB": 3.24
+      "weightB": 3.24,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "eperlan",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_eperlan"
+      ]
     },
     {
       "id": "barbeau-meridional",
-      "biologicalId": "barbus-meridionalis",
+      "biologicalId": "barbeau-meridional",
       "name": "Barbeau méridional",
       "latin": "Barbus meridionalis",
       "category": "eaux-vives",
       "rarity": "epique",
       "description": "Cousin méditerranéen du barbeau fluviatile, plus trapu et tacheté. Espèce protégée des rivières pyrénéennes et provençales.",
       "hint": "Le barbeau méridional fréquente les rivières méditerranéennes à fond graveleux et courants vifs. Comportement proche du barbeau commun mais dans des eaux plus chaudes. Feeder lourd en courant.",
-      "min": 15,
+      "min": 9,
       "max": 40,
       "maxWeight": 1.2,
       "techniques": [
         "asticot",
         "vers"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/barbeau-meridional.webp",
+      "gameId": "barbeau-meridional",
+      "image": "/fishdex-assets/934ccb17e73dbb0b.webp",
       "weightA": 0.007,
-      "weightB": 3.11
+      "weightB": 3.11,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "barbeau-meridional",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_barbeau_meridional"
+      ]
     },
     {
       "id": "perche-fluviatile",
-      "biologicalId": "perca-fluviatilis",
+      "biologicalId": "perch",
       "name": "Perche fluviatile",
-      "latin": "Perca fluviatilis f. rivularis",
+      "latin": "Perca fluviatilis",
       "category": "predateurs",
       "rarity": "epique",
       "description": "Forme de grande rivière de la perche commune, aux rayures plus marquées et à la croissance plus rapide. Combat vigoureux.",
       "hint": "La perche fluviatile désigne la perche commune en milieu courant, plus combative que sa cousine des eaux calmes. Elle chasse en bancs dans les courants modérés. Leurres souples et cuillères sont redoutables.",
-      "min": 20,
-      "max": 50,
+      "min": 15,
+      "max": 45,
       "maxWeight": 2.5,
       "techniques": [
         "leurre",
         "jig",
         "vif"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/perche-fluviatile.webp",
+      "gameId": "perch",
+      "image": "/fishdex-assets/e821eb6e22202e6b.webp",
       "weightA": 0.0221,
-      "weightB": 2.86
+      "weightB": 2.86,
+      "identityStatus": "confirmed",
+      "type": "alias",
+      "parent": "perch",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_perche"
+      ]
     },
     {
       "id": "sandre-dore",
-      "biologicalId": "sander-vitreus",
+      "biologicalId": "sandre-dore",
       "name": "Sandre doré",
       "latin": "Sander vitreus",
       "category": "predateurs",
       "rarity": "epique",
-      "description": "Espèce nord-américaine introduite en quelques plans d'eau européens. Plus résistant au courant que le sandre européen.",
+      "description": "Un prédateur nord-américain distinct du sandre européen.",
       "hint": "Le sandre doré, à robe aux reflets mordorés, est une variante colorée exceptionnelle du sandre commun. Mêmes habitudes nocturnes, mêmes techniques. Une capture mémorable.",
-      "min": 25,
-      "max": 80,
+      "min": 22,
+      "max": 95,
       "maxWeight": 8,
       "techniques": [
         "leurre",
         "jig",
         "vif"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/sandre-dore.webp",
+      "gameId": "sandre-dore",
+      "image": "/fishdex-assets/99d010acfaf5eeb5.webp",
       "weightA": 0.0115,
-      "weightB": 3.02
+      "weightB": 3.02,
+      "sourceDescription": "Espèce nord-américaine introduite en quelques plans d'eau européens. Plus résistant au courant que le sandre européen.",
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "sandre-dore",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "fws_walleye"
+      ]
     },
     {
       "id": "corégone-palee",
-      "biologicalId": "coregonus-palaea",
+      "biologicalId": "coregone-palee",
       "name": "Corégone palée",
       "latin": "Coregonus palaea",
       "category": "eaux-vives",
       "rarity": "epique",
       "description": "Corégone endémique du lac Léman. Argenté et fin, il vit en eaux profondes et remonte la nuit. Pêche nocturne en dérivante.",
       "hint": "La corégone palée vit dans les grands lacs alpins à grande profondeur. Proche du lavaret, elle se pêche en traîne profonde ou à la verticale en hiver quand elle remonte.",
-      "min": 20,
-      "max": 50,
+      "min": 18,
+      "max": 55,
       "maxWeight": 1.5,
       "techniques": [
         "asticot",
         "vers",
         "mouche"
       ],
-      "gameId": null,
-      "image": null,
+      "gameId": "coregone-palee",
+      "image": "/fishdex-assets/83406221ca518f20.webp",
       "weightA": 0.0051,
-      "weightB": 3.17
+      "weightB": 3.17,
+      "identityStatus": "confirmed",
+      "type": "alias",
+      "parent": "coregone-palee",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "ec_palaea"
+      ]
     },
     {
       "id": "lamproie-fluviatile",
-      "biologicalId": "lampetra-fluviatilis",
+      "biologicalId": "lamproie-fluviatile",
       "name": "Lamproie fluviatile",
       "latin": "Lampetra fluviatilis",
       "category": "eaux-vives",
       "rarity": "epique",
       "description": "Poisson primitif sans mâchoire, parasite des salmonidés. Sa capture involontaire reste un événement rare et mémorable.",
       "hint": "La lamproie fluviatile est un poisson primitif parasite qui remonte les rivières pour frayer. Sa pêche est peu pratiquée. Espèce bioindicatrice importante pour l'évaluation des milieux.",
-      "min": 25,
+      "min": 15,
       "max": 50,
       "maxWeight": 0.15,
       "techniques": [
         "vers"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/lamproie-fluviatile.webp",
+      "gameId": "lamproie-fluviatile",
+      "image": "/fishdex-assets/08d29160fddc5d3a.webp",
       "weightA": 0.0008,
-      "weightB": 3.1
+      "weightB": 3.1,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "lamproie-fluviatile",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "observation",
+      "sourceIds": [
+        "bio_lamproie_fluviatile"
+      ]
     },
     {
       "id": "esturgeon-europeen",
-      "biologicalId": "acipenser-sturio",
+      "biologicalId": "esturgeon-europeen",
       "name": "Esturgeon européen",
       "latin": "Acipenser sturio",
       "category": "paisibles",
       "rarity": "legendaire",
       "description": "Le plus ancien vertébré survivant d'Europe, quasi-éteint à l'état sauvage. Sa rencontre dans la Garonne est un miracle de la nature.",
       "hint": "L'esturgeon européen est en danger critique d'extinction. Sa pêche est totalement interdite en France et en Europe. Si tu en croises un accidentellement, remets-le à l'eau immédiatement et signale-le aux autorités.",
-      "min": 80,
-      "max": 350,
+      "min": 48,
+      "max": 200,
       "maxWeight": 200,
       "techniques": [
         "vers",
         "asticot"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/esturgeon-europeen.webp",
+      "gameId": "esturgeon-europeen",
+      "image": "/fishdex-assets/1f0d0c10301a0fef.webp",
       "weightA": 0.002,
-      "weightB": 3.2
+      "weightB": 3.2,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "esturgeon-europeen",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "observation",
+      "sourceIds": [
+        "bio_europeen"
+      ]
     },
     {
       "id": "silure-wels-record",
-      "biologicalId": "silurus-glanis",
+      "biologicalId": "catfish",
       "name": "Silure record",
-      "latin": "Silurus glanis f. grandis",
+      "latin": "Silurus glanis",
       "category": "predateurs",
       "rarity": "legendaire",
       "description": "Le monstre des fleuves européens. À cette taille, le silure est un prédateur apex capable de gober des oiseaux aquatiques. Une rencontre qui change une vie.",
       "hint": "Le silure record représente la quête ultime du siluriste. Ces géants de plus de 2 mètres exigent du matériel de combat solide et des nuits en bord d'eau. No kill absolu.",
-      "min": 150,
-      "max": 300,
+      "min": 50,
+      "max": 160,
       "maxWeight": 150,
       "techniques": [
         "vif",
         "wurm",
         "clonk"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/silure-wels-record.webp",
+      "gameId": "catfish",
+      "image": "/fishdex-assets/ba11eb985d9096f6.webp",
       "weightA": 0.0621,
-      "weightB": 2.73
+      "weightB": 2.73,
+      "identityStatus": "confirmed",
+      "type": "record",
+      "parent": "catfish",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_silure"
+      ]
     },
     {
       "id": "brochet-trophee",
-      "biologicalId": "esox-lucius",
+      "biologicalId": "pike",
       "name": "Brochet trophée",
-      "latin": "Esox lucius f. maximus",
+      "latin": "Esox lucius",
       "category": "predateurs",
       "rarity": "legendaire",
       "description": "Le Saint-Graal du carnassier européen. Au-delà de 10 kg, chaque brochet est une femelle dominante gardienne de son territoire.",
       "hint": "Le brochet trophée, au-delà de 90 cm, est le rêve de tout brochetier. Ces géants exigent des leurres imposants. No kill vivement recommandé.",
-      "min": 80,
-      "max": 140,
+      "min": 40,
+      "max": 110,
       "maxWeight": 25,
       "techniques": [
         "leurre",
         "jerkbait",
         "vif"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/brochet-trophee.webp",
+      "gameId": "pike",
+      "image": "/fishdex-assets/952a6083bdd8de64.webp",
       "weightA": 0.0084,
-      "weightB": 3.04
+      "weightB": 3.04,
+      "identityStatus": "confirmed",
+      "type": "record",
+      "parent": "pike",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_brochet"
+      ]
     },
     {
       "id": "carpe-commune-record",
-      "biologicalId": "cyprinus-carpio",
+      "biologicalId": "carp",
       "name": "Carpe record",
-      "latin": "Cyprinus carpio f. robustus",
+      "latin": "Cyprinus carpio",
       "category": "paisibles",
       "rarity": "legendaire",
       "description": "À ce stade, la carpe a survécu à des décennies de pression de pêche. Souvent connue par nom dans les plans d'eau privés. Un être d'exception.",
       "hint": "La carpe record représente le saint graal du carpiste. Ces géantes exigent une pêche longue durée, un amorçage massif et patient, et souvent plusieurs nuits sur spot avant la touche.",
-      "min": 70,
-      "max": 130,
+      "min": 30,
+      "max": 90,
       "maxWeight": 50,
       "techniques": [
         "bouillette",
         "pellet",
         "maïs"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/carpe-commune-record.webp",
+      "gameId": "carp",
+      "image": "/fishdex-assets/192912075c99b0eb.webp",
       "weightA": 0.0149,
-      "weightB": 2.99
+      "weightB": 2.99,
+      "identityStatus": "confirmed",
+      "type": "record",
+      "parent": "carp",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_carpe"
+      ]
     },
     {
       "id": "sandre-geant",
-      "biologicalId": "sander-lucioperca",
+      "biologicalId": "zander",
       "name": "Sandre géant",
-      "latin": "Sander lucioperca f. maximus",
+      "latin": "Sander lucioperca",
       "category": "predateurs",
       "rarity": "legendaire",
       "description": "Le sandre de légende, rare au-delà de 10 kg. Chasseur nocturne des grands fonds des lacs et barrages alpins.",
       "hint": "Le sandre géant, au-delà de 70 cm, est la quête de tout sandrier. Ces vieux poissons sont méfiants et souvent postés sur les points durs profonds. Pêchez lentement, fond, et soyez patients.",
-      "min": 70,
-      "max": 110,
+      "min": 30,
+      "max": 85,
       "maxWeight": 15,
       "techniques": [
         "leurre",
         "jig",
         "vif"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/sandre-geant.webp",
+      "gameId": "zander",
+      "image": "/fishdex-assets/342f5dd745b10bee.webp",
       "weightA": 0.0115,
-      "weightB": 3.02
+      "weightB": 3.02,
+      "identityStatus": "confirmed",
+      "type": "record",
+      "parent": "zander",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_sandre"
+      ]
     },
     {
       "id": "saumon-roi",
-      "biologicalId": "oncorhynchus-tshawytscha",
+      "biologicalId": "saumon-roi",
       "name": "Saumon royal",
       "latin": "Oncorhynchus tshawytscha",
       "category": "eaux-vives",
       "rarity": "legendaire",
       "description": "Le plus grand des saumons du Pacifique. Présent dans quelques rivières françaises introduites, sa capture représente un événement mondial.",
       "hint": "Le saumon royal (Chinook) est le plus grand saumon du monde. Naturalisé dans quelques rivières françaises, il se prend aux mêmes techniques que le saumon atlantique mais avec du matériel encore plus puissant.",
-      "min": 60,
+      "min": 36,
       "max": 150,
       "maxWeight": 60,
       "techniques": [
@@ -1993,116 +3319,546 @@
         "cuiller",
         "streamer"
       ],
-      "gameId": null,
-      "image": "/encyclopedia/saumon-roi.webp",
+      "gameId": "saumon-roi",
+      "image": "/fishdex-assets/0c92e0a8c5db68a9.webp",
       "weightA": 0.0056,
-      "weightB": 3.17
+      "weightB": 3.17,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "saumon-roi",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "observation",
+      "sourceIds": [
+        "bio_saumon_roi"
+      ]
     },
     {
       "id": "brochet-albinos",
-      "biologicalId": "esox-lucius",
+      "biologicalId": "pike",
       "name": "Brochet albinos",
-      "latin": "Esox lucius var. albinos",
+      "latin": "Esox lucius",
       "category": "predateurs",
       "rarity": "mirage",
       "description": "Le fantôme des lacs. Un brochet albinos est un accident génétique rarissime — sa rencontre dans la nature est quasi-mythique.",
       "hint": "Le brochet albinos, à robe blanc-argentée avec yeux roses, est une mutation exceptionnelle. Même agressivité que la fario. Remettez-le à l'eau immédiatement avec précaution.",
-      "min": 50,
-      "max": 120,
+      "min": 40,
+      "max": 110,
       "maxWeight": 15,
       "techniques": [
         "leurre",
         "vif"
       ],
-      "gameId": null,
+      "gameId": "pike",
       "image": null,
       "weightA": 0.0084,
-      "weightB": 3.04
+      "weightB": 3.04,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "pike",
+      "appearanceId": "brochet-albinos",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_brochet"
+      ]
     },
     {
       "id": "perche-albinos",
-      "biologicalId": "perca-fluviatilis",
+      "biologicalId": "perch",
       "name": "Perche albinos",
-      "latin": "Perca fluviatilis var. albinos",
+      "latin": "Perca fluviatilis",
       "category": "predateurs",
       "rarity": "mirage",
       "description": "Banc blanc parmi les rayures vertes. La perche albinos est une anomalie spectrale qui fascine les pêcheurs depuis toujours.",
       "hint": "La perche albinos, à robe blanc-rose, est une mutation rarissime. Même comportement que la perche commune : chasse en bancs, répond aux micro-leurres. Une capture inoubliable.",
       "min": 15,
-      "max": 50,
+      "max": 45,
       "maxWeight": 2,
       "techniques": [
         "leurre",
         "jig"
       ],
-      "gameId": null,
+      "gameId": "perch",
       "image": null,
       "weightA": 0.0221,
-      "weightB": 2.86
+      "weightB": 2.86,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "perch",
+      "appearanceId": "perche-albinos",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_perche"
+      ]
     },
     {
       "id": "saumon-atlantique-albinos",
-      "biologicalId": "salmo-salar",
+      "biologicalId": "saumon-atlantique",
       "name": "Saumon atlantique albinos",
-      "latin": "Salmo salar var. albinos",
+      "latin": "Salmo salar",
       "category": "eaux-vives",
       "rarity": "mirage",
       "description": "La rareté absolue : un saumon albinos remontant sa rivière natale. Un événement survenant peut-être une fois par siècle.",
       "hint": "Le saumon atlantique albinos est une mutation exceptionnelle. Même comportement migrateur que le saumon commun. Remettez-le à l'eau impérativement.",
-      "min": 60,
-      "max": 130,
+      "min": 42,
+      "max": 150,
       "maxWeight": 30,
       "techniques": [
         "mouche",
         "devon"
       ],
-      "gameId": null,
+      "gameId": "saumon-atlantique",
       "image": null,
       "weightA": 0.0062,
-      "weightB": 3.11
+      "weightB": 3.11,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "saumon-atlantique",
+      "appearanceId": "saumon-atlantique-albinos",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "observation",
+      "sourceIds": [
+        "bio_saumon"
+      ]
     },
     {
       "id": "grande-alose-albinos",
-      "biologicalId": "alosa-alosa",
+      "biologicalId": "grande-alose",
       "name": "Grande alose albinos",
-      "latin": "Alosa alosa var. albinos",
+      "latin": "Alosa alosa",
       "category": "paisibles",
       "rarity": "mirage",
       "description": "L'alose est déjà rare — sa forme albinos est une vision de l'autre monde, surgissant des profondeurs du fleuve comme un éclair de lumière.",
       "hint": "La grande alose albinos est une mutation extrêmement rare de cette espèce migratrice. Sa pêche est soumise aux mêmes réglementations strictes. No kill impératif.",
-      "min": 30,
-      "max": 70,
+      "min": 18,
+      "max": 75,
       "maxWeight": 2.5,
       "techniques": [
         "cuiller",
         "devon"
       ],
-      "gameId": null,
+      "gameId": "grande-alose",
       "image": null,
       "weightA": 0.0063,
-      "weightB": 3.06
+      "weightB": 3.06,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "grande-alose",
+      "appearanceId": "grande-alose-albinos",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "observation",
+      "sourceIds": [
+        "bio_aloses"
+      ]
     },
     {
       "id": "sandre-albinos",
-      "biologicalId": "sander-lucioperca",
+      "biologicalId": "zander",
       "name": "Sandre albinos",
-      "latin": "Sander lucioperca var. albinos",
+      "latin": "Sander lucioperca",
       "category": "predateurs",
       "rarity": "mirage",
       "description": "Le sandre des rêves : blanc comme un marbre d'albâtre, ses yeux roses luisent dans l'obscurité des fonds. Un être hors du temps.",
       "hint": "Le sandre albinos, à robe blanc-crème et yeux roses, est une mutation rarissime. Comportement identique au sandre commun. Sa capture est un événement que peu de pêcheurs connaissent.",
-      "min": 40,
-      "max": 90,
+      "min": 30,
+      "max": 85,
       "maxWeight": 10,
       "techniques": [
         "leurre",
         "jig",
         "vif"
       ],
-      "gameId": null,
+      "gameId": "zander",
       "image": null,
       "weightA": 0.0115,
-      "weightB": 3.02
+      "weightB": 3.02,
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "zander",
+      "appearanceId": "sandre-albinos",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_sandre"
+      ]
+    },
+    {
+      "id": "blageon",
+      "biologicalId": "blageon",
+      "name": "Soufie",
+      "latin": "Telestes souffia",
+      "category": "eaux-vives",
+      "rarity": "rare",
+      "description": "Petit cyprinidé des torrents alpins, aux flancs argentés et dorés. Indicateur de la pureté des eaux de montagne.",
+      "hint": "La soufie est une espèce endémique proche du nase. Elle fréquente les rivières propres à fond caillouteux. Pêche identique au toxostome : toc fin au fond.",
+      "min": 8,
+      "max": 25,
+      "maxWeight": 0.15,
+      "techniques": [
+        "asticot",
+        "mouche"
+      ],
+      "gameId": "blageon",
+      "image": "/fishdex-assets/eb9d80c84fbc735d.webp",
+      "weightA": 0.009,
+      "weightB": 3.05,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "blageon",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_blageon"
+      ]
+    },
+    {
+      "id": "omble-de-fontaine",
+      "biologicalId": "omble-de-fontaine",
+      "name": "Omble de fontaine",
+      "latin": "Salvelinus fontinalis",
+      "category": "eaux-vives",
+      "rarity": "rare",
+      "description": "Originaire de l'est de l'Amérique du Nord, l'omble de fontaine a été introduit dans nos ruisseaux d'altitude. Sa robe est inoubliable : dos vermiculé de marbrures vertes, flancs constellés de points jaunes, rouges et bleus, ventre orangé.",
+      "hint": "Cherche l'omble de fontaine dans les ruisseaux d'altitude isolés. Sa robe est une œuvre. Photo, relâche, et garde le silence sur le spot — c'est la règle non écrite.",
+      "min": 15,
+      "max": 50,
+      "maxWeight": 3,
+      "techniques": [
+        "Pêche à la mouche",
+        "Pêche au toc"
+      ],
+      "gameId": "omble-de-fontaine",
+      "image": "/fishdex-assets/cdedc96cf3815926.webp",
+      "weightA": null,
+      "weightB": null,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "omble-de-fontaine",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_omble_fontaine"
+      ]
+    },
+    {
+      "id": "coregone",
+      "biologicalId": "coregone",
+      "name": "Lavaret",
+      "latin": "Coregonus lavaretus",
+      "category": "eaux-vives",
+      "rarity": "rare",
+      "description": "Corégone des grands lacs alpins, fin et argenté. Pêché traditionnellement au filet, rare à la ligne.",
+      "hint": "Le lavaret (corégone) vit en grandes profondeurs des lacs alpins. Il monte la nuit près de la surface en hiver. Pêchez à la traîne profonde ou à la cuillère légère.",
+      "min": 15,
+      "max": 60,
+      "maxWeight": 2.5,
+      "techniques": [
+        "asticot",
+        "vers",
+        "mouche"
+      ],
+      "gameId": "coregone",
+      "image": "/encyclopedia/lavaret.webp",
+      "weightA": 0.0051,
+      "weightB": 3.17,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "coregone",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_coregone"
+      ]
+    },
+    {
+      "id": "coregone-palee",
+      "biologicalId": "coregone-palee",
+      "name": "Corégone palée",
+      "latin": "Coregonus palaea",
+      "category": "eaux-vives",
+      "rarity": "epique",
+      "description": "Corégone endémique du lac Léman. Argenté et fin, il vit en eaux profondes et remonte la nuit. Pêche nocturne en dérivante.",
+      "hint": "La corégone palée vit dans les grands lacs alpins à grande profondeur. Proche du lavaret, elle se pêche en traîne profonde ou à la verticale en hiver quand elle remonte.",
+      "min": 18,
+      "max": 55,
+      "maxWeight": 1.5,
+      "techniques": [
+        "asticot",
+        "vers",
+        "mouche"
+      ],
+      "gameId": "coregone-palee",
+      "image": "/fishdex-assets/83406221ca518f20.webp",
+      "weightA": 0.0051,
+      "weightB": 3.17,
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "coregone-palee",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "ec_palaea"
+      ]
+    },
+    {
+      "id": "apron-du-rhone",
+      "name": "Apron du Rhône",
+      "latin": "Zingel asper",
+      "min": 8,
+      "max": 22,
+      "description": "Poisson du cours moyen des rivières ; consomme des larves d'insectes et des vers.",
+      "hint": "Observer l’habitat et choisir une présentation adaptée.",
+      "techniques": [],
+      "rarity": "uncommon",
+      "category": "paisibles",
+      "biologicalId": "apron-du-rhone",
+      "gameId": "apron-du-rhone",
+      "image": "/fishdex-assets/454c1d00c274fed5.webp",
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "apron-du-rhone",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "observation",
+      "sourceIds": [
+        "bio_apron"
+      ]
+    },
+    {
+      "id": "cristivomer",
+      "name": "Cristivomer",
+      "latin": "Salvelinus namaycush",
+      "min": 25,
+      "max": 110,
+      "description": "Salmonidé lacustre d'eau froide ; profil de référence nord-américain.",
+      "hint": "Observer l’habitat et choisir une présentation adaptée.",
+      "techniques": [
+        "verticale",
+        "traine",
+        "leurre"
+      ],
+      "rarity": "uncommon",
+      "category": "predateurs",
+      "biologicalId": "cristivomer",
+      "gameId": "cristivomer",
+      "image": "/fishdex-assets/8d09914c6732a19e.webp",
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "cristivomer",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_cristivomer"
+      ]
+    },
+    {
+      "id": "lamproie-de-planer",
+      "name": "Lamproie de Planer",
+      "latin": "Lampetra planeri",
+      "min": 6,
+      "max": 18,
+      "description": "Les larves filtrent des micro-organismes ; après métamorphose, l'individu ne s'alimente plus.",
+      "hint": "Observer l’habitat et choisir une présentation adaptée.",
+      "techniques": [],
+      "rarity": "uncommon",
+      "category": "paisibles",
+      "biologicalId": "lamproie-de-planer",
+      "gameId": "lamproie-de-planer",
+      "image": "/fishdex-assets/bb5a0af057a94dd4.webp",
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "lamproie-de-planer",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "observation",
+      "sourceIds": [
+        "bio_lamproie_planer"
+      ]
+    },
+    {
+      "id": "mulet-porc",
+      "name": "Mulet-porc",
+      "latin": "Chelon ramada",
+      "min": 18,
+      "max": 70,
+      "description": "Omnivore adulte consommant notamment biofilm et matière organique benthique ; recherche alimentaire diurne.",
+      "hint": "Observer l’habitat et choisir une présentation adaptée.",
+      "techniques": [
+        "anglaise",
+        "fond"
+      ],
+      "rarity": "uncommon",
+      "category": "paisibles",
+      "biologicalId": "mulet-porc",
+      "gameId": "mulet-porc",
+      "image": "/fishdex-assets/4c5fe3916dc65d44.webp",
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "mulet-porc",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_mulet"
+      ]
+    },
+    {
+      "id": "pseudorasbora",
+      "name": "Pseudorasbora",
+      "latin": "Pseudorasbora parva",
+      "min": 4,
+      "max": 12,
+      "description": "La synthèse consultée indique une alimentation surtout animale ; données locales et rythme d'activité à compléter.",
+      "hint": "Observer l’habitat et choisir une présentation adaptée.",
+      "techniques": [],
+      "rarity": "uncommon",
+      "category": "paisibles",
+      "biologicalId": "pseudorasbora",
+      "gameId": "pseudorasbora",
+      "image": "/fishdex-assets/98e3aa378b376253.webp",
+      "identityStatus": "confirmed",
+      "type": "species",
+      "parent": "pseudorasbora",
+      "appearanceId": "natural",
+      "visualStatus": "procedural-provisional",
+      "gameplayStatus": "observation",
+      "sourceIds": [
+        "bio_pseudorasbora"
+      ]
+    },
+    {
+      "id": "truite-lacustre",
+      "biologicalId": "truite-fario",
+      "name": "Truite lacustre (illustration)",
+      "latin": "Salmo trutta",
+      "category": "eaux-vives",
+      "rarity": "epique",
+      "description": "Forme géante de la truite vivant en grands lacs alpins, la truite lacustre descend en profondeur en été et remonte les rivières affluentes pour se reproduire. Robe argentée, taches noires en X, taille impressionnante.",
+      "hint": "La truite lacustre en grand lac alpin est une quête. Bateau, sondeur, connaissance fine. Quotas et périodes strictes : respecte-les sans concession.",
+      "min": 15,
+      "max": 80,
+      "maxWeight": 18,
+      "techniques": [
+        "Pêche à la traîne",
+        "Pêche à la mouche en rivière (frai)"
+      ],
+      "gameId": "truite-fario",
+      "image": "/fishdex-assets/47df06aa189f92e5.webp",
+      "weightA": null,
+      "weightB": null,
+      "identityStatus": "confirmed",
+      "type": "alias",
+      "parent": "truite-fario",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_fario",
+        "ofb_trutta"
+      ]
+    },
+    {
+      "id": "carpe-amour-blanc-albinos",
+      "name": "carpe amour blanc albinos",
+      "latin": "Ctenopharyngodon idella",
+      "description": "Forme ou gabarit de la référence locale.",
+      "hint": "",
+      "techniques": [],
+      "category": "paisibles",
+      "rarity": "rare",
+      "biologicalId": "amour-blanc",
+      "gameId": "amour-blanc",
+      "min": 36,
+      "max": 150,
+      "image": "/fishdex-assets/8f678f46ef53f164.webp",
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "amour-blanc",
+      "appearanceId": "carpe-amour-blanc-albinos",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_herbivore"
+      ]
+    },
+    {
+      "id": "rotengle-gold",
+      "name": "rotengle gold",
+      "latin": "Scardinius erythrophthalmus",
+      "description": "Forme ou gabarit de la référence locale.",
+      "hint": "",
+      "techniques": [],
+      "category": "paisibles",
+      "rarity": "rare",
+      "biologicalId": "rudd",
+      "gameId": "rudd",
+      "min": 12,
+      "max": 40,
+      "image": "/fishdex-assets/879c5998dce3d949.webp",
+      "identityStatus": "confirmed",
+      "type": "appearance",
+      "parent": "rudd",
+      "appearanceId": "rotengle-gold",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_rotengle"
+      ]
+    },
+    {
+      "id": "gros-gardon",
+      "name": "gros gardon",
+      "latin": "Rutilus rutilus",
+      "description": "Forme ou gabarit de la référence locale.",
+      "hint": "",
+      "techniques": [],
+      "category": "paisibles",
+      "rarity": "rare",
+      "biologicalId": "roach",
+      "gameId": "roach",
+      "min": 12,
+      "max": 38,
+      "image": "/fishdex-assets/1f9ad638d1f35998.webp",
+      "identityStatus": "confirmed",
+      "type": "record",
+      "parent": "roach",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_gardon"
+      ]
+    },
+    {
+      "id": "gros-rotengle",
+      "name": "gros rotengle",
+      "latin": "Scardinius erythrophthalmus",
+      "description": "Forme ou gabarit de la référence locale.",
+      "hint": "",
+      "techniques": [],
+      "category": "paisibles",
+      "rarity": "rare",
+      "biologicalId": "rudd",
+      "gameId": "rudd",
+      "min": 12,
+      "max": 40,
+      "image": "/fishdex-assets/a5e4cdabc5817554.webp",
+      "identityStatus": "confirmed",
+      "type": "record",
+      "parent": "rudd",
+      "appearanceId": "natural",
+      "visualStatus": "exact-pack",
+      "gameplayStatus": "capture",
+      "sourceIds": [
+        "bio_rotengle"
+      ]
     }
   ]
 }

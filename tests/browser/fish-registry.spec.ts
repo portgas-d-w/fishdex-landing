@@ -1,0 +1,40 @@
+import {test,expect,type Page} from '@playwright/test';
+import {openMenuPage} from './helpers';
+import {SPECIES} from '../../src/game/catalog';
+import {APPEARANCES} from '../../src/game/fish-registry';
+import {mkdir,writeFile} from 'node:fs/promises';
+const qa=(page:Page)=>page.evaluate(()=>(window as any).__fishingQA.snapshot());
+async function tools(page:Page){await openMenuPage(page,'help-open');await page.locator('#test-open').click();}
+async function begin(page:Page){await page.addInitScript(()=>localStorage.setItem('au-fil-de-leau.gestures.v3','3'));await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');await tools(page);await page.locator('#test-toggle').click();await expect(page.locator('body')).toHaveAttribute('data-ready','true');await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());}
+
+test('Poissons confirmés : chaînes UI forcées, rendu en réception, photo, identité, carnet et recharge',async({page},info)=>{
+ test.setTimeout(540000);const errors:string[]=[],failed:string[]=[];page.on('pageerror',e=>errors.push(e.message));page.on('requestfailed',r=>failed.push(r.url()));await begin(page);
+ const cases=[...SPECIES.filter(s=>s.mode==='capture').map(s=>({id:s.id,appearance:''})),...APPEARANCES.filter(a=>SPECIES.find(s=>s.id===a.parent)!.mode==='capture').map(a=>({id:a.parent,appearance:a.id}))],rows=[];
+ await mkdir('docs/apercus/poissons',{recursive:true});
+ for(const entry of cases){
+  await tools(page);await page.locator('#test-species').selectOption(entry.id);if(entry.appearance)await page.locator('#test-appearance').selectOption(entry.appearance);await page.locator('#test-fish-kit').click();await page.locator('#test-fight').click();await page.evaluate(()=>(window as any).__fishingQA.advance(.02));expect((await qa(page)).phase,entry.id).toBe('fighting');
+  const before=await qa(page);expect(before.fish).toBe(entry.id);if(entry.appearance)expect(before.appearance.appearanceId).toBe(entry.appearance);
+  await page.evaluate(()=>(window as any).__fishingQA.advance(240,'smart'));expect((await qa(page)).phase,entry.id).toBe('landing');
+  await expect.poll(()=>page.evaluate(()=>(window as any).__fishingQA.fishActor()?.loaded)).toBe(true);
+  expect(await page.evaluate(()=>(window as any).__fishingQA.fishActor().specimen)).toBe(before.specimen);
+  await page.evaluate(()=>(window as any).__fishingQA.advance(20,'smart'));await page.locator('#tech-land').click();await page.evaluate(()=>(window as any).__fishingQA.advance(.05));await expect(page.locator('#fish-preview')).toHaveAttribute('data-loaded','true');await expect(page.locator('#photo-state')).toContainText('Photo conservée');
+  const save=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.test.save.v1')!)),s=save.journal.at(-1);expect(s.id).toBe(before.specimen);expect(s.speciesId).toBe(entry.id);expect(s.seed).toBe(before.seed);if(entry.appearance)expect(s.appearanceId).toBe(entry.appearance);expect(save.total).toBe(rows.length+1);
+  if(['esturgeon-siberien','carpe-koi','truite-tiger','silure-mandarin','gobie','anguille-europeenne'].includes(entry.id)&&!entry.appearance)await page.screenshot({path:`docs/apercus/poissons/${info.project.name}-${entry.id}-photo.png`});
+  rows.push({species:entry.id,appearance:entry.appearance||before.appearance.appearanceId||'natural',id:s.id,post:s.post,technique:s.technique,recipe:s.recipe,length:s.length,seed:s.seed,landingActor:true,photo:true});await page.locator('#release-fish').click();
+ }
+ await page.reload();await expect(page.locator('body')).toHaveAttribute('data-ready','true');const reloaded=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.test.save.v1')!));expect(reloaded.journal.map((s:any)=>s.id)).toEqual(rows.map(r=>r.id));expect(reloaded.total).toBe(cases.length);expect(errors).toEqual([]);expect(failed.filter(url=>!url.includes('favicon'))).toEqual([]);
+ await writeFile(`docs/apercus/poissons/${info.project.name}-capture-chains.json`,JSON.stringify({viewport:page.viewportSize(),forcedEncounters:true,naturalChains:'tests/fish-registry.test.ts',rows,errors},null,2));
+});
+test('Observations : 14 identités, formes et photos, effort au pointeur interrompable, carnet séparé',async({page},info)=>{
+ test.setTimeout(360000);const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await begin(page);const rows=[];
+ const cases=[...SPECIES.filter(s=>s.mode==='observation').map(s=>({id:s.id,appearance:''})),...APPEARANCES.filter(a=>SPECIES.find(s=>s.id===a.parent)!.mode==='observation').map(a=>({id:a.parent,appearance:a.id}))];
+ for(const entry of cases){await tools(page);await page.locator('#test-species').selectOption(entry.id);if(entry.appearance)await page.locator('#test-appearance').selectOption(entry.appearance);await page.locator('#test-fish-observe').click();await expect(page.locator('#observation-hold')).toBeEnabled();
+  const b=(await page.locator('#observation-hold').boundingBox())!;await page.mouse.move(b.x+b.width/2,b.y+b.height/2);await page.mouse.down();await page.waitForTimeout(250);await page.mouse.up();const held=Number(await page.locator('#observation-progress').getAttribute('value'));await page.waitForTimeout(200);expect(Number(await page.locator('#observation-progress').getAttribute('value'))).toBe(held);
+  await page.mouse.down();await expect(page.locator('#observation-photo')).toBeEnabled({timeout:20000});await page.mouse.up();await page.locator('#observation-photo').click();await expect(page.locator('#observation-state')).toContainText('Découverte et identité conservées');const save=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.test.save.v1')!)),o=save.observations.at(-1);expect(o.speciesId).toBe(entry.id);expect(o.seed).toBe(127);if(entry.appearance)expect(o.appearanceId).toBe(entry.appearance);expect(save.total).toBe(0);expect(save.journal.length).toBe(0);expect(save.favorites.length).toBe(0);expect(save.coins).toBe(0);expect(o.duration).toBe(12);rows.push(o);
+  if(['apron-du-rhone','saumon-roi','lamproie-de-planer'].includes(entry.id))await page.screenshot({path:`docs/apercus/poissons/${info.project.name}-${entry.id}-observation.png`});await page.locator('[data-close=observation]').click();if(await page.locator('#menu').isVisible())await page.locator('[data-close=menu]').click();
+ }
+ await page.reload();await expect(page.locator('body')).toHaveAttribute('data-ready','true');const save=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.test.save.v1')!));expect(save.observations.map((o:any)=>o.id)).toEqual(rows.map(o=>o.id));expect(errors).toEqual([]);await writeFile(`docs/apercus/poissons/${info.project.name}-observation-chains.json`,JSON.stringify({viewport:page.viewportSize(),rows,errors},null,2));
+});
+test('FishDex : compte réalisable, silhouettes propres, identité corrigée, habitats, fiches et aucun débordement',async({page})=>{
+ await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');await openMenuPage(page,'dex-open');await expect(page.locator('.dex-tile')).toHaveCount(66);await expect(page.locator('#dex-progress')).toContainText('0 / 66');await page.locator('#dex-state').selectOption('observation');await expect(page.locator('.dex-tile')).toHaveCount(14);await page.locator('#dex-state').selectOption('playable');await expect(page.locator('.dex-tile')).toHaveCount(52);await page.locator('#dex-habitat').selectOption('american');await expect(page.locator('.dex-tile')).toHaveCount(2);await page.locator('#dex-habitat').selectOption('all');await page.locator('#dex-search').fill('tiger');await page.locator('.dex-tile').click();await expect(page.locator('#species-sheet-body')).toContainText('Salmo trutta × Salvelinus fontinalis');await expect(page.locator('#species-sheet-body')).toContainText('Silhouette procédurale provisoire');const overflow=await page.locator('#species-sheet').evaluate(e=>e.scrollWidth>e.clientWidth+1);expect(overflow).toBe(false);
+});

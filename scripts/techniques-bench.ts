@@ -1,5 +1,6 @@
 // Natural encounters, finite wallet/stock, no forced fish and no access bypass.
 // The controller is idealised. Preparation/photo time below is an explicit assumption.
+import {dirname} from 'node:path';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {emptySave,recordCatch} from '../src/game/save.ts';
 import {refreshRights,switchTechnique} from '../src/game/progression.ts';
@@ -40,6 +41,7 @@ for(const t of TECHNIQUES){
  }
  rows.push({technique:t.id,recipe:t.defaultRecipe,post:g.post,casts:casts.length,captures:s.total,elapsedSeconds:+seconds.toFixed(2),rewards:s.coins-initialCoins,consumedReplacementCost:+spent.toFixed(2),netCoinsPerMinute:+((s.coins-initialCoins-spent)/(seconds/60)).toFixed(2),outcomes:casts});
 }
-mkdirSync('docs/apercus/v2',{recursive:true});
-writeFileSync('docs/apercus/v2/natural-economy.json',JSON.stringify({seed:127,castsPerMethod:12,forcedEncounters:false,unlimitedMoney:false,unlimitedStock:false,access:'Normal high-level fixture with earned rights',controller:'Perfect bearing and regulated tension; no human/device timing',assumedPreparationPhotoSeconds:8,notes:'Only selected replaceable slots are paid. Kits remain free; figures are not balance targets or observed player income.',rows},null,2));
+const output=process.argv[2]??'docs/apercus/v2/natural-economy.json';
+mkdirSync(dirname(output),{recursive:true});
+writeFileSync(output,JSON.stringify({seed:127,castsPerMethod:12,forcedEncounters:false,unlimitedMoney:false,unlimitedStock:false,access:'Normal high-level fixture with earned rights',controller:'Perfect bearing and regulated tension; no human/device timing',assumedPreparationPhotoSeconds:8,notes:'Only selected replaceable slots are paid. Kits remain free; figures are not balance targets or observed player income.',rows},null,2));
 console.log(JSON.stringify(rows.map(({outcomes,...row})=>row),null,2));

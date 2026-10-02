@@ -3,9 +3,10 @@ import { ITEMS, accessLevel, rodCompatible } from './economy.ts';
 import type { SaveData } from './save.ts';
 import type { Specimen, MethodId } from './specimens.ts';
 import { itemCondition } from './progression.ts';
+import {postById} from './posts.ts';
 import {COMPONENTS} from './rig.ts';
 import {TECHNIQUES,recipeById} from './techniques.ts';
-import { RARITIES, specimenRarity } from './rarity.ts';
+import { RARITIES, specimenRarity,SPECIES_RARITY } from './rarity.ts';
 export const METHODS = [
     {id:'pole',tier:'initiation',name:'Coup sans moulinet',available:true,bait:'worm',slots:['rod','elastic','line','leader','float','weight','hook','bait','groundbait','landing'],description:'Placement proche, profondeur et amorçage local. Canne et élastique après ferrage, aucune récupération au moulinet.'},
     { id: 'float', tier:'specialisation', name: 'Flotteur', available: true, bait: 'worm', slots: ['rod', 'reel', 'line', 'leader', 'hook', 'rig', 'float', 'weight', 'bait', 'landing'], description: 'Attendre la plongée du flotteur, puis ferrer.' },
@@ -81,7 +82,7 @@ export const LOCATIONS = [
 ];
 export const BADGE_RULES = [
     { id: 'first', description: 'Capturer un premier poisson.', target: 1, value: (s: SaveData) => s.total, link: 'dex' },
-    { id: 'diversity', description: 'Découvrir les quinze espèces jouables de l’étang.', target: SPECIES.length, value: (s: SaveData) => Object.keys(s.records).length, link: 'dex' },
+    { id: 'diversity', description: 'Découvrir toutes les identités accessibles, par capture ou observation.', target: SPECIES.length, value: (s: SaveData) => new Set([...Object.keys(s.records),...s.observations.map(o=>o.speciesId)]).size, link: 'dex' },
     { id: 'contact', description: 'Terminer un combat avec un contact contrôlé.', target: 1, value: (s: SaveData) => s.journal.filter(f => f.controlled).length, link: 'help' },
     { id: 'lure', description: 'Réussir une prise au leurre.', target: 1, value: (s: SaveData) => s.journal.filter(f => f.method === 'lure').length, link: 'preparation' },
     { id: 'bottom', description: 'Réussir une prise au fond.', target: 1, value: (s: SaveData) => s.journal.filter(f => f.method === 'bottom').length, link: 'preparation' },
@@ -94,6 +95,8 @@ export interface JournalFilter {
     rarity?: string;
     location?: string;
     method?: string;
+    post?: string;
+    recipe?: string;
     after?: string;
     before?: string;
     minLength?: number;
@@ -106,9 +109,16 @@ export interface JournalFilter {
 }
 export const rarityOf = (s: Specimen) => RARITIES.find(r=>r.id===specimenRarity(s))!.rank;
 export function filterJournal(save: SaveData, f: JournalFilter): Specimen[] {
-    const results = save.journal.filter(s => (!f.species || s.speciesId === f.species) && (!f.variant || f.variant === 'mirage' && s.mirage || f.variant === s.coloration) && (!f.rarity || rarityOf(s) === Number(f.rarity)) && (!f.location || s.location === f.location) && (!f.method || s.method === f.method || s.technique===f.method) && (!f.after || s.date.slice(0, 10) >= f.after) && (!f.before || s.date.slice(0, 10) <= f.before) && s.length >= (f.minLength ?? 0) && s.length <= (f.maxLength ?? Infinity) && s.weight >= (f.minWeight ?? 0) && s.weight <= (f.maxWeight ?? Infinity) && (!f.favorite || save.favorites.includes(s.id)) && (!f.view || f.view === 'latest' || f.view === 'records' && s.length === save.records[s.speciesId]?.best || f.view === 'first' && s.reward.discovery > 0 || f.view === 'variants' && (s.mirage || s.coloration !== 'natural') || f.view === 'favorites' && save.favorites.includes(s.id))).sort((a, b) => f.sort === 'weight' ? b.weight - a.weight : f.sort === 'length' ? b.length - a.length : f.sort === 'rarity' ? rarityOf(b) - rarityOf(a) || b.date.localeCompare(a.date) : b.date.localeCompare(a.date));
+    const results = save.journal.filter(s => (!f.species || s.speciesId === f.species) && (!f.variant || f.variant === 'mirage' && s.mirage || f.variant === 'natural' && s.coloration==='natural'&&!s.appearanceId || f.variant!== 'natural' && (f.variant === s.coloration || f.variant===s.appearanceId)) && (!f.rarity || rarityOf(s) === Number(f.rarity)) && (!f.location || s.location === f.location) && (!f.method || s.method === f.method || s.technique===f.method) && (!f.post||s.post===f.post)&&(!f.recipe||s.recipe===f.recipe)&&(!f.after || s.date.slice(0, 10) >= f.after) && (!f.before || s.date.slice(0, 10) <= f.before) && s.length >= (f.minLength ?? 0) && s.length <= (f.maxLength ?? Infinity) && s.weight >= (f.minWeight ?? 0) && s.weight <= (f.maxWeight ?? Infinity) && (!f.favorite || save.favorites.includes(s.id)) && (!f.view || f.view === 'latest' || f.view === 'records' && s.length === save.records[s.speciesId]?.best || f.view === 'first' && s.reward.discovery > 0 || f.view === 'variants' && (s.mirage || s.coloration !== 'natural' || !!s.appearanceId) || f.view === 'favorites' && save.favorites.includes(s.id))).sort((a, b) => f.sort === 'weight' ? b.weight - a.weight : f.sort === 'length' ? b.length - a.length : f.sort === 'species'? a.speciesId.localeCompare(b.speciesId)||b.date.localeCompare(a.date): f.sort === 'location'?(a.location??'').localeCompare(b.location??'')||b.date.localeCompare(a.date):f.sort === 'first'?Number(b.reward.discovery>0)-Number(a.reward.discovery>0)||b.date.localeCompare(a.date):f.sort === 'rarity' ? rarityOf(b) - rarityOf(a) || b.date.localeCompare(a.date) : b.date.localeCompare(a.date));
     return f.view === 'latest' ? results.slice(0, 10) : results;
 }
-export const speciesMastery = (save: SaveData, id: SpeciesId) => Math.min(5, save.records[id]?.count ?? 0);
-export const ANIMATION_STATES = { calm: 'procedural', fast: 'procedural', suspended: 'absent', mat: 'procedural', breathing: 'absent' } as const;
+export const speciesMastery = (save: SaveData, id: SpeciesId) => Math.min(5, (save.records[id]?.count ?? 0)+save.observations.filter(o=>o.speciesId===id).length);
+export const ANIMATION_STATES = { calm: 'procedural', fast: 'procedural', suspended: 'procedural', mat: 'procedural', breathing: 'procedural' } as const;
 export const methodName = (id: MethodId) => METHODS.find(m => m.id === id)!.name;
+
+// Observations share the journal's identity/date/size filters, but have no rig or captured favorite.
+export function filterObservations(save:SaveData,f:JournalFilter){
+ if(f.method||f.recipe||f.favorite||f.view==='favorites'||f.view==='records')return [];
+ const first=new Set<string>();const rows=save.observations.filter(o=>{const initial=!first.has(o.speciesId);first.add(o.speciesId);return (!f.species||f.species===o.speciesId)&&(!f.variant||f.variant==='natural'&&!o.appearanceId||f.variant===o.appearanceId)&&(!f.post||f.post===o.post)&&(!f.location||f.location===postById(o.post).name)&&(!f.after||o.date.slice(0,10)>=f.after)&&(!f.before||o.date.slice(0,10)<=f.before)&&o.length>=(f.minLength??0)&&o.length<=(f.maxLength??Infinity)&&o.weight>=(f.minWeight??0)&&o.weight<=(f.maxWeight??Infinity)&&(!f.view||f.view==='latest'||f.view==='first'&&initial||f.view==='variants'&&!!o.appearanceId)&&(!f.rarity||Number(f.rarity)===RARITIES.find(r=>r.id===SPECIES_RARITY[o.speciesId])!.rank);});
+ rows.sort((a,b)=>f.sort==='length'?b.length-a.length:f.sort==='weight'?b.weight-a.weight:f.sort==='species'?a.speciesId.localeCompare(b.speciesId)||b.date.localeCompare(a.date):f.sort==='location'?a.post.localeCompare(b.post)||b.date.localeCompare(a.date):b.date.localeCompare(a.date));return f.view==='latest'?rows.slice(0,10):rows;
+}

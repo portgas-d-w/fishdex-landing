@@ -5,7 +5,6 @@ import { HemisphericLight } from '@babylonjs/core/Lights/hemisphericLight';
 import { DirectionalLight } from '@babylonjs/core/Lights/directionalLight';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
-import { LoadAssetContainerAsync } from '@babylonjs/core/Loading/sceneLoader';
 import type { AssetContainer } from '@babylonjs/core/assetContainer';
 import '@babylonjs/loaders/glTF';
 import type { Species } from '../game/catalog';
@@ -15,6 +14,9 @@ import { MeshBuilder } from '@babylonjs/core/Meshes/meshBuilder';
 import { StandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
 import type { Mesh } from '@babylonjs/core/Meshes/mesh';
 import { BodyWave } from './swim';
+import {loadFish} from './fish-model';
+import {PROFILES} from '../game/profiles';
+import {TransformNode} from '@babylonjs/core/Meshes/transformNode';
 
 export class FishPreview {
   private engine: Engine;
@@ -44,7 +46,7 @@ export class FishPreview {
     this.engine.stopRenderLoop(); this.render = undefined; this.container?.dispose(); this.container = undefined;
     this.mat?.dispose(false, true); this.mat = undefined;
     try {
-      const container = await LoadAssetContainerAsync(`/models/${VISUALS[species.id].model}.glb`, this.scene);
+      const container = await loadFish(this.scene,species.id,specimen);
       if (request !== this.request) { container.dispose(); return false; }
       this.container = container; container.addAllToScene(); this.engine.resize();
       applyAppearance(container, specimen);
@@ -62,10 +64,14 @@ export class FishPreview {
       await this.scene.whenReadyAsync();
       if (request !== this.request) return false;
       let time = 0;
+      const breath=container.rootNodes.filter((node):node is TransformNode=>node instanceof TransformNode).map(node=>({node,y:node.scaling.y,z:node.scaling.z}));
+      const pulseInterval=species.family==='eel'?6.5:species.family==='salmon'?3.8:5;
+      const vigor=.35+PROFILES[species.id].attributes.agility*.4;
       this.render = () => {
         time += Math.min(this.engine.getDeltaTime() / 1000, 0.05);
         this.camera.alpha = -Math.PI / 2 + Math.sin(time * 0.6) * 0.20;
-        const twitch = time % 4.5 > 3.8; wave.update(time, twitch, twitch ? 0.6 : 0.04);
+        const twitch = time % pulseInterval > pulseInterval-.5; wave.update(time, twitch, twitch ? vigor : species.family==='eel'?.10:.04);
+        const breathing=1+Math.sin(time*2.6)*.008;for(const {node,y,z}of breath){node.scaling.y=y*breathing;node.scaling.z=z*(1+Math.sin(time*2.6)*.004);}
         this.scene.render();
       };
       this.scene.render(); this.resume();

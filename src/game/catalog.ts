@@ -1,13 +1,20 @@
-export type SpeciesId = 'roach' | 'perch' | 'carp' | 'pike' | 'zander' | 'bream' | 'tench' | 'rudd' | 'bleak' | 'crucian' | 'whitebream' | 'gudgeon' | 'chub' | 'ide' | 'catfish';
+import registry from './fish-registry.json' with { type: 'json' };
+// Les IDs sont validés contre le registre à la frontière des sauvegardes et scénarios.
+export type SpeciesId = string;
 export type SpotId = 'reeds' | 'open' | 'willow';
 export type BaitId = 'worm' | 'lure';
 
-export interface Species {
+export interface LegacySpecies {
   id: SpeciesId; name: string; latin: string; model: string;
   min: number; max: number; strength: number; color: string; description: string;
 }
+export interface Species extends LegacySpecies {
+  number:number;sourceId:string;family:string;mode:'capture'|'observation';
+  habitats:string[];stratum:'surface'|'middle'|'bottom'|'mixed';post:string;
+  image:string|null;visualStatus:string;kind:'species'|'hybrid';
+}
 
-export const SPECIES: readonly Species[] = [
+export const LEGACY_SPECIES: readonly LegacySpecies[] = [
   { id: 'roach', name: 'Gardon', latin: 'Rutilus rutilus', model: 'Roach', min: 12, max: 38, strength: 0.7, color: '#b4c7bc', description: 'Des reflets argentés, des nageoires rouges. Il aime les bordures calmes.' },
   { id: 'perch', name: 'Perche', latin: 'Perca fluviatilis', model: 'EuropeanPerch', min: 15, max: 45, strength: 0.95, color: '#aec286', description: 'Une robe rayée et des démarrages vifs. La roselière est son terrain de chasse.' },
   { id: 'carp', name: 'Carpe', latin: 'Cyprinus carpio', model: 'CommonCarp', min: 30, max: 90, strength: 1.22, color: '#ddbb78', description: 'Patiente, puissante. Sous le saule, ses départs mettent le fil à l’épreuve.' },
@@ -24,6 +31,9 @@ export const SPECIES: readonly Species[] = [
   { id: 'ide', name: 'Ide mélanote', latin: 'Leuciscus idus', model: 'Ide', min: 20, max: 60, strength: 0.98, color: '#bbba95', description: 'Un poisson au dos sombre et aux flancs argentés. Il chasse parfois en surface.' },
   { id: 'catfish', name: 'Silure glane', latin: 'Silurus glanis', model: 'WelsCatfish', min: 50, max: 160, strength: 1.48, color: '#919c83', description: 'Sans écailles, avec de longs barbillons. Ses départs lourds demandent une main calme.' },
 ];
+export const SPECIES:readonly Species[]=registry.species.map(s=>({...s,model:s.model??''})) as Species[];
+export const speciesById=(id:SpeciesId)=>SPECIES.find(s=>s.id===id);
+export const CAPTURABLE_SPECIES=SPECIES.filter(s=>s.mode==='capture');
 export const SPOTS: readonly { id: SpotId; name: string; hint: string; number: string }[] = [
   { id: 'reeds', name: 'La roselière', hint: 'Bordure peu profonde', number: '01' },
   { id: 'open', name: 'L’eau libre', hint: 'Au-delà des nénuphars', number: '02' },

@@ -1,3 +1,5 @@
+import {speciesById} from '../game/catalog';
+import {PROFILES} from '../game/profiles';
 import { Engine } from '@babylonjs/core/Engines/engine';
 import { Scene } from '@babylonjs/core/scene';
 import { ArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera';
@@ -8,19 +10,19 @@ import { StandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
 import { TransformNode } from '@babylonjs/core/Meshes/transformNode';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
-import { LoadAssetContainerAsync } from '@babylonjs/core/Loading/sceneLoader';
 import '@babylonjs/loaders/glTF';
 import type { Specimen } from '../game/specimens';
 import type { SaveData } from '../game/save';
 import { applyAppearance, VISUALS } from './appearance';
 import { BodyWave } from './swim';
+import {loadFish} from './fish-model';
 
 export class Aquarium {
   readonly engine: Engine;
   readonly scene: Scene;
   private disposed = false;
   private enabled = true;
-  private fish: { root: TransformNode; wave: BodyWave; baseY: number; height: number; phase: number; speed: number }[] = [];
+  private fish: { root: TransformNode; wave: BodyWave; baseY: number; height: number; phase: number; speed: number;amplitude:number }[] = [];
   private time = 0;
   private frames = 0;
   private light: HemisphericLight;
@@ -63,7 +65,7 @@ export class Aquarium {
         const t = this.time * fish.speed + fish.phase;
         fish.root.position.set(2.6 * Math.cos(t), fish.baseY + Math.sin(t * 2) * 0.03, 0.4 + Math.sin(t) * 0.65);
         fish.root.rotation.y = Math.atan2(0.65 * Math.cos(t), 2.6 * Math.sin(t));
-        fish.wave.update(this.time + fish.phase);
+        fish.wave.update(this.time + fish.phase,false,fish.amplitude);
       }
       this.scene.render();
       this.frames++;
@@ -78,19 +80,22 @@ export class Aquarium {
   }
   async show(specimens: Specimen[]): Promise<{ loaded: number; errors: number }> {
     let errors = 0;
+    const relativeScale=2.5/Math.max(1,...specimens.slice(0,5).map(s=>s.length));
     for (const [i, specimen] of specimens.slice(0, 5).entries()) {
       if (this.disposed) return { loaded: 0, errors };
       try {
         const visual = VISUALS[specimen.speciesId];
-        const container = await LoadAssetContainerAsync(`/models/${visual.model}.glb`, this.scene);
+        const container = await loadFish(this.scene,specimen.speciesId,specimen);
         if (this.disposed) { container.dispose(); return { loaded: 0, errors }; }
         container.addAllToScene(); applyAppearance(container, specimen);
         const root = new TransformNode(`specimen-${specimen.id}`, this.scene);
         for (const node of container.rootNodes) node.parent = root;
-        root.scaling.setAll(Math.max(0.25, Math.min(1.25, specimen.length / 65)));
+        const initial=root.getHierarchyBoundingVectors(true),span=Math.max(.01,initial.max.x-initial.min.x);
+        root.scaling.setAll(specimen.length*relativeScale/span);
         let minY = Infinity, maxY = -Infinity;
         for (const mesh of container.meshes) { mesh.computeWorldMatrix(true); const bounds = mesh.getBoundingInfo().boundingBox; minY = Math.min(minY, bounds.minimumWorld.y); maxY = Math.max(maxY, bounds.maximumWorld.y); }
-        this.fish.push({ root, wave: new BodyWave(container, visual.tailSign), baseY: 0.65 + i * 0.67, height: Math.max(0.12, maxY - minY), phase: i * 1.7, speed: 0.18 + i * 0.025 });
+        const species=speciesById(specimen.speciesId)!,profile=PROFILES[specimen.speciesId];
+        this.fish.push({ root, wave: new BodyWave(container, visual.tailSign), baseY: 0.65 + i * 0.67, height: Math.max(0.12, maxY - minY), phase: (specimen.seed??i*127)%100/17, speed: .16+profile.attributes.agility*.07,amplitude:species.family==='eel'?1.4:species.family==='bream'?.65:1 });
       } catch { if (!this.disposed) errors++; }
     }
     if (!this.disposed) {
@@ -102,8 +107,9 @@ export class Aquarium {
     }
     return { loaded: this.fish.length, errors };
   }
+  inspectOrbit(){const time=this.time,samples=[];for(let n=0;n<=80;n++){for(const f of this.fish){const t=n/80*Math.PI*2;f.root.position.set(2.6*Math.cos(t),f.baseY,.4+Math.sin(t)*.65);f.root.rotation.y=Math.atan2(.65*Math.cos(t),2.6*Math.sin(t));}samples.push(this.diagnostics().specimens);}for(const f of this.fish){const t=time*f.speed+f.phase;f.root.position.set(2.6*Math.cos(t),f.baseY,.4+Math.sin(t)*.65);f.root.rotation.y=Math.atan2(.65*Math.cos(t),2.6*Math.sin(t));}return samples;}
   pause() { this.enabled = false; }
-  diagnostics() { return { count: this.fish.length, frames: this.frames, enabled: this.enabled, plants: this.plants.isEnabled(), rocks: this.rocks.isEnabled(), specimens: this.fish.map(f => ({ id: f.root.name, scale: f.root.scaling.x, position: f.root.position.asArray() })) }; }
+  diagnostics() { return { count: this.fish.length, frames: this.frames, enabled: this.enabled, plants: this.plants.isEnabled(), rocks: this.rocks.isEnabled(), specimens: this.fish.map(f => ({ id: f.root.name, scale: f.root.scaling.x, position: f.root.position.asArray(), bounds: (()=>{const b=f.root.getHierarchyBoundingVectors(true);return {min:b.min.asArray(),max:b.max.asArray()};})() })) }; }
   resume() { this.enabled = true; this.engine.resize(); }
   dispose() { this.disposed = true; this.enabled = false; this.engine.stopRenderLoop(); window.removeEventListener('resize', this.resize); this.scene.dispose(); this.engine.dispose(); this.fish = []; }
 }

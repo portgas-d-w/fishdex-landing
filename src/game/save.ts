@@ -6,6 +6,9 @@ import { emptyTackle, changeMethod, parseTackle, resolveRig, component, starterC
 import type { Tackle } from './rig.ts';
 import { BADGE_RULES } from './structure.ts';
 import { SPECIES } from './catalog.ts';
+import {appearanceFor,canonicalFishId} from './fish-registry.ts';
+import type {Observation} from './observations.ts';
+import {populationWeight,inspectPostTarget} from './posts.ts';
 import type { SpeciesId } from './catalog.ts';
 import type { Catch } from './fishing.ts';
 import { weightFor, uniqueId, ZERO_REWARD, variantKey } from './specimens.ts';
@@ -18,7 +21,8 @@ export const SAVE_KEY = 'au-fil-de-leau.save.v1';
 export const MAX_SAVE_BYTES = 5_000_000;
 export interface RecordEntry { count: number; best: number; last: string }
 export interface SaveData {
-  version: 6; development?:import('./development.ts').DevelopmentProfile; progression:Rights; tackle: Tackle; total: number; records: Partial<Record<SpeciesId, RecordEntry>>;
+  historical?:{journal:Record<string,unknown>[];records:Record<string,RecordEntry>;legacyRecords:Record<string,RecordEntry>;favorites:string[]};
+  version: 7; observations:Observation[]; development?:import('./development.ts').DevelopmentProfile; progression:Rights; tackle: Tackle; total: number; records: Partial<Record<SpeciesId, RecordEntry>>;
   legacyRecords: Partial<Record<SpeciesId, RecordEntry>>; journal: Specimen[]; favorites: string[];
   variants: Record<string, RecordEntry>; xp: number; coins: number; badges: string[];
   inventory: ItemId[]; equipped: ItemId;
@@ -26,7 +30,7 @@ export interface SaveData {
   settings: { sound: boolean; quality: 'eco' | 'high'; reelMode: 'hold'; combatMode:'manual'|'assisted' };
   preparation: { method: 'pole' | 'float' | 'lure' | 'bottom'; bait: 'worm' | 'lure'; location: 'willow-pond'|'running-river'|'deep-lake'|'light-boat'; post:import('./posts.ts').PostId };
 }
-export const emptySave = (): SaveData => ({ version:6,progression:initialRights(),tackle:{...emptyTackle(),config:starterConfig('pole')},total:0,records:{},legacyRecords:{},journal:[],favorites:[],variants:{},xp:0,coins:0,badges:[],inventory:['starter','pole-starter'],equipped:'pole-starter',aquarium:{floor:'sand',background:'dawn',plants:false,rocks:false,light:'warm'},settings:{sound:false,quality:'eco',reelMode:'hold',combatMode:'manual'},preparation:{method:'pole',bait:'worm',location:'willow-pond',post:'jetty'} });
+export const emptySave = (): SaveData => ({ version:7,observations:[],progression:initialRights(),tackle:{...emptyTackle(),config:starterConfig('pole')},total:0,records:{},legacyRecords:{},journal:[],favorites:[],variants:{},xp:0,coins:0,badges:[],inventory:['starter','pole-starter'],equipped:'pole-starter',aquarium:{floor:'sand',background:'dawn',plants:false,rocks:false,light:'warm'},settings:{sound:false,quality:'eco',reelMode:'hold',combatMode:'manual'},preparation:{method:'pole',bait:'worm',location:'willow-pond',post:'jetty'} });
 function object(v: unknown): Record<string, unknown> { if (!v || typeof v !== 'object' || Array.isArray(v)) throw new Error('Sauvegarde invalide.'); return v as Record<string, unknown>; }
 function integer(v: unknown, max = 1_000_000_000) { if (typeof v !== 'number' || !Number.isSafeInteger(v) || v < 0 || v > max) throw new Error('Valeur de progression invalide.'); return v; }
 function string(v: unknown, max = 150) { if (typeof v !== 'string' || !v.length || v.length > max) throw new Error('Texte de sauvegarde invalide.'); return v; }
@@ -47,23 +51,67 @@ function addRecord(records: Record<string, RecordEntry | undefined>, key: string
   const p = records[key]; records[key] = { count: (p?.count ?? 0) + 1, best: Math.max(p?.best ?? 0, s.length), last: s.date };
 }
 function specimen(value: unknown): Specimen {
-  const s = object(value); const species = SPECIES.find(f => f.id === s.speciesId);
+  const s = object(value); const species = SPECIES.find(f => f.id === canonicalFishId(String(s.speciesId)));
   if (!species || typeof s.length !== 'number' || !Number.isFinite(s.length) || s.length < species.min || s.length > species.max) throw new Error('Spécimen invalide.');
   if (typeof s.weight !== 'number' || !Number.isFinite(s.weight) || Math.abs(s.weight - weightFor(species.id, s.length)) > 0.002) throw new Error('Poids incohérent.');
+  if(s.appearanceId===undefined){const former=appearanceFor(species.id,String(s.speciesId));if(former)s.appearanceId=former.id;}
   const target = object(s.target); if (typeof target.x !== 'number' || typeof target.z !== 'number' || !Number.isFinite(target.x) || !Number.isFinite(target.z) || Math.abs(target.x) > 11 || target.z < 1.5 || target.z > 22) throw new Error('Lieu invalide.');
   const r = object(s.reward);
-  const reward = { base: integer(r.base, 10000), discovery: integer(r.discovery, 10000), record: integer(r.record, 10000), coins: integer(r.coins, 30000), xp: integer(r.xp, 10000) };
-  if (reward.coins !== reward.base + reward.discovery + reward.record) throw new Error('Récompense incohérente.');
+  if(s.appearanceId!==undefined&&!appearanceFor(species.id,string(s.appearanceId)))throw Error('Apparence étrangère à l’espèce.');
+  const reward = { base: integer(r.base, 10000), discovery: integer(r.discovery, 10000), record: integer(r.record, 10000),...(r.appearance!==undefined?{appearance:integer(r.appearance,6)}:{}), coins: integer(r.coins, 30000), xp: integer(r.xp, 10000) };
+  if (reward.coins !== reward.base + reward.discovery + reward.record+(reward.appearance??0)) throw new Error('Récompense incohérente.');
   if(s.baitItem!==undefined && !['bait','lure','fly'].includes(component(string(s.baitItem))?.slot??''))throw new Error('Esche inconnue.');
   if(s.recipe!==undefined&&(!recipeById(string(s.recipe))||s.technique===undefined||!recipeById(string(s.recipe))!.techniques.includes(s.technique as string)))throw Error('Recette de capture invalide.');
-  return {...(s.technique!==undefined?{technique:choice(s.technique,TECHNIQUE_IDS)}:{}),...(s.recipe!==undefined?{recipe:string(s.recipe)}:{}), ...(s.baitItem!==undefined?{baitItem:string(s.baitItem)}:{}), ...(s.post!==undefined?{post:choice(s.post,POSTS.map(p=>p.id))}:{}), ...(s.microzone!==undefined?{microzone:choice(s.microzone,['margin','plants','open-water','dropoff','wood'] as const)}:{}), id: string(s.id), speciesId: species.id, form: choice(s.form, ['common']), coloration: choice(s.coloration, ['natural', 'golden']), mirage: bool(s.mirage), length: s.length, weight: s.weight, date: date(s.date), location: string(s.location), method: choice(s.method, ['pole','float', 'lure', 'bottom']), equipment: choice(s.equipment, ITEMS.filter(i => i.kind === 'rod').map(i => i.id)), bait: choice(s.bait, ['worm', 'lure']), target: { x: target.x, z: target.z }, controlled: bool(s.controlled), reward };
+  return {...(s.appearanceId!==undefined?{appearanceId:string(s.appearanceId)}:{}),...(s.seed!==undefined?{seed:integer(s.seed,4294967295)}:{}),...(s.technique!==undefined?{technique:choice(s.technique,TECHNIQUE_IDS)}:{}),...(s.recipe!==undefined?{recipe:string(s.recipe)}:{}), ...(s.baitItem!==undefined?{baitItem:string(s.baitItem)}:{}), ...(s.post!==undefined?{post:choice(s.post,POSTS.map(p=>p.id))}:{}), ...(s.microzone!==undefined?{microzone:choice(s.microzone,['margin','plants','open-water','dropoff','wood'] as const)}:{}), id: string(s.id), speciesId: species.id, form: choice(s.form, ['common']), coloration: choice(s.coloration, ['natural', 'golden']), mirage: bool(s.mirage), length: s.length, weight: s.weight, date: date(s.date), location: string(s.location), method: choice(s.method, ['pole','float', 'lure', 'bottom']), equipment: choice(s.equipment, ITEMS.filter(i => i.kind === 'rod').map(i => i.id)), bait: choice(s.bait, ['worm', 'lure']), target: { x: target.x, z: target.z }, controlled: bool(s.controlled), reward };
+}
+function observation(value:unknown):Observation {
+ const o=object(value),id=canonicalFishId(string(o.speciesId)),species=SPECIES.find(s=>s.id===id);
+ if(!species||species.mode!=='observation')throw Error('Observation inconnue');
+ const post=choice(o.post,POSTS.map(p=>p.id)),target=object(o.target);
+ if(typeof target.x!=='number'||typeof target.z!=='number'||!Number.isFinite(target.x)||!Number.isFinite(target.z))throw Error('Point d’observation invalide');
+ const aim=inspectPostTarget(post,{x:target.x,z:target.z});
+ if(!aim.valid||populationWeight(post,species.id,aim.microzone)<=0||typeof o.duration!=='number'||o.duration<12||o.duration>60)throw Error('Habitat ou effort d’observation incohérent');
+ if(typeof o.length!=='number'||o.length<species.min||o.length>species.max||typeof o.weight!=='number'||!Number.isFinite(o.weight)||Math.abs(o.weight-weightFor(species.id,o.length))>.002)throw Error('Gabarit d’observation incohérent');
+ if(o.appearanceId!==undefined&&!appearanceFor(species.id,string(o.appearanceId)))throw Error('Apparence invalide');
+ return {id:string(o.id),speciesId:species.id,...(o.appearanceId?{appearanceId:string(o.appearanceId)}:{}),seed:integer(o.seed,4294967295),length:o.length,weight:o.weight,date:date(o.date),post,duration:o.duration,target:{x:target.x,z:target.z},xp:integer(o.xp,25)};
+}
+export const discoveredFish=(save:SaveData)=>new Set([...Object.keys(save.records),...save.observations.map(o=>o.speciesId)]);
+export function recordObservation(save:SaveData,value:Observation){
+ const entry=observation(value);if(save.observations.some(o=>o.id===entry.id))return false;
+ const first=!discoveredFish(save).has(entry.speciesId),firstAppearance=entry.appearanceId&&!save.observations.some(o=>o.appearanceId===entry.appearanceId);entry.xp=(first?20:0)+(firstAppearance?5:0);save.observations.push(entry);save.xp+=entry.xp;
+ for(const rule of BADGE_RULES)if(rule.value(save)>=rule.target&&!save.badges.includes(rule.id))save.badges.push(rule.id);
+ refreshRights(save);return true;
 }
 export function parseSave(raw: string): SaveData {
   if (raw.length > MAX_SAVE_BYTES) throw new Error('Fichier de sauvegarde trop volumineux.');
-  const data = object(JSON.parse(raw)); if (data.version !== 1 && data.version !== 2 && data.version !== 3 && data.version !== 4 && data.version !== 5 && data.version !== 6) throw new Error('Format de sauvegarde non pris en charge.');
-  const result = emptySave(); result.records = entries(data.records);
-  result.total = Object.values(result.records).reduce((sum, r) => sum + r.count, 0);
-  if (result.total !== data.total) throw new Error('Le total de prises est incohérent.');
+  const data = object(JSON.parse(raw)); if (data.version !== 1 && data.version !== 2 && data.version !== 3 && data.version !== 4 && data.version !== 5 && data.version !== 6 && data.version !== 7) throw new Error('Format de sauvegarde non pris en charge.');
+  // Unresolved historical identities remain exportable, without becoming invented taxa or rewards.
+  const prior=data.historical===undefined?undefined:object(data.historical);
+  const history:NonNullable<SaveData['historical']>={journal:[],records:{},legacyRecords:{},favorites:[]};
+  if(prior){
+    if(!Array.isArray(prior.journal)||prior.journal.length>10000||!Array.isArray(prior.favorites)||prior.favorites.length>5)throw Error('Historique invalide');
+    history.journal=prior.journal.map(v=>{const row=object(v);string(row.id);if(canonicalFishId(string(row.speciesId)))throw Error('Identité historique déjà résolue');return row;});
+    history.favorites=prior.favorites.map(v=>string(v));
+  }
+  for(const key of ['records','legacyRecords'] as const){
+    const known:Record<string,RecordEntry>={};
+    for(const [id,value]of Object.entries({...prior?object(prior[key]):{},...data[key]?object(data[key]):{}})){
+      const row=object(value),entry={count:integer(row.count,10000000),best:row.best as number,last:date(row.last)};
+      if(entry.count<1||typeof entry.best!=='number'||!Number.isFinite(entry.best)||entry.best<=0)throw Error('Record historique invalide');
+      const parent=canonicalFishId(id);if(!parent){history[key][string(id)]=entry;continue;}
+      const old=known[parent];known[parent]=old?{count:old.count+entry.count,best:Math.max(old.best,entry.best),last:old.last>entry.last?old.last:entry.last}:entry;
+    }
+    data[key]=known;
+  }
+  if(Array.isArray(data.journal))data.journal=data.journal.filter(value=>{const row=object(value);if(canonicalFishId(string(row.speciesId)))return true;string(row.id);history.journal.push(row);return false;});
+  const historicalIds=new Set(history.journal.map(v=>String(v.id)));if(historicalIds.size!==history.journal.length)throw Error('Historique dupliqué');
+  if(Array.isArray(data.favorites))data.favorites=data.favorites.filter(id=>{if(!historicalIds.has(String(id)))return true;history.favorites.push(String(id));return false;});
+  history.favorites=[...new Set(history.favorites)];
+  const result = emptySave();if(history.journal.length||Object.keys(history.records).length||Object.keys(history.legacyRecords).length)result.historical=history;
+  result.records = entries(data.records);
+  if(data.version===7){if(!Array.isArray(data.observations)||data.observations.length>10000)throw Error('Carnet d’observation invalide');result.observations=data.observations.map(observation);if(new Set(result.observations.map(o=>o.id)).size!==result.observations.length)throw Error('Observation dupliquée');}
+  result.total = Object.values(result.records).reduce((sum, r) => sum + (r?.count??0), 0);
+  if (result.total+Object.values(history.records).reduce((sum,r)=>sum+r.count,0) !== data.total && !(prior&&result.total===data.total)) throw new Error('Le total de prises est incohérent.');
   const settings = data.settings ? object(data.settings) : {};
   if(data.development!==undefined){const d=object(data.development);result.development={kind:choice(d.kind,['sandbox','rules']),unlimitedMoney:bool(d.unlimitedMoney),unlimitedStock:bool(d.unlimitedStock),theoreticalCost:integer(d.theoreticalCost)};}
   result.settings = { sound: settings.sound === true, quality: settings.quality === 'high' ? 'high' : 'eco', reelMode:'hold',combatMode:settings.combatMode==='assisted'?'assisted':'manual' };
@@ -74,6 +122,7 @@ export function parseSave(raw: string): SaveData {
   if (!Array.isArray(data.journal) || data.journal.length > 10000) throw new Error('Journal invalide.');
   result.journal = data.journal.map(specimen);
   const ids = new Set(result.journal.map(s => s.id)); if (ids.size !== result.journal.length) throw new Error('Capture dupliquée.');
+  if(result.observations.some(o=>ids.has(o.id)))throw Error('Identité de souvenir dupliquée');
   const rebuilt = structuredClone(result.legacyRecords);
   for (const s of result.journal) { addRecord(rebuilt, s.speciesId, s); addRecord(result.variants, variantKey(s), s); }
   for (const id of new Set([...Object.keys(rebuilt), ...Object.keys(result.records)])) {
@@ -105,7 +154,7 @@ export function parseSave(raw: string): SaveData {
     const techniques=p.techniques===undefined?p.methods.map((m:import('./specimens.ts').MethodId)=>defaultTechnique(m)):p.techniques;
     if(!Array.isArray(techniques)||!techniques.every(id=>TECHNIQUE_IDS.includes(id))||new Set(techniques).size!==techniques.length)throw Error('Droits de technique invalides.');
     const techniqueMastery:Rights['techniqueMastery']={};if(p.techniqueMastery!==undefined)for(const [id,n]of Object.entries(object(p.techniqueMastery))){if(!TECHNIQUE_IDS.includes(id as typeof TECHNIQUE_IDS[number]))throw Error('Maîtrise inconnue.');techniqueMastery[id as typeof TECHNIQUE_IDS[number]]=integer(n,10000000);}
-    result.progression={methods:p.methods,posts:p.posts,precision:integer(p.precision,result.total),initiation:bool(p.initiation),legacy:bool(p.legacy),mastery,techniques,techniqueMastery};
+    result.progression={methods:p.methods,posts:p.posts,precision:integer(p.precision,result.total+Object.values(history.records).reduce((sum,r)=>sum+r.count,0)),initiation:bool(p.initiation),legacy:bool(p.legacy),mastery,techniques,techniqueMastery};
     if(!p.methods.includes(result.preparation.method)||!p.posts.includes(result.preparation.post)||result.tackle.config.technique&&!result.development&& !techniques.includes(result.tackle.config.technique))throw new Error('Préparation non ouverte.');
     refreshRights(result);
   }
@@ -122,9 +171,12 @@ function migrateRights(save:SaveData) {
 export function recordCatch(save: SaveData, caught: Catch): { first: boolean; record: boolean; variant: boolean } {
   if (caught.id && save.journal.some(s => s.id === caught.id)) return { first: false, record: false, variant: false };
   const previous = save.records[caught.speciesId]; const result = { first: !previous, record: !previous || caught.length > previous.best, variant: false };
-  const s: Specimen = { ...(caught.baitItem?{baitItem:caught.baitItem}:{}),...(caught.post?{post:caught.post}:{}),...(caught.microzone?{microzone:caught.microzone}:{}), ...(caught.technique?{technique:caught.technique}:{}),...(caught.recipe?{recipe:caught.recipe}:{}), id: caught.id ?? uniqueId(), speciesId: caught.speciesId, form: 'common', coloration: caught.coloration ?? 'natural', mirage: caught.mirage ?? false, length: caught.length, weight: weightFor(caught.speciesId, caught.length), date: caught.date, location: caught.location??'L’étang des Saules', method: caught.method ?? 'float', equipment: caught.equipment ?? save.equipped, bait: caught.bait ?? 'worm', target: caught.target ?? { x: -1.5, z: 7 }, controlled: caught.controlled ?? false, reward: ZERO_REWARD() };
+  if(SPECIES.find(s=>s.id===caught.speciesId)?.mode!=='capture')throw Error('Cette espèce se découvre par observation');
+  if(caught.appearanceId&&!appearanceFor(caught.speciesId,caught.appearanceId))throw Error('Apparence incompatible');
+  const s: Specimen = { ...(caught.appearanceId?{appearanceId:caught.appearanceId}:{}),...(caught.seed!==undefined?{seed:caught.seed}:{}),...(caught.baitItem?{baitItem:caught.baitItem}:{}),...(caught.post?{post:caught.post}:{}),...(caught.microzone?{microzone:caught.microzone}:{}), ...(caught.technique?{technique:caught.technique}:{}),...(caught.recipe?{recipe:caught.recipe}:{}), id: caught.id ?? uniqueId(), speciesId: caught.speciesId, form: 'common', coloration: caught.coloration ?? 'natural', mirage: caught.mirage ?? false, length: caught.length, weight: weightFor(caught.speciesId, caught.length), date: caught.date, location: caught.location??'L’étang des Saules', method: caught.method ?? 'float', equipment: caught.equipment ?? save.equipped, bait: caught.bait ?? 'worm', target: caught.target ?? { x: -1.5, z: 7 }, controlled: caught.controlled ?? false, reward: ZERO_REWARD() };
   result.variant = !save.variants[variantKey(s)];
   s.reward = rewardFor(s, result.first, result.record);
+  if(result.variant&&s.appearanceId){s.reward.appearance=6;s.reward.coins+=6;s.reward.xp+=5;}
   addRecord(save.records, s.speciesId, s); addRecord(save.variants, variantKey(s), s);
   save.journal.push(s); save.total++; save.xp += s.reward.xp; save.coins += s.reward.coins;
   save.progression.mastery[s.method]=(save.progression.mastery[s.method]??0)+1;

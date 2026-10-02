@@ -10,7 +10,7 @@ test('Leurre : aucune touche immobile, récupération et animation actives, comb
   assert.equal(g.phase, 'bite'); assert.ok(g.retrieveProgress > 0);
   g.strike(); for (let i = 0; i < 60 * 80 && g.phase === 'fighting'; i++) { manageFight(g); }
   assert.equal(g.phase, 'caught'); assert.equal(g.result?.method, 'lure'); assert.equal(g.result?.bait, 'lure');
-  assert.deepEqual({ coloration: g.result?.coloration, mirage: g.result?.mirage }, g.appearance);
+  assert.deepEqual({ coloration: g.result?.coloration, mirage: g.result?.mirage, ...(g.result?.appearanceId?{appearanceId:g.result.appearanceId}:{}) }, g.appearance);
 });
 test('Fond : montage compatible, attente distincte et annulation propre', () => {
   const g = new FishingGame(() => 0); g.setMethod('bottom'); assert.equal(g.bait, 'worm'); g.cast(); advance(g, 1.2); advance(g, 3.1);

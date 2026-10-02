@@ -17,6 +17,9 @@ import { Effect } from '@babylonjs/core/Materials/effect';
 import { TransformNode } from '@babylonjs/core/Meshes/transformNode';
 import type { FishingGame } from '../game/fishing';
 import type { CastAim } from '../game/casting';
+import type {AssetContainer} from '@babylonjs/core/assetContainer';
+import {loadFish} from './fish-model';
+import {BodyWave} from './swim';
 
 export class LakeWorld {
   readonly engine: Engine;
@@ -24,7 +27,8 @@ export class LakeWorld {
   readonly camera: FreeCamera;
   private fishingRoot!:TransformNode;
   private activePost:PostId='jetty';
-  private boat!:Mesh;private landingNet!:Mesh;private landingMat!:Mesh;private landingFish!:Mesh;
+  private boat!:Mesh;private landingNet!:Mesh;private landingMat!:Mesh;
+  private landingRoot?:TransformNode;private landedContainer?:AssetContainer;private landingWave?:BodyWave;private actorId='';private actorRequest=0;private actorTime=0;
   private branchFlies:Mesh[]=[];
   private branchLines:ReturnType<typeof MeshBuilder.CreateLines>[]=[];
   private clonkPulse=0;
@@ -114,7 +118,6 @@ export class LakeWorld {
     this.landingMat=MeshBuilder.CreateBox('landing-mat',{width:1.4,depth:.8,height:.05},this.scene);this.landingMat.parent=this.fishingRoot;this.landingMat.material=this.material('#394845');this.landingMat.position.set(-.6,.05,-.5);this.landingMat.setEnabled(false);
     // Recycled procedural silhouette only during reception. The species GLB remains
     // lazy-loaded in the photo sheet; this marker does not create a second specimen.
-    this.landingFish=MeshBuilder.CreateSphere('landing-fish-silhouette',{diameter:1,segments:8},this.scene);this.landingFish.parent=this.fishingRoot;this.landingFish.material=this.material('#b7c9c5');this.landingFish.setEnabled(false);
     for(let n=0;n<3;n++){const fly=MeshBuilder.CreateSphere('gambe-fly-'+n,{diameter:.07,segments:4},this.scene);fly.material=this.material('#caa37a');fly.parent=this.fishingRoot;fly.setEnabled(false);this.branchFlies.push(fly);const branch=MeshBuilder.CreateLines('gambe-branch-'+n,{points:[Vector3.Zero(),new Vector3(.3,0,0)],updatable:true},this.scene);branch.parent=this.fishingRoot;branch.color=Color3.FromHexString('#ebddb3');branch.setEnabled(false);this.branchLines.push(branch);}
     for(const mesh of [this.rod,this.grip,this.bobber,this.line,this.thickLine,this.aimRing,this.trajectory,this.lure,...this.rings,...this.splash])mesh.parent=this.fishingRoot;
     this.precisionCircle=MeshBuilder.CreateTorus('precision-placement',{diameter:2.4,thickness:.014,tessellation:32},this.scene);this.precisionCircle.position.set(0,.05,3.2);this.precisionCircle.material=this.material('#4cc6c2');
@@ -302,8 +305,11 @@ col=mix(col,col*vec3(.72,.79,.72),smoothstep(23.,34.,p.y)*(1.-n)*.45);gl_FragCol
     if(game.post!==this.activePost)this.setPost(game.post);
     this.boat.setEnabled(game.post==='boat');
     if(game.post==='boat'){const p=postById(game.post),move=game.presentationState.boat;this.fishingRoot.position.set(p.origin.x+move.x,0,p.origin.z+1+move.z);const eye=worldPoint(game.post,{x:move.x,z:move.z-8.5}),look=worldPoint(game.post,{x:move.x,z:move.z+5.5});this.camera.position.set(eye.x,4.2,eye.z);this.camera.setTarget(new Vector3(look.x,.1,look.z));}
-    this.landingNet.setEnabled(game.phase==='landing'&&game.fishLength>25);this.landingMat.setEnabled(game.phase==='landing'&&game.fishLength>65);this.landingFish.setEnabled(game.phase==='landing');
-    if(game.phase==='landing'){const size=Math.max(.18,game.fishLength*.012);this.landingFish.scaling.set(size*.24,size*.32,size);this.landingFish.position.set(game.fishPosition.x,.06+Math.min(1,game.elapsed)*.18,game.fishPosition.z);this.landingFish.rotation.y=game.direction;this.landingNet.position.set(game.fishPosition.x,.06,game.fishPosition.z);}
+    this.landingNet.setEnabled(game.phase==='landing'&&game.fishLength>25);this.landingMat.setEnabled(game.phase==='landing'&&game.fishLength>65);
+    if(game.fish&&['fighting','landing'].includes(game.phase)&&this.actorId!==game.specimenId){void this.prepareFishActor(game);}
+    if(!['fighting','landing'].includes(game.phase)&&this.actorId)this.clearFishActor();
+    this.landingRoot?.setEnabled(game.phase==='landing');
+    if(game.phase==='landing'&&this.landingRoot){const size=Math.max(.1,Math.min(1.2,game.fishLength*.006));this.landingRoot.scaling.setAll(size);this.landingRoot.position.set(game.fishPosition.x,.18+Math.min(1,game.elapsed)*.1,game.fishPosition.z);this.landingRoot.rotation.y=Math.PI/2+game.direction;this.actorTime+=Math.min(dt,.05);this.landingWave?.update(this.actorTime,true,.14);this.landingNet.position.set(game.fishPosition.x,.06,game.fishPosition.z);}
     if(game.clonkPulse!==this.clonkPulse){this.clonkPulse=game.clonkPulse;this.impactAge=0;this.impactPoint.set(game.target.x,0,game.target.z);}
     this.branchFlies.forEach((fly,n)=>{const show=game.modern&&game.technique.id==='gambe'&&game.phase==='waiting'&&n<game.presentationState.branches.length;fly.setEnabled(show);this.branchLines[n].setEnabled(show);if(show){const y=-game.presentationState.branches[n];fly.position.set(game.fishPosition.x+.3,y,game.fishPosition.z);MeshBuilder.CreateLines('gambe-branch-'+n,{points:[new Vector3(game.fishPosition.x,y,game.fishPosition.z),fly.position],instance:this.branchLines[n]},this.scene);}});
     this.npc.setEnabled(!game.rights?.posts.includes('reed-bank'));
@@ -372,6 +378,12 @@ col=mix(col,col*vec3(.72,.79,.72),smoothstep(23.,34.,p.y)*(1.-n)*.45);gl_FragCol
     MeshBuilder.CreateTube('visible-line', { path, instance: this.thickLine }, this.scene);
     this.reeds.forEach((reed, i) => { reed.rotation.z = Math.sin(this.time * 1.2 + i) * 0.035; });
   }
-  dispose() { window.removeEventListener('resize', this.resize); this.scene.dispose(); this.engine.dispose(); }
+  private clearFishActor(){this.actorRequest++;this.actorId='';this.landingWave=undefined;this.landedContainer?.dispose();this.landedContainer=undefined;this.landingRoot?.dispose();this.landingRoot=undefined;}
+  fishActorDiagnostics(){return {specimen:this.actorId,loaded:!!this.landingRoot,meshes:this.landedContainer?.meshes.filter(m=>m.getTotalVertices()>0).length??0,scale:this.landingRoot?.scaling.x,enabled:this.landingRoot?.isEnabled()??false};}
+  private async prepareFishActor(game:FishingGame){
+    this.clearFishActor();this.actorId=game.specimenId;const token=this.actorRequest,id=game.fish!.id;
+    try{const container=await loadFish(this.scene,id,{...game.appearance,seed:game.specimenSeed});if(token!==this.actorRequest||this.scene.isDisposed){container.dispose();return;}this.landedContainer=container;container.addAllToScene();const root=this.landingRoot=new TransformNode('landing-'+game.specimenId,this.scene);root.parent=this.fishingRoot;for(const node of container.rootNodes)node.parent=root;root.setEnabled(false);this.landingWave=new BodyWave(container);this.actorTime=0;}catch{this.actorId=game.specimenId;}
+  }
+  dispose() { this.clearFishActor();window.removeEventListener('resize', this.resize); this.scene.dispose(); this.engine.dispose(); }
   setPost(id:PostId){const p=postById(id);this.activePost=id;this.fishingRoot.rotation.y=p.angle;this.fishingRoot.position.set(p.origin.x+Math.sin(p.angle),0,p.origin.z+Math.cos(p.angle));this.fishingRoot.computeWorldMatrix(true);const eye=worldPoint(id,{x:0,z:-8.5}),target=worldPoint(id,{x:0,z:5.5});this.camera.position.set(eye.x,4.2,eye.z);this.camera.setTarget(new Vector3(target.x,.1,target.z));this.wasCasting=false;this.impactAge=9;}
 }

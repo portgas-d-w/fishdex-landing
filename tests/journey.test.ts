@@ -19,7 +19,7 @@ test('Nouvelle partie : trois postes, coup sans moulinet et kit gratuit complet 
 });
 test('Migration v4 conserve possessions, stock, espèces, individus/favoris, gains et capacités déjà ouvertes',()=>{
  const old=oldV4(),modern=emptySave();recordCatch(modern,{...caught('kept'),method:'float'});Object.assign(old,{total:modern.total,records:modern.records,journal:modern.journal,variants:modern.variants,coins:123,xp:40,badges:modern.badges,favorites:['kept'],inventory:['starter','precision','plants'],equipped:'precision'});old.tackle.stock.corn=30;
- const s=parseSave(JSON.stringify(old));assert.equal(s.version,6);assert.equal(s.coins,123);assert.equal(s.xp,40);assert.deepEqual(s.favorites,['kept']);assert.deepEqual(s.journal,old.journal);assert.equal(s.equipped,'precision');assert.equal(s.tackle.stock.corn,30);assert.deepEqual(s.progression.methods,['pole','float','lure','bottom']);assert.deepEqual(parseSave(JSON.stringify(s)),s);
+ const s=parseSave(JSON.stringify(old));assert.equal(s.version,7);assert.equal(s.coins,123);assert.equal(s.xp,40);assert.deepEqual(s.favorites,['kept']);assert.deepEqual(s.journal,old.journal);assert.equal(s.equipped,'precision');assert.equal(s.tackle.stock.corn,30);assert.deepEqual(s.progression.methods,['pole','float','lure','bottom']);assert.deepEqual(parseSave(JSON.stringify(s)),s);
 });
 test('OU d’accès, défi réalisable avec kit, déblocage permanent et idempotence ; pointe et bois ouverts à haut niveau',()=>{
  const s=emptySave();recordCatch(s,caught('a'));assert.equal(postAccess(s,'reed-bank'),false);recordCatch(s,caught('b'));assert.equal(postAccess(s,'reed-bank'),true);recordCatch(s,caught('b'));assert.equal(s.progression.precision,2);assert.equal(s.total,2);

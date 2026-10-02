@@ -21,7 +21,7 @@ test('Spécimens, photo locale, boutique, filtres et export sans doubler les gai
   expect(stored.total).toBe(5); expect(stored.xp).toBe(seed.xp); expect(stored.coins).toBe(seed.coins - 70); expect(stored.equipped).toBe('balanced'); expect(stored.favorites).toEqual(['known-0']);
   await openMenuPage(page, 'collection-open'); await expect(page.locator('[data-photo="known-0"] img')).toBeVisible();
   await page.screenshot({ path: `test-results/${info.project.name}-journal.png` }); await page.locator('[data-close="collection"]').click();
-  await openMenuPage(page, 'dex-open'); await page.locator('#dex-state').selectOption('playable'); await expect(page.locator('.dex-tile')).toHaveCount(SPECIES.length);
+  await openMenuPage(page, 'dex-open'); await page.locator('#dex-state').selectOption('playable'); await expect(page.locator('.dex-tile')).toHaveCount(SPECIES.filter(s=>s.mode==='capture').length);
   await page.locator('#dex-search').fill('gardon'); await expect(page.locator('.dex-tile')).toHaveCount(1); await page.locator('.dex-tile').click();
   await page.screenshot({ path: `test-results/${info.project.name}-encyclopedia.png` }); expect(errors).toEqual([]);
 });

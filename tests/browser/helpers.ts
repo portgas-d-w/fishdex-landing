@@ -5,10 +5,22 @@ export async function chooseMethod(page:Page,method:string) {
   await page.locator(`[data-choose-method="${method}"]`).click();
 }
 export async function castByGesture(page: Page) {
-  const size = page.viewportSize()!;
-  await page.mouse.move(size.width * 0.45, size.height * 0.80); await page.mouse.down();
-  await page.mouse.move(size.width * 0.45, size.height * 0.45, { steps: 8 }); await page.mouse.up();
+  await timedCastGesture(page,120,.45);
   await expect(page.locator('body')).toHaveAttribute('data-phase', 'casting');
+}
+// Chromium protocol supplies input timestamps, independent of CI/render scheduling.
+// Real pointer handlers still consume every event; this is not a physical-touch test.
+export async function timedCastGesture(page:Page,durationMs:number,xRatio=.5){
+  const size = page.viewportSize()!;
+  await expect(page.locator('dialog[open]')).toHaveCount(0);
+  await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
+  const session=await page.context().newCDPSession(page),start=Date.now()/1000,x=size.width*xRatio;
+  try{
+   await session.send('Input.dispatchMouseEvent',{type:'mousePressed',x,y:size.height*.8,button:'left',buttons:1,clickCount:1,timestamp:start});
+   for(let i=1;i<=12;i++)await session.send('Input.dispatchMouseEvent',{type:'mouseMoved',x,y:size.height*(.8-.35*i/12),button:'left',buttons:1,timestamp:start+durationMs/1000*i/12});
+   await page.waitForTimeout(Math.max(5,(start+durationMs/1000)*1000-Date.now()+5));
+   await session.send('Input.dispatchMouseEvent',{type:'mouseReleased',x,y:size.height*.45,button:'left',buttons:0,clickCount:1,timestamp:start+durationMs/1000+.005});
+  }finally{await session.detach();}
 }
 export async function openMenuPage(page: Page, id: string) {
   if (!await page.locator('#menu').isVisible()) await page.locator('#menu-open').click();

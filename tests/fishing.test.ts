@@ -4,7 +4,7 @@ import { hookFish, manageFight } from './support/combat.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { FishingGame } from '../src/game/fishing.ts';
-import { SPECIES } from '../src/game/catalog.ts';
+import { LEGACY_SPECIES, SPECIES } from '../src/game/catalog.ts';
 import { emptySave, loadSave, parseSave, persistSave, recordCatch } from '../src/game/save.ts';
 
 function advance(game: FishingGame, seconds: number) { for (let i = 0; i < seconds * 60; i++) game.update(1 / 60); }
@@ -20,8 +20,8 @@ test('Les appâts proposés respectent le régime ; espèces absentes jamais sé
  }
 });
 test('Chaque poisson reste accessible avec le kit dans un habitat et une strate adaptés',()=>{
- const found=new Set();for(const spot of ['reeds','open','willow'] as const)for(const method of ['float','bottom','lure'] as const)for(const depth of [.4,1,2,4])for(const fish of SPECIES)if(encounterWeight(fish.id,spot,starterConfig(method),4,depth)>0)found.add(fish.id);
- assert.equal(found.size,SPECIES.length);
+ const found=new Set();for(const spot of ['reeds','open','willow'] as const)for(const method of ['float','bottom','lure'] as const)for(const depth of [.4,1,2,4])for(const fish of SPECIES.filter(f=>LEGACY_SPECIES.some(s=>s.id===f.id)))if(encounterWeight(fish.id,spot,starterConfig(method),4,depth)>0)found.add(fish.id);
+ assert.equal(found.size,LEGACY_SPECIES.length);
 });
 
 test('Ignorer une touche fait perdre le poisson sans enregistrer de prise', () => {

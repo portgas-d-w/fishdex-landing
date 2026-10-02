@@ -53,11 +53,12 @@ const entries = [...rows.values()].map(row => {
     weightA: row.weight_formula_a ?? null, weightB: row.weight_formula_b ?? null,
     sourceImage: hasImage ? imageSource : null };
 });
+const auditOnly = process.env.FISHDEX_AUDIT_ONLY === '1';
 fs.mkdirSync('public/encyclopedia', { recursive: true });
 fs.mkdirSync('.migration', { recursive: true });
 fs.writeFileSync('.migration/illustrations.json', JSON.stringify(entries.filter(e => e.sourceImage).map(e => ({ source: e.sourceImage, target: path.resolve(`public/encyclopedia/${e.id}.webp`) }))));
-const images = spawnSync(process.env.FISHDEX_PYTHON ?? 'python', ['scripts/resize-illustrations.py', '.migration/illustrations.json'], { encoding: 'utf8' });
+const images = auditOnly ? {status:0,stdout:'images non modifiées (audit)',stderr:''} : spawnSync(process.env.FISHDEX_PYTHON ?? 'python', ['scripts/resize-illustrations.py', '.migration/illustrations.json'], { encoding: 'utf8' });
 if (images.status !== 0) throw new Error(images.stderr);
 const output = { provenance: { project: 'FishDex — fichiers locaux du propriétaire, lecture seule', sources, sourceEntries: entries.length, biologicalGroups: groups.size, note: 'Catalogue déclaré dans les fichiers ; état de la base distante non consulté. Variétés regroupées par binôme scientifique.' }, entries: entries.map(({ sourceImage, ...entry }) => entry) };
-fs.writeFileSync('src/game/fishdex.json', JSON.stringify(output, null, 2) + '\n');
+fs.writeFileSync(auditOnly ? '.migration/fishdex-source.json' : 'src/game/fishdex.json', JSON.stringify(output, null, 2) + '\n');
 console.log(`${entries.length} fiches, ${groups.size} groupes biologiques ; ${images.stdout.trim()}`);

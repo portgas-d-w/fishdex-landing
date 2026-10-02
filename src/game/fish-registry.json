@@ -1,0 +1,5354 @@
+{
+  "version": 1,
+  "date": "2026-10-02",
+  "provenance": {
+    "project": "FishDex — fichiers locaux du propriétaire, lecture seule",
+    "sources": [
+      {
+        "file": "data/fishes.ts",
+        "sha256": "66370f65e16e7ab01ce89cfb2866ed7c5be1a0a043f92516a47ce72bd05757a7"
+      },
+      {
+        "file": "src/scripts/seed-new-species.ts",
+        "sha256": "58fefdca478575423d4fc4727c495134ee8a07e917b49aacc523a745e794ac6b"
+      },
+      {
+        "file": "supabase/scripts/seed-species-collections.sql",
+        "sha256": "f81eadef5900364d37cfafd689fc7196c8073d7e0d4c804b665c9f7c79e2f9ef"
+      },
+      {
+        "file": "supabase/migrations/024_species_seed.sql",
+        "sha256": "3d3e129bb302305937c78b9d552302c381ab6fe8588753a5da7e18312b9ccde3"
+      },
+      {
+        "file": "supabase/migrations/025_species_enrichment_complet.sql",
+        "sha256": "edadf415a248d14e90745b8a2324b47a71f957b696f8a9747da46f5e57624885"
+      },
+      {
+        "file": "supabase/migrations/029_species_weight_formula_all.sql",
+        "sha256": "43636406220e9b045f5ec04f9f02ab1bd73182ac58a6448e97848b66b4524a5a"
+      }
+    ],
+    "sourceEntries": 110,
+    "biologicalGroups": 64,
+    "note": "Réconciliation explicite ; 15 IDs et gabarits historiques préservés. Apparences, alias, écotypes, hybrides et records séparés.",
+    "canonicalEntries": 66,
+    "research": [
+      {
+        "file": "assets-source/chantier-poissons-fishdex/catalogues/data/poissons.json",
+        "sha256": "657afab5d915490406c63019011191b64e3c05775f68bf4dcb7c4113eb158602"
+      },
+      {
+        "file": "assets-source/chantier-poissons-fishdex/catalogues/data/apparences.json",
+        "sha256": "ee5448212734e76c165bcb3844d70c70cd4c4f1d2e1cda71dac602a6dab318d1"
+      }
+    ],
+    "additionalSources": [
+      {
+        "id": "doris_gobie",
+        "url": "https://doris.ffessm.fr/Especes/Neogobius-melanostomus-Gobie-a-taches-noires-4043",
+        "consulted": "2026-10-02"
+      },
+      {
+        "id": "fws_walleye",
+        "url": "https://www.fws.gov/species/walleye-sander-vitreus",
+        "consulted": "2026-10-02"
+      },
+      {
+        "id": "ncbi_mandarin",
+        "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=175787",
+        "consulted": "2026-10-02"
+      },
+      {
+        "id": "usgs_koi",
+        "url": "https://nas.er.usgs.gov/queries/FactSheet.aspx?SpeciesID=3294",
+        "consulted": "2026-10-02"
+      },
+      {
+        "id": "ec_ghost",
+        "url": "https://food.ec.europa.eu/system/files/2018-05/ia_standards_oie_eu_position_aahsc-report_201805.pdf",
+        "consulted": "2026-10-02"
+      },
+      {
+        "id": "utah_tiger",
+        "url": "https://wildlife.utah.gov/guidebooks/2024_fishing_guidebook.pdf",
+        "consulted": "2026-10-02"
+      },
+      {
+        "id": "ec_palaea",
+        "url": "https://fish-commercial-names.ec.europa.eu/fish-names/species/coregonus-palaea_pl",
+        "consulted": "2026-10-02"
+      },
+      {
+        "id": "ofb_trutta",
+        "url": "https://ofb.gouv.fr/doc/guide-pour-interpretation-des-ecailles-et-estimation-de-age-chez-la-truite-commune-salmo-trutta",
+        "consulted": "2026-10-02"
+      },
+      {
+        "id": "mandarin_diet",
+        "url": "https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2023.1293342/pdf",
+        "consulted": "2026-10-02"
+      }
+    ],
+    "suppliedSources": [
+      {
+        "id": "bio_ablette",
+        "title": "Ablette — Alburnus alburnus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Alburnus-alburnus-Ablette-1020/%28rOffset%29/2",
+        "coverage": "Alimentation et description",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_aloses",
+        "title": "Aloses — Alosa alosa / fallax",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Alosa-alosa-fallax-Alose-vraie-Alose-feinte-4490",
+        "coverage": "Différence de régime et arrêt de l'alimentation en remontée",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_argentee",
+        "title": "Carpe argentée — Hypophthalmichthys molitrix",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Hypophthalmichthys-molitrix-Carpe-argentee-3428",
+        "coverage": "Filtration du plancton",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_herbivore",
+        "title": "Amour blanc — Ctenopharyngodon idella",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Ctenopharyngodon-idella-Amour-blanc-3888",
+        "coverage": "Alimentation végétale adulte et habitat",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_marbree",
+        "title": "Carpe à grosse tête — Hypophthalmichthys nobilis",
+        "publisher": "FAO",
+        "url": "https://www.fao.org/fishery/docs/CDrom/aquaculture/I1129m/file/fr/fr_bigheadcarp.htm",
+        "coverage": "Profil d'espèce élevée et écologie ; ne pas généraliser élevage et capture sauvage",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_anguille",
+        "title": "Anguille — Anguilla anguilla",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Anguilla-anguilla-Anguille-856",
+        "coverage": "Alimentation et activité crépusculaire",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_apron",
+        "title": "Apron du Rhône — Zingel asper",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Apron-du-Rhone3/%28rOffset%29/11",
+        "coverage": "Habitat et alimentation",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_aspe",
+        "title": "Aspe — Leuciscus aspius",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Leuciscus-aspius-Aspe-2994/%28rOffset%29/0",
+        "coverage": "Prédation près de la surface ; ancien synonyme Aspius aspius",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_barbeau_meridional",
+        "title": "Barbeau méridional — Barbus meridionalis",
+        "publisher": "FishBase",
+        "url": "https://www.fishbase.se/FieldGuide/FieldGuideSummary.php?GenusName=Barbus&SpeciesName=meridionalis&pda=1&sps=",
+        "coverage": "Habitat courant et petits invertébrés ; synthèse référencée",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_barbeau",
+        "title": "Barbeau commun — Barbus barbus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Barbeau-commun3",
+        "coverage": "Invertébrés benthiques",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_bass_petite",
+        "title": "Achigan à petite bouche — Micropterus dolomieu",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Micropterus-dolomieu-Achigan-a-petite-bouche-1502",
+        "coverage": "Habitat rocheux et proies",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_bass",
+        "title": "Achigan à grande bouche — Micropterus salmoides",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Micropterus-salmoides-Achigan-a-grande-bouche-2778/%28rOffset%29/17",
+        "coverage": "Alimentation et activité",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_blageon",
+        "title": "Blageon — Leuciscus souffia, aujourd'hui Telestes souffia",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Leuciscus-souffia-Blageon-2168/%28rOffset%29/0",
+        "coverage": "Compétition de banc et proies en dérive",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_bouviere",
+        "title": "Bouvière — Rhodeus amarus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Rhodeus-amarus-Bouviere-1325/%28rOffset%29/17",
+        "coverage": "Alimentation et lien de reproduction avec les moules",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_bordeliere",
+        "title": "Blicca bjoerkna — alimentation étudiée au lac Balaton",
+        "publisher": "FishBase / Specziár, Tölg et Biró 1997",
+        "url": "https://fishbase.se/TrophicEco/DietCompoSummary.php?dietcode=2139&genusname=Blicca&speciesname=bjoerkna",
+        "coverage": "Composition locale du régime ; ne pas extrapoler les pourcentages à toutes les eaux",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_breme",
+        "title": "Brème commune — Abramis brama",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Abramis-brama-Breme-commune-237/%28rOffset%29/4",
+        "coverage": "Habitat calme et alimentation",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_brochet",
+        "title": "Brochet — Esox lucius",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Esox-lucius-Brochet-366",
+        "coverage": "Chasse à l'affût dans les plantes aquatiques",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_carassins",
+        "title": "Carassins commun, argenté et doré",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Carassius-spp.-Carassin-commun-carassin-argente-et-carassin-dore-2552",
+        "coverage": "Taxons distincts et alimentation commune",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_carpe",
+        "title": "Carpe commune — Cyprinus carpio",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Cyprinus-carpio-Carpe-commune-248/%28rOffset%29/8",
+        "coverage": "Fouille du sédiment, alimentation et formes d'écaillure",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_chabot",
+        "title": "Chabot — Cottus gobio",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Cottus-gobio-Chabot-commun-241",
+        "coverage": "Petits invertébrés benthiques et activité",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_chevesne",
+        "title": "Chevaine — Squalius cephalus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Squalius-cephalus-Chevaine-615",
+        "coverage": "Régime opportuniste variant avec l'âge",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_coregone",
+        "title": "Corégone — Coregonus lavaretus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Coregone3/%28rOffset%29/4",
+        "coverage": "Plancton, insectes et capture visuelle ; identités locales à contrôler",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_cristivomer",
+        "title": "Lake trout — Salvelinus namaycush",
+        "publisher": "U.S. Fish & Wildlife Service",
+        "url": "https://www.fws.gov/species/lake-trout-salvelinus-namaycush",
+        "coverage": "Habitat et profil d'espèce",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_eperlan",
+        "title": "Synopsis of biological data on smelt Osmerus eperlanus",
+        "publisher": "FAO",
+        "url": "https://www.fao.org/4/96024e/96024e.pdf",
+        "coverage": "Synopsis historique ; certains traitements taxonomiques demandent une vérification moderne",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_baeri",
+        "title": "Esturgeon sibérien — Acipenser baerii",
+        "publisher": "FAO",
+        "url": "https://www.fao.org/fishery/docs/CDrom/aquaculture/I1129m/file/fr/fr_acipenser.htm",
+        "coverage": "Profil d'aquaculture ; alimentation d'élevage distincte de la pêche sauvage",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_diamant",
+        "title": "Russian sturgeon — Acipenser gueldenstaedtii",
+        "publisher": "Caspian Environment Programme / IW:LEARN",
+        "url": "https://archive.iwlearn.net/caspianenvironment.org/CaspBIS/Taxons/Taxon8254.html?taxonid=4",
+        "coverage": "Recherche benthique et régime ; fiche historique archivée",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_europeen",
+        "title": "Esturgeon européen — Acipenser sturio",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Acipenser-sturio-Esturgeon-europeen-1321",
+        "coverage": "Vie sur le fond et alimentation",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_gardon",
+        "title": "Gardon — Rutilus rutilus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Rutilus-rutilus-Gardon-289/%28rOffset%29/1",
+        "coverage": "Omnivorie, végétaux adultes et activité de jour",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_goujon",
+        "title": "Goujon — Gobio gobio",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Gobio-gobio-Goujon-363",
+        "coverage": "Invertébrés benthiques et recherche au fond",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_hotu",
+        "title": "Hotu — Chondrostoma nasus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Chondrostoma-nasus-Hotu-2164/%28rOffset%29/8",
+        "coverage": "Raclage de diatomées sur substrat",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_huchon",
+        "title": "Hucho hucho — ecology summary",
+        "publisher": "FishBase",
+        "url": "https://www.fishbase.se/Ecology/Hucho_hucho",
+        "coverage": "Eaux courantes oxygénées et prédation ; synthèse référencée",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_ide",
+        "title": "Ide mélanote — Leuciscus idus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Leuciscus-idus-Ide-melanote-2167/%28rOffset%29/6",
+        "coverage": "Régime variant selon âge et milieu",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_lamproie_planer",
+        "title": "Lamproie de Planer — Lampetra planeri",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Lampetra-planeri-Lamproie-de-Planer-1636",
+        "coverage": "Filtration larvaire puis arrêt de l'alimentation",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_lamproie_fluviatile",
+        "title": "Lamproie de rivière — Lampetra fluviatilis",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Lampetra-fluviatilis-Lamproie-de-riviere-1122",
+        "coverage": "Filtration larvaire et parasitisme adulte",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_loche",
+        "title": "Loche franche — Barbatula barbatula",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Barbatula-barbatula-Loche-franche-269",
+        "coverage": "Petits animaux de fond et recherche nocturne",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_lotte",
+        "title": "Lotte de rivière — Lota lota",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Lota-lota-Lotte-de-riviere-204",
+        "coverage": "Prédation au fond et biologie d'eau froide",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_mulet",
+        "title": "Mulet-porc — Chelon ramada",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Chelon-ramada-Mulet-porc-1985",
+        "coverage": "Omnivorie, biofilm et activité diurne ; ne pas confondre avec Chelon labrosus",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_omble_chevalier",
+        "title": "Omble chevalier — Salvelinus alpinus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Salvelinus-alpinus-Omble-chevalier-1751/%28rOffset%29/18",
+        "coverage": "Eaux fraîches, invertébrés et alevins",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_omble_fontaine",
+        "title": "Omble de fontaine — Salvelinus fontinalis",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Salvelinus-fontinalis-Omble-de-fontaine-1657",
+        "coverage": "Eaux fraîches et invertébrés",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_ombre",
+        "title": "Ombre commun — Thymallus thymallus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Thymallus-thymallus-Ombre-commun-2169/%28rOffset%29/12",
+        "coverage": "Proies du fond et insectes en dérive",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_perche",
+        "title": "Perche — Perca fluviatilis",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Perca-fluviatilis-Perche-330",
+        "coverage": "Bancs, prédation visuelle et évolution du régime",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_soleil",
+        "title": "Perche-soleil — Lepomis gibbosus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Lepomis-gibbosus-Perche-soleil-287/",
+        "coverage": "Petites proies et chasse de jour",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_chat",
+        "title": "Poisson-chat — Ameiurus melas",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Ameiurus-melas-Poisson-chat-990/%28rOffset%29/1",
+        "coverage": "Omnivorie et vie au fond",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_pseudorasbora",
+        "title": "Pseudorasbora parva — ecology",
+        "publisher": "FishBase",
+        "url": "https://www.fishbase.se/Ecology/Pseudorasbora_parva",
+        "coverage": "Alimentation surtout animale ; profil partiel",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_rotengle",
+        "title": "Rotengle — Scardinius erythrophthalmus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Scardinius-erythrophthalmus-Rotengle-1078",
+        "coverage": "Régime omnivore avec tendance végétale adulte",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_sandre",
+        "title": "Sandre — Sander lucioperca",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Sander-lucioperca-Sandre-290",
+        "coverage": "Petits poissons et vision en faible luminosité",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_saumon",
+        "title": "Saumon atlantique — Salmo salar",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Salmo-salar-Saumon-769",
+        "coverage": "Alimentation en mer et arrêt en remontée adulte",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_saumon_roi",
+        "title": "Chinook salmon — Oncorhynchus tshawytscha",
+        "publisher": "NOAA Fisheries",
+        "url": "https://www.fisheries.noaa.gov/species/chinook-salmon",
+        "coverage": "Profil de l'espèce ; contexte nord-américain",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_silure",
+        "title": "Silure glane — Silurus glanis",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Silurus-glanis-Silure-glane-364",
+        "coverage": "Prédation opportuniste et activité surtout nocturne",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_spirlin",
+        "title": "Spirlin — Alburnoides bipunctatus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Alburnoides-bipunctatus-Spirlin-2163",
+        "coverage": "Petites proies en courant et en surface",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_tanche",
+        "title": "Tanche — Tinca tinca",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Tinca-tinca-Tanche-249/%28rOffset%29/15",
+        "coverage": "Recherche de nourriture au fond et activité crépusculaire",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_toxostome",
+        "title": "Toxostome — Parachondrostoma toxostoma",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Toxostome3/%28rOffset%29/fiche_fiche.asp?fiche_numero=2164",
+        "coverage": "Raclage des fonds ; source sous ancien nom Chondrostoma toxostoma",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_arc",
+        "title": "Truite arc-en-ciel — Oncorhynchus mykiss",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Oncorhynchus-mykiss-Truite-arc-en-ciel-2308",
+        "coverage": "Invertébrés, poissons et activité diurne",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_fario",
+        "title": "Truite de rivière — Salmo trutta",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Salmo-trutta-fario-Truite-de-riviere-388/%28rOffset%29/8",
+        "coverage": "Régime variant avec l'âge ; source désigne la forme fario",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_vairon",
+        "title": "Vairon — Phoxinus phoxinus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/Especes/Phoxinus-phoxinus-Vairon-1656",
+        "coverage": "Omnivorie et eaux fraîches ; complexe taxonomique à contrôler",
+        "consulted_on": "2026-10-02"
+      },
+      {
+        "id": "bio_vandoise",
+        "title": "Vandoise — Leuciscus leuciscus",
+        "publisher": "DORIS / FFESSM",
+        "url": "https://doris.ffessm.fr/ref/specie/2166",
+        "coverage": "Profil d'espèce",
+        "consulted_on": "2026-10-02"
+      }
+    ]
+  },
+  "species": [
+    {
+      "id": "roach",
+      "sourceId": "gardon",
+      "number": 1,
+      "name": "Gardon",
+      "latin": "Rutilus rutilus",
+      "min": 12,
+      "max": 38,
+      "strength": 0.7,
+      "color": "#b4c7bc",
+      "description": "Des reflets argentés, des nageoires rouges. Il aime les bordures calmes.",
+      "model": "Roach",
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "eau_calme",
+        "pleine_eau",
+        "herbiers"
+      ],
+      "stratum": "mixed",
+      "post": "cove",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/d19c547984008e48.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": null,
+      "profile": {
+        "id": "gardon",
+        "biological_facts": "Omnivore ; les adultes consomment beaucoup de végétaux. Activité alimentaire surtout diurne et réduite au froid.",
+        "habitats": [
+          "eau_calme",
+          "pleine_eau",
+          "herbiers"
+        ],
+        "diet_tags": [
+          "vegetaux",
+          "insectes",
+          "invertebres"
+        ],
+        "activity": "jour",
+        "archetype": "petit_banc",
+        "attributes": {
+          "burst": 0.39,
+          "endurance": 0.3,
+          "agility": 0.59,
+          "head_shakes": 0.34,
+          "cover_seeking": 0.18,
+          "slack_pressure": 0.56
+        },
+        "source_ids": [
+          "bio_gardon"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Petites touches successives et fuite latérale ; les gros spécimens prolongent le combat sans devenir une autre espèce.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "perch",
+      "sourceId": "perche",
+      "number": 2,
+      "name": "Perche",
+      "latin": "Perca fluviatilis",
+      "min": 15,
+      "max": 45,
+      "strength": 0.95,
+      "color": "#aec286",
+      "description": "Une robe rayée et des démarrages vifs. La roselière est son terrain de chasse.",
+      "model": "EuropeanPerch",
+      "family": "perch",
+      "mode": "capture",
+      "habitats": [
+        "abris",
+        "pleine_eau",
+        "herbiers"
+      ],
+      "stratum": "mixed",
+      "post": "cove",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/7cad0fd2d87141c5.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": null,
+      "profile": {
+        "id": "perche",
+        "biological_facts": "Carnassier souvent en banc, grands sujets plus solitaires ; régime devenant piscivore avec la taille et chasse visuelle.",
+        "habitats": [
+          "abris",
+          "pleine_eau",
+          "herbiers"
+        ],
+        "diet_tags": [
+          "larves",
+          "ecrevisses",
+          "poissons"
+        ],
+        "activity": "jour_aube_crepuscule",
+        "archetype": "carnassier_agile",
+        "attributes": {
+          "burst": 0.62,
+          "endurance": 0.4,
+          "agility": 0.75,
+          "head_shakes": 0.77,
+          "cover_seeking": 0.49,
+          "slack_pressure": 0.74
+        },
+        "source_ids": [
+          "bio_perche"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Succession d'accélérations courtes et secousses rapides ; faible endurance relative mais gros sujets réellement plus forts.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "carp",
+      "sourceId": "carpe-commune",
+      "number": 3,
+      "name": "Carpe",
+      "latin": "Cyprinus carpio",
+      "min": 30,
+      "max": 90,
+      "strength": 1.22,
+      "color": "#ddbb78",
+      "description": "Patiente, puissante. Sous le saule, ses départs mettent le fil à l’épreuve.",
+      "model": "CommonCarp",
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "eau_calme",
+        "vase",
+        "herbiers"
+      ],
+      "stratum": "bottom",
+      "post": "cove",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/ffdc7f190e1b4fac.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": null,
+      "profile": {
+        "id": "carpe-commune",
+        "biological_facts": "Omnivore fouillant le sédiment ; consomme invertébrés et matières végétales. Les formes d'écaillure ne sont pas de nouvelles espèces.",
+        "habitats": [
+          "fond",
+          "eau_calme",
+          "vase",
+          "herbiers"
+        ],
+        "diet_tags": [
+          "invertebres",
+          "graines",
+          "vegetaux"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "cyprinide_puissant",
+        "attributes": {
+          "burst": 0.87,
+          "endurance": 0.9,
+          "agility": 0.46,
+          "head_shakes": 0.41,
+          "cover_seeking": 0.7,
+          "slack_pressure": 0.42
+        },
+        "source_ids": [
+          "bio_carpe"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Longs départs, phases de pression soutenue et relance près de la berge ; prudence variable selon individu.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "pike",
+      "sourceId": "brochet",
+      "number": 4,
+      "name": "Brochet",
+      "latin": "Esox lucius",
+      "min": 40,
+      "max": 110,
+      "strength": 1.35,
+      "color": "#96b594",
+      "description": "Le prédateur de l’étang. Une attaque franche, suivie de brusques accélérations.",
+      "model": "NorthernPike",
+      "family": "pike",
+      "mode": "capture",
+      "habitats": [
+        "herbiers",
+        "abris",
+        "eau_calme"
+      ],
+      "stratum": "mixed",
+      "post": "cove",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/ea3238035462c23f.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": null,
+      "profile": {
+        "id": "brochet",
+        "biological_facts": "Prédateur chassant à l'affût dans les plantes aquatiques ; attaque brusque depuis son couvert.",
+        "habitats": [
+          "herbiers",
+          "abris",
+          "eau_calme"
+        ],
+        "diet_tags": [
+          "poissons"
+        ],
+        "activity": "jour",
+        "archetype": "embuscade",
+        "attributes": {
+          "burst": 0.96,
+          "endurance": 0.66,
+          "agility": 0.73,
+          "head_shakes": 0.92,
+          "cover_seeking": 0.76,
+          "slack_pressure": 0.82
+        },
+        "source_ids": [
+          "bio_brochet"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Premier départ fort, secousses et tentatives de rejoindre un refuge ; protection contre les dents réellement utile.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "zander",
+      "sourceId": "sandre",
+      "number": 5,
+      "name": "Sandre",
+      "latin": "Sander lucioperca",
+      "min": 30,
+      "max": 85,
+      "strength": 1.15,
+      "color": "#b6becb",
+      "description": "Discret dans l’eau profonde, il surprend par ses coups de tête.",
+      "model": "Zander",
+      "family": "perch",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "pleine_eau",
+        "abris"
+      ],
+      "stratum": "bottom",
+      "post": "cove",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/bbcb103742476c68.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": null,
+      "profile": {
+        "id": "sandre",
+        "biological_facts": "Chasse petits poissons et écrevisses ; vision adaptée aux eaux troubles ou peu lumineuses.",
+        "habitats": [
+          "fond",
+          "pleine_eau",
+          "abris"
+        ],
+        "diet_tags": [
+          "poissons",
+          "ecrevisses"
+        ],
+        "activity": "faible_lumiere",
+        "archetype": "carnassier_profond",
+        "attributes": {
+          "burst": 0.69,
+          "endurance": 0.61,
+          "agility": 0.48,
+          "head_shakes": 0.77,
+          "cover_seeking": 0.46,
+          "slack_pressure": 0.65
+        },
+        "source_ids": [
+          "bio_sandre"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Première traction nette, secousses et maintien en profondeur ; le géant reste un gabarit, pas un nouveau taxon.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "bream",
+      "sourceId": "breme-commune",
+      "number": 6,
+      "name": "Brème commune",
+      "latin": "Abramis brama",
+      "min": 20,
+      "max": 75,
+      "strength": 0.95,
+      "color": "#b9ac85",
+      "description": "Un corps haut et aplati. Elle explore les fonds calmes en bancs.",
+      "model": "CommonBream",
+      "family": "bream",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "eau_calme",
+        "vase"
+      ],
+      "stratum": "bottom",
+      "post": "cove",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/e3ae67f9fb61831c.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": null,
+      "profile": {
+        "id": "breme-commune",
+        "biological_facts": "Fréquente les eaux calmes ou lentes ; consomme notamment insectes, crustacés, mollusques et plantes.",
+        "habitats": [
+          "fond",
+          "eau_calme",
+          "vase"
+        ],
+        "diet_tags": [
+          "larves",
+          "invertebres",
+          "vegetaux"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "benthique_lent",
+        "attributes": {
+          "burst": 0.3,
+          "endurance": 0.48,
+          "agility": 0.23,
+          "head_shakes": 0.25,
+          "cover_seeking": 0.15,
+          "slack_pressure": 0.51
+        },
+        "source_ids": [
+          "bio_breme"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Résistance lourde et régulière, mouvements de flanc et accalmies lisibles.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "tench",
+      "sourceId": "tanche",
+      "number": 7,
+      "name": "Tanche",
+      "latin": "Tinca tinca",
+      "min": 20,
+      "max": 60,
+      "strength": 1.1,
+      "color": "#9caa68",
+      "description": "Une robe olive et de petites écailles. Elle fréquente la végétation du bord.",
+      "model": "Tench",
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "vase",
+        "herbiers",
+        "eau_calme"
+      ],
+      "stratum": "bottom",
+      "post": "cove",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/e7d3e4dc77bad138.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": null,
+      "profile": {
+        "id": "tanche",
+        "biological_facts": "Omnivore fouillant vase et herbiers ; recherche de nourriture accrue au crépuscule et la nuit.",
+        "habitats": [
+          "fond",
+          "vase",
+          "herbiers",
+          "eau_calme"
+        ],
+        "diet_tags": [
+          "invertebres",
+          "larves"
+        ],
+        "activity": "crepuscule_nuit",
+        "archetype": "cyprinide_puissant",
+        "attributes": {
+          "burst": 0.56,
+          "endurance": 0.75,
+          "agility": 0.34,
+          "head_shakes": 0.36,
+          "cover_seeking": 0.89,
+          "slack_pressure": 0.38
+        },
+        "source_ids": [
+          "bio_tanche"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Résistance lourde en cercles et recherche d'herbiers proposées ; les touches peuvent demander une lecture fine du flotteur.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "rudd",
+      "sourceId": "rotengle",
+      "number": 8,
+      "name": "Rotengle",
+      "latin": "Scardinius erythrophthalmus",
+      "min": 12,
+      "max": 40,
+      "strength": 0.72,
+      "color": "#c7b98e",
+      "description": "Nageoires rouges et bouche tournée vers la surface. Cherchez près des herbiers.",
+      "model": "Rudd",
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "herbiers",
+        "surface",
+        "eau_calme"
+      ],
+      "stratum": "mixed",
+      "post": "cove",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/5151fdd31aa18dab.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": null,
+      "profile": {
+        "id": "rotengle",
+        "biological_facts": "Omnivore avec préférence végétale plus marquée chez les adultes ; alimentation réduite au froid.",
+        "habitats": [
+          "herbiers",
+          "surface",
+          "eau_calme"
+        ],
+        "diet_tags": [
+          "vegetaux",
+          "insectes",
+          "invertebres"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "petit_banc",
+        "attributes": {
+          "burst": 0.42,
+          "endurance": 0.37,
+          "agility": 0.64,
+          "head_shakes": 0.33,
+          "cover_seeking": 0.54,
+          "slack_pressure": 0.6
+        },
+        "source_ids": [
+          "bio_rotengle"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Touches hautes proposées et fuite vers les herbiers ; distinguer sa présentation préférée de celle du gardon.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "bleak",
+      "sourceId": "ablette",
+      "number": 9,
+      "name": "Ablette",
+      "latin": "Alburnus alburnus",
+      "min": 10,
+      "max": 25,
+      "strength": 0.55,
+      "color": "#c8d8d4",
+      "description": "Petite silhouette argentée, elle anime la surface en bancs.",
+      "model": "Bleak",
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "surface",
+        "pleine_eau",
+        "eau_calme"
+      ],
+      "stratum": "surface",
+      "post": "cove",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/22bf56ff9c3d4b07.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": null,
+      "profile": {
+        "id": "ablette",
+        "biological_facts": "Omnivore de petite taille consommant invertébrés et débris végétaux.",
+        "habitats": [
+          "surface",
+          "pleine_eau",
+          "eau_calme"
+        ],
+        "diet_tags": [
+          "insectes",
+          "petits_invertebres"
+        ],
+        "activity": "jour",
+        "archetype": "petit_banc",
+        "attributes": {
+          "burst": 0.3,
+          "endurance": 0.16,
+          "agility": 0.7,
+          "head_shakes": 0.25,
+          "cover_seeking": 0.1,
+          "slack_pressure": 0.6
+        },
+        "source_ids": [
+          "bio_ablette"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Touches rapides et fuite latérale courte ; combat bref mais mou possible au rapprochement.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "crucian",
+      "sourceId": "carassin",
+      "number": 10,
+      "name": "Carassin commun",
+      "latin": "Carassius carassius",
+      "min": 15,
+      "max": 45,
+      "strength": 0.82,
+      "color": "#c3a176",
+      "description": "Un corps trapu aux reflets bronze, à l’aise dans les eaux lentes.",
+      "model": "CrucianCarp",
+      "family": "bream",
+      "mode": "capture",
+      "habitats": [
+        "eau_calme",
+        "herbiers",
+        "fond"
+      ],
+      "stratum": "mixed",
+      "post": "cove",
+      "rarity": "rare",
+      "image": "/fishdex-assets/42986f5bf257ff27.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": null,
+      "profile": {
+        "id": "carassin",
+        "biological_facts": "Omnivore de milieux calmes consommant végétaux et invertébrés, notamment larves de chironomes.",
+        "habitats": [
+          "eau_calme",
+          "herbiers",
+          "fond"
+        ],
+        "diet_tags": [
+          "vegetaux",
+          "larves",
+          "invertebres"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "cyprinide_moyen",
+        "attributes": {
+          "burst": 0.35,
+          "endurance": 0.47,
+          "agility": 0.35,
+          "head_shakes": 0.33,
+          "cover_seeking": 0.37,
+          "slack_pressure": 0.44
+        },
+        "source_ids": [
+          "bio_carassins"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Touches discrètes proposées et fuite vers la végétation ; pas de puissance augmentée par une coloration.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "whitebream",
+      "sourceId": "breme-bordeliere",
+      "number": 11,
+      "name": "Brème bordelière",
+      "latin": "Blicca bjoerkna",
+      "min": 15,
+      "max": 36,
+      "strength": 0.75,
+      "color": "#c6c6aa",
+      "description": "Plus petite et argentée que la brème commune, avec de grands yeux.",
+      "model": "WhiteBream",
+      "family": "bream",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "eau_calme"
+      ],
+      "stratum": "bottom",
+      "post": "cove",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/d638b8f0778d87d2.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": null,
+      "profile": {
+        "id": "breme-bordeliere",
+        "biological_facts": "Une étude au lac Balaton décrit un régime comprenant mollusques, crustacés et insectes ; proportions non généralisées.",
+        "habitats": [
+          "fond",
+          "eau_calme"
+        ],
+        "diet_tags": [
+          "mollusques",
+          "invertebres",
+          "larves"
+        ],
+        "activity": "a_documenter",
+        "archetype": "benthique_lent",
+        "attributes": {
+          "burst": 0.25,
+          "endurance": 0.38,
+          "agility": 0.31,
+          "head_shakes": 0.28,
+          "cover_seeking": 0.12,
+          "slack_pressure": 0.5
+        },
+        "source_ids": [
+          "bio_bordeliere"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Traction modérée et mouvements latéraux ; peu de sauts, récupération accessible au matériel léger.",
+        "research_status": "partial"
+      }
+    },
+    {
+      "id": "gudgeon",
+      "sourceId": "goujon",
+      "number": 12,
+      "name": "Goujon",
+      "latin": "Gobio gobio",
+      "min": 8,
+      "max": 20,
+      "strength": 0.58,
+      "color": "#acb396",
+      "description": "Un petit poisson de fond, reconnaissable à ses barbillons et ses taches.",
+      "model": "Gudgeon",
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "riviere_courante",
+        "gravier"
+      ],
+      "stratum": "bottom",
+      "post": "river",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/df1309fff294bdd3.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": null,
+      "profile": {
+        "id": "goujon",
+        "biological_facts": "Fouille le fond pour consommer larves, crustacés, vers et mollusques.",
+        "habitats": [
+          "fond",
+          "riviere_courante",
+          "gravier"
+        ],
+        "diet_tags": [
+          "larves",
+          "invertebres",
+          "vers"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "petit_benthique",
+        "attributes": {
+          "burst": 0.23,
+          "endurance": 0.23,
+          "agility": 0.35,
+          "head_shakes": 0.21,
+          "cover_seeking": 0.41,
+          "slack_pressure": 0.35
+        },
+        "source_ids": [
+          "bio_goujon"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Touches basses et courtes résistances près du fond ; le complexe de goujons doit être confirmé dans le catalogue source.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "chub",
+      "sourceId": "chevesne",
+      "number": 13,
+      "name": "Chevesne",
+      "latin": "Squalius cephalus",
+      "min": 20,
+      "max": 65,
+      "strength": 1.02,
+      "color": "#b8c3a4",
+      "description": "Omnivore opportuniste, il suit aussi les petits leurres sous les arbres.",
+      "model": "Chub",
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "riviere_courante",
+        "abris",
+        "surface"
+      ],
+      "stratum": "mixed",
+      "post": "river",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/548b9cf0bdafbc15.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": null,
+      "profile": {
+        "id": "chevesne",
+        "biological_facts": "Régime opportuniste : invertébrés, matières végétales puis davantage de petits poissons chez les grands individus.",
+        "habitats": [
+          "riviere_courante",
+          "abris",
+          "surface"
+        ],
+        "diet_tags": [
+          "insectes",
+          "graines",
+          "poissons"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "opportuniste_riviere",
+        "attributes": {
+          "burst": 0.72,
+          "endurance": 0.58,
+          "agility": 0.71,
+          "head_shakes": 0.54,
+          "cover_seeking": 0.65,
+          "slack_pressure": 0.68
+        },
+        "source_ids": [
+          "bio_chevesne"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Premier départ rapide depuis la bordure puis résistance latérale ; bonus au choix de présentation, pas à une canne magique.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "ide",
+      "sourceId": "ide-melanote",
+      "number": 14,
+      "name": "Ide mélanote",
+      "latin": "Leuciscus idus",
+      "min": 20,
+      "max": 60,
+      "strength": 0.98,
+      "color": "#bbba95",
+      "description": "Un poisson au dos sombre et aux flancs argentés. Il chasse parfois en surface.",
+      "model": "Ide",
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "riviere_courante",
+        "eau_calme",
+        "pleine_eau"
+      ],
+      "stratum": "mixed",
+      "post": "river",
+      "rarity": "rare",
+      "image": "/fishdex-assets/761393dfd96e9918.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": null,
+      "profile": {
+        "id": "ide-melanote",
+        "biological_facts": "Les jeunes consomment beaucoup de végétaux ; les adultes prennent invertébrés et parfois petits poissons.",
+        "habitats": [
+          "riviere_courante",
+          "eau_calme",
+          "pleine_eau"
+        ],
+        "diet_tags": [
+          "insectes",
+          "invertebres",
+          "vegetaux",
+          "poissons"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "opportuniste_riviere",
+        "attributes": {
+          "burst": 0.63,
+          "endurance": 0.61,
+          "agility": 0.6,
+          "head_shakes": 0.38,
+          "cover_seeking": 0.38,
+          "slack_pressure": 0.54
+        },
+        "source_ids": [
+          "bio_ide"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Fuite en pleine eau plus soutenue qu'un gardon ; varier l'intérêt pour petites esches et artificiels selon le gabarit.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "catfish",
+      "sourceId": "silure-glane",
+      "number": 15,
+      "name": "Silure glane",
+      "latin": "Silurus glanis",
+      "min": 50,
+      "max": 160,
+      "strength": 1.48,
+      "color": "#919c83",
+      "description": "Sans écailles, avec de longs barbillons. Ses départs lourds demandent une main calme.",
+      "model": "WelsCatfish",
+      "family": "catfish",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "abris",
+        "pleine_eau"
+      ],
+      "stratum": "bottom",
+      "post": "cove",
+      "rarity": "rare",
+      "image": "/fishdex-assets/6286dab784ca1add.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": null,
+      "profile": {
+        "id": "silure-glane",
+        "biological_facts": "Prédateur opportuniste surtout nocturne, consommant poissons et autres animaux ; les jeunes prennent de petits invertébrés.",
+        "habitats": [
+          "fond",
+          "abris",
+          "pleine_eau"
+        ],
+        "diet_tags": [
+          "poissons",
+          "invertebres"
+        ],
+        "activity": "nuit_crepuscule",
+        "archetype": "grand_benthique",
+        "attributes": {
+          "burst": 0.9,
+          "endurance": 0.98,
+          "agility": 0.3,
+          "head_shakes": 0.49,
+          "cover_seeking": 0.8,
+          "slack_pressure": 0.36
+        },
+        "source_ids": [
+          "bio_silure"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Forte pression prolongée, larges virages et plongées ; aucune vitesse maximale exagérée dérivée de sa taille seule.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "gobie",
+      "sourceId": "gobie",
+      "number": 16,
+      "name": "Gobie",
+      "latin": "Neogobius melanostomus",
+      "min": 8,
+      "max": 25,
+      "strength": 0.73,
+      "color": "#8e8468",
+      "description": "Un poisson de fond à tête large, deux dorsales et une tache sombre sur la première.",
+      "model": null,
+      "family": "goby",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "roches",
+        "riviere_courante"
+      ],
+      "stratum": "bottom",
+      "post": "river",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/dea7c7b9e07e1b50.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.004,
+        3.1
+      ],
+      "profile": {
+        "id": "gobie",
+        "biological_facts": "Gobie à taches noires identifié par le binôme de l’app. Poisson benthique associé aux substrats et abris.",
+        "habitats": [
+          "fond",
+          "roches",
+          "riviere_courante"
+        ],
+        "diet_tags": [
+          "invertebres_benthiques",
+          "invertebres",
+          "alevins"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "petit_benthique",
+        "attributes": {
+          "burst": 0.23,
+          "endurance": 0.23,
+          "agility": 0.35,
+          "head_shakes": 0.21,
+          "cover_seeking": 0.41,
+          "slack_pressure": 0.35
+        },
+        "source_ids": [
+          "doris_gobie"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Touches basses et courtes résistances près du fond ; le complexe de goujons doit être confirmé dans le catalogue source.",
+        "research_status": "identity_completed_combat_proposal"
+      }
+    },
+    {
+      "id": "vairon",
+      "sourceId": "vairon",
+      "number": 17,
+      "name": "Vairon",
+      "latin": "Phoxinus phoxinus",
+      "min": 5,
+      "max": 14,
+      "strength": 0.7050000000000001,
+      "color": "#b7c2a2",
+      "description": "Petit poisson grégaire des eaux vives, le vairon arbore de superbes couleurs de noces au printemps : ventre rouge orangé, flancs verdâtres, points dorés. Compagnon habituel de la truite, sa présence indique des eaux froides et oxygénées.",
+      "model": "EuropeanMinnow",
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "riviere_courante",
+        "bordure",
+        "lac_froid"
+      ],
+      "stratum": "mixed",
+      "post": "river",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/4286f6befbd04259.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.01,
+        3.04
+      ],
+      "profile": {
+        "id": "vairon",
+        "biological_facts": "Petit omnivore d'eaux fraîches consommant animaux aquatiques, insectes et matières végétales.",
+        "habitats": [
+          "riviere_courante",
+          "bordure",
+          "lac_froid"
+        ],
+        "diet_tags": [
+          "insectes",
+          "invertebres",
+          "vegetaux"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "petit_banc",
+        "attributes": {
+          "burst": 0.27,
+          "endurance": 0.14,
+          "agility": 0.66,
+          "head_shakes": 0.24,
+          "cover_seeking": 0.41,
+          "slack_pressure": 0.54
+        },
+        "source_ids": [
+          "bio_vairon"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Combat très bref et petites oscillations ; taxon local à confirmer au lieu de forcer tous les vairons dans un seul nom.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "anguille-europeenne",
+      "sourceId": "anguille-europeenne",
+      "number": 18,
+      "name": "Anguille européenne",
+      "latin": "Anguilla anguilla",
+      "min": 36,
+      "max": 150,
+      "strength": 1.13,
+      "color": "#82947c",
+      "description": "Cycle de vie mystérieux : née dans la mer des Sargasses, l'anguille migre vers les côtes européennes, remonte les fleuves, vit jusqu'à 30 ans en eau douce, puis retourne mourir en mer. Espèce en danger critique, sa population a chuté de 95% en 30 ans.",
+      "model": "EuropeanEel",
+      "family": "eel",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "abris",
+        "eau_calme"
+      ],
+      "stratum": "bottom",
+      "post": "cove",
+      "rarity": "rare",
+      "image": "/fishdex-assets/8cdac4cd7bd69005.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.0011,
+        3.05
+      ],
+      "profile": {
+        "id": "anguille-europeenne",
+        "biological_facts": "Chasse au crépuscule ; consomme invertébrés et poissons. Certaines phases migratoires ne sont plus alimentaires.",
+        "habitats": [
+          "fond",
+          "abris",
+          "eau_calme"
+        ],
+        "diet_tags": [
+          "vers",
+          "invertebres",
+          "poissons"
+        ],
+        "activity": "crepuscule_nuit",
+        "archetype": "benthique_sinueux",
+        "attributes": {
+          "burst": 0.56,
+          "endurance": 0.7,
+          "agility": 0.7,
+          "head_shakes": 0.54,
+          "cover_seeking": 0.91,
+          "slack_pressure": 0.5
+        },
+        "source_ids": [
+          "bio_anguille"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Cherche les abris et oppose des tractions sinueuses ; ne pas confondre avec les départs rectilignes d'un prédateur pélagique.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "barbeau",
+      "sourceId": "barbeau",
+      "number": 19,
+      "name": "Barbeau",
+      "latin": "Barbus barbus",
+      "min": 15,
+      "max": 90,
+      "strength": 1.3599999999999999,
+      "color": "#b7c2a2",
+      "description": "Puissant cyprinidé des rivières courantes à fond graveleux, reconnaissable à ses quatre barbillons. Combat acharné.",
+      "model": "Barbel",
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "riviere_courante",
+        "gravier"
+      ],
+      "stratum": "bottom",
+      "post": "river",
+      "rarity": "rare",
+      "image": "/fishdex-assets/0a8dae2685dc8508.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.007,
+        3.11
+      ],
+      "profile": {
+        "id": "barbeau",
+        "biological_facts": "Se nourrit surtout d'invertébrés benthiques ; les grands adultes peuvent consommer de petits poissons.",
+        "habitats": [
+          "fond",
+          "riviere_courante",
+          "gravier"
+        ],
+        "diet_tags": [
+          "larves",
+          "invertebres",
+          "poissons"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "rheophile",
+        "attributes": {
+          "burst": 0.78,
+          "endurance": 0.94,
+          "agility": 0.42,
+          "head_shakes": 0.36,
+          "cover_seeking": 0.6,
+          "slack_pressure": 0.33
+        },
+        "source_ids": [
+          "bio_barbeau"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Tient le fond et exploite le courant ; longs efforts et récupération progressive.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "black-bass",
+      "sourceId": "black-bass",
+      "number": 20,
+      "name": "Black-bass à grande bouche",
+      "latin": "Micropterus salmoides",
+      "min": 21,
+      "max": 80,
+      "strength": 1.225,
+      "color": "#a1ad72",
+      "description": "Originaire d'Amérique du Nord, le black-bass est un prédateur athlétique et combatif. Introduit en France au début du XXe siècle, il reste localisé dans certaines régions du sud et de l'ouest.",
+      "model": null,
+      "family": "perch",
+      "mode": "capture",
+      "habitats": [
+        "herbiers",
+        "abris",
+        "eau_calme"
+      ],
+      "stratum": "mixed",
+      "post": "cove",
+      "rarity": "rare",
+      "image": "/fishdex-assets/c50fcdcf9fe9900a.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.012,
+        3
+      ],
+      "profile": {
+        "id": "black-bass",
+        "biological_facts": "Carnivore opportuniste consommant poissons et autres proies animales ; chasse notamment de jour.",
+        "habitats": [
+          "herbiers",
+          "abris",
+          "eau_calme"
+        ],
+        "diet_tags": [
+          "poissons",
+          "ecrevisses",
+          "insectes"
+        ],
+        "activity": "jour",
+        "archetype": "carnassier_agile",
+        "attributes": {
+          "burst": 0.84,
+          "endurance": 0.61,
+          "agility": 0.83,
+          "head_shakes": 0.92,
+          "cover_seeking": 0.88,
+          "slack_pressure": 0.87
+        },
+        "source_ids": [
+          "bio_bass"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Départs courts vers les couverts, secousses et sauts occasionnels ; faibles marges de mou dans ces phases.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "carassin-dore",
+      "sourceId": "carassin-dore",
+      "number": 21,
+      "name": "Carassin doré",
+      "latin": "Carassius auratus",
+      "min": 9,
+      "max": 45,
+      "strength": 0.91,
+      "color": "#baa882",
+      "description": "Originaire d'Asie, le carassin doré (ancêtre du poisson rouge) s'est largement naturalisé en France. Sa robe varie du bronze sombre à l'orange vif. Très rustique, il colonise les eaux les moins hospitalières.",
+      "model": null,
+      "family": "bream",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "herbiers",
+        "eau_calme"
+      ],
+      "stratum": "bottom",
+      "post": "cove",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/244425b10ed1e158.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.0316,
+        2.92
+      ],
+      "profile": {
+        "id": "carassin-dore",
+        "biological_facts": "Omnivore ; taxon distinct du carassin commun et du carassin argenté, même lorsque la coloration varie.",
+        "habitats": [
+          "fond",
+          "herbiers",
+          "eau_calme"
+        ],
+        "diet_tags": [
+          "invertebres",
+          "vegetaux"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "cyprinide_benthique",
+        "attributes": {
+          "burst": 0.4,
+          "endurance": 0.42,
+          "agility": 0.43,
+          "head_shakes": 0.3,
+          "cover_seeking": 0.5,
+          "slack_pressure": 0.4
+        },
+        "source_ids": [
+          "bio_carassins"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Petites tractions latérales et pauses ; l'image carassin-doré doit confirmer ce taxon avant rattachement définitif.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "lotte",
+      "sourceId": "lotte",
+      "number": 22,
+      "name": "Lotte de rivière",
+      "latin": "Lota lota",
+      "min": 24,
+      "max": 100,
+      "strength": 1.105,
+      "color": "#b7c2a2",
+      "description": "Seul gadidé exclusivement d'eau douce, la lotte est un poisson de l'ombre et du froid. Activité nocturne, reproduction sous la glace : c'est une espèce mystérieuse. Quasi disparue de France, elle subsiste dans quelques lacs alpins et le Doubs.",
+      "model": "Burbot",
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "abris",
+        "lac_froid"
+      ],
+      "stratum": "bottom",
+      "post": "cold-lake",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/4abae800c4ddf8a6.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.012,
+        3
+      ],
+      "profile": {
+        "id": "lotte",
+        "biological_facts": "Adulte carnassier consommant poissons et petits animaux de fond ; biologie associée aux eaux froides.",
+        "habitats": [
+          "fond",
+          "abris",
+          "lac_froid"
+        ],
+        "diet_tags": [
+          "poissons",
+          "invertebres"
+        ],
+        "activity": "a_documenter",
+        "archetype": "benthique_sinueux",
+        "attributes": {
+          "burst": 0.46,
+          "endurance": 0.75,
+          "agility": 0.41,
+          "head_shakes": 0.43,
+          "cover_seeking": 0.83,
+          "slack_pressure": 0.4
+        },
+        "source_ids": [
+          "bio_lotte"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Reste basse, traction lourde et tentatives de rejoindre les abris ; proposer une activité accrue de nuit à tester.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "perche-soleil",
+      "sourceId": "perche-soleil",
+      "number": 23,
+      "name": "Perche soleil",
+      "latin": "Lepomis gibbosus",
+      "min": 7,
+      "max": 30,
+      "strength": 0.8200000000000001,
+      "color": "#a1ad72",
+      "description": "Originaire d'Amérique du Nord, la perche soleil a été introduite comme poisson d'aquarium au XIXe siècle. Aujourd'hui invasive, elle colonise les eaux calmes. Aux couleurs vives malgré tout — bleu, orange, vert iridescent.",
+      "model": null,
+      "family": "perch",
+      "mode": "capture",
+      "habitats": [
+        "bordure",
+        "herbiers",
+        "eau_calme"
+      ],
+      "stratum": "mixed",
+      "post": "cove",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/c4f2fc217badc69b.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.0231,
+        3.07
+      ],
+      "profile": {
+        "id": "perche-soleil",
+        "biological_facts": "Chasse à vue de jour ; consomme de petites proies aquatiques variées.",
+        "habitats": [
+          "bordure",
+          "herbiers",
+          "eau_calme"
+        ],
+        "diet_tags": [
+          "larves",
+          "insectes",
+          "petits_invertebres"
+        ],
+        "activity": "jour",
+        "archetype": "petit_territorial",
+        "attributes": {
+          "burst": 0.37,
+          "endurance": 0.27,
+          "agility": 0.57,
+          "head_shakes": 0.45,
+          "cover_seeking": 0.47,
+          "slack_pressure": 0.54
+        },
+        "source_ids": [
+          "bio_soleil"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Touches brèves près des bordures et petits virages serrés ; pas de longue lutte pour un minuscule poisson.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "truite-arc-en-ciel",
+      "sourceId": "truite-arc-en-ciel",
+      "number": 24,
+      "name": "Truite arc-en-ciel",
+      "latin": "Oncorhynchus mykiss",
+      "min": 18,
+      "max": 100,
+      "strength": 1.22,
+      "color": "#8fa99c",
+      "description": "Originaire du Pacifique nord-américain, la truite arc-en-ciel est largement introduite en France. Reconnaissable à sa bande latérale rose iridescente, elle est moins méfiante que la fario et combat plus violemment.",
+      "model": "RainbowTrout",
+      "family": "salmon",
+      "mode": "capture",
+      "habitats": [
+        "riviere_courante",
+        "lac_froid",
+        "pleine_eau"
+      ],
+      "stratum": "mixed",
+      "post": "river",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/b1142daba89544fb.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.0082,
+        3.08
+      ],
+      "profile": {
+        "id": "truite-arc-en-ciel",
+        "biological_facts": "Consomme invertébrés et petites proies animales ; recherche alimentaire principalement diurne.",
+        "habitats": [
+          "riviere_courante",
+          "lac_froid",
+          "pleine_eau"
+        ],
+        "diet_tags": [
+          "invertebres",
+          "insectes",
+          "poissons"
+        ],
+        "activity": "jour",
+        "archetype": "salmonide_agile",
+        "attributes": {
+          "burst": 0.79,
+          "endurance": 0.65,
+          "agility": 0.88,
+          "head_shakes": 0.79,
+          "cover_seeking": 0.38,
+          "slack_pressure": 0.85
+        },
+        "source_ids": [
+          "bio_arc"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Changements de direction rapides et sauts pondérés ; pâte à truite liée aux lieux adaptés, pas appât naturel universel.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "aspe",
+      "sourceId": "aspe",
+      "number": 25,
+      "name": "Aspe",
+      "latin": "Leuciscus aspius",
+      "min": 30,
+      "max": 120,
+      "strength": 1.335,
+      "color": "#b7c2a2",
+      "description": "Curiosité de la nature : l'aspe est un cyprinidé piscivore. Introduit en France via le Rhin, il chasse en surface par poursuites énergiques, spécialiste des ablettes. Sa pêche au leurre se développe.",
+      "model": "Asp",
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "surface",
+        "riviere_courante",
+        "pleine_eau"
+      ],
+      "stratum": "surface",
+      "post": "river",
+      "rarity": "rare",
+      "image": "/fishdex-assets/1b100fada16b8387.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.0052,
+        3.16
+      ],
+      "profile": {
+        "id": "aspe",
+        "biological_facts": "L'adulte chasse surtout de petits poissons près de la surface ; les jeunes ont un régime plus invertébré.",
+        "habitats": [
+          "surface",
+          "riviere_courante",
+          "pleine_eau"
+        ],
+        "diet_tags": [
+          "poissons",
+          "insectes"
+        ],
+        "activity": "jour",
+        "archetype": "chasseur_rapide",
+        "attributes": {
+          "burst": 0.95,
+          "endurance": 0.72,
+          "agility": 0.85,
+          "head_shakes": 0.46,
+          "cover_seeking": 0.2,
+          "slack_pressure": 0.73
+        },
+        "source_ids": [
+          "bio_aspe"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Départ très rapide, longues traversées et retour vers le joueur pouvant produire du mou.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "carpe-koi",
+      "sourceId": "carpe-koi",
+      "number": 26,
+      "name": "Carpe koï",
+      "latin": "Cyprinus rubrofuscus",
+      "min": 18,
+      "max": 75,
+      "strength": 1.385,
+      "color": "#b7c2a2",
+      "description": "Carpe ornementale japonaise aux couleurs vives, très prisée en bassin et parfois pêchée en eaux libres.",
+      "model": null,
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "eau_calme",
+        "vase",
+        "herbiers"
+      ],
+      "stratum": "bottom",
+      "post": "managed",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/fa51cdfa5222d0e0.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.012,
+        3
+      ],
+      "profile": {
+        "id": "carpe-koi",
+        "biological_facts": "Koï domestique rattaché au Cyprinus rubrofuscus déclaré dans l’app et distingué de C. carpio.",
+        "habitats": [
+          "fond",
+          "eau_calme",
+          "vase",
+          "herbiers"
+        ],
+        "diet_tags": [
+          "invertebres",
+          "graines",
+          "vegetaux"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "cyprinide_puissant",
+        "attributes": {
+          "burst": 0.87,
+          "endurance": 0.9,
+          "agility": 0.46,
+          "head_shakes": 0.41,
+          "cover_seeking": 0.7,
+          "slack_pressure": 0.42
+        },
+        "source_ids": [
+          "usgs_koi"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Longs départs, phases de pression soutenue et relance près de la berge ; prudence variable selon individu.",
+        "research_status": "identity_completed_combat_proposal"
+      }
+    },
+    {
+      "id": "esturgeon-diamant",
+      "sourceId": "esturgeon-diamant",
+      "number": 27,
+      "name": "Esturgeon diamant",
+      "latin": "Acipenser gueldenstaedtii",
+      "min": 36,
+      "max": 200,
+      "strength": 1.315,
+      "color": "#a8ada1",
+      "description": "Aussi appelé esturgeon russe, fournit le célèbre caviar Osciètre. Très prisé en pêche spécialisée.",
+      "model": null,
+      "family": "sturgeon",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "estuaire"
+      ],
+      "stratum": "bottom",
+      "post": "managed",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/338cdeca72307b48.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.0022,
+        3.18
+      ],
+      "profile": {
+        "id": "esturgeon-diamant",
+        "biological_facts": "Recherche la nourriture sur le fond grâce aux barbillons ; les mollusques font partie de son régime adulte.",
+        "habitats": [
+          "fond",
+          "estuaire"
+        ],
+        "diet_tags": [
+          "mollusques",
+          "invertebres"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "grand_benthique",
+        "attributes": {
+          "burst": 0.67,
+          "endurance": 0.96,
+          "agility": 0.24,
+          "head_shakes": 0.25,
+          "cover_seeking": 0.15,
+          "slack_pressure": 0.35
+        },
+        "source_ids": [
+          "bio_diamant"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Résistance régulière et lourde ; accès proposé en lieu aménagé, sans confondre avec l'esturgeon européen.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "esturgeon-siberien",
+      "sourceId": "esturgeon-siberien",
+      "number": 28,
+      "name": "Esturgeon sibérien",
+      "latin": "Acipenser baerii",
+      "min": 30,
+      "max": 200,
+      "strength": 1.325,
+      "color": "#a8ada1",
+      "description": "Poisson préhistorique au corps couvert de scutelles osseuses. Présent en eaux fermées ornementales.",
+      "model": null,
+      "family": "sturgeon",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "eau_calme",
+        "riviere_courante"
+      ],
+      "stratum": "bottom",
+      "post": "managed",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/2d2601d1985f57ed.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.002,
+        3.2
+      ],
+      "profile": {
+        "id": "esturgeon-siberien",
+        "biological_facts": "Profil FAO d'une espèce élevée en aquaculture ; les pellets d'élevage ne constituent pas une preuve d'appât universel.",
+        "habitats": [
+          "fond",
+          "eau_calme",
+          "riviere_courante"
+        ],
+        "diet_tags": [
+          "invertebres"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "grand_benthique",
+        "attributes": {
+          "burst": 0.7,
+          "endurance": 0.95,
+          "agility": 0.29,
+          "head_shakes": 0.28,
+          "cover_seeking": 0.17,
+          "slack_pressure": 0.39
+        },
+        "source_ids": [
+          "bio_baeri"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Longue traction au fond et virages larges ; envisager d'abord un lieu de pêche aménagé cohérent.",
+        "research_status": "partial"
+      }
+    },
+    {
+      "id": "truite-fario",
+      "sourceId": "truite-fario",
+      "number": 29,
+      "name": "Truite fario",
+      "latin": "Salmo trutta",
+      "min": 15,
+      "max": 80,
+      "strength": 1.235,
+      "color": "#8fa99c",
+      "description": "Reine des rivières françaises, la truite fario est la forme sédentaire de Salmo trutta. Sa robe, constellée de points rouges et noirs, varie selon les rivières. Méfiante, vue perçante, elle exige précision et discrétion.",
+      "model": "BrownTrout",
+      "family": "salmon",
+      "mode": "capture",
+      "habitats": [
+        "riviere_courante",
+        "abris",
+        "lac_froid"
+      ],
+      "stratum": "mixed",
+      "post": "river",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/ed43d51bcdfb72ca.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.0074,
+        3.1
+      ],
+      "profile": {
+        "id": "truite-fario",
+        "biological_facts": "Le profil de rivière consomme invertébrés et davantage de poissons avec l'âge ; contexte lac/mer à documenter séparément.",
+        "habitats": [
+          "riviere_courante",
+          "abris",
+          "lac_froid"
+        ],
+        "diet_tags": [
+          "invertebres",
+          "insectes",
+          "poissons"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "salmonide_agile",
+        "attributes": {
+          "burst": 0.8,
+          "endurance": 0.67,
+          "agility": 0.79,
+          "head_shakes": 0.73,
+          "cover_seeking": 0.83,
+          "slack_pressure": 0.77
+        },
+        "source_ids": [
+          "bio_fario",
+          "ofb_trutta"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Départ vers les caches, retour dans le courant et secousses ; profil de rivière ne suffit pas aux formes migratrices et lacustres.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "ombre",
+      "sourceId": "ombre",
+      "number": 30,
+      "name": "Ombre commun",
+      "latin": "Thymallus thymallus",
+      "min": 21,
+      "max": 60,
+      "strength": 1.105,
+      "color": "#8fa99c",
+      "description": "Reconnaissable à sa grande nageoire dorsale colorée comme un voile et son odeur de thym à la sortie de l'eau, l'ombre commun vit dans des rivières d'une qualité d'eau remarquable. Sa pêche à la mouche est un art.",
+      "model": "Grayling",
+      "family": "salmon",
+      "mode": "capture",
+      "habitats": [
+        "riviere_courante",
+        "fond",
+        "surface"
+      ],
+      "stratum": "mixed",
+      "post": "river",
+      "rarity": "rare",
+      "image": "/fishdex-assets/518a9e4b54410fbb.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.012,
+        3
+      ],
+      "profile": {
+        "id": "ombre",
+        "biological_facts": "Consomme de petites proies du fond et en dérive ; peut gober les insectes émergents.",
+        "habitats": [
+          "riviere_courante",
+          "fond",
+          "surface"
+        ],
+        "diet_tags": [
+          "insectes",
+          "larves",
+          "invertebres"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "rheophile",
+        "attributes": {
+          "burst": 0.54,
+          "endurance": 0.67,
+          "agility": 0.66,
+          "head_shakes": 0.51,
+          "cover_seeking": 0.22,
+          "slack_pressure": 0.62
+        },
+        "source_ids": [
+          "bio_ombre"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Résistance dans la veine d'eau et virages larges ; touches sur dérive naturelle plutôt que gros leurres automatiques.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "amour-argente",
+      "sourceId": "amour-argente",
+      "number": 31,
+      "name": "Carpe amour argenté",
+      "latin": "Hypophthalmichthys molitrix",
+      "min": 36,
+      "max": 130,
+      "strength": 1.21,
+      "color": "#b7c2a2",
+      "description": "Originaire d'Asie du Sud-Est, l'amour argenté filtre le plancton par ses branchiospines. Introduit pour contrôler le phytoplancton, il atteint des tailles impressionnantes. Sa capture reste un défi confidentiel en France.",
+      "model": "SilverCarp",
+      "family": "cyprinid",
+      "mode": "observation",
+      "habitats": [
+        "pleine_eau",
+        "eau_calme"
+      ],
+      "stratum": "mixed",
+      "post": "cove",
+      "rarity": "rare",
+      "image": "/fishdex-assets/60de6b68fe247c22.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.012,
+        3
+      ],
+      "profile": {
+        "id": "amour-argente",
+        "biological_facts": "Filtre surtout le phytoplancton, avec d'autres petites particules alimentaires.",
+        "habitats": [
+          "pleine_eau",
+          "eau_calme"
+        ],
+        "diet_tags": [
+          "phytoplancton",
+          "plancton"
+        ],
+        "activity": "selon_temperature",
+        "archetype": "filtreur",
+        "attributes": {
+          "burst": 0.72,
+          "endurance": 0.7,
+          "agility": 0.53,
+          "head_shakes": 0.4,
+          "cover_seeking": 0.1,
+          "slack_pressure": 0.42
+        },
+        "source_ids": [
+          "bio_argentee"
+        ],
+        "discovery_mode": "observation",
+        "combat_proposal": "Découverte visuelle d'abord ; aucun combat classique activé sans mécanique de capture documentée.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "amour-blanc",
+      "sourceId": "amour-blanc",
+      "number": 32,
+      "name": "Amour blanc",
+      "latin": "Ctenopharyngodon idella",
+      "min": 36,
+      "max": 150,
+      "strength": 1.3,
+      "color": "#b7c2a2",
+      "description": "Originaire de Chine, l'amour blanc a été introduit pour son rôle de débroussailleur naturel : il consomme jusqu'à son poids en végétation par jour. Reconnaissable à son corps allongé et sa tête volumineuse.",
+      "model": "GrassCarp",
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "herbiers",
+        "eau_calme"
+      ],
+      "stratum": "mixed",
+      "post": "cove",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/3404134cb0b75bc3.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.0067,
+        3.12
+      ],
+      "profile": {
+        "id": "amour-blanc",
+        "biological_facts": "L'adulte consomme principalement des végétaux aquatiques ; jeunes et adultes ont des régimes différents.",
+        "habitats": [
+          "herbiers",
+          "eau_calme"
+        ],
+        "diet_tags": [
+          "vegetaux",
+          "graines"
+        ],
+        "activity": "selon_temperature",
+        "archetype": "cyprinide_puissant",
+        "attributes": {
+          "burst": 0.84,
+          "endurance": 0.76,
+          "agility": 0.52,
+          "head_shakes": 0.45,
+          "cover_seeking": 0.54,
+          "slack_pressure": 0.47
+        },
+        "source_ids": [
+          "bio_herbivore"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Départ puissant, récupération possible puis nouveau départ près du bord ; variation individuelle importante.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "amour-marbre",
+      "sourceId": "amour-marbre",
+      "number": 33,
+      "name": "Carpe marbré",
+      "latin": "Hypophthalmichthys nobilis",
+      "min": 42,
+      "max": 150,
+      "strength": 1.22,
+      "color": "#b7c2a2",
+      "description": "Plus grand des poissons du genre Hypophthalmichthys, la carpe marbré se reconnaît à sa robe grise marbrée et sa tête volumineuse. Présente très discrètement en France, sa capture y est un événement rare.",
+      "model": null,
+      "family": "cyprinid",
+      "mode": "observation",
+      "habitats": [
+        "pleine_eau",
+        "eau_calme"
+      ],
+      "stratum": "mixed",
+      "post": "cove",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/caf5659dd9babc57.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.012,
+        3
+      ],
+      "profile": {
+        "id": "amour-marbre",
+        "biological_facts": "Espèce filtrante dont le zooplancton occupe une place importante dans l'alimentation.",
+        "habitats": [
+          "pleine_eau",
+          "eau_calme"
+        ],
+        "diet_tags": [
+          "zooplancton",
+          "plancton"
+        ],
+        "activity": "selon_temperature",
+        "archetype": "filtreur",
+        "attributes": {
+          "burst": 0.62,
+          "endurance": 0.82,
+          "agility": 0.38,
+          "head_shakes": 0.26,
+          "cover_seeking": 0.08,
+          "slack_pressure": 0.32
+        },
+        "source_ids": [
+          "bio_marbree"
+        ],
+        "discovery_mode": "observation",
+        "combat_proposal": "Profil visible en collection ; capture spécialisée future, sans préférence universelle pour les bouillettes.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "silure-mandarin",
+      "sourceId": "silure-mandarin",
+      "number": 34,
+      "name": "Silure mandarin",
+      "latin": "Leiocassis longirostris",
+      "min": 25,
+      "max": 90,
+      "strength": 1.44,
+      "color": "#8d987a",
+      "description": "Un silure asiatique fuselé, muni de barbillons et d’une nageoire adipeuse.",
+      "model": null,
+      "family": "catfish",
+      "mode": "capture",
+      "habitats": [
+        "riviere_asie",
+        "fond",
+        "abris"
+      ],
+      "stratum": "bottom",
+      "post": "asian",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/5d8124857a6c2d2c.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.0621,
+        2.73
+      ],
+      "profile": {
+        "id": "silure-mandarin",
+        "biological_facts": "Le binôme Leiocassis longirostris de l’app résout le nom ambigu. Le parcours utilise un bassin asiatique séparé.",
+        "habitats": [
+          "riviere_asie",
+          "fond",
+          "abris"
+        ],
+        "diet_tags": [
+          "poissons",
+          "invertebres_benthiques"
+        ],
+        "activity": "nuit_crepuscule",
+        "archetype": "grand_benthique",
+        "attributes": {
+          "burst": 0.9,
+          "endurance": 0.98,
+          "agility": 0.3,
+          "head_shakes": 0.49,
+          "cover_seeking": 0.8,
+          "slack_pressure": 0.36
+        },
+        "source_ids": [
+          "ncbi_mandarin",
+          "mandarin_diet"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Forte pression prolongée, larges virages et plongées ; aucune vitesse maximale exagérée dérivée de sa taille seule.",
+        "research_status": "identity_completed_combat_proposal"
+      }
+    },
+    {
+      "id": "truite-tiger",
+      "sourceId": "truite-tiger",
+      "number": 35,
+      "name": "Truite tiger",
+      "latin": "Salmo trutta × Salvelinus fontinalis",
+      "min": 18,
+      "max": 65,
+      "strength": 1.235,
+      "color": "#8fa99c",
+      "description": "Hybride de truite commune et d’omble de fontaine, reconnaissable à ses motifs sombres réticulés.",
+      "model": null,
+      "family": "salmon",
+      "mode": "capture",
+      "habitats": [
+        "riviere_courante",
+        "abris",
+        "lac_froid"
+      ],
+      "stratum": "mixed",
+      "post": "managed",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/e59847d37eca48ae.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "hybrid",
+      "weight": [
+        0.0082,
+        3.08
+      ],
+      "profile": {
+        "id": "truite-tiger",
+        "biological_facts": "Hybride truite commune × omble de fontaine. La désignation scientifique de l’app a été corrigée avec une source officielle.",
+        "habitats": [
+          "riviere_courante",
+          "abris",
+          "lac_froid"
+        ],
+        "diet_tags": [
+          "invertebres",
+          "insectes",
+          "poissons"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "salmonide_agile",
+        "attributes": {
+          "burst": 0.8,
+          "endurance": 0.67,
+          "agility": 0.79,
+          "head_shakes": 0.73,
+          "cover_seeking": 0.83,
+          "slack_pressure": 0.77
+        },
+        "source_ids": [
+          "utah_tiger"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Départ vers les caches, retour dans le courant et secousses ; profil de rivière ne suffit pas aux formes migratrices et lacustres.",
+        "research_status": "identity_completed_combat_proposal"
+      }
+    },
+    {
+      "id": "carpe-ghost",
+      "sourceId": "carpe-ghost",
+      "number": 36,
+      "name": "Carpe ghost",
+      "latin": "Cyprinus carpio × Cyprinus rubrofuscus",
+      "min": 25,
+      "max": 85,
+      "strength": 1.385,
+      "color": "#b7c2a2",
+      "description": "Croisement unique entre carpe commune et koï, robe métallisée fantomatique aux reflets nacrés.",
+      "model": null,
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "eau_calme",
+        "vase",
+        "herbiers"
+      ],
+      "stratum": "bottom",
+      "post": "managed",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/8e8112bc1ac17b27.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "hybrid",
+      "weight": [
+        0.0149,
+        2.99
+      ],
+      "profile": {
+        "id": "carpe-ghost",
+        "biological_facts": "Hybride domestique Cyprinus carpio × Cyprinus rubrofuscus ; entrée hybride, sans le compter comme espèce biologique.",
+        "habitats": [
+          "fond",
+          "eau_calme",
+          "vase",
+          "herbiers"
+        ],
+        "diet_tags": [
+          "invertebres",
+          "graines",
+          "vegetaux"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "cyprinide_puissant",
+        "attributes": {
+          "burst": 0.87,
+          "endurance": 0.9,
+          "agility": 0.46,
+          "head_shakes": 0.41,
+          "cover_seeking": 0.7,
+          "slack_pressure": 0.42
+        },
+        "source_ids": [
+          "ec_ghost"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Longs départs, phases de pression soutenue et relance près de la berge ; prudence variable selon individu.",
+        "research_status": "identity_completed_combat_proposal"
+      }
+    },
+    {
+      "id": "spirlin",
+      "sourceId": "spirlin",
+      "number": 37,
+      "name": "Spirlin",
+      "latin": "Alburnoides bipunctatus",
+      "min": 6,
+      "max": 16,
+      "strength": 0.8200000000000001,
+      "color": "#b7c2a2",
+      "description": "Petit cyprinidé d'eaux vives, le spirlin se reconnaît à la ligne sombre qui parcourt ses flancs. Indicateur d'eaux de qualité, il colonise les zones à truite. Sa présence témoigne de la santé écologique d'un cours d'eau.",
+      "model": null,
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "riviere_courante",
+        "pleine_eau",
+        "surface"
+      ],
+      "stratum": "mixed",
+      "post": "river",
+      "rarity": "rare",
+      "image": "/fishdex-assets/363f7c66f1f6f66b.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.009,
+        3.05
+      ],
+      "profile": {
+        "id": "spirlin",
+        "biological_facts": "Se nourrit de petites proies transportées par le courant et d'insectes pris en surface.",
+        "habitats": [
+          "riviere_courante",
+          "pleine_eau",
+          "surface"
+        ],
+        "diet_tags": [
+          "insectes",
+          "petits_invertebres",
+          "algues"
+        ],
+        "activity": "jour",
+        "archetype": "petit_banc",
+        "attributes": {
+          "burst": 0.38,
+          "endurance": 0.26,
+          "agility": 0.73,
+          "head_shakes": 0.29,
+          "cover_seeking": 0.16,
+          "slack_pressure": 0.62
+        },
+        "source_ids": [
+          "bio_spirlin"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Toucher bref pendant la dérive puis fuite courte dans le courant.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "bouviere",
+      "sourceId": "bouviere",
+      "number": 38,
+      "name": "Bouvière",
+      "latin": "Rhodeus amarus",
+      "min": 4,
+      "max": 10,
+      "strength": 0.64,
+      "color": "#b7c2a2",
+      "description": "Petit cyprinidé aux couleurs irisées, la bouvière dépend d'un partenaire inattendu pour sa reproduction : la moule d'eau douce. La femelle pond ses œufs dans le siphon de la moule. Cette symbiose unique en fait une espèce vulnérable.",
+      "model": "EuropeanBitterling",
+      "family": "cyprinid",
+      "mode": "observation",
+      "habitats": [
+        "eau_calme",
+        "herbiers"
+      ],
+      "stratum": "mixed",
+      "post": "cove",
+      "rarity": "rare",
+      "image": "/fishdex-assets/babc565419acedd0.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.025,
+        2.97
+      ],
+      "profile": {
+        "id": "bouviere",
+        "biological_facts": "Alimentation surtout végétale complétée par de petits invertébrés ; reproduction associée à des moules d'eau douce.",
+        "habitats": [
+          "eau_calme",
+          "herbiers"
+        ],
+        "diet_tags": [
+          "vegetaux",
+          "phytoplancton",
+          "larves"
+        ],
+        "activity": "a_documenter",
+        "archetype": "petit_banc",
+        "attributes": {
+          "burst": 0.16,
+          "endurance": 0.12,
+          "agility": 0.42,
+          "head_shakes": 0.18,
+          "cover_seeking": 0.34,
+          "slack_pressure": 0.47
+        },
+        "source_ids": [
+          "bio_bouviere"
+        ],
+        "discovery_mode": "observation",
+        "combat_proposal": "Observation près des plantes et moules ; espèce de découverte, sans combat spectaculaire artificiel.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "poisson-chat",
+      "sourceId": "poisson-chat",
+      "number": 39,
+      "name": "Poisson-chat",
+      "latin": "Ameiurus melas",
+      "min": 6,
+      "max": 35,
+      "strength": 0.895,
+      "color": "#8d987a",
+      "description": "Espèce introduite d'Amérique du Nord, reconnaissable à ses 8 barbillons. Espèce invasive tolérante à la pollution.",
+      "model": "BlackBullhead",
+      "family": "catfish",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "vase",
+        "eau_calme"
+      ],
+      "stratum": "bottom",
+      "post": "cove",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/93a54d09d4fd25e9.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.014,
+        3.12
+      ],
+      "profile": {
+        "id": "poisson-chat",
+        "biological_facts": "Omnivore de fond consommant de nombreuses ressources animales et végétales ; activité surtout nocturne.",
+        "habitats": [
+          "fond",
+          "vase",
+          "eau_calme"
+        ],
+        "diet_tags": [
+          "vers",
+          "invertebres",
+          "vegetaux"
+        ],
+        "activity": "nuit",
+        "archetype": "benthique_lent",
+        "attributes": {
+          "burst": 0.34,
+          "endurance": 0.45,
+          "agility": 0.29,
+          "head_shakes": 0.37,
+          "cover_seeking": 0.61,
+          "slack_pressure": 0.36
+        },
+        "source_ids": [
+          "bio_chat"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Résistance basse et régulière ; ne pas le rendre aussi puissant qu'un grand silure à poids comparable sans justification.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "vandoise",
+      "sourceId": "vandoise",
+      "number": 40,
+      "name": "Vandoise",
+      "latin": "Leuciscus leuciscus",
+      "min": 12,
+      "max": 40,
+      "strength": 0.875,
+      "color": "#b7c2a2",
+      "description": "Cyprinidé élancé aux flancs argentés, la vandoise vit dans les rivières propres à courant modéré. Plus farouche que le gardon, elle gobe les insectes en surface comme une truite. Sa présence indique une qualité d'eau supérieure à la moyenne.",
+      "model": "Dace",
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "riviere_courante",
+        "pleine_eau"
+      ],
+      "stratum": "mixed",
+      "post": "river",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/663afb36c573b7de.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.0074,
+        3.15
+      ],
+      "profile": {
+        "id": "vandoise",
+        "biological_facts": "Poisson de rivière traité dans la fiche DORIS ; alimentation précise à compléter dans le profil d'intégration.",
+        "habitats": [
+          "riviere_courante",
+          "pleine_eau"
+        ],
+        "diet_tags": [
+          "insectes",
+          "invertebres"
+        ],
+        "activity": "a_documenter",
+        "archetype": "petit_banc",
+        "attributes": {
+          "burst": 0.42,
+          "endurance": 0.33,
+          "agility": 0.66,
+          "head_shakes": 0.31,
+          "cover_seeking": 0.18,
+          "slack_pressure": 0.55
+        },
+        "source_ids": [
+          "bio_vandoise"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Petite fuite dans le courant et touche en dérive ; préférences initiales de jeu à confirmer.",
+        "research_status": "partial"
+      }
+    },
+    {
+      "id": "loche-franche",
+      "sourceId": "loche-franche",
+      "number": 41,
+      "name": "Loche franche",
+      "latin": "Barbatula barbatula",
+      "min": 5,
+      "max": 18,
+      "strength": 0.72,
+      "color": "#a1966b",
+      "description": "Petit poisson benthique à l'aspect serpentiforme, avec 6 barbillons. Indicateur de bonne qualité d'eau.",
+      "model": null,
+      "family": "loach",
+      "mode": "observation",
+      "habitats": [
+        "fond",
+        "roches",
+        "riviere_courante"
+      ],
+      "stratum": "bottom",
+      "post": "river",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/69d406ae721b1447.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.004,
+        3.1
+      ],
+      "profile": {
+        "id": "loche-franche",
+        "biological_facts": "Recherche de nuit de petits animaux vivant sur le fond, à l'aide de ses barbillons.",
+        "habitats": [
+          "fond",
+          "roches",
+          "riviere_courante"
+        ],
+        "diet_tags": [
+          "larves",
+          "vers",
+          "invertebres"
+        ],
+        "activity": "nuit",
+        "archetype": "petit_benthique",
+        "attributes": {
+          "burst": 0.2,
+          "endurance": 0.24,
+          "agility": 0.32,
+          "head_shakes": 0.25,
+          "cover_seeking": 0.87,
+          "slack_pressure": 0.33
+        },
+        "source_ids": [
+          "bio_loche"
+        ],
+        "discovery_mode": "observation",
+        "combat_proposal": "Petits déplacements entre les pierres ; découverte naturaliste proposée plutôt que combat surdimensionné.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "chabot",
+      "sourceId": "chabot",
+      "number": 42,
+      "name": "Chabot commun",
+      "latin": "Cottus gobio",
+      "min": 5,
+      "max": 16,
+      "strength": 0.72,
+      "color": "#8e8468",
+      "description": "Petit poisson de fond aux yeux saillants et à la grosse tête, le chabot vit caché sous les pierres des ruisseaux frais. Sa présence indique des eaux d'excellente qualité. Espèce d'intérêt patrimonial européen.",
+      "model": "EuropeanBullhead",
+      "family": "goby",
+      "mode": "observation",
+      "habitats": [
+        "fond",
+        "roches",
+        "riviere_courante"
+      ],
+      "stratum": "bottom",
+      "post": "river",
+      "rarity": "rare",
+      "image": "/fishdex-assets/5ece89132c98094e.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.0085,
+        3.16
+      ],
+      "profile": {
+        "id": "chabot",
+        "biological_facts": "Chasse de petits invertébrés du fond ; les œufs et larves de poissons ne sont pas sa nourriture habituelle selon la référence.",
+        "habitats": [
+          "fond",
+          "roches",
+          "riviere_courante"
+        ],
+        "diet_tags": [
+          "invertebres",
+          "larves"
+        ],
+        "activity": "aube_crepuscule",
+        "archetype": "petit_benthique",
+        "attributes": {
+          "burst": 0.25,
+          "endurance": 0.19,
+          "agility": 0.29,
+          "head_shakes": 0.3,
+          "cover_seeking": 0.91,
+          "slack_pressure": 0.35
+        },
+        "source_ids": [
+          "bio_chabot"
+        ],
+        "discovery_mode": "observation",
+        "combat_proposal": "Petits déplacements entre les pierres ; découverte par observation proposée.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "carassin-argente",
+      "sourceId": "carassin-argente",
+      "number": 43,
+      "name": "Carassin argenté",
+      "latin": "Carassius gibelio",
+      "min": 9,
+      "max": 45,
+      "strength": 0.92,
+      "color": "#baa882",
+      "description": "Cousin envahissant du carassin, à la livrée argentée. Espèce très résistante, capable de reproduction parthénogénétique.",
+      "model": "PrussianCarp",
+      "family": "bream",
+      "mode": "capture",
+      "habitats": [
+        "eau_calme",
+        "fond",
+        "herbiers"
+      ],
+      "stratum": "mixed",
+      "post": "cove",
+      "rarity": "rare",
+      "image": "/fishdex-assets/83aaa579f8a223c0.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.0316,
+        2.92
+      ],
+      "profile": {
+        "id": "carassin-argente",
+        "biological_facts": "Taxon distinct du carassin commun ; omnivore consommant végétaux, détritus et petits invertébrés.",
+        "habitats": [
+          "eau_calme",
+          "fond",
+          "herbiers"
+        ],
+        "diet_tags": [
+          "vegetaux",
+          "larves",
+          "invertebres"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "cyprinide_moyen",
+        "attributes": {
+          "burst": 0.39,
+          "endurance": 0.45,
+          "agility": 0.44,
+          "head_shakes": 0.34,
+          "cover_seeking": 0.29,
+          "slack_pressure": 0.46
+        },
+        "source_ids": [
+          "bio_carassins"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Départs courts répétés et résistance moyenne ; la taille fait varier la difficulté.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "hotu",
+      "sourceId": "hotu",
+      "number": 44,
+      "name": "Hotu",
+      "latin": "Chondrostoma nasus",
+      "min": 18,
+      "max": 55,
+      "strength": 1.1600000000000001,
+      "color": "#b7c2a2",
+      "description": "Reconnaissable à son museau pointu et sa bouche infère adaptée au broutage des pierres, le hotu vit en bancs serrés dans les eaux vives. Il racle inlassablement le biofilm algal des fonds caillouteux.",
+      "model": "CommonNase",
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "riviere_courante",
+        "gravier"
+      ],
+      "stratum": "bottom",
+      "post": "river",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/b1060328d10b49be.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.0133,
+        2.99
+      ],
+      "profile": {
+        "id": "hotu",
+        "biological_facts": "Broute les diatomées fixées aux cailloux et galets ; les jeunes sont moins spécialisés.",
+        "habitats": [
+          "fond",
+          "riviere_courante",
+          "gravier"
+        ],
+        "diet_tags": [
+          "algues",
+          "micro_invertebres"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "rheophile",
+        "attributes": {
+          "burst": 0.56,
+          "endurance": 0.76,
+          "agility": 0.39,
+          "head_shakes": 0.27,
+          "cover_seeking": 0.28,
+          "slack_pressure": 0.4
+        },
+        "source_ids": [
+          "bio_hotu"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Traction dans le courant et déplacements bas ; éviter de le traiter comme un carnassier au shad.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "toxostome",
+      "sourceId": "toxostome",
+      "number": 45,
+      "name": "Toxostome",
+      "latin": "Parachondrostoma toxostoma",
+      "min": 9,
+      "max": 35,
+      "strength": 0.9299999999999999,
+      "color": "#b7c2a2",
+      "description": "Espèce endémique des rivières du sud de la France, en déclin. Reconnaissable à sa bouche arquée en forme de 'toxo'.",
+      "model": null,
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "riviere_courante",
+        "gravier"
+      ],
+      "stratum": "bottom",
+      "post": "river",
+      "rarity": "rare",
+      "image": "/fishdex-assets/cbd5eb43e7cda6bf.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.012,
+        3
+      ],
+      "profile": {
+        "id": "toxostome",
+        "biological_facts": "Racle algues et diatomées des substrats et consomme des micro-invertébrés associés.",
+        "habitats": [
+          "fond",
+          "riviere_courante",
+          "gravier"
+        ],
+        "diet_tags": [
+          "algues",
+          "micro_invertebres"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "rheophile",
+        "attributes": {
+          "burst": 0.37,
+          "endurance": 0.49,
+          "agility": 0.41,
+          "head_shakes": 0.23,
+          "cover_seeking": 0.26,
+          "slack_pressure": 0.39
+        },
+        "source_ids": [
+          "bio_toxostome"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Petite résistance de fond ; acquisition d'une fiche par observation possible avant une technique ciblée.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "black-bass-petite-bouche",
+      "sourceId": "black-bass-petite-bouche",
+      "number": 46,
+      "name": "Black-bass à petite bouche",
+      "latin": "Micropterus dolomieu",
+      "min": 12,
+      "max": 50,
+      "strength": 1.305,
+      "color": "#a1ad72",
+      "description": "Cousin du black-bass, préférant les eaux claires et courantes. Combattant acharné, très apprécié en pêche sportive.",
+      "model": null,
+      "family": "perch",
+      "mode": "capture",
+      "habitats": [
+        "roches",
+        "riviere_courante",
+        "pleine_eau"
+      ],
+      "stratum": "mixed",
+      "post": "american",
+      "rarity": "rare",
+      "image": "/fishdex-assets/6d630a32b98e403f.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.0135,
+        3.15
+      ],
+      "profile": {
+        "id": "black-bass-petite-bouche",
+        "biological_facts": "Recherche notamment les zones rocheuses ; régime carnivore incluant écrevisses, insectes et poissons.",
+        "habitats": [
+          "roches",
+          "riviere_courante",
+          "pleine_eau"
+        ],
+        "diet_tags": [
+          "ecrevisses",
+          "poissons",
+          "insectes"
+        ],
+        "activity": "jour_crepuscule",
+        "archetype": "carnassier_agile",
+        "attributes": {
+          "burst": 0.86,
+          "endurance": 0.75,
+          "agility": 0.9,
+          "head_shakes": 0.88,
+          "cover_seeking": 0.56,
+          "slack_pressure": 0.86
+        },
+        "source_ids": [
+          "bio_bass_petite"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Combinaison de déplacements vifs et secousses ; les sauts restent des événements pondérés de gameplay.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "grande-alose",
+      "sourceId": "grande-alose",
+      "number": 47,
+      "name": "Grande alose",
+      "latin": "Alosa alosa",
+      "min": 18,
+      "max": 75,
+      "strength": 1.2349999999999999,
+      "color": "#b7c2a2",
+      "description": "Migrateur anadrôme spectaculaire remontant les grands fleuves pour frayer. Pêche en période de migration au primtemps.",
+      "model": null,
+      "family": "cyprinid",
+      "mode": "observation",
+      "habitats": [
+        "estuaire",
+        "riviere_migratoire"
+      ],
+      "stratum": "mixed",
+      "post": "estuary",
+      "rarity": "rare",
+      "image": "/fishdex-assets/c19df0278973ba3a.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.0063,
+        3.06
+      ],
+      "profile": {
+        "id": "grande-alose",
+        "biological_facts": "Consomme principalement du zooplancton en mer ; arrête de s'alimenter pendant la remontée reproductrice.",
+        "habitats": [
+          "estuaire",
+          "riviere_migratoire"
+        ],
+        "diet_tags": [
+          "zooplancton",
+          "plancton"
+        ],
+        "activity": "selon_stade",
+        "archetype": "migrateur",
+        "attributes": {
+          "burst": 0.73,
+          "endurance": 0.74,
+          "agility": 0.71,
+          "head_shakes": 0.65,
+          "cover_seeking": 0.1,
+          "slack_pressure": 0.7
+        },
+        "source_ids": [
+          "bio_aloses"
+        ],
+        "discovery_mode": "observation",
+        "combat_proposal": "Espèce distincte de l'alose feinte ; observation et approche spécialiste à définir avant capture.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "alose-feinte",
+      "sourceId": "alose-feinte",
+      "number": 48,
+      "name": "Alose feinte",
+      "latin": "Alosa fallax",
+      "min": 12,
+      "max": 55,
+      "strength": 1.195,
+      "color": "#b7c2a2",
+      "description": "Plus petite que la grande alose, elle remonte également les fleuves côtiers. Protégée dans de nombreux pays.",
+      "model": null,
+      "family": "cyprinid",
+      "mode": "observation",
+      "habitats": [
+        "estuaire",
+        "riviere_migratoire"
+      ],
+      "stratum": "mixed",
+      "post": "estuary",
+      "rarity": "rare",
+      "image": "/fishdex-assets/fa4234c253fee87b.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.0063,
+        3.08
+      ],
+      "profile": {
+        "id": "alose-feinte",
+        "biological_facts": "Adulte principalement piscivore en mer ; cesse de se nourrir lors de la remontée reproductrice.",
+        "habitats": [
+          "estuaire",
+          "riviere_migratoire"
+        ],
+        "diet_tags": [
+          "poissons",
+          "plancton"
+        ],
+        "activity": "selon_stade",
+        "archetype": "migrateur",
+        "attributes": {
+          "burst": 0.76,
+          "endurance": 0.63,
+          "agility": 0.78,
+          "head_shakes": 0.66,
+          "cover_seeking": 0.1,
+          "slack_pressure": 0.73
+        },
+        "source_ids": [
+          "bio_aloses"
+        ],
+        "discovery_mode": "observation",
+        "combat_proposal": "Départs rapides et changements de direction ; réaction aux artificiels distincte de la faim en remontée.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "saumon-atlantique",
+      "sourceId": "saumon-atlantique",
+      "number": 49,
+      "name": "Saumon atlantique",
+      "latin": "Salmo salar",
+      "min": 42,
+      "max": 150,
+      "strength": 1.425,
+      "color": "#8fa99c",
+      "description": "Roi des salmonidés français, le saumon atlantique est devenu rare. Il naît en rivière, descend en mer pour grandir, puis revient sur sa rivière natale pour se reproduire. En France, il survit dans une poignée de rivières bretonnes et basques.",
+      "model": null,
+      "family": "salmon",
+      "mode": "observation",
+      "habitats": [
+        "riviere_migratoire",
+        "estuaire"
+      ],
+      "stratum": "mixed",
+      "post": "estuary",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/0d8259c24891cb02.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.0062,
+        3.11
+      ],
+      "profile": {
+        "id": "saumon-atlantique",
+        "biological_facts": "Les adultes se nourrissent en mer et cessent de s'alimenter lors du retour dans leur rivière.",
+        "habitats": [
+          "riviere_migratoire",
+          "estuaire"
+        ],
+        "diet_tags": [
+          "poissons",
+          "invertebres"
+        ],
+        "activity": "selon_stade",
+        "archetype": "migrateur",
+        "attributes": {
+          "burst": 0.91,
+          "endurance": 0.94,
+          "agility": 0.84,
+          "head_shakes": 0.73,
+          "cover_seeking": 0.22,
+          "slack_pressure": 0.8
+        },
+        "source_ids": [
+          "bio_saumon"
+        ],
+        "discovery_mode": "observation",
+        "combat_proposal": "Longs départs et changements de profondeur ; réaction aux artificiels en remontée séparée de l'attraction alimentaire.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "huchon",
+      "sourceId": "huchon",
+      "number": 50,
+      "name": "Huchon",
+      "latin": "Hucho hucho",
+      "min": 48,
+      "max": 150,
+      "strength": 1.415,
+      "color": "#8fa99c",
+      "description": "Plus grand salmonidé d'Europe, le huchon (ou saumon du Danube) a été introduit en France dans les années 50 dans la rivière les Usses (Haute-Savoie). Présence aujourd'hui anecdotique voire éteinte localement.",
+      "model": "Huchen",
+      "family": "salmon",
+      "mode": "capture",
+      "habitats": [
+        "riviere_courante",
+        "abris",
+        "fond"
+      ],
+      "stratum": "mixed",
+      "post": "river",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/a6d8e3bf3f68a433.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.006,
+        3.08
+      ],
+      "profile": {
+        "id": "huchon",
+        "biological_facts": "Salmonidé d'eau courante froide et oxygénée ; prédateur de grandes proies animales selon la synthèse.",
+        "habitats": [
+          "riviere_courante",
+          "abris",
+          "fond"
+        ],
+        "diet_tags": [
+          "poissons"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "grand_rheophile",
+        "attributes": {
+          "burst": 0.9,
+          "endurance": 0.93,
+          "agility": 0.54,
+          "head_shakes": 0.67,
+          "cover_seeking": 0.58,
+          "slack_pressure": 0.65
+        },
+        "source_ids": [
+          "bio_huchon"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Départ lourd et soutenu dans le courant ; lieu et matériel spécialisé requis avant activation.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "omble-chevalier",
+      "sourceId": "omble-chevalier",
+      "number": 51,
+      "name": "Omble chevalier",
+      "latin": "Salvelinus alpinus",
+      "min": 24,
+      "max": 90,
+      "strength": 1.155,
+      "color": "#8fa99c",
+      "description": "Relique de la dernière glaciation, l'omble chevalier vit dans les lacs alpins profonds. Sa robe orange-rouge éclatante à la période de frai en fait l'un des plus beaux poissons d'eau douce.",
+      "model": null,
+      "family": "salmon",
+      "mode": "capture",
+      "habitats": [
+        "lac_froid",
+        "pleine_eau"
+      ],
+      "stratum": "mixed",
+      "post": "cold-lake",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/c5fcdc1da28a8603.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.0056,
+        3.18
+      ],
+      "profile": {
+        "id": "omble-chevalier",
+        "biological_facts": "Poisson d'eaux fraîches consommant crustacés planctoniques, mollusques, larves et alevins.",
+        "habitats": [
+          "lac_froid",
+          "pleine_eau"
+        ],
+        "diet_tags": [
+          "invertebres",
+          "poissons",
+          "zooplancton"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "pelagique_froid",
+        "attributes": {
+          "burst": 0.62,
+          "endurance": 0.69,
+          "agility": 0.62,
+          "head_shakes": 0.48,
+          "cover_seeking": 0.19,
+          "slack_pressure": 0.58
+        },
+        "source_ids": [
+          "bio_omble_chevalier"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Alternance de plongées et traversées ; présentation à la bonne couche d'eau déterminante.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "eperlan",
+      "sourceId": "eperlan",
+      "number": 52,
+      "name": "Éperlan",
+      "latin": "Osmerus eperlanus",
+      "min": 6,
+      "max": 30,
+      "strength": 0.78,
+      "color": "#8fa99c",
+      "description": "Petit salmonidé à l'odeur caractéristique de concombre frais. Vit en bancs dans les estuaires et lacs, remonte les rivières pour frayer.",
+      "model": "EuropeanSmelt",
+      "family": "salmon",
+      "mode": "capture",
+      "habitats": [
+        "estuaire",
+        "pleine_eau",
+        "lac_froid"
+      ],
+      "stratum": "mixed",
+      "post": "estuary",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/ac01bd07e0331fcd.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "exact-pack",
+      "kind": "species",
+      "weight": [
+        0.0052,
+        3.24
+      ],
+      "profile": {
+        "id": "eperlan",
+        "biological_facts": "Synopsis FAO d'un petit poisson de banc ; les données historiques ne doivent pas être confondues avec l'éperlan arc-en-ciel.",
+        "habitats": [
+          "estuaire",
+          "pleine_eau",
+          "lac_froid"
+        ],
+        "diet_tags": [
+          "zooplancton",
+          "petits_invertebres"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "petit_banc",
+        "attributes": {
+          "burst": 0.34,
+          "endurance": 0.22,
+          "agility": 0.62,
+          "head_shakes": 0.31,
+          "cover_seeking": 0.09,
+          "slack_pressure": 0.55
+        },
+        "source_ids": [
+          "bio_eperlan"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Petite prise de banc et faible effort absolu ; présentation précise à approfondir.",
+        "research_status": "partial"
+      }
+    },
+    {
+      "id": "barbeau-meridional",
+      "sourceId": "barbeau-meridional",
+      "number": 53,
+      "name": "Barbeau méridional",
+      "latin": "Barbus meridionalis",
+      "min": 9,
+      "max": 40,
+      "strength": 1.065,
+      "color": "#b7c2a2",
+      "description": "Cousin méditerranéen du barbeau fluviatile, plus trapu et tacheté. Espèce protégée des rivières pyrénéennes et provençales.",
+      "model": null,
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "fond",
+        "riviere_courante",
+        "gravier"
+      ],
+      "stratum": "bottom",
+      "post": "river",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/934ccb17e73dbb0b.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.007,
+        3.11
+      ],
+      "profile": {
+        "id": "barbeau-meridional",
+        "biological_facts": "Vit dans des eaux courantes claires et oxygénées ; consomme de petits invertébrés.",
+        "habitats": [
+          "fond",
+          "riviere_courante",
+          "gravier"
+        ],
+        "diet_tags": [
+          "invertebres"
+        ],
+        "activity": "a_documenter",
+        "archetype": "rheophile",
+        "attributes": {
+          "burst": 0.48,
+          "endurance": 0.65,
+          "agility": 0.54,
+          "head_shakes": 0.31,
+          "cover_seeking": 0.53,
+          "slack_pressure": 0.36
+        },
+        "source_ids": [
+          "bio_barbeau_meridional"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Résistance orientée vers le courant et maintien près du fond ; moins de force absolue qu'un grand barbeau.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "sandre-dore",
+      "sourceId": "sandre-dore",
+      "number": 54,
+      "name": "Sandre doré",
+      "latin": "Sander vitreus",
+      "min": 22,
+      "max": 95,
+      "strength": 1.15,
+      "color": "#a1ad72",
+      "description": "Un prédateur nord-américain distinct du sandre européen.",
+      "model": null,
+      "family": "perch",
+      "mode": "capture",
+      "habitats": [
+        "lac_nord_americain",
+        "fond",
+        "pleine_eau"
+      ],
+      "stratum": "mixed",
+      "post": "american",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/99d010acfaf5eeb5.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.0115,
+        3.02
+      ],
+      "profile": {
+        "id": "sandre-dore",
+        "biological_facts": "Sander vitreus est un taxon nord-américain distinct du sandre européen.",
+        "habitats": [
+          "lac_nord_americain",
+          "fond",
+          "pleine_eau"
+        ],
+        "diet_tags": [
+          "poissons",
+          "invertebres"
+        ],
+        "activity": "faible_lumiere",
+        "archetype": "carnassier_profond",
+        "attributes": {
+          "burst": 0.69,
+          "endurance": 0.61,
+          "agility": 0.48,
+          "head_shakes": 0.77,
+          "cover_seeking": 0.46,
+          "slack_pressure": 0.65
+        },
+        "source_ids": [
+          "fws_walleye"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Première traction nette, secousses et maintien en profondeur ; le géant reste un gabarit, pas un nouveau taxon.",
+        "research_status": "identity_completed_combat_proposal"
+      }
+    },
+    {
+      "id": "lamproie-fluviatile",
+      "sourceId": "lamproie-fluviatile",
+      "number": 55,
+      "name": "Lamproie fluviatile",
+      "latin": "Lampetra fluviatilis",
+      "min": 15,
+      "max": 50,
+      "strength": 0.5,
+      "color": "#82947c",
+      "description": "Poisson primitif sans mâchoire, parasite des salmonidés. Sa capture involontaire reste un événement rare et mémorable.",
+      "model": null,
+      "family": "eel",
+      "mode": "observation",
+      "habitats": [
+        "fond",
+        "estuaire",
+        "riviere_migratoire"
+      ],
+      "stratum": "bottom",
+      "post": "estuary",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/08d29160fddc5d3a.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.0008,
+        3.1
+      ],
+      "profile": {
+        "id": "lamproie-fluviatile",
+        "biological_facts": "Larve filtrante ; phase adulte parasitaire en mer. Le cycle ne correspond pas à une pêche ordinaire aux esches.",
+        "habitats": [
+          "fond",
+          "estuaire",
+          "riviere_migratoire"
+        ],
+        "diet_tags": [
+          "micro_organismes",
+          "parasitisme"
+        ],
+        "activity": "selon_stade",
+        "archetype": "non_capture",
+        "attributes": {
+          "burst": 0,
+          "endurance": 0,
+          "agility": 0,
+          "head_shakes": 0,
+          "cover_seeking": 0,
+          "slack_pressure": 0
+        },
+        "source_ids": [
+          "bio_lamproie_fluviatile"
+        ],
+        "discovery_mode": "observation",
+        "combat_proposal": "Observation et explication du cycle dans le FishDex ; mécanique dédiée seulement si documentée ultérieurement.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "esturgeon-europeen",
+      "sourceId": "esturgeon-europeen",
+      "number": 56,
+      "name": "Esturgeon européen",
+      "latin": "Acipenser sturio",
+      "min": 48,
+      "max": 200,
+      "strength": 1.35,
+      "color": "#a8ada1",
+      "description": "Le plus ancien vertébré survivant d'Europe, quasi-éteint à l'état sauvage. Sa rencontre dans la Garonne est un miracle de la nature.",
+      "model": null,
+      "family": "sturgeon",
+      "mode": "observation",
+      "habitats": [
+        "fond",
+        "estuaire",
+        "riviere_migratoire"
+      ],
+      "stratum": "bottom",
+      "post": "estuary",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/1f0d0c10301a0fef.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.002,
+        3.2
+      ],
+      "profile": {
+        "id": "esturgeon-europeen",
+        "biological_facts": "Poisson amphihalin vivant sur le fond ; recherche des invertébrés avec rostre et barbillons.",
+        "habitats": [
+          "fond",
+          "estuaire",
+          "riviere_migratoire"
+        ],
+        "diet_tags": [
+          "invertebres",
+          "crustaces",
+          "mollusques"
+        ],
+        "activity": "selon_stade",
+        "archetype": "grand_benthique",
+        "attributes": {
+          "burst": 0.74,
+          "endurance": 0.96,
+          "agility": 0.26,
+          "head_shakes": 0.2,
+          "cover_seeking": 0.16,
+          "slack_pressure": 0.35
+        },
+        "source_ids": [
+          "bio_europeen"
+        ],
+        "discovery_mode": "observation",
+        "combat_proposal": "Découverte d'observation proposée ; aucun classement comme trophée ordinaire à partir de la seule rareté.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "saumon-roi",
+      "sourceId": "saumon-roi",
+      "number": 57,
+      "name": "Saumon royal",
+      "latin": "Oncorhynchus tshawytscha",
+      "min": 36,
+      "max": 150,
+      "strength": 1.46,
+      "color": "#8fa99c",
+      "description": "Le plus grand des saumons du Pacifique. Présent dans quelques rivières françaises introduites, sa capture représente un événement mondial.",
+      "model": null,
+      "family": "salmon",
+      "mode": "observation",
+      "habitats": [
+        "riviere_migratoire",
+        "estuaire"
+      ],
+      "stratum": "mixed",
+      "post": "pacific",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/0c92e0a8c5db68a9.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.0056,
+        3.17
+      ],
+      "profile": {
+        "id": "saumon-roi",
+        "biological_facts": "Saumon anadrome du Pacifique ; l'écologie ne doit pas être copiée du saumon atlantique sans contexte.",
+        "habitats": [
+          "riviere_migratoire",
+          "estuaire"
+        ],
+        "diet_tags": [
+          "poissons",
+          "invertebres"
+        ],
+        "activity": "selon_stade",
+        "archetype": "migrateur",
+        "attributes": {
+          "burst": 0.95,
+          "endurance": 0.97,
+          "agility": 0.6,
+          "head_shakes": 0.66,
+          "cover_seeking": 0.22,
+          "slack_pressure": 0.71
+        },
+        "source_ids": [
+          "bio_saumon_roi"
+        ],
+        "discovery_mode": "observation",
+        "combat_proposal": "Départ puissant et effort long ; espace nord-américain futur, pas mélange automatique avec l'étang initial.",
+        "research_status": "partial"
+      }
+    },
+    {
+      "id": "blageon",
+      "sourceId": "blageon",
+      "number": 58,
+      "name": "Soufie",
+      "latin": "Telestes souffia",
+      "min": 8,
+      "max": 25,
+      "strength": 0.88,
+      "color": "#b7c2a2",
+      "description": "Une silhouette argentée aux nageoires discrètes.",
+      "model": null,
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "riviere_courante",
+        "pleine_eau",
+        "surface"
+      ],
+      "stratum": "mixed",
+      "post": "river",
+      "rarity": "rare",
+      "image": "/fishdex-assets/eb9d80c84fbc735d.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.009,
+        3.05
+      ],
+      "profile": {
+        "id": "blageon",
+        "biological_facts": "Consomme des proies de surface et du fond ; compétition rapide au sein du banc pour les insectes dérivants.",
+        "habitats": [
+          "riviere_courante",
+          "pleine_eau",
+          "surface"
+        ],
+        "diet_tags": [
+          "insectes",
+          "invertebres",
+          "algues"
+        ],
+        "activity": "jour",
+        "archetype": "petit_banc",
+        "attributes": {
+          "burst": 0.45,
+          "endurance": 0.31,
+          "agility": 0.8,
+          "head_shakes": 0.3,
+          "cover_seeking": 0.17,
+          "slack_pressure": 0.66
+        },
+        "source_ids": [
+          "bio_blageon"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Touches furtives en dérive et courtes accélérations de banc.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "omble-de-fontaine",
+      "sourceId": "omble-de-fontaine",
+      "number": 59,
+      "name": "Omble de fontaine",
+      "latin": "Salvelinus fontinalis",
+      "min": 15,
+      "max": 50,
+      "strength": 1.08,
+      "color": "#8fa99c",
+      "description": "Un corps fuselé et une nage vive.",
+      "model": null,
+      "family": "salmon",
+      "mode": "capture",
+      "habitats": [
+        "riviere_courante",
+        "lac_froid",
+        "abris"
+      ],
+      "stratum": "mixed",
+      "post": "river",
+      "rarity": "rare",
+      "image": "/fishdex-assets/cdedc96cf3815926.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.012,
+        3
+      ],
+      "profile": {
+        "id": "omble-de-fontaine",
+        "biological_facts": "Vit en eaux fraîches et oxygénées ; régime surtout invertébré complété par œufs, alevins et petites proies.",
+        "habitats": [
+          "riviere_courante",
+          "lac_froid",
+          "abris"
+        ],
+        "diet_tags": [
+          "invertebres",
+          "insectes",
+          "poissons"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "salmonide_agile",
+        "attributes": {
+          "burst": 0.66,
+          "endurance": 0.5,
+          "agility": 0.73,
+          "head_shakes": 0.61,
+          "cover_seeking": 0.58,
+          "slack_pressure": 0.71
+        },
+        "source_ids": [
+          "bio_omble_fontaine"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Départs courts, changements de direction et retour vers les caches ; ne pas copier exactement l'arc-en-ciel.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "coregone",
+      "sourceId": "coregone",
+      "number": 60,
+      "name": "Lavaret",
+      "latin": "Coregonus lavaretus",
+      "min": 15,
+      "max": 60,
+      "strength": 1.045,
+      "color": "#8fa99c",
+      "description": "Un corps fuselé et une nage vive.",
+      "model": null,
+      "family": "salmon",
+      "mode": "capture",
+      "habitats": [
+        "lac_froid",
+        "pleine_eau"
+      ],
+      "stratum": "mixed",
+      "post": "cold-lake",
+      "rarity": "rare",
+      "image": "/encyclopedia/lavaret.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.0051,
+        3.17
+      ],
+      "profile": {
+        "id": "coregone",
+        "biological_facts": "Le profil consulté consomme surtout du zooplancton et aussi des insectes ; identité des populations locales à confirmer.",
+        "habitats": [
+          "lac_froid",
+          "pleine_eau"
+        ],
+        "diet_tags": [
+          "zooplancton",
+          "larves",
+          "insectes"
+        ],
+        "activity": "jour",
+        "archetype": "pelagique_froid",
+        "attributes": {
+          "burst": 0.52,
+          "endurance": 0.57,
+          "agility": 0.62,
+          "head_shakes": 0.45,
+          "cover_seeking": 0.1,
+          "slack_pressure": 0.68
+        },
+        "source_ids": [
+          "bio_coregone"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Fuite en pleine eau et faibles variations de profondeur ; technique de gambe non activée sans développement spécifique.",
+        "research_status": "partial"
+      }
+    },
+    {
+      "id": "coregone-palee",
+      "sourceId": "coregone-palee",
+      "number": 61,
+      "name": "Corégone palée",
+      "latin": "Coregonus palaea",
+      "min": 18,
+      "max": 55,
+      "strength": 1.045,
+      "color": "#8fa99c",
+      "description": "Un corps fuselé et une nage vive.",
+      "model": null,
+      "family": "salmon",
+      "mode": "capture",
+      "habitats": [
+        "lac_froid",
+        "pleine_eau"
+      ],
+      "stratum": "mixed",
+      "post": "cold-lake",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/83406221ca518f20.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.0051,
+        3.17
+      ],
+      "profile": {
+        "id": "coregone-palee",
+        "biological_facts": "La palée Coregonus palaea est conservée séparément du lavaret de la source.",
+        "habitats": [
+          "lac_froid",
+          "pleine_eau"
+        ],
+        "diet_tags": [
+          "zooplancton",
+          "larves",
+          "insectes"
+        ],
+        "activity": "jour",
+        "archetype": "pelagique_froid",
+        "attributes": {
+          "burst": 0.52,
+          "endurance": 0.57,
+          "agility": 0.62,
+          "head_shakes": 0.45,
+          "cover_seeking": 0.1,
+          "slack_pressure": 0.68
+        },
+        "source_ids": [
+          "ec_palaea"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Fuite en pleine eau et faibles variations de profondeur ; technique de gambe non activée sans développement spécifique.",
+        "research_status": "identity_completed_combat_proposal"
+      }
+    },
+    {
+      "id": "apron-du-rhone",
+      "sourceId": "apron-du-rhone",
+      "number": 62,
+      "name": "Apron du Rhône",
+      "latin": "Zingel asper",
+      "min": 8,
+      "max": 22,
+      "strength": 0.74,
+      "color": "#a1ad72",
+      "description": "Des nageoires dorsales marquées et une nage vive.",
+      "model": null,
+      "family": "perch",
+      "mode": "observation",
+      "habitats": [
+        "fond",
+        "riviere_courante",
+        "gravier"
+      ],
+      "stratum": "bottom",
+      "post": "river",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/454c1d00c274fed5.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.012,
+        3
+      ],
+      "profile": {
+        "id": "apron-du-rhone",
+        "biological_facts": "Poisson du cours moyen des rivières ; consomme des larves d'insectes et des vers.",
+        "habitats": [
+          "fond",
+          "riviere_courante",
+          "gravier"
+        ],
+        "diet_tags": [
+          "larves",
+          "vers"
+        ],
+        "activity": "a_documenter",
+        "archetype": "petit_benthique",
+        "attributes": {
+          "burst": 0.22,
+          "endurance": 0.26,
+          "agility": 0.32,
+          "head_shakes": 0.21,
+          "cover_seeking": 0.8,
+          "slack_pressure": 0.35
+        },
+        "source_ids": [
+          "bio_apron"
+        ],
+        "discovery_mode": "observation",
+        "combat_proposal": "Observation sur le fond ; aucun appât de capture attribué pour cette proposition de découverte.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "cristivomer",
+      "sourceId": "cristivomer",
+      "number": 63,
+      "name": "Cristivomer",
+      "latin": "Salvelinus namaycush",
+      "min": 25,
+      "max": 110,
+      "strength": 1.2850000000000001,
+      "color": "#8fa99c",
+      "description": "Un corps fuselé et une nage vive.",
+      "model": null,
+      "family": "salmon",
+      "mode": "capture",
+      "habitats": [
+        "lac_froid",
+        "fond",
+        "pleine_eau"
+      ],
+      "stratum": "mixed",
+      "post": "cold-lake",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/8d09914c6732a19e.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.012,
+        3
+      ],
+      "profile": {
+        "id": "cristivomer",
+        "biological_facts": "Salmonidé lacustre d'eau froide ; profil de référence nord-américain.",
+        "habitats": [
+          "lac_froid",
+          "fond",
+          "pleine_eau"
+        ],
+        "diet_tags": [
+          "poissons",
+          "invertebres"
+        ],
+        "activity": "selon_conditions",
+        "archetype": "pelagique_froid",
+        "attributes": {
+          "burst": 0.68,
+          "endurance": 0.89,
+          "agility": 0.46,
+          "head_shakes": 0.55,
+          "cover_seeking": 0.21,
+          "slack_pressure": 0.49
+        },
+        "source_ids": [
+          "bio_cristivomer"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Résistance profonde et longue remontée ; moins de sauts que les profils de surface dans cette proposition.",
+        "research_status": "partial"
+      }
+    },
+    {
+      "id": "lamproie-de-planer",
+      "sourceId": "lamproie-de-planer",
+      "number": 64,
+      "name": "Lamproie de Planer",
+      "latin": "Lampetra planeri",
+      "min": 6,
+      "max": 18,
+      "strength": 0.5,
+      "color": "#82947c",
+      "description": "Un corps souple et allongé, animé de longues ondulations.",
+      "model": null,
+      "family": "eel",
+      "mode": "observation",
+      "habitats": [
+        "fond",
+        "riviere_courante",
+        "vase"
+      ],
+      "stratum": "bottom",
+      "post": "river",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/bb5a0af057a94dd4.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.003,
+        3
+      ],
+      "profile": {
+        "id": "lamproie-de-planer",
+        "biological_facts": "Les larves filtrent des micro-organismes ; après métamorphose, l'individu ne s'alimente plus.",
+        "habitats": [
+          "fond",
+          "riviere_courante",
+          "vase"
+        ],
+        "diet_tags": [
+          "micro_organismes"
+        ],
+        "activity": "selon_stade",
+        "archetype": "non_capture",
+        "attributes": {
+          "burst": 0,
+          "endurance": 0,
+          "agility": 0,
+          "head_shakes": 0,
+          "cover_seeking": 0,
+          "slack_pressure": 0
+        },
+        "source_ids": [
+          "bio_lamproie_planer"
+        ],
+        "discovery_mode": "observation",
+        "combat_proposal": "Observation uniquement dans cette conception ; pas de morsure au ver inventée pour l'adulte.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "mulet-porc",
+      "sourceId": "mulet-porc",
+      "number": 65,
+      "name": "Mulet-porc",
+      "latin": "Chelon ramada",
+      "min": 18,
+      "max": 70,
+      "strength": 1.325,
+      "color": "#b7c2a2",
+      "description": "Une silhouette argentée aux nageoires discrètes.",
+      "model": null,
+      "family": "cyprinid",
+      "mode": "capture",
+      "habitats": [
+        "estuaire",
+        "fond",
+        "surface"
+      ],
+      "stratum": "mixed",
+      "post": "estuary",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/4c5fe3916dc65d44.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.012,
+        3
+      ],
+      "profile": {
+        "id": "mulet-porc",
+        "biological_facts": "Omnivore adulte consommant notamment biofilm et matière organique benthique ; recherche alimentaire diurne.",
+        "habitats": [
+          "estuaire",
+          "fond",
+          "surface"
+        ],
+        "diet_tags": [
+          "algues",
+          "invertebres",
+          "detritus"
+        ],
+        "activity": "jour",
+        "archetype": "opportuniste_riviere",
+        "attributes": {
+          "burst": 0.81,
+          "endurance": 0.84,
+          "agility": 0.65,
+          "head_shakes": 0.44,
+          "cover_seeking": 0.33,
+          "slack_pressure": 0.65
+        },
+        "source_ids": [
+          "bio_mulet"
+        ],
+        "discovery_mode": "capture",
+        "combat_proposal": "Approche prudente proposée puis longue fuite ; poisson d'estuaire et de rivière, pas résident universel d'un étang.",
+        "research_status": "documented"
+      }
+    },
+    {
+      "id": "pseudorasbora",
+      "sourceId": "pseudorasbora",
+      "number": 66,
+      "name": "Pseudorasbora",
+      "latin": "Pseudorasbora parva",
+      "min": 4,
+      "max": 12,
+      "strength": 0.655,
+      "color": "#b7c2a2",
+      "description": "Une silhouette argentée aux nageoires discrètes.",
+      "model": null,
+      "family": "cyprinid",
+      "mode": "observation",
+      "habitats": [
+        "eau_calme",
+        "bordure"
+      ],
+      "stratum": "mixed",
+      "post": "cove",
+      "rarity": "uncommon",
+      "image": "/fishdex-assets/98e3aa378b376253.webp",
+      "identityStatus": "confirmed",
+      "visualStatus": "procedural-provisional",
+      "kind": "species",
+      "weight": [
+        0.012,
+        3
+      ],
+      "profile": {
+        "id": "pseudorasbora",
+        "biological_facts": "La synthèse consultée indique une alimentation surtout animale ; données locales et rythme d'activité à compléter.",
+        "habitats": [
+          "eau_calme",
+          "bordure"
+        ],
+        "diet_tags": [
+          "petits_invertebres"
+        ],
+        "activity": "a_documenter",
+        "archetype": "petit_banc",
+        "attributes": {
+          "burst": 0.18,
+          "endurance": 0.13,
+          "agility": 0.46,
+          "head_shakes": 0.2,
+          "cover_seeking": 0.23,
+          "slack_pressure": 0.47
+        },
+        "source_ids": [
+          "bio_pseudorasbora"
+        ],
+        "discovery_mode": "observation",
+        "combat_proposal": "Observation de petits bancs ; aucune préférence détaillée d'appât affirmée par cette recherche partielle.",
+        "research_status": "partial"
+      }
+    }
+  ],
+  "appearances": [
+    {
+      "id": "breme-bronze",
+      "parent": "bream",
+      "name": "Brême bronze",
+      "image": "/fishdex-assets/588bdca439994cbe.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "gardon-rouge",
+      "parent": "roach",
+      "name": "Gardon rouge",
+      "image": "/fishdex-assets/ccac599de4ddf2d9.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "ide-dore",
+      "parent": "ide",
+      "name": "Ide doré",
+      "image": "/fishdex-assets/b65de54d401bbd15.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "tanche-doree",
+      "parent": "tench",
+      "name": "Tanche dorée",
+      "image": "/fishdex-assets/bc19881ef06a90db.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "carpe-cuir",
+      "parent": "carp",
+      "name": "Carpe cuir",
+      "image": "/fishdex-assets/5beb0611736b06ae.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "carpe-koi-kohaku",
+      "parent": "carpe-koi",
+      "name": "Carpe koï Kohaku",
+      "image": "/fishdex-assets/04c99fc79edd208a.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "carpe-koi-ogon",
+      "parent": "carpe-koi",
+      "name": "Carpe koï Ogon",
+      "image": "/fishdex-assets/7a6bd3a5f36b808f.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "carpe-koi-sanke",
+      "parent": "carpe-koi",
+      "name": "Carpe koï Sanke",
+      "image": "/fishdex-assets/9c5d8aa136f26588.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "carpe-koi-showa",
+      "parent": "carpe-koi",
+      "name": "Carpe koï Showa",
+      "image": "/fishdex-assets/1c0234be3c26d269.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "carpe-fully-scaled",
+      "parent": "carp",
+      "name": "Carpe fully scaled",
+      "image": "/fishdex-assets/ef18c479678947d2.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "carpe-lineaire",
+      "parent": "carp",
+      "name": "Carpe linéaire",
+      "image": "/fishdex-assets/537c8b204572abba.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "carpe-miroir",
+      "parent": "carp",
+      "name": "Carpe miroir",
+      "image": "/fishdex-assets/a867933e21bfb538.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "truite-jaune",
+      "parent": "truite-arc-en-ciel",
+      "name": "Truite jaune (gold)",
+      "image": "/fishdex-assets/3f1095041ee2e8d1.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "carpe-koi-platinum",
+      "parent": "carpe-koi",
+      "name": "Carpe koï Platinum",
+      "image": "/fishdex-assets/36a0686a12a01a78.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "esturgeon-gold",
+      "parent": "esturgeon-siberien",
+      "name": "Esturgeon gold",
+      "image": null,
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "silure-gold",
+      "parent": "catfish",
+      "name": "Silure gold",
+      "image": "/fishdex-assets/5b94df0145741f08.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "carpe-ghost-miroir",
+      "parent": "carpe-ghost",
+      "name": "Carpe ghost miroir",
+      "image": "/fishdex-assets/69c24f2759b12c4f.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "esturgeon-albinos",
+      "parent": "esturgeon-siberien",
+      "name": "Esturgeon albinos",
+      "image": "/fishdex-assets/682ebdb8b9874ddb.webp",
+      "kind": "appearance",
+      "weight": 0.015,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "silure-albinos",
+      "parent": "catfish",
+      "name": "Silure albinos",
+      "image": "/fishdex-assets/4ef01599db948ea2.webp",
+      "kind": "appearance",
+      "weight": 0.015,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "truite-albinos",
+      "parent": "truite-arc-en-ciel",
+      "name": "Truite albinos",
+      "image": "/fishdex-assets/86fd7208229d5a56.webp",
+      "kind": "appearance",
+      "weight": 0.015,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "truite-de-mer",
+      "parent": "truite-fario",
+      "name": "Truite de mer",
+      "image": "/fishdex-assets/4e76e5bc51f05d75.webp",
+      "kind": "ecotype",
+      "weight": 0.035,
+      "post": "estuary",
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "truite-lac",
+      "parent": "truite-fario",
+      "name": "Truite lacustre",
+      "image": "/fishdex-assets/47df06aa189f92e5.webp",
+      "kind": "ecotype",
+      "weight": 0.035,
+      "post": "cold-lake",
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "brochet-albinos",
+      "parent": "pike",
+      "name": "Brochet albinos",
+      "image": null,
+      "kind": "appearance",
+      "weight": 0.015,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "perche-albinos",
+      "parent": "perch",
+      "name": "Perche albinos",
+      "image": null,
+      "kind": "appearance",
+      "weight": 0.015,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "saumon-atlantique-albinos",
+      "parent": "saumon-atlantique",
+      "name": "Saumon atlantique albinos",
+      "image": null,
+      "kind": "appearance",
+      "weight": 0.015,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "grande-alose-albinos",
+      "parent": "grande-alose",
+      "name": "Grande alose albinos",
+      "image": null,
+      "kind": "appearance",
+      "weight": 0.015,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "sandre-albinos",
+      "parent": "zander",
+      "name": "Sandre albinos",
+      "image": null,
+      "kind": "appearance",
+      "weight": 0.015,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "carpe-amour-blanc-albinos",
+      "parent": "amour-blanc",
+      "name": "carpe amour blanc albinos",
+      "image": "/fishdex-assets/8f678f46ef53f164.webp",
+      "kind": "appearance",
+      "weight": 0.015,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    },
+    {
+      "id": "rotengle-gold",
+      "parent": "rudd",
+      "name": "rotengle gold",
+      "image": "/fishdex-assets/879c5998dce3d949.webp",
+      "kind": "appearance",
+      "weight": 0.035,
+      "post": null,
+      "visualStatus": "procedural-material",
+      "verifiedIdentity": true
+    }
+  ],
+  "entries": [
+    {
+      "id": "ablette",
+      "parent": "bleak",
+      "type": "species"
+    },
+    {
+      "id": "breme-bordeliere",
+      "parent": "whitebream",
+      "type": "species"
+    },
+    {
+      "id": "breme-bronze",
+      "parent": "bream",
+      "type": "appearance"
+    },
+    {
+      "id": "breme-commune",
+      "parent": "bream",
+      "type": "species"
+    },
+    {
+      "id": "carassin",
+      "parent": "crucian",
+      "type": "species"
+    },
+    {
+      "id": "chevesne",
+      "parent": "chub",
+      "type": "species"
+    },
+    {
+      "id": "gardon",
+      "parent": "roach",
+      "type": "species"
+    },
+    {
+      "id": "gardon-rouge",
+      "parent": "roach",
+      "type": "appearance"
+    },
+    {
+      "id": "gobie",
+      "parent": "gobie",
+      "type": "species"
+    },
+    {
+      "id": "goujon",
+      "parent": "gudgeon",
+      "type": "species"
+    },
+    {
+      "id": "rotengle",
+      "parent": "rudd",
+      "type": "species"
+    },
+    {
+      "id": "tanche",
+      "parent": "tench",
+      "type": "species"
+    },
+    {
+      "id": "vairon",
+      "parent": "vairon",
+      "type": "species"
+    },
+    {
+      "id": "anguille-europeenne",
+      "parent": "anguille-europeenne",
+      "type": "species"
+    },
+    {
+      "id": "barbeau",
+      "parent": "barbeau",
+      "type": "species"
+    },
+    {
+      "id": "black-bass",
+      "parent": "black-bass",
+      "type": "species"
+    },
+    {
+      "id": "brochet",
+      "parent": "pike",
+      "type": "species"
+    },
+    {
+      "id": "carassin-dore",
+      "parent": "carassin-dore",
+      "type": "species"
+    },
+    {
+      "id": "carpe-commune",
+      "parent": "carp",
+      "type": "species"
+    },
+    {
+      "id": "ide-dore",
+      "parent": "ide",
+      "type": "appearance"
+    },
+    {
+      "id": "ide-melanote",
+      "parent": "ide",
+      "type": "species"
+    },
+    {
+      "id": "lotte",
+      "parent": "lotte",
+      "type": "species"
+    },
+    {
+      "id": "perche",
+      "parent": "perch",
+      "type": "species"
+    },
+    {
+      "id": "perche-soleil",
+      "parent": "perche-soleil",
+      "type": "species"
+    },
+    {
+      "id": "sandre",
+      "parent": "zander",
+      "type": "species"
+    },
+    {
+      "id": "tanche-doree",
+      "parent": "tench",
+      "type": "appearance"
+    },
+    {
+      "id": "truite-arc-en-ciel",
+      "parent": "truite-arc-en-ciel",
+      "type": "species"
+    },
+    {
+      "id": "aspe",
+      "parent": "aspe",
+      "type": "species"
+    },
+    {
+      "id": "carpe-cuir",
+      "parent": "carp",
+      "type": "appearance"
+    },
+    {
+      "id": "carpe-koi",
+      "parent": "carpe-koi",
+      "type": "species"
+    },
+    {
+      "id": "carpe-koi-kohaku",
+      "parent": "carpe-koi",
+      "type": "appearance"
+    },
+    {
+      "id": "carpe-koi-ogon",
+      "parent": "carpe-koi",
+      "type": "appearance"
+    },
+    {
+      "id": "carpe-koi-sanke",
+      "parent": "carpe-koi",
+      "type": "appearance"
+    },
+    {
+      "id": "carpe-koi-showa",
+      "parent": "carpe-koi",
+      "type": "appearance"
+    },
+    {
+      "id": "carpe-fully-scaled",
+      "parent": "carp",
+      "type": "appearance"
+    },
+    {
+      "id": "carpe-lineaire",
+      "parent": "carp",
+      "type": "appearance"
+    },
+    {
+      "id": "carpe-miroir",
+      "parent": "carp",
+      "type": "appearance"
+    },
+    {
+      "id": "esturgeon-diamant",
+      "parent": "esturgeon-diamant",
+      "type": "species"
+    },
+    {
+      "id": "esturgeon-siberien",
+      "parent": "esturgeon-siberien",
+      "type": "species"
+    },
+    {
+      "id": "truite-fario",
+      "parent": "truite-fario",
+      "type": "species"
+    },
+    {
+      "id": "truite-jaune",
+      "parent": "truite-arc-en-ciel",
+      "type": "appearance"
+    },
+    {
+      "id": "ombre",
+      "parent": "ombre",
+      "type": "species"
+    },
+    {
+      "id": "amour-argente",
+      "parent": "amour-argente",
+      "type": "species"
+    },
+    {
+      "id": "amour-blanc",
+      "parent": "amour-blanc",
+      "type": "species"
+    },
+    {
+      "id": "amour-marbre",
+      "parent": "amour-marbre",
+      "type": "species"
+    },
+    {
+      "id": "carpe-koi-platinum",
+      "parent": "carpe-koi",
+      "type": "appearance"
+    },
+    {
+      "id": "esturgeon-baeri",
+      "parent": "esturgeon-siberien",
+      "type": "alias"
+    },
+    {
+      "id": "esturgeon-gold",
+      "parent": "esturgeon-siberien",
+      "type": "appearance"
+    },
+    {
+      "id": "silure-glane",
+      "parent": "catfish",
+      "type": "species"
+    },
+    {
+      "id": "silure-gold",
+      "parent": "catfish",
+      "type": "appearance"
+    },
+    {
+      "id": "silure-mandarin",
+      "parent": "silure-mandarin",
+      "type": "species"
+    },
+    {
+      "id": "truite-tiger",
+      "parent": "truite-tiger",
+      "type": "hybrid"
+    },
+    {
+      "id": "carpe-ghost",
+      "parent": "carpe-ghost",
+      "type": "hybrid"
+    },
+    {
+      "id": "carpe-ghost-miroir",
+      "parent": "carpe-ghost",
+      "type": "appearance"
+    },
+    {
+      "id": "esturgeon-albinos",
+      "parent": "esturgeon-siberien",
+      "type": "appearance"
+    },
+    {
+      "id": "silure-albinos",
+      "parent": "catfish",
+      "type": "appearance"
+    },
+    {
+      "id": "truite-albinos",
+      "parent": "truite-arc-en-ciel",
+      "type": "appearance"
+    },
+    {
+      "id": "nase",
+      "parent": "hotu",
+      "type": "alias"
+    },
+    {
+      "id": "spirlin",
+      "parent": "spirlin",
+      "type": "species"
+    },
+    {
+      "id": "bouviere",
+      "parent": "bouviere",
+      "type": "species"
+    },
+    {
+      "id": "poisson-chat",
+      "parent": "poisson-chat",
+      "type": "species"
+    },
+    {
+      "id": "vandoise",
+      "parent": "vandoise",
+      "type": "species"
+    },
+    {
+      "id": "loche-franche",
+      "parent": "loche-franche",
+      "type": "species"
+    },
+    {
+      "id": "chabot",
+      "parent": "chabot",
+      "type": "species"
+    },
+    {
+      "id": "carpe-herbivore",
+      "parent": "amour-blanc",
+      "type": "alias"
+    },
+    {
+      "id": "carassin-argente",
+      "parent": "carassin-argente",
+      "type": "species"
+    },
+    {
+      "id": "hotu",
+      "parent": "hotu",
+      "type": "species"
+    },
+    {
+      "id": "toxostome",
+      "parent": "toxostome",
+      "type": "species"
+    },
+    {
+      "id": "soufie",
+      "parent": "blageon",
+      "type": "alias"
+    },
+    {
+      "id": "black-bass-petite-bouche",
+      "parent": "black-bass-petite-bouche",
+      "type": "species"
+    },
+    {
+      "id": "omble-fontaine",
+      "parent": "omble-de-fontaine",
+      "type": "alias"
+    },
+    {
+      "id": "lavaret",
+      "parent": "coregone",
+      "type": "alias"
+    },
+    {
+      "id": "grande-alose",
+      "parent": "grande-alose",
+      "type": "species"
+    },
+    {
+      "id": "alose-feinte",
+      "parent": "alose-feinte",
+      "type": "species"
+    },
+    {
+      "id": "saumon-atlantique",
+      "parent": "saumon-atlantique",
+      "type": "species"
+    },
+    {
+      "id": "truite-de-mer",
+      "parent": "truite-fario",
+      "type": "ecotype"
+    },
+    {
+      "id": "truite-lac",
+      "parent": "truite-fario",
+      "type": "ecotype"
+    },
+    {
+      "id": "huchon",
+      "parent": "huchon",
+      "type": "species"
+    },
+    {
+      "id": "omble-chevalier",
+      "parent": "omble-chevalier",
+      "type": "species"
+    },
+    {
+      "id": "eperlan",
+      "parent": "eperlan",
+      "type": "species"
+    },
+    {
+      "id": "barbeau-meridional",
+      "parent": "barbeau-meridional",
+      "type": "species"
+    },
+    {
+      "id": "perche-fluviatile",
+      "parent": "perch",
+      "type": "alias"
+    },
+    {
+      "id": "sandre-dore",
+      "parent": "sandre-dore",
+      "type": "species"
+    },
+    {
+      "id": "corégone-palee",
+      "parent": "coregone-palee",
+      "type": "alias"
+    },
+    {
+      "id": "lamproie-fluviatile",
+      "parent": "lamproie-fluviatile",
+      "type": "species"
+    },
+    {
+      "id": "esturgeon-europeen",
+      "parent": "esturgeon-europeen",
+      "type": "species"
+    },
+    {
+      "id": "silure-wels-record",
+      "parent": "catfish",
+      "type": "record"
+    },
+    {
+      "id": "brochet-trophee",
+      "parent": "pike",
+      "type": "record"
+    },
+    {
+      "id": "carpe-commune-record",
+      "parent": "carp",
+      "type": "record"
+    },
+    {
+      "id": "sandre-geant",
+      "parent": "zander",
+      "type": "record"
+    },
+    {
+      "id": "saumon-roi",
+      "parent": "saumon-roi",
+      "type": "species"
+    },
+    {
+      "id": "brochet-albinos",
+      "parent": "pike",
+      "type": "appearance"
+    },
+    {
+      "id": "perche-albinos",
+      "parent": "perch",
+      "type": "appearance"
+    },
+    {
+      "id": "saumon-atlantique-albinos",
+      "parent": "saumon-atlantique",
+      "type": "appearance"
+    },
+    {
+      "id": "grande-alose-albinos",
+      "parent": "grande-alose",
+      "type": "appearance"
+    },
+    {
+      "id": "sandre-albinos",
+      "parent": "zander",
+      "type": "appearance"
+    },
+    {
+      "id": "blageon",
+      "parent": "blageon",
+      "type": "species"
+    },
+    {
+      "id": "omble-de-fontaine",
+      "parent": "omble-de-fontaine",
+      "type": "species"
+    },
+    {
+      "id": "coregone",
+      "parent": "coregone",
+      "type": "species"
+    },
+    {
+      "id": "coregone-palee",
+      "parent": "coregone-palee",
+      "type": "species"
+    },
+    {
+      "id": "apron-du-rhone",
+      "parent": "apron-du-rhone",
+      "type": "species"
+    },
+    {
+      "id": "cristivomer",
+      "parent": "cristivomer",
+      "type": "species"
+    },
+    {
+      "id": "lamproie-de-planer",
+      "parent": "lamproie-de-planer",
+      "type": "species"
+    },
+    {
+      "id": "mulet-porc",
+      "parent": "mulet-porc",
+      "type": "species"
+    },
+    {
+      "id": "pseudorasbora",
+      "parent": "pseudorasbora",
+      "type": "species"
+    },
+    {
+      "id": "truite-lacustre",
+      "parent": "truite-fario",
+      "type": "alias"
+    },
+    {
+      "id": "carpe-amour-blanc-albinos",
+      "parent": "amour-blanc",
+      "type": "appearance"
+    },
+    {
+      "id": "rotengle-gold",
+      "parent": "rudd",
+      "type": "appearance"
+    },
+    {
+      "id": "gros-gardon",
+      "parent": "roach",
+      "type": "record"
+    },
+    {
+      "id": "gros-rotengle",
+      "parent": "rudd",
+      "type": "record"
+    }
+  ],
+  "pending": [
+    {
+      "source": "fishes/placeholder.svg",
+      "id": "placeholder",
+      "image": "/fishdex-assets/2d4b27448dc2b0c8.svg",
+      "identityStatus": "illustration-only",
+      "gameplayStatus": "pending",
+      "reason": "Image sans identité déclarée réconciliée ; exclue des objectifs."
+    }
+  ]
+}

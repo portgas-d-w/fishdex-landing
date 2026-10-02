@@ -16,6 +16,8 @@ export function refreshRights(save:SaveData) {
   if(levelFor(save.xp)>=3 || (p.mastery.pole??0)>=3) for(const m of ['float','bottom'] as MethodId[])if(!p.methods.includes(m))p.methods.push(m);
   for(const post of POSTS.filter(p=>p.initial))if(!p.posts.includes(post.id))p.posts.push(post.id);
   for(const [id,level,method,target] of [['point',6,'lure',6],['timber',10,'lure',12],['river',4,'pole',3],['deep',10,'lure',8],['boat',6,'lure',6]] as const)if(levelFor(save.xp)>=level||(p.mastery[method]??0)>=target)if(!p.posts.includes(id))p.posts.push(id);
+  if(levelFor(save.xp)>=4||save.total>=8)for(const id of ['estuary','pacific','managed'] as const)if(!p.posts.includes(id))p.posts.push(id);
+  if(levelFor(save.xp)>=6||save.total>=16)for(const id of ['cold-lake','american','asian'] as const)if(!p.posts.includes(id))p.posts.push(id);
   for(const t of TECHNIQUES)if(t.id==='coup'||t.id==='leurre'&&p.methods.includes('lure')||!['coup','leurre'].includes(t.id)&&(levelFor(save.xp)>=t.level||(p.mastery[t.base]??0)>=t.target)){
     if(!p.techniques.includes(t.id))p.techniques.push(t.id);
     if(!p.methods.includes(t.base))p.methods.push(t.base);
@@ -46,7 +48,7 @@ export function initiateLures(save:SaveData):string {
   return '';
 }
 export const postAccess = (save:SaveData,id:PostId) => ALL_POSTS.find(p=>p.id===id)?.implemented===true && (save.development?.kind==='sandbox'||save.progression.posts.includes(id));
-export const postCondition = (save:SaveData,id:PostId) => id==='reed-bank' ? `Niveau ${PROGRESSION_CONFIG.reedsLevel} OU ${PROGRESSION_CONFIG.precisionCatches} prises au coup dans le cercle du ponton (${save.progression.precision}/${PROGRESSION_CONFIG.precisionCatches}).` : id==='river'?'Niveau 4 OU 3 prises au coup.':id==='timber'?'Niveau 10 OU 12 prises aux leurres.':id==='deep'?'Niveau 10 OU 8 prises aux leurres.':'Niveau 6 OU 6 prises aux leurres.';
+export const postCondition = (save:SaveData,id:PostId) => ['estuary','pacific','managed'].includes(id)?'Niveau 4 OU 8 captures.':['cold-lake','american','asian'].includes(id)?'Niveau 6 OU 16 captures.':id==='reed-bank' ? `Niveau ${PROGRESSION_CONFIG.reedsLevel} OU ${PROGRESSION_CONFIG.precisionCatches} prises au coup dans le cercle du ponton (${save.progression.precision}/${PROGRESSION_CONFIG.precisionCatches}).` : id==='river'?'Niveau 4 OU 3 prises au coup.':id==='timber'?'Niveau 10 OU 12 prises aux leurres.':id==='deep'?'Niveau 10 OU 8 prises aux leurres.':'Niveau 6 OU 6 prises aux leurres.';
 export function itemCondition(save:SaveData,id:string):string {
   if(save.development?.kind==='sandbox'&&(ITEMS.some(i=>i.id===id)||component(id)))return '';
   const item=ITEMS.find(i=>i.id===id), c=component(id);

@@ -27,7 +27,7 @@ export const REWARD_BASE = { roach: 12, perch: 15, carp: 22, pike: 25, zander: 2
 export function rewardFor(s: Specimen, first: boolean, record: boolean): Reward {
   const species = SPECIES.find(f => f.id === s.speciesId)!;
   const size = (s.length - species.min) / (species.max - species.min);
-  const base = Math.round(REWARD_BASE[s.speciesId] * (1 + size * 0.6) * (s.mirage ? 1.8 : s.coloration === 'golden' ? 1.15 : 1));
+  const base = Math.round(((REWARD_BASE as Record<string,number>)[s.speciesId]??Math.min(22,Math.round(8+species.strength*6))) * (1 + size * 0.6) * (s.mirage ? 1.8 : s.coloration === 'golden' ? 1.15 : 1));
   const discovery = first ? 20 : 0, best = record && !first ? 10 : 0;
   return { base, discovery, record: best, coins: base + discovery + best, xp: 20 + Math.round(size * 15) + (first ? 20 : 0) };
 }

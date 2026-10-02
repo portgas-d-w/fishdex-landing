@@ -9,7 +9,7 @@ const caught=(id:string,length=20)=>({id,speciesId:'roach' as const,length,date:
 test('Migration v2 conserve individus, favoris et gains et prépare un montage gratuit valide',()=>{
  const s=emptySave();recordCatch(s,caught('kept'));s.favorites=['kept'];
  const old={...s,version:2,settings:{sound:true,quality:'eco'}};delete (old as any).preparation;
- const next=parseSave(JSON.stringify(old));assert.equal(next.version,6);assert.deepEqual(next.journal,s.journal);assert.equal(next.coins,s.coins);assert.deepEqual(next.favorites,s.favorites);assert.equal(next.settings.reelMode,'hold');assert.ok(preparation(next.preparation.method,next.equipped,next.preparation.bait).valid);
+ const next=parseSave(JSON.stringify(old));assert.equal(next.version,7);assert.deepEqual(next.journal,s.journal);assert.equal(next.coins,s.coins);assert.deepEqual(next.favorites,s.favorites);assert.equal(next.settings.reelMode,'hold');assert.ok(preparation(next.preparation.method,next.equipped,next.preparation.bait).valid);
  next.preparation={method:'lure',bait:'lure',location:'willow-pond',post:'jetty'};next.settings.reelMode='hold';next.tackle.config=starterConfig('lure');assert.deepEqual(parseSave(JSON.stringify(next)),next);
  next.preparation.bait='worm';assert.throws(()=>parseSave(JSON.stringify(next)),/incompatible/);
 });
@@ -17,7 +17,7 @@ test('Tous les emplacements et familles ont un catalogue, futur distinct de verr
  for(const [id] of FAMILIES)assert.ok(GEAR.some(i=>i.family===id),id);
  for(const m of METHODS){for(const slot of m.slots)assert.ok(FAMILIES.some(f=>f[0]===slot)); if(m.available)assert.ok(preparation(m.id,TECHNIQUES.find(t=>t.id===m.id)?.rod??(m.id==='pole'?'pole-starter':'starter'),m.bait).valid);else assert.equal(preparation(m.id,'starter',m.bait).valid,false);}
  const save=emptySave();assert.equal(gearState(GEAR.find(i=>i.id==='base-feeder')!,save),'owned');assert.equal(gearState(GEAR.find(i=>i.id==='precision')!,save),'locked');save.coins=500;assert.match(purchase(save,'precision'),/Niveau/);save.xp=80;assert.equal(purchase(save,'precision'),'');assert.equal(save.equipped,'starter');
- assert.equal(LOCATIONS.filter(l=>l.available).length,4);assert.equal(ANIMATION_STATES.breathing,'absent');
+ assert.equal(LOCATIONS.filter(l=>l.available).length,4);assert.equal(ANIMATION_STATES.breathing,'procedural');
 });
 test('Filtres combinés, tris et vues de carnet utilisent les individus, sans modifier la sauvegarde',()=>{
  const s=emptySave();recordCatch(s,caught('first',20));recordCatch(s,{...caught('gold',25),coloration:'golden',method:'bottom'});recordCatch(s,{...caught('mirage',23),mirage:true});s.favorites=['gold'];const before=JSON.stringify(s);

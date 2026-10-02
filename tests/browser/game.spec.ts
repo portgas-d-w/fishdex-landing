@@ -25,7 +25,7 @@ test('Prise par geste, commandes compactes et carnet conservé', async ({ page }
  await expect(page.locator('#preview-error')).toBeHidden(); expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().total)).toBe(1);
  await page.screenshot({path:`test-results/immersion-${info.project.name}-catch.png`}); await page.locator('#release-fish').click();
  await page.reload(); await expect(page.locator('body')).toHaveAttribute('data-ready','true');
- await openMenuPage(page,'collection-open'); await expect(page.locator('#collection-count')).toHaveText(`1 / ${SPECIES.length}`);
+ await openMenuPage(page,'collection-open'); await expect(page.locator('#collection-count')).toHaveText('1 captures · 0 observations');
  await expect(page.locator('.fish-entry:not(.undiscovered)')).toHaveCount(1); expect(errors).toEqual([]);
 });
 test('Menu au combat : pause, gestes neutralisés, retours et import invalide',async({page},info)=>{

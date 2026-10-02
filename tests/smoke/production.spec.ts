@@ -41,12 +41,12 @@ test('Le build permet une vraie prise, le chargement différé et le transfert d
   await fightPicture;
   await expect(page.locator('#fish-preview')).toHaveAttribute('data-loaded', 'true');
   await expect(page.locator('#preview-error')).toBeHidden();
-  expect(models).toHaveLength(1);
+  expect(new Set(models)).toHaveProperty('size',1);
   await page.waitForTimeout(400);
   await page.screenshot({ path: `test-results/smoke-${info.project.name}-catch.png` });
   await page.locator('#release-fish').click();
   await page.reload();
-  await expect(page.locator('#collection-count')).toHaveText(`1 / ${SPECIES.length}`);
+  await expect(page.locator('#collection-count')).toHaveText('1 captures · 0 observations');
   await openMenuPage(page, 'collection-open');
   const downloadPromise = page.waitForEvent('download');
   await page.locator('#export-save').click();
@@ -55,21 +55,21 @@ test('Le build permet une vraie prise, le chargement différé et le transfert d
   expect(JSON.parse(bytes.toString()).total).toBe(1);
   await page.evaluate(() => localStorage.removeItem('au-fil-de-leau.save.v1'));
   await page.reload();
-  await expect(page.locator('#collection-count')).toHaveText(`0 / ${SPECIES.length}`);
+  await expect(page.locator('#collection-count')).toHaveText('0 captures · 0 observations');
   await openMenuPage(page, 'collection-open');
   await page.locator('#save-file').setInputFiles({ name: 'carnet.json', mimeType: 'application/json', buffer: bytes });
   await expect(page.locator('#import-review')).toBeVisible();
   await page.locator('#confirm-import').click();
-  await expect(page.locator('#collection-count')).toHaveText(`1 / ${SPECIES.length}`);
+  await expect(page.locator('#collection-count')).toHaveText('1 captures · 0 observations');
   expect(errors).toEqual([]);
 });
 
-test('Les quinze GLB servis sont intacts et les originaux restent exclus', async ({ request }) => {
+test('Les 33 GLB servis sont intacts et les originaux restent exclus', async ({ request }) => {
   const headers = process.env.VERCEL_OIDC_TOKEN ? { 'x-vercel-trusted-oidc-idp-token': process.env.VERCEL_OIDC_TOKEN } : {};
   const manifestResponse = await request.get('/models/manifest.json', { headers });
   expect(manifestResponse.ok()).toBe(true);
   const manifest = await manifestResponse.json();
-  expect(manifest.models).toHaveLength(SPECIES.length);
+  expect(manifest.models).toHaveLength(SPECIES.filter(s=>s.model).length);
   for (const model of manifest.models) {
     const response = await request.get(`/models/${model.model}.glb`, { headers });
     expect(response.ok()).toBe(true);
@@ -105,7 +105,7 @@ test('Le build livre l’atelier, les lots, les ensembles et le catalogue docume
   await expect(page.locator('#research-sheet')).toContainText('Adaptation prototype disponible'); await expect(page.locator('#research-sheet [data-component-buy]')).toHaveCount(0);
   await page.reload(); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
   const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!));
-  expect(stored.version).toBe(6); expect(stored.tackle.config.depth).toBe(0.5);
+  expect(stored.version).toBe(7); expect(stored.tackle.config.depth).toBe(0.5);
   expect(stored.tackle.presets).toHaveLength(1); expect(stored.tackle.stock.corn).toBe(30); expect(stored.coins).toBe(64);
   await page.locator('#prepare-open').click(); await page.locator('[data-work-tab="bag"]').click();
   await expect(page.locator('#bag-items [data-component-info="corn"]')).toBeVisible();
@@ -116,7 +116,7 @@ test('Nouvelle partie livrée : kit au coup, trois postes et vraie capture sans 
  await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');expect(await page.evaluate(()=>'__fishingQA' in window)).toBe(false);await expect(page.locator('body')).toHaveAttribute('data-method','pole');
  await page.locator('#prepare-open').click();await expect(page.locator('[data-slot="elastic"]')).toBeVisible();await expect(page.locator('[data-slot="reel"]')).toHaveCount(0);await page.locator('[data-work-tab="bag"]').click();await page.locator('#bag-search').fill('flotteur');expect(await page.locator('#bag-items .compact-row').count()).toBeGreaterThanOrEqual(1);await page.locator('[data-close="preparation"]').click();
  await page.locator('#map-open').click();await expect(page.locator('#map [data-state="open"]')).toHaveCount(3);await page.locator('#map [data-post="reed-bank"]').click();await expect(page.locator('#post-select')).toBeDisabled();await expect(page.locator('#post-sheet')).toContainText('Niveau 3 OU 2');await page.screenshot({path:`test-results/smoke-${info.project.name}-map.png`});for(const p of ['cove','bank']){await page.locator(`#map [data-post="${p}"]`).click();await page.locator('#post-select').click();await expect(page.locator('body')).toHaveAttribute('data-post',p);await page.locator('#map-open').click();}await page.locator('#map [data-post="point"]').click();await expect(page.locator('#post-select')).toBeDisabled();await expect(page.locator('#post-sheet')).toContainText('Niveau 6 OU 6');
- const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!));expect(saved.version).toBe(6);expect(saved.progression.methods).toEqual(['pole']);expect(saved.coins).toBe(0);expect(saved.total).toBe(0);
+ const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!));expect(saved.version).toBe(7);expect(saved.progression.methods).toEqual(['pole']);expect(saved.coins).toBe(0);expect(saved.total).toBe(0);
  await page.locator('#map [data-post="jetty"]').click();await page.locator('#post-select').click();await realFishing(page,context,info.project.name==='mobile',true);await expect(page.locator('#reel-control')).toBeHidden();await expect(page.locator('#catch-progression')).toContainText('initiation');const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!));expect(after.journal[0].method).toBe('pole');
 });
 
@@ -143,7 +143,7 @@ test('Le build conserve les favoris, le décor, les achats et les portraits sans
   expect(stored.total).toBe(5); expect(stored.xp).toBe(seed.xp); expect(stored.coins).toBe(seed.coins - 70); expect(stored.equipped).toBe('balanced');
   expect(stored.favorites).toHaveLength(4); expect(stored.aquarium.floor).toBe('gravel');
   await openMenuPage(page, 'collection-open'); await expect(page.locator('[data-photo="build-2"] img')).toBeVisible(); await page.locator('[data-close="collection"]').click();
-  await openMenuPage(page, 'dex-open'); await page.locator('#dex-state').selectOption('playable'); await expect(page.locator('.dex-tile')).toHaveCount(SPECIES.length);
+  await openMenuPage(page, 'dex-open'); await page.locator('#dex-state').selectOption('playable'); await expect(page.locator('.dex-tile')).toHaveCount(SPECIES.filter(s=>s.mode==='capture').length);
   await page.locator('#dex-search').fill('gardon'); await expect(page.locator('.dex-tile')).toHaveCount(1);
   expect(errors).toEqual([]);
 });

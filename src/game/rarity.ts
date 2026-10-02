@@ -1,5 +1,6 @@
 import { SPECIES, type SpeciesId } from './catalog.ts';
 import type { Specimen } from './specimens.ts';
+import registry from './fish-registry.json' with {type:'json'};
 // Classification éditoriale du prototype, distincte de présence locale et résistance.
 export const RARITIES = [
   { id:'common', name:'Commun', rank:1 }, { id:'uncommon', name:'Peu commun', rank:2 },
@@ -9,6 +10,7 @@ export const RARITIES = [
 export type RarityId = typeof RARITIES[number]['id'];
 export const rarityName = (id:RarityId) => RARITIES.find(r=>r.id===id)!.name;
 export const SPECIES_RARITY:Record<SpeciesId,RarityId> = {
+  ...Object.fromEntries(registry.species.map(s=>[s.id,s.rarity as RarityId])),
   roach:'common',perch:'common',carp:'uncommon',pike:'uncommon',zander:'rare',bream:'common',
   tench:'uncommon',rudd:'common',bleak:'common',crucian:'uncommon',whitebream:'common',
   gudgeon:'common',chub:'uncommon',ide:'uncommon',catfish:'rare',

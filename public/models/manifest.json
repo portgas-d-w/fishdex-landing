@@ -12,7 +12,7 @@
       ],
       "armatures": 0,
       "source_animations": 0,
-      "display_length": 2.0,
+      "display_length": 2,
       "texture": "512x512 JPEG embedded, quality 85",
       "bytes": 186548
     },
@@ -26,7 +26,7 @@
       ],
       "armatures": 0,
       "source_animations": 0,
-      "display_length": 2.0,
+      "display_length": 2,
       "texture": "512x512 JPEG embedded, quality 85",
       "bytes": 60236
     },
@@ -40,7 +40,7 @@
       ],
       "armatures": 0,
       "source_animations": 0,
-      "display_length": 2.0,
+      "display_length": 2,
       "texture": "512x512 JPEG embedded, quality 85",
       "bytes": 122928
     },
@@ -54,7 +54,7 @@
       ],
       "armatures": 0,
       "source_animations": 0,
-      "display_length": 2.0,
+      "display_length": 2,
       "texture": "512x512 JPEG embedded, quality 85",
       "bytes": 99212
     },
@@ -68,7 +68,7 @@
       ],
       "armatures": 0,
       "source_animations": 0,
-      "display_length": 2.0,
+      "display_length": 2,
       "texture": "512x512 JPEG embedded, quality 85",
       "bytes": 68080
     },
@@ -82,7 +82,7 @@
       ],
       "armatures": 0,
       "source_animations": 0,
-      "display_length": 2.0,
+      "display_length": 2,
       "texture": "512x512 JPEG embedded, quality 85",
       "bytes": 184996
     },
@@ -96,7 +96,7 @@
       ],
       "armatures": 0,
       "source_animations": 0,
-      "display_length": 2.0,
+      "display_length": 2,
       "texture": "512x512 JPEG embedded, quality 85",
       "bytes": 117160
     },
@@ -110,7 +110,7 @@
       ],
       "armatures": 0,
       "source_animations": 0,
-      "display_length": 2.0,
+      "display_length": 2,
       "texture": "512x512 JPEG embedded, quality 85",
       "bytes": 121692
     },
@@ -124,7 +124,7 @@
       ],
       "armatures": 0,
       "source_animations": 0,
-      "display_length": 2.0,
+      "display_length": 2,
       "texture": "512x512 JPEG embedded, quality 85",
       "bytes": 92552
     },
@@ -138,7 +138,7 @@
       ],
       "armatures": 0,
       "source_animations": 0,
-      "display_length": 2.0,
+      "display_length": 2,
       "texture": "512x512 JPEG embedded, quality 85",
       "bytes": 126996
     },
@@ -152,7 +152,7 @@
       ],
       "armatures": 0,
       "source_animations": 0,
-      "display_length": 2.0,
+      "display_length": 2,
       "texture": "512x512 JPEG embedded, quality 85",
       "bytes": 105216
     },
@@ -166,7 +166,7 @@
       ],
       "armatures": 0,
       "source_animations": 0,
-      "display_length": 2.0,
+      "display_length": 2,
       "texture": "512x512 JPEG embedded, quality 85",
       "bytes": 111096
     },
@@ -180,7 +180,7 @@
       ],
       "armatures": 0,
       "source_animations": 0,
-      "display_length": 2.0,
+      "display_length": 2,
       "texture": "512x512 JPEG embedded, quality 85",
       "bytes": 88144
     },
@@ -194,7 +194,7 @@
       ],
       "armatures": 0,
       "source_animations": 0,
-      "display_length": 2.0,
+      "display_length": 2,
       "texture": "512x512 JPEG embedded, quality 85",
       "bytes": 134596
     },
@@ -208,9 +208,262 @@
       ],
       "armatures": 0,
       "source_animations": 0,
-      "display_length": 2.0,
+      "display_length": 2,
       "texture": "512x512 JPEG embedded, quality 85",
       "bytes": 111780
+    },
+    {
+      "model": "Asp",
+      "triangles": 624,
+      "source_dimensions": [
+        0.4997875988483429,
+        0.054248176515102386,
+        0.19782644510269165
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 103768
+    },
+    {
+      "model": "Barbel",
+      "triangles": 688,
+      "source_dimensions": [
+        0.4998467266559601,
+        0.0753130316734314,
+        0.1705133318901062
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 110288
+    },
+    {
+      "model": "BlackBullhead",
+      "triangles": 704,
+      "source_dimensions": [
+        0.4998943507671356,
+        0.06482382118701935,
+        0.2176416516304016
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 124584
+    },
+    {
+      "model": "BrownTrout",
+      "triangles": 584,
+      "source_dimensions": [
+        0.500097930431366,
+        0.06389397382736206,
+        0.12282969057559967
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 70408
+    },
+    {
+      "model": "Burbot",
+      "triangles": 706,
+      "source_dimensions": [
+        0.4999334216117859,
+        0.07761456817388535,
+        0.13963474333286285
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 113520
+    },
+    {
+      "model": "CommonNase",
+      "triangles": 546,
+      "source_dimensions": [
+        0.5004571676254272,
+        0.05691028758883476,
+        0.16511446237564087
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 132260
+    },
+    {
+      "model": "PrussianCarp",
+      "triangles": 598,
+      "source_dimensions": [
+        0.49956199526786804,
+        0.06309668719768524,
+        0.2782401442527771
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 158680
+    },
+    {
+      "model": "EuropeanBitterling",
+      "triangles": 504,
+      "source_dimensions": [
+        0.5001503229141235,
+        0.054311301559209824,
+        0.19086480140686035
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 128880
+    },
+    {
+      "model": "EuropeanBullhead",
+      "triangles": 608,
+      "source_dimensions": [
+        0.5001614689826965,
+        0.07588377594947815,
+        0.1290152221918106
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 100248
+    },
+    {
+      "model": "EuropeanEel",
+      "triangles": 458,
+      "source_dimensions": [
+        0.49968698620796204,
+        0.033404767513275146,
+        0.03994050994515419
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 51756
+    },
+    {
+      "model": "EuropeanMinnow",
+      "triangles": 542,
+      "source_dimensions": [
+        0.500234842300415,
+        0.0720561146736145,
+        0.1676044464111328
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 90592
+    },
+    {
+      "model": "EuropeanSmelt",
+      "triangles": 472,
+      "source_dimensions": [
+        0.49957066774368286,
+        0.06497225165367126,
+        0.15682944655418396
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 83712
+    },
+    {
+      "model": "GrassCarp",
+      "triangles": 508,
+      "source_dimensions": [
+        0.49983400106430054,
+        0.06277462095022202,
+        0.18042287230491638
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 105732
+    },
+    {
+      "model": "Grayling",
+      "triangles": 698,
+      "source_dimensions": [
+        0.499885231256485,
+        0.06969345360994339,
+        0.23172369599342346
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 171880
+    },
+    {
+      "model": "Huchen",
+      "triangles": 626,
+      "source_dimensions": [
+        0.5004603266716003,
+        0.06930819898843765,
+        0.13135254383087158
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 94080
+    },
+    {
+      "model": "RainbowTrout",
+      "triangles": 582,
+      "source_dimensions": [
+        0.500343918800354,
+        0.06902216374874115,
+        0.17852267622947693
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 114280
+    },
+    {
+      "model": "SilverCarp",
+      "triangles": 606,
+      "source_dimensions": [
+        0.4998575448989868,
+        0.06909708678722382,
+        0.13372698426246643
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 161996
+    },
+    {
+      "model": "Dace",
+      "triangles": 448,
+      "source_dimensions": [
+        0.5004464387893677,
+        0.05687325447797775,
+        0.21429851651191711
+      ],
+      "armatures": 0,
+      "source_animations": 0,
+      "display_length": 2,
+      "texture": "512x512 JPEG embedded, quality 85",
+      "bytes": 70120
     }
-  ]
+  ],
+  "additionalConverter": "5.1.2"
 }

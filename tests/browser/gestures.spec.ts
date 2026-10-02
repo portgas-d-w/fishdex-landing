@@ -1,6 +1,6 @@
 import {ensureLegacyProfile} from './helpers';
 import {test,expect} from '@playwright/test';
-import {castByGesture} from './helpers';
+import {timedCastGesture,castByGesture} from './helpers';
 test('Départ bas, préparation visible, relâchement seul, refus et annulations',async({page},info)=>{
  await ensureLegacyProfile(page); await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());
  const w=page.viewportSize()!.width,h=page.viewportSize()!.height;const canvas=page.locator('#world');
@@ -20,10 +20,7 @@ test('Départ bas, préparation visible, relâchement seul, refus et annulations
 
 test('Un long lancer lent reste court ; une projection rapide gagne de la distance',async({page})=>{
  await ensureLegacyProfile(page); await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());
- const w=page.viewportSize()!.width,h=page.viewportSize()!.height;
- await page.mouse.move(w*.45,h*.8);await page.mouse.down();
- for(let i=1;i<=20;i++){await page.mouse.move(w*.45,h*(.8-.35*i/20));await page.waitForTimeout(40);}
- await page.mouse.up();await expect(page.locator('body')).toHaveAttribute('data-phase','casting');
+ await timedCastGesture(page,800,.45);await expect(page.locator('body')).toHaveAttribute('data-phase','casting');
  const slow=await page.evaluate(()=>(window as any).__fishingQA.snapshot().target.z);
  await page.locator('#cancel-cast').click();await castByGesture(page);
  const fast=await page.evaluate(()=>(window as any).__fishingQA.snapshot().target.z);

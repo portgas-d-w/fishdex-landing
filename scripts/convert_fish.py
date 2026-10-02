@@ -13,7 +13,7 @@ from mathutils import Vector
 
 ROOT = Path(__file__).resolve().parents[1]
 NAMES = os.environ.get('FISH_MODELS', 'Roach,EuropeanPerch,CommonCarp,NorthernPike,Zander').split(',')
-OUT = ROOT / 'public' / 'models'
+OUT = Path(os.environ.get('FISH_OUTPUT', str(ROOT / 'public' / 'models')))
 OUT.mkdir(parents=True, exist_ok=True)
 report = []
 

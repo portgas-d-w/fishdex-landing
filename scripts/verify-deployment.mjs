@@ -13,6 +13,7 @@ async function remote(path){
 }
 const manifest=JSON.parse(await readFile(join(dist,'models/manifest.json'),'utf8'));
 const paths=(await readdir(join(dist,'assets'))).filter(f=>/\.(js|css)$/.test(f)).map(f=>`assets/${f}`);
+paths.push(...(await readdir(join(dist,'fishdex-assets'))).map(f=>`fishdex-assets/${f}`));
 paths.push('models/manifest.json',...manifest.models.map(m=>`models/${m.model}.glb`));
 const rows=[];
 for(const path of paths){
@@ -25,6 +26,6 @@ for(const path of paths){
 const html=(await remote('/')).toString('utf8');
 const entry=(html.match(/src="(\/assets\/index-[^"]+\.js)"/)||[])[1];
 if(!entry||!rows.some(r=>`/${r.path}`===entry))throw Error('HTML entry does not match local build');
-const summary={origin,entry,jsCss:rows.filter(r=>/\.(js|css)$/.test(r.path)).length,models:manifest.models.length,allMatch:true,rows};
+const summary={origin,entry,jsCss:rows.filter(r=>/\.(js|css)$/.test(r.path)).length,models:manifest.models.length,images:paths.filter(p=>p.startsWith('fishdex-assets/')).length,allMatch:true,rows};
 await writeFile(outputArg,JSON.stringify(summary,null,2)+'\n');
-console.log(JSON.stringify({origin,entry,jsCss:summary.jsCss,models:summary.models,allMatch:true,entrySha256:rows.find(r=>`/${r.path}`===entry).sha256}));
+console.log(JSON.stringify({origin,entry,jsCss:summary.jsCss,models:summary.models,images:summary.images,allMatch:true,entrySha256:rows.find(r=>`/${r.path}`===entry).sha256}));

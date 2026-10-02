@@ -3,8 +3,9 @@ from pathlib import Path
 import json
 import struct
 import io
+import os
 from PIL import Image
-root = Path(__file__).resolve().parents[1] / 'public' / 'models'
+root = Path(os.environ.get('FISH_OUTPUT', str(Path(__file__).resolve().parents[1] / 'public' / 'models')))
 manifest = json.loads((root / 'manifest.json').read_text())
 for entry in manifest['models']:
     path = root / (entry['model'] + '.glb')
