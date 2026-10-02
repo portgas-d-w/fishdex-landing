@@ -10,6 +10,8 @@ Tag de retour publié archive/au-fil-de-leau-before-basalte-2026-10-02, base d51
 
 Production READY dpl_DhSAgCTqwhWHNKckfJTmDifVL7w7 : https://fishdex-landing-3wfnaw27u-portgas-d-ws-projects.vercel.app, build **33 s**, domaine public https://www.fishdex.fr. Smoke public sans token **8/8 (1,7 min)**, bureau et 390×844, console sans erreur détectée. Domaine nu redirige vers www, HTTP final 200. Les 45 JS/CSS référencés sont identiques octet par octet au dist vérifié ; manifeste JSON identique. Principal index-DTjLNFbt.js SHA256 2e7f7418c56e28834ce0760c9f62d473a3976f9778d486de95ae3479150714a5 ; détail docs/apercus/basalte-turquoise/production-files.json. Scan erreurs 15 min : aucun événement renvoyé. Aucun drain ; pas de télémétrie appareil. La clôture documentaire conserve les mêmes sources applicatives ; son déploiement et les fichiers sont contrôlés avant fin de session.
 
+Clôture documentaire 0f746f8 : READY dpl_DNKz7zTNJzPs8C6ZnxEC6giavB1J, https://fishdex-landing-27bdhxc19-portgas-d-ws-projects.vercel.app, build 26 s. www.fishdex.fr résout vers ce SHA, HTTP 200 ; 45 fichiers et manifeste revérifiés identiques. Sources applicatives inchangées depuis les smoke publics. La présente précision ne change que les relais et ce journal.
+
 Contrôles locaux : check **47 tests + TypeScript/build**, navigateur **51 réussis / 3 exclusions prévues**, smoke build sans QA **8/8 (1,6 min)**. Mesures et captures avant/après : BASALTE_TURQUOISE.md. Aucun résultat Safari/iPhone physique, chauffe/autonomie ou réseau mobile annoncé.
 
 ## Canne et montages 0.6.0 — 2 octobre 2026
