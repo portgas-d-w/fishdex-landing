@@ -1,5 +1,17 @@
 # Vercel — migration de FishDex vers Au fil de l’eau
 
+## Basalte & Turquoise 0.7.0 — 2 octobre 2026
+
+Projet, dépôt et branche de production revérifiés : portgas-d-ws-projects/fishdex-landing, ID prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, GitHub portgas-d-w/fishdex-landing, main, Vite/dist/npm ci/Node24. CLI 62.0.0 réellement disponible. Domaines et protection conservés.
+
+Application af889954e1f77234e93ddb9eed085d87ee7f955a. Preview READY dpl_7M3iQRWsYSwdXtNz2QnGdKMFWmNh : https://fishdex-landing-dieyn27kj-portgas-d-ws-projects.vercel.app, build 27 s ; smoke protégé **8/8 (1,7 min)**, vraie prise, transferts/photos, quinze modèles, atelier/presets/stock et favoris. OIDC obtenu par env pull/node --env-file, header limité à cette origine, traces désactivées, token jamais affiché ou committé. Puis fusion fast-forward et push main.
+
+Tag de retour publié archive/au-fil-de-leau-before-basalte-2026-10-02, base d511384 ; ancienne production READY dpl_9SusEzAY2H3PNR4Jy2ft4jdjhuW1, https://fishdex-landing-2g1v53yn5-portgas-d-ws-projects.vercel.app. Sauvegarde v4 commune aux deux versions : aucun changement de schéma ni migration nouvelle. Aucun déploiement supprimé.
+
+Production READY dpl_DhSAgCTqwhWHNKckfJTmDifVL7w7 : https://fishdex-landing-3wfnaw27u-portgas-d-ws-projects.vercel.app, build **33 s**, domaine public https://www.fishdex.fr. Smoke public sans token **8/8 (1,7 min)**, bureau et 390×844, console sans erreur détectée. Domaine nu redirige vers www, HTTP final 200. Les 45 JS/CSS référencés sont identiques octet par octet au dist vérifié ; manifeste JSON identique. Principal index-DTjLNFbt.js SHA256 2e7f7418c56e28834ce0760c9f62d473a3976f9778d486de95ae3479150714a5 ; détail docs/apercus/basalte-turquoise/production-files.json. Scan erreurs 15 min : aucun événement renvoyé. Aucun drain ; pas de télémétrie appareil. La clôture documentaire conserve les mêmes sources applicatives ; son déploiement et les fichiers sont contrôlés avant fin de session.
+
+Contrôles locaux : check **47 tests + TypeScript/build**, navigateur **51 réussis / 3 exclusions prévues**, smoke build sans QA **8/8 (1,6 min)**. Mesures et captures avant/après : BASALTE_TURQUOISE.md. Aucun résultat Safari/iPhone physique, chauffe/autonomie ou réseau mobile annoncé.
+
 ## Canne et montages 0.6.0 — 2 octobre 2026
 
 Projet portgas-d-ws-projects/fishdex-landing, ID prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, dépôt portgas-d-w/fishdex-landing et main revérifiés. Domaines et protection conservés. CLI 62.0.0 disponible ; aucune installation ou nouveau service.

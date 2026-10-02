@@ -8,7 +8,7 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 - [x] Lumière, eau légère, berges irrégulières, végétation regroupée/ancrage et matières partagées.
 - [x] Tokens complets, panneaux secondaires, typographie et portraits ; statuts/focus/contraste et petits formats.
 - [x] Budget éco grand écran ajusté après régression mesurée ; résolution DOM préservée.
-- [ ] Finaliser navigateur complet et smoke local/preview/public ; vérifier domaines et retour.
+- [x] Navigateur complet 51 réussis/3 exclusions prévues, smoke local/preview/public 8/8 chacun ; domaine, fichiers et retour vérifiés.
 - [ ] Safari/iPhone 14 Pro et téléphone modeste : cadence après échauffement, chauffe/autonomie, réseau mobile et ressenti.
 
 
