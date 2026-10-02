@@ -13,6 +13,10 @@ import { stepCombat } from './combat.ts';
 export type Phase = 'idle' | 'casting' | 'waiting' | 'bite' | 'fighting' | 'caught' | 'lost';
 export interface Catch { speciesId: Species['id']; length: number; date: string; id?: string; coloration?: Specimen['coloration']; mirage?: boolean; method?: MethodId; equipment?: string; bait?: BaitId; baitItem?: string; target?: WaterPoint; controlled?: boolean; post?:PostId; microzone?:Microzone }
 export class FishingGame {
+  testMode=false;private forcedSnag=false;
+  testEncounter(id:Species['id'],size:number,seed:number,direct=false){if(!this.testMode||this.phase!=='idle')return 'Scénario réservé au profil TEST au repos.';const fish=SPECIES.find(f=>f.id===id);if(!fish||!Number.isFinite(size)||!Number.isInteger(seed)||seed<0||seed>4294967295)return 'Individu invalide.';let value=seed>>>0;this.random=()=>{value=(Math.imul(value,1664525)+1013904223)>>>0;return value/4294967296;};if(!this.cast({x:0,z:this.method==='pole'?3.2:7}))return this.failure;this.fish=fish;this.size=Math.max(fish.min,Math.min(fish.max,size));this.combatSeed=seed>>>0;this.individual=1;this.transition('bite');if(direct)this.strike();return ''; }
+  testFailure(outcome:Outcome){if(!this.testMode||!['waiting','bite','fighting'].includes(this.phase))return false;this.lose('Scénario TEST : '+outcome,outcome);return true;}
+  testSnag(){if(!this.testMode||!['waiting','fighting'].includes(this.phase))return false;this.forcedSnag=true;this.snagged=true;return true;}
   phase: Phase = 'idle';
   spot: SpotId = 'reeds';
   post:PostId='jetty'; rights?:Rights; microzone:Microzone='margin';
@@ -25,7 +29,7 @@ export class FishingGame {
   inspect(point:WaterPoint){return inspectPostTarget(this.post,point,this.method,this.reach);}
   setPost(id:PostId){if(this.phase!=='idle'||!postById(id).implemented||this.rights&&!this.rights.posts.includes(id))return false;this.post=id;this.target={x:0,z:3.2};this.baiting=undefined;return true;}
   groundbait(){if(!['pole','float'].includes(this.method)||!['waiting','idle'].includes(this.phase))return false;this.baiting={point:{...this.target},remaining:ENCOUNTER_CONFIG.groundbaitSeconds};this.groundbaitPulse++;return true;}
-  tryFreeSnag(){if(!this.snagged||this.rodLift>.35||Math.abs(this.rodYaw-this.direction)<.45)return false;this.snagged=false;this.snagTime=0;this.snagClear=4;return true;}
+  tryFreeSnag(){if(!this.snagged||this.rodLift>.35||Math.abs(this.rodYaw-this.direction)<.45)return false;this.forcedSnag=false;this.snagged=false;this.snagTime=0;this.snagClear=4;return true;}
   bait: BaitId = 'worm';
   elapsed = 0;
   tension = 0.25;
@@ -128,7 +132,7 @@ export class FishingGame {
     this.transition('fighting');
   }
   reset() {
-    this.resolve('return'); this.transition('idle'); this.result = null; this.fish = null;
+    this.forcedSnag=false;this.resolve('return'); this.transition('idle'); this.result = null; this.fish = null;
     this.tension = 0.25; this.progress = 0; this.pulling = false; this.failure = '';
     this.dragSpeed = 0; this.fatigue = 0; this.slack = 0;
   }
@@ -143,7 +147,7 @@ export class FishingGame {
     const turns = this.heldReeling ? Math.max(pulse, dt * this.retrievalSpeed) : pulse;
     this.queuedTurns -= pulse; this.reelSpeed = dt > 0 ? turns / dt : 0;
     this.elapsed += dt;this.snagClear=Math.max(0,this.snagClear-dt);if(this.baiting)this.baiting.remaining-=dt;
-    if(['waiting','fighting'].includes(this.phase)){this.snagged=this.snagClear<=0&&!!lineObstacle(this.post,this.phase==='fighting'?this.fishPosition:this.method==='lure'?this.fishPosition:this.target);this.snagTime=this.snagged?this.snagTime+dt:Math.max(0,this.snagTime-dt);if(this.snagTime>3){this.lose('La ligne a rompu dans les herbiers. Dégagez-la en baissant la canne et en changeant son angle.',weakestLink(this.rig));return;}}
+    if(['waiting','fighting'].includes(this.phase)){this.snagged=this.forcedSnag||this.snagClear<=0&&!!lineObstacle(this.post,this.phase==='fighting'?this.fishPosition:this.method==='lure'?this.fishPosition:this.target);this.snagTime=this.snagged?this.snagTime+dt:Math.max(0,this.snagTime-dt);if(this.snagTime>3){this.lose('La ligne a rompu dans les herbiers. Dégagez-la en baissant la canne et en changeant son angle.',weakestLink(this.rig));return;}}
     if (this.phase === 'casting' && this.elapsed >= 1.1) this.transition('waiting');
     else if (this.phase === 'waiting') {
       this.lureAnimation = Math.max(0, this.lureAnimation - dt * 0.5);

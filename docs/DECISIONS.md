@@ -55,3 +55,7 @@ fonctionnel avec un jeu prêt à diffuser largement.
 - Six postes / une scène, trois ouverts, roseaux permanents par niveau 3 OU deux prises au coup dans un cercle accessible. Point/timber restent futurs jusqu’à contraintes implémentées. Aucun multiplicateur de force lié au poste.
 - Distribution par populations + profils + microzones ; amorçage et trajet du leurre influencent la rencontre au moment réel. Configs et tailles sont des hypothèses de jeu versionnées. Aucun trophée garanti.
 - Combat assisté reste expérimental et commandé par l’appui, ignoré au coup. Kit de secours sans gain/vente ; pertes aval et réserve conservées. Banc et émulation ne remplacent pas une session humaine au toucher.
+
+## 2 octobre 2026 — périmètre V2 et profil de test
+
+La demande V2 remplace les limites historiques à deux pratiques. Les quatre familles historiques restent des adaptateurs de moteur, les 22 identifiants de techniques et 55 recettes du dossier sont conservés séparément. Mode test explicite et contrôlé par build, sauvegarde/photo séparées, portefeuille illimité par indicateur et coûts théoriques finis ; achats, incompatibilités et pertes restent réels. Aucun transfert vers le profil normal.

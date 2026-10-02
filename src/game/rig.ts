@@ -46,7 +46,7 @@ export interface Preset { id:string; name:string; rod:RodId; config:RigConfig }
 export interface RigNode { slot:Slot; item:string; parent:Slot|'rod'; quantity:number; attachment:'fixed'|'sliding'|'clip'; retained?:boolean }
 export type Outcome = 'return'|'catch'|'unhook'|'leader'|'main_line'|'hook'|'lead_release';
 export interface ActiveRig { id:string; rod:string; config:RigConfig; nodes:RigNode[]; reserved:Record<string,number>; resolved:boolean; outcome?:Outcome; losses:Record<string,number> }
-export interface Tackle { stock:Record<string,number>; config:RigConfig; presets:Preset[]; setups:Partial<Record<MethodId,{rod:RodId;config:RigConfig}>>; active:ActiveRig|null }
+export interface Tackle { unlimitedStock?:boolean; stock:Record<string,number>; config:RigConfig; presets:Preset[]; setups:Partial<Record<MethodId,{rod:RodId;config:RigConfig}>>; active:ActiveRig|null }
 export const slotsFor = (method:MethodId):Slot[] => method === 'pole' ? ['elastic','main_line','float','attachment','weight','leader','hook','bait'] : method === 'lure' ? ['reel','main_line','attachment','leader','lure'] : ['reel','main_line', ...(method === 'float' ? ['float' as Slot] : []),'attachment','weight','leader','hook','bait'];
 export function starterConfig(method:MethodId = 'float'):RigConfig {
   return {method,depth:1,distribution:'spread',components:Object.fromEntries(slotsFor(method).map(slot=>[slot,slot === 'weight' && method === 'bottom' ? 'kit-bottom' : COMPONENTS.find(c=>c.free && c.slot===slot && c.methods.includes(method))!.id]))};
@@ -57,7 +57,7 @@ export function changeMethod(t:Tackle, method:MethodId) {
   for(const slot of slotsFor(method)) { const item=component(old.components[slot] ?? ''); if(item?.methods.includes(method)) next.components[slot]=item.id; }
   t.config=next;
 }
-export function available(t:Tackle,id:string) { const c=component(id); if(c?.free) return Infinity; return Math.max(0,(t.stock[id]??0)-(t.active && !t.active.resolved ? t.active.reserved[id]??0 : 0)); }
+export function available(t:Tackle,id:string) { const c=component(id); if(c?.free || t.unlimitedStock) return Infinity; return Math.max(0,(t.stock[id]??0)-(t.active && !t.active.resolved ? t.active.reserved[id]??0 : 0)); }
 export function rigWarnings(config:RigConfig):string[] {
   if(config.method!=='float'&&config.method!=='pole') return [];
   const f=component(config.components.float??''); const w=component(config.components.weight??'');

@@ -2,6 +2,15 @@
 
 La mission autonome explicite autorise les fonctionnalités suivantes et remplace l’attente du premier retour appareil pour avancer. Une prise ou une sauvegarde cassée reste prioritaire sur le contenu.
 
+## Catalogue complet V2 — objectif remplaçant les restrictions antérieures
+
+- [x] Audit 22 méthodes/55 recettes, validation du dossier et référence 0.8.
+- [x] Mode test indépendant, argent ∞, transactions/stock/casse/scénarios, vérifications d'isolation.
+- [ ] Techniques et recettes fonctionnelles, contextes courant/profondeur/embarcation.
+- [ ] Réception, frein, effets des composants, progression et chaîne complète de chaque méthode.
+- [ ] Matrice vérifiée, parcours tactiles émulés, preuve hébergée et procédure téléphone.
+- [ ] Essais humains sur appareil, économie et sensations.
+
 ## Progression, postes et pratiques 0.8.0
 
 - [x] Audit des IDs, rareté indépendante, compatibilités et accès côté logique.

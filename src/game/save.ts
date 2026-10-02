@@ -16,7 +16,7 @@ export const SAVE_KEY = 'au-fil-de-leau.save.v1';
 export const MAX_SAVE_BYTES = 5_000_000;
 export interface RecordEntry { count: number; best: number; last: string }
 export interface SaveData {
-  version: 5; progression:Rights; tackle: Tackle; total: number; records: Partial<Record<SpeciesId, RecordEntry>>;
+  version: 5; development?:import('./development.ts').DevelopmentProfile; progression:Rights; tackle: Tackle; total: number; records: Partial<Record<SpeciesId, RecordEntry>>;
   legacyRecords: Partial<Record<SpeciesId, RecordEntry>>; journal: Specimen[]; favorites: string[];
   variants: Record<string, RecordEntry>; xp: number; coins: number; badges: string[];
   inventory: ItemId[]; equipped: ItemId;
@@ -62,6 +62,7 @@ export function parseSave(raw: string): SaveData {
   result.total = Object.values(result.records).reduce((sum, r) => sum + r.count, 0);
   if (result.total !== data.total) throw new Error('Le total de prises est incohérent.');
   const settings = data.settings ? object(data.settings) : {};
+  if(data.development!==undefined){const d=object(data.development);result.development={kind:choice(d.kind,['sandbox','rules']),unlimitedMoney:bool(d.unlimitedMoney),unlimitedStock:bool(d.unlimitedStock),theoreticalCost:integer(d.theoreticalCost)};}
   result.settings = { sound: settings.sound === true, quality: settings.quality === 'high' ? 'high' : 'eco', reelMode:'hold',combatMode:settings.combatMode==='assisted'?'assisted':'manual' };
   if (data.version === 3 || data.version === 4 || data.version === 5) { const p = object(data.preparation); result.preparation = { method: choice(p.method, ['pole','float','lure','bottom']), bait: choice(p.bait, ['worm','lure']), location: choice(p.location, ['willow-pond']),post:data.version===5?choice(p.post,POSTS.map(p=>p.id)):'jetty' }; if ((result.preparation.method === 'lure') !== (result.preparation.bait === 'lure')) throw new Error('Montage incompatible.'); }
   if (data.version === 1) { result.legacyRecords = structuredClone(result.records); migrateRights(result);return result; }
@@ -132,8 +133,8 @@ export function purchase(save: SaveData, id: ItemId): string {
   const item = ITEMS.find(i => i.id === id); if (!item) return 'Article inconnu.';
   if (save.inventory.includes(id)) return 'Déjà dans votre inventaire.';
   const access=itemCondition(save,id);if(access)return access;
-  if (save.coins < item.price) return 'Quelques photos de plus pour cet achat.';
-  save.coins -= item.price; save.inventory.push(id); return '';
+  if (!save.development?.unlimitedMoney && save.coins < item.price) return 'Quelques photos de plus pour cet achat.';
+  if(save.development)save.development.theoreticalCost+=item.price; if(!save.development?.unlimitedMoney)save.coins -= item.price; save.inventory.push(id); return '';
 }
 export function toggleFavorite(save: SaveData, id: string): string {
   if (!save.journal.some(s => s.id === id)) return 'Capture introuvable.';

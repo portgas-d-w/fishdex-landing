@@ -1,5 +1,6 @@
 // Miniatures en Blob, séparées des métadonnées. Éviction limitée aux images.
-const DB_NAME = 'au-fil-de-leau.photos';
+let DB_NAME = 'au-fil-de-leau.photos';
+export function setPhotoProfile(profile:'normal'|'test'){DB_NAME=profile==='test'?'au-fil-de-leau.test.photos':'au-fil-de-leau.photos';}
 async function openDB(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
     const r = indexedDB.open(DB_NAME, 1);

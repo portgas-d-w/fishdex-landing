@@ -6,7 +6,7 @@ import type { SaveData } from './save.ts';
 export const PROGRESSION_CONFIG = {version:1,reedsLevel:3,precisionCatches:2,lureFirstCatch:1};
 export interface Rights { methods:MethodId[]; posts:PostId[]; precision:number; initiation:boolean; mastery:Partial<Record<MethodId,number>>; legacy:boolean }
 export const initialRights = ():Rights => ({methods:['pole'],posts:['jetty','cove','bank'],precision:0,initiation:false,mastery:{},legacy:false});
-export const methodAccess = (save:SaveData,method:MethodId) => save.progression.methods.includes(method);
+export const methodAccess = (save:SaveData,method:MethodId) => save.development?.kind==='sandbox'||save.progression.methods.includes(method);
 export function refreshRights(save:SaveData) {
   const p=save.progression;
   if(!p.methods.includes('pole'))p.methods.push('pole');
@@ -21,9 +21,10 @@ export function initiateLures(save:SaveData):string {
   if(!save.inventory.includes('starter'))save.inventory.push('starter');
   return '';
 }
-export const postAccess = (save:SaveData,id:PostId) => POSTS.find(p=>p.id===id)?.implemented===true && save.progression.posts.includes(id);
+export const postAccess = (save:SaveData,id:PostId) => POSTS.find(p=>p.id===id)?.implemented===true && (save.development?.kind==='sandbox'||save.progression.posts.includes(id));
 export const postCondition = (save:SaveData,id:PostId) => id==='reed-bank' ? `Niveau ${PROGRESSION_CONFIG.reedsLevel} OU ${PROGRESSION_CONFIG.precisionCatches} prises au coup dans le cercle du ponton (${save.progression.precision}/${PROGRESSION_CONFIG.precisionCatches}).` : 'À venir : contraintes et scène locale à terminer.';
 export function itemCondition(save:SaveData,id:string):string {
+  if(save.development?.kind==='sandbox'&&(ITEMS.some(i=>i.id===id)||component(id)))return '';
   const item=ITEMS.find(i=>i.id===id), c=component(id);
   if(item && save.inventory.includes(item.id) || c && !c.free && (save.tackle.stock[id]??0)>0)return ''; // droit acquis
   if(item) {
@@ -38,7 +39,7 @@ export function itemCondition(save:SaveData,id:string):string {
 }
 export function purchaseComponent(save:SaveData,id:string,count=1):string {
   const reason=itemCondition(save,id);if(reason)return reason;
-  const result=buyComponent(save.tackle,id,save.coins,count);if(!result.error)save.coins=result.coins;return result.error;
+  const result=buyComponent(save.tackle,id,save.development?.unlimitedMoney?1000000000:save.coins,count);if(!result.error){if(save.development)save.development.theoreticalCost+=(component(id)?.price??0)*count;if(!save.development?.unlimitedMoney)save.coins=result.coins;}return result.error;
 }
 export function switchPractice(save:SaveData,method:MethodId):string {
   if(save.tackle.active&&!save.tackle.active.resolved)return 'Ramenez la ligne avant de changer de pratique.';

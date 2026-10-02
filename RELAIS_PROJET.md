@@ -2,6 +2,12 @@
 
 **Dernière mise à jour : 2 octobre 2026. Agent : Codex. Version 0.8.0 progression/postes/méthodes publiée et vérifiée sur fishdex.fr.**
 
+## Catalogue complet version 2 — en cours, 2 octobre 2026, Codex
+
+Consigne V2 archivée ; restrictions anciennes remplacées. Base 3b92834, branche codex/catalogue-complet-v2 ; modification utilisateur DEMARRER_AVEC_CODEX.md préservée. Audit dossier PASS 6 151 contrôles, 22 approches et 55 recettes. Rapport docs/IMPLEMENTATION_V2.md.
+
+Lot 1 terminé : Mode test contrôlé par build dev/preview, profil et photos séparés, ∞ sans nombre infini JSON, achats avec prix/quantités et coûts théoriques, stock/casse conservés, réapprovisionnement/stock illimité distincts, retour/reload/import isolés, scenarios individu/graine/casse/accroche et profil test neuf limité. npm ci zéro vulnérabilité ; check 64 tests + TypeScript/build PASS ; navigateur 4/4 bureau/mobile. Aucun déploiement de cette branche ni téléphone physique pour ce lot. Prochaine étape en cours : 22 techniques/55 recettes avec interactions propres, contextes, réception et frein, puis matrice complète. Ce lot n'est pas la clôture de la mission.
+
 ## Progression, postes et pratiques 0.8.0 — 2 octobre 2026, Codex
 
 Spec archivée et audit détaillé dans docs/PROGRESSION_POSTES_METHODES.md. Base e300814, branche codex/progression-postes-methodes. Babylon 9.28.0, Node 24.15.0, Vite 8.3.1 inchangés ; npm ci sans vulnérabilité. DEMARRER_AVEC_CODEX.md préexistant préservé et exclu des commits.

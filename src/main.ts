@@ -1,4 +1,8 @@
 import './style.css';
+import {ProfileStorage,wallet} from './game/development';
+import {installDevelopment} from './ui/development';
+import {setPhotoProfile} from './ui/photos';
+declare const __TEST_MODE_ENABLED__:boolean;
 import './ui/theme.css';
 import './ui/structure.css';
 import './ui/journey.css';
@@ -66,7 +70,9 @@ el('catch-reward').insertAdjacentHTML('afterend','<p id="catch-progression" clas
 el('help').insertAdjacentHTML('beforeend','<button id="export-before-progression" class="secondary">Exporter le carnet avant progression</button>');
 let storage: Storage | undefined;
 try { storage = window.localStorage; } catch { /* navigation privée restrictive */ }
-const loaded: ReturnType<typeof loadSave> = storage ? loadSave(storage) : { data: emptySave(), warning: 'Sauvegarde locale indisponible. Pensez à exporter le carnet.' };
+const profiles=new ProfileStorage(storage,import.meta.env.DEV||__TEST_MODE_ENABLED__);
+setPhotoProfile(profiles.active);
+const loaded: ReturnType<typeof loadSave> = storage ? profiles.load() : { data: emptySave(), warning: 'Sauvegarde locale indisponible. Pensez à exporter le carnet.' };
 let save = loaded.data;
 // Original pré-migration gardé localement pour un éventuel retour au lecteur v4.
 let migrationBackupPending=false;
@@ -97,21 +103,21 @@ let liveCatchView = false;
 let journalLimit = 30;
 const photoUrls: string[] = [];
 const escape = (s: string) => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
-function equip() { game.tackle=save.tackle;game.rights=save.progression; const item = ITEMS.find(i => i.id === save.equipped)!; game.equipment = item.id; game.equipmentPower = item.power; }
+function equip() { game.tackle=save.tackle;save.tackle.unlimitedStock=!!save.development?.unlimitedStock;game.testMode=!!save.development;game.rights=save.progression; const item = ITEMS.find(i => i.id === save.equipped)!; game.equipment = item.id; game.equipmentPower = item.power; }
 equip();
 
 function toast(message: string) { el('toast').textContent = message; el('toast').hidden = false; window.clearTimeout(toastTimer); toastTimer = window.setTimeout(() => el('toast').hidden = true, 5000); }
 function saveNow() {
   if(migrationBackupPending){try{storage!.setItem('au-fil-de-leau.save.before-v5',storage!.getItem('au-fil-de-leau.save.v1')!);migrationBackupPending=false;}catch{toast('Exportez la progression avant migration : le stockage ne permet pas de conserver l’original.');return;}}
   if (!recoveryPreserved && loaded.recovery) { try { storage?.setItem('au-fil-de-leau.save.recovery', loaded.recovery); recoveryPreserved = !!storage; } catch { toast('Stockage plein. Exportez le fichier de récupération dans Réglages avant de sauvegarder.'); return; } if (!recoveryPreserved) return; }
-  if ((!storage || !persistSave(save, storage)) && !storageWarningShown) {
+  if ((!storage || !persistSave(save, profiles)) && !storageWarningShown) {
     storageWarningShown = true; toast('Sauvegarde locale impossible. Exportez votre carnet pour le conserver.');
   }
 }
 function openModal(id: string) { hub?.opened(id); release(); cancelGesture(); el('line-alert').hidden = true; overlayPaused = true; if (!el<HTMLDialogElement>(id).open) el<HTMLDialogElement>(id).showModal(); }
 function closeModal(id: string) { el<HTMLDialogElement>(id).close(); }
 function refreshCollection() {
-  el('player-progress').textContent = `Niveau ${levelFor(save.xp)} · ${save.xp} XP · ${save.coins} écus`;
+  el('player-progress').textContent = `Niveau ${levelFor(save.xp)} · ${save.xp} XP · ${wallet(save)} écus`;
   el('equipment-summary').textContent = ITEMS.find(i => i.id === save.equipped)!.name;
   el('collection-count').textContent = `${Object.keys(save.records).length} / ${SPECIES.length}`;
   el('total-catches').textContent = save.total ? `${save.total} rencontre${save.total > 1 ? 's' : ''} · ${Object.keys(save.records).length} espèce${Object.keys(save.records).length > 1 ? 's' : ''}` : 'Aucune prise, tout à découvrir';
@@ -348,6 +354,7 @@ window.addEventListener('keydown', e => {
   e.preventDefault(); activate();
 });
 hub = new GameScreens({ save: () => save, game, open: openModal, close: closeModal, persist: saveNow, refresh: refreshCollection, toast,postChanged:()=>{world?.setPost(game.post);renderPhase();} });
+installDevelopment({save:()=>save,game,open:openModal,close:closeModal,persist:saveNow,refresh:refreshCollection,toast,postChanged:()=>{world?.setPost(game.post);renderPhase();}},profiles);
 if (loaded.recovery) { el('help').insertAdjacentHTML('beforeend', '<div class="recovery-panel"><h3>Récupérer une sauvegarde</h3><p class="warning-line">Le fichier original est conservé. Exportez-le avant de poursuivre ; vous pourrez importer une sauvegarde saine dans le carnet.</p><button id="export-recovery" class="secondary">Exporter le fichier original</button></div>'); el('export-recovery').onclick = () => { const url = URL.createObjectURL(new Blob([loaded.recovery!], {type:'application/json'})), a=document.createElement('a');a.href=url;a.download='au-fil-de-leau-recuperation.json';a.click();window.setTimeout(()=>URL.revokeObjectURL(url),1000);recoveryPreserved=true; }; }
 if (save.tackle.active?.outcome === 'return') saveNow();
 el('menu-open').onclick = () => openModal('menu');
@@ -402,7 +409,7 @@ el('combat-mode').onclick=()=>{if(game.phase!=='idle')return;save.settings.comba
 el('quality').onclick = () => { save.settings.quality = save.settings.quality === 'eco' ? 'high' : 'eco'; world?.setQuality(save.settings.quality); refreshSettings(); saveNow(); };
 el('export-save').onclick = () => {
   const url = URL.createObjectURL(new Blob([JSON.stringify(save, null, 2)], { type: 'application/json' }));
-  const a = document.createElement('a'); a.href = url; a.download = `au-fil-de-leau-carnet-${new Date().toISOString().slice(0, 10)}.json`; a.click();
+  const a = document.createElement('a'); a.href = url; a.download = `au-fil-de-leau-${profiles.active}-carnet-${new Date().toISOString().slice(0, 10)}.json`; a.click();
   window.setTimeout(() => URL.revokeObjectURL(url), 1000);
 };
 el('export-before-progression').onclick=()=>{let raw:string|null=null;try{raw=storage?.getItem('au-fil-de-leau.save.before-v5')??(migrationBackupPending?storage?.getItem('au-fil-de-leau.save.v1')??null:null);}catch{/* export courant disponible */}if(!raw){toast('Aucun carnet ancien sur cet appareil. Exportez votre progression actuelle.');return;}const url=URL.createObjectURL(new Blob([raw],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='au-fil-de-leau-avant-progression.json';a.click();window.setTimeout(()=>URL.revokeObjectURL(url),1000);};
@@ -413,7 +420,7 @@ el<HTMLInputElement>('save-file').onchange = async event => {
   const request = ++importRequest; pendingImport = undefined; el('import-review').hidden = true;
   try {
     if (file.size > MAX_SAVE_BYTES) throw new Error('Fichier trop volumineux.');
-    const parsed = parseSave(await file.text()); if (request !== importRequest) return; pendingImport = parsed;
+    const parsed = parseSave(await file.text()); if (request !== importRequest) return; if(!profiles.accepts(parsed))throw Error('Carnet de test et partie normale ne peuvent pas être mélangés.'); pendingImport = parsed;
     el('import-description').textContent = `Ce carnet contient ${pendingImport.total} prise(s). Il remplacera votre carnet actuel (${save.total} prise(s)). Exportez le vôtre avant de continuer si vous souhaitez le garder.`;
     el('import-review').hidden = false;
   } catch (error) { if (request === importRequest) toast(error instanceof Error ? error.message : 'Fichier invalide.'); }
