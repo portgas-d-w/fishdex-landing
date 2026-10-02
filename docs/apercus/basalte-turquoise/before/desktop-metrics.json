@@ -1,0 +1,50 @@
+{
+  "stage": "before",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "renderer": "Windows Chromium ANGLE SwiftShader, eco ; 20 échantillons après échauffement, pas un GPU mobile",
+  "idle": {
+    "fps": 21.3,
+    "cpuSubmissionMedianMs": 0.599999999627471,
+    "cpuSubmissionP95Ms": 0.8000000007450581,
+    "render": {
+      "drawCalls": 40,
+      "cpuFrameMs": 0.6000000005587935,
+      "vertices": 70320,
+      "meshes": 40,
+      "width": 1280,
+      "height": 800,
+      "textures": [
+        {
+          "name": "local-timber",
+          "width": 512,
+          "height": 128
+        }
+      ]
+    }
+  },
+  "fight": {
+    "fps": 19.9,
+    "cpuSubmissionMedianMs": 0.7000000001862645,
+    "cpuSubmissionP95Ms": 1.7000000001862645,
+    "render": {
+      "drawCalls": 42,
+      "cpuFrameMs": 1.7000000001862645,
+      "vertices": 70320,
+      "meshes": 42,
+      "width": 1280,
+      "height": 800,
+      "textures": [
+        {
+          "name": "local-timber",
+          "width": 512,
+          "height": 128
+        }
+      ]
+    }
+  },
+  "aquariumFps": 21.4,
+  "backgroundLakeFrames": 0
+}

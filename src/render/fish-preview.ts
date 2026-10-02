@@ -34,8 +34,9 @@ export class FishPreview {
     this.camera = new ArcRotateCamera('fish-camera', -Math.PI / 2, Math.PI / 2.15, 3.3, Vector3.Zero(), this.scene);
     this.camera.fov = 0.7;
     const light = new HemisphericLight('fish-softbox', new Vector3(0, 1, -1), this.scene);
-    light.intensity = 1.15; light.groundColor = new Color3(0.4, 0.45, 0.4);
-    const key = new DirectionalLight('fish-key', new Vector3(0.1, -0.4, 1), this.scene); key.intensity = 1.2;
+    light.intensity = 1; light.groundColor = Color3.FromHexString('#566568');
+    const key = new DirectionalLight('fish-key', new Vector3(0.1, -0.4, 1), this.scene);
+    key.intensity = .85; key.diffuse = Color3.FromHexString('#fff4e5');
     window.addEventListener('resize', this.resize);
   }
   async show(species: Species, specimen?: Specimen): Promise<boolean> {
@@ -53,7 +54,7 @@ export class FishPreview {
         for (const mesh of container.meshes) { if (mesh.getTotalVertices() === 0) continue; mesh.computeWorldMatrix(true); floor = Math.min(floor, mesh.getBoundingInfo().boundingBox.minimumWorld.y); }
         this.mat = MeshBuilder.CreateBox('presentation-mat', { width: 2.6, height: 0.06, depth: 1.1 }, this.scene);
         this.mat.position.y = Number.isFinite(floor) ? floor - 0.035 : -0.45;
-        const mat = new StandardMaterial('soft-mat', this.scene); mat.diffuseColor = Color3.FromHexString('#263c30'); mat.specularColor = Color3.Black(); this.mat.material = mat;
+        const mat = new StandardMaterial('soft-mat', this.scene); mat.diffuseColor = Color3.FromHexString('#303e41'); mat.specularColor = Color3.Black(); this.mat.material = mat;
       }
       const wave = new BodyWave(container, VISUALS[species.id].tailSign);
       // Le fichier peut être chargé avant la compilation des matériaux WebGL.
@@ -75,7 +76,7 @@ export class FishPreview {
     this.camera.alpha = -Math.PI / 2; this.scene.render();
     const thumb = document.createElement('canvas'); thumb.width = 480; thumb.height = 240;
     const ctx = thumb.getContext('2d'); if (!ctx) return null;
-    ctx.fillStyle = '#294b40'; ctx.fillRect(0, 0, 480, 240);
+    ctx.fillStyle = '#1d282c'; ctx.fillRect(0, 0, 480, 240);
     ctx.drawImage(this.canvas, 0, 0, 480, 240);
     return new Promise(resolve => thumb.toBlob(resolve, 'image/webp', 0.82));
   }

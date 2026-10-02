@@ -1,0 +1,41 @@
+/* Basalte & Turquoise : seule palette des interfaces. Le monde garde sa palette naturelle. */
+:root {
+  --fd-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --fd-bg: #171f22;
+  --fd-surface: #232d31;
+  --fd-surface-raised: #2c393d;
+  --fd-specimen-bg: #1d282c;
+  --fd-border: #415255;
+  --fd-text: #f0f5f4;
+  --fd-text-muted: #afbfbe;
+  --fd-accent: #4cc6c2;
+  --fd-accent-hover: #68d9d4;
+  --fd-accent-soft: #203e3f;
+  --fd-on-accent: #102526;
+  --fd-focus: #9debe7;
+  --fd-success: #82c99a;
+  --fd-warning: #e5c785;
+  --fd-danger: #e68181;
+  --fd-radius-control: 8px;
+  --fd-radius-card: 12px;
+  --fd-radius-panel: 16px;
+  --fd-space-1: 4px;
+  --fd-space-2: 8px;
+  --fd-space-3: 12px;
+  --fd-space-4: 16px;
+  --fd-space-5: 24px;
+  --fd-motion-fast: 120ms;
+  --fd-motion-normal: 180ms;
+  /* Alias des commandes existantes, sans migration des données. */
+  --ink: var(--fd-bg);
+  --panel: var(--fd-surface);
+  --panel-raised: var(--fd-surface-raised);
+  --cream: var(--fd-text);
+  --gold: var(--fd-accent);
+  --muted: var(--fd-text-muted);
+  --line: var(--fd-border);
+  font-family: var(--fd-font);
+  color: var(--fd-text);
+  background: var(--fd-bg);
+  font-size: 15px;
+}

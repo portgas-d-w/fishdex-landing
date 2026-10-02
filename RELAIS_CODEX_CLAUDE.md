@@ -1,5 +1,18 @@
 # Relais du module canne et montage
 
+## Direction artistique Basalte & Turquoise — 2 octobre 2026, Codex, 0.7.0 en vérification
+
+Guide du propriétaire lu et archivé dans docs/GUIDE_DA_BASALTE_TURQUOISE_CODEX_CLAUDE.md. Audit : Babylon.js core/loaders 9.28.0, Node 24.15.0, Vite 8.3.1, npm ci sans vulnérabilité. Base d511384, branche codex/basalte-turquoise-2026-10-02. Modification préexistante DEMARRER_AVEC_CODEX.md préservée et exclue des commits de cette mission.
+
+Terminé localement : lumière naturelle neutre, ciel et profondeur, eau olive/deep avec deux échelles animées et reflets simplifiés en éco, rivages irréguliers et arbres/pierres ancrés sur leur terrain, bouquets de roseaux (quatre animés), décor statique regroupé, grain de sol et bois calculé une fois. Caméra, coordonnées, événements et pools d’effets existants conservés. Palette Basalte & Turquoise et police système appliquées aux commandes, panneaux principaux et secondaires, fiches/capture et aquarium ; en-têtes opaques, portraits naturels, progression compacte, états sélectionnés avec libellé et aria-pressed, champs 16 px et réduction d’animations. Photos futures sur fond neutre ; anciennes photos IndexedDB intactes.
+
+Gameplay et données dans src/game inchangés ; sauvegarde v4 et même clé, aucune migration nouvelle. Aucun modèle ou portrait remplacé, nouvelle dépendance, pack, génération ou production Blender. Géométries actuelles stylisées conservées, aucun rendu photographique annoncé. Éco grand écran limité à 1024 px de largeur interne (1280 auparavant), DOM natif ; à 390 px la résolution reste 390×844. Qualité haute conserve ombres 512² et plafond DPR 1,5.
+
+Référence avant : parcours et captures bureau/mobile 2/2. Première passe monde à 1280 px : baisse de cadence bureau, reflets éco simplifiés puis plafond ajusté. Contrôles graphiques/récupération intermédiaires 6/6. Matrice 320/390/430/paysage : débordement du carnet à 320 corrigé (minimum des colonnes et contenu flex) ; contrôle final ciblé réussi, contraste principal ≥4,5 et animations réduites. Check final à ce stade : 47 tests + TypeScript/build. Suite navigateur complète et smoke à compléter avant publication. Mesures avant/après et limites dans docs/BASALTE_TURQUOISE.md ; Chromium ANGLE SwiftShader sur Windows uniquement, pas un iPhone réel, pas de chauffe/autonomie mesurée.
+
+Prochaine étape de cette session : terminer les contrôles, preview Vercel du projet confirmé, production autorisée et relais final. Limites : assets stylisés, performances GPU mobile réelles non mesurées, chunk Babylon encore ~1,81 Mo / 442 Ko gzip.
+
+
 ## Module canne / montages — 2 octobre 2026, Codex, 0.6.0 publiée et vérifiée
 
 Branche codex/canne-montages-2026-10-02, base 8b646ad. Consigne jointe et docs/Dossier_Au_Fil_De_Leau lus ; validation du dossier PASS, 6 151 contrôles. Modifications utilisateur de DEMARRER_AVEC_CODEX.md préservées. Référence FishDex lue par git show (checkout de contenu partiellement supprimé) : six empreintes identiques à l’import, aucune modification de la référence.

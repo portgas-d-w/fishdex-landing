@@ -35,14 +35,15 @@ export class Aquarium {
     this.scene = new Scene(this.engine);
     const camera = new ArcRotateCamera('aquarium-camera', -Math.PI / 2, Math.PI / 2.4, 10, new Vector3(0, 2, 0), this.scene);
     camera.fov = 0.75;
-    this.light = new HemisphericLight('water-light', new Vector3(0.2, 1, -0.5), this.scene); this.light.intensity = 0.95;
-    const key = new DirectionalLight('water-key', new Vector3(-0.4, -1, 0.7), this.scene); key.intensity = 0.85;
+    this.light = new HemisphericLight('water-light', new Vector3(0.2, 1, -0.5), this.scene); this.light.intensity = .9;
+    this.light.groundColor=Color3.FromHexString('#485756');
+    const key = new DirectionalLight('water-key', new Vector3(-0.4, -1, 0.7), this.scene); key.intensity = .75;
     const material = (name: string, hex: string) => { const m = new StandardMaterial(name, this.scene); m.diffuseColor = Color3.FromHexString(hex); m.specularColor = Color3.Black(); return m; };
     this.floor = material('floor-material', '#8e876f');
     const floor = MeshBuilder.CreateBox('aquarium-floor', { width: 8, height: 0.18, depth: 3 }, this.scene); floor.position.set(0, 0, 0.5); floor.material = this.floor;
-    const frame = material('glass-edges', '#769d99');
+    const frame = material('glass-edges', '#728386');
     for (const x of [-4, 4]) for (const z of [-1, 2]) { const rail = MeshBuilder.CreateBox('tank-corner', { width: 0.04, depth: 0.04, height: 4.1 }, this.scene); rail.position.set(x, 2, z); rail.material = frame; }
-    const back = MeshBuilder.CreateBox('tank-background', {width:8,height:4.4,depth:.08}, this.scene); back.position.set(0,2.2,2.1);back.material=this.background=material('deep-water-background','#214b54');
+    const back = MeshBuilder.CreateBox('tank-background', {width:8,height:4.4,depth:.08}, this.scene); back.position.set(0,2.2,2.1);back.material=this.background=material('deep-water-background','#293e46');
     const sand=material('sand-detail','#b7a781');for(let i=0;i<22;i++){const pebble=MeshBuilder.CreateSphere('sand-pebble',{diameter:.04+(i%4)*.015,segments:4},this.scene);pebble.scaling.y=.4;pebble.position.set(Math.sin(i*3.17)*3.8,.12,.5+Math.cos(i*2.36));pebble.material=sand;}
     this.plants = new TransformNode('purchased-plants', this.scene);
     const plantMat = material('plants-material', '#487a55');
@@ -69,8 +70,8 @@ export class Aquarium {
     });
   }
   customize(settings: SaveData['aquarium']) {
-    this.scene.clearColor = Color4.FromHexString(settings.background === 'night' ? '#0c2034ff' : '#173e4aff');
-    this.background.diffuseColor = Color3.FromHexString(settings.background === 'night' ? '#102938' : '#214b54');
+    this.scene.clearColor = Color4.FromHexString(settings.background === 'night' ? '#121e2aff' : '#1d2d34ff');
+    this.background.diffuseColor = Color3.FromHexString(settings.background === 'night' ? '#192b38' : '#293e46');
     this.floor.diffuseColor = Color3.FromHexString(settings.floor === 'sand' ? '#8e876f' : '#687b70');
     this.light.diffuse = Color3.FromHexString(settings.light === 'warm' ? '#fff0ce' : '#c6eafa');
     this.plants.setEnabled(settings.plants); this.rocks.setEnabled(settings.rocks);

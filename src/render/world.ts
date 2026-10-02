@@ -30,6 +30,7 @@ export class LakeWorld {
   private reeds: TransformNode[] = [];
   private resize = () => this.engine.resize();
   private seed = 127;
+  private terrain: { x:number; z:number; y:number; rx:number; ry:number; rz:number }[] = [];
   private rod!: Mesh;
   private grip!: Mesh;
   private wasCasting = false;
@@ -55,33 +56,34 @@ export class LakeWorld {
   constructor(canvas: HTMLCanvasElement, quality: 'eco' | 'high') {
     this.engine = new Engine(canvas, true, { preserveDrawingBuffer: false, stencil: false, powerPreference: 'low-power' });
     this.scene = new Scene(this.engine);
-    this.scene.clearColor = Color4.FromHexString('#bbd6d7ff');
+    this.scene.clearColor = Color4.FromHexString('#bacad0ff');
     this.scene.fogMode = Scene.FOGMODE_EXP2;
-    this.scene.fogColor = Color3.FromHexString('#a8c5bd');
-    this.scene.fogDensity = 0.007;
+    this.scene.fogColor = Color3.FromHexString('#b7c4c2');
+    this.scene.fogDensity = 0.0075;
     this.camera = new FreeCamera('lake-camera', new Vector3(0, 4.2, -8.5), this.scene);
     this.camera.setTarget(new Vector3(0, 0.1, 5.5));
     this.camera.fov = 0.88;
     this.camera.minZ = 0.1;
     const ambient = new HemisphericLight('sky-light', new Vector3(-0.2, 1, -0.2), this.scene);
-    ambient.intensity = 0.75;
-    ambient.groundColor = Color3.FromHexString('#24483e');
-    const sun = this.sun = new DirectionalLight('morning-light', new Vector3(-1, -0.7, 0.5), this.scene);
-    sun.diffuse = Color3.FromHexString('#fff0c9'); sun.intensity = 0.95;
+    ambient.intensity = 0.76;
+    ambient.diffuse = Color3.FromHexString('#e3ebed');
+    ambient.groundColor = Color3.FromHexString('#454c3c');
+    const sun = this.sun = new DirectionalLight('morning-light', new Vector3(.65, -.8, -.4), this.scene);
+    sun.diffuse = Color3.FromHexString('#fff2d9'); sun.intensity = 0.82;
     this.sky();
     this.landscape();
     this.water = this.createWater();
     this.dock();
     this.batchScenery();
     this.rod = MeshBuilder.CreateTube('moving-rod', { path: this.rodPath, radius: 0.025, tessellation: 6, updatable: true }, this.scene);
-    this.rod.material = this.material('#344337');
+    const carbon=this.material('#313c3e'); carbon.specularColor=Color3.FromHexString('#586467');carbon.specularPower=32;this.rod.material=carbon;
     this.thickLine = MeshBuilder.CreateTube('visible-line', { path: Array.from({ length: 9 }, (_, i) => new Vector3(1, 2, i)), radius: 0.012, tessellation: 4, updatable: true }, this.scene);
     const lineMat = this.material('#fff2bf'); lineMat.disableLighting = true; lineMat.emissiveColor = Color3.FromHexString('#fff2bf'); this.thickLine.material = lineMat;
     this.aimRing = MeshBuilder.CreateTorus('cast-target', { diameter: 0.8, thickness: 0.035, tessellation: 32 }, this.scene);
-    this.aimRing.material = this.material('#f5dda1'); this.aimRing.setEnabled(false);
+    this.aimRing.material = this.material('#4cc6c2'); this.aimRing.setEnabled(false);
     this.lure = MeshBuilder.CreateSphere('surface-lure', { diameter: 0.13, segments: 8 }, this.scene); this.lure.scaling.set(0.45, 0.4, 1.4); this.lure.material = this.material('#d8c476'); this.lure.setEnabled(false);
     this.trajectory = MeshBuilder.CreateLines('trajectory', { points: Array.from({ length: 17 }, () => Vector3.Zero()), updatable: true }, this.scene);
-    this.trajectory.color = Color3.FromHexString('#f5dda1'); this.trajectory.setEnabled(false);
+    this.trajectory.color = Color3.FromHexString('#68d9d4'); this.trajectory.setEnabled(false);
     this.bobber = new TransformNode('float', this.scene);
     const cork = MeshBuilder.CreateSphere('float-red', { diameter: 0.15, segments: 10 }, this.scene);
     cork.scaling.y = 1.65; cork.material = this.material('#dd704a'); cork.parent = this.bobber; cork.position.y = 0.075;
@@ -112,79 +114,105 @@ export class LakeWorld {
   }
   private sky() {
     Effect.ShadersStore.lakeSkyVertexShader = `precision highp float; attribute vec3 position; uniform mat4 worldViewProjection; varying float height; void main(){ height=position.y; gl_Position=worldViewProjection*vec4(position,1.0); }`;
-    Effect.ShadersStore.lakeSkyFragmentShader = `precision highp float; varying float height; void main(){ float h=clamp(height/100.,0.,1.); vec3 col=mix(vec3(.88,.85,.67),vec3(.41,.65,.66),pow(h,.48)); gl_FragColor=vec4(col,1.); }`;
+    Effect.ShadersStore.lakeSkyFragmentShader = `precision highp float; varying float height; void main(){ float h=clamp(height/100.,0.,1.); vec3 col=mix(vec3(.79,.84,.83),vec3(.45,.63,.73),pow(h,.45)); gl_FragColor=vec4(col,1.); }`;
     const mat = new ShaderMaterial('sky-gradient', this.scene, { vertex: 'lakeSky', fragment: 'lakeSky' }, { attributes: ['position'], uniforms: ['worldViewProjection'] });
     mat.backFaceCulling = false; mat.disableDepthWrite = true;
     const sky = MeshBuilder.CreateSphere('sky-dome', { diameter: 240, segments: 12 }, this.scene);
     sky.material = mat; sky.isPickable = false;
-    const sunMat = this.material('#ffedb5'); sunMat.disableLighting = true; sunMat.emissiveColor = Color3.FromHexString('#ffedb5');
-    this.ellipsoid('sun', new Vector3(-25, 18, 82), new Vector3(3.2, 3.2, 1), sunMat, 24);
+    const sunMat = this.material('#f3e9cd'); sunMat.disableLighting = true; sunMat.emissiveColor = Color3.FromHexString('#f3e9cd');
+    this.ellipsoid('sun', new Vector3(-27, 28, 90), new Vector3(2.3, 2.3, 1), sunMat, 16);
+  }
+  private bankHeight(x:number,z:number) {
+    return Math.max(0, ...this.terrain.map(t => {
+      const q=1-((x-t.x)/t.rx)**2-((z-t.z)/t.rz)**2;
+      return q>0 ? t.y+t.ry*Math.sqrt(q) : 0;
+    }));
+  }
+  private ground(name:string,at:Vector3,scale:Vector3,mat:StandardMaterial) {
+    this.terrain.push({x:at.x,z:at.z,y:at.y,rx:scale.x,ry:scale.y,rz:scale.z});
+    this.ellipsoid(name,at,scale,mat,12);
   }
   private landscape() {
-    const bank = this.material('#4c7449'); const edge = this.material('#b8a572');
-    const trunk = this.material('#61513d');
-    const greens = ['#224d40', '#4a7650', '#6c925e', '#315e47'].map(c => this.material(c));
+    const bank = this.material('#596247'), edge = this.material('#938872');
+    // Grain partagé, calculé une seule fois ; aucun bruit CPU par frame.
+    const soil = new DynamicTexture('local-soil',{width:256,height:256},this.scene,false);
+    const ctx=soil.getContext() as CanvasRenderingContext2D;ctx.fillStyle='#b3b09e';ctx.fillRect(0,0,256,256);
+    for(let i=0;i<1800;i++){ctx.fillStyle=i%3?'#53584118':'#eee5c41a';ctx.fillRect(this.random()*256,this.random()*256,1+this.random()*3,1+this.random()*2);}soil.update();
+    bank.diffuseTexture=soil;edge.diffuseTexture=soil;
+    const trunk = this.material('#625344');
+    const greens = ['#334a3a', '#465b3b', '#6a7650', '#5f6c48'].map(c => this.material(c));
     for (let layer = 0; layer < 3; layer++) {
-      const hillMat = this.material(['#628d79', '#86afa0', '#aac8b9'][layer]);
-      for (let i = 0; i < 9; i++) this.ellipsoid('distant-hill', new Vector3((i - 4) * 16, -1, 55 + layer * 14), new Vector3(13, 4 + this.random() * 6, 10), hillMat, 12);
+      const hillMat = this.material(['#708579', '#94a79e', '#b4c3bd'][layer]);
+      for (let i = 0; i < 5; i++) this.ellipsoid('distant-hill', new Vector3((i - 2) * 27, -2, 60 + layer * 17), new Vector3(24, 5 + this.random() * 7, 17), hillMat, 10);
     }
-    this.ellipsoid('far-bank', new Vector3(0, -1.3, 33), new Vector3(60, 2.4, 10), bank, 16);
+    this.ground('far-bank', new Vector3(0,-1.3,35), new Vector3(60,2.2,11),bank);
+    for(let i=0;i<5;i++)this.ground('bank-inlet',new Vector3((i-2)*19,-.75,31+(i%2)*2),new Vector3(14,1.4,7),i%2?bank:edge);
     for (const side of [-1, 1]) {
-      this.ellipsoid('shore-sand', new Vector3(side * 24, -0.25, 9), new Vector3(12, 0.7, 27), edge, 12);
-      this.ellipsoid('shore-grass', new Vector3(side * 25, -0.2, 9), new Vector3(12, 1.1, 28), bank, 12);
+      for(let i=0;i<4;i++) {
+        const radius=9+this.random()*2, x=side*(13+radius+this.random()*2),z=-4+i*10;
+        this.ground('shore-sand',new Vector3(x,-.45,z),new Vector3(radius+.5,.9,10),edge);
+        this.ground('shore-grass',new Vector3(x+side*.6,-.35,z+1),new Vector3(radius,1.3,10),bank);
+      }
     }
-    for (let i = 0; i < 52; i++) {
-      const x = i < 32 ? (this.random() - 0.5) * 90 : (i % 2 ? -1 : 1) * (16 + this.random() * 10);
-      const z = i < 32 ? 28 + this.random() * 12 : -1 + this.random() * 29;
-      const h = 3 + this.random() * 5;
-      const stem = MeshBuilder.CreateCylinder('tree-trunk', { height: h * 0.75, diameter: 0.28, tessellation: 6 }, this.scene);
-      stem.position.set(x, h * 0.375 + 0.3, z); stem.material = trunk;
+    this.ground('landing',new Vector3(0,-.7,-12),new Vector3(8,.95,5),edge);
+    for (let i = 0; i < 48; i++) {
+      const x = i < 30 ? (this.random() - 0.5) * 92 : (i % 2 ? -1 : 1) * (17 + this.random() * 8);
+      const z = i < 30 ? 29 + this.random() * 8 : -2 + this.random() * 27;
+      const h = 3 + this.random() * 4.5, base=this.bankHeight(x,z)-.08;
+      const stem = MeshBuilder.CreateCylinder('tree-trunk', { height: h * 0.72, diameterBottom:.22+h*.025,diameterTop:.12, tessellation: 6 }, this.scene);
+      stem.position.set(x, base+h*.36, z); stem.material = trunk;
       if (i % 3 === 0) {
         for (let j = 0; j < 3; j++) {
           const crown = MeshBuilder.CreateCylinder('pine-crown', { height: h * 0.55, diameterBottom: h * (0.48 - j * 0.08), diameterTop: 0, tessellation: 7 }, this.scene);
-          crown.position.set(x, h * (0.44 + j * 0.18), z); crown.material = greens[i % 4];
+          crown.position.set(x, base+h * (0.44 + j * 0.18), z); crown.material = greens[i % 4];
         }
       } else {
-        const crown = this.ellipsoid('leaf-crown', new Vector3(x, h * 0.78, z), new Vector3(h * 0.38, h * 0.32, h * 0.32), greens[i % 4], 12); crown.rotation.y = this.random() * Math.PI;
-        this.ellipsoid('leaf-crown', new Vector3(x - h * 0.18, h * 0.65, z + .18), new Vector3(h * .28, h * .28, h * .3), greens[(i + 2) % 4], 12);
-        this.ellipsoid('leaf-crown', new Vector3(x + h * 0.15, h * 0.62, z), new Vector3(h * 0.26, h * 0.28, h * 0.26), greens[(i + 1) % 4]);
+        const crown = this.ellipsoid('leaf-crown', new Vector3(x, base+h*.77, z), new Vector3(h*.36,h*.23,h*.31), greens[i%4], 8);crown.rotation.y=this.random()*Math.PI;
+        this.ellipsoid('leaf-crown',new Vector3(x-h*.2,base+h*.65,z+.3),new Vector3(h*.26,h*.21,h*.27),greens[(i+2)%4],8);
+        this.ellipsoid('leaf-crown',new Vector3(x+h*.18,base+h*.63,z-.2),new Vector3(h*.27,h*.22,h*.24),greens[(i+1)%4],8);
       }
     }
-    const grassMat = this.material('#577c49');
-    for (let i = 0; i < 30; i++) { const side = i % 2 ? -1 : 1; const x = side * (13 + this.random() * 7), z = this.random() * 22; const tuft = MeshBuilder.CreateCylinder('shore-tuft', { height: .35 + this.random() * .4, diameterBottom: .24, diameterTop: 0, tessellation: 5 }, this.scene); tuft.position.set(x,.25,z); tuft.rotation.z=(this.random()-.5)*.3; tuft.material=grassMat; }
-    const stalk = this.material('#7d8d53'); const head = this.material('#655332');
-    for (let i = 0; i < 44; i++) {
+    const grassMat = this.material('#63704b');
+    for (let i = 0; i < 30; i++) { const side=i%2?-1:1,x=side*(14+this.random()*6),z=this.random()*24,h=.3+this.random()*.4;const tuft=MeshBuilder.CreateCylinder('shore-tuft',{height:h,diameterBottom:.22,diameterTop:0,tessellation:5},this.scene);tuft.position.set(x,this.bankHeight(x,z)+h*.45,z);tuft.rotation.z=(this.random()-.5)*.3;tuft.material=grassMat; }
+    const stalk = this.material('#7b8154'), head = this.material('#574737');
+    for (let i = 0; i < 48; i++) {
       const side = i % 2 ? -1 : 1;
       const root = new TransformNode('reed-root', this.scene);
-      root.position.set(side * (4 + this.random() * 5), 0, -2 + this.random() * 7);
-      const height = 0.7 + this.random() * 1.3;
+      const cluster=Math.floor(i/12);
+      root.position.set(side*(8.2+cluster*.55+(this.random()-.5)*1.8),-.12,-1+cluster*2.5+(this.random()-.5)*1.7);
+      root.rotation.y=this.random()*Math.PI*2;
+      const height = .8 + this.random() * 1.2;
       const stem = MeshBuilder.CreateCylinder('reed', { diameter: 0.022, height, tessellation: 4 }, this.scene);
       stem.position.y = height / 2; stem.material = stalk; stem.parent = root;
       const cattail = MeshBuilder.CreateCylinder('cattail', { diameter: 0.075, height: 0.27, tessellation: 6 }, this.scene);
       cattail.position.y = height - 0.13; cattail.parent = root; cattail.material = head;
-      if (i < 10) this.reeds.push(root);
-      else { stem.setParent(null); cattail.setParent(null); root.dispose(); }
+      const leaf=MeshBuilder.CreatePlane('reed-leaf',{width:.05,height:height*.65,sideOrientation:Mesh.DOUBLESIDE},this.scene);leaf.position.set(.08,height*.5,0);leaf.rotation.z=-.22;leaf.material=stalk;leaf.parent=root;
+      if (i < 4) this.reeds.push(root);
+      else { for(const mesh of [stem,cattail,leaf])mesh.setParent(null);root.dispose(); }
     }
-    const lilyMat = this.material('#648450');
+    const lilyMat = this.material('#64754c');
     for (let i = 0; i < 22; i++) {
       const pad = MeshBuilder.CreateCylinder('lily-pad', { diameter: 0.35 + this.random() * 0.4, height: 0.014, tessellation: 10 }, this.scene);
-      pad.position.set(-4 + this.random() * 2.7, 0.045, 3 + this.random() * 9); pad.material = lilyMat;
+      const cluster=i%3;pad.position.set(-4.7+cluster*.8+(this.random()-.5)*1.4,.045,4+cluster*2.9+(this.random()-.5)*2);pad.scaling.z=.8+this.random()*.2;pad.rotation.y=this.random()*Math.PI;pad.material=lilyMat;
     }
-    const rock = this.material('#8c9280');
-    for (let i = 0; i < 12; i++) this.ellipsoid('rock', new Vector3((i % 2 ? -1 : 1) * (12.5 + this.random() * 2), 0.15, this.random() * 19), new Vector3(0.6, 0.5, 0.85), rock, 5);
+    const rock=this.material('#85877d');rock.diffuseTexture=soil;rock.specularColor=Color3.FromHexString('#161c1d');rock.specularPower=12;
+    for(let i=0;i<12;i++){const x=(i%2?-1:1)*(13.5+this.random()*2),z=this.random()*22,h=.3+this.random()*.35;const stone=this.ellipsoid('rock',new Vector3(x,this.bankHeight(x,z)+h*.45,z),new Vector3(.35+this.random()*.45,h,.5+this.random()*.5),rock,5);stone.rotation.y=this.random()*Math.PI;}
   }
   private createWater() {
     Effect.ShadersStore.lakeWaterVertexShader = `precision highp float; attribute vec3 position; uniform mat4 worldViewProjection; uniform mat4 world; uniform float time; varying vec3 wp; void main(){vec3 p=position; p.y+=sin(p.x*1.5+time*.6)*.018+cos(p.z*2.-time*.75)*.014; wp=(world*vec4(p,1.)).xyz; gl_Position=worldViewProjection*vec4(p,1.);}`;
-    Effect.ShadersStore.lakeWaterFragmentShader = `precision highp float; varying vec3 wp; uniform float time; uniform vec3 eye;
+    Effect.ShadersStore.lakeWaterFragmentShader = `precision highp float; varying vec3 wp; uniform float time; uniform vec3 eye; uniform float detail;
 float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
 float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),f.x),f.y);}
-void main(){vec2 p=wp.xz;float d=length(wp-eye);float n=noise(p*.38+vec2(time*.035,-time*.025));
-float w=sin(dot(p,vec2(.75,1.1))+time*.42+n*3.)*.45+sin(dot(p,vec2(-1.3,.45))-time*.31)*.25+sin(dot(p,vec2(2.7,1.8))+time*.7+n*4.)*.12;
-float shore=smoothstep(8.,16.,abs(p.x));float depth=smoothstep(2.,24.,p.y);vec3 deep=mix(vec3(.055,.22,.25),vec3(.08,.31,.32),n*.6);vec3 col=mix(deep,vec3(.30,.42,.29),shore*.55);
-float fres=pow(1.-max(0.,normalize(eye-wp).y),3.);col=mix(col,vec3(.57,.73,.69),fres*.63);col+=vec3(.04,.075,.065)*w;col+=vec3(.025,.045,.03)*(noise(p*2.1+vec2(n*2.,time*.06))-.5);
-float light=exp(-pow((p.x+6.)/(2.+d*.04),2.))*smoothstep(5.,35.,p.y);float sparkle=pow(max(0.,w+.22),12.);col+=vec3(.65,.48,.23)*light*sparkle*.36;
-col=mix(col,col*vec3(.62,.80,.70),smoothstep(24.,33.,p.y)*(1.-noise(p*.12))*.45);gl_FragColor=vec4(col,1.);}`;
-    const mat = new ShaderMaterial('lake-water', this.scene, { vertex: 'lakeWater', fragment: 'lakeWater' }, { attributes: ['position'], uniforms: ['worldViewProjection', 'world', 'time', 'eye'] });
+void main(){vec2 p=wp.xz;float n=noise(p*.26+vec2(time*.018,-time*.012));
+float a=dot(p,vec2(.7,1.1))+time*.32+n*2.,b=dot(p,vec2(-2.1,1.4))-time*.47;
+float w=sin(a)*.6+sin(b)*.22;vec3 view=normalize(eye-wp);float f=1.-max(0.,view.y);float fres=f*f*f;
+float depth=smoothstep(3.,23.,p.y),shore=smoothstep(8.,15.,abs(p.x));
+vec3 col=mix(vec3(.17,.25,.20),vec3(.085,.19,.20),depth);col=mix(col,vec3(.28,.32,.22),shore*.38);
+vec3 reflection=mix(vec3(.40,.49,.44),vec3(.62,.70,.72),n*.7);col=mix(col,reflection,fres*.63);
+col+=vec3(.024,.032,.025)*w+vec3(.018,.024,.021)*(noise(p*2.4+vec2(time*.03,n))-.5);
+if(detail>.5){vec3 normal=normalize(vec3(-cos(a)*.045+cos(b)*.018,1.,-cos(a)*.06-cos(b)*.012));float glint=pow(max(0.,dot(reflect(-normalize(vec3(-.65,.8,.4)),normal),view)),48.);col+=vec3(.75,.69,.51)*glint*.17;}
+col=mix(col,col*vec3(.72,.79,.72),smoothstep(23.,34.,p.y)*(1.-n)*.45);gl_FragColor=vec4(col,1.);}`;
+    const mat = new ShaderMaterial('lake-water', this.scene, { vertex: 'lakeWater', fragment: 'lakeWater' }, { attributes: ['position'], uniforms: ['worldViewProjection', 'world', 'time', 'eye','detail'] });
     const water = MeshBuilder.CreateGround('water', { width: 140, height: 140, subdivisions: 32 }, this.scene);
     water.position.z = 20; water.material = mat; water.isPickable = false;
     return mat;
@@ -206,10 +234,10 @@ col=mix(col,col*vec3(.62,.80,.70),smoothstep(24.,33.,p.y)*(1.-noise(p*.12))*.45)
   }
   private dock() {
     const grain = new DynamicTexture('local-timber', {width:512,height:128}, this.scene, false);
-    const ctx=grain.getContext() as CanvasRenderingContext2D; ctx.fillStyle='#bbaa8a';ctx.fillRect(0,0,512,128);
-    for(let i=0;i<100;i++){ctx.strokeStyle=i%3?'#79674733':'#e4d2a433';ctx.lineWidth=.5+this.random();ctx.beginPath();const y=this.random()*128;ctx.moveTo(0,y);ctx.bezierCurveTo(170,y+this.random()*8,340,y-this.random()*8,512,y);ctx.stroke();}
-    for(let i=0;i<5;i++){ctx.strokeStyle='#715c3c66';ctx.beginPath();ctx.ellipse(this.random()*512,this.random()*128,12,3,0,0,Math.PI*2);ctx.stroke();}grain.update();
-    const woods = ['#b39a77', '#a48d6c', '#948264'].map(c => {const mat=this.material(c);mat.diffuseTexture=grain;return mat;});
+    const ctx=grain.getContext() as CanvasRenderingContext2D;ctx.fillStyle='#b2a891';ctx.fillRect(0,0,512,128);
+    for(let i=0;i<140;i++){ctx.strokeStyle=i%3?'#5d564222':'#e9e2d422';ctx.lineWidth=.4+this.random()*.6;ctx.beginPath();const y=this.random()*128;ctx.moveTo(0,y);ctx.bezierCurveTo(170,y+this.random()*3,340,y-this.random()*3,512,y);ctx.stroke();}
+    for(let i=0;i<3;i++){ctx.strokeStyle='#625c452a';ctx.beginPath();ctx.ellipse(this.random()*512,this.random()*128,16,2,0,0,Math.PI*2);ctx.stroke();}grain.update();
+    const woods = ['#b8b2a5','#ada79a','#c0b7a4'].map(c=>{const mat=this.material(c);mat.diffuseTexture=grain;mat.specularColor=Color3.FromHexString('#0c0e0d');mat.specularPower=8;return mat;});
     for (let i = 0; i < 16; i++) {
       const board = MeshBuilder.CreateBox('dock-plank', { width: 3.5, height: 0.16, depth: 0.39 }, this.scene);
       board.position.set(0, 0.30, -8 + i * 0.43); board.material = woods[i % 3];
@@ -222,17 +250,19 @@ col=mix(col,col*vec3(.62,.80,.70),smoothstep(24.,33.,p.y)*(1.-noise(p*.12))*.45)
     this.grip.material = this.material('#c2a46d');
   }
   setQuality(quality: 'eco' | 'high') {
+    this.water.setFloat('detail',quality==='high'?1:0);
     this.shadow?.dispose(); this.shadow=undefined;
-    if(quality==='high'){this.shadow=new ShadowGenerator(512,this.sun);this.shadow.usePercentageCloserFiltering=true;this.shadow.filteringQuality=ShadowGenerator.QUALITY_LOW;this.shadow.setDarkness(.35);for(const mesh of this.scene.meshes){if(['#224d40','#4a7650','#6c925e','#315e47','#61513d'].some(c=>mesh.name.includes(c)))this.shadow.addShadowCaster(mesh);if(mesh.name.includes('#4c7449')||mesh.name.includes('#b8a572'))mesh.receiveShadows=true;}const map=this.shadow.getShadowMap();if(map)map.refreshRate=0;}
+    if(quality==='high'){this.shadow=new ShadowGenerator(512,this.sun);this.shadow.usePercentageCloserFiltering=true;this.shadow.filteringQuality=ShadowGenerator.QUALITY_LOW;this.shadow.setDarkness(.3);for(const mesh of this.scene.meshes){if(['#334a3a','#465b3b','#6a7650','#5f6c48','#625344'].some(c=>mesh.name.includes(c)))this.shadow.addShadowCaster(mesh);if(mesh.name.includes('#596247')||mesh.name.includes('#938872'))mesh.receiveShadows=true;}const map=this.shadow.getShadowMap();if(map)map.refreshRate=0;}
     const dpr = Math.min(window.devicePixelRatio || 1, quality === 'eco' ? 1 : 1.5);
     const canvas = this.engine.getRenderingCanvas()!;
-    this.engine.setHardwareScalingLevel(Math.max(1 / dpr, quality === 'eco' ? canvas.clientWidth / 1280 : 0));
+    // Budget éco ajusté après mesures locales ; le DOM garde sa résolution native.
+    this.engine.setHardwareScalingLevel(Math.max(1 / dpr, quality === 'eco' ? canvas.clientWidth / 1024 : 0));
   }
   aim(aim?: CastAim) {
     this.aimRing.setEnabled(!!aim); this.trajectory.setEnabled(!!aim);
     if (!aim) return;
     this.aimRing.position.set(aim.point.x, 0.07, aim.point.z);
-    (this.aimRing.material as StandardMaterial).diffuseColor = Color3.FromHexString(aim.valid ? '#f5dda1' : '#f37c62');
+    (this.aimRing.material as StandardMaterial).diffuseColor = Color3.FromHexString(aim.valid ? '#4cc6c2' : '#e68181');
     const start = this.rodPath[8];
     MeshBuilder.CreateLines('trajectory', { points: Array.from({ length: 17 }, (_, i) => {
       const t = i / 16; return Vector3.Lerp(start, new Vector3(aim.point.x, 0.1, aim.point.z), t).add(new Vector3(0, Math.sin(t * Math.PI) * 2.3, 0));

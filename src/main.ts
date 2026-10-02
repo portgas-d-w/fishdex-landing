@@ -1,4 +1,5 @@
 import './style.css';
+import './ui/theme.css';
 import './ui/structure.css';
 import { GameScreens } from './ui/structure';
 import { component, validateRig } from './game/rig';
@@ -45,7 +46,7 @@ app.innerHTML = `
 
 const el = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
 el('app').insertAdjacentHTML('beforeend', `
-<dialog id="encyclopedia" class="modal wide-modal"><div class="modal-header"><div><div class="eyebrow">Les pages de FishDex</div><h2>Encyclopédie</h2></div><button class="close" data-close="encyclopedia" aria-label="Fermer l’encyclopédie">Retour</button></div><p class="intro">${fishdex.provenance.biologicalGroups} groupes biologiques · ${fishdex.provenance.sourceEntries} fiches avec variétés. ${SPECIES.length} espèces jouables. Les autres sont prévues.</p><div class="filters"><input id="dex-search" type="search" placeholder="Nom, variété ou technique" aria-label="Rechercher un poisson"><select id="dex-category" aria-label="Catégorie"><option value="all">Toutes les eaux</option><option value="paisibles">Paisibles</option><option value="predateurs">Prédateurs</option><option value="eaux-vives">Eaux vives</option></select><select id="dex-state" aria-label="Découvertes"><option value="all">Toutes les fiches</option><option value="playable">Jouables</option><option value="discovered">Découvertes</option><option value="mirage">Variantes Mirage</option></select></div><div id="dex-list"></div><p class="modal-footnote">Référence locale FishDex. La rareté est une règle de rencontre du jeu, distincte de la conservation des espèces.</p></dialog>
+<dialog id="encyclopedia" class="modal wide-modal"><div class="modal-header"><div><div class="eyebrow">Les pages de FishDex</div><h2>Encyclopédie</h2></div><button class="close" data-close="encyclopedia" aria-label="Fermer l’encyclopédie">Retour</button></div><p class="intro">${SPECIES.length} espèces à pêcher · autres fiches à venir.</p><div class="filters"><input id="dex-search" type="search" placeholder="Nom, variété ou technique" aria-label="Rechercher un poisson"><select id="dex-category" aria-label="Catégorie"><option value="all">Toute eau</option><option value="paisibles">Paisibles</option><option value="predateurs">Prédateurs</option><option value="eaux-vives">Eaux vives</option></select><select id="dex-state" aria-label="Découvertes"><option value="all">Toutes</option><option value="playable">Jouables</option><option value="discovered">Découvertes</option><option value="mirage">Variantes Mirage</option></select></div><div id="dex-list"></div><p class="modal-footnote">Catalogue : ${fishdex.provenance.biologicalGroups} groupes, ${fishdex.provenance.sourceEntries} fiches avec variétés. Référence locale FishDex. La rareté est une règle de rencontre du jeu, distincte de la conservation des espèces.</p></dialog>
 <dialog id="shop" class="modal"><div class="modal-header"><div><div class="eyebrow">Le matériel du bord</div><h2>Boutique</h2></div><button class="close" data-close="shop" aria-label="Fermer la boutique">Retour</button></div><p class="intro" id="shop-balance"></p><div id="shop-list" class="collection-list"></div><p class="modal-footnote">Monnaie virtuelle gagnée avec vos souvenirs de pêche. Canne et appâts de base réutilisables, toujours disponibles.</p></dialog>`);
 el('collection-list').insertAdjacentHTML('afterend', '<h3 class="section-title">Mes spécimens</h3><p class="intro" id="journal-intro"></p><div id="journal-list" class="journal-list"></div><button class="secondary" id="journal-more" hidden>Souvenirs suivants</button><div id="mastery-list" class="tools"></div>');
 el('catch-length').parentElement!.insertAdjacentHTML('afterend', '<p id="catch-weight" class="intro"></p><p id="catch-reward" class="reward-line"></p><p id="photo-state" class="modal-footnote"></p><button id="favorite-catch" class="secondary">Ajouter aux favoris</button>');
@@ -456,7 +457,14 @@ try {
 
 // Interface de test uniquement dans le serveur de développement E2E, supprimée du build.
 if (import.meta.env.DEV && import.meta.env.VITE_E2E === '1') {
+  const { SceneInstrumentation } = await import('@babylonjs/core/Instrumentation/sceneInstrumentation');
+  const instrumentation = new SceneInstrumentation(world!.scene);
+  instrumentation.captureFrameTime = true;
   Object.assign(window, { __fishingQA: {
+    rendering: () => ({ drawCalls: instrumentation.drawCallsCounter.current, cpuFrameMs: instrumentation.frameTimeCounter.current,
+      vertices: world!.scene.getTotalVertices(), meshes: world!.scene.getActiveMeshes().length,
+      width: world!.engine.getRenderWidth(), height: world!.engine.getRenderHeight(),
+      textures: world!.scene.textures.map(t => ({ name: t.name, ...t.getSize() })) }),
     pauseSimulation: () => { qaSimulationPaused = true; },
     resumeSimulation: () => { qaSimulationPaused = false; },
     snapshot: () => ({ phase: game.phase, tension: game.tension, fatigue: game.fatigue, slack: game.slack, dragSpeed: game.dragSpeed, lineLength: game.lineLength, fishDistance: game.fishDistance, returning: game.returning, progress: game.progress, reeling: game.reeling, pulling: game.pulling, total: save.total, paused: manualPaused || overlayPaused, direction: game.direction, reelSpeed: game.reelSpeed, alignment: game.alignment, rodTip: world?.rodTipOnScreen(), target: game.target, yaw: game.rodYaw, lift: game.rodLift, aquarium: aquarium?.diagnostics(), engines: Engine.Instances.length, lakeFrames, meshes: world?.scene.getActiveMeshes().length }),

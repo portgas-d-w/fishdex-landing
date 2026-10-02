@@ -1,5 +1,7 @@
 # Qualité visuelle — structure complète 0.5.0
 
+Historique de la version 0.5.0. La direction actuelle est **Basalte & Turquoise 0.7.0** : choix, captures avant/après et mesures réelles dans [BASALTE_TURQUOISE.md](BASALTE_TURQUOISE.md). Les anciennes couleurs de cette page ne constituent plus la référence.
+
 ## Intention
 
 La scène conserve le décor de pêche lisible sur mobile tout en gagnant une hiérarchie

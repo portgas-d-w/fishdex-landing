@@ -2,6 +2,16 @@
 
 La mission autonome explicite autorise les fonctionnalités suivantes et remplace l’attente du premier retour appareil pour avancer. Une prise ou une sauvegarde cassée reste prioritaire sur le contenu.
 
+## Basalte & Turquoise 0.7.0
+
+- [x] Audit et référence de cadrage : repos, lancer, combat, capture, menus, bassin cinq favoris.
+- [x] Lumière, eau légère, berges irrégulières, végétation regroupée/ancrage et matières partagées.
+- [x] Tokens complets, panneaux secondaires, typographie et portraits ; statuts/focus/contraste et petits formats.
+- [x] Budget éco grand écran ajusté après régression mesurée ; résolution DOM préservée.
+- [ ] Finaliser navigateur complet et smoke local/preview/public ; vérifier domaines et retour.
+- [ ] Safari/iPhone 14 Pro et téléphone modeste : cadence après échauffement, chauffe/autonomie, réseau mobile et ressenti.
+
+
 ## Canne, montage et profils 0.6.0
 
 - [x] Audit, table d’IDs, six empreintes de référence, validation du dossier.
