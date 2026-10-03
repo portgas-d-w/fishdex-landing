@@ -1,5 +1,18 @@
 # Vercel — migration de FishDex vers Au fil de l’eau
 
+## Poissons et Mode test public 0.10.0 — 3 octobre 2026
+
+Production 0.10.0 : application 3fb679b, main contrôlé 97dc37b7faf0f0a4c2b8b8a16b0b57cb633dc519, READY dpl_9qqqx1AiUxmP8EbZxdRWbd3jiEkC, https://fishdex-landing-ohfzzo5hv-portgas-d-ws-projects.vercel.app. Domaine fishdex.fr → https://www.fishdex.fr/ HTTP 200 ; entrée /assets/index-BHh5qZXP.js SHA256 8b2c282524727ada755bc346d7a649cce0dc53eb3b25d11270f1f83360bcd2bd. Mode test accessible publiquement, profil normal par défaut et sauvegardes/photos séparés.
+
+Projet conservé prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, portgas-d-ws-projects/fishdex-landing, GitHub portgas-d-w/fishdex-landing et main ; Vite/dist/npm ci/Node24. CLI 62.0.0 déjà installée. Préproduction initiale 3f67fb9 vérifiée sur 18 scénarios par lots ; correction du propriétaire 3fb679b, preview READY dpl_33MMEbs4q16KRSEenqFwtBA3mBE3, https://fishdex-landing-4frsu8mpj-portgas-d-ws-projects.vercel.app : 4/4 après gold/Mode test public et comparaison de tous les fichiers. Puis fusion en avance rapide et push main. La décision Mode test public remplace les anciennes consignes de désactivation en production.
+
+Smoke public sans token, sans API QA : **10/10 (2,5 min)**, bureau 1440×900 et Chromium mobile 390×844. Mode test ∞/achat/reload/retour au profil normal isolé, fiche gold, 66/52/14, captures réelles au coup et au moulinet, réception/photo/carnet/export/import, 33 GLB intacts et sources privées exclues. Les contrôles prolongés de quatre poissons et trois observations par vue, atelier et aquarium ont été exécutés sur la revue initiale (18 scénarios vérifiés par lots), pas répétés dans ce lot public ciblé. Aucun essai physique sur téléphone.
+
+263 JS/CSS, 33 GLB et 196 WebP identiques octet par octet au build public local ; manifeste JSON et SVG placeholder identiques après seule normalisation CRLF→LF. Preuves : docs/apercus/poissons/production-fingerprints.json et heberge-production/. Aucun secret ni source privée publié. Tag de retour 0.9 conservé archive/au-fil-de-leau-before-poissons-2026-10-03 ; v7 et export original avant-v7 à conserver avant rollback.
+
+Détails : poissons/PUBLICATION.md, VERIFICATION.md, PERFORMANCES.md et ESSAIS_TELEPHONE.md. Check final 174/174 + TypeScript/build ; 81 scénarios navigateur applicables contrôlés par lots avant les deux dernières corrections ciblées. Serveurs temporaires arrêtés, autres projets/services inchangés. La clôture documentaire conserve le même build et son identité publique est revérifiée après push.
+
+
 ## Progression/postes/pratiques 0.8.0 — 2 octobre 2026
 
 Projet prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, portgas-d-ws-projects/fishdex-landing, GitHub portgas-d-w/fishdex-landing et production main revérifiés via métadonnées filtrées ; Vite/dist/npm ci/Node24. CLI 62.0.0 réellement installée. Aucun projet, domaine ou réglage de protection ajouté/modifié.

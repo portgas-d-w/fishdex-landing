@@ -39,3 +39,11 @@ Les vérifications du build sans API QA et des versions hébergées sont consign
 ## Corrections finales demandées par le propriétaire
 
 Illustration esturgeon gold rétablie pour la robe du parent esturgeon-siberien ; image, parent et habitat compatibles contrôlés en logique et dans la fiche sur les deux vues. Mode test désormais accessible aussi dans le build public, profil normal par défaut, sauvegardes/photos séparées. `npm run check` après ces corrections : 174/174, TypeScript et build réussis (`.migration/fish-check-public-test.log`). Build public local sans API QA : 4/4, catalogue/illustration et achat ∞/reload/retour au profil normal sur bureau et mobile (`fish-smoke-public-build.log`). Les 18 scénarios de la préproduction initiale sont vérifiés par lots ; détails dans PUBLICATION.md.
+
+## Clôture publique
+
+Smoke public sans token, sans API QA : **10/10 (2,5 min)**, bureau 1440×900 et Chromium mobile 390×844. Mode test ∞/achat/reload/retour au profil normal isolé, fiche gold, 66/52/14, captures réelles au coup et au moulinet, réception/photo/carnet/export/import, 33 GLB intacts et sources privées exclues. Les contrôles prolongés de quatre poissons et trois observations par vue, atelier et aquarium ont été exécutés sur la revue initiale (18 scénarios vérifiés par lots), pas répétés dans ce lot public ciblé. Aucun essai physique sur téléphone.
+
+263 JS/CSS, 33 GLB et 196 WebP identiques octet par octet au build public local ; manifeste JSON et SVG placeholder identiques après seule normalisation CRLF→LF. Preuves : docs/apercus/poissons/production-fingerprints.json et heberge-production/. Aucun secret ni source privée publié. Tag de retour 0.9 conservé archive/au-fil-de-leau-before-poissons-2026-10-03 ; v7 et export original avant-v7 à conserver avant rollback.
+
+Commande : `GAME_URL=https://www.fishdex.fr FISHING_TEST_AVAILABLE=1 npx playwright test --config playwright.smoke.config.ts -g "FishDex hébergé|Le build contrôle|Les 33 GLB|Nouvelle partie livrée|Le build permet une vraie prise"`. PowerShell : définir ces deux variables avec `$env:...` avant la commande. Pas de `node --env-file` sur le domaine public. Les résultats ne constituent pas une reprise totale des 81 tests navigateur après les seules corrections gold et visibilité du Mode test ; les quatre contrôles ciblés puis les dix publics vérifient ces changements.

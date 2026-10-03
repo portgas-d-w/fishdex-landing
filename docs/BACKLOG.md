@@ -11,7 +11,8 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 - [x] 197 ressources normalisées, 33 modèles naturels exacts/33 provisoires, 29 robes provisoires, photo et identité communes.
 - [x] FishDex/carnet/observations/économie/progression/aquarium, v7 et récupérations des droits/historiques/profils séparés.
 - [x] Check 174 tests + TypeScript/build ; nouvelles chaînes UI/photos/reload et finitions sur les deux vues ; banc naturel des 22 méthodes.
-- [ ] Clôturer les contrôles navigateur/build hébergé et publier sur le projet Vercel existant après revue.
+- [x] Contrôles hébergés/publication sur le projet existant : 18 scénarios de revue par lots, correction finale 4/4, public ciblé 10/10 et empreintes de tous les fichiers.
+- [x] Mode test sur fishdex.fr avec argent ∞ et sauvegarde/photos isolés ; illustration esturgeon gold conservée selon confirmation du propriétaire.
 - [ ] Essais physiques selon `poissons/ESSAIS_TELEPHONE.md` : toucher, naturel, économie, chauffe et Safari/Android.
 - [ ] Raffiner/remplacer les 33 silhouettes naturelles et 29 robes provisoires après retours visuels, sans changer les identités sauvegardées.
 
