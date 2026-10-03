@@ -16,13 +16,17 @@ const paths=(await readdir(join(dist,'assets'))).filter(f=>/\.(js|css)$/.test(f)
 paths.push(...(await readdir(join(dist,'fishdex-assets'))).map(f=>`fishdex-assets/${f}`));
 paths.push('models/manifest.json',...manifest.models.map(m=>`models/${m.model}.glb`));
 const rows=[];
-for(const path of paths){
+for(let offset=0;offset<paths.length;offset+=8){
+ const batch=await Promise.all(paths.slice(offset,offset+8).map(async path=>{
  const local=await readFile(join(dist,path)),hosted=await remote(`/${path}`);
  const row={path,bytes:local.length,sha256:digest(local),hostedSha256:digest(hosted),sameBytes:digest(local)===digest(hosted)};
  // Git normalizes text to LF on Vercel. Retain both raw hashes and prove that
  // replacing CRLF alone gives the remote bytes; never relax binary comparisons.
  if(path==='models/manifest.json'||/^fishdex-assets\/[^/]+\.svg$/.test(path))row.onlyLineEndingDifference=digest(Buffer.from(local.toString('utf8').replaceAll('\r\n','\n')))===digest(hosted);
- rows.push(row);if(!row.sameBytes&&!row.onlyLineEndingDifference)throw Error(`Different content: ${path}`);
+ if(!row.sameBytes&&!row.onlyLineEndingDifference)throw Error(`Different content: ${path}`);
+ return row;
+ }));
+ rows.push(...batch);
 }
 const html=(await remote('/')).toString('utf8');
 const entry=(html.match(/src="(\/assets\/index-[^"]+\.js)"/)||[])[1];
