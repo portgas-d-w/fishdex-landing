@@ -1,0 +1,25 @@
+
+[1A[2K[WebServer] (node:17288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+
+[1A[2K(node:10756) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+
+[1A[2K(node:10756) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K[1/2] [desktop] › tests\browser\map-water.spec.ts:13:1 › Carte eau : pools bornés, pause, dix transitions, qualité et repli de décor
+
+[1A[2K(node:27840) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+
+[1A[2K(node:27840) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K[2/2] [mobile] › tests\browser\map-water.spec.ts:13:1 › Carte eau : pools bornés, pause, dix transitions, qualité et repli de décor
+[1A[2K  2 passed (10.7s)

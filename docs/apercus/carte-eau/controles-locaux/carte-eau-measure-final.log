@@ -1,0 +1,28 @@
+Sustained 0 s
+Sustained 20 s
+Sustained 40 s
+Sustained 60 s
+Sustained 80 s
+Sustained 100 s
+mobile [
+  { label: 'low', fps: 23.32704995287465, drawCalls: 46 },
+  { label: 'standard', fps: 23.309474477306782, drawCalls: 94 },
+  { label: 'high', fps: 23.314414902381515, drawCalls: 94 },
+  { label: 'simple', fps: 22.888694872468463, drawCalls: 46 },
+  {
+    label: 'WaterMaterial_9.28_256',
+    fps: 23.302342003059906,
+    drawCalls: 142
+  }
+] []
+desktop [
+  { label: 'low', fps: 24.496897822739815, drawCalls: 113 },
+  { label: 'standard', fps: 23.757395071513347, drawCalls: 113 },
+  { label: 'high', fps: 23.53104021039923, drawCalls: 161 },
+  { label: 'simple', fps: 23.30187580100198, drawCalls: 113 },
+  {
+    label: 'WaterMaterial_9.28_256',
+    fps: 22.991230149324483,
+    drawCalls: 209
+  }
+] []

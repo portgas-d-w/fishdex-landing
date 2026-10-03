@@ -9,7 +9,7 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 - [x] Trois profils d’eau, reflets sélectifs, événements réellement raccordés et pools bornés ; cas non applicables documentés.
 - [x] Six compositions, vent partagé, trois ambiances, registre de remplacement local et inventaire futur.
 - [x] Check202/202, chaînes de capture par poste et 35 scénarios navigateur applicables par reprises.
-- [ ] Clôturer mesures finales, revue hébergée et publication fishdex.fr ; identité Vercel/GitHub/main confirmée.
+- [x] Mesures finales, revue hébergée12/12 puis production14/14 ; finition de contraste reprise2/2 de chaque côté, empreintes publiques conformes et fishdex.fr confirmé.
 - [ ] Safari iPhone14Pro/Android réels : toucher, durée, chauffe, mémoire et transfert froid.
 - [ ] Assets P0/P1, lightmaps UV2 et LOD finaux : livrer puis contrôler, sans changer les volumes de jeu silencieusement.
 

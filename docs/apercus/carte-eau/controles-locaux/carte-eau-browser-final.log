@@ -1,0 +1,110 @@
+
+[1A[2K[WebServer] (node:5896) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 1 worker
+
+
+
+[1A[2K(node:26120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K(node:26120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K[1/12] [desktop] › tests\browser\journey.spec.ts:47:1 › Accrochage réel au coup : commande de canne disponible pendant attente et libération tactile
+[1A[2K[2/12] [desktop] › tests\browser\map-water.spec.ts:9:1 › Carte eau : six vrais postes, combat réception photo et sauvegarde isolée
+[1A[2K[3/12] [desktop] › tests\browser\map-water.spec.ts:14:1 › Registre : substitution GLB locale, rejet des dimensions, retour exact à la famille provisoire
+[1A[2K[4/12] [desktop] › tests\browser\map-water.spec.ts:24:1 › Carte eau : pools bornés, pause, dix transitions, qualité et repli de décor
+[1A[2K[5/12] [desktop] › tests\browser\mobile-gameplay.spec.ts:7:1 › 22 méthodes : kit, commandes, réception par position et relevage, photo et sauvegarde uniques
+[1A[2K  1) [desktop] › tests\browser\mobile-gameplay.spec.ts:7:1 › 22 méthodes : kit, commandes, réception par position et relevage, photo et sauvegarde uniques 
+
+    [31mTest timeout of 90000ms exceeded.[39m
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator:  locator('#rod-control')
+    Expected: visible
+    Received: undefined
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 15000ms[22m
+    [2m  - waiting for locator('#rod-control')[22m
+
+
+      3 | async function tools(page:Page){await page.locator('#menu-open').click();await page.locator('#help-open').click();await page.locator('#test-open').click();}
+      4 | async function start(page:Page){await page.addInitScript(()=>{Math.random=()=>0;localStorage.setItem('au-fil-de-leau.gestures.v3','3');});await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');await tools(page);await page.locator('#test-toggle').click();await expect(page.locator('#test-badge')).toBeVisible();await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());}
+    > 5 | async function move(page:Page,id:string,dx:number,dy:number){await expect(page.locator(id)).toBeVisible();const b=(await page.locator(id).boundingBox())!;const x=b.x+b.width/2,y=b.y+b.height/2;const session=await page.context().newCDPSession(page);await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:19,x,y}]});await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{id:19,x:x+dx,y:y+dy}]});await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await session.detach();}
+        |                                                                                             ^
+      6 | async function receive(page:Page){await page.locator('#tech-land').click();await page.evaluate(()=>(window as any).__fishingQA.advance(.02));expect((await qa(page)).phase).toBe('landing');for(let n=0;n<60&&(await qa(page)).phase==='landing';n++){const s=await qa(page);if(s.netReady)await move(page,'#reel-control',0,-32);else{await move(page,'#reel-control',(s.fishPosition.x-s.net.x)/.02,-(s.fishPosition.z-s.net.z)/.025);await page.evaluate(()=>(window as any).__fishingQA.advance(.05,'smart'));}await page.evaluate(()=>(window as any).__fishingQA.advance(.02));}await expect(page.locator('#caught')).toBeVisible();await expect(page.locator('#fish-preview')).toHaveAttribute('data-loaded','true');}
+      7 | test('22 méthodes : kit, commandes, réception par position et relevage, photo et sauvegarde uniques',async({page},info)=>{await start(page);const rows=[];for(const t of TECHNIQUES){await tools(page);await page.locator('#test-technique').selectOption(t.id);await page.locator('#test-kit').click();await page.locator('#test-fight').click();await page.evaluate(()=>(window as any).__fishingQA.advance(.02));const before=await qa(page);expect(before.technique).toBe(t.id);await move(page,'#rod-control',8,-5);await page.evaluate(()=>(window as any).__fishingQA.advance(240,'smart'));expect((await qa(page)).phase,t.id).toBe('fighting');expect((await qa(page)).canReceive,t.id).toBe(true);expect((await qa(page)).total).toBe(rows.length);await receive(page);await expect(page.locator('#photo-state')).toContainText('Photo conservée');const s=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.test.save.v1')!));expect(s.total).toBe(rows.length+1);expect(s.journal.at(-1).technique).toBe(t.id);rows.push({id:t.id,seed:before.seed,specimen:s.journal.at(-1).id,photo:true});if(['grande_canne','leurre'].includes(t.id))await page.screenshot({path:'docs/apercus/mobile-materiel/'+info.project.name+'-'+t.id+'-caught.png'});await page.locator('#release-fish').click();}await info.attach('méthodes',{body:JSON.stringify(rows,null,2),contentType:'application/json'});});
+      8 | test('Matériel : aperçu, kit explicite, fiche, sac, favori et absence d’achat automatique',async({page})=>{await start(page);await page.locator('#prepare-open').click();await page.locator('[data-work-rig]').first().click();await expect(page.locator('#rig-preview svg')).toBeVisible();await page.locator('#rig-free').click();await expect(page.locator('#rig-sheet-validation')).toHaveText('Montage prêt.');await page.locator('[data-slot=bait]').click();await page.locator('#component-sheet [data-component-info]').first().click();await expect(page.locator('#component-sheet-body')).toContainText('Compromis');await page.locator('[data-close=component-sheet]').click();await page.locator('[data-close=rig-sheet]').click();await page.locator('[data-work-tab=sets]').click();await page.locator('#preset-name').fill('Mon kit mobile');await page.locator('#preset-save').click();await page.locator('[data-favorite-preset]').click();await expect(page.locator('[data-favorite-preset]')).toHaveAttribute('aria-pressed','true');const s=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.test.save.v1')!));expect(s.development.theoreticalCost).toBe(0);await page.locator('[data-work-tab=bag]').click();await page.locator('#bag-search').fill('amorce');await expect(page.locator('#bag-items')).toContainText('Amorce');});
+        at move (C:\Users\alexy\Desktop\JEUPECHE\au-fil-de-leau\tests\browser\mobile-gameplay.spec.ts:5:93)
+        at C:\Users\alexy\Desktop\JEUPECHE\au-fil-de-leau\tests\browser\mobile-gameplay.spec.ts:7:475
+
+    Error Context: test-results\mobile-gameplay-22-méthode-04d0c-photo-et-sauvegarde-uniques-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\mobile-gameplay-22-méthode-04d0c-photo-et-sauvegarde-uniques-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\mobile-gameplay-22-méthode-04d0c-photo-et-sauvegarde-uniques-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+
+
+[1A[2K(node:24172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K(node:24172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K[6/12] [desktop] › tests\browser\multitouch.spec.ts:4:1 › Deux vrais doigts : appui maintenu, canne simultanée, maintien immobile et annulation
+
+
+[1A[2K(node:16244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K(node:16244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K[7/12] [mobile] › tests\browser\journey.spec.ts:47:1 › Accrochage réel au coup : commande de canne disponible pendant attente et libération tactile
+[1A[2K[8/12] [mobile] › tests\browser\map-water.spec.ts:9:1 › Carte eau : six vrais postes, combat réception photo et sauvegarde isolée
+[1A[2K[9/12] [mobile] › tests\browser\map-water.spec.ts:14:1 › Registre : substitution GLB locale, rejet des dimensions, retour exact à la famille provisoire
+[1A[2K[10/12] [mobile] › tests\browser\map-water.spec.ts:24:1 › Carte eau : pools bornés, pause, dix transitions, qualité et repli de décor
+[1A[2K[11/12] [mobile] › tests\browser\mobile-gameplay.spec.ts:7:1 › 22 méthodes : kit, commandes, réception par position et relevage, photo et sauvegarde uniques
+[1A[2K[12/12] [mobile] › tests\browser\multitouch.spec.ts:4:1 › Deux vrais doigts : appui maintenu, canne simultanée, maintien immobile et annulation
+[1A[2K  2) [mobile] › tests\browser\multitouch.spec.ts:4:1 › Deux vrais doigts : appui maintenu, canne simultanée, maintien immobile et annulation 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32mfalse[39m
+    Received: [31mtrue[39m
+
+      15 |  await page.waitForTimeout(1100);expect(await page.evaluate(()=>getSelection()?.toString())).toBe('');await page.evaluate(()=>(window as any).__fishingQA.advance(.5));expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(true);
+      16 |  reel={...reel,x:cx-14,y:cy+24};await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[rod,reel]});
+    > 17 |  await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[rod]});expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(false);
+         |                                                                                                                                                                     ^
+      18 |  await session.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(false);
+      19 |  await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:30,x:rx,y:ry}]});
+      20 |  await session.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+        at C:\Users\alexy\Desktop\JEUPECHE\au-fil-de-leau\tests\browser\multitouch.spec.ts:17:165
+
+    Error Context: test-results\multitouch-Deux-vrais-doig-32982-tien-immobile-et-annulation-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\multitouch-Deux-vrais-doig-32982-tien-immobile-et-annulation-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\multitouch-Deux-vrais-doig-32982-tien-immobile-et-annulation-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K  2 failed
+    [desktop] › tests\browser\mobile-gameplay.spec.ts:7:1 › 22 méthodes : kit, commandes, réception par position et relevage, photo et sauvegarde uniques 
+    [mobile] › tests\browser\multitouch.spec.ts:4:1 › Deux vrais doigts : appui maintenu, canne simultanée, maintien immobile et annulation 
+  1 skipped
+  9 passed (3.5m)

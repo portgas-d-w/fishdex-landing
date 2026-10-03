@@ -1,0 +1,15 @@
+
+Running 2 tests using 1 worker
+
+(node:10752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › tests\smoke\map-water.spec.ts:8:1 › Carte et eau hébergées : six postes, qualités, ambiances et essais isolés sans QA (3.2s)
+(node:29660) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:29660) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [mobile] › tests\smoke\map-water.spec.ts:8:1 › Carte et eau hébergées : six postes, qualités, ambiances et essais isolés sans QA (2.9s)
+
+  2 passed (7.9s)

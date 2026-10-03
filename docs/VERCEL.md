@@ -1,5 +1,11 @@
 # Vercel — migration de FishDex vers Au fil de l’eau
 
+## Carte et eau 0.12.0 — 3 octobre 2026
+
+Projet, équipe, GitHub et branche main confirmés et conservés. Application initiale dfa431d : revue 12/12 puis production 14/14 sans token/QA, avec captures naturelles, photo/reload/transfert, profil TEST public séparé, six postes/qualités/ambiances et sources privées exclues. Finition de contraste CSS3470162 : TypeScript/build, deux parcours locaux, deux en revue et deux en production repris. Dernière production READY dpl_Gx3gAmdZErzr2CfrZBDNvEopw9vP, https://fishdex-landing-bix0ew1jr-portgas-d-ws-projects.vercel.app. fishdex.fr → www.fishdex.fr HTTP200, entrée /assets/index-CqEjZL1R.js SHA25695f78b9bcb64eb3bd10a2e97c0381213757ad522bfa7bfe7f18d6d6827fec717. Les 262JS/CSS,33GLB,197images correspondent ; seules fins de ligne du manifeste/SVG normalisées. OIDC limité à la revue, aucune protection modifiée. Sources/pack originaux toujours exclus.
+
+Tag de retour poussé archive/au-fil-de-leau-before-carte-eau-2026-10-03 sur e72ad2b ; v7 additive et droits conservés, exporter avant rollback. READY et entrée publique revérifiés après la clôture documentaire. Identités de chaque revue/production, commandes, empreintes et limites : carte-eau/PUBLICATION.md. Mesures, capturages identiques et froid public : carte-eau/PERFORMANCES.md et apercus/carte-eau. Chromium émulé/SwiftShader Windows uniquement ; tests physiques à faire. Serveurs temporaires arrêtés, modification DEM utilisateur exclue.
+
 ## Gameplay mobile et matériel 0.11.0 — 3 octobre 2026
 
 Revue hébergée 0.11 : application 664df1a, READY dpl_GT6oHGtbiEzCvoYAJoVty8XVP4xg, https://fishdex-landing-4vkmx91bp-portgas-d-ws-projects.vercel.app. Smoke protégé 10/10 en 2,8 min, sans QA : Mode test public ∞/achat/profil normal isolé, FishDex66/52/14/gold, feeder/mouche/traîne et captures naturelles au coup/avec moulinet jusqu’à réception/photo/reload/transfert. 263 JS/CSS, 33 GLB et 197 images vérifiés ; seuls manifeste/SVG peuvent différer par CRLF→LF consigné. Entrée index-C9yMDP7o.js SHA256 9f229cb5282bf6381984bf67a916ef60f05f22d5bb86215db9956f396aa08b94. Empreintes/captures dans apercus/mobile-materiel ; tag de retour 46301ec poussé. Revue validée avant publication main.

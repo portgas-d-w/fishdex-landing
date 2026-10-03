@@ -1,6 +1,6 @@
 # Carte et eau 0.12 — état du 3 octobre 2026
 
-Agent : Codex. Source de conception : ZIP `CHANTIER_CARTE_COMPLETE_EAU_FISHDEX_CODEX`, les quatre consignes et leurs JSON archivés dans ce dossier. Les JSON proposés ont été adaptés aux identifiants, droits et interactions réellement présents. La référence est main `e72ad2b`, jeu 0.11. Publication et résultats définitifs consignés en fin de chantier.
+Agent : Codex. Source de conception : ZIP `CHANTIER_CARTE_COMPLETE_EAU_FISHDEX_CODEX`, les quatre consignes et leurs JSON archivés dans ce dossier. Les JSON proposés ont été adaptés aux identifiants, droits et interactions réellement présents. Référence main `e72ad2b`, jeu 0.11 ; version 0.12 publiée et vérifiée sur fishdex.fr. Identités, contrôles hébergés, empreintes et retour arrière dans `PUBLICATION.md`, mesures et limites dans `PERFORMANCES.md`.
 
 ## Carte réellement livrée
 

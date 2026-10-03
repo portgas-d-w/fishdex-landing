@@ -1,0 +1,25 @@
+
+Running 12 tests using 1 worker
+
+(node:29108) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:29108) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\smoke\development.spec.ts:11:1 › Le build contrôle le Mode test et conserve la partie normale sans QA (7.9s)
+  ok  2 [desktop] › tests\smoke\development.spec.ts:21:1 › Build V2 sans QA : feeder, mouche et traîne jusqu’au combat, réception, photo et reload (33.1s)
+  ok  3 [desktop] › tests\smoke\fishdex.spec.ts:12:1 › FishDex hébergé sans QA : 66 identités, 52 captures, 14 observations, sources et robe canonique (2.2s)
+  ok  4 [desktop] › tests\smoke\map-water.spec.ts:8:1 › Carte et eau hébergées : six postes, qualités, ambiances et essais isolés sans QA (8.6s)
+  ok  5 [desktop] › tests\smoke\production.spec.ts:18:1 › Le build permet une vraie prise, le chargement différé et le transfert du carnet (32.7s)
+  ok  6 [desktop] › tests\smoke\production.spec.ts:116:1 › Nouvelle partie livrée : kit au coup, trois postes et vraie capture sans moulinet ni QA (16.3s)
+(node:6572) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:6572) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  7 [mobile] › tests\smoke\development.spec.ts:11:1 › Le build contrôle le Mode test et conserve la partie normale sans QA (39.2s)
+  ok  8 [mobile] › tests\smoke\development.spec.ts:21:1 › Build V2 sans QA : feeder, mouche et traîne jusqu’au combat, réception, photo et reload (34.2s)
+  ok  9 [mobile] › tests\smoke\fishdex.spec.ts:12:1 › FishDex hébergé sans QA : 66 identités, 52 captures, 14 observations, sources et robe canonique (4.1s)
+  ok 10 [mobile] › tests\smoke\map-water.spec.ts:8:1 › Carte et eau hébergées : six postes, qualités, ambiances et essais isolés sans QA (15.2s)
+  ok 11 [mobile] › tests\smoke\production.spec.ts:18:1 › Le build permet une vraie prise, le chargement différé et le transfert du carnet (32.5s)
+  ok 12 [mobile] › tests\smoke\production.spec.ts:116:1 › Nouvelle partie livrée : kit au coup, trois postes et vraie capture sans moulinet ni QA (16.0s)
+
+  12 passed (4.1m)

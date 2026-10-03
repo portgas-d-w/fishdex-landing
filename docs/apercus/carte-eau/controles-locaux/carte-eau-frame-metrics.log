@@ -1,0 +1,71 @@
+mobile [
+  {
+    quality: 'low',
+    combat: false,
+    draws: [ 46, 46 ],
+    triangles: 17868
+  },
+  {
+    quality: 'standard',
+    combat: false,
+    draws: [ 46, 94 ],
+    triangles: 17868
+  },
+  {
+    quality: 'high',
+    combat: false,
+    draws: [ 46, 94 ],
+    triangles: 17868
+  },
+  { quality: 'low', combat: true, draws: [ 47, 53 ], triangles: 25738 },
+  {
+    quality: 'standard',
+    combat: true,
+    draws: [ 53, 109 ],
+    triangles: 35738
+  },
+  {
+    quality: 'high',
+    combat: true,
+    draws: [ 57, 108 ],
+    triangles: 34488
+  }
+]
+desktop [
+  {
+    quality: 'low',
+    combat: false,
+    draws: [ 113, 113 ],
+    triangles: 22804
+  },
+  {
+    quality: 'standard',
+    combat: false,
+    draws: [ 113, 161 ],
+    triangles: 22804
+  },
+  {
+    quality: 'high',
+    combat: false,
+    draws: [ 113, 161 ],
+    triangles: 22804
+  },
+  {
+    quality: 'low',
+    combat: true,
+    draws: [ 114, 120 ],
+    triangles: 30674
+  },
+  {
+    quality: 'standard',
+    combat: true,
+    draws: [ 121, 175 ],
+    triangles: 40674
+  },
+  {
+    quality: 'high',
+    combat: true,
+    draws: [ 124, 176 ],
+    triangles: 40674
+  }
+]

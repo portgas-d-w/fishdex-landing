@@ -56,3 +56,15 @@ Le shader local permet un masque partagé de profondeur/rive et une seule passe 
 Tenue au repos : 126.8 s échantillonnées, plus pauses de mesure, FPS par fenêtre4s 22.01–24.16, ressources inchangées et aucune erreur JS. Cet essai PC ne mesure pas chauffe, batterie ou tenue GPU téléphone.
 
 Sources brutes : before/after-measurements.json, water-comparison-performance.json, frame-metrics.json et six captures de postes. Les timings réseau présents dans la comparaison sont ceux du serveur DEV avec modules de test ; ils ne sont pas le poids froid de production. Reproduction : PowerShell VITE_E2E=1, npm run dev -- --port5179 --strictPort, puis node scripts/map-water-reference.mjs et node scripts/map-water-frame-metrics.mjs. La comparaison de bibliothèque demande l’extraction locale de npm pack @babylonjs/materials@9.28.0 dans .migration/water-library/package, sans installation de production.
+
+
+## Chargement froid public final
+
+Deux contextes Chromium neufs, Windows SwiftShader, DPR1, réseau sans bridage, deux secondes après démarrage. Aucun test appareil. Les octets sont ceux de Resource Timing, document compris dans ce tableau ; 74 ressources hors document.
+
+| Vue | Octets transférés | Corps compressés | Corps décodés | DOMContentLoaded ms | Résolution interne | GLB initial |
+| --- | ---: | ---: | ---: | ---: | --- | ---: |
+| mobile | 872321 | 849821 | 3226402 | 993.7000000029802 | 390 × 844 | 0 |
+| desktop | 872321 | 849821 | 3226402 | 733.0999999977648 | 1024 × 640 | 0 |
+
+Aucune erreur JS, aucune API QA dans la production. Corps compressés et taille de transfert incluent des éléments différents ; ces valeurs ne sont pas le poids brut de tous les chunks du dossier dist. Chargement froid de la production antérieure non mesuré : pas de comparaison réseau avant/après revendiquée. Les chiffres DEV précédents ne le remplacent pas. Reproduction : GAME_URL=https://www.fishdex.fr, node scripts/map-water-public-reference.mjs. Données et captures finales : production-cold.json et production-*.png.

@@ -1,5 +1,7 @@
 # Sources techniques et limites
 
+**État d’implémentation du 3 octobre 2026 :** les paragraphes ci-dessous proviennent du dossier de conception initial. La carte, les shaders et les captures sont maintenant réalisés et contrôlés dans ce dépôt ; voir `LIVRAISON.md`, `PERFORMANCES.md` et `PUBLICATION.md` pour les résultats réels. Les GLB/Blender finaux, lightmaps, LOD exportés et essais physiques iPhone/Android restent à faire.
+
 Consultées le 3 octobre 2026. Les dimensions de carte, budgets d’assets, profils de rendu, événements et objectifs de performance sont des décisions de conception. Les références documentent les possibilités et conventions des outils, pas une garantie de fluidité.
 
 - Babylon.js, Water Material : https://github.com/BabylonJS/Documentation/blob/master/content/toolsAndResources/assetLibraries/materialsLibrary/waterMat.md — matériau de base, texture de perturbation et liste de rendu réflexion/réfraction. Le système d’événements de ce dossier est à développer dans le jeu.

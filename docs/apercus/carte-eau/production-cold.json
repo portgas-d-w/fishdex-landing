@@ -1,0 +1,1109 @@
+{
+  "date": "2026-10-03T18:46:31.415Z",
+  "url": "https://www.fishdex.fr",
+  "device": "Windows Chromium SwiftShader; aucun appareil physique",
+  "rows": [
+    {
+      "name": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "coldContext": true,
+      "throttling": false,
+      "finalUrl": "https://www.fishdex.fr/",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "navigation": [
+        {
+          "transferSize": 1571,
+          "encodedBodySize": 1271,
+          "decodedBodySize": 4644,
+          "domContentLoaded": 993.7000000029802
+        }
+      ],
+      "resources": [
+        {
+          "name": "/assets/index-CqEjZL1R.js",
+          "transferSize": 551522,
+          "encodedBodySize": 551222,
+          "decodedBodySize": 2233466,
+          "duration": 576.1000000014901
+        },
+        {
+          "name": "/assets/math.scalar.functions-D-i-XBaP.js",
+          "transferSize": 1383,
+          "encodedBodySize": 1083,
+          "decodedBodySize": 2190,
+          "duration": 36.5
+        },
+        {
+          "name": "/assets/engineStore-Bn2tApal.js",
+          "transferSize": 1570,
+          "encodedBodySize": 1270,
+          "decodedBodySize": 3512,
+          "duration": 37.19999999925494
+        },
+        {
+          "name": "/assets/domManagement-BqltO0ki.js",
+          "transferSize": 556,
+          "encodedBodySize": 256,
+          "decodedBodySize": 256,
+          "duration": 67.09999999776483
+        },
+        {
+          "name": "/assets/logger-CuBYPcDK.js",
+          "transferSize": 1144,
+          "encodedBodySize": 844,
+          "decodedBodySize": 1881,
+          "duration": 67.09999999776483
+        },
+        {
+          "name": "/assets/shaderStore-D-XQlhUT.js",
+          "transferSize": 769,
+          "encodedBodySize": 469,
+          "decodedBodySize": 469,
+          "duration": 73.39999999850988
+        },
+        {
+          "name": "/assets/internalTexture-ziUdfT1O.js",
+          "transferSize": 2429,
+          "encodedBodySize": 2129,
+          "decodedBodySize": 7747,
+          "duration": 387
+        },
+        {
+          "name": "/assets/performanceConfigurator-UtxC_Odd.js",
+          "transferSize": 800,
+          "encodedBodySize": 500,
+          "decodedBodySize": 500,
+          "duration": 37.19999999925494
+        },
+        {
+          "name": "/assets/thinEngine.pure-DtQqicIX.js",
+          "transferSize": 18007,
+          "encodedBodySize": 17707,
+          "decodedBodySize": 67755,
+          "duration": 43.69999999925494
+        },
+        {
+          "name": "/assets/abstractEngine.pure-rwLfew4P.js",
+          "transferSize": 15774,
+          "encodedBodySize": 15474,
+          "decodedBodySize": 59841,
+          "duration": 96.10000000149012
+        },
+        {
+          "name": "/assets/typeStore-Cu_sj2zM.js",
+          "transferSize": 380,
+          "encodedBodySize": 80,
+          "decodedBodySize": 80,
+          "duration": 165.19999999925494
+        },
+        {
+          "name": "/assets/tools.functions-Bxv5dhZ_.js",
+          "transferSize": 5281,
+          "encodedBodySize": 4981,
+          "decodedBodySize": 13495,
+          "duration": 172.5
+        },
+        {
+          "name": "/assets/guid-BXdVC_j_.js",
+          "transferSize": 457,
+          "encodedBodySize": 157,
+          "decodedBodySize": 157,
+          "duration": 163.19999999925494
+        },
+        {
+          "name": "/assets/halfFloat-Ce77JD5z.js",
+          "transferSize": 916,
+          "encodedBodySize": 616,
+          "decodedBodySize": 1290,
+          "duration": 96.10000000149012
+        },
+        {
+          "name": "/assets/tools.pure-DG9Rzizn.js",
+          "transferSize": 11748,
+          "encodedBodySize": 11448,
+          "decodedBodySize": 34313,
+          "duration": 163.20000000298023
+        },
+        {
+          "name": "/assets/buffer.pure-CAWHamCn.js",
+          "transferSize": 2971,
+          "encodedBodySize": 2671,
+          "decodedBodySize": 7575,
+          "duration": 173.60000000149012
+        },
+        {
+          "name": "/assets/decorators-BWcttrMP.js",
+          "transferSize": 1925,
+          "encodedBodySize": 1625,
+          "decodedBodySize": 3842,
+          "duration": 195.90000000223517
+        },
+        {
+          "name": "/assets/math.color.pure-Dw4sAYjX.js",
+          "transferSize": 19658,
+          "encodedBodySize": 19358,
+          "decodedBodySize": 76952,
+          "duration": 202.70000000298023
+        },
+        {
+          "name": "/assets/decorators.serialization-By-MjS0E.js",
+          "transferSize": 2120,
+          "encodedBodySize": 1820,
+          "decodedBodySize": 4720,
+          "duration": 262.9000000022352
+        },
+        {
+          "name": "/assets/math.plane-C0ws7YJZ.js",
+          "transferSize": 1089,
+          "encodedBodySize": 789,
+          "decodedBodySize": 1815,
+          "duration": 526.5
+        },
+        {
+          "name": "/assets/sceneComponent-Cn-0uY45.js",
+          "transferSize": 5404,
+          "encodedBodySize": 5104,
+          "decodedBodySize": 17971,
+          "duration": 160.19999999925494
+        },
+        {
+          "name": "/assets/lightConstants-DX3sWIWo.js",
+          "transferSize": 4724,
+          "encodedBodySize": 4424,
+          "decodedBodySize": 18247,
+          "duration": 164.80000000074506
+        },
+        {
+          "name": "/assets/smartArray-BRfcgNbX.js",
+          "transferSize": 753,
+          "encodedBodySize": 453,
+          "decodedBodySize": 1186,
+          "duration": 195.10000000149012
+        },
+        {
+          "name": "/assets/pointerEvents-DFkbNwCB.js",
+          "transferSize": 1059,
+          "encodedBodySize": 759,
+          "decodedBodySize": 759,
+          "duration": 137.69999999925494
+        },
+        {
+          "name": "/assets/keyboardEvents-CGYiptFb.js",
+          "transferSize": 657,
+          "encodedBodySize": 357,
+          "decodedBodySize": 357,
+          "duration": 172.89999999850988
+        },
+        {
+          "name": "/assets/math.size-BHZaDYSv.js",
+          "transferSize": 1210,
+          "encodedBodySize": 910,
+          "decodedBodySize": 910,
+          "duration": 209.29999999701977
+        },
+        {
+          "name": "/assets/scene.pure-QqgLHIuc.js",
+          "transferSize": 36272,
+          "encodedBodySize": 35972,
+          "decodedBodySize": 159578,
+          "duration": 262.5999999977648
+        },
+        {
+          "name": "/assets/effectRenderer.pure-aqD6q3t8.js",
+          "transferSize": 2933,
+          "encodedBodySize": 2633,
+          "decodedBodySize": 8367,
+          "duration": 172.5
+        },
+        {
+          "name": "/assets/drawWrapper-DcFZvZep.js",
+          "transferSize": 1353,
+          "encodedBodySize": 1053,
+          "decodedBodySize": 1954,
+          "duration": 172.80000000074506
+        },
+        {
+          "name": "/assets/baseTexture.pure-CEqM3fnj.js",
+          "transferSize": 4249,
+          "encodedBodySize": 3949,
+          "decodedBodySize": 15090,
+          "duration": 262.1000000014901
+        },
+        {
+          "name": "/assets/texture.pure-CAOKm8dZ.js",
+          "transferSize": 5970,
+          "encodedBodySize": 5670,
+          "decodedBodySize": 19560,
+          "duration": 514
+        },
+        {
+          "name": "/assets/sphericalPolynomial.pure-Dbd-RrB2.js",
+          "transferSize": 1623,
+          "encodedBodySize": 1323,
+          "decodedBodySize": 5736,
+          "duration": 577.9000000022352
+        },
+        {
+          "name": "/assets/postProcess.pure-DOEiuV5Y.js",
+          "transferSize": 5586,
+          "encodedBodySize": 5286,
+          "decodedBodySize": 18441,
+          "duration": 287.8999999985099
+        },
+        {
+          "name": "/assets/node-CixmmZG_.js",
+          "transferSize": 3603,
+          "encodedBodySize": 3303,
+          "decodedBodySize": 11526,
+          "duration": 385.0999999977648
+        },
+        {
+          "name": "/assets/material.pure-Cs0tJEJZ.js",
+          "transferSize": 21111,
+          "encodedBodySize": 20811,
+          "decodedBodySize": 78812,
+          "duration": 386.0999999977648
+        },
+        {
+          "name": "/assets/renderTargetTexture.pure-CYNZ8wBf.js",
+          "transferSize": 8814,
+          "encodedBodySize": 8514,
+          "decodedBodySize": 32369,
+          "duration": 577.5999999977648
+        },
+        {
+          "name": "/assets/flowGraphInteger.pure-CZmJgkLp.js",
+          "transferSize": 858,
+          "encodedBodySize": 558,
+          "decodedBodySize": 558,
+          "duration": 202.10000000149012
+        },
+        {
+          "name": "/assets/flowGraphExecutionBlockWithOutSignal-ZgpOYOYE.js",
+          "transferSize": 459,
+          "encodedBodySize": 159,
+          "decodedBodySize": 159,
+          "duration": 202.10000000149012
+        },
+        {
+          "name": "/assets/flowGraphAsyncExecutionBlock-B8j60x2H.js",
+          "transferSize": 969,
+          "encodedBodySize": 669,
+          "decodedBodySize": 669,
+          "duration": 237
+        },
+        {
+          "name": "/assets/flowGraphExecutionBlock-z6kKFLAZ.js",
+          "transferSize": 1217,
+          "encodedBodySize": 917,
+          "decodedBodySize": 2526,
+          "duration": 237.30000000074506
+        },
+        {
+          "name": "/assets/flowGraphAssetsContext-WtUyuDAI.js",
+          "transferSize": 1036,
+          "encodedBodySize": 736,
+          "decodedBodySize": 736,
+          "duration": 237.60000000149012
+        },
+        {
+          "name": "/assets/flowGraphBlock-PiZ78eoL.js",
+          "transferSize": 3690,
+          "encodedBodySize": 3390,
+          "decodedBodySize": 10996,
+          "duration": 270.30000000074506
+        },
+        {
+          "name": "/assets/brdfTextureTools-jeL-4w9S.js",
+          "transferSize": 51070,
+          "encodedBodySize": 50770,
+          "decodedBodySize": 79867,
+          "duration": 385.9000000022352
+        },
+        {
+          "name": "/assets/constants-_wyaM_ID.js",
+          "transferSize": 3582,
+          "encodedBodySize": 3282,
+          "decodedBodySize": 11770,
+          "duration": 445.30000000074506
+        },
+        {
+          "name": "/assets/flowGraphRichTypes.pure-BKlnX8v7.js",
+          "transferSize": 1260,
+          "encodedBodySize": 960,
+          "decodedBodySize": 2624,
+          "duration": 237.10000000149012
+        },
+        {
+          "name": "/assets/index-ClVVZk7V.css",
+          "transferSize": 10142,
+          "encodedBodySize": 9842,
+          "decodedBodySize": 42822,
+          "duration": 374.29999999701977
+        },
+        {
+          "name": "/assets/default.vertex-BYS4Xaw0.js",
+          "transferSize": 2696,
+          "encodedBodySize": 2396,
+          "decodedBodySize": 8293,
+          "duration": 81.30000000074506
+        },
+        {
+          "name": "/assets/clipPlaneVertex-C59BO8JS.js",
+          "transferSize": 615,
+          "encodedBodySize": 315,
+          "decodedBodySize": 1171,
+          "duration": 67.30000000074506
+        },
+        {
+          "name": "/assets/bakedVertexAnimation-C6l_KSSy.js",
+          "transferSize": 1886,
+          "encodedBodySize": 1586,
+          "decodedBodySize": 7717,
+          "duration": 75.5
+        },
+        {
+          "name": "/assets/fogVertex-NHlgMcT2.js",
+          "transferSize": 680,
+          "encodedBodySize": 380,
+          "decodedBodySize": 380,
+          "duration": 78.70000000298023
+        },
+        {
+          "name": "/assets/instancesDeclaration-CJBvtBV5.js",
+          "transferSize": 1233,
+          "encodedBodySize": 933,
+          "decodedBodySize": 933,
+          "duration": 84.39999999850988
+        },
+        {
+          "name": "/assets/vertexColorMixing-DPW6Is9y.js",
+          "transferSize": 734,
+          "encodedBodySize": 434,
+          "decodedBodySize": 434,
+          "duration": 72.09999999776483
+        },
+        {
+          "name": "/assets/sceneUboDeclaration-B5VhSG0v.js",
+          "transferSize": 664,
+          "encodedBodySize": 364,
+          "decodedBodySize": 364,
+          "duration": 90.09999999776483
+        },
+        {
+          "name": "/assets/meshUboDeclaration-BmNu2KU_.js",
+          "transferSize": 645,
+          "encodedBodySize": 345,
+          "decodedBodySize": 345,
+          "duration": 89.90000000223517
+        },
+        {
+          "name": "/assets/defaultUboDeclaration-C53xcSdv.js",
+          "transferSize": 852,
+          "encodedBodySize": 552,
+          "decodedBodySize": 1262,
+          "duration": 80.30000000074506
+        },
+        {
+          "name": "/assets/mainUVVaryingDeclaration-BBamQlxR.js",
+          "transferSize": 529,
+          "encodedBodySize": 229,
+          "decodedBodySize": 229,
+          "duration": 86.5
+        },
+        {
+          "name": "/assets/helperFunctions-gEnZbjN3.js",
+          "transferSize": 2691,
+          "encodedBodySize": 2391,
+          "decodedBodySize": 6815,
+          "duration": 76.39999999850988
+        },
+        {
+          "name": "/assets/logDepthDeclaration-3gXGtHbI.js",
+          "transferSize": 575,
+          "encodedBodySize": 275,
+          "decodedBodySize": 275,
+          "duration": 84.89999999850988
+        },
+        {
+          "name": "/assets/shadowsVertex--0nVb1Fg.js",
+          "transferSize": 2014,
+          "encodedBodySize": 1714,
+          "decodedBodySize": 6845,
+          "duration": 77.60000000149012
+        },
+        {
+          "name": "/assets/morphTargetsVertex-6N5r7oF1.js",
+          "transferSize": 1318,
+          "encodedBodySize": 1018,
+          "decodedBodySize": 4379,
+          "duration": 77.30000000074506
+        },
+        {
+          "name": "/assets/bumpVertexDeclaration-Cb04kLz9.js",
+          "transferSize": 641,
+          "encodedBodySize": 341,
+          "decodedBodySize": 341,
+          "duration": 89.5
+        },
+        {
+          "name": "/assets/bumpVertex-CWhdIpqj.js",
+          "transferSize": 822,
+          "encodedBodySize": 522,
+          "decodedBodySize": 522,
+          "duration": 72.20000000298023
+        },
+        {
+          "name": "/assets/logDepthVertex-D5IUM6qd.js",
+          "transferSize": 609,
+          "encodedBodySize": 309,
+          "decodedBodySize": 309,
+          "duration": 77.30000000074506
+        },
+        {
+          "name": "/assets/default.fragment-DJct8V4A.js",
+          "transferSize": 6671,
+          "encodedBodySize": 6371,
+          "decodedBodySize": 24867,
+          "duration": 83.30000000074506
+        },
+        {
+          "name": "/assets/clipPlaneFragment-DVK0wgyZ.js",
+          "transferSize": 627,
+          "encodedBodySize": 327,
+          "decodedBodySize": 1174,
+          "duration": 76.09999999776483
+        },
+        {
+          "name": "/assets/fogFragment-CISE_m3s.js",
+          "transferSize": 797,
+          "encodedBodySize": 497,
+          "decodedBodySize": 1084,
+          "duration": 77.69999999925494
+        },
+        {
+          "name": "/assets/oitFragment-CwWxHs00.js",
+          "transferSize": 10972,
+          "encodedBodySize": 10672,
+          "decodedBodySize": 49959,
+          "duration": 88.5
+        },
+        {
+          "name": "/assets/logDepthFragment-BPon2Z56.js",
+          "transferSize": 1202,
+          "encodedBodySize": 902,
+          "decodedBodySize": 3507,
+          "duration": 78.10000000149012
+        },
+        {
+          "name": "/assets/objectIdFunctions-BCg-H1o3.js",
+          "transferSize": 789,
+          "encodedBodySize": 489,
+          "decodedBodySize": 489,
+          "duration": 78.69999999925494
+        },
+        {
+          "name": "/assets/lightFragment-x7Xpl9uU.js",
+          "transferSize": 3952,
+          "encodedBodySize": 3652,
+          "decodedBodySize": 20567,
+          "duration": 83.79999999701977
+        },
+        {
+          "name": "/assets/reflectionFunction-CivoLMz9.js",
+          "transferSize": 1473,
+          "encodedBodySize": 1173,
+          "decodedBodySize": 4667,
+          "duration": 77.30000000074506
+        },
+        {
+          "name": "/assets/bumpFragment-BtJd9tYZ.js",
+          "transferSize": 2755,
+          "encodedBodySize": 2455,
+          "decodedBodySize": 6862,
+          "duration": 82
+        },
+        {
+          "name": "/assets/color.vertex-CYNjCrqH.js",
+          "transferSize": 976,
+          "encodedBodySize": 676,
+          "decodedBodySize": 1593,
+          "duration": 69.89999999850988
+        },
+        {
+          "name": "/assets/color.fragment-CxH-oW8C.js",
+          "transferSize": 1229,
+          "encodedBodySize": 929,
+          "decodedBodySize": 929,
+          "duration": 71.80000000074506
+        }
+      ],
+      "totals": {
+        "transferSize": 870750,
+        "encodedBodySize": 848550,
+        "decodedBodySize": 3221758
+      },
+      "canvas": {
+        "width": 390,
+        "height": 844
+      },
+      "initialFishGlbs": 0,
+      "qa": false,
+      "errors": []
+    },
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "coldContext": true,
+      "throttling": false,
+      "finalUrl": "https://www.fishdex.fr/",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "navigation": [
+        {
+          "transferSize": 1571,
+          "encodedBodySize": 1271,
+          "decodedBodySize": 4644,
+          "domContentLoaded": 733.0999999977648
+        }
+      ],
+      "resources": [
+        {
+          "name": "/assets/index-CqEjZL1R.js",
+          "transferSize": 551522,
+          "encodedBodySize": 551222,
+          "decodedBodySize": 2233466,
+          "duration": 381.8999999985099
+        },
+        {
+          "name": "/assets/math.scalar.functions-D-i-XBaP.js",
+          "transferSize": 1383,
+          "encodedBodySize": 1083,
+          "decodedBodySize": 2190,
+          "duration": 34.79999999701977
+        },
+        {
+          "name": "/assets/engineStore-Bn2tApal.js",
+          "transferSize": 1570,
+          "encodedBodySize": 1270,
+          "decodedBodySize": 3512,
+          "duration": 38.399999998509884
+        },
+        {
+          "name": "/assets/internalTexture-ziUdfT1O.js",
+          "transferSize": 2429,
+          "encodedBodySize": 2129,
+          "decodedBodySize": 7747,
+          "duration": 50.399999998509884
+        },
+        {
+          "name": "/assets/shaderStore-D-XQlhUT.js",
+          "transferSize": 769,
+          "encodedBodySize": 469,
+          "decodedBodySize": 469,
+          "duration": 50.69999999925494
+        },
+        {
+          "name": "/assets/tools.functions-Bxv5dhZ_.js",
+          "transferSize": 5281,
+          "encodedBodySize": 4981,
+          "decodedBodySize": 13495,
+          "duration": 74.59999999776483
+        },
+        {
+          "name": "/assets/logger-CuBYPcDK.js",
+          "transferSize": 1144,
+          "encodedBodySize": 844,
+          "decodedBodySize": 1881,
+          "duration": 74.69999999925494
+        },
+        {
+          "name": "/assets/domManagement-BqltO0ki.js",
+          "transferSize": 556,
+          "encodedBodySize": 256,
+          "decodedBodySize": 256,
+          "duration": 250.69999999925494
+        },
+        {
+          "name": "/assets/performanceConfigurator-UtxC_Odd.js",
+          "transferSize": 800,
+          "encodedBodySize": 500,
+          "decodedBodySize": 500,
+          "duration": 73.19999999925494
+        },
+        {
+          "name": "/assets/thinEngine.pure-DtQqicIX.js",
+          "transferSize": 18007,
+          "encodedBodySize": 17707,
+          "decodedBodySize": 67755,
+          "duration": 94.80000000074506
+        },
+        {
+          "name": "/assets/abstractEngine.pure-rwLfew4P.js",
+          "transferSize": 15774,
+          "encodedBodySize": 15474,
+          "decodedBodySize": 59841,
+          "duration": 129.5
+        },
+        {
+          "name": "/assets/tools.pure-DG9Rzizn.js",
+          "transferSize": 11748,
+          "encodedBodySize": 11448,
+          "decodedBodySize": 34313,
+          "duration": 120
+        },
+        {
+          "name": "/assets/typeStore-Cu_sj2zM.js",
+          "transferSize": 380,
+          "encodedBodySize": 80,
+          "decodedBodySize": 80,
+          "duration": 134.39999999850988
+        },
+        {
+          "name": "/assets/buffer.pure-CAWHamCn.js",
+          "transferSize": 2971,
+          "encodedBodySize": 2671,
+          "decodedBodySize": 7575,
+          "duration": 154.5
+        },
+        {
+          "name": "/assets/halfFloat-Ce77JD5z.js",
+          "transferSize": 916,
+          "encodedBodySize": 616,
+          "decodedBodySize": 1290,
+          "duration": 306.5999999977648
+        },
+        {
+          "name": "/assets/guid-BXdVC_j_.js",
+          "transferSize": 457,
+          "encodedBodySize": 157,
+          "decodedBodySize": 157,
+          "duration": 318.30000000074506
+        },
+        {
+          "name": "/assets/math.plane-C0ws7YJZ.js",
+          "transferSize": 1089,
+          "encodedBodySize": 789,
+          "decodedBodySize": 1815,
+          "duration": 154.5
+        },
+        {
+          "name": "/assets/decorators-BWcttrMP.js",
+          "transferSize": 1925,
+          "encodedBodySize": 1625,
+          "decodedBodySize": 3842,
+          "duration": 160.90000000223517
+        },
+        {
+          "name": "/assets/smartArray-BRfcgNbX.js",
+          "transferSize": 753,
+          "encodedBodySize": 453,
+          "decodedBodySize": 1186,
+          "duration": 175.20000000298023
+        },
+        {
+          "name": "/assets/decorators.serialization-By-MjS0E.js",
+          "transferSize": 2120,
+          "encodedBodySize": 1820,
+          "decodedBodySize": 4720,
+          "duration": 209.30000000074506
+        },
+        {
+          "name": "/assets/math.color.pure-Dw4sAYjX.js",
+          "transferSize": 19658,
+          "encodedBodySize": 19358,
+          "decodedBodySize": 76952,
+          "duration": 209.60000000149012
+        },
+        {
+          "name": "/assets/sceneComponent-Cn-0uY45.js",
+          "transferSize": 5404,
+          "encodedBodySize": 5104,
+          "decodedBodySize": 17971,
+          "duration": 281.1000000014901
+        },
+        {
+          "name": "/assets/lightConstants-DX3sWIWo.js",
+          "transferSize": 4724,
+          "encodedBodySize": 4424,
+          "decodedBodySize": 18247,
+          "duration": 380.4000000022352
+        },
+        {
+          "name": "/assets/keyboardEvents-CGYiptFb.js",
+          "transferSize": 657,
+          "encodedBodySize": 357,
+          "decodedBodySize": 357,
+          "duration": 175.19999999925494
+        },
+        {
+          "name": "/assets/pointerEvents-DFkbNwCB.js",
+          "transferSize": 1059,
+          "encodedBodySize": 759,
+          "decodedBodySize": 759,
+          "duration": 215.80000000074506
+        },
+        {
+          "name": "/assets/scene.pure-QqgLHIuc.js",
+          "transferSize": 36272,
+          "encodedBodySize": 35972,
+          "decodedBodySize": 159578,
+          "duration": 209.59999999776483
+        },
+        {
+          "name": "/assets/math.size-BHZaDYSv.js",
+          "transferSize": 1210,
+          "encodedBodySize": 910,
+          "decodedBodySize": 910,
+          "duration": 236.69999999925494
+        },
+        {
+          "name": "/assets/texture.pure-CAOKm8dZ.js",
+          "transferSize": 5970,
+          "encodedBodySize": 5670,
+          "decodedBodySize": 19560,
+          "duration": 209.30000000074506
+        },
+        {
+          "name": "/assets/baseTexture.pure-CEqM3fnj.js",
+          "transferSize": 4249,
+          "encodedBodySize": 3949,
+          "decodedBodySize": 15090,
+          "duration": 239.10000000149012
+        },
+        {
+          "name": "/assets/effectRenderer.pure-aqD6q3t8.js",
+          "transferSize": 2933,
+          "encodedBodySize": 2633,
+          "decodedBodySize": 8367,
+          "duration": 239.90000000223517
+        },
+        {
+          "name": "/assets/sphericalPolynomial.pure-Dbd-RrB2.js",
+          "transferSize": 1623,
+          "encodedBodySize": 1323,
+          "decodedBodySize": 5736,
+          "duration": 252
+        },
+        {
+          "name": "/assets/drawWrapper-DcFZvZep.js",
+          "transferSize": 1353,
+          "encodedBodySize": 1053,
+          "decodedBodySize": 1954,
+          "duration": 253.60000000149012
+        },
+        {
+          "name": "/assets/material.pure-Cs0tJEJZ.js",
+          "transferSize": 21111,
+          "encodedBodySize": 20811,
+          "decodedBodySize": 78812,
+          "duration": 235.30000000074506
+        },
+        {
+          "name": "/assets/postProcess.pure-DOEiuV5Y.js",
+          "transferSize": 5586,
+          "encodedBodySize": 5286,
+          "decodedBodySize": 18441,
+          "duration": 238.89999999850988
+        },
+        {
+          "name": "/assets/renderTargetTexture.pure-CYNZ8wBf.js",
+          "transferSize": 8814,
+          "encodedBodySize": 8514,
+          "decodedBodySize": 32369,
+          "duration": 251.69999999925494
+        },
+        {
+          "name": "/assets/node-CixmmZG_.js",
+          "transferSize": 3603,
+          "encodedBodySize": 3303,
+          "decodedBodySize": 11526,
+          "duration": 280
+        },
+        {
+          "name": "/assets/brdfTextureTools-jeL-4w9S.js",
+          "transferSize": 51070,
+          "encodedBodySize": 50770,
+          "decodedBodySize": 79867,
+          "duration": 301.8999999985099
+        },
+        {
+          "name": "/assets/flowGraphInteger.pure-CZmJgkLp.js",
+          "transferSize": 858,
+          "encodedBodySize": 558,
+          "decodedBodySize": 558,
+          "duration": 330
+        },
+        {
+          "name": "/assets/constants-_wyaM_ID.js",
+          "transferSize": 3582,
+          "encodedBodySize": 3282,
+          "decodedBodySize": 11770,
+          "duration": 359.5
+        },
+        {
+          "name": "/assets/flowGraphExecutionBlockWithOutSignal-ZgpOYOYE.js",
+          "transferSize": 459,
+          "encodedBodySize": 159,
+          "decodedBodySize": 159,
+          "duration": 174.80000000074506
+        },
+        {
+          "name": "/assets/flowGraphAssetsContext-WtUyuDAI.js",
+          "transferSize": 1036,
+          "encodedBodySize": 736,
+          "decodedBodySize": 736,
+          "duration": 278.80000000074506
+        },
+        {
+          "name": "/assets/flowGraphExecutionBlock-z6kKFLAZ.js",
+          "transferSize": 1217,
+          "encodedBodySize": 917,
+          "decodedBodySize": 2526,
+          "duration": 279.30000000074506
+        },
+        {
+          "name": "/assets/flowGraphBlock-PiZ78eoL.js",
+          "transferSize": 3690,
+          "encodedBodySize": 3390,
+          "decodedBodySize": 10996,
+          "duration": 305.9000000022352
+        },
+        {
+          "name": "/assets/flowGraphRichTypes.pure-BKlnX8v7.js",
+          "transferSize": 1260,
+          "encodedBodySize": 960,
+          "decodedBodySize": 2624,
+          "duration": 249.60000000149012
+        },
+        {
+          "name": "/assets/index-ClVVZk7V.css",
+          "transferSize": 10142,
+          "encodedBodySize": 9842,
+          "decodedBodySize": 42822,
+          "duration": 253.10000000149012
+        },
+        {
+          "name": "/assets/flowGraphAsyncExecutionBlock-B8j60x2H.js",
+          "transferSize": 969,
+          "encodedBodySize": 669,
+          "decodedBodySize": 669,
+          "duration": 253.30000000074506
+        },
+        {
+          "name": "/assets/default.vertex-BYS4Xaw0.js",
+          "transferSize": 2696,
+          "encodedBodySize": 2396,
+          "decodedBodySize": 8293,
+          "duration": 88.59999999776483
+        },
+        {
+          "name": "/assets/bakedVertexAnimation-C6l_KSSy.js",
+          "transferSize": 1886,
+          "encodedBodySize": 1586,
+          "decodedBodySize": 7717,
+          "duration": 101.10000000149012
+        },
+        {
+          "name": "/assets/clipPlaneVertex-C59BO8JS.js",
+          "transferSize": 615,
+          "encodedBodySize": 315,
+          "decodedBodySize": 1171,
+          "duration": 92.09999999776483
+        },
+        {
+          "name": "/assets/fogVertex-NHlgMcT2.js",
+          "transferSize": 680,
+          "encodedBodySize": 380,
+          "decodedBodySize": 380,
+          "duration": 100.40000000223517
+        },
+        {
+          "name": "/assets/instancesDeclaration-CJBvtBV5.js",
+          "transferSize": 1233,
+          "encodedBodySize": 933,
+          "decodedBodySize": 933,
+          "duration": 100.80000000074506
+        },
+        {
+          "name": "/assets/vertexColorMixing-DPW6Is9y.js",
+          "transferSize": 734,
+          "encodedBodySize": 434,
+          "decodedBodySize": 434,
+          "duration": 72.60000000149012
+        },
+        {
+          "name": "/assets/sceneUboDeclaration-B5VhSG0v.js",
+          "transferSize": 664,
+          "encodedBodySize": 364,
+          "decodedBodySize": 364,
+          "duration": 70.29999999701977
+        },
+        {
+          "name": "/assets/meshUboDeclaration-BmNu2KU_.js",
+          "transferSize": 645,
+          "encodedBodySize": 345,
+          "decodedBodySize": 345,
+          "duration": 81.5
+        },
+        {
+          "name": "/assets/defaultUboDeclaration-C53xcSdv.js",
+          "transferSize": 852,
+          "encodedBodySize": 552,
+          "decodedBodySize": 1262,
+          "duration": 70.69999999925494
+        },
+        {
+          "name": "/assets/helperFunctions-gEnZbjN3.js",
+          "transferSize": 2691,
+          "encodedBodySize": 2391,
+          "decodedBodySize": 6815,
+          "duration": 70.5
+        },
+        {
+          "name": "/assets/mainUVVaryingDeclaration-BBamQlxR.js",
+          "transferSize": 529,
+          "encodedBodySize": 229,
+          "decodedBodySize": 229,
+          "duration": 71.20000000298023
+        },
+        {
+          "name": "/assets/logDepthDeclaration-3gXGtHbI.js",
+          "transferSize": 575,
+          "encodedBodySize": 275,
+          "decodedBodySize": 275,
+          "duration": 72.10000000149012
+        },
+        {
+          "name": "/assets/shadowsVertex--0nVb1Fg.js",
+          "transferSize": 2014,
+          "encodedBodySize": 1714,
+          "decodedBodySize": 6845,
+          "duration": 76.09999999776483
+        },
+        {
+          "name": "/assets/bumpVertexDeclaration-Cb04kLz9.js",
+          "transferSize": 641,
+          "encodedBodySize": 341,
+          "decodedBodySize": 341,
+          "duration": 70.19999999925494
+        },
+        {
+          "name": "/assets/morphTargetsVertex-6N5r7oF1.js",
+          "transferSize": 1318,
+          "encodedBodySize": 1018,
+          "decodedBodySize": 4379,
+          "duration": 87.10000000149012
+        },
+        {
+          "name": "/assets/bumpVertex-CWhdIpqj.js",
+          "transferSize": 822,
+          "encodedBodySize": 522,
+          "decodedBodySize": 522,
+          "duration": 99.5
+        },
+        {
+          "name": "/assets/logDepthVertex-D5IUM6qd.js",
+          "transferSize": 609,
+          "encodedBodySize": 309,
+          "decodedBodySize": 309,
+          "duration": 75.20000000298023
+        },
+        {
+          "name": "/assets/default.fragment-DJct8V4A.js",
+          "transferSize": 6671,
+          "encodedBodySize": 6371,
+          "decodedBodySize": 24867,
+          "duration": 86.79999999701977
+        },
+        {
+          "name": "/assets/fogFragment-CISE_m3s.js",
+          "transferSize": 797,
+          "encodedBodySize": 497,
+          "decodedBodySize": 1084,
+          "duration": 74.69999999925494
+        },
+        {
+          "name": "/assets/clipPlaneFragment-DVK0wgyZ.js",
+          "transferSize": 627,
+          "encodedBodySize": 327,
+          "decodedBodySize": 1174,
+          "duration": 99.59999999776483
+        },
+        {
+          "name": "/assets/oitFragment-CwWxHs00.js",
+          "transferSize": 10972,
+          "encodedBodySize": 10672,
+          "decodedBodySize": 49959,
+          "duration": 98.40000000223517
+        },
+        {
+          "name": "/assets/objectIdFunctions-BCg-H1o3.js",
+          "transferSize": 789,
+          "encodedBodySize": 489,
+          "decodedBodySize": 489,
+          "duration": 80.19999999925494
+        },
+        {
+          "name": "/assets/logDepthFragment-BPon2Z56.js",
+          "transferSize": 1202,
+          "encodedBodySize": 902,
+          "decodedBodySize": 3507,
+          "duration": 71.19999999925494
+        },
+        {
+          "name": "/assets/lightFragment-x7Xpl9uU.js",
+          "transferSize": 3952,
+          "encodedBodySize": 3652,
+          "decodedBodySize": 20567,
+          "duration": 87.19999999925494
+        },
+        {
+          "name": "/assets/reflectionFunction-CivoLMz9.js",
+          "transferSize": 1473,
+          "encodedBodySize": 1173,
+          "decodedBodySize": 4667,
+          "duration": 85.89999999850988
+        },
+        {
+          "name": "/assets/bumpFragment-BtJd9tYZ.js",
+          "transferSize": 2755,
+          "encodedBodySize": 2455,
+          "decodedBodySize": 6862,
+          "duration": 86.20000000298023
+        },
+        {
+          "name": "/assets/color.vertex-CYNjCrqH.js",
+          "transferSize": 976,
+          "encodedBodySize": 676,
+          "decodedBodySize": 1593,
+          "duration": 90
+        },
+        {
+          "name": "/assets/color.fragment-CxH-oW8C.js",
+          "transferSize": 1229,
+          "encodedBodySize": 929,
+          "decodedBodySize": 929,
+          "duration": 77.90000000223517
+        }
+      ],
+      "totals": {
+        "transferSize": 870750,
+        "encodedBodySize": 848550,
+        "decodedBodySize": 3221758
+      },
+      "canvas": {
+        "width": 1024,
+        "height": 640
+      },
+      "initialFishGlbs": 0,
+      "qa": false,
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+
+Running 14 tests using 1 worker
+
+(node:26344) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:26344) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\smoke\development.spec.ts:11:1 › Le build contrôle le Mode test et conserve la partie normale sans QA (4.6s)
+  ok  2 [desktop] › tests\smoke\development.spec.ts:21:1 › Build V2 sans QA : feeder, mouche et traîne jusqu’au combat, réception, photo et reload (29.8s)
+  ok  3 [desktop] › tests\smoke\fishdex.spec.ts:12:1 › FishDex hébergé sans QA : 66 identités, 52 captures, 14 observations, sources et robe canonique (1.8s)
+  ok  4 [desktop] › tests\smoke\map-water.spec.ts:8:1 › Carte et eau hébergées : six postes, qualités, ambiances et essais isolés sans QA (3.9s)
+  ok  5 [desktop] › tests\smoke\production.spec.ts:18:1 › Le build permet une vraie prise, le chargement différé et le transfert du carnet (33.6s)
+  ok  6 [desktop] › tests\smoke\production.spec.ts:69:1 › Les 33 GLB servis sont intacts et les originaux restent exclus (4.4s)
+  ok  7 [desktop] › tests\smoke\production.spec.ts:116:1 › Nouvelle partie livrée : kit au coup, trois postes et vraie capture sans moulinet ni QA (18.6s)
+(node:5924) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5924) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  8 [mobile] › tests\smoke\development.spec.ts:11:1 › Le build contrôle le Mode test et conserve la partie normale sans QA (17.2s)
+  ok  9 [mobile] › tests\smoke\development.spec.ts:21:1 › Build V2 sans QA : feeder, mouche et traîne jusqu’au combat, réception, photo et reload (31.0s)
+  ok 10 [mobile] › tests\smoke\fishdex.spec.ts:12:1 › FishDex hébergé sans QA : 66 identités, 52 captures, 14 observations, sources et robe canonique (1.7s)
+  ok 11 [mobile] › tests\smoke\map-water.spec.ts:8:1 › Carte et eau hébergées : six postes, qualités, ambiances et essais isolés sans QA (3.5s)
+  ok 12 [mobile] › tests\smoke\production.spec.ts:18:1 › Le build permet une vraie prise, le chargement différé et le transfert du carnet (29.4s)
+  ok 13 [mobile] › tests\smoke\production.spec.ts:69:1 › Les 33 GLB servis sont intacts et les originaux restent exclus (3.8s)
+  ok 14 [mobile] › tests\smoke\production.spec.ts:116:1 › Nouvelle partie livrée : kit au coup, trois postes et vraie capture sans moulinet ni QA (16.6s)
+
+  14 passed (3.4m)
