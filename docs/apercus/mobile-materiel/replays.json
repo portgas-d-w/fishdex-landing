@@ -1,0 +1,554 @@
+[
+  {
+    "stage": "before",
+    "id": "roach",
+    "length": 15,
+    "seed": 127,
+    "command": "Maintien seul du moulinet pendant 5 s ; aucune réception",
+    "config": {
+      "method": "lure",
+      "technique": "leurre",
+      "recipe": "poisson_nageur",
+      "depth": 1,
+      "distribution": "spread",
+      "leaderLength": 0.6,
+      "branchCount": 1,
+      "drag": 0.5,
+      "components": {
+        "reel": "kit2:reel",
+        "main_line": "kit2:main_line",
+        "leader": "kit2:leader",
+        "snap": "kit2:snap",
+        "lure": "kit2:lure",
+        "landing": "kit2:landing"
+      }
+    },
+    "initial": {
+      "phase": "idle",
+      "post": "jetty",
+      "technique": "leurre",
+      "recipe": "poisson_nageur",
+      "environment": {
+        "current": 0,
+        "wind": 0,
+        "time": "day"
+      },
+      "boat": {
+        "x": 0,
+        "z": 0
+      },
+      "branches": [],
+      "baitRetention": 1,
+      "amorceSeconds": 0,
+      "pvaSeconds": 0,
+      "encounter": "none",
+      "signal": "Contact et fil",
+      "depth": 0,
+      "tension": 0.25,
+      "fatigue": 0,
+      "distance": 8,
+      "elapsed": 0.06666666666666667,
+      "specimen": "",
+      "seed": 127,
+      "appearance": {
+        "coloration": "natural",
+        "mirage": false
+      },
+      "failure": "",
+      "components": {
+        "reel": "kit2:reel",
+        "main_line": "kit2:main_line",
+        "leader": "kit2:leader",
+        "snap": "kit2:snap",
+        "lure": "kit2:lure",
+        "landing": "kit2:landing"
+      },
+      "cost": 0
+    },
+    "result": {
+      "phase": "fighting",
+      "post": "jetty",
+      "technique": "leurre",
+      "recipe": "poisson_nageur",
+      "environment": {
+        "current": 0,
+        "wind": 0,
+        "time": "day"
+      },
+      "boat": {
+        "x": 0,
+        "z": 0
+      },
+      "branches": [],
+      "baitRetention": 1,
+      "amorceSeconds": 0,
+      "pvaSeconds": 0,
+      "encounter": "none",
+      "signal": "Contact et fil",
+      "depth": 0,
+      "tension": 0.778592180120227,
+      "fatigue": 0.2243463682133561,
+      "distance": 6.855437616932173,
+      "elapsed": 5.13333333333332,
+      "species": "roach",
+      "specimen": "beec1fb7-514d-4f6f-b4d9-633b5c993ec7",
+      "seed": 127,
+      "appearance": {
+        "coloration": "natural",
+        "mirage": false
+      },
+      "attributes": {
+        "burst": 0.39,
+        "endurance": 0.3,
+        "agility": 0.59,
+        "head_shakes": 0.34,
+        "cover_seeking": 0.18,
+        "slack_pressure": 0.56
+      },
+      "failure": "",
+      "components": {
+        "reel": "kit2:reel",
+        "main_line": "kit2:main_line",
+        "leader": "kit2:leader",
+        "snap": "kit2:snap",
+        "lure": "kit2:lure",
+        "landing": "kit2:landing"
+      },
+      "losses": {},
+      "cost": 0
+    },
+    "phase": "fighting",
+    "renderer": "Chromium mobile 390x844 DPR1 SwiftShader ; aucune mesure appareil"
+  },
+  {
+    "stage": "before",
+    "id": "carp",
+    "length": 60,
+    "seed": 127,
+    "command": "Maintien seul du moulinet pendant 5 s ; aucune réception",
+    "config": {
+      "method": "lure",
+      "technique": "leurre",
+      "recipe": "poisson_nageur",
+      "depth": 1,
+      "distribution": "spread",
+      "leaderLength": 0.6,
+      "branchCount": 1,
+      "drag": 0.5,
+      "components": {
+        "reel": "kit2:reel",
+        "main_line": "kit2:main_line",
+        "leader": "kit2:leader",
+        "snap": "kit2:snap",
+        "lure": "kit2:lure",
+        "landing": "kit2:landing"
+      }
+    },
+    "initial": {
+      "phase": "idle",
+      "post": "jetty",
+      "technique": "leurre",
+      "recipe": "poisson_nageur",
+      "environment": {
+        "current": 0,
+        "wind": 0,
+        "time": "day"
+      },
+      "boat": {
+        "x": 0,
+        "z": 0
+      },
+      "branches": [],
+      "baitRetention": 1,
+      "amorceSeconds": 0,
+      "pvaSeconds": 0,
+      "encounter": "none",
+      "signal": "Contact et fil",
+      "depth": 0,
+      "tension": 0.25,
+      "fatigue": 0,
+      "distance": 8,
+      "elapsed": 0.05,
+      "specimen": "",
+      "seed": 127,
+      "appearance": {
+        "coloration": "natural",
+        "mirage": false
+      },
+      "failure": "",
+      "components": {
+        "reel": "kit2:reel",
+        "main_line": "kit2:main_line",
+        "leader": "kit2:leader",
+        "snap": "kit2:snap",
+        "lure": "kit2:lure",
+        "landing": "kit2:landing"
+      },
+      "cost": 0
+    },
+    "result": {
+      "phase": "lost",
+      "post": "jetty",
+      "technique": "leurre",
+      "recipe": "poisson_nageur",
+      "environment": {
+        "current": 0,
+        "wind": 0,
+        "time": "day"
+      },
+      "boat": {
+        "x": 0,
+        "z": 0
+      },
+      "branches": [],
+      "baitRetention": 1,
+      "amorceSeconds": 0,
+      "pvaSeconds": 0,
+      "encounter": "none",
+      "signal": "Contact et fil",
+      "depth": 0,
+      "tension": 1.003793945875594,
+      "fatigue": 0.014146534666765218,
+      "distance": 10.942940211112408,
+      "elapsed": 3.8833333333333244,
+      "species": "carp",
+      "specimen": "6f0f10de-a4bc-497f-8dfa-51da795b39a4",
+      "seed": 127,
+      "appearance": {
+        "coloration": "natural",
+        "mirage": false
+      },
+      "attributes": {
+        "burst": 0.87,
+        "endurance": 0.9,
+        "agility": 0.46,
+        "head_shakes": 0.41,
+        "cover_seeking": 0.7,
+        "slack_pressure": 0.42
+      },
+      "failure": "Rupture du bas de ligne. Accompagnez le départ et baissez la canne.",
+      "components": {
+        "reel": "kit2:reel",
+        "main_line": "kit2:main_line",
+        "leader": "kit2:leader",
+        "snap": "kit2:snap",
+        "lure": "kit2:lure",
+        "landing": "kit2:landing"
+      },
+      "losses": {},
+      "cost": 0
+    },
+    "phase": "lost",
+    "renderer": "Chromium mobile 390x844 DPR1 SwiftShader ; aucune mesure appareil"
+  },
+  {
+    "stage": "after",
+    "id": "roach",
+    "length": 15,
+    "seed": 127,
+    "command": "Maintien seul du moulinet pendant 5 s ; aucune réception",
+    "config": {
+      "method": "lure",
+      "technique": "leurre",
+      "recipe": "poisson_nageur",
+      "depth": 1,
+      "distribution": "spread",
+      "leaderLength": 0.6,
+      "branchCount": 1,
+      "drag": 0.5,
+      "components": {
+        "reel": "kit2:reel",
+        "main_line": "kit2:main_line",
+        "leader": "kit2:leader",
+        "snap": "kit2:snap",
+        "lure": "kit2:lure",
+        "landing": "kit2:landing"
+      }
+    },
+    "initial": {
+      "phase": "idle",
+      "post": "jetty",
+      "technique": "leurre",
+      "recipe": "poisson_nageur",
+      "environment": {
+        "current": 0,
+        "wind": 0,
+        "time": "day"
+      },
+      "boat": {
+        "x": 0,
+        "z": 0
+      },
+      "branches": [],
+      "baitRetention": 1,
+      "amorceSeconds": 0,
+      "pvaSeconds": 0,
+      "encounter": "none",
+      "signal": "Contact et fil",
+      "depth": 0,
+      "tension": 0.25,
+      "fatigue": 0,
+      "distance": 8,
+      "line": 8,
+      "slack": 0,
+      "position": {
+        "x": -1.5,
+        "y": -0.7,
+        "z": 7
+      },
+      "net": {
+        "x": 0.7,
+        "z": 1
+      },
+      "netReady": false,
+      "rod": {
+        "yaw": 0,
+        "lift": 0.5
+      },
+      "abrasion": 0,
+      "elapsed": 0.06666666666666667,
+      "specimen": "",
+      "seed": 127,
+      "appearance": {
+        "coloration": "natural",
+        "mirage": false
+      },
+      "failure": "",
+      "components": {
+        "reel": "kit2:reel",
+        "main_line": "kit2:main_line",
+        "leader": "kit2:leader",
+        "snap": "kit2:snap",
+        "lure": "kit2:lure",
+        "landing": "kit2:landing"
+      },
+      "cost": 0
+    },
+    "result": {
+      "phase": "fighting",
+      "post": "jetty",
+      "technique": "leurre",
+      "recipe": "poisson_nageur",
+      "environment": {
+        "current": 0,
+        "wind": 0,
+        "time": "day"
+      },
+      "boat": {
+        "x": 0,
+        "z": 0
+      },
+      "branches": [],
+      "baitRetention": 1,
+      "amorceSeconds": 0,
+      "pvaSeconds": 0,
+      "encounter": "none",
+      "signal": "Contact et fil",
+      "depth": 0,
+      "tension": 0.58447569858105,
+      "fatigue": 0.0623708089571026,
+      "distance": 4.292253185584933,
+      "line": 5.293394968389277,
+      "slack": 0,
+      "position": {
+        "x": 0.4626168383341097,
+        "y": -0.08,
+        "z": 3.2672500594708245
+      },
+      "net": {
+        "x": 0.7,
+        "z": 1
+      },
+      "netReady": false,
+      "rod": {
+        "yaw": 0,
+        "lift": 0.5
+      },
+      "abrasion": 0,
+      "elapsed": 5.200000000000048,
+      "species": "roach",
+      "specimen": "5b1f47cf-0314-490c-a453-002e6339f058",
+      "seed": 127,
+      "appearance": {
+        "coloration": "natural",
+        "mirage": false
+      },
+      "attributes": {
+        "burst": 0.39,
+        "endurance": 0.3,
+        "agility": 0.59,
+        "head_shakes": 0.34,
+        "cover_seeking": 0.18,
+        "slack_pressure": 0.56
+      },
+      "failure": "",
+      "components": {
+        "reel": "kit2:reel",
+        "main_line": "kit2:main_line",
+        "leader": "kit2:leader",
+        "snap": "kit2:snap",
+        "lure": "kit2:lure",
+        "landing": "kit2:landing"
+      },
+      "losses": {},
+      "cost": 0
+    },
+    "phase": "fighting",
+    "renderer": "Chromium mobile 390x844 DPR1 SwiftShader ; aucune mesure appareil"
+  },
+  {
+    "stage": "after",
+    "id": "carp",
+    "length": 60,
+    "seed": 127,
+    "command": "Maintien seul du moulinet pendant 5 s ; aucune réception",
+    "config": {
+      "method": "lure",
+      "technique": "leurre",
+      "recipe": "poisson_nageur",
+      "depth": 1,
+      "distribution": "spread",
+      "leaderLength": 0.6,
+      "branchCount": 1,
+      "drag": 0.5,
+      "components": {
+        "reel": "kit2:reel",
+        "main_line": "kit2:main_line",
+        "leader": "kit2:leader",
+        "snap": "kit2:snap",
+        "lure": "kit2:lure",
+        "landing": "kit2:landing"
+      }
+    },
+    "initial": {
+      "phase": "idle",
+      "post": "jetty",
+      "technique": "leurre",
+      "recipe": "poisson_nageur",
+      "environment": {
+        "current": 0,
+        "wind": 0,
+        "time": "day"
+      },
+      "boat": {
+        "x": 0,
+        "z": 0
+      },
+      "branches": [],
+      "baitRetention": 1,
+      "amorceSeconds": 0,
+      "pvaSeconds": 0,
+      "encounter": "none",
+      "signal": "Contact et fil",
+      "depth": 0,
+      "tension": 0.25,
+      "fatigue": 0,
+      "distance": 8,
+      "line": 8,
+      "slack": 0,
+      "position": {
+        "x": -1.5,
+        "y": -0.7,
+        "z": 7
+      },
+      "net": {
+        "x": 0.7,
+        "z": 1
+      },
+      "netReady": false,
+      "rod": {
+        "yaw": 0,
+        "lift": 0.5
+      },
+      "abrasion": 0,
+      "elapsed": 0.049999999999999996,
+      "specimen": "",
+      "seed": 127,
+      "appearance": {
+        "coloration": "natural",
+        "mirage": false
+      },
+      "failure": "",
+      "components": {
+        "reel": "kit2:reel",
+        "main_line": "kit2:main_line",
+        "leader": "kit2:leader",
+        "snap": "kit2:snap",
+        "lure": "kit2:lure",
+        "landing": "kit2:landing"
+      },
+      "cost": 0
+    },
+    "result": {
+      "phase": "fighting",
+      "post": "jetty",
+      "technique": "leurre",
+      "recipe": "poisson_nageur",
+      "environment": {
+        "current": 0,
+        "wind": 0,
+        "time": "day"
+      },
+      "boat": {
+        "x": 0,
+        "z": 0
+      },
+      "branches": [],
+      "baitRetention": 1,
+      "amorceSeconds": 0,
+      "pvaSeconds": 0,
+      "encounter": "none",
+      "signal": "Contact et fil",
+      "depth": 0,
+      "tension": 0.30389210299455316,
+      "fatigue": 0.217556813344499,
+      "distance": 8.924378939776593,
+      "line": 9.856858378044878,
+      "slack": 0,
+      "position": {
+        "x": 1.1789602473366605,
+        "y": -0.0887938152112757,
+        "z": 7.846162568929415
+      },
+      "net": {
+        "x": 0.7,
+        "z": 1
+      },
+      "netReady": false,
+      "rod": {
+        "yaw": 0,
+        "lift": 0.5
+      },
+      "abrasion": 0,
+      "elapsed": 5.183333333333381,
+      "species": "carp",
+      "specimen": "8c5d54c8-9d55-4f5f-8dd8-4b8219b266be",
+      "seed": 127,
+      "appearance": {
+        "coloration": "natural",
+        "mirage": false
+      },
+      "attributes": {
+        "burst": 0.87,
+        "endurance": 0.9,
+        "agility": 0.46,
+        "head_shakes": 0.41,
+        "cover_seeking": 0.7,
+        "slack_pressure": 0.42
+      },
+      "failure": "",
+      "components": {
+        "reel": "kit2:reel",
+        "main_line": "kit2:main_line",
+        "leader": "kit2:leader",
+        "snap": "kit2:snap",
+        "lure": "kit2:lure",
+        "landing": "kit2:landing"
+      },
+      "losses": {},
+      "cost": 0
+    },
+    "phase": "fighting",
+    "renderer": "Chromium mobile 390x844 DPR1 SwiftShader ; aucune mesure appareil"
+  }
+]

@@ -2,6 +2,16 @@
 
 La mission autonome explicite autorise les fonctionnalités suivantes et remplace l’attente du premier retour appareil pour avancer. Une prise ou une sauvegarde cassée reste prioritaire sur le contenu.
 
+## Gameplay mobile et matériel 0.11.0
+
+- [x] Audit et référence 0.10, identifiants et ressources réutilisés.
+- [x] Combat géométrique, traction/mou/frein, risques distincts, canne indépendante et géométrie partagée avec rendu.
+- [x] Grande canne réelle/recul/déboîtement, réception position + relevage ; généralisation aux 22 méthodes et 55 recettes.
+- [x] Sondage au point, amorçage/portions, fiches du matériel, secours explicite, variantes, aperçu du moteur, favoris.
+- [x] 44 prises/photo UI, gestes/deux doigts/inversion/un doigt, save legacy et contrôles de stock sans QA du build public par lots.
+- [ ] Revue hébergée, publication sur projet confirmé, empreintes publiques et clôture du relais.
+- [ ] Toucher physique Safari/Android, épuisette/recul et usage débutant ; équilibre après mesures.
+
 ## Poissons, assets et FishDex 0.10.0
 
 - [x] Lecture du ZIP/annexes et audit en lecture seule de l'app ; six sources et quinze GLB historiques inchangés.

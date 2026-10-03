@@ -1,6 +1,14 @@
 # RELAIS PROJET — Codex ↔ Claude Code
 
-**Dernière mise à jour : 3 octobre 2026. Agent : Codex. Poissons 0.10.0 implémentés, contrôlés et publiés sur fishdex.fr. Mode test public disponible. 66 identités (52 captures, 14 observations), 29 formes/écotypes, 22 techniques et 55 recettes. Essais physiques et équilibre humain restent à faire.**
+**Dernière mise à jour : 3 octobre 2026. Gameplay mobile 0.11.0 implémenté et contrôlé localement ; publication en cours. Agent : Codex. Poissons 0.10.0 implémentés, contrôlés et publiés sur fishdex.fr. Mode test public disponible. 66 identités (52 captures, 14 observations), 29 formes/écotypes, 22 techniques et 55 recettes. Essais physiques et équilibre humain restent à faire.**
+
+## Gameplay mobile et matériel 0.11.0 — 3 octobre 2026, Codex
+
+Chantier autorisé par « oui », cahier version2 archivé. Branche codex/gameplay-mobile-materiel sur 46301ec. Implémentation : combat géométrique unique, gestes indépendants/inversion/un doigt, ferrage bref, canne conservée, grande canne recul/déboîtement/kit réel, épuisette position + relevage, risques localisés, eau/fil/élastique raccordés aux événements. Sondage/amorçage au point et portions, Ma canne compatible, montage avec aperçu du moteur, variantes regroupées/fiches/compromis, coût exposé, kit explicite sans achat et ensembles favoris. Les 22 moteurs/approches et 55 recettes restent actifs. Aucune nouvelle dépendance ou production de modèles. v7 additive, anciens droits et deux profils/photos préservés. Ancienne assistance ne dirige plus le combat.
+
+Fichiers : src/game/combat,fishing,action-gesture,gear-advice,posts,presentation,rig,save ; src/main/style/render/world ; ui/tackle,technique-controls,development,field-tools ; tests de contrôles/méthodes/poissons et nouveaux bancs mobile ; scripts mobile-reference/replay-reference. Rapport/matrice et procédure : docs/GAMEPLAY_MOBILE_MATERIEL.md. Captures avant/après identiques et rejeux gardon/carpe : docs/apercus/mobile-materiel. DEMARRER_AVEC_CODEX.md préexistant préservé, non committé.
+
+Contrôles locaux : base npm ci + check174 ; check193/193 + TypeScript/build (186 tests puis 6 adaptateurs et 1 test de courant supplémentaires) ; 30 régressions navigateur vérifiées par reprises, 44 parcours UI méthode/photo sur les deux formats, fiches/sac/favoris/sondage, annulation/deux doigts/inversion/un doigt et ferrage. Build public sans QA : 6 cas + reprise2 ancienne sauvegarde/export/import après ajout de la réception legacy. Mesures SwiftShader : bureau22,18→22,66 FPS, mobile22,79→22,79 ; meshes64→72, draws27→28 et23→24 ; aucun GLB initial. Ce ne sont pas des tests physiques, GPU mobile ou batterie. Publication encore à contrôler sur le projet confirmé, sans changement de domaines. Prochaine étape : revue Vercel, contrôles publics, puis retours toucher/équilibrage selon le rapport.
 
 ## Poissons, ressources et FishDex 0.10.0 — 3 octobre 2026, Codex
 

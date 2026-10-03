@@ -1,0 +1,80 @@
+{
+  "stage": "after",
+  "renderer": "Windows Chromium ANGLE SwiftShader eco DPR1; pas un appareil physique",
+  "rows": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "camera": [
+        0,
+        4.2,
+        -8.5
+      ],
+      "fps": 22.66,
+      "totalMeshes": 72,
+      "engines": 1,
+      "render": {
+        "drawCalls": 28,
+        "cpuFrameMs": 0.8000000007450581,
+        "vertices": 57976,
+        "meshes": 28,
+        "width": 1024,
+        "height": 640,
+        "textures": [
+          {
+            "name": "local-soil",
+            "width": 256,
+            "height": 256
+          },
+          {
+            "name": "local-timber",
+            "width": 512,
+            "height": 128
+          }
+        ]
+      },
+      "startupModelRequests": [],
+      "errors": []
+    },
+    {
+      "name": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "camera": [
+        0,
+        4.2,
+        -8.5
+      ],
+      "fps": 22.79,
+      "totalMeshes": 72,
+      "engines": 1,
+      "render": {
+        "drawCalls": 24,
+        "cpuFrameMs": 1,
+        "vertices": 57976,
+        "meshes": 24,
+        "width": 390,
+        "height": 844,
+        "textures": [
+          {
+            "name": "local-soil",
+            "width": 256,
+            "height": 256
+          },
+          {
+            "name": "local-timber",
+            "width": 512,
+            "height": 128
+          }
+        ]
+      },
+      "startupModelRequests": [],
+      "errors": []
+    }
+  ]
+}
