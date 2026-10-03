@@ -35,3 +35,10 @@ export async function holdMouseReel(page: Page) {
 import {legacySave} from '../support/legacy';
 // Régressions des parcours déjà ouverts avant 0.8 ; la nouvelle partie a ses tests dédiés.
 export async function ensureLegacyProfile(page:Page){await page.addInitScript(s=>{if(!localStorage.getItem('au-fil-de-leau.save.v1'))localStorage.setItem('au-fil-de-leau.save.v1',JSON.stringify(s));},legacySave());}
+
+export async function receiveByGesture(page:Page,onLanding?:()=>Promise<void>){
+ await page.locator('#tech-land').click();await page.evaluate(()=>(window as any).__fishingQA.advance(.02));await expect(page.locator('body')).toHaveAttribute('data-phase','landing');if(onLanding)await onLanding();
+ const move=async(dx:number,dy:number)=>{const b=(await page.locator('#reel-control').boundingBox())!,x=b.x+b.width/2,y=b.y+b.height/2;const session=await page.context().newCDPSession(page);try{await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:19,x,y}]});await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{id:19,x:x+dx,y:y+dy}]});await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}finally{await session.detach();}};
+ for(let n=0;n<90;n++){const s=await page.evaluate(()=>(window as any).__fishingQA.snapshot());if(s.phase!=='landing')break;if(s.netReady)await move(0,-32);else{await move((s.fishPosition.x-s.net.x)/.02,-(s.fishPosition.z-s.net.z)/.025);await page.evaluate(()=>(window as any).__fishingQA.advance(.05,'smart'));}await page.evaluate(()=>(window as any).__fishingQA.advance(.02));}await expect(page.locator('#caught')).toBeVisible();
+}
+export async function chooseComponent(page:Page,id:string){const b=page.locator('[data-choose-component="'+id+'"]');if(!await b.isVisible())await b.locator('xpath=ancestor::details[1]/summary').click();await b.click();}

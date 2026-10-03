@@ -1,3 +1,4 @@
+import {receiveByGesture} from './helpers';
 import {test,expect,type Page} from '@playwright/test';
 import {openMenuPage} from './helpers';
 import {SPECIES} from '../../src/game/catalog';
@@ -14,10 +15,7 @@ test('Poissons confirmés : chaînes UI forcées, rendu en réception, photo, id
  for(const entry of cases){
   await tools(page);await page.locator('#test-species').selectOption(entry.id);if(entry.appearance)await page.locator('#test-appearance').selectOption(entry.appearance);await page.locator('#test-fish-kit').click();await page.locator('#test-fight').click();await page.evaluate(()=>(window as any).__fishingQA.advance(.02));expect((await qa(page)).phase,entry.id).toBe('fighting');
   const before=await qa(page);expect(before.fish).toBe(entry.id);if(entry.appearance)expect(before.appearance.appearanceId).toBe(entry.appearance);
-  await page.evaluate(()=>(window as any).__fishingQA.advance(240,'smart'));expect((await qa(page)).phase,entry.id).toBe('landing');
-  await expect.poll(()=>page.evaluate(()=>(window as any).__fishingQA.fishActor()?.loaded)).toBe(true);
-  expect(await page.evaluate(()=>(window as any).__fishingQA.fishActor().specimen)).toBe(before.specimen);
-  await page.evaluate(()=>(window as any).__fishingQA.advance(20,'smart'));await page.locator('#tech-land').click();await page.evaluate(()=>(window as any).__fishingQA.advance(.05));await expect(page.locator('#fish-preview')).toHaveAttribute('data-loaded','true');await expect(page.locator('#photo-state')).toContainText('Photo conservée');
+  await page.evaluate(()=>(window as any).__fishingQA.advance(240,'smart'));expect((await qa(page)).phase,entry.id).toBe('fighting');await receiveByGesture(page,async()=>{await expect.poll(()=>page.evaluate(()=>(window as any).__fishingQA.fishActor()?.loaded)).toBe(true);expect(await page.evaluate(()=>(window as any).__fishingQA.fishActor().specimen)).toBe(before.specimen);});await expect(page.locator('#fish-preview')).toHaveAttribute('data-loaded','true');await expect(page.locator('#photo-state')).toContainText('Photo conservée');
   const save=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.test.save.v1')!)),s=save.journal.at(-1);expect(s.id).toBe(before.specimen);expect(s.speciesId).toBe(entry.id);expect(s.seed).toBe(before.seed);if(entry.appearance)expect(s.appearanceId).toBe(entry.appearance);expect(save.total).toBe(rows.length+1);
   if(['esturgeon-siberien','carpe-koi','truite-tiger','silure-mandarin','gobie','anguille-europeenne'].includes(entry.id)&&!entry.appearance)await page.screenshot({path:`docs/apercus/poissons/${info.project.name}-${entry.id}-photo.png`});
   rows.push({species:entry.id,appearance:entry.appearance||before.appearance.appearanceId||'natural',id:s.id,post:s.post,technique:s.technique,recipe:s.recipe,length:s.length,seed:s.seed,landingActor:true,photo:true});await page.locator('#release-fish').click();

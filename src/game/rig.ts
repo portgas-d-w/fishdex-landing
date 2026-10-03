@@ -18,7 +18,7 @@ export const COMPONENTS: Component[] = [
   { id:'kit-elastic',name:'Élastique d’initiation',slot:'elastic',methods:['pole'],family:'elastique',free:true,price:0,pack:1,unit:'pièce',control:1,description:'Amortit le départ au coup ; aucun frein ni récupération de ligne.' },
   { id:'soft-elastic',name:'Élastique progressif',slot:'elastic',methods:['pole'],family:'elastique',free:false,price:18,pack:1,unit:'pièce',control:1.18,description:'Amortissement accru, conservé sur la canne après rupture du bas de ligne.' },
   { id:'kit-reel', name:'Moulinet d’initiation', slot:'reel', methods:['float','bottom','lure'], family:'moulinet_spinning', free:true, price:0, pack:1, unit:'pièce', control:1, description:'Frein automatique et récupération de base.' },
-  { id:'smooth-reel', name:'Moulinet au frein souple', slot:'reel', methods:['float','bottom','lure'], family:'moulinet_spinning', free:false, price:55, pack:1, unit:'pièce', control:1.12, description:'Récupération et amortissement améliorés de 12 % ; conservé à la casse.' },
+  { id:'smooth-reel', name:'Moulinet au frein souple', slot:'reel', methods:['float','bottom','lure'], family:'moulinet_spinning', free:false, price:55, pack:1, unit:'pièce', control:1.12, description:'Contrôle et récupération améliorés de 12 % ; frein selon le réglage du montage, conservé à la casse.' },
   { id:'kit-line', name:'Nylon d’initiation', slot:'main_line', methods:all, family:'nylon', free:true, price:0, pack:100, unit:'m', strength:1, description:'Bobine gratuite renouvelable ; résistance de jeu 1.' },
   { id:'fine-line', name:'Nylon discret', slot:'main_line', methods:all, family:'nylon', free:false, price:18, pack:100, unit:'m', strength:.82, description:'Plus discret, résistance de jeu 0,82. Seuls les mètres détachés sont perdus.' },
   { id:'strong-line', name:'Nylon renforcé', slot:'main_line', methods:all, family:'nylon', free:false, price:24, pack:100, unit:'m', strength:1.22, description:'Résistance de jeu 1,22 ; présentation moins discrète.' },
@@ -47,7 +47,7 @@ COMPONENTS.push(...EXTRA_COMPONENTS);
 export const component = (id: string) => COMPONENTS.find(c => c.id === id);
 export const SLOT_NAMES: Record<Slot,string> = {...EXTRA_SLOT_NAMES, reel:'Moulinet', elastic:'Élastique', main_line:'Fil', leader:'Bas de ligne', float:'Bouchon', weight:'Plombée / lest', attachment:'Fixation', hook:'Hameçon', bait:'Esche', lure:'Leurre et armement' };
 export interface RigConfig { method: MethodId; technique?:TechniqueId; recipe?:string; leaderLength?:number; branchCount?:number; drag?:number; components: Partial<Record<Slot,string>>; depth: number; distribution:'spread'|'grouped'|'touch' }
-export interface Preset { id:string; name:string; rod:RodId; config:RigConfig }
+export interface Preset { id:string; name:string; rod:RodId; config:RigConfig;favorite?:boolean }
 export interface RigNode { slot:Slot; item:string; parent:Slot|'rod'; quantity:number; attachment:'fixed'|'sliding'|'clip'; retained?:boolean;branch?:number;offset?:number }
 export type Outcome = 'return'|'catch'|'unhook'|'leader'|'main_line'|'hook'|'lead_release'|'weight_branch'|'tippet';
 export interface ActiveRig { id:string; rod:string; config:RigConfig; nodes:RigNode[]; reserved:Record<string,number>; resolved:boolean; outcome?:Outcome; losses:Record<string,number>;used?:boolean;hookedBranch?:number }
@@ -72,7 +72,7 @@ export function techniqueConfig(id:TechniqueId,recipeId=techniqueById(id).defaul
   if(r.id==='bombette_coul')c.components.bombette='kit2:sinking-bombette';
   return c;
 }
-const quantityFor=(config:RigConfig,slot:Slot,metres=config.method==='pole'?(config.technique?techniqueById(config.technique).reach:6.4):45)=>['main_line','fly_line','backing'].includes(slot)?metres:slot==='leader'?config.leaderLength??.6:slot==='tippet'?.5:slot==='fly'&&config.technique==='gambe'?config.branchCount??3:1;
+export const quantityFor=(config:RigConfig,slot:Slot,metres=config.method==='pole'?(config.technique?techniqueById(config.technique).reach:6.4):45)=>['main_line','fly_line','backing'].includes(slot)?metres:slot==='leader'?config.leaderLength??.6:slot==='tippet'?.5:slot==='fly'&&config.technique==='gambe'?config.branchCount??3:1;
 export function changeMethod(t:Tackle, method:MethodId) {
   const old=t.config; const next=starterConfig(method); next.depth=old.depth; next.distribution=old.distribution;
   for(const slot of slotsFor(method)) { const item=component(old.components[slot] ?? ''); if(item?.methods.includes(method)) next.components[slot]=item.id; }
@@ -185,7 +185,7 @@ export function parseTackle(value:unknown):Tackle {
   for(const [id,n] of Object.entries(obj(d.stock))) {if(!component(id)||component(id)!.free)throw new Error('Stock inconnu.');t.stock[id]=number(n,0,100000);if(component(id)!.unit!=='m'&&!Number.isSafeInteger(t.stock[id]))throw new Error('Quantité indivisible invalide.');}
   if(!Array.isArray(d.presets)||d.presets.length>12)throw new Error('Ensembles invalides.');
   const rod=(v:unknown)=>{if(!ITEMS.some(i=>i.kind==='rod'&&i.id===v))throw new Error('Canne inconnue.');return v as Preset['rod'];};
-  t.presets=d.presets.map(v=>{const p=obj(v);return {id:text(p.id),name:text(p.name,40),rod:rod(p.rod),config:config(p.config)};});
+  t.presets=d.presets.map(v=>{const p=obj(v);return {id:text(p.id),name:text(p.name,40),rod:rod(p.rod),config:config(p.config),...(p.favorite===true?{favorite:true}:{})};});
   if(new Set(t.presets.map(p=>p.id)).size!==t.presets.length)throw new Error('Ensemble dupliqué.');
   if(d.setups!==undefined) for(const [method,v] of Object.entries(obj(d.setups))) { if(!['pole','float','bottom','lure'].includes(method))throw new Error('Pratique inconnue.'); const p=obj(v),c=config(p.config),r=rod(p.rod);if(c.method!==method||!rodCompatible(r,method))throw new Error('Ensemble incompatible.');t.setups[method as MethodId]={rod:r,config:c}; }
   if(d.techniqueSetups!==undefined){t.techniqueSetups={};for(const [id,value] of Object.entries(obj(d.techniqueSetups))){const p=obj(value),c=config(p.config),r=rod(p.rod);if(c.technique!==id||!rodCompatible(r,c.method,c.technique))throw Error('Ensemble de technique incompatible.');t.techniqueSetups[id as TechniqueId]={rod:r,config:c};}}

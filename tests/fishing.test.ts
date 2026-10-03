@@ -28,17 +28,17 @@ test('Ignorer une touche fait perdre le poisson sans enregistrer de prise', () =
   const game = new FishingGame(() => 0); game.cast(); advance(game, 10);
   assert.equal(game.phase, 'lost'); assert.equal(game.result, null);
 });
-test('Mouliner en permanence finit par casser le fil', () => {
-  const game = hookFish(SPECIES.find(s => s.id === 'pike')!); game.orient(-1, 1); for (let i = 0; i < 1800 && game.phase === 'fighting'; i++) { game.reel(2 / 60); game.update(1 / 60); }
+test('Une réserve épuisée ne peut plus amortir une surcharge prolongée', () => {
+  const game = hookFish(SPECIES.find(s => s.id === 'pike')!); game.lineLength=45;game.fishPosition.z=55;game.orient(0,.3);for (let i = 0; i < 1800 && game.phase === 'fighting'; i++) { game.reel(2 / 60); game.update(1 / 60); }
   assert.equal(game.phase, 'lost'); assert.match(game.failure, /Rupture/);
 });
 test('Laisser le fil détendu trop longtemps fait décrocher le poisson', () => {
   const game = hooked(); game.orient(0, 0); game.lineLength += 8; advance(game, 10); assert.equal(game.phase, 'lost'); assert.match(game.failure, /décroché/);
 });
 test('Un combat géré ramène chacun des quinze poissons', () => {
-  for (const fish of SPECIES) {
+  for (const fish of SPECIES.filter(f=>f.mode==='capture')) {
     const game = hookFish(fish);
-    for (let i = 0; i < 60 * 80 && game.phase === 'fighting'; i++) {
+    for (let i = 0; i < 60 * 80 && ['fighting','landing'].includes(game.phase); i++) {
       manageFight(game);
     }
     assert.equal(game.phase, 'caught', fish.name);

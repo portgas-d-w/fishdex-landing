@@ -32,6 +32,9 @@ export class LakeWorld {
   private branchFlies:Mesh[]=[];
   private branchLines:ReturnType<typeof MeshBuilder.CreateLines>[]=[];
   private clonkPulse=0;
+  private parkedSections:Mesh[]=[];
+  private elasticLine!:ReturnType<typeof MeshBuilder.CreateLines>;
+  private netHandle!:ReturnType<typeof MeshBuilder.CreateLines>;
   private npc!:TransformNode;
   private precisionCircle!:Mesh;
   private bobber: TransformNode;
@@ -116,6 +119,9 @@ export class LakeWorld {
     this.boat=MeshBuilder.CreateBox('procedural-boat',{width:2.4,depth:3.3,height:.45},this.scene);this.boat.material=this.material('#435b5d');this.boat.position.set(0,.1,-3.2);this.boat.parent=this.fishingRoot;this.boat.setEnabled(false);
     this.landingNet=MeshBuilder.CreateTorus('landing-net',{diameter:1.1,thickness:.025,tessellation:16},this.scene);this.landingNet.parent=this.fishingRoot;this.landingNet.material=this.material('#4cc6c2');this.landingNet.position.set(.6,.08,.7);this.landingNet.setEnabled(false);
     this.landingMat=MeshBuilder.CreateBox('landing-mat',{width:1.4,depth:.8,height:.05},this.scene);this.landingMat.parent=this.fishingRoot;this.landingMat.material=this.material('#394845');this.landingMat.position.set(-.6,.05,-.5);this.landingMat.setEnabled(false);
+    for(let n=0;n<6;n++){const part=MeshBuilder.CreateCylinder('parked-pole-'+n,{height:1.6,diameter:.035,tessellation:6},this.scene);part.material=carbon;part.parent=this.fishingRoot;part.position.set(-.65-n*.1,.12,-3.2);part.rotation.x=Math.PI/2;part.setEnabled(false);this.parkedSections.push(part);}
+    this.elasticLine=MeshBuilder.CreateLines('pole-elastic',{points:[Vector3.Zero(),new Vector3(0,0,.1)],updatable:true},this.scene);this.elasticLine.parent=this.fishingRoot;this.elasticLine.color=Color3.FromHexString('#e6c48d');this.elasticLine.setEnabled(false);
+    this.netHandle=MeshBuilder.CreateLines('landing-handle',{points:[Vector3.Zero(),new Vector3(0,0,.1)],updatable:true},this.scene);this.netHandle.parent=this.fishingRoot;this.netHandle.color=Color3.FromHexString('#afbfbe');this.netHandle.setEnabled(false);
     // Recycled procedural silhouette only during reception. The species GLB remains
     // lazy-loaded in the photo sheet; this marker does not create a second specimen.
     for(let n=0;n<3;n++){const fly=MeshBuilder.CreateSphere('gambe-fly-'+n,{diameter:.07,segments:4},this.scene);fly.material=this.material('#caa37a');fly.parent=this.fishingRoot;fly.setEnabled(false);this.branchFlies.push(fly);const branch=MeshBuilder.CreateLines('gambe-branch-'+n,{points:[Vector3.Zero(),new Vector3(.3,0,0)],updatable:true},this.scene);branch.parent=this.fishingRoot;branch.color=Color3.FromHexString('#ebddb3');branch.setEnabled(false);this.branchLines.push(branch);}
@@ -305,11 +311,11 @@ col=mix(col,col*vec3(.72,.79,.72),smoothstep(23.,34.,p.y)*(1.-n)*.45);gl_FragCol
     if(game.post!==this.activePost)this.setPost(game.post);
     this.boat.setEnabled(game.post==='boat');
     if(game.post==='boat'){const p=postById(game.post),move=game.presentationState.boat;this.fishingRoot.position.set(p.origin.x+move.x,0,p.origin.z+1+move.z);const eye=worldPoint(game.post,{x:move.x,z:move.z-8.5}),look=worldPoint(game.post,{x:move.x,z:move.z+5.5});this.camera.position.set(eye.x,4.2,eye.z);this.camera.setTarget(new Vector3(look.x,.1,look.z));}
-    this.landingNet.setEnabled(game.phase==='landing'&&game.fishLength>25);this.landingMat.setEnabled(game.phase==='landing'&&game.fishLength>65);
+    this.landingNet.setEnabled(game.phase==='landing');this.netHandle.setEnabled(game.phase==='landing');this.landingNet.scaling.setAll(game.fishLength>25?1.63:1.2);this.landingNet.position.set(game.netPosition.x,.03+game.netLift,game.netPosition.z);this.landingNet.rotation.y=game.netHeading;this.parkedSections.forEach((part,n)=>part.setEnabled(['fighting','landing'].includes(game.phase)&&n<game.detachedSections));if(game.phase==='landing')MeshBuilder.CreateLines('landing-handle',{points:[new Vector3(.7,.4,-.4),this.landingNet.position],instance:this.netHandle},this.scene);this.landingMat.setEnabled(game.phase==='landing'&&game.fishLength>65);
     if(game.fish&&['fighting','landing'].includes(game.phase)&&this.actorId!==game.specimenId){void this.prepareFishActor(game);}
     if(!['fighting','landing'].includes(game.phase)&&this.actorId)this.clearFishActor();
     this.landingRoot?.setEnabled(game.phase==='landing');
-    if(game.phase==='landing'&&this.landingRoot){const size=Math.max(.1,Math.min(1.2,game.fishLength*.006));this.landingRoot.scaling.setAll(size);this.landingRoot.position.set(game.fishPosition.x,.18+Math.min(1,game.elapsed)*.1,game.fishPosition.z);this.landingRoot.rotation.y=Math.PI/2+game.direction;this.actorTime+=Math.min(dt,.05);this.landingWave?.update(this.actorTime,true,.14);this.landingNet.position.set(game.fishPosition.x,.06,game.fishPosition.z);}
+    if(game.phase==='landing'&&this.landingRoot){const size=Math.max(.1,Math.min(1.2,game.fishLength*.006));this.landingRoot.scaling.setAll(size);this.landingRoot.position.set(game.fishPosition.x,game.fishPosition.y,game.fishPosition.z);this.landingRoot.rotation.y=Math.PI/2+game.direction;this.actorTime+=Math.min(dt,.05);this.landingWave?.update(this.actorTime,true,.14);}
     if(game.clonkPulse!==this.clonkPulse){this.clonkPulse=game.clonkPulse;this.impactAge=0;this.impactPoint.set(game.target.x,0,game.target.z);}
     this.branchFlies.forEach((fly,n)=>{const show=game.modern&&game.technique.id==='gambe'&&game.phase==='waiting'&&n<game.presentationState.branches.length;fly.setEnabled(show);this.branchLines[n].setEnabled(show);if(show){const y=-game.presentationState.branches[n];fly.position.set(game.fishPosition.x+.3,y,game.fishPosition.z);MeshBuilder.CreateLines('gambe-branch-'+n,{points:[new Vector3(game.fishPosition.x,y,game.fishPosition.z),fly.position],instance:this.branchLines[n]},this.scene);}});
     this.npc.setEnabled(!game.rights?.posts.includes('reed-bank'));
@@ -327,25 +333,19 @@ col=mix(col,col*vec3(.72,.79,.72),smoothstep(23.,34.,p.y)*(1.-n)*.45);gl_FragCol
     if (this.wasCasting && game.phase === 'waiting') { this.impactAge = 0; this.impactPoint.set(targetX, 0, targetZ); }
     if (fighting && game.progress > .9 && Math.abs(game.fishVelocity) > .05 && this.impactAge > 1.3) { this.impactAge=0; this.impactPoint.set(game.fishPosition.x,0,game.fishPosition.z); }
     this.impactAge += dt;
-    if(game.groundbaitPulse!==this.groundbaitPulse){this.groundbaitPulse=game.groundbaitPulse;this.impactAge=0;this.impactPoint.set(targetX,0,targetZ);}
+    if(game.groundbaitPulse!==this.groundbaitPulse){this.groundbaitPulse=game.groundbaitPulse;this.impactAge=0;this.impactPoint.set(game.groundbaitPoint.x,0,game.groundbaitPoint.z);}
     this.splash.forEach((drop,i)=>{const t=this.impactAge;drop.setEnabled(t<.65 && show);drop.position.set(this.impactPoint.x+Math.cos(i*1.57)*t*.4, .1+Math.sin(t/.65*Math.PI)*.25,this.impactPoint.z+Math.sin(i*1.57)*t*.4);});
     this.wasCasting = game.phase === 'casting';
-    const cast = game.phase === 'casting' ? Math.min(1, game.elapsed / 1.1) : 1;
-    const lift = game.phase === 'casting' ? game.rodLift * (1 - cast) + 0.5 * cast : game.rodLift;
+    const cast = game.phase === 'casting' ? Math.min(1, game.elapsed / game.castDuration) : 1;
     const bend = Math.min(1.1, game.tension);
     // L’amplitude visuelle suit le champ horizontal : la pointe reste visible en portrait.
     // Les règles gardent la même orientation et les mêmes forces sur tous les formats.
-    const framing = Math.min(1, this.engine.getAspectRatio(this.camera));
-    const base = new Vector3(1.4 * framing ** 1.5, 0.8, -5.7),sectionScale=game.modern&&game.technique.sections?Math.max(.4,game.rodSections/game.reach):1;
-    this.rodPath = Array.from({ length: 9 }, (_, i) => {
-      const t = i / 8;
-      return base.add(new Vector3((game.rodYaw * 3 * framing ** 2 - 0.1 * framing) * t + (fighting ? game.direction * bend * t * t * 0.7 * framing : 0),
-        (0.8 + lift * 2.3) * t - (fighting ? bend * t * t * 1.1 : game.phase === 'bite' ? (0.35 + Math.sin(this.time * 12) * 0.12) * t * t : 0), 4.5 * t*sectionScale));
-    });
+    const geometry=game.rodGeometry,base=new Vector3(geometry.base.x,geometry.base.y,geometry.base.z),tip3=new Vector3(geometry.tip.x,geometry.tip.y,geometry.tip.z);
+    this.rodPath=Array.from({length:9},(_,i)=>{const f=i/8,p=Vector3.Lerp(base,tip3,f);p.y+=Math.sin(f*Math.PI)*Math.min(.35,bend*.25);return p;});
     MeshBuilder.CreateTube('moving-rod', { path: this.rodPath, instance: this.rod }, this.scene);
     MeshBuilder.CreateTube('cork-grip', { path: [this.rodPath[0], this.rodPath[1]], instance: this.grip }, this.scene);
     this.bobber.position.set(targetX * cast, 0.035 + Math.sin(this.time * 2) * 0.022, -1 + (targetZ + 1) * cast);
-    if (game.phase === 'casting') this.bobber.position.copyFrom(Vector3.Lerp(this.castOrigin, new Vector3(targetX, 0.1, targetZ), cast).add(new Vector3(0, Math.sin(cast * Math.PI) * 2.3, 0)));
+    if (game.phase === 'casting') this.bobber.position.copyFrom(Vector3.Lerp(this.castOrigin, new Vector3(targetX, 0.1, targetZ), cast).add(new Vector3(0, Math.sin(cast * Math.PI) * (game.deposition?.15:2.3), 0)));
     if (game.method === 'lure' && ['waiting', 'bite'].includes(game.phase)) this.bobber.position.set(game.fishPosition.x, 0.04, game.fishPosition.z);
     if(game.modern&&['waiting','bite'].includes(game.phase)){this.bobber.position.set(game.fishPosition.x,game.config.components.float?.04:game.config.components.indicator?.25:-game.presentationDepth,game.fishPosition.z);if(game.technique.engine==='surface'||game.rig.recipe==='seche')this.bobber.position.y=.04;}
     if (!['pole','float'].includes(game.method) && ['waiting', 'bite'].includes(game.phase)) this.bobber.position.y = -game.presentationDepth;
@@ -358,21 +358,23 @@ col=mix(col,col*vec3(.72,.79,.72),smoothstep(23.,34.,p.y)*(1.-n)*.45);gl_FragCol
     if (fighting) {
       this.bobber.position.set(game.fishPosition.x, game.progress > 0.90 ? 0.01 : game.fishPosition.y, game.fishPosition.z);
     }
+    const tip=this.rodPath[8],fish=new Vector3(game.fishPosition.x,game.fishPosition.y,game.fishPosition.z);const entry=fighting?Vector3.Lerp(tip,fish,Math.max(0,Math.min(1,tip.y/Math.max(.001,tip.y-fish.y)))):this.bobber.position.add(new Vector3(0,.15,0));
     this.rings.forEach((ring, i) => {
       const impact = this.impactAge < 1.5;
-      ring.setEnabled(show && (impact || game.method !== 'bottom' && game.phase !== 'casting' && (!fighting || game.progress > 0.9)));
+      ring.setEnabled(show && (impact || game.method !== 'bottom' && game.phase !== 'casting' && (!fighting || game.fishPosition.y>-.25)));
       if (impact) ring.position.set(this.impactPoint.x, .047, this.impactPoint.z);
       const t = (this.time * (game.phase === 'bite' ? 1.8 : 0.5) + i / 3) % 1;
-      if (!impact) ring.position.copyFrom(this.bobber.position); ring.position.y = 0.047;
+      if (!impact) ring.position.copyFrom(fighting?entry:this.bobber.position); ring.position.y = 0.047;
       ring.scaling.setAll(0.25 + t * 2.5);
       (ring.material as StandardMaterial).alpha = (1 - t) * 0.3;
     });
-    const end = this.bobber.position.add(new Vector3(0, 0.15, 0));
-    const tip = this.rodPath[8];
+
+    const end=entry;this.line.setEnabled(show&&!fighting);this.elasticLine.setEnabled(fighting&&!game.hasReel&&game.elasticExtension>.03);const elasticEnd=Vector3.Lerp(tip,fish,Math.min(.8,game.elasticExtension/Math.max(.1,Vector3.Distance(tip,fish))));if(fighting&&!game.hasReel)MeshBuilder.CreateLines('pole-elastic',{points:[tip,elasticEnd],instance:this.elasticLine},this.scene);
+    this.bobber.setEnabled(show&&(!game.modern||!!game.config.components.float)&&(!fighting||game.fishPosition.y>-.3));
     // Le segment immergé est occulté par l’eau ; le point d’entrée suit le poisson.
     const path = Array.from({ length: 9 }, (_, i) => {
-      const t = i / 8; const p = Vector3.Lerp(tip, end, t);
-      p.y -= Math.sin(t * Math.PI) * (fighting ? Math.min(2, game.slack * 0.7 + Math.max(0, 1 - game.tension) * 0.2) : 0.15); return p;
+      const t = i / 8; const p = Vector3.Lerp(fighting&&!game.hasReel?elasticEnd:tip, end, t);
+      p.y -= Math.sin(t * Math.PI) * (fighting ? Math.min(2,game.slack*.7) : 0.15); return p;
     });
     MeshBuilder.CreateLines('fishing-line', { points: [tip, end], instance: this.line }, this.scene);
     MeshBuilder.CreateTube('visible-line', { path, instance: this.thickLine }, this.scene);

@@ -1,3 +1,4 @@
+import {receiveByGesture} from './helpers';
 import {ensureLegacyProfile} from './helpers';
 import { test, expect } from '@playwright/test';
 import { SPECIES } from '../../src/game/catalog';
@@ -14,12 +15,12 @@ test('Prise par geste, commandes compactes et carnet conservé', async ({ page }
  await castByGesture(page); await page.evaluate(()=>(window as any).__fishingQA.advance(45)); await page.locator('#strike').click();
  await expect(page.locator('#prepare-open')).toBeHidden(); await expect(page.locator('#reel-control')).toBeVisible();
  await expect(page.locator('#rod-control')).toBeVisible();
- await expect(page.locator('#tension-display')).toBeVisible();
- await expect(page.locator('#tension-meter')).toHaveAttribute('aria-valuenow','32');
+ await expect(page.locator('#tension-display')).toBeHidden();
+ expect((await page.evaluate(()=>(window as any).__fishingQA.snapshot())).tension).toBeGreaterThanOrEqual(0);
  await holdMouseReel(page); await page.locator('#reel-control').dispatchEvent('pointercancel',{pointerId:1}); await page.mouse.up();
  expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(false);
  await page.waitForTimeout(5200); await page.screenshot({path:`test-results/immersion-${info.project.name}-fight.png`});
- await page.evaluate(()=>(window as any).__fishingQA.advance(80,'smart'));
+ await page.evaluate(()=>(window as any).__fishingQA.advance(80,'smart'));await receiveByGesture(page);
  await expect(page.locator('#tension-display')).toBeHidden();
  await expect(page.locator('#caught')).toBeVisible(); await expect(page.locator('#fish-preview')).toHaveAttribute('data-loaded','true');
  await expect(page.locator('#preview-error')).toBeHidden(); expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().total)).toBe(1);

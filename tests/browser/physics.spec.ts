@@ -6,7 +6,7 @@ async function start(page:any) {
  await ensureLegacyProfile(page); await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());
  await castByGesture(page);await page.evaluate(()=>(window as any).__fishingQA.advance(45));await page.locator('#strike').click();
 }
-test('Départ puissant : traction et frein sans moulinage ; insister crée un risque de casse',async({page},info)=>{
+test('Départ puissant : traction, frein et moulinage sous charge sans pénalité de bouton',async({page},info)=>{
  await start(page);const b=(await page.locator('#rod-control').boundingBox())!,cx=b.x+b.width/2,cy=b.y+b.height/2;
  await page.mouse.move(cx,cy);await page.mouse.down();
  for(let i=0;i<250;i++){
@@ -21,7 +21,7 @@ test('Départ puissant : traction et frein sans moulinage ; insister crée un ri
  const angle=await page.locator('#reel-control').evaluate(el=>(el as HTMLElement).style.getPropertyValue('--reel-angle'));
  await page.evaluate(()=>(window as any).__fishingQA.resumeSimulation());await page.waitForTimeout(180);await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());
  expect(await page.locator('#reel-control').evaluate(el=>(el as HTMLElement).style.getPropertyValue('--reel-angle'))).not.toBe(angle);
- await page.mouse.move(cx-32,cy-32);await page.mouse.up();await page.mouse.move(150,300);
+ await page.mouse.up();await page.mouse.move(150,300);
  let peak=0;
  for(let i=0;i<120;i++){
   if(info.project.name==='mobile')await holdMouseReel(page);else await page.mouse.wheel(0,240);
@@ -29,7 +29,7 @@ test('Départ puissant : traction et frein sans moulinage ; insister crée un ri
   if(info.project.name==='mobile')await page.mouse.up();
   const s=await page.evaluate(()=>(window as any).__fishingQA.snapshot());peak=Math.max(peak,s.tension);if(s.phase==='lost')break;
  }
- expect(peak).toBeGreaterThan(.97);await expect(page.locator('body')).toHaveAttribute('data-phase','lost');
+ expect(peak).toBeLessThan(.97);await expect(page.locator('body')).toHaveAttribute('data-phase','fighting');
 });
 test('Retour vers le joueur : le moulinet reprend le mou et rétablit le contact',async({page},info)=>{
  await start(page);for(let i=0;i<200;i++){await page.evaluate(()=>(window as any).__fishingQA.advance(.08));const s=await page.evaluate(()=>(window as any).__fishingQA.snapshot());if(s.returning&&s.slack>.1)break;}

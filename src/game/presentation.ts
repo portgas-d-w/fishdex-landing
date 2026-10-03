@@ -58,7 +58,7 @@ export function stepPresentation(c:RigConfig,s:PresentationState,i:PresentationI
     desired=c.recipe==='topwater'? .03:c.recipe==='drop_shot'?i.waterDepth-m.terminalHeight:c.recipe==='weightless'||c.recipe==='wacky'?Math.min(i.waterDepth,2):Math.min(i.waterDepth,.6+(bait?.mass??5)*.12+(t.engine==='troll'?i.boatSpeed*1.2:0));
     if(['texas','carolina','split_shot','neko','ned','tokyo','jig_trailer','tete_plombee','mort_manie_monture'].includes(c.recipe??''))desired=Math.max(.03,i.waterDepth-m.terminalHeight-i.reelSpeed*.2);
     desired=Math.max(.03,desired-s.animation*.35);
-    activity=i.reelSpeed>0?i.reelSpeed*(.5+s.animation):s.recentMotion>0&&s.depth>.2?.28:0;
+    activity=i.reelSpeed>0?i.reelSpeed*(.5+s.animation):s.recentMotion>0&&(s.depth>.2||c.recipe==='topwater')?.28:0;
     if(t.engine==='troll')activity=Math.max(0,i.boatSpeed)*(.5+s.animation);
     if(t.engine==='retrieve'||t.engine==='fly') {const fraction=dt*i.reelSpeed*.035;s.retrieved=clamp(s.retrieved+fraction,0,1);s.point.x*=Math.max(0,1-fraction/Math.max(.01,1-s.retrieved+fraction));s.point.z*=Math.max(0,1-fraction/Math.max(.01,1-s.retrieved+fraction));}
   }

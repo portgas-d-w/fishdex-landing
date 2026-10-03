@@ -1,3 +1,4 @@
+import {manageFight} from './support/combat.ts';
 import { legacySave as emptySave } from './support/legacy.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -61,7 +62,7 @@ test('Chaîne réelle : stock réservé au lancer valide, retour libéré ; lanc
 test('Capture au montage payé : esche enregistrée et débitée une fois, récompense et reload conservés',()=>{
   const s=emptySave();s.tackle=paid();const g=new FishingGame(()=>0);g.tackle=s.tackle;g.cast({x:0,z:6});
   for(let i=0;i<900&&g.phase!=='bite';i++)g.update(1/60);assert.equal(g.phase,'bite');g.strike();
-  for(let i=0;i<6000&&g.phase==='fighting';i++){g.orient(g.direction,g.pulling?.28:.55);if(g.tension<.72||g.slack>.05)g.reel(1.6/60);g.update(1/60);}
+  for(let i=0;i<6000&&['fighting','landing'].includes(g.phase);i++)manageFight(g);
   assert.equal(g.phase,'caught');assert.equal(g.result!.baitItem,'corn');assert.equal(s.tackle.stock.corn,14);assert.equal(s.tackle.stock['loaded-float'],1);
   recordCatch(s,g.result!);const balance=s.coins;recordCatch(s,g.result!);assert.equal(s.coins,balance);assert.equal(s.total,1);assert.equal(parseSave(JSON.stringify(s)).journal[0].baitItem,'corn');g.reset();assert.equal(s.tackle.stock.corn,14);
 });

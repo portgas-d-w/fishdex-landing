@@ -17,55 +17,29 @@ export async function realFishing(page: Page, context: BrowserContext, mobile: b
   await realCombat(page,context,mobile,pole);
 }
 
-export async function realCombat(page:Page,context:BrowserContext,mobile:boolean,pole=false,maxSeconds=85){
-  await page.bringToFront();
-  if(await page.locator('#resume').isVisible())await page.locator('#resume').click();
-  const size=page.viewportSize()!,touch=mobile?await context.newCDPSession(page):undefined;
-  await expect(page.locator('#tension-display')).toBeVisible();
-  const b = pole?{x:0,y:0,width:0,height:0}:(await page.locator('#reel-control').boundingBox())!;
-  const cx = b.x + b.width / 2, cy = b.y + b.height / 2;
-  const rb = (await page.locator('#rod-control').boundingBox())!;
-  const x0 = mobile ? rb.x + rb.width / 2 : size.width * .42, y0 = mobile ? rb.y + rb.height / 2 : size.height * .47;
-  let reelHeld = false;
-  let poleLift=.18;
-  let rod = { id: 10, x: x0, y: y0 }, reel = { id: 20, x: cx, y: cy };
-  if (touch) {
-    await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [rod] });
-  } else { await page.mouse.move(x0, y0); await page.mouse.down(); }
-  const deadline = Date.now() + maxSeconds*1000;
-  let resumed=0;
-  while (Date.now() < deadline && await page.locator('body').getAttribute('data-phase') === 'fighting') {
-    // A headless focus loss follows the same pause contract as switching apps.
-    // Resume through the visible button, then issue fresh commands, never QA state.
-    if(await page.locator('#resume').isVisible()){
-      if(touch)await touch.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});else await page.mouse.up();
-      reelHeld=false;await page.bringToFront();await page.locator('#resume').click();resumed++;
-      if(touch)await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[rod]});else{await page.mouse.move(rod.x,rod.y);await page.mouse.down();}
-    }
-    // Lecture de l’équivalent accessible du fil visible, pas d’état interne du jeu.
-    const cue = (await page.locator('#world').getAttribute('aria-description'))?.match(/Fil à (-?\d+) degrés, tension (\d+)/);
-    if (cue) {
-      const yaw = Math.max(-.9, Math.min(.9, Math.sin(Number(cue[1]) * Math.PI / 180) / .40));
-      const tension = Number(cue[2]);if(pole)poleLift=Math.max(0,Math.min(1,poleLift+(tension<30?.018:tension>65?-.028:0)));
-      const lift = pole?poleLift:tension > 68 ? .28 : .55;
-      rod = { ...rod, x: x0 + yaw * (mobile ? 32 : Math.min(600, size.width) * .28), y: y0 - (lift - (pole?.18:.5)) * (mobile ? 64 : Math.min(600, size.height) * .35) };
-      if (touch) {
-        const shouldReel = !pole&&tension < 72;
-        if (shouldReel && !reelHeld) await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [rod, reel] });
-        else if (!shouldReel && reelHeld) await touch.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [reel] });
-        reelHeld = shouldReel;
-        await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: reelHeld ? [rod, reel] : [rod] });
-      } else {
-        await page.mouse.move(rod.x, rod.y);
-        if (!pole&&tension < 72) await page.mouse.wheel(0, 75);
-      }
-    }
-    await page.waitForTimeout(100);
+export async function realCombat(page:Page,context:BrowserContext,_mobile:boolean,pole=false,maxSeconds=85){
+ await page.bringToFront();if(await page.locator('#resume').isVisible())await page.locator('#resume').click();
+ const touch=await context.newCDPSession(page),rb=(await page.locator('#rod-control').boundingBox())!;
+ const x0=rb.x+rb.width/2,y0=rb.y+rb.height/2;const initial=(await page.locator('#world').getAttribute('aria-description'))?.match(/Canne latérale (-?\d+) pour cent, hauteur (\d+)/);let yaw0=Number(initial?.[1]??0)/100,lift0=Number(initial?.[2]??(pole?18:50))/100,lift=lift0;
+ let rod={id:10,x:x0,y:y0},secondary={id:20,x:0,y:0},held=false,rodHeld=false;
+ const clear=async()=>{if(held||rodHeld)await touch.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});held=false;rodHeld=false;};
+ const drag=async(dx:number,dy:number)=>{const b=(await page.locator('#reel-control').boundingBox())!,x=b.x+b.width/2,y=b.y+b.height/2;await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:20,x,y}]});for(let n=1;n<=5;n++)await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{id:20,x:x+dx*n/5,y:y+dy*n/5}]});await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});};
+ const deadline=Date.now()+maxSeconds*1000;let netPlaced=false;
+ while(Date.now()<deadline&&['fighting','landing'].includes(await page.locator('body').getAttribute('data-phase')??'')){
+  if(await page.locator('#resume').isVisible()){await clear();await page.bringToFront();await page.locator('#resume').click();}
+  const phase=await page.locator('body').getAttribute('data-phase');const signal=(await page.locator('#world').getAttribute('aria-description'))?.match(/tension (\d+)/);const charge=Number(signal?.[1]??0);
+  if(phase==='fighting'&&charge>12&&await page.locator('#tech-land').isVisible()){await clear();await page.locator('#tech-land').click();netPlaced=false;await page.waitForTimeout(80);continue;}
+  if(phase==='landing'){if(charge<5){await clear();await page.locator('#tech-land').click();await page.waitForTimeout(100);continue;}
+   if(!netPlaced){await clear();await drag(-35,-76);netPlaced=true;}
+   if(await page.locator('#reel-control .reel-label').textContent()==='Relever'){await clear();await drag(0,-32);await page.waitForTimeout(120);continue;}
   }
-  if (touch) await touch.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
-  else await page.mouse.up();
-  if(await page.locator('body').getAttribute('data-phase')==='landing'){
-    await expect(page.locator('#tech-land')).toBeEnabled();await page.locator('#tech-land').click();
+  const cue=(await page.locator('#world').getAttribute('aria-description'))?.match(/Fil à (-?\d+) degrés, tension (\d+)/);
+  if(cue){const tension=Number(cue[2]),yaw=Math.max(-.6,Math.min(.6,-Math.sin(Number(cue[1])*Math.PI/180)*.8));lift=pole?Math.max(0,Math.min(.85,lift+(tension<30?.014:tension>65?-.02:0))):.55;rod={...rod,x:x0+(yaw-yaw0)*76,y:y0-(lift-lift0)*130};
+   if(!rodHeld){const pose=(await page.locator('#world').getAttribute('aria-description'))?.match(/Canne latérale (-?\d+) pour cent, hauteur (\d+)/);yaw0=Number(pose?.[1]??0)/100;lift0=Number(pose?.[2]??50)/100;rod={...rod,x:x0,y:y0};await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[rod]});rodHeld=true;}
+   if(!pole&&phase==='fighting'&&!held){const b=(await page.locator('#reel-control').boundingBox())!;secondary={id:20,x:b.x+b.width/2,y:b.y+b.height/2};await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[rod,secondary]});held=true;}
+   await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:held?[rod,secondary]:[rod]});
   }
-  await expect(page.locator('#caught'),`phase=${await page.locator('body').getAttribute('data-phase')}; resumed=${resumed}; paused=${await page.locator('#resume').isVisible()}; diagnostic=${await page.locator('#test-diagnostics').textContent().catch(()=>null)}`).toBeVisible();
+  await page.waitForTimeout(100);
+ }
+ await clear();await touch.detach();await expect(page.locator('#caught'),'Phase finale : '+await page.locator('body').getAttribute('data-phase')+' '+await page.locator('#test-diagnostics').textContent()).toBeVisible();
 }

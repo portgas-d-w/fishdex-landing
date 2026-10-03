@@ -1,3 +1,4 @@
+import {manageFight} from './support/combat.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {SPECIES,LEGACY_SPECIES} from '../src/game/catalog.ts';
@@ -34,12 +35,7 @@ test('Les espèces observées ne mordent pas ; les continents et les habitats so
 });
 
 function rng(seed:number){let value=seed>>>0;return ()=>{value=(Math.imul(value,1664525)+1013904223)>>>0;return value/4294967296;};}
-function finish(game:FishingGame){
- if(game.phase==='bite')game.strike();
- for(let n=0;n<18000&&game.phase==='fighting';n++){game.orient(game.direction,game.hasReel?(game.pulling?.28:.55):Math.max(0,Math.min(1,(game.lineLength-game.fishDistance+(game.pulling?.12:.5)*1.1)/Math.max(1.5,game.lineLength-1.3))));if(game.hasReel&&(game.tension<.72||game.slack>.05))game.reel(1.6/60);game.holdSections(game.tension<.8);game.update(1/60);}
- if(game.phase!=='landing')return false;
- for(let n=0;n<1200;n++){game.holdSections(true);game.update(1/60);}return game.receive();
-}
+function finish(game:FishingGame){if(game.phase==='bite')game.strike();for(let n=0;n<18000&&['fighting','landing'].includes(game.phase);n++)manageFight(game);return game.phase==='caught';}
 for(const species of SPECIES.filter(s=>s.mode==='capture'))test(`Poisson ${species.id}: rencontre sans forçage, combat, réception, identité, carnet et recharge`,()=>{
  const routes=fishRoutes(species.id).filter(r=>r.technique);
  let captured=false,last='';

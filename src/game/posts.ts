@@ -45,9 +45,9 @@ export function inspectPostTarget(post:PostId,point:WaterPoint,method:MethodId='
     valid:p.implemented&&base.valid&&sector&&within,
     reason:!p.implemented?'Ce poste est en préparation.':!within?'Hors de portée de la canne au coup. Rapprochez le placement.':!sector?'Restez dans le couloir devant ce poste.':base.reason};
 }
-export function lineObstacle(post:PostId,point:WaterPoint):Obstacle|undefined {
-  const dx=point.x,dz=point.z+1,length=dx*dx+dz*dz;
-  return postById(post).obstacles.find(o=>{const t=Math.max(0,Math.min(1,(o.x*dx+(o.z+1)*dz)/Math.max(.001,length)));return Math.hypot(o.x-dx*t,o.z+1-dz*t)<o.radius;});
+export function lineObstacle(post:PostId,point:WaterPoint,origin:WaterPoint={x:0,z:-1}):Obstacle|undefined {
+  const dx=point.x-origin.x,dz=point.z-origin.z,length=dx*dx+dz*dz;
+  return postById(post).obstacles.find(o=>{const t=Math.max(0,Math.min(1,((o.x-origin.x)*dx+(o.z-origin.z)*dz)/Math.max(.001,length)));return Math.hypot(o.x-origin.x-dx*t,o.z-origin.z-dz*t)<o.radius;});
 }
 // Abondances et tailles de jeu versionnées : aucune estimation de population réelle.
 export const ENCOUNTER_CONFIG = {version:1,rate:.16,groundbaitSeconds:45,groundbaitRadius:1.8,precisionRadius:1.2};

@@ -1,3 +1,5 @@
+import {installFieldTools} from './ui/field-tools';
+import {ActionGesture} from './game/action-gesture';
 import {installObservations} from './ui/observations';
 import {discoveredFish} from './game/save';
 import {appearanceName} from './game/fish-registry';
@@ -70,7 +72,7 @@ steps[0].querySelector('p')!.textContent = 'Posez le doigt dans le tiers inféri
 steps[1].querySelector('strong')!.textContent = 'Observez votre montage.';
 steps[1].querySelector('p')!.textContent = 'Au coup ou au flotteur, attendez qu’il plonge. Au fond, regardez la pointe de la canne. Au leurre, utilisez Mouliner par appui maintenu et glissez pour animer : la récupération déclenche les rencontres. Ferrez dès la touche.';
 steps[2].querySelector('p')!.textContent = 'Au coup sans moulinet, baissez la canne pendant un départ puis relevez progressivement pour rapprocher le poisson. Pour les autres pratiques, suivez le fil avec la canne à gauche et utilisez le moulinet à droite avec l’autre doigt par appui maintenu ; sur PC, utilisez la molette. Accompagnez les départs : le frein rend du fil sous résistance. Une pression modérée fatigue le poisson. Récupérez le mou s’il revient vers vous, puis ramenez-le au bord quand sa résistance diminue. Relâchez Mouliner dès que vous voulez arrêter la récupération.';
-el('help').insertAdjacentHTML('beforeend','<div class="setting-row"><span>Combat expérimental</span><button id="combat-mode" aria-pressed="false">Récupération assistée</button></div><p class="intro">Avec moulinet : l’appui récupère mieux quand le poisson cède. Au coup : canne et élastique, sans récupération fictive. Mode de test, à comparer au toucher.</p>');
+el('help').insertAdjacentHTML('beforeend','<fieldset class="control-settings"><legend>Commandes tactiles</legend><label>Canne<select id="control-side"><option value="left">À gauche</option><option value="right">À droite</option></select></label><label><input id="control-single" type="checkbox"> Un doigt, commandes successives</label><label><input id="control-tension" type="checkbox"> Petit repère de tension</label><label><input id="control-hints" type="checkbox"> Conseils contextuels</label><p>La canne conserve sa position entre les gestes. Aucun suivi automatique du poisson. En réception, placez la tête sous la prise puis faites un court geste vers le haut.</p></fieldset>');
 el('catch-reward').insertAdjacentHTML('afterend','<p id="catch-progression" class="warning-line" aria-live="polite"></p>');
 el('help').insertAdjacentHTML('beforeend','<button id="export-before-progression" class="secondary">Exporter le carnet avant progression</button>');
 let storage: Storage | undefined;
@@ -120,7 +122,7 @@ function saveNow() {
     storageWarningShown = true; toast('Sauvegarde locale impossible. Exportez votre carnet pour le conserver.');
   }
 }
-function openModal(id: string) { hub?.opened(id); release(); cancelGesture(); el('line-alert').hidden = true; overlayPaused = true; if (!el<HTMLDialogElement>(id).open) el<HTMLDialogElement>(id).showModal(); }
+function openModal(id: string) { hub?.opened(id); game.release();document.dispatchEvent(new Event('fishing-input-reset'));release(); cancelGesture(); el('line-alert').hidden = true; overlayPaused = true; if (!el<HTMLDialogElement>(id).open) el<HTMLDialogElement>(id).showModal(); }
 function closeModal(id: string) { el<HTMLDialogElement>(id).close(); }
 let observationScreens:ReturnType<typeof installObservations>|undefined;
 function refreshCollection() {
@@ -177,18 +179,17 @@ function refreshSettings() {
   el('sound').setAttribute('aria-label', save.settings.sound ? 'Couper le son' : 'Activer le son');
   el('sound').style.opacity = save.settings.sound ? '1' : '.6';
   el('reel-control').setAttribute('aria-label', 'Moulinet : maintenez pour mouliner ; relâchez pour arrêter');
-  el('combat-mode').setAttribute('aria-pressed',String(save.settings.combatMode==='assisted'));el<HTMLButtonElement>('combat-mode').disabled=game.phase!=='idle';
+  document.body.dataset.controlSide=save.settings.controls?.side??'left';el<HTMLSelectElement>('control-side').value=save.settings.controls?.side??'left';for(const [id,key]of [['control-single','singleFinger'],['control-tension','tension'],['control-hints','hints']] as const)el<HTMLInputElement>(id).checked=save.settings.controls?.[key]??key==='hints';
   el('quality').textContent = save.settings.quality === 'eco' ? 'Économie mobile' : 'Qualité élevée';
 }
 function renderPhase() {
-  el<HTMLButtonElement>('combat-mode').disabled=game.phase!=='idle';
   const phase = game.phase; document.body.dataset.phase = phase;
   el('prepare-open').hidden = phase !== 'idle';
   el('strike').hidden = phase !== 'bite';
-  el('reel-control').hidden = !game.hasReel || !(phase === 'fighting' || phase === 'waiting' && game.canAnimate);
-  el('rod-control').hidden = !(phase==='fighting'||phase==='waiting'&&game.canAnimate);
-  el('map-open').hidden=phase!=='idle';el('groundbait').hidden=!['pole','float'].includes(game.method)||phase!=='waiting';el('retrieve-setting').hidden=game.method!=='lure'||phase!=='waiting';document.body.dataset.method=game.method;document.body.dataset.post=game.post;
-  el('tension-display').hidden = phase !== 'fighting';
+  el('reel-control').hidden = !canSecondary();
+  el('rod-control').hidden = !canRod();
+  el('map-open').hidden=phase!=='idle';el('groundbait').hidden=true;el('retrieve-setting').hidden=game.method!=='lure'||phase!=='waiting';document.body.dataset.method=game.method;document.body.dataset.post=game.post;
+  el('tension-display').hidden = !save.settings.controls?.tension||!['fighting','landing'].includes(phase);
   el('cancel-cast').hidden = !['casting', 'waiting', 'bite'].includes(phase);
   el('retry').hidden = phase !== 'lost';
   el('preparation-note').textContent = phase === 'idle' ? 'Le point de lancer se choisit uniquement par glissement sur l’eau.' : 'Ramenez la ligne avant de modifier le montage.';
@@ -254,7 +255,7 @@ async function showSpecimen(s: Specimen) {
 function phaseChanged() {
   if (game.phase === lastPhase) return;
   lastPhase = game.phase; renderPhase();
-  if (!(game.phase === 'fighting' || game.phase === 'waiting' && game.canAnimate)) { release(); cancelGesture(); }
+  release();cancelGesture();document.dispatchEvent(new Event('fishing-input-reset'));
   if (game.phase === 'bite') { audio.tone('bite',game.modern?(game.config.components.float?'float':game.technique.engine==='surface'||game.rig.recipe==='seche'?'surface':['bottom','feeder'].includes(game.technique.engine)?'tip':'contact'):undefined); toast((game.modern?game.technique.signal+' : ':'')+'prise ! Ferrez.'); }
   if (game.phase === 'fighting') { el('toast').hidden = true; teach(2, game.hasReel? 'Glissez sur la commande de canne à gauche, ou sur l’eau. Maintenez Mouliner à droite avec l’autre doigt ; relâchez pour arrêter.':'Au coup, suivez le fil avec la canne. Baissez-la pendant un départ, relevez progressivement pour rapprocher le poisson. Aucun moulinet.'); }
   if (game.phase === 'casting' || game.phase === 'lost' || game.phase === 'idle') saveNow();
@@ -265,9 +266,9 @@ function activate() {
   if (!world || overlayPaused || manualPaused) return;
   if (game.phase === 'bite') { void audio.unlock(); game.strike(); phaseChanged(); }
 }
-let reelPointer: number | undefined;
+let reelPointer: number | undefined;let actionGesture:ActionGesture|undefined;let netOrigin={x:0,z:0};
 let reelAngle = 0;
-let gesture: { id: number; x: number; y: number; yaw: number; lift: number; casting: boolean; cast?: CastGesture } | undefined;
+let gesture: { id: number; x: number; y: number; yaw: number; lift: number; casting: boolean; time:number;cast?: CastGesture } | undefined;
 const canvas = el<HTMLCanvasElement>('world');
 const reel = el('reel-control');
 const rodControl = el('rod-control');
@@ -286,35 +287,37 @@ function cancelGesture() {
   rodControl.style.setProperty('--stick-x', '0px'); rodControl.style.setProperty('--stick-y', '0px');
 }
 function release() {
-  const id = reelPointer; reelPointer = undefined; game.release(); reel.classList.remove('reeling');
+  const id = reelPointer; reelPointer = undefined;actionGesture=undefined;game.holdReel(false); reel.classList.remove('reeling');
   if (id !== undefined && reel.hasPointerCapture(id)) reel.releasePointerCapture(id);
 }
-function canRod(){return !overlayPaused&&!manualPaused&&(game.phase==='fighting'||game.phase==='idle'&&game.modern&&game.technique.engine==='fly'||game.phase==='waiting'&&(game.canAnimate||game.snagged));}
-function canReel() { return game.hasReel&&!overlayPaused && !manualPaused && (game.phase === 'fighting' || game.phase === 'waiting' && game.method === 'lure'); }
+function canRod(){return !overlayPaused&&!manualPaused&&(['fighting','landing','bite'].includes(game.phase)||game.phase==='idle'&&game.modern&&game.technique.engine==='fly'||game.phase==='waiting'&&(game.canAnimate||game.snagged));}
+function canSecondary(){return !overlayPaused&&!manualPaused&&(game.phase==='landing'||game.phase==='fighting'&&(game.hasReel||game.technique.sections)||game.phase==='waiting'&&game.hasReel&&game.canAnimate);}
+function canReel() { return game.hasReel&&!overlayPaused && !manualPaused && (game.phase === 'fighting' || game.phase === 'waiting' && game.canAnimate); }
 function turnReel(turns: number) {
   if (!canReel() || !turns) return;
   game.reel(turns); reelAngle += turns * 360; reel.style.setProperty('--reel-angle', `${reelAngle}deg`); void audio.unlock();
 }
 el('strike').onclick = activate;
 el('retry').onclick = () => { game.reset(); phaseChanged(); };
-reel.addEventListener('pointerdown', e => {
-  if (e.button !== 0 || reelPointer !== undefined || !canReel()) return;
-  reelPointer = e.pointerId; game.holdReel(true); void audio.unlock();
-  reel.setPointerCapture(e.pointerId);
+reel.addEventListener('pointerdown',e=>{
+ if(e.button!==0||reelPointer!==undefined||!canSecondary())return;if(save.settings.controls?.singleFinger)cancelGesture();
+ reelPointer=e.pointerId;netOrigin={...game.netPosition};actionGesture=game.phase==='landing'?new ActionGesture(e.clientX,e.clientY,e.timeStamp,'net',game.netReady):game.technique.sections?new ActionGesture(e.clientX,e.clientY,e.timeStamp,'pole'):undefined;
+ if(!actionGesture)game.holdReel(true);reel.setPointerCapture(e.pointerId);void audio.unlock();
 });
+reel.addEventListener('pointermove',e=>{if(e.pointerId!==reelPointer||!actionGesture)return;const action=actionGesture.move(e.clientX,e.clientY,e.timeStamp);if(actionGesture.kind==='pole'){if(actionGesture.axis==='vertical')game.movePole(action.retreat);if(action.detach&&!game.detachPole(action.reattach))toast(action.reattach?'Avancez le kit avant de réemboîter.':'Reculez jusqu’à la jonction, puis glissez latéralement.');}else if(actionGesture.liftEligible){if(action.lift)game.liftNet(action.lift); }else game.placeNet(netOrigin.x+action.dx*.02,netOrigin.z-action.dy*.025);});
 for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) reel.addEventListener(type, e => { if ((e as PointerEvent).pointerId === reelPointer) release(); });
 window.addEventListener('pointerup', e => { if (e.pointerId === reelPointer) release(); });
 window.addEventListener('pointercancel', e => { if (e.pointerId === reelPointer) release(); if (e.pointerId === gesture?.id) cancelGesture(); });
 rodControl.addEventListener('pointerdown', e => {
-  if (e.button !== 0 || gesture || !canRod()) return;
-  gesture = { id: e.pointerId, x: e.clientX, y: e.clientY, yaw: game.rodYaw, lift: game.rodLift, casting: false };
+  if (e.button !== 0 || gesture || !canRod()) return;if(save.settings.controls?.singleFinger)release();
+  gesture = { id: e.pointerId, x: e.clientX, y: e.clientY, yaw: game.desiredYaw, lift: game.desiredLift, casting: false,time:e.timeStamp };
   rodControl.setPointerCapture(e.pointerId); void audio.unlock();
 });
 rodControl.addEventListener('pointermove', e => {
   if (!gesture || gesture.id !== e.pointerId || !rodControl.hasPointerCapture(e.pointerId)) return;
   const dx = e.clientX - gesture.x, dy = e.clientY - gesture.y;
-  // Une excursion de 32 px donne l’amplitude complète, sans répétition automatique.
-  game.orient(gesture.yaw + dx / 32, gesture.lift - dy / 64);
+  // Déplacement relatif au doigt : pose conservée entre les gestes.
+  game.orient(gesture.yaw + dx / 76, gesture.lift - dy / 130);if(game.phase==='bite'&&-dy>18&&e.timeStamp-gesture.time<=1500&&game.desiredLift>gesture.lift+.1)game.strike();
   const radius = Math.hypot(dx, dy), scale = radius > 22 ? 22 / radius : 1;
   rodControl.style.setProperty('--stick-x', `${dx * scale}px`); rodControl.style.setProperty('--stick-y', `${dy * scale}px`);
 });
@@ -327,7 +330,7 @@ canvas.addEventListener('pointerdown', e => {
   if (game.phase === 'lost') { game.reset(); phaseChanged(); }
   if (!(['idle', 'fighting'].includes(game.phase) || game.phase === 'waiting' && (game.method === 'lure'||game.snagged))) return;
   if (game.phase === 'idle' && !CastGesture.canStart(e.clientY, innerHeight)) return;
-  gesture = { id: e.pointerId, x: e.clientX, y: e.clientY, yaw: game.rodYaw, lift: game.rodLift, casting: game.phase === 'idle' };
+  gesture = { id: e.pointerId, x: e.clientX, y: e.clientY, yaw: game.desiredYaw, lift: game.desiredLift, casting: game.phase === 'idle',time:e.timeStamp };
   if (gesture.casting) { gesture.cast = new CastGesture({ x: e.clientX, y: e.clientY, time: e.timeStamp }, innerWidth, innerHeight, game.equipmentPower,point=>game.inspect(point),game.reach); game.orient(0, 0.15); }
   canvas.setPointerCapture(e.pointerId); void audio.unlock();
 });
@@ -353,7 +356,7 @@ canvas.addEventListener('pointerup', e => {
   cancelGesture();
 });
 for (const type of ['pointercancel', 'lostpointercapture']) canvas.addEventListener(type, e => { if ((e as PointerEvent).pointerId === gesture?.id) cancelGesture(); });
-window.addEventListener('resize', () => { release(); cancelGesture(); });
+window.addEventListener('resize', () => { game.release();document.dispatchEvent(new Event('fishing-input-reset'));release(); cancelGesture(); });
 window.addEventListener('wheel', e => {
   if (!canReel() || !(e.target === canvas || (e.target as HTMLElement).closest?.('#reel-control'))) return;
   e.preventDefault(); turnReel(wheelTurns(e.deltaY || e.deltaX, e.deltaMode));
@@ -365,13 +368,14 @@ window.addEventListener('keydown', e => {
 hub = new GameScreens({ save: () => save, game, open: openModal, close: closeModal, persist: saveNow, refresh: refreshCollection, toast,postChanged:()=>{world?.setPost(game.post);renderPhase();} });
 observationScreens=installObservations({save:()=>save,game,open:openModal,close:closeModal,persist:saveNow,refresh:refreshCollection,toast});
 const updateTechniqueControls=installTechniqueControls({isPaused:()=>overlayPaused||manualPaused,save:()=>save,game,open:openModal,close:closeModal,persist:saveNow,refresh:refreshCollection,toast});
+const updateFieldTools=installFieldTools({save:()=>save,game,open:openModal,close:closeModal,persist:saveNow,refresh:refreshCollection,toast});
 installDevelopment({save:()=>save,game,open:openModal,close:closeModal,persist:saveNow,refresh:refreshCollection,toast,postChanged:()=>{world?.setPost(game.post);renderPhase();}},profiles);
 if (loaded.recovery) { el('help').insertAdjacentHTML('beforeend', '<div class="recovery-panel"><h3>Récupérer une sauvegarde</h3><p class="warning-line">Le fichier original est conservé. Exportez-le avant de poursuivre ; vous pourrez importer une sauvegarde saine dans le carnet.</p><button id="export-recovery" class="secondary">Exporter le fichier original</button></div>'); el('export-recovery').onclick = () => { const url = URL.createObjectURL(new Blob([loaded.recovery!], {type:'application/json'})), a=document.createElement('a');a.href=url;a.download='au-fil-de-leau-recuperation.json';a.click();window.setTimeout(()=>URL.revokeObjectURL(url),1000);recoveryPreserved=true; }; }
 if (save.tackle.active?.outcome === 'return') saveNow();
 el('menu-open').onclick = () => openModal('menu');
 el('prepare-open').onclick = el('equipment-open').onclick = () => { renderPhase(); openModal('preparation'); };
 el('progress-open').onclick = () => { refreshCollection(); openModal('progression'); };
-el('groundbait').onclick=()=>{if(game.groundbait())toast('Amorçage local : 45 secondes autour de la présentation.');};
+
 el('snag-release').onclick=()=>toast(game.tryFreeSnag()?'Ligne dégagée.':game.hint);
 el('retrieve-speed').onchange=()=>{const value=Number(el<HTMLSelectElement>('retrieve-speed').value);if([.8,1.6,2.2].includes(value))game.retrievalSpeed=value;};
 el('cancel-cast').onclick = () => { release(); cancelGesture(); game.reset(); phaseChanged(); };
@@ -416,7 +420,7 @@ document.querySelectorAll<HTMLDialogElement>('dialog').forEach(dialog => dialog.
 }));
 el('release-fish').onclick = () => closeModal('caught');
 el('sound').onclick = () => { save.settings.sound = !save.settings.sound; audio.enabled = save.settings.sound; void audio.unlock(); refreshSettings(); saveNow(); };
-el('combat-mode').onclick=()=>{if(game.phase!=='idle')return;save.settings.combatMode=save.settings.combatMode==='assisted'?'manual':'assisted';game.combatMode=save.settings.combatMode;refreshSettings();saveNow();};
+for(const id of ['control-side','control-single','control-tension','control-hints'])el(id).onchange=()=>{save.settings.controls={side:el<HTMLSelectElement>('control-side').value==='right'?'right':'left',singleFinger:el<HTMLInputElement>('control-single').checked,tension:el<HTMLInputElement>('control-tension').checked,hints:el<HTMLInputElement>('control-hints').checked};release();cancelGesture();refreshSettings();renderPhase();saveNow();};
 el('quality').onclick = () => { save.settings.quality = save.settings.quality === 'eco' ? 'high' : 'eco'; world?.setQuality(save.settings.quality); refreshSettings(); saveNow(); };
 el('export-save').onclick = () => {
   const url = URL.createObjectURL(new Blob([JSON.stringify(save, null, 2)], { type: 'application/json' }));
@@ -446,7 +450,7 @@ el('confirm-import').onclick = () => {
   saveNow(); refreshCollection(); refreshSettings(); toast('Votre carnet a été restauré.');
 };
 el('cancel-import').onclick = () => { pendingImport = undefined; el('import-review').hidden = true; };
-function pauseManually() { release(); cancelGesture(); aquarium?.pause(); preview?.pause(); if (!overlayPaused) { manualPaused = true; el('paused').hidden = false; } }
+function pauseManually() { game.release();document.dispatchEvent(new Event('fishing-input-reset'));release(); cancelGesture(); aquarium?.pause(); preview?.pause(); if (!overlayPaused) { manualPaused = true; el('paused').hidden = false; } }
 window.addEventListener('blur', pauseManually);
 window.addEventListener('pagehide', () => { pauseManually(); preview?.pause(); });
 document.addEventListener('visibilitychange', () => { if (document.hidden) { pauseManually(); preview?.pause(); } else if (el<HTMLDialogElement>('caught').open) preview?.resume(); else if (el<HTMLDialogElement>('aquarium').open) aquarium?.resume(); });
@@ -465,24 +469,24 @@ try {
       accumulator += dt;
       while (accumulator >= 1 / 60) { game.update(1 / 60); phaseChanged(); accumulator -= 1 / 60; }
     } else accumulator = 0;
-    reel.classList.toggle('reeling', game.reeling);el('snag-release').hidden=!game.snagged;el('rod-control').hidden=!(game.phase==='fighting'||game.phase==='idle'&&game.modern&&game.technique.engine==='fly'||game.phase==='waiting'&&(game.canAnimate||game.snagged));if(gesture&&!gesture.casting&&!canRod())cancelGesture();updateTechniqueControls();const context=`${postById(game.post).name} · ${game.phase==='idle'?(game.method==='pole'?'Placement proche · coup sans moulinet':'Préparez votre présentation'):`${game.presentationDepth.toFixed(1)} m · ${game.hint||(game.modern&&game.encounterState!=='none'?({approach:'Approche',examine:'Inspection : attendez la prise',follow:'Suit la présentation',attack:'Prise',refuse:'Refus',none:''})[game.encounterState]:'')||(game.microzone==='plants'?'Herbiers':game.microzone==='margin'?'Bordure':'Eau ouverte')}`}`;if(el('fishing-context').textContent!==context)el('fishing-context').textContent=context;
+    reel.classList.toggle('reeling', game.reeling);el('snag-release').hidden=!game.snagged;el('rod-control').hidden=!canRod();reel.hidden=!canSecondary();el('tension-display').hidden=!save.settings.controls?.tension||!['fighting','landing'].includes(game.phase);if(gesture&&!gesture.casting&&!canRod())cancelGesture();updateTechniqueControls();updateFieldTools();const context=`${postById(game.post).name} · ${game.phase==='idle'?(game.method==='pole'?'Placement proche · coup sans moulinet':'Préparez votre présentation'):`${game.presentationDepth.toFixed(1)} m · ${game.hint||(game.modern&&game.encounterState!=='none'?({approach:'Approche',examine:'Inspection : attendez la prise',follow:'Suit la présentation',attack:'Prise',refuse:'Refus',none:''})[game.encounterState]:'')||(game.microzone==='plants'?'Herbiers':game.microzone==='margin'?'Bordure':'Eau ouverte')}`}`;if(el('fishing-context').textContent!==context)el('fishing-context').textContent=context;
     if (reelPointer !== undefined && canReel() && !qaSimulationPaused) {
       reelAngle += game.reelSpeed * dt * 360; reel.style.setProperty('--reel-angle', `${reelAngle}deg`);
     }
     if (game.phase === 'fighting' && game.dragSpeed > 0.02 && !overlayPaused && !manualPaused && !qaSimulationPaused) {
       reelAngle -= game.dragSpeed * dt * 180; reel.style.setProperty('--reel-angle', `${reelAngle}deg`);
     }
-    if (game.phase === 'fighting' && !overlayPaused && !manualPaused) {
+    if (['fighting','landing'].includes(game.phase) && !overlayPaused && !manualPaused) {
       const angle = Math.round(Math.atan2(game.fishPosition.x, game.fishPosition.z + 1) * 180 / Math.PI);
       // Le repère de la jauge affiche exactement la tension qui courbe la canne.
       const percent = Math.round(Math.min(1, game.tension) * 100);
       el('tension-display').style.setProperty('--tension', `${percent}%`);
       el('tension-meter').setAttribute('aria-valuenow', String(percent));
-      canvas.setAttribute('aria-description', `Fil à ${angle} degrés, tension ${percent} pour cent.`);
-      const danger = game.tension > 0.85 ? 'Fil trop tendu' : game.tension < 0.04 ? 'Contact perdu' : '';
-      if (danger && danger !== lastLineAlert && now > alertUntil + 2000) { el('line-alert').textContent = danger; el('line-alert').hidden = false; alertUntil = now + 1800; }
+      canvas.setAttribute('aria-description', `Fil à ${angle} degrés, tension ${percent} pour cent. Canne latérale ${Math.round(game.rodYaw*100)} pour cent, hauteur ${Math.round(game.rodLift*100)} pour cent.`);
+      const danger = game.tension > .85?'Charge forte : accompagnez le départ.':game.tension<.04?'Contact perdu : reprenez le fil ou relevez la canne.':game.phase==='landing'&&game.netReady?'Réception sous la prise : relevez.':game.returning&&game.hasReel?'Il revient : reprenez le fil.':game.canDetach?'Jonction accessible : glissez latéralement.':game.canReceive&&game.phase==='fighting'?'À portée : préparez la réception.':'';
+      if (save.settings.controls?.hints&&danger && danger !== lastLineAlert && now > alertUntil + 2000+Math.min(6000,save.total*750)) { el('line-alert').textContent = danger; el('line-alert').hidden = false; alertUntil = now + 1800; }
       lastLineAlert = danger;
-    } else if (game.phase !== 'fighting') { canvas.removeAttribute('aria-description'); el('line-alert').hidden = true; }
+    } else if (!['fighting','landing'].includes(game.phase)) { canvas.removeAttribute('aria-description'); el('line-alert').hidden = true; }
     if (now > alertUntil) el('line-alert').hidden = true;
     if (!overlayPaused && !manualPaused && now - lastRender >= (save.settings.quality === 'eco' ? 1000 / 30 : 0)) {
       world!.update((now - lastRender) / 1000 > 0.1 ? 1 / 30 : (now - lastRender) / 1000, game);
@@ -498,6 +502,7 @@ try {
 
 // Interface de test uniquement dans le serveur de développement E2E, supprimée du build.
 if (import.meta.env.DEV && import.meta.env.VITE_E2E === '1') {
+  const {manageFight} = await import('../tests/support/combat');
   const { SceneInstrumentation } = await import('@babylonjs/core/Instrumentation/sceneInstrumentation');
   const instrumentation = new SceneInstrumentation(world!.scene);
   instrumentation.captureFrameTime = true;
@@ -510,7 +515,7 @@ if (import.meta.env.DEV && import.meta.env.VITE_E2E === '1') {
       textures: world!.scene.textures.map(t => ({ name: t.name, ...t.getSize() })) }),
     pauseSimulation: () => { qaSimulationPaused = true; },
     resumeSimulation: () => { qaSimulationPaused = false; },
-    snapshot: () => ({sceneId:world?.scene.uid,totalMeshes:world?.scene.meshes.length,fish:game.fish?.id,specimen:game.specimenId,seed:game.specimenSeed,appearance:game.appearance,post:game.post,method:game.method,hasReel:game.hasReel,presentationDepth:game.presentationDepth,microzone:game.microzone,snagged:game.snagged,rights:save.progression,camera:world?.camera.position.asArray(),technique:game.config.technique,recipe:game.config.recipe,boat:game.presentationState.boat,sections:game.rodSections,encounter:game.encounterState,phase: game.phase, tension: game.tension, fatigue: game.fatigue, slack: game.slack, dragSpeed: game.dragSpeed, lineLength: game.lineLength, fishDistance: game.fishDistance, returning: game.returning, progress: game.progress, reeling: game.reeling, pulling: game.pulling, total: save.total, paused: manualPaused || overlayPaused, direction: game.direction, reelSpeed: game.reelSpeed, alignment: game.alignment, rodTip: world?.rodTipOnScreen(), target: game.target, yaw: game.rodYaw, lift: game.rodLift, aquarium: aquarium?.diagnostics(), engines: Engine.Instances.length, lakeFrames, meshes: world?.scene.getActiveMeshes().length }),
-    advance: (seconds: number, mode?: 'smart') => { const initialPhase=game.phase; for (let i = 0; i < seconds * 60; i++) { if (mode === 'smart') { game.orient(game.direction, game.hasReel?(game.pulling ? 0.28 : 0.55):Math.max(0,Math.min(1,(game.lineLength-game.fishDistance+(game.pulling?.12:.5)*1.1)/Math.max(1.5,game.lineLength-1.3)))); if(game.modern&&game.technique.sections)game.holdSections(game.tension<.8); if (game.tension < 0.72 || game.slack > 0.05) game.reel(1.6 / 60); } game.update(1 / 60); phaseChanged(); if ((['caught', 'lost', 'bite'].includes(game.phase)||game.phase==='landing'&&initialPhase!=='landing')) break; } },
+    snapshot: () => ({sceneId:world?.scene.uid,totalMeshes:world?.scene.meshes.length,fish:game.fish?.id,specimen:game.specimenId,seed:game.specimenSeed,appearance:game.appearance,post:game.post,method:game.method,hasReel:game.hasReel,presentationDepth:game.presentationDepth,microzone:game.microzone,snagged:game.snagged,rights:save.progression,camera:world?.camera.position.asArray(),technique:game.config.technique,recipe:game.config.recipe,boat:game.presentationState.boat,sections:game.rodSections,retreat:game.poleRetreat,detached:game.detachedSections,geometry:game.rodGeometry,fishPosition:game.fishPosition,net:game.netPosition,netReady:game.netReady,netLift:game.netLift,canReceive:game.canReceive,encounter:game.encounterState,phase: game.phase, tension: game.tension, abrasion:game.abrasion,fatigue: game.fatigue, slack: game.slack, dragSpeed: game.dragSpeed, lineLength: game.lineLength, fishDistance: game.fishDistance, returning: game.returning, progress: game.progress, reeling: game.reeling, pulling: game.pulling, total: save.total, paused: manualPaused || overlayPaused, direction: game.direction, reelSpeed: game.reelSpeed, alignment: game.alignment, rodTip: world?.rodTipOnScreen(), target: game.target, yaw: game.rodYaw, lift: game.rodLift, aquarium: aquarium?.diagnostics(), engines: Engine.Instances.length, lakeFrames, meshes: world?.scene.getActiveMeshes().length }),
+    advance: (seconds:number,mode?:'smart')=>{const initialPhase=game.phase;for(let i=0;i<seconds*60;i++){if(mode==='smart'&&['fighting','landing'].includes(game.phase))manageFight(game,false,false);else game.update(1/60);phaseChanged();if(mode==='smart'&&game.canReceive&&game.fishPosition.y>-.65||['caught','lost','bite'].includes(game.phase)||game.phase==='landing'&&initialPhase!=='landing')break;}},
   } });
 }

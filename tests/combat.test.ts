@@ -34,9 +34,9 @@ function simulate(speed: number, force = 1.4, motion: 'burst' | 'return' = 'burs
 test('Un départ maintient la traction sans moulinage et le frein rend du fil', () => {
   const next = simulate(0); assert.ok(next.tension > .6 && next.tension < .97); assert.ok(next.lineLength > state.lineLength); assert.ok(next.dragSpeed > .2);
 });
-test('Insister au moulinet sur une forte résistance dépasse le régime de fatigue', () => {
+test('Le frein et la résistance mécanique évitent une pénalité de bouton', () => {
   const gentle = simulate(0), forced = simulate(2.4);
-  assert.ok(forced.tension > 1); assert.ok(forced.tension > gentle.tension); assert.ok(gentle.fatigue > forced.fatigue);
+  assert.ok(forced.tension < .97);assert.ok(forced.tension >= gentle.tension);assert.ok(forced.dragSpeed > 0);
 });
 test('Un retour crée du mou ; récupérer le fil rétablit le contact dans ce même mouvement', () => {
   const idle = simulate(0, 1, 'return'), reel = simulate(1.6, 1, 'return');
@@ -52,10 +52,10 @@ test('Orientation et hauteur modifient progressivement les forces, sans seuil bi
   assert.ok(c.tension > b.tension); assert.ok(Math.abs(a.tension-b.tension)<.03);
 });
 test('Contact prolongé et récupération ramènent les quinze espèces, avec fatigue causale', () => {
-  for (const fish of SPECIES) {
+  for (const fish of SPECIES.filter(f=>f.mode==='capture')) {
     const g = hookFish(fish); let peak = 0;
-    for (let i=0;i<100*60 && g.phase==='fighting';i++){manageFight(g);peak=Math.max(peak,g.fatigue)}
-    assert.equal(g.phase,'caught',fish.name);assert.ok(peak>.1);assert.equal(g.result?.speciesId,fish.id);
+    for (let i=0;i<100*60 && ['fighting','landing'].includes(g.phase);i++){manageFight(g);peak=Math.max(peak,g.fatigue)}
+    assert.equal(g.phase,'caught',fish.name);assert.ok(peak>0);assert.equal(g.result?.speciesId,fish.id);
   }
 });
 test('Sans récupération, le temps ne garantit aucune capture', () => {

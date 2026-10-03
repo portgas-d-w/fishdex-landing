@@ -1,3 +1,4 @@
+import {receiveByGesture} from './helpers';
 import {ensureLegacyProfile} from './helpers';
 import { test, expect, type Page } from '@playwright/test';
 import { mkdir, writeFile } from 'node:fs/promises';
@@ -46,7 +47,7 @@ test('Référence DA : cadrage constant, parcours complets et mesures de rendu',
   await page.evaluate(() => (window as any).__fishingQA.pauseSimulation()); await castByGesture(page); await picture('cast');
   await page.evaluate(() => (window as any).__fishingQA.advance(45)); await page.locator('#strike').click();
   await picture('fight'); const fight = await measure(page);
-  await page.evaluate(() => (window as any).__fishingQA.advance(100,'smart')); await expect(page.locator('#caught')).toBeVisible();
+  await page.evaluate(() => (window as any).__fishingQA.advance(100,'smart'));await receiveByGesture(page); await expect(page.locator('#caught')).toBeVisible();
   await expect(page.locator('#fish-preview')).toHaveAttribute('data-loaded','true'); await picture('catch');
   await page.locator('#release-fish').click();
   if (info.project.name==='mobile') {

@@ -10,19 +10,22 @@ export function installTechniqueControls(h:ScreenHooks){
  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
  el('tech-prep').onclick=()=>h.toast(g.technique.engine==='feeder'?(g.fillFeeder()?'Feeder garni pour le prochain lancer.':'Préparation impossible.'):(g.prepareFly()?`Soie préparée à ${Math.round(g.flyEnergy*100)} % ; projetez après deux gestes.`:'Préparation impossible.'));
  el('tech-clonk').onclick=()=>h.toast(g.clonk()?'Courte série ; attendez une éventuelle réaction.':`Pause sonore : ${Math.ceil(g.clonkRemaining)} secondes.`);
- el('tech-land').onclick=()=>{if(!g.receive())h.toast(g.failure||'Attendez la stabilisation de la prise.');};
+ el('tech-land').onclick=()=>{if(g.phase==='landing'){g.leaveLanding();}else if(!g.beginLanding())h.toast('Guidez la prise à portée avant de préparer la réception.');};
+ document.addEventListener('fishing-input-reset',stop);el('tech-drag').insertAdjacentHTML('afterend','<output id=drag-value></output>');
  el('tech-depth').oninput=()=>{g.rig.depth=Number(el<HTMLInputElement>('tech-depth').value);if(g.tackle)g.tackle.config.depth=g.rig.depth;};
  el('tech-drag').oninput=()=>{g.rig.drag=Number(el<HTMLInputElement>('tech-drag').value);if(g.tackle){g.tackle.config.drag=g.rig.drag;if(g.tackle.active)g.tackle.active.config.drag=g.rig.drag;}};
  for(const id of ['tech-speed','tech-course'])el(id).onchange=()=>g.setBoat(Number(el<HTMLSelectElement>('tech-speed').value),Number(el<HTMLSelectElement>('tech-course').value));
  return ()=>{
-  const phase=g.phase,t=g.technique,modern=g.modern;el('technique-tools').hidden=!modern||['caught','lost'].includes(phase);
+  const phase=g.phase,t=g.technique,modern=g.modern;el('technique-tools').hidden=(!modern&&!['fighting','landing'].includes(phase))||['caught','lost'].includes(phase);
   el('tech-prep').hidden=!modern||phase!=='idle'||!['feeder','fly'].includes(t.engine);el('tech-prep').textContent=t.engine==='feeder'?(g.feederFilled?'Feeder garni':'Garnir le feeder'):`Préparer la soie · ${Math.round(g.flyEnergy*100)} %`;
-  hold.hidden=!modern||!(phase==='waiting'&&['drift','surface','fixed','fly'].includes(t.engine)||['fighting','landing'].includes(phase)&&t.sections);hold.textContent=phase==='waiting'?'Retenir la dérive':`Déboîter · ${g.rodSections.toFixed(1)} m`;
+  hold.hidden=!modern||!(phase==='waiting'&&['drift','surface','fixed','fly'].includes(t.engine)||false);hold.textContent=phase==='waiting'?'Retenir la dérive':`Déboîter · ${g.rodSections.toFixed(1)} m`;
   el('tech-clonk').hidden=!modern||phase!=='waiting'||t.engine!=='clonk';el<HTMLButtonElement>('tech-clonk').disabled=g.clonkRemaining>0;el('tech-clonk').textContent=g.clonkRemaining>0?`Clonk · pause ${Math.ceil(g.clonkRemaining)} s`:'Série de clonk';
-  el('tech-land').hidden=phase!=='landing';el('tech-land').textContent=g.landingAction;el<HTMLButtonElement>('tech-land').disabled=g.elapsed<1||t.sections&&g.rodSections>3;
+  el('tech-land').hidden=!g.canReceive&&phase!=='landing';el('tech-land').textContent=phase==='landing'?'Revenir au fil':g.fishLength<=25?'Préparer la petite réception':'Prendre l’épuisette';el<HTMLButtonElement>('tech-land').disabled=false;
+  el('drag-value').textContent=`Frein : ${Math.round((g.rig.drag??.5)*100)} %`;if(document.activeElement!==el('tech-drag'))el<HTMLInputElement>('tech-drag').value=String(g.rig.drag??.5);
   el('tech-settings').hidden=!modern||!['waiting','fighting'].includes(phase);
   el('tech-depth-wrap').hidden=phase!=='waiting'||!['vertical','clonk'].includes(t.engine);el('tech-drag-wrap').hidden=!g.hasReel||phase!=='fighting';
   el('tech-speed-wrap').hidden=g.post!=='boat'||phase!=='waiting';el('tech-course-wrap').hidden=g.post!=='boat'||phase!=='waiting';
-  el('reel-control').querySelector('.reel-label')!.textContent=t.id==='mouche'&&phase==='waiting'?'Récupérer la soie':phase==='waiting'&&['bottom','feeder'].includes(t.engine)?'Prendre contact':'Mouliner';
+  el('reel-control').setAttribute('aria-label',phase==='landing'?'Réception : positionnez puis relevez par un geste court':t.sections&&phase==='fighting'?'Grande canne : vers soi pour reculer, latéralement pour déboîter':'Récupération : maintenez pour tourner, relâchez pour arrêter');
+  el('reel-control').querySelector('.reel-label')!.textContent=phase==='landing'?(g.netReady?'Relever':'Positionner'):t.sections&&phase==='fighting'?(g.canDetach?'Déboîter →':'Reculer ↓'):t.id==='mouche'&&phase==='waiting'?'Récupérer la soie':phase==='waiting'&&['bottom','feeder'].includes(t.engine)?'Prendre contact':'Mouliner';
  };
 }
