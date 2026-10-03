@@ -1,4 +1,5 @@
 import {installWaterTools} from './ui/water-tools';
+import {nextRenderDeadline} from './ui/render-clock';
 import {installFieldTools} from './ui/field-tools';
 import {ActionGesture} from './game/action-gesture';
 import {installObservations} from './ui/observations';
@@ -462,7 +463,7 @@ el('resume').onclick = () => { manualPaused = false; el('paused').hidden = true;
 refreshCollection(); refreshSettings(); renderPhase();saveNow();
 try {
   world = new LakeWorld(el<HTMLCanvasElement>('world'), save.settings.quality);world.setPost(game.post);world.setWaterQuality(save.settings.waterQuality??'low');world.pondWater.onEvent=e=>audio.water(e);
-  let lastTime = performance.now(); let accumulator = 0; let lastRender = 0;
+  let lastTime = performance.now(); let accumulator = 0; let lastRender = 0; let renderDeadline=0;
   world.engine.runRenderLoop(() => {
     const now = performance.now(); const dt = Math.min((now - lastTime) / 1000, 0.1); lastTime = now;
     if (document.hidden) { accumulator = 0; return; }
@@ -490,9 +491,9 @@ try {
       lastLineAlert = danger;
     } else if (!['fighting','landing'].includes(game.phase)) { canvas.removeAttribute('aria-description'); el('line-alert').hidden = true; }
     if (now > alertUntil) el('line-alert').hidden = true;
-    if (!overlayPaused && !manualPaused && now - lastRender >= (save.settings.quality === 'eco' ? 1000 / 30 : 0)) {
+    if (!overlayPaused && !manualPaused && now + .25 >= renderDeadline) {
       world!.update((now - lastRender) / 1000 > 0.1 ? 1 / 30 : (now - lastRender) / 1000, game);
-      world!.scene.render(); lakeFrames++; lastRender = now;
+      world!.scene.render(); lakeFrames++; lastRender = now; renderDeadline=nextRenderDeadline(now,renderDeadline,save.settings.quality==='eco'?1000/30:0);
     }
   });
   world.scene.executeWhenReady(() => { el('loading').hidden = true; document.body.dataset.ready = 'true'; if (loaded.warning) toast(loaded.warning); else teach(1, 'Partez du bas, projetez vers l’eau puis relâchez au centre pour lancer.'); });

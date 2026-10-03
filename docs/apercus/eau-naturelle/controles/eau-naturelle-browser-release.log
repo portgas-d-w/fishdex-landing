@@ -1,0 +1,27 @@
+[WebServer] (node:30528) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 1 worker
+
+(node:29004) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:29004) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\browser\graphics.spec.ts:4:1 › Qualité élevée avec ombres limitées puis retour au rendu mobile, sans erreur de shader (8.1s)
+  ok  2 [desktop] › tests\browser\graphics.spec.ts:8:1 › Sauvegarde corrompue récupérable, original conservé avant une nouvelle écriture (2.5s)
+  ok  3 [desktop] › tests\browser\physics.spec.ts:9:1 › Départ puissant : traction, frein et moulinage sous charge sans pénalité de bouton (54.4s)
+  ok  4 [desktop] › tests\browser\physics.spec.ts:34:1 › Retour vers le joueur : le moulinet reprend le mou et rétablit le contact (5.9s)
+  ok  5 [desktop] › tests\browser\water-natural.spec.ts:7:1 › Eau naturelle : surface et reflet perturbés, extinction et pause sans croissance (3.1s)
+  ok  6 [desktop] › tests\browser\water-natural.spec.ts:27:1 › Eau naturelle : textures filtrées, qualités, reflet économe en cache et turbidité réglable (4.9s)
+(node:28096) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28096) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  7 [mobile] › tests\browser\graphics.spec.ts:4:1 › Qualité élevée avec ombres limitées puis retour au rendu mobile, sans erreur de shader (4.4s)
+  ok  8 [mobile] › tests\browser\graphics.spec.ts:8:1 › Sauvegarde corrompue récupérable, original conservé avant une nouvelle écriture (1.6s)
+  ok  9 [mobile] › tests\browser\physics.spec.ts:9:1 › Départ puissant : traction, frein et moulinage sous charge sans pénalité de bouton (37.6s)
+  ok 10 [mobile] › tests\browser\physics.spec.ts:34:1 › Retour vers le joueur : le moulinet reprend le mou et rétablit le contact (5.5s)
+  ok 11 [mobile] › tests\browser\water-natural.spec.ts:7:1 › Eau naturelle : surface et reflet perturbés, extinction et pause sans croissance (2.2s)
+  ok 12 [mobile] › tests\browser\water-natural.spec.ts:27:1 › Eau naturelle : textures filtrées, qualités, reflet économe en cache et turbidité réglable (4.3s)
+
+  12 passed (2.3m)

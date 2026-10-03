@@ -1,0 +1,25 @@
+[WebServer] (node:8024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 10 tests using 1 worker
+
+(node:28872) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28872) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\browser\map-water.spec.ts:9:1 › Carte eau : six vrais postes, combat réception photo et sauvegarde isolée (20.1s)
+  ok  2 [desktop] › tests\browser\map-water.spec.ts:14:1 › Registre : substitution GLB locale, rejet des dimensions, retour exact à la famille provisoire (2.7s)
+  ok  3 [desktop] › tests\browser\map-water.spec.ts:24:1 › Carte eau : pools bornés, pause, dix transitions, qualité et repli de décor (6.3s)
+  ok  4 [desktop] › tests\browser\water-natural.spec.ts:7:1 › Eau naturelle : surface et reflet perturbés, extinction et pause sans croissance (2.9s)
+  ok  5 [desktop] › tests\browser\water-natural.spec.ts:27:1 › Eau naturelle : textures filtrées, qualités, reflet économe en cache et turbidité réglable (6.4s)
+(node:24936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:24936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  6 [mobile] › tests\browser\map-water.spec.ts:9:1 › Carte eau : six vrais postes, combat réception photo et sauvegarde isolée (10.1s)
+  ok  7 [mobile] › tests\browser\map-water.spec.ts:14:1 › Registre : substitution GLB locale, rejet des dimensions, retour exact à la famille provisoire (1.5s)
+  ok  8 [mobile] › tests\browser\map-water.spec.ts:24:1 › Carte eau : pools bornés, pause, dix transitions, qualité et repli de décor (4.0s)
+  ok  9 [mobile] › tests\browser\water-natural.spec.ts:7:1 › Eau naturelle : surface et reflet perturbés, extinction et pause sans croissance (1.9s)
+  ok 10 [mobile] › tests\browser\water-natural.spec.ts:27:1 › Eau naturelle : textures filtrées, qualités, reflet économe en cache et turbidité réglable (4.2s)
+
+  10 passed (1.1m)

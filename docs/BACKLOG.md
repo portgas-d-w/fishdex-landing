@@ -2,6 +2,15 @@
 
 La mission autonome explicite autorise les fonctionnalités suivantes et remplace l’attente du premier retour appareil pour avancer. Une prise ou une sauvegarde cassée reste prioritaire sur le contenu.
 
+## Eau naturelle 0.12.1
+
+- [x] Audit shader/reflet/filtrage/profondeur et référence identique aux trois qualités.
+- [x] Rides multi-échelles, Fresnel/reflets fragmentés, transmission/turbidité et contacts du décor actuel.
+- [x] Événements réels perturbent surface/reflet, pools bornés, cache économe et échéance fractionnaire30FPS.
+- [x] Check205/205 et navigateur18 scénarios par lots ; shader final repris4/4, captures/GPU logiciel et banc isolé.
+- [ ] Revue hébergée puis publication autorisée, parcours publics et empreintes complètes (résultats à consigner).
+- [ ] Safari iPhone14Pro/Android physique : objectif30FPS stable, compilation, horizon, toucher, reprise, chauffe/autonomie/mémoire.
+
 ## Carte et eau 0.12.0
 
 - [x] Audit 0.11, ZIP archivé, référence avec cadrage et mesures, correspondance des six IDs.
