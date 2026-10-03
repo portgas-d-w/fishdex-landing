@@ -13,7 +13,21 @@
     "files": "preview-files.json"
   },
   "production": {
-    "state": "pending"
+    "deploymentId": "dpl_6xWr8dL31xWz5onffURVYAcNGBmg",
+    "deploymentURL": "https://fishdex-landing-ld9x1y9vi-portgas-d-ws-projects.vercel.app",
+    "releaseCommit": "f52cebd126841cb77317c0f774e359737e926204",
+    "url": "https://www.fishdex.fr",
+    "bareDomainFinalStatus": 200,
+    "state": "READY",
+    "checks": 10,
+    "failed": 0,
+    "duration": "2.8 min",
+    "files": "production-files.json",
+    "entry": "/assets/index-C9yMDP7o.js",
+    "entrySha256": "9f229cb5282bf6381984bf67a916ef60f05f22d5bb86215db9956f396aa08b94",
+    "qaExposed": false,
+    "normalIsDefault": true,
+    "testAvailable": true
   },
   "rollback": {
     "tag": "archive/au-fil-de-leau-before-mobile-2026-10-03",

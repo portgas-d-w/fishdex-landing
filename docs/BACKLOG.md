@@ -9,7 +9,7 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 - [x] Grande canne réelle/recul/déboîtement, réception position + relevage ; généralisation aux 22 méthodes et 55 recettes.
 - [x] Sondage au point, amorçage/portions, fiches du matériel, secours explicite, variantes, aperçu du moteur, favoris.
 - [x] 44 prises/photo UI, gestes/deux doigts/inversion/un doigt, save legacy et contrôles de stock sans QA du build public par lots.
-- [ ] Revue hébergée, publication sur projet confirmé, empreintes publiques et clôture du relais.
+- [x] Revue hébergée 10/10 puis publication fishdex.fr 10/10 sans QA ; empreintes publiques, captures et relais clôturés.
 - [ ] Toucher physique Safari/Android, épuisette/recul et usage débutant ; équilibre après mesures.
 
 ## Poissons, assets et FishDex 0.10.0
