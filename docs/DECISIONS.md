@@ -2,6 +2,10 @@
 
 | Date | Décision | Motif / statut |
 | --- | --- | --- |
+| 2026-10-03 | Carte commune 0.12, six anciens IDs, translation Z +39 et caméra historique du ponton | Une source pour fond, couleurs, sondages et rencontres ; comparaison avant/après et droits acquis conservés. |
+| 2026-10-03 | Eau olive, normales procédurales, reflets sélectifs 256/512 et profil économe par défaut | Comparaison avec matériau simple et WaterMaterial 9.28 ; limiter passes et dépendances. Cadences en images rendues, performance appareil à mesurer. |
+| 2026-10-03 | Journal d’eau sur l’horloge de simulation, effets isolés sans récompense et non-applicabilité explicite | Éviter impacts à chaque image et faux sauts/pluie ; qualités visuelles sans changement de pêche. |
+| 2026-10-03 | Familles substituables après validation, racine glTF conservée sous parent d’instance | Dimensions/pivots/collisions/raccords indépendants ; lightmaps explicites sur UV2 et désactivées hors ambiance correspondante. |
 | 2026-10-01 | Mouliner par appui maintenu, arrêt au relâchement | Dernière demande utilisateur ; remplace le geste circulaire. Canne indépendante et molette PC conservées ; même commande au leurre. |
 | 2026-10-01 | Gestes natifs bloqués seulement sur la scène/commandes | Dernière demande : user-select/WebKit/callout, contextmenu/selectstart ; menus défilables et champs sélectionnables. Images sans glissement natif. |
 | 2026-10-01 | Fil disponible, flexion amortie, fatigue causale et frein automatique | Mission jointe remplace les règles 0.3 : ne pas détendre automatiquement au relâchement ; effets progressifs des angles et force relative au matériel. Capture proche sous contrôle, sans minuteur de victoire. |

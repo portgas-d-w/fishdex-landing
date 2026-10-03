@@ -1,0 +1,468 @@
+{
+  "schema_version": "1.0",
+  "status": "design_to_adapt_not_runtime_level",
+  "map_design_id": "map01_etang_aulnes",
+  "existing_game_map_id": null,
+  "label": "Étang des Aulnes",
+  "units": "meter",
+  "coordinate_convention": {
+    "east": "positive_x",
+    "north": "positive_z",
+    "up": "positive_y",
+    "handedness": "retain_existing_engine"
+  },
+  "bounds_xz_m": [
+    [
+      -90,
+      -70
+    ],
+    [
+      90,
+      70
+    ]
+  ],
+  "mean_water_level_y_m": 0,
+  "shoreline_polygon_xz_m": [
+    [
+      -61,
+      -8
+    ],
+    [
+      -54,
+      26
+    ],
+    [
+      -28,
+      43
+    ],
+    [
+      13,
+      46
+    ],
+    [
+      48,
+      31
+    ],
+    [
+      64,
+      7
+    ],
+    [
+      50,
+      -26
+    ],
+    [
+      24,
+      -42
+    ],
+    [
+      -9,
+      -46
+    ],
+    [
+      -47,
+      -31
+    ]
+  ],
+  "bathymetry": {
+    "maximum_depth_m": 8,
+    "shared_source_required": true,
+    "near_shore_band_width_m": [
+      2,
+      8
+    ],
+    "near_shore_depth_range_m": [
+      0,
+      1.5
+    ],
+    "intermediate_depth_range_m": [
+      1.5,
+      3
+    ],
+    "deep_basin_center_xz_m": [
+      12,
+      9
+    ],
+    "smooth_transitions": true,
+    "source_function_or_resource": null,
+    "note": "La ressource finale de profondeur alimente rendu, fond, sondage et simulation ; ces zones sont des contraintes proposées."
+  },
+  "spots": [
+    {
+      "design_id": "P01",
+      "existing_game_id": null,
+      "label": "Ponton dégagé",
+      "player_anchor_xz_m": [
+        0,
+        -40
+      ],
+      "vertical_anchor": "sample_ground_or_pier_deck",
+      "camera_eye_height_above_anchor_m": 1.6,
+      "look_at_xz_m": [
+        0,
+        -8
+      ],
+      "look_at_y_m": 0,
+      "initially_open_for_new_save": true,
+      "access_policy": "reuse_existing_rules_and_preserve_acquired_access",
+      "difficulty_label": "initiation",
+      "cast_sector_degrees_relative_to_look": [
+        -55,
+        55
+      ],
+      "maximum_geometric_cast_distance_m": 75,
+      "note": "Portée réelle selon ensemble ; point final doit rester dans eau/secteur ; ancrage et réception à vérifier dans scène",
+      "habitat_ids": [
+        "near_pier",
+        "open_water"
+      ],
+      "asset_family_ids": [
+        "pier_deck",
+        "pier_pile",
+        "bank_earth",
+        "grass_clump"
+      ],
+      "landing_zone_center_xz_m": [
+        -2,
+        -39
+      ],
+      "landing_zone_radius_m": 1.5,
+      "clear_space_behind_anchor_m": 12,
+      "development_unlocked": true,
+      "preview_resource": null
+    },
+    {
+      "design_id": "P02",
+      "existing_game_id": null,
+      "label": "Anse abritée",
+      "player_anchor_xz_m": [
+        -53,
+        -32
+      ],
+      "vertical_anchor": "sample_ground_or_pier_deck",
+      "camera_eye_height_above_anchor_m": 1.6,
+      "look_at_xz_m": [
+        -32,
+        -14
+      ],
+      "look_at_y_m": 0,
+      "initially_open_for_new_save": true,
+      "access_policy": "reuse_existing_rules_and_preserve_acquired_access",
+      "difficulty_label": "accessible",
+      "cast_sector_degrees_relative_to_look": [
+        -45,
+        45
+      ],
+      "maximum_geometric_cast_distance_m": 55,
+      "note": "Portée réelle selon ensemble ; point final doit rester dans eau/secteur ; ancrage et réception à vérifier dans scène",
+      "habitat_ids": [
+        "shallow_bay",
+        "lily_zone"
+      ],
+      "asset_family_ids": [
+        "bank_earth",
+        "lily_cluster",
+        "sedges",
+        "pebble_cluster"
+      ],
+      "landing_zone_center_xz_m": [
+        -48,
+        -29
+      ],
+      "landing_zone_radius_m": 1.5,
+      "clear_space_behind_anchor_m": 12,
+      "development_unlocked": true,
+      "preview_resource": null
+    },
+    {
+      "design_id": "P03",
+      "existing_game_id": null,
+      "label": "Rive ouverte",
+      "player_anchor_xz_m": [
+        57,
+        -25
+      ],
+      "vertical_anchor": "sample_ground_or_pier_deck",
+      "camera_eye_height_above_anchor_m": 1.6,
+      "look_at_xz_m": [
+        30,
+        -4
+      ],
+      "look_at_y_m": 0,
+      "initially_open_for_new_save": true,
+      "access_policy": "reuse_existing_rules_and_preserve_acquired_access",
+      "difficulty_label": "accessible",
+      "cast_sector_degrees_relative_to_look": [
+        -60,
+        60
+      ],
+      "maximum_geometric_cast_distance_m": 85,
+      "note": "Portée réelle selon ensemble ; point final doit rester dans eau/secteur ; ancrage et réception à vérifier dans scène",
+      "habitat_ids": [
+        "open_water",
+        "shore_shelf"
+      ],
+      "asset_family_ids": [
+        "bank_earth",
+        "rock_small",
+        "grass_clump"
+      ],
+      "landing_zone_center_xz_m": [
+        51,
+        -23
+      ],
+      "landing_zone_radius_m": 1.5,
+      "clear_space_behind_anchor_m": 14,
+      "development_unlocked": true,
+      "preview_resource": null
+    },
+    {
+      "design_id": "P04",
+      "existing_game_id": null,
+      "label": "Bordure des roseaux",
+      "player_anchor_xz_m": [
+        -59,
+        25
+      ],
+      "vertical_anchor": "sample_ground_or_pier_deck",
+      "camera_eye_height_above_anchor_m": 1.6,
+      "look_at_xz_m": [
+        -37,
+        17
+      ],
+      "look_at_y_m": 0,
+      "initially_open_for_new_save": false,
+      "access_policy": "reuse_existing_rules_and_preserve_acquired_access",
+      "difficulty_label": "technical",
+      "cast_sector_degrees_relative_to_look": [
+        -32,
+        32
+      ],
+      "maximum_geometric_cast_distance_m": 60,
+      "note": "Portée réelle selon ensemble ; point final doit rester dans eau/secteur ; ancrage et réception à vérifier dans scène",
+      "habitat_ids": [
+        "reeds_zone",
+        "shallow_bay"
+      ],
+      "asset_family_ids": [
+        "reeds",
+        "bank_roots",
+        "tree_willow",
+        "lily_cluster"
+      ],
+      "landing_zone_center_xz_m": [
+        -53,
+        22
+      ],
+      "landing_zone_radius_m": 1.5,
+      "clear_space_behind_anchor_m": 12,
+      "development_unlocked": true,
+      "preview_resource": null
+    },
+    {
+      "design_id": "P05",
+      "existing_game_id": null,
+      "label": "Pointe et cassure",
+      "player_anchor_xz_m": [
+        24,
+        49
+      ],
+      "vertical_anchor": "sample_ground_or_pier_deck",
+      "camera_eye_height_above_anchor_m": 1.6,
+      "look_at_xz_m": [
+        17,
+        21
+      ],
+      "look_at_y_m": 0,
+      "initially_open_for_new_save": false,
+      "access_policy": "reuse_existing_rules_and_preserve_acquired_access",
+      "difficulty_label": "technical",
+      "cast_sector_degrees_relative_to_look": [
+        -48,
+        48
+      ],
+      "maximum_geometric_cast_distance_m": 85,
+      "note": "Portée réelle selon ensemble ; point final doit rester dans eau/secteur ; ancrage et réception à vérifier dans scène",
+      "habitat_ids": [
+        "drop_off",
+        "deep_basin"
+      ],
+      "asset_family_ids": [
+        "bank_rock",
+        "rock_landmark",
+        "tree_oak"
+      ],
+      "landing_zone_center_xz_m": [
+        21,
+        42
+      ],
+      "landing_zone_radius_m": 1.5,
+      "clear_space_behind_anchor_m": 12,
+      "development_unlocked": true,
+      "preview_resource": null
+    },
+    {
+      "design_id": "P06",
+      "existing_game_id": null,
+      "label": "Bois immergé",
+      "player_anchor_xz_m": [
+        64,
+        20
+      ],
+      "vertical_anchor": "sample_ground_or_pier_deck",
+      "camera_eye_height_above_anchor_m": 1.6,
+      "look_at_xz_m": [
+        44,
+        13
+      ],
+      "look_at_y_m": 0,
+      "initially_open_for_new_save": false,
+      "access_policy": "reuse_existing_rules_and_preserve_acquired_access",
+      "difficulty_label": "demanding",
+      "cast_sector_degrees_relative_to_look": [
+        -35,
+        35
+      ],
+      "maximum_geometric_cast_distance_m": 65,
+      "note": "Portée réelle selon ensemble ; point final doit rester dans eau/secteur ; ancrage et réception à vérifier dans scène",
+      "habitat_ids": [
+        "wood_cover",
+        "open_water"
+      ],
+      "asset_family_ids": [
+        "fallen_log",
+        "submerged_branches",
+        "bank_roots",
+        "tree_willow"
+      ],
+      "landing_zone_center_xz_m": [
+        55,
+        20
+      ],
+      "landing_zone_radius_m": 1.5,
+      "clear_space_behind_anchor_m": 12,
+      "development_unlocked": true,
+      "preview_resource": null
+    }
+  ],
+  "habitats": [
+    {
+      "id": "near_pier",
+      "kind": "shore_structure",
+      "center_xz_m": [
+        0,
+        -35
+      ],
+      "radius_m": 8,
+      "depth_range_m": [
+        0.7,
+        2.5
+      ]
+    },
+    {
+      "id": "shallow_bay",
+      "kind": "shallow_sheltered",
+      "center_xz_m": [
+        -34,
+        -18
+      ],
+      "radius_m": 14,
+      "depth_range_m": [
+        0.4,
+        1.8
+      ]
+    },
+    {
+      "id": "lily_zone",
+      "kind": "surface_vegetation",
+      "center_xz_m": [
+        -38,
+        -15
+      ],
+      "radius_m": 7,
+      "depth_range_m": [
+        0.5,
+        1.8
+      ]
+    },
+    {
+      "id": "shore_shelf",
+      "kind": "littoral",
+      "center_xz_m": [
+        42,
+        -17
+      ],
+      "radius_m": 10,
+      "depth_range_m": [
+        0.4,
+        2.5
+      ]
+    },
+    {
+      "id": "reeds_zone",
+      "kind": "reed_corridor",
+      "center_xz_m": [
+        -46,
+        22
+      ],
+      "radius_m": 9,
+      "depth_range_m": [
+        0.5,
+        2.5
+      ]
+    },
+    {
+      "id": "drop_off",
+      "kind": "slope",
+      "center_xz_m": [
+        22,
+        25
+      ],
+      "radius_m": 13,
+      "depth_range_m": [
+        2,
+        6
+      ]
+    },
+    {
+      "id": "deep_basin",
+      "kind": "deep_lake",
+      "center_xz_m": [
+        12,
+        9
+      ],
+      "radius_m": 18,
+      "depth_range_m": [
+        4,
+        8
+      ]
+    },
+    {
+      "id": "wood_cover",
+      "kind": "submerged_cover",
+      "center_xz_m": [
+        48,
+        14
+      ],
+      "radius_m": 7,
+      "depth_range_m": [
+        1.5,
+        4
+      ]
+    },
+    {
+      "id": "open_water",
+      "kind": "pelagic",
+      "center_xz_m": [
+        0,
+        0
+      ],
+      "radius_m": 28,
+      "depth_range_m": [
+        1.5,
+        8
+      ]
+    }
+  ],
+  "compatibility_note": "Étang seulement : conserver les contextes rivière/embarcation spécifiques déjà implémentés, sans forcer toutes les espèces et méthodes dans ce lac."
+}

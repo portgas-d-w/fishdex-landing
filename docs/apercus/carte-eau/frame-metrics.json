@@ -1,0 +1,2410 @@
+[
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "renderer": "Windows Chromium ANGLE SwiftShader, aucun appareil physique",
+    "controlledCombat": "pilote DEV : même simulation et commandes, aucune réception automatique",
+    "rows": [
+      {
+        "quality": "low",
+        "controlledCombat": false,
+        "durationMs": 3003,
+        "frames": 70,
+        "fps": 23.31002331002331,
+        "drawCallsMin": 46,
+        "drawCallsMax": 46,
+        "visibleTrianglesMin": 17868,
+        "visibleTrianglesMax": 17868,
+        "cpuMedianMs": 0.7999999970197678,
+        "cpuP95Ms": 1.4000000022351742,
+        "resolution": {
+          "width": 390,
+          "height": 844
+        },
+        "transparentMeshesMax": 1,
+        "totalMeshes": 431,
+        "total": 0,
+        "phase": "idle",
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "quality": "low",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 12,
+              "drops": 16,
+              "mirror": 0,
+              "cadence": 0
+            },
+            "events": {
+              "spot_transition": 1
+            },
+            "lastId": 1,
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 1,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "procedural",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "procedural",
+              "tree_alder": "procedural",
+              "grass_clump": "procedural",
+              "shrub": "procedural",
+              "lily_cluster": "procedural",
+              "rock_small": "procedural",
+              "rock_landmark": "procedural",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 310
+          }
+        }
+      },
+      {
+        "quality": "standard",
+        "controlledCombat": false,
+        "durationMs": 3002.900000002235,
+        "frames": 68,
+        "fps": 22.6447767158245,
+        "drawCallsMin": 46,
+        "drawCallsMax": 94,
+        "visibleTrianglesMin": 17868,
+        "visibleTrianglesMax": 17868,
+        "cpuMedianMs": 0.6999999992549419,
+        "cpuP95Ms": 1.300000000745058,
+        "resolution": {
+          "width": 390,
+          "height": 844
+        },
+        "transparentMeshesMax": 1,
+        "totalMeshes": 431,
+        "total": 0,
+        "phase": "idle",
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "quality": "standard",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 20,
+              "drops": 32,
+              "mirror": 256,
+              "cadence": 6
+            },
+            "events": {
+              "spot_transition": 1
+            },
+            "lastId": 1,
+            "mirror": {
+              "width": 256,
+              "height": 256
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 1,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "procedural",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "procedural",
+              "tree_alder": "procedural",
+              "grass_clump": "procedural",
+              "shrub": "procedural",
+              "lily_cluster": "procedural",
+              "rock_small": "procedural",
+              "rock_landmark": "procedural",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 310
+          }
+        }
+      },
+      {
+        "quality": "high",
+        "controlledCombat": false,
+        "durationMs": 3006.60000000149,
+        "frames": 69,
+        "fps": 22.949511075622233,
+        "drawCallsMin": 46,
+        "drawCallsMax": 94,
+        "visibleTrianglesMin": 17868,
+        "visibleTrianglesMax": 17868,
+        "cpuMedianMs": 0.8000000007450581,
+        "cpuP95Ms": 1.300000000745058,
+        "resolution": {
+          "width": 390,
+          "height": 844
+        },
+        "transparentMeshesMax": 1,
+        "totalMeshes": 431,
+        "total": 0,
+        "phase": "idle",
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "quality": "high",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 28,
+              "drops": 48,
+              "mirror": 512,
+              "cadence": 3
+            },
+            "events": {
+              "spot_transition": 1
+            },
+            "lastId": 1,
+            "mirror": {
+              "width": 512,
+              "height": 512
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 1,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "procedural",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "procedural",
+              "tree_alder": "procedural",
+              "grass_clump": "procedural",
+              "shrub": "procedural",
+              "lily_cluster": "procedural",
+              "rock_small": "procedural",
+              "rock_landmark": "procedural",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 310
+          }
+        }
+      },
+      {
+        "quality": "low",
+        "controlledCombat": true,
+        "durationMs": 3011.300000000745,
+        "frames": 69,
+        "fps": 22.91369176102777,
+        "drawCallsMin": 47,
+        "drawCallsMax": 53,
+        "visibleTrianglesMin": 18238,
+        "visibleTrianglesMax": 25738,
+        "cpuMedianMs": 0.6999999992549419,
+        "cpuP95Ms": 1.199999999254942,
+        "resolution": {
+          "width": 390,
+          "height": 844
+        },
+        "transparentMeshesMax": 9,
+        "totalMeshes": 433,
+        "total": 0,
+        "phase": "fighting",
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "quality": "low",
+            "activeRings": 8,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 12,
+              "drops": 16,
+              "mirror": 0,
+              "cadence": 0
+            },
+            "events": {
+              "spot_transition": 2,
+              "strike_surface": 1,
+              "lure_submerge": 1,
+              "line_surface_drag": 3,
+              "fish_near_surface": 3
+            },
+            "lastId": 10,
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 1,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "procedural",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "procedural",
+              "tree_alder": "procedural",
+              "grass_clump": "procedural",
+              "shrub": "procedural",
+              "lily_cluster": "procedural",
+              "rock_small": "procedural",
+              "rock_landmark": "procedural",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 310
+          }
+        }
+      },
+      {
+        "quality": "standard",
+        "controlledCombat": true,
+        "durationMs": 3004.2999999970198,
+        "frames": 74,
+        "fps": 24.63136171489978,
+        "drawCallsMin": 53,
+        "drawCallsMax": 109,
+        "visibleTrianglesMin": 25738,
+        "visibleTrianglesMax": 35738,
+        "cpuMedianMs": 0.6999999992549419,
+        "cpuP95Ms": 1,
+        "resolution": {
+          "width": 390,
+          "height": 844
+        },
+        "transparentMeshesMax": 17,
+        "totalMeshes": 433,
+        "total": 0,
+        "phase": "fighting",
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "quality": "standard",
+            "activeRings": 16,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 20,
+              "drops": 32,
+              "mirror": 256,
+              "cadence": 6
+            },
+            "events": {
+              "spot_transition": 2,
+              "strike_surface": 1,
+              "lure_submerge": 1,
+              "line_surface_drag": 7,
+              "fish_near_surface": 7
+            },
+            "lastId": 18,
+            "mirror": {
+              "width": 256,
+              "height": 256
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 1,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "procedural",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "procedural",
+              "tree_alder": "procedural",
+              "grass_clump": "procedural",
+              "shrub": "procedural",
+              "lily_cluster": "procedural",
+              "rock_small": "procedural",
+              "rock_landmark": "procedural",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 310
+          }
+        }
+      },
+      {
+        "quality": "high",
+        "controlledCombat": true,
+        "durationMs": 3001.199999999255,
+        "frames": 73,
+        "fps": 24.32360389178266,
+        "drawCallsMin": 57,
+        "drawCallsMax": 108,
+        "visibleTrianglesMin": 30738,
+        "visibleTrianglesMax": 34488,
+        "cpuMedianMs": 0.6999999992549419,
+        "cpuP95Ms": 1.1000000014901161,
+        "resolution": {
+          "width": 390,
+          "height": 844
+        },
+        "transparentMeshesMax": 16,
+        "totalMeshes": 433,
+        "total": 0,
+        "phase": "fighting",
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "quality": "high",
+            "activeRings": 15,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 28,
+              "drops": 48,
+              "mirror": 512,
+              "cadence": 3
+            },
+            "events": {
+              "spot_transition": 2,
+              "strike_surface": 1,
+              "lure_submerge": 1,
+              "line_surface_drag": 10,
+              "fish_near_surface": 10,
+              "lure_surface": 1
+            },
+            "lastId": 25,
+            "mirror": {
+              "width": 512,
+              "height": 512
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 1,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "procedural",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "procedural",
+              "tree_alder": "procedural",
+              "grass_clump": "procedural",
+              "shrub": "procedural",
+              "lily_cluster": "procedural",
+              "rock_small": "procedural",
+              "rock_landmark": "procedural",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 310
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "desktop",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "renderer": "Windows Chromium ANGLE SwiftShader, aucun appareil physique",
+    "controlledCombat": "pilote DEV : même simulation et commandes, aucune réception automatique",
+    "rows": [
+      {
+        "quality": "low",
+        "controlledCombat": false,
+        "durationMs": 3004.39999999851,
+        "frames": 68,
+        "fps": 22.633470909344204,
+        "drawCallsMin": 113,
+        "drawCallsMax": 113,
+        "visibleTrianglesMin": 22804,
+        "visibleTrianglesMax": 22804,
+        "cpuMedianMs": 1.7999999970197678,
+        "cpuP95Ms": 2.900000002235174,
+        "resolution": {
+          "width": 1024,
+          "height": 640
+        },
+        "transparentMeshesMax": 1,
+        "totalMeshes": 431,
+        "total": 0,
+        "phase": "idle",
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "quality": "low",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 12,
+              "drops": 16,
+              "mirror": 0,
+              "cadence": 0
+            },
+            "events": {
+              "spot_transition": 1
+            },
+            "lastId": 1,
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 1,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "procedural",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "procedural",
+              "tree_alder": "procedural",
+              "grass_clump": "procedural",
+              "shrub": "procedural",
+              "lily_cluster": "procedural",
+              "rock_small": "procedural",
+              "rock_landmark": "procedural",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 310
+          }
+        }
+      },
+      {
+        "quality": "standard",
+        "controlledCombat": false,
+        "durationMs": 3011.199999999255,
+        "frames": 66,
+        "fps": 21.918172157284914,
+        "drawCallsMin": 113,
+        "drawCallsMax": 161,
+        "visibleTrianglesMin": 22804,
+        "visibleTrianglesMax": 22804,
+        "cpuMedianMs": 1.800000000745058,
+        "cpuP95Ms": 2.7999999970197678,
+        "resolution": {
+          "width": 1024,
+          "height": 640
+        },
+        "transparentMeshesMax": 1,
+        "totalMeshes": 431,
+        "total": 0,
+        "phase": "idle",
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "quality": "standard",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 20,
+              "drops": 32,
+              "mirror": 256,
+              "cadence": 6
+            },
+            "events": {
+              "spot_transition": 1
+            },
+            "lastId": 1,
+            "mirror": {
+              "width": 256,
+              "height": 256
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 1,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "procedural",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "procedural",
+              "tree_alder": "procedural",
+              "grass_clump": "procedural",
+              "shrub": "procedural",
+              "lily_cluster": "procedural",
+              "rock_small": "procedural",
+              "rock_landmark": "procedural",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 310
+          }
+        }
+      },
+      {
+        "quality": "high",
+        "controlledCombat": false,
+        "durationMs": 3004.5,
+        "frames": 68,
+        "fps": 22.632717590281246,
+        "drawCallsMin": 113,
+        "drawCallsMax": 161,
+        "visibleTrianglesMin": 22804,
+        "visibleTrianglesMax": 22804,
+        "cpuMedianMs": 1.6000000014901161,
+        "cpuP95Ms": 2.699999999254942,
+        "resolution": {
+          "width": 1024,
+          "height": 640
+        },
+        "transparentMeshesMax": 1,
+        "totalMeshes": 431,
+        "total": 0,
+        "phase": "idle",
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "quality": "high",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 28,
+              "drops": 48,
+              "mirror": 512,
+              "cadence": 3
+            },
+            "events": {
+              "spot_transition": 1
+            },
+            "lastId": 1,
+            "mirror": {
+              "width": 512,
+              "height": 512
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 1,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "procedural",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "procedural",
+              "tree_alder": "procedural",
+              "grass_clump": "procedural",
+              "shrub": "procedural",
+              "lily_cluster": "procedural",
+              "rock_small": "procedural",
+              "rock_landmark": "procedural",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 310
+          }
+        }
+      },
+      {
+        "quality": "low",
+        "controlledCombat": true,
+        "durationMs": 3020.5,
+        "frames": 71,
+        "fps": 23.50604204601887,
+        "drawCallsMin": 114,
+        "drawCallsMax": 120,
+        "visibleTrianglesMin": 23174,
+        "visibleTrianglesMax": 30674,
+        "cpuMedianMs": 1,
+        "cpuP95Ms": 2.100000001490116,
+        "resolution": {
+          "width": 1024,
+          "height": 640
+        },
+        "transparentMeshesMax": 9,
+        "totalMeshes": 433,
+        "total": 0,
+        "phase": "fighting",
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "quality": "low",
+            "activeRings": 8,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 12,
+              "drops": 16,
+              "mirror": 0,
+              "cadence": 0
+            },
+            "events": {
+              "spot_transition": 2,
+              "strike_surface": 1,
+              "lure_submerge": 1,
+              "line_surface_drag": 3,
+              "fish_near_surface": 3
+            },
+            "lastId": 10,
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 1,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "procedural",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "procedural",
+              "tree_alder": "procedural",
+              "grass_clump": "procedural",
+              "shrub": "procedural",
+              "lily_cluster": "procedural",
+              "rock_small": "procedural",
+              "rock_landmark": "procedural",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 310
+          }
+        }
+      },
+      {
+        "quality": "standard",
+        "controlledCombat": true,
+        "durationMs": 3009.5,
+        "frames": 68,
+        "fps": 22.595115467685662,
+        "drawCallsMin": 121,
+        "drawCallsMax": 175,
+        "visibleTrianglesMin": 31924,
+        "visibleTrianglesMax": 40674,
+        "cpuMedianMs": 1,
+        "cpuP95Ms": 1.5,
+        "resolution": {
+          "width": 1024,
+          "height": 640
+        },
+        "transparentMeshesMax": 17,
+        "totalMeshes": 433,
+        "total": 0,
+        "phase": "fighting",
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "quality": "standard",
+            "activeRings": 16,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 20,
+              "drops": 32,
+              "mirror": 256,
+              "cadence": 6
+            },
+            "events": {
+              "spot_transition": 2,
+              "strike_surface": 1,
+              "lure_submerge": 1,
+              "line_surface_drag": 7,
+              "fish_near_surface": 7
+            },
+            "lastId": 18,
+            "mirror": {
+              "width": 256,
+              "height": 256
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 1,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "procedural",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "procedural",
+              "tree_alder": "procedural",
+              "grass_clump": "procedural",
+              "shrub": "procedural",
+              "lily_cluster": "procedural",
+              "rock_small": "procedural",
+              "rock_landmark": "procedural",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 310
+          }
+        }
+      },
+      {
+        "quality": "high",
+        "controlledCombat": true,
+        "durationMs": 3001.599999997765,
+        "frames": 72,
+        "fps": 23.987206823045582,
+        "drawCallsMin": 124,
+        "drawCallsMax": 176,
+        "visibleTrianglesMin": 35674,
+        "visibleTrianglesMax": 40674,
+        "cpuMedianMs": 1,
+        "cpuP95Ms": 1.300000000745058,
+        "resolution": {
+          "width": 1024,
+          "height": 640
+        },
+        "transparentMeshesMax": 17,
+        "totalMeshes": 433,
+        "total": 0,
+        "phase": "fighting",
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "quality": "high",
+            "activeRings": 15,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 28,
+              "drops": 48,
+              "mirror": 512,
+              "cadence": 3
+            },
+            "events": {
+              "spot_transition": 2,
+              "strike_surface": 1,
+              "lure_submerge": 1,
+              "line_surface_drag": 10,
+              "fish_near_surface": 10,
+              "lure_surface": 1
+            },
+            "lastId": 25,
+            "mirror": {
+              "width": 512,
+              "height": 512
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 1,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "procedural",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "procedural",
+              "tree_alder": "procedural",
+              "grass_clump": "procedural",
+              "shrub": "procedural",
+              "lily_cluster": "procedural",
+              "rock_small": "procedural",
+              "rock_landmark": "procedural",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 310
+          }
+        }
+      }
+    ]
+  }
+]

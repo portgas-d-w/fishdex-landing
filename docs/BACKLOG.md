@@ -2,6 +2,17 @@
 
 La mission autonome explicite autorise les fonctionnalités suivantes et remplace l’attente du premier retour appareil pour avancer. Une prise ou une sauvegarde cassée reste prioritaire sur le contenu.
 
+## Carte et eau 0.12.0
+
+- [x] Audit 0.11, ZIP archivé, référence avec cadrage et mesures, correspondance des six IDs.
+- [x] Étang commun, contour/bathymétrie/sol/habitats, ancrages/secteurs/réception et neuf contextes conservés.
+- [x] Trois profils d’eau, reflets sélectifs, événements réellement raccordés et pools bornés ; cas non applicables documentés.
+- [x] Six compositions, vent partagé, trois ambiances, registre de remplacement local et inventaire futur.
+- [x] Check202/202, chaînes de capture par poste et 35 scénarios navigateur applicables par reprises.
+- [ ] Clôturer mesures finales, revue hébergée et publication fishdex.fr ; identité Vercel/GitHub/main confirmée.
+- [ ] Safari iPhone14Pro/Android réels : toucher, durée, chauffe, mémoire et transfert froid.
+- [ ] Assets P0/P1, lightmaps UV2 et LOD finaux : livrer puis contrôler, sans changer les volumes de jeu silencieusement.
+
 ## Gameplay mobile et matériel 0.11.0
 
 - [x] Audit et référence 0.10, identifiants et ressources réutilisés.

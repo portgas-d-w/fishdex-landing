@@ -1,0 +1,2369 @@
+{
+  "schema_version": "1.0",
+  "status": "implemented_with_replaceable_procedural_assets",
+  "date": "2026-10-03",
+  "map_design_id": "map01_etang_aulnes",
+  "note": "Inventaire du jeu 0.12 contrôlé. Les budgets de production restent indicatifs ; aucune ressource finale Blender produite. Les entrées composites et textures ne sont pas des instances GLB indépendantes.",
+  "units": "meter",
+  "priority_order": [
+    "P0",
+    "P1",
+    "P2"
+  ],
+  "entries": [
+    {
+      "id": "bank_earth",
+      "label": "Berge de terre et racines fines",
+      "category": "geometry",
+      "priority": "P0",
+      "status": "shared_terrain",
+      "variant_count": 3,
+      "typical_dimensions_m": [
+        4,
+        1.2,
+        2
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Pivot bas arrière du module",
+      "lod_triangle_targets": {
+        "lod0": 2200,
+        "lod1": 800,
+        "lod2": 250
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Talus irrégulier ; raccords utilisables sans bord carré ; variante humide au contact",
+      "actual_instance_count": 1,
+      "existing_resource": "src/render/pond-scenery.ts / pondGround",
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Existant fonctionnel ; affiner seulement après retours appareil/visuels."
+    },
+    {
+      "id": "bank_rock",
+      "label": "Berge rocheuse basse",
+      "category": "geometry",
+      "priority": "P1",
+      "status": "absent_optional_future",
+      "variant_count": 2,
+      "typical_dimensions_m": [
+        4,
+        1.3,
+        2
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Pivot bas arrière",
+      "lod_triangle_targets": {
+        "lod0": 2500,
+        "lod1": 900,
+        "lod2": 250
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Roches mates intégrées au sol, volumes arrondis variés",
+      "actual_instance_count": 0,
+      "existing_resource": null,
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Production ultérieure facultative, aucun blocage pour la carte livrée."
+    },
+    {
+      "id": "bank_roots",
+      "label": "Berge avec racines exposées",
+      "category": "geometry",
+      "priority": "P1",
+      "status": "absent_optional_future",
+      "variant_count": 2,
+      "typical_dimensions_m": [
+        3,
+        1.5,
+        2
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Pivot bas arrière",
+      "lod_triangle_targets": {
+        "lod0": 3000,
+        "lod1": 1000,
+        "lod2": 250
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P04",
+        "P06"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Racines rattachées à un tronc/sol ; pas de lignes en lévitation",
+      "actual_instance_count": 0,
+      "existing_resource": null,
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Production ultérieure facultative, aucun blocage pour la carte livrée."
+    },
+    {
+      "id": "pebble_cluster",
+      "label": "Amas de galets",
+      "category": "geometry",
+      "priority": "P1",
+      "status": "absent_optional_future",
+      "variant_count": 3,
+      "typical_dimensions_m": [
+        1.2,
+        0.15,
+        0.8
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Centre au sol",
+      "lod_triangle_targets": {
+        "lod0": 900,
+        "lod1": 350,
+        "lod2": 100
+      },
+      "texture_size_target_px": 512,
+      "materials_target": 2,
+      "spots": [
+        "P02",
+        "P03",
+        "P05"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Galet de plusieurs tailles ; atlas partagé ; ne pas instancier chaque petit galet",
+      "actual_instance_count": 0,
+      "existing_resource": null,
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Production ultérieure facultative, aucun blocage pour la carte livrée."
+    },
+    {
+      "id": "tree_alder",
+      "label": "Aulne de berge",
+      "category": "geometry",
+      "priority": "P1",
+      "status": "procedural_to_refine",
+      "variant_count": 3,
+      "typical_dimensions_m": [
+        5,
+        10,
+        5
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Base du tronc",
+      "lod_triangle_targets": {
+        "lod0": 8000,
+        "lod1": 2600,
+        "lod2": 500
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P02",
+        "P04",
+        "P06"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "engine_wind_mask",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Silhouette naturelle asymétrique ; tronc visible, canopée ajourée sans surcouches excessives",
+      "actual_instance_count": 62,
+      "existing_resource": "src/render/pond-scenery.ts / tree_alder",
+      "final_resource": null,
+      "runtime_contract": {
+        "id": "tree_alder",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          6,
+          9,
+          5
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P1"
+      },
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Embellir selon les vues ; remplacer cette famille après validation métrique, pivot et matériaux."
+    },
+    {
+      "id": "tree_willow",
+      "label": "Saule penché",
+      "category": "geometry",
+      "priority": "P1",
+      "status": "procedural_to_refine",
+      "variant_count": 2,
+      "typical_dimensions_m": [
+        8,
+        9,
+        7
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Base du tronc",
+      "lod_triangle_targets": {
+        "lod0": 9000,
+        "lod1": 3000,
+        "lod2": 600
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P04",
+        "P06"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "engine_wind_mask",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Repère de rive ; branches rattachées, espace de pêche laissé libre",
+      "actual_instance_count": 12,
+      "existing_resource": "src/render/pond-scenery.ts / tree_willow",
+      "final_resource": null,
+      "runtime_contract": {
+        "id": "tree_willow",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          6,
+          8,
+          5
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P1"
+      },
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Embellir selon les vues ; remplacer cette famille après validation métrique, pivot et matériaux."
+    },
+    {
+      "id": "tree_oak",
+      "label": "Arbre de fond de rive",
+      "category": "geometry",
+      "priority": "P1",
+      "status": "procedural_to_refine",
+      "variant_count": 3,
+      "typical_dimensions_m": [
+        7,
+        14,
+        7
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Base du tronc",
+      "lod_triangle_targets": {
+        "lod0": 8000,
+        "lod1": 2200,
+        "lod2": 350
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "engine_wind_mask",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Fond cohérent de toutes les vues ; LOD lointain très économique",
+      "actual_instance_count": 60,
+      "existing_resource": "src/render/pond-scenery.ts / tree_oak",
+      "final_resource": null,
+      "runtime_contract": {
+        "id": "tree_oak",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          6,
+          9,
+          5
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P1"
+      },
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Embellir selon les vues ; remplacer cette famille après validation métrique, pivot et matériaux."
+    },
+    {
+      "id": "forest_backdrop",
+      "label": "Groupe forestier lointain",
+      "category": "geometry",
+      "priority": "P1",
+      "status": "absent_optional_future",
+      "variant_count": 2,
+      "typical_dimensions_m": [
+        20,
+        14,
+        4
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Centre au sol",
+      "lod_triangle_targets": {
+        "lod0": 1400,
+        "lod1": 600,
+        "lod2": 180
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Plans ou maillages légers avec profondeur ; parallax cohérente depuis toutes les rives",
+      "actual_instance_count": 0,
+      "existing_resource": null,
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Production ultérieure facultative, aucun blocage pour la carte livrée."
+    },
+    {
+      "id": "shrub",
+      "label": "Buisson bas",
+      "category": "geometry",
+      "priority": "P1",
+      "status": "procedural_to_refine",
+      "variant_count": 3,
+      "typical_dimensions_m": [
+        1.8,
+        1.3,
+        1.5
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Centre au sol",
+      "lod_triangle_targets": {
+        "lod0": 1600,
+        "lod1": 600,
+        "lod2": 120
+      },
+      "texture_size_target_px": 512,
+      "materials_target": 2,
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "engine_wind_mask",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Ne pas masquer point d’entrée du fil ni réception ; feuilles alpha-mask",
+      "actual_instance_count": 13,
+      "existing_resource": "src/render/pond-scenery.ts / shrub",
+      "final_resource": null,
+      "runtime_contract": {
+        "id": "shrub",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          1.4,
+          1,
+          1.2
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P1"
+      },
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Embellir selon les vues ; remplacer cette famille après validation métrique, pivot et matériaux."
+    },
+    {
+      "id": "grass_clump",
+      "label": "Touffe d’herbe de rive",
+      "category": "geometry",
+      "priority": "P1",
+      "status": "procedural_to_refine",
+      "variant_count": 4,
+      "typical_dimensions_m": [
+        0.55,
+        0.5,
+        0.55
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Centre au sol",
+      "lod_triangle_targets": {
+        "lod0": 180,
+        "lod1": 60,
+        "lod2": 12
+      },
+      "texture_size_target_px": 512,
+      "materials_target": 2,
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "engine_wind_mask",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Masque de vent à base fixe ; variation de hauteur modérée",
+      "actual_instance_count": 45,
+      "existing_resource": "src/render/pond-scenery.ts / grass_clump",
+      "final_resource": null,
+      "runtime_contract": {
+        "id": "grass_clump",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          0.22,
+          0.55,
+          0.22
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P1"
+      },
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Embellir selon les vues ; remplacer cette famille après validation métrique, pivot et matériaux."
+    },
+    {
+      "id": "reeds",
+      "label": "Touffe de roseaux",
+      "category": "geometry",
+      "priority": "P0",
+      "status": "procedural_to_refine",
+      "variant_count": 3,
+      "typical_dimensions_m": [
+        1,
+        2.2,
+        1
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Base au sol",
+      "lod_triangle_targets": {
+        "lod0": 750,
+        "lod1": 260,
+        "lod2": 70
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P04",
+        "P02"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "engine_wind_mask",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Tiges rattachées ; contact eau/terre ; collision d’accrochage indépendante",
+      "actual_instance_count": 3,
+      "existing_resource": "src/render/pond-scenery.ts / reeds",
+      "final_resource": null,
+      "runtime_contract": {
+        "id": "reeds",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          2,
+          2,
+          2
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "game/posts.ts.obstacles",
+        "sockets": [],
+        "priority": "P0"
+      },
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Embellir selon les vues ; remplacer cette famille après validation métrique, pivot et matériaux."
+    },
+    {
+      "id": "sedges",
+      "label": "Laîches / plantes de bordure",
+      "category": "geometry",
+      "priority": "P1",
+      "status": "absent_optional_future",
+      "variant_count": 3,
+      "typical_dimensions_m": [
+        0.8,
+        0.8,
+        0.8
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Base au sol",
+      "lod_triangle_targets": {
+        "lod0": 400,
+        "lod1": 140,
+        "lod2": 40
+      },
+      "texture_size_target_px": 512,
+      "materials_target": 2,
+      "spots": [
+        "P02",
+        "P04",
+        "P06"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "engine_wind_mask",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Amas irréguliers ; ne pas créer un mur homogène",
+      "actual_instance_count": 0,
+      "existing_resource": null,
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Production ultérieure facultative, aucun blocage pour la carte livrée."
+    },
+    {
+      "id": "lily_cluster",
+      "label": "Amas de nénuphars",
+      "category": "geometry",
+      "priority": "P0",
+      "status": "procedural_to_refine",
+      "variant_count": 3,
+      "typical_dimensions_m": [
+        1.6,
+        0.12,
+        1.3
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Centre au niveau de l’eau",
+      "lod_triangle_targets": {
+        "lod0": 500,
+        "lod1": 180,
+        "lod2": 40
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P02",
+        "P04"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Feuilles au contact ; pas de fleurs géantes ; mouvement de surface discret",
+      "actual_instance_count": 36,
+      "existing_resource": "src/render/pond-scenery.ts / lily_cluster",
+      "final_resource": null,
+      "runtime_contract": {
+        "id": "lily_cluster",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          0.32,
+          0.01,
+          0.25
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P0"
+      },
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Embellir selon les vues ; remplacer cette famille après validation métrique, pivot et matériaux."
+    },
+    {
+      "id": "submerged_plants",
+      "label": "Herbiers visibles peu profonds",
+      "category": "geometry",
+      "priority": "P1",
+      "status": "absent_optional_future",
+      "variant_count": 3,
+      "typical_dimensions_m": [
+        1.1,
+        1.2,
+        1.1
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Base au fond",
+      "lod_triangle_targets": {
+        "lod0": 650,
+        "lod1": 220,
+        "lod2": 50
+      },
+      "texture_size_target_px": 512,
+      "materials_target": 2,
+      "spots": [
+        "P02",
+        "P04"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "engine_wind_mask",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Aspect immergé ; racines sur fond et hauteur compatible avec profondeur",
+      "actual_instance_count": 0,
+      "existing_resource": null,
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Production ultérieure facultative, aucun blocage pour la carte livrée."
+    },
+    {
+      "id": "rock_small",
+      "label": "Pierre de rive",
+      "category": "geometry",
+      "priority": "P1",
+      "status": "procedural_to_refine",
+      "variant_count": 4,
+      "typical_dimensions_m": [
+        0.65,
+        0.45,
+        0.55
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Centre au sol",
+      "lod_triangle_targets": {
+        "lod0": 500,
+        "lod1": 180,
+        "lod2": 50
+      },
+      "texture_size_target_px": 512,
+      "materials_target": 2,
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P05"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Géométrie irrégulière, une matière partagée ; 4 formes plutôt que copies recolorées",
+      "actual_instance_count": 20,
+      "existing_resource": "src/render/pond-scenery.ts / rock_small",
+      "final_resource": null,
+      "runtime_contract": {
+        "id": "rock_small",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          1.4,
+          0.8,
+          1.2
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P1"
+      },
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Embellir selon les vues ; remplacer cette famille après validation métrique, pivot et matériaux."
+    },
+    {
+      "id": "rock_landmark",
+      "label": "Rocher repère",
+      "category": "geometry",
+      "priority": "P1",
+      "status": "procedural_to_refine",
+      "variant_count": 2,
+      "typical_dimensions_m": [
+        2.6,
+        1.6,
+        2
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Centre au sol",
+      "lod_triangle_targets": {
+        "lod0": 2200,
+        "lod1": 750,
+        "lod2": 200
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Silhouette distinctive et angles doux ; pas de facettes brillantes artificielles",
+      "actual_instance_count": 1,
+      "existing_resource": "src/render/pond-scenery.ts / rock_landmark",
+      "final_resource": null,
+      "runtime_contract": {
+        "id": "rock_landmark",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          1.4,
+          0.8,
+          1.2
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P1"
+      },
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Embellir selon les vues ; remplacer cette famille après validation métrique, pivot et matériaux."
+    },
+    {
+      "id": "fallen_log",
+      "label": "Tronc tombé partiellement immergé",
+      "category": "geometry",
+      "priority": "P0",
+      "status": "procedural_to_refine",
+      "variant_count": 2,
+      "typical_dimensions_m": [
+        5,
+        0.8,
+        1.2
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Centre de longueur, base du tronc",
+      "lod_triangle_targets": {
+        "lod0": 2400,
+        "lod1": 800,
+        "lod2": 200
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P06"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Sections cassées crédibles, contact humide ; volume de fil fidèle aux grosses branches",
+      "actual_instance_count": 1,
+      "existing_resource": "src/render/pond-scenery.ts / fallen_log",
+      "final_resource": null,
+      "runtime_contract": {
+        "id": "fallen_log",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          0.4,
+          0.4,
+          5
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P0"
+      },
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Embellir selon les vues ; remplacer cette famille après validation métrique, pivot et matériaux."
+    },
+    {
+      "id": "submerged_branches",
+      "label": "Branches immergées",
+      "category": "geometry",
+      "priority": "P0",
+      "status": "procedural_to_refine",
+      "variant_count": 3,
+      "typical_dimensions_m": [
+        2.8,
+        1.1,
+        2
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Centre de l’amas",
+      "lod_triangle_targets": {
+        "lod0": 1600,
+        "lod1": 550,
+        "lod2": 120
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P06"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Branches reliées ; pas de détail qui multiplie les collisions de fil",
+      "actual_instance_count": 2,
+      "existing_resource": "src/render/pond-scenery.ts / submerged_branches",
+      "final_resource": null,
+      "runtime_contract": {
+        "id": "submerged_branches",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          2,
+          2,
+          2
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "game/posts.ts.obstacles",
+        "sockets": [],
+        "priority": "P0"
+      },
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Embellir selon les vues ; remplacer cette famille après validation métrique, pivot et matériaux."
+    },
+    {
+      "id": "stump",
+      "label": "Souche de rive",
+      "category": "geometry",
+      "priority": "P2",
+      "status": "absent_optional_future",
+      "variant_count": 2,
+      "typical_dimensions_m": [
+        1.2,
+        0.9,
+        1.1
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Centre au sol",
+      "lod_triangle_targets": {
+        "lod0": 1800,
+        "lod1": 600,
+        "lod2": 160
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P04",
+        "P06"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Coupe et racines plausibles, emplacement hors recul de grande canne",
+      "actual_instance_count": 0,
+      "existing_resource": null,
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Production ultérieure facultative, aucun blocage pour la carte livrée."
+    },
+    {
+      "id": "pier_deck",
+      "label": "Module de ponton en bois",
+      "category": "geometry",
+      "priority": "P0",
+      "status": "procedural_to_refine",
+      "variant_count": 2,
+      "typical_dimensions_m": [
+        2,
+        0.18,
+        2.4
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Centre haut du plancher",
+      "lod_triangle_targets": {
+        "lod0": 1200,
+        "lod1": 400,
+        "lod2": 120
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P01"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Assembler 4 modules de 2 m ; surface antidérapante crédible, interstices maîtrisés",
+      "actual_instance_count": 4,
+      "existing_resource": "src/render/pond-scenery.ts / pier_deck",
+      "final_resource": null,
+      "runtime_contract": {
+        "id": "pier_deck",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          2.4,
+          0.15,
+          2
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "game/pond-map.json.spots.jetty.landing",
+        "sockets": [
+          {
+            "id": "join-front",
+            "position": [
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "id": "join-rear",
+            "position": [
+              0,
+              0,
+              -1
+            ]
+          }
+        ],
+        "priority": "P0"
+      },
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Embellir selon les vues ; remplacer cette famille après validation métrique, pivot et matériaux."
+    },
+    {
+      "id": "pier_pile",
+      "label": "Pieux et traverse de ponton",
+      "category": "geometry",
+      "priority": "P0",
+      "status": "procedural_to_refine",
+      "variant_count": 2,
+      "typical_dimensions_m": [
+        0.25,
+        2,
+        0.25
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Centre au niveau du plancher",
+      "lod_triangle_targets": {
+        "lod0": 500,
+        "lod1": 180,
+        "lod2": 50
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P01"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Réglage vertical dans le registre ; bois immergé identifiable",
+      "actual_instance_count": 4,
+      "existing_resource": "src/render/pond-scenery.ts / pier_pile",
+      "final_resource": null,
+      "runtime_contract": {
+        "id": "pier_pile",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          0.17,
+          1.7,
+          0.17
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P0"
+      },
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Embellir selon les vues ; remplacer cette famille après validation métrique, pivot et matériaux."
+    },
+    {
+      "id": "path_patch",
+      "label": "Portion de sentier en terre",
+      "category": "geometry",
+      "priority": "P2",
+      "status": "procedural_to_refine",
+      "variant_count": 3,
+      "typical_dimensions_m": [
+        4,
+        0.03,
+        1.5
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Centre au sol",
+      "lod_triangle_targets": {
+        "lod0": 240,
+        "lod1": 80,
+        "lod2": 20
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Décalque ou petit relief, bord fondu ; ne pas faire un tapis flottant",
+      "actual_instance_count": 18,
+      "existing_resource": "src/render/pond-scenery.ts / path_patch",
+      "final_resource": null,
+      "runtime_contract": {
+        "id": "path_patch",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          1.4,
+          0.025,
+          3
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P2"
+      },
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Embellir selon les vues ; remplacer cette famille après validation métrique, pivot et matériaux."
+    },
+    {
+      "id": "bench",
+      "label": "Banc simple de rive",
+      "category": "geometry",
+      "priority": "P2",
+      "status": "absent_optional_future",
+      "variant_count": 1,
+      "typical_dimensions_m": [
+        1.6,
+        0.85,
+        0.55
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Centre au sol",
+      "lod_triangle_targets": {
+        "lod0": 2000,
+        "lod1": 650,
+        "lod2": 150
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P01",
+        "P03"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Accessoire sobre ; pas de texte ni marque ; hors zone de lancer",
+      "actual_instance_count": 0,
+      "existing_resource": null,
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Production ultérieure facultative, aucun blocage pour la carte livrée."
+    },
+    {
+      "id": "sign_post",
+      "label": "Panneau de repère",
+      "category": "geometry",
+      "priority": "P2",
+      "status": "absent_optional_future",
+      "variant_count": 1,
+      "typical_dimensions_m": [
+        0.6,
+        1.5,
+        0.15
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Base du poteau",
+      "lod_triangle_targets": {
+        "lod0": 700,
+        "lod1": 250,
+        "lod2": 60
+      },
+      "texture_size_target_px": 512,
+      "materials_target": 2,
+      "spots": [
+        "P01"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Texte ajouté par UI/texture dédiée modifiable, pas gravé au hasard dans la géométrie",
+      "actual_instance_count": 0,
+      "existing_resource": null,
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Production ultérieure facultative, aucun blocage pour la carte livrée."
+    },
+    {
+      "id": "angler_proxy",
+      "label": "Pêcheur occupant un poste",
+      "category": "geometry",
+      "priority": "P2",
+      "status": "existing_proxy",
+      "variant_count": 1,
+      "typical_dimensions_m": [
+        0.8,
+        1.35,
+        0.9
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Base du siège, repères mains/canne",
+      "lod_triangle_targets": {
+        "lod0": 6000,
+        "lod1": 2200,
+        "lod2": 800
+      },
+      "texture_size_target_px": 1024,
+      "materials_target": 2,
+      "spots": [
+        "P04",
+        "P06"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Priorité au personnage existant ; pose assise simple ; 1 boucle idle facultative",
+      "actual_instance_count": 1,
+      "existing_resource": "src/render/world.ts / npcRoot",
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Existant fonctionnel ; affiner seulement après retours appareil/visuels."
+    },
+    {
+      "id": "floating_leaves",
+      "label": "Petites feuilles de surface",
+      "category": "geometry",
+      "priority": "P2",
+      "status": "absent_optional_future",
+      "variant_count": 3,
+      "typical_dimensions_m": [
+        0.18,
+        0.005,
+        0.12
+      ],
+      "dimensions_note": "Dimensions indicatives par variante ; ajuster au placement final sans changer la logique silencieusement",
+      "pivot": "Centre au niveau eau",
+      "lod_triangle_targets": {
+        "lod0": 12,
+        "lod1": 4,
+        "lod2": 2
+      },
+      "texture_size_target_px": 512,
+      "materials_target": 2,
+      "spots": [
+        "P02",
+        "P04"
+      ],
+      "source_formats": [
+        "blend",
+        "py_optional",
+        "png"
+      ],
+      "runtime_formats": [
+        "glb",
+        "png_or_jpeg",
+        "ktx2_optional"
+      ],
+      "movement": "static_or_contextual",
+      "collision": "simple_independent_game_volume_if_required",
+      "brief": "Très peu d’instances ; expiration/placement contrôlés ; jamais signal de touche trompeur",
+      "actual_instance_count": 0,
+      "existing_resource": null,
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Production ultérieure facultative, aucun blocage pour la carte livrée."
+    },
+    {
+      "id": "tex_ground_earth",
+      "label": "Terre sèche et humide",
+      "category": "texture_or_fx",
+      "priority": "P0",
+      "status": "procedural_sufficient",
+      "variant_count": 2,
+      "typical_dimensions_m": null,
+      "pivot": "not_applicable",
+      "lod_triangle_targets": null,
+      "texture_size_target_px": 1024,
+      "materials_target": null,
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "png",
+        "blend_or_script_if_baked"
+      ],
+      "runtime_formats": [
+        "png",
+        "ktx2_optional"
+      ],
+      "movement": "engine_shader_or_effect_pool",
+      "collision": "none",
+      "brief": "Sol de rive ; base color/normal/ORM, répétable, humidité au contact",
+      "actual_instance_count": 1,
+      "existing_resource": "pond-earth-grain / 256px",
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Existant fonctionnel ; affiner seulement après retours appareil/visuels."
+    },
+    {
+      "id": "tex_shore_mud",
+      "label": "Vase et bordure humide",
+      "category": "texture_or_fx",
+      "priority": "P0",
+      "status": "absent_optional_future",
+      "variant_count": 2,
+      "typical_dimensions_m": null,
+      "pivot": "not_applicable",
+      "lod_triangle_targets": null,
+      "texture_size_target_px": 1024,
+      "materials_target": null,
+      "spots": [
+        "P02",
+        "P04",
+        "P06"
+      ],
+      "source_formats": [
+        "png",
+        "blend_or_script_if_baked"
+      ],
+      "runtime_formats": [
+        "png",
+        "ktx2_optional"
+      ],
+      "movement": "engine_shader_or_effect_pool",
+      "collision": "none",
+      "brief": "Transition de berge, sans mousse blanche obligatoire",
+      "actual_instance_count": 0,
+      "existing_resource": null,
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Production ultérieure facultative, aucun blocage pour la carte livrée."
+    },
+    {
+      "id": "tex_sand_gravel",
+      "label": "Sable et gravier",
+      "category": "texture_or_fx",
+      "priority": "P1",
+      "status": "absent_optional_future",
+      "variant_count": 2,
+      "typical_dimensions_m": null,
+      "pivot": "not_applicable",
+      "lod_triangle_targets": null,
+      "texture_size_target_px": 1024,
+      "materials_target": null,
+      "spots": [
+        "P02",
+        "P03",
+        "P05"
+      ],
+      "source_formats": [
+        "png",
+        "blend_or_script_if_baked"
+      ],
+      "runtime_formats": [
+        "png",
+        "ktx2_optional"
+      ],
+      "movement": "engine_shader_or_effect_pool",
+      "collision": "none",
+      "brief": "Fond peu profond et rive claire, taille des grains lisible",
+      "actual_instance_count": 0,
+      "existing_resource": null,
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Production ultérieure facultative, aucun blocage pour la carte livrée."
+    },
+    {
+      "id": "tex_grass_ground",
+      "label": "Sol végétalisé",
+      "category": "texture_or_fx",
+      "priority": "P1",
+      "status": "absent_optional_future",
+      "variant_count": 1,
+      "typical_dimensions_m": null,
+      "pivot": "not_applicable",
+      "lod_triangle_targets": null,
+      "texture_size_target_px": 1024,
+      "materials_target": null,
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "png",
+        "blend_or_script_if_baked"
+      ],
+      "runtime_formats": [
+        "png",
+        "ktx2_optional"
+      ],
+      "movement": "engine_shader_or_effect_pool",
+      "collision": "none",
+      "brief": "Couverture du terrain et transition terre/herbe",
+      "actual_instance_count": 0,
+      "existing_resource": null,
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Production ultérieure facultative, aucun blocage pour la carte livrée."
+    },
+    {
+      "id": "tex_wood_weathered",
+      "label": "Bois patiné",
+      "category": "texture_or_fx",
+      "priority": "P0",
+      "status": "procedural_sufficient",
+      "variant_count": 1,
+      "typical_dimensions_m": null,
+      "pivot": "not_applicable",
+      "lod_triangle_targets": null,
+      "texture_size_target_px": 1024,
+      "materials_target": null,
+      "spots": [
+        "P01",
+        "P06"
+      ],
+      "source_formats": [
+        "png",
+        "blend_or_script_if_baked"
+      ],
+      "runtime_formats": [
+        "png",
+        "ktx2_optional"
+      ],
+      "movement": "engine_shader_or_effect_pool",
+      "collision": "none",
+      "brief": "Planches/pieux/troncs, matières partagées et variation humide",
+      "actual_instance_count": 2,
+      "existing_resource": "pier-wood-grain / 256x128px",
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Existant fonctionnel ; affiner seulement après retours appareil/visuels."
+    },
+    {
+      "id": "tex_rock",
+      "label": "Pierre naturelle",
+      "category": "texture_or_fx",
+      "priority": "P1",
+      "status": "absent_optional_future",
+      "variant_count": 1,
+      "typical_dimensions_m": null,
+      "pivot": "not_applicable",
+      "lod_triangle_targets": null,
+      "texture_size_target_px": 1024,
+      "materials_target": null,
+      "spots": [
+        "P03",
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "png",
+        "blend_or_script_if_baked"
+      ],
+      "runtime_formats": [
+        "png",
+        "ktx2_optional"
+      ],
+      "movement": "engine_shader_or_effect_pool",
+      "collision": "none",
+      "brief": "Roches mates sans metallic",
+      "actual_instance_count": 0,
+      "existing_resource": null,
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Production ultérieure facultative, aucun blocage pour la carte livrée."
+    },
+    {
+      "id": "water_normals",
+      "label": "Normales d’eau répétables",
+      "category": "texture_or_fx",
+      "priority": "P0",
+      "status": "procedural_sufficient",
+      "variant_count": 2,
+      "typical_dimensions_m": null,
+      "pivot": "not_applicable",
+      "lod_triangle_targets": null,
+      "texture_size_target_px": 512,
+      "materials_target": null,
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "png",
+        "blend_or_script_if_baked"
+      ],
+      "runtime_formats": [
+        "png",
+        "ktx2_optional"
+      ],
+      "movement": "engine_shader_or_effect_pool",
+      "collision": "none",
+      "brief": "Deux fréquences de ridules, sans objets reconnaissables ni ombres dans la normale",
+      "actual_instance_count": 0,
+      "existing_resource": "pond-water.ts / deux mouvements de normales, sans fichier texture",
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Existant fonctionnel ; affiner seulement après retours appareil/visuels."
+    },
+    {
+      "id": "water_contact_mask",
+      "label": "Masque de contact eau/berge",
+      "category": "texture_or_fx",
+      "priority": "P0",
+      "status": "procedural_sufficient",
+      "variant_count": 1,
+      "typical_dimensions_m": null,
+      "pivot": "not_applicable",
+      "lod_triangle_targets": null,
+      "texture_size_target_px": 512,
+      "materials_target": null,
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "png",
+        "blend_or_script_if_baked"
+      ],
+      "runtime_formats": [
+        "png",
+        "ktx2_optional"
+      ],
+      "movement": "engine_shader_or_effect_pool",
+      "collision": "none",
+      "brief": "Masque produit depuis terrain/contour ; source et dimensions monde documentées",
+      "actual_instance_count": 1,
+      "existing_resource": "RawTexture RG / profondeur-rive / 128px",
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Existant fonctionnel ; affiner seulement après retours appareil/visuels."
+    },
+    {
+      "id": "fx_ripple",
+      "label": "Atlas de rides locales",
+      "category": "texture_or_fx",
+      "priority": "P0",
+      "status": "functional_pool",
+      "variant_count": 1,
+      "typical_dimensions_m": null,
+      "pivot": "not_applicable",
+      "lod_triangle_targets": null,
+      "texture_size_target_px": 512,
+      "materials_target": null,
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "png",
+        "blend_or_script_if_baked"
+      ],
+      "runtime_formats": [
+        "png",
+        "ktx2_optional"
+      ],
+      "movement": "engine_shader_or_effect_pool",
+      "collision": "none",
+      "brief": "Motifs sobres avec alpha, cœur non opaque ; utilisable aussi comme base shader",
+      "actual_instance_count": 28,
+      "existing_resource": "water-contact / 12-20-28 actifs selon qualité",
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Existant fonctionnel ; affiner seulement après retours appareil/visuels."
+    },
+    {
+      "id": "fx_splash",
+      "label": "Atlas gouttes et petit splash",
+      "category": "texture_or_fx",
+      "priority": "P0",
+      "status": "functional_pool",
+      "variant_count": 1,
+      "typical_dimensions_m": null,
+      "pivot": "not_applicable",
+      "lod_triangle_targets": null,
+      "texture_size_target_px": 512,
+      "materials_target": null,
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "png",
+        "blend_or_script_if_baked"
+      ],
+      "runtime_formats": [
+        "png",
+        "ktx2_optional"
+      ],
+      "movement": "engine_shader_or_effect_pool",
+      "collision": "none",
+      "brief": "Contacts léger/lourd ; éviter de simuler une eau complète par sprite",
+      "actual_instance_count": 48,
+      "existing_resource": "water-drop / 16-32-48 disponibles",
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Existant fonctionnel ; affiner seulement après retours appareil/visuels."
+    },
+    {
+      "id": "fx_foam_local",
+      "label": "Mousse de contact locale",
+      "category": "texture_or_fx",
+      "priority": "P2",
+      "status": "absent_optional_future",
+      "variant_count": 1,
+      "typical_dimensions_m": null,
+      "pivot": "not_applicable",
+      "lod_triangle_targets": null,
+      "texture_size_target_px": 256,
+      "materials_target": null,
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "png",
+        "blend_or_script_if_baked"
+      ],
+      "runtime_formats": [
+        "png",
+        "ktx2_optional"
+      ],
+      "movement": "engine_shader_or_effect_pool",
+      "collision": "none",
+      "brief": "Effet éphémère seulement aux contacts qui le justifient, pas bord de lac blanc",
+      "actual_instance_count": 0,
+      "existing_resource": null,
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Production ultérieure facultative, aucun blocage pour la carte livrée."
+    },
+    {
+      "id": "sky_environment",
+      "label": "Ciel et environnement lumineux",
+      "category": "environment",
+      "priority": "P0",
+      "status": "procedural_sufficient",
+      "variant_count": 1,
+      "typical_dimensions_m": null,
+      "pivot": "not_applicable",
+      "lod_triangle_targets": null,
+      "texture_size_target_px": 1024,
+      "materials_target": null,
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "hdr_or_exr_if_used",
+        "engine_sky_configuration"
+      ],
+      "runtime_formats": [
+        "engine_env_or_prefiltered_cubemap",
+        "json"
+      ],
+      "movement": "time_or_fixed_ambience",
+      "collision": "none",
+      "brief": "Réutiliser le ciel existant ; source lumineuse, direction du soleil et reflets cohérents ; trois variantes de contrôle",
+      "actual_instance_count": 1,
+      "existing_resource": "sky-gradient / trois ambiances",
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Existant fonctionnel ; affiner seulement après retours appareil/visuels."
+    },
+    {
+      "id": "water_audio",
+      "label": "Familles de sons de contact d’eau",
+      "category": "audio",
+      "priority": "P1",
+      "status": "synthetic_fallback",
+      "variant_count": 6,
+      "typical_dimensions_m": null,
+      "pivot": "not_applicable",
+      "lod_triangle_targets": null,
+      "texture_size_target_px": null,
+      "materials_target": null,
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "wav"
+      ],
+      "runtime_formats": [
+        "browser_verified_aac_or_mp3_or_ogg"
+      ],
+      "movement": "event_bus",
+      "collision": "none",
+      "brief": "Léger/lourd, plongée, filet, égouttement, ambiance ; 1–3 s pour impacts, mono recommandé ; réutiliser sons et licences déjà disponibles",
+      "actual_instance_count": 1,
+      "existing_resource": "ui/audio.ts / AudioContext partagé",
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Produire des sons de contact/filet/égouttement distincts ; conserver le fallback."
+    },
+    {
+      "id": "spot_previews",
+      "label": "Captures in-game des six postes",
+      "category": "capture",
+      "priority": "P1",
+      "status": "rendered_references",
+      "variant_count": 6,
+      "typical_dimensions_m": null,
+      "pivot": "not_applicable",
+      "lod_triangle_targets": null,
+      "texture_size_target_px": 1024,
+      "materials_target": null,
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "source_formats": [
+        "png"
+      ],
+      "runtime_formats": [
+        "webp_or_jpeg"
+      ],
+      "movement": "none",
+      "collision": "none",
+      "brief": "Interface masquée, ID de poste stable ; aperçu 1024×576 et vignette adaptée ; conserver le cadrage après embellissement",
+      "actual_instance_count": 12,
+      "existing_resource": "docs/apercus/carte-eau/post-{desktop,mobile}-{id}.png",
+      "final_resource": null,
+      "runtime_contract": null,
+      "reference_captures": [
+        "../apercus/carte-eau/post-desktop-jetty.png",
+        "../apercus/carte-eau/post-desktop-cove.png",
+        "../apercus/carte-eau/post-desktop-bank.png",
+        "../apercus/carte-eau/post-desktop-reed-bank.png",
+        "../apercus/carte-eau/post-desktop-point.png",
+        "../apercus/carte-eau/post-desktop-timber.png"
+      ],
+      "remaining_work": "Existant fonctionnel ; affiner seulement après retours appareil/visuels."
+    }
+  ],
+  "runtime_registry": "src/render/environment-registry.json"
+}

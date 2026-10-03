@@ -15,7 +15,8 @@ test('Une cible refusée conserve l’état ; les coordonnées choisissent l’h
   const game = new FishingGame(() => 0);
   assert.equal(game.cast({ x: 15, z: 7 }), false); assert.equal(game.phase, 'idle');
   assert.equal(game.cast({ x: 4.2, z: 8.5 }), true);
-  assert.deepEqual(game.target, { x: 4.2, z: 8.5 }); assert.equal(game.spot, 'willow');
+  assert.deepEqual(game.target, { x: 4.2, z: 8.5 }); assert.equal(game.spot, 'open');
+  const cove=new FishingGame(()=>0);cove.setPost('cove');assert.equal(cove.cast({x:2.8,z:4.5}),true);assert.equal(cove.spot,'willow');
 });
 test('Le lancer part du tiers bas et exige un relâchement central, vers l’eau', () => {
  assert.equal(CastGesture.canStart(500,844),false);assert.equal(CastGesture.canStart(700,844),true);

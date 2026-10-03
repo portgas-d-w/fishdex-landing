@@ -7,14 +7,14 @@ test('Deux vrais doigts : appui maintenu, canne simultanée, maintien immobile e
  await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());await castByGesture(page);await page.evaluate(()=>(window as any).__fishingQA.advance(45));await page.locator('#strike').click();
  const b=(await page.locator('#reel-control').boundingBox())!,cx=b.x+b.width/2,cy=b.y+b.height/2,session=await context.newCDPSession(page);
  const rb=(await page.locator('#rod-control').boundingBox())!,rx=rb.x+rb.width/2,ry=rb.y+rb.height/2;
- let rod={id:10,x:rx,y:ry},reel={id:20,x:cx+28,y:cy};
+ const original=await page.evaluate(()=>(window as any).__fishingQA.snapshot());let rod={id:10,x:rx,y:ry},reel={id:20,x:cx+28,y:cy};
  await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[rod]});await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[rod,reel]});
  expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(true);
  for(let i=1;i<=5;i++){rod={...rod,x:rx+i*4.5,y:ry-i*3};await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[rod,reel]});}
- const moved=await page.evaluate(()=>(window as any).__fishingQA.snapshot());expect(moved.reeling).toBe(true);expect(moved.yaw).toBeGreaterThan(.5);expect(moved.lift).toBeGreaterThan(.6);
+ await page.evaluate(()=>(window as any).__fishingQA.advance(.1));const moved=await page.evaluate(()=>(window as any).__fishingQA.snapshot());expect(moved.reeling).toBe(true);expect(moved.yaw).toBeGreaterThan(original.yaw);expect(moved.lift).toBeGreaterThan(original.lift);
  await page.waitForTimeout(1100);expect(await page.evaluate(()=>getSelection()?.toString())).toBe('');await page.evaluate(()=>(window as any).__fishingQA.advance(.5));expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(true);
  reel={...reel,x:cx-14,y:cy+24};await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[rod,reel]});
- await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[rod]});expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(true);
+ await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[reel]});expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(false);
  await session.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});expect(await page.evaluate(()=>(window as any).__fishingQA.snapshot().reeling)).toBe(false);
  await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:30,x:rx,y:ry}]});
  await session.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});

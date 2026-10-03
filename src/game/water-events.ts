@@ -1,0 +1,29 @@
+import type {FishingGame} from './fishing.ts';
+import {component,floatLoad} from './rig.ts';
+import {worldPoint,postById,lineObstacle} from './posts.ts';
+import {inPond,surfaceLevel} from './pond-map.ts';
+export const WATER_TYPES=['cast_impact','line_deposit','float_enter','float_motion','bite_float','float_submerge','float_resurface','strike_surface','lure_surface','lure_submerge','bait_sink','feeder_impact','groundbait_impact','fish_near_surface','fish_surface_turn','fish_surface_break','fish_dive','line_surface_drag','obstacle_disturbance','net_enter','net_capture','net_exit','fish_release','ambient_surface','rain_surface','wind_change','boat_wake','spot_transition'] as const;
+export type WaterType=typeof WATER_TYPES[number];
+export interface WaterEvent{id:number;type:WaterType;time:number;position:{x:number;y:number;z:number};intensity:number;source:string;direction:number;essential:boolean;seed:number}
+export function terminalPosition(g:FishingGame){
+ let p={...g.fishPosition};const floating=!!g.config.components.float||!!g.config.components.indicator||!g.modern&&['pole','float'].includes(g.method);
+ if(g.phase==='casting'){const t=Math.min(1,g.elapsed/g.castDuration),tip=g.rodGeometry.tip;p={x:tip.x+(g.target.x-tip.x)*t,y:tip.y*(1-t)+Math.sin(t*Math.PI)*(g.deposition?.15:2.3),z:tip.z+(g.target.z-tip.z)*t};}
+ else if(['waiting','bite'].includes(g.phase)){p.y=floating?.04-Math.max(0,floatLoad(g.rig)-(component(g.rig.components.float??'')?.capacity??2))*.2:-g.presentationDepth;if(g.modern&&(g.technique.engine==='surface'||g.rig.recipe==='seche'))p.y=.035;if(g.phase==='bite'&&floating){p.y-=Math.abs(Math.sin(g.elapsed*12))*.14;p.x+=Math.sin(g.elapsed*4)*.05;}}
+ return {position:p,floating,lure:!!g.config.components.lure||!!g.config.components.fly||g.modern&&g.technique.engine==='surface'||!g.modern&&g.method==='lure'};
+}
+/** Journal borné, lecteurs indépendants, horloge de simulation uniquement. */
+export class WaterEvents{
+ readonly events:WaterEvent[]=[];private serial=0;private previousPhase='idle';private previousFloat?:number;private previousLure?:number;private previousFish?:{x:number;y:number;z:number};private previousEntry?:{x:number;z:number};private last=new Map<string,number>();private previousWind=0;
+ since(id:number){return this.events.filter(e=>e.id>id);}
+ emit(g:FishingGame,type:WaterType,local:{x:number;z:number},intensity=.3,essential=true,direction=0){const p=worldPoint(g.post,local);if(type!=='spot_transition'&&!postById(g.post).context&&!inPond(p))return;const e={id:++this.serial,type,time:g.simulationTime,position:{...p,y:surfaceLevel(p)},intensity:Math.max(.05,Math.min(1,intensity)),source:g.specimenId||g.config.recipe||g.method,direction:direction+postById(g.post).angle,essential,seed:g.specimenSeed??127};this.events.push(e);if(this.events.length>64)this.events.shift();}
+ private trail(g:FishingGame,key:WaterType,p:{x:number;z:number},amplitude=.12){if(g.simulationTime-(this.last.get(key)??-10)<.35)return;this.last.set(key,g.simulationTime);this.emit(g,key,p,amplitude,key==='float_motion'||key==='lure_surface',g.direction);}
+ observe(g:FishingGame){const phase=g.phase,t=terminalPosition(g),p=t.position,fight=['fighting','landing'].includes(phase),active=['waiting','bite','fighting','landing'].includes(phase);
+  if(phase!==this.previousPhase){if(this.previousPhase==='casting'&&phase==='waiting'){this.emit(g,g.deposition?'line_deposit':'cast_impact',g.target,g.deposition?.15:.45);if(t.floating)this.emit(g,'float_enter',p,.12);if(g.config.components.feeder)this.emit(g,'feeder_impact',p,.55);this.emit(g,'bait_sink',p,.1,false);}if(phase==='bite'&&t.floating)this.emit(g,'bite_float',p,.18);if(phase==='fighting'&&p.y>-.35)this.emit(g,'strike_surface',g.lineEntry,.2);if(phase==='landing')this.emit(g,'net_enter',g.netPosition,.22);if(this.previousPhase==='landing'&&phase==='fighting')this.emit(g,'net_exit',g.netPosition,.12,false);this.previousPhase=phase;}
+  if(active&&t.floating){if(this.previousFloat!==undefined){if(p.y<-.22&&this.previousFloat>=-.22)this.emit(g,'float_submerge',p,.13);if(p.y>=-.18&&this.previousFloat<-.18)this.emit(g,'float_resurface',p,.13);}if(p.y>-.08&&Math.hypot(p.x-(this.previousEntry?.x??p.x),p.z-(this.previousEntry?.z??p.z))>.005)this.trail(g,'float_motion',p);this.previousFloat=p.y;}else this.previousFloat=undefined;
+  if(active&&t.lure){if(p.y>-.12&&g.reelSpeed>0)this.trail(g,'lure_surface',p,.18);if(p.y<-.15&&(this.previousLure===undefined||this.previousLure>=-.15))this.emit(g,'lure_submerge',p,.13,false);this.previousLure=p.y;}else this.previousLure=undefined;
+  if(fight){if(g.fishPosition.y>-.35&&Math.hypot(g.fishPosition.x-(this.previousFish?.x??g.fishPosition.x),g.fishPosition.z-(this.previousFish?.z??g.fishPosition.z))>.002)this.trail(g,g.pulling?'fish_surface_turn':'fish_near_surface',g.fishPosition,.22);const entry=g.lineEntry;if(this.previousEntry&&Math.hypot(entry.x-this.previousEntry.x,entry.z-this.previousEntry.z)>.004)this.trail(g,'line_surface_drag',entry,.08);const contact=lineObstacle(g.post,g.fishPosition,entry);if(g.snagged&&g.tension>.1&&contact)this.trail(g,'obstacle_disturbance',contact,.12);this.previousEntry={...entry};this.previousFish={...g.fishPosition};}else{this.previousEntry={x:p.x,z:p.z};this.previousFish=undefined;}
+  if(g.post==='boat'&&g.boatSpeed>.05&&phase==='waiting')this.trail(g,'boat_wake',{x:g.presentationState.boat.x,z:g.presentationState.boat.z-2},Math.min(.4,g.boatSpeed*.12));
+  if(Math.abs(g.environment.wind-this.previousWind)>.05){this.emit(g,'wind_change',g.target,.1,false);this.previousWind=g.environment.wind;}
+ }
+ transition(g:FishingGame){this.previousPhase='idle';this.previousFloat=undefined;this.previousLure=undefined;this.previousEntry=undefined;this.previousFish=undefined;this.last.clear();this.emit(g,'spot_transition',{x:0,z:1},.05,false);}
+}

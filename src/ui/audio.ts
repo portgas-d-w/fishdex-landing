@@ -1,7 +1,10 @@
+import type {WaterEvent} from '../game/water-events';
 // Sons synthétisés localement, démarrés uniquement après un geste de l’utilisateur.
 export class GameAudio {
   private context?: AudioContext;
-  enabled = false;
+  enabled = false;private lastWater=-10;
+  water(e:WaterEvent){if(e.time-this.lastWater<.12||!['cast_impact','line_deposit','feeder_impact','groundbait_impact','net_enter','net_capture','fish_release'].includes(e.type))return;this.lastWater=e.time;this.tone('cast');}
+
   async unlock() {
     if (!this.enabled) return;
     try {

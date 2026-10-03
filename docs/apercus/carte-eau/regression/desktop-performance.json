@@ -1,0 +1,111 @@
+{
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "renderer": "Chromium / SwiftShader, pas un téléphone réel",
+  "results": [
+    {
+      "post": "jetty",
+      "fps": 22.509120074504274,
+      "cpuMedianMs": 1,
+      "cpuP95Ms": 2.400000002235174,
+      "drawCalls": 88,
+      "cpuFrameMs": 0.8000000007450581,
+      "vertices": 64937,
+      "meshes": 88,
+      "width": 1024,
+      "height": 640,
+      "textures": [
+        {
+          "name": "pond-earth-grain",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "name": "pier-wood-grain",
+          "width": 256,
+          "height": 128
+        },
+        {
+          "name": "pier-wood-grain",
+          "width": 256,
+          "height": 128
+        },
+        {
+          "name": "",
+          "width": 128,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "post": "cove",
+      "fps": 24.42868400315209,
+      "cpuMedianMs": 0.8999999985098839,
+      "cpuP95Ms": 2.100000001490116,
+      "drawCalls": 110,
+      "cpuFrameMs": 3.5,
+      "vertices": 64937,
+      "meshes": 110,
+      "width": 1024,
+      "height": 640,
+      "textures": [
+        {
+          "name": "pond-earth-grain",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "name": "pier-wood-grain",
+          "width": 256,
+          "height": 128
+        },
+        {
+          "name": "pier-wood-grain",
+          "width": 256,
+          "height": 128
+        },
+        {
+          "name": "",
+          "width": 128,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "post": "bank",
+      "fps": 22.848233965920386,
+      "cpuMedianMs": 1.5,
+      "cpuP95Ms": 2.199999999254942,
+      "drawCalls": 120,
+      "cpuFrameMs": 1.5,
+      "vertices": 64937,
+      "meshes": 120,
+      "width": 1024,
+      "height": 640,
+      "textures": [
+        {
+          "name": "pond-earth-grain",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "name": "pier-wood-grain",
+          "width": 256,
+          "height": 128
+        },
+        {
+          "name": "pier-wood-grain",
+          "width": 256,
+          "height": 128
+        },
+        {
+          "name": "",
+          "width": 128,
+          "height": 128
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,303 @@
+{
+  "version": 1,
+  "id": "willow-pond",
+  "name": "Étang des Saules",
+  "designId": "map01_etang_aulnes",
+  "translation": {
+    "x": 0,
+    "z": 39
+  },
+  "bounds": [
+    [
+      -90,
+      -31
+    ],
+    [
+      90,
+      109
+    ]
+  ],
+  "contour": [
+    {
+      "x": -61,
+      "z": 31
+    },
+    {
+      "x": -54,
+      "z": 65
+    },
+    {
+      "x": -28,
+      "z": 82
+    },
+    {
+      "x": 13,
+      "z": 85
+    },
+    {
+      "x": 48,
+      "z": 70
+    },
+    {
+      "x": 64,
+      "z": 46
+    },
+    {
+      "x": 50,
+      "z": 13
+    },
+    {
+      "x": 24,
+      "z": -3
+    },
+    {
+      "x": -9,
+      "z": -7
+    },
+    {
+      "x": -47,
+      "z": 8
+    }
+  ],
+  "spots": [
+    {
+      "id": "jetty",
+      "designId": "P01",
+      "origin": {
+        "x": 0,
+        "z": -1
+      },
+      "angle": 0,
+      "sectorDegrees": [
+        -55,
+        55
+      ],
+      "cameraHeight": 4.2,
+      "backClear": 12,
+      "landing": {
+        "x": 0,
+        "z": 1.5,
+        "radius": 1.5
+      }
+    },
+    {
+      "id": "cove",
+      "designId": "P02",
+      "origin": {
+        "x": -46.714261125608694,
+        "z": 11.298136242314087
+      },
+      "angle": 0.8210106666775072,
+      "sectorDegrees": [
+        -45,
+        45
+      ],
+      "cameraHeight": 4.2,
+      "backClear": 12,
+      "landing": {
+        "x": 0,
+        "z": 1.5,
+        "radius": 1.5
+      }
+    },
+    {
+      "id": "bank",
+      "designId": "P03",
+      "origin": {
+        "x": 49.918145490120885,
+        "z": 17.676696809329382
+      },
+      "angle": -0.8549619279173133,
+      "sectorDegrees": [
+        -60,
+        60
+      ],
+      "cameraHeight": 4.2,
+      "backClear": 12,
+      "landing": {
+        "x": 0,
+        "z": 1.5,
+        "radius": 1.5
+      }
+    },
+    {
+      "id": "reed-bank",
+      "designId": "P04",
+      "origin": {
+        "x": -52.54730392735749,
+        "z": 62.30181877521038
+      },
+      "angle": 1.9558907312688296,
+      "sectorDegrees": [
+        -32,
+        32
+      ],
+      "cameraHeight": 4.2,
+      "backClear": 12,
+      "landing": {
+        "x": 0,
+        "z": 1.5,
+        "radius": 1.5
+      }
+    },
+    {
+      "id": "point",
+      "designId": "P05",
+      "origin": {
+        "x": 20.82254353101196,
+        "z": 79.52003786738076
+      },
+      "angle": -2.9482131364057547,
+      "sectorDegrees": [
+        -48,
+        48
+      ],
+      "cameraHeight": 4.2,
+      "backClear": 12,
+      "landing": {
+        "x": 0,
+        "z": 1.5,
+        "radius": 1.5
+      }
+    },
+    {
+      "id": "timber",
+      "designId": "P06",
+      "origin": {
+        "x": 56.04439517184518,
+        "z": 54.58094182253825
+      },
+      "angle": -1.781889660017643,
+      "sectorDegrees": [
+        -35,
+        35
+      ],
+      "cameraHeight": 4.2,
+      "backClear": 12,
+      "landing": {
+        "x": 0,
+        "z": 1.5,
+        "radius": 1.5
+      }
+    }
+  ],
+  "habitats": [
+    {
+      "id": "near_pier",
+      "kind": "shore_structure",
+      "center_xz_m": [
+        0,
+        4
+      ],
+      "radius_m": 8,
+      "depth_range_m": [
+        0.7,
+        2.5
+      ]
+    },
+    {
+      "id": "shallow_bay",
+      "kind": "shallow_sheltered",
+      "center_xz_m": [
+        -34,
+        21
+      ],
+      "radius_m": 14,
+      "depth_range_m": [
+        0.4,
+        1.8
+      ]
+    },
+    {
+      "id": "lily_zone",
+      "kind": "surface_vegetation",
+      "center_xz_m": [
+        -43.61806703608141,
+        16.777514141307396
+      ],
+      "radius_m": 3,
+      "depth_range_m": [
+        0.5,
+        1.8
+      ]
+    },
+    {
+      "id": "shore_shelf",
+      "kind": "littoral",
+      "center_xz_m": [
+        42,
+        22
+      ],
+      "radius_m": 10,
+      "depth_range_m": [
+        0.4,
+        2.5
+      ]
+    },
+    {
+      "id": "reeds_zone",
+      "kind": "reed_corridor",
+      "center_xz_m": [
+        -46,
+        61
+      ],
+      "radius_m": 9,
+      "depth_range_m": [
+        0.5,
+        2.5
+      ]
+    },
+    {
+      "id": "drop_off",
+      "kind": "slope",
+      "center_xz_m": [
+        22,
+        64
+      ],
+      "radius_m": 13,
+      "depth_range_m": [
+        2,
+        6
+      ]
+    },
+    {
+      "id": "deep_basin",
+      "kind": "deep_lake",
+      "center_xz_m": [
+        12,
+        48
+      ],
+      "radius_m": 18,
+      "depth_range_m": [
+        4,
+        8
+      ]
+    },
+    {
+      "id": "wood_cover",
+      "kind": "submerged_cover",
+      "center_xz_m": [
+        48,
+        53
+      ],
+      "radius_m": 7,
+      "depth_range_m": [
+        1.5,
+        4
+      ]
+    },
+    {
+      "id": "open_water",
+      "kind": "pelagic",
+      "center_xz_m": [
+        0,
+        39
+      ],
+      "radius_m": 28,
+      "depth_range_m": [
+        1.5,
+        8
+      ]
+    }
+  ]
+}

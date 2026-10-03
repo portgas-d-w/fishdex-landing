@@ -1,0 +1,37 @@
+{
+  "forcedEncounter": true,
+  "realCombatAndTouchReception": true,
+  "physicalDevice": false,
+  "rows": [
+    {
+      "post": "jetty",
+      "capture": "7a48079d-7873-4e8a-addf-19dc7ceda3ed",
+      "photo": true
+    },
+    {
+      "post": "cove",
+      "capture": "d957610a-7c2a-42c0-b9ea-238ec0ab63b7",
+      "photo": true
+    },
+    {
+      "post": "bank",
+      "capture": "ca4cca21-adae-4e81-9f50-a9fd08fbede6",
+      "photo": true
+    },
+    {
+      "post": "reed-bank",
+      "capture": "cfe410d8-e436-4ad6-8730-64a04bd027d1",
+      "photo": true
+    },
+    {
+      "post": "point",
+      "capture": "2e95ae43-2b27-4b49-9191-23db967cb3ef",
+      "photo": true
+    },
+    {
+      "post": "timber",
+      "capture": "ed47a847-a4aa-40c3-a0ff-8b2066749672",
+      "photo": true
+    }
+  ]
+}

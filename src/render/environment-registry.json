@@ -1,0 +1,387 @@
+{
+  "version": 1,
+  "units": "meter",
+  "entries": [
+    {
+      "id": "pier_deck",
+      "version": 1,
+      "resource": null,
+      "lightmap": null,
+      "dimensions": [
+        2.4,
+        0.15,
+        2
+      ],
+      "dimensionTolerance": 1.35,
+      "pivot": "center",
+      "lod": {
+        "near": null,
+        "far": null,
+        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+      },
+      "materials": {
+        "max": 3,
+        "colorSpace": "baseColor_sRGB_normals_linear",
+        "lightmapUV": 1
+      },
+      "collision": "game/pond-map.json.spots.jetty.landing",
+      "sockets": [
+        {
+          "id": "join-front",
+          "position": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "id": "join-rear",
+          "position": [
+            0,
+            0,
+            -1
+          ]
+        }
+      ],
+      "priority": "P0"
+    },
+    {
+      "id": "pier_pile",
+      "version": 1,
+      "resource": null,
+      "lightmap": null,
+      "dimensions": [
+        0.17,
+        1.7,
+        0.17
+      ],
+      "dimensionTolerance": 1.35,
+      "pivot": "center",
+      "lod": {
+        "near": null,
+        "far": null,
+        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+      },
+      "materials": {
+        "max": 3,
+        "colorSpace": "baseColor_sRGB_normals_linear",
+        "lightmapUV": 1
+      },
+      "collision": "visual_only",
+      "sockets": [],
+      "priority": "P0"
+    },
+    {
+      "id": "tree_alder",
+      "version": 1,
+      "resource": null,
+      "lightmap": null,
+      "dimensions": [
+        6,
+        9,
+        5
+      ],
+      "dimensionTolerance": 1.35,
+      "pivot": "base_center",
+      "lod": {
+        "near": null,
+        "far": null,
+        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+      },
+      "materials": {
+        "max": 3,
+        "colorSpace": "baseColor_sRGB_normals_linear",
+        "lightmapUV": 1
+      },
+      "collision": "visual_only",
+      "sockets": [],
+      "priority": "P1"
+    },
+    {
+      "id": "tree_oak",
+      "version": 1,
+      "resource": null,
+      "lightmap": null,
+      "dimensions": [
+        6,
+        9,
+        5
+      ],
+      "dimensionTolerance": 1.35,
+      "pivot": "base_center",
+      "lod": {
+        "near": null,
+        "far": null,
+        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+      },
+      "materials": {
+        "max": 3,
+        "colorSpace": "baseColor_sRGB_normals_linear",
+        "lightmapUV": 1
+      },
+      "collision": "visual_only",
+      "sockets": [],
+      "priority": "P1"
+    },
+    {
+      "id": "tree_willow",
+      "version": 1,
+      "resource": null,
+      "lightmap": null,
+      "dimensions": [
+        6,
+        8,
+        5
+      ],
+      "dimensionTolerance": 1.35,
+      "pivot": "base_center",
+      "lod": {
+        "near": null,
+        "far": null,
+        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+      },
+      "materials": {
+        "max": 3,
+        "colorSpace": "baseColor_sRGB_normals_linear",
+        "lightmapUV": 1
+      },
+      "collision": "visual_only",
+      "sockets": [],
+      "priority": "P1"
+    },
+    {
+      "id": "reeds",
+      "version": 1,
+      "resource": null,
+      "lightmap": null,
+      "dimensions": [
+        2,
+        2,
+        2
+      ],
+      "dimensionTolerance": 1.35,
+      "pivot": "base_center",
+      "lod": {
+        "near": null,
+        "far": null,
+        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+      },
+      "materials": {
+        "max": 3,
+        "colorSpace": "baseColor_sRGB_normals_linear",
+        "lightmapUV": 1
+      },
+      "collision": "game/posts.ts.obstacles",
+      "sockets": [],
+      "priority": "P0"
+    },
+    {
+      "id": "grass_clump",
+      "version": 1,
+      "resource": null,
+      "lightmap": null,
+      "dimensions": [
+        0.22,
+        0.55,
+        0.22
+      ],
+      "dimensionTolerance": 1.35,
+      "pivot": "base_center",
+      "lod": {
+        "near": null,
+        "far": null,
+        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+      },
+      "materials": {
+        "max": 3,
+        "colorSpace": "baseColor_sRGB_normals_linear",
+        "lightmapUV": 1
+      },
+      "collision": "visual_only",
+      "sockets": [],
+      "priority": "P1"
+    },
+    {
+      "id": "shrub",
+      "version": 1,
+      "resource": null,
+      "lightmap": null,
+      "dimensions": [
+        1.4,
+        1,
+        1.2
+      ],
+      "dimensionTolerance": 1.35,
+      "pivot": "base_center",
+      "lod": {
+        "near": null,
+        "far": null,
+        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+      },
+      "materials": {
+        "max": 3,
+        "colorSpace": "baseColor_sRGB_normals_linear",
+        "lightmapUV": 1
+      },
+      "collision": "visual_only",
+      "sockets": [],
+      "priority": "P1"
+    },
+    {
+      "id": "lily_cluster",
+      "version": 1,
+      "resource": null,
+      "lightmap": null,
+      "dimensions": [
+        0.32,
+        0.01,
+        0.25
+      ],
+      "dimensionTolerance": 1.35,
+      "pivot": "center",
+      "lod": {
+        "near": null,
+        "far": null,
+        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+      },
+      "materials": {
+        "max": 3,
+        "colorSpace": "baseColor_sRGB_normals_linear",
+        "lightmapUV": 1
+      },
+      "collision": "visual_only",
+      "sockets": [],
+      "priority": "P0"
+    },
+    {
+      "id": "rock_small",
+      "version": 1,
+      "resource": null,
+      "lightmap": null,
+      "dimensions": [
+        1.4,
+        0.8,
+        1.2
+      ],
+      "dimensionTolerance": 1.35,
+      "pivot": "base_center",
+      "lod": {
+        "near": null,
+        "far": null,
+        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+      },
+      "materials": {
+        "max": 3,
+        "colorSpace": "baseColor_sRGB_normals_linear",
+        "lightmapUV": 1
+      },
+      "collision": "visual_only",
+      "sockets": [],
+      "priority": "P1"
+    },
+    {
+      "id": "rock_landmark",
+      "version": 1,
+      "resource": null,
+      "lightmap": null,
+      "dimensions": [
+        1.4,
+        0.8,
+        1.2
+      ],
+      "dimensionTolerance": 1.35,
+      "pivot": "base_center",
+      "lod": {
+        "near": null,
+        "far": null,
+        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+      },
+      "materials": {
+        "max": 3,
+        "colorSpace": "baseColor_sRGB_normals_linear",
+        "lightmapUV": 1
+      },
+      "collision": "visual_only",
+      "sockets": [],
+      "priority": "P1"
+    },
+    {
+      "id": "fallen_log",
+      "version": 1,
+      "resource": null,
+      "lightmap": null,
+      "dimensions": [
+        0.4,
+        0.4,
+        5
+      ],
+      "dimensionTolerance": 1.35,
+      "pivot": "base_center",
+      "lod": {
+        "near": null,
+        "far": null,
+        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+      },
+      "materials": {
+        "max": 3,
+        "colorSpace": "baseColor_sRGB_normals_linear",
+        "lightmapUV": 1
+      },
+      "collision": "visual_only",
+      "sockets": [],
+      "priority": "P0"
+    },
+    {
+      "id": "submerged_branches",
+      "version": 1,
+      "resource": null,
+      "lightmap": null,
+      "dimensions": [
+        2,
+        2,
+        2
+      ],
+      "dimensionTolerance": 1.35,
+      "pivot": "base_center",
+      "lod": {
+        "near": null,
+        "far": null,
+        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+      },
+      "materials": {
+        "max": 3,
+        "colorSpace": "baseColor_sRGB_normals_linear",
+        "lightmapUV": 1
+      },
+      "collision": "game/posts.ts.obstacles",
+      "sockets": [],
+      "priority": "P0"
+    },
+    {
+      "id": "path_patch",
+      "version": 1,
+      "resource": null,
+      "lightmap": null,
+      "dimensions": [
+        1.4,
+        0.025,
+        3
+      ],
+      "dimensionTolerance": 1.35,
+      "pivot": "center",
+      "lod": {
+        "near": null,
+        "far": null,
+        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+      },
+      "materials": {
+        "max": 3,
+        "colorSpace": "baseColor_sRGB_normals_linear",
+        "lightmapUV": 1
+      },
+      "collision": "visual_only",
+      "sockets": [],
+      "priority": "P2"
+    }
+  ]
+}

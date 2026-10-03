@@ -1,0 +1,270 @@
+{
+  "schema_version": "1.0",
+  "status": "design",
+  "payload_contract": {
+    "id": "unique_event_id",
+    "type": "event_type",
+    "simulationTime": "seconds",
+    "position": "world_xyz_m",
+    "direction": "world_xyz",
+    "intensity": "normalized_bounded_0_1",
+    "sourceId": "game_actor_or_rig_id",
+    "duration": "seconds",
+    "seed": "optional"
+  },
+  "rule": "Événements du gameplay ; transitions de contact dédoublonnées ; émetteurs continus gérés par leur propriétaire ; pause réelle.",
+  "events": [
+    {
+      "id": "cast_impact",
+      "trigger": "Montage traverse la surface au point final du lancer",
+      "visual": "Petit impact, rides qui s’élargissent, son selon masse/vitesse",
+      "importance": "Essentiel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "line_deposit",
+      "trigger": "Dépôt contrôlé au coup ou posé proche",
+      "visual": "Contact discret et une petite ride, distinct d’un lancer puissant",
+      "importance": "Essentiel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "float_enter",
+      "trigger": "Flotteur entre dans l’eau",
+      "visual": "Contact bref puis stabilisation selon sa flottabilité",
+      "importance": "Essentiel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "float_motion",
+      "trigger": "Déplacement de flotteur en surface",
+      "visual": "Petit sillage et oscillation cohérents avec courant/traction",
+      "importance": "Essentiel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "bite_float",
+      "trigger": "Force de touche agit sur flotteur",
+      "visual": "Enfoncement/remontée/déplacement selon montage ; rides seulement si contact",
+      "importance": "Essentiel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "float_submerge",
+      "trigger": "Flotteur passe sous la surface",
+      "visual": "Disparition progressive crédible, petite perturbation de contact",
+      "importance": "Essentiel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "float_resurface",
+      "trigger": "Flotteur remonte réellement",
+      "visual": "Réapparition, gouttes/ride brève ; pas un indicateur automatique de fatigue",
+      "importance": "Essentiel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "strike_surface",
+      "trigger": "Ferrage produit un mouvement près de surface",
+      "visual": "Perturbation liée à la ligne/objet, pas explosion systématique",
+      "importance": "Essentiel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "lure_surface",
+      "trigger": "Leurre traverse ou travaille près de surface",
+      "visual": "Sillage, splash ou remous selon type/animation du leurre",
+      "importance": "Essentiel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "lure_submerge",
+      "trigger": "Leurre entre sous l’eau",
+      "visual": "Impact léger et atténuation ; pas un sillage permanent en profondeur",
+      "importance": "Important",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "bait_sink",
+      "trigger": "Esche/lest/feeder descend",
+      "visual": "Descente lisible près du bord, bulles très limitées si justifiées",
+      "importance": "Important",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "feeder_impact",
+      "trigger": "Cage ou method touche la surface",
+      "visual": "Impact gradué par masse/vitesse, rides et son différenciés",
+      "importance": "Essentiel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "groundbait_impact",
+      "trigger": "Portion d’amorce est réellement délivrée",
+      "visual": "Impacts groupés/localisés et diffusion visuelle discrète",
+      "importance": "Essentiel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "fish_near_surface",
+      "trigger": "Poisson nage proche de la surface",
+      "visual": "Remous orientés si profondeur permet une perturbation perceptible",
+      "importance": "Important",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "fish_surface_turn",
+      "trigger": "Virage/secousse proche de surface",
+      "visual": "Remous et rides correspondant au mouvement",
+      "importance": "Essentiel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "fish_surface_break",
+      "trigger": "Poisson traverse la surface ou saute, si son profil le permet",
+      "visual": "Splash, gouttes et réentrée au contact réel",
+      "importance": "Essentiel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "fish_dive",
+      "trigger": "Poisson replonge après émergence",
+      "visual": "Réentrée et résorption, jamais splash supplémentaire à chaque frame",
+      "importance": "Essentiel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "line_surface_drag",
+      "trigger": "Segment de ligne réellement en contact/glissement",
+      "visual": "Trace très subtile, sans gros sillage d’embarcation",
+      "importance": "Important",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "obstacle_disturbance",
+      "trigger": "Contact réel avec végétation flottante/branche",
+      "visual": "Mouvement local, eau perturbée si objet bouge",
+      "importance": "Important",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "net_enter",
+      "trigger": "Tête d’épuisette entre dans l’eau",
+      "visual": "Ride large légère et son, pas jet de particules énorme",
+      "importance": "Essentiel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "net_capture",
+      "trigger": "Poisson entre réellement dans l’épuisette",
+      "visual": "Perturbation liée à poisson/filet, retour de réussite discret",
+      "importance": "Essentiel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "net_exit",
+      "trigger": "Épuisette sort de l’eau",
+      "visual": "Égouttement court et rides résiduelles",
+      "importance": "Important",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "fish_release",
+      "trigger": "Relâcher remet le spécimen au contact de l’eau",
+      "visual": "Contact, nage de départ, perturbation puis arrêt",
+      "importance": "Essentiel si relâcher existe",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "ambient_surface",
+      "trigger": "Activité ambiante réellement simulée ou événement décoratif explicite",
+      "visual": "Petite ride localisée ; aucun faux signal de touche à répétition",
+      "importance": "Décoratif",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "rain_surface",
+      "trigger": "Pluie active dans météo/ambiance implémentée",
+      "visual": "Rides éparses, pas une particule par goutte du lac entier",
+      "importance": "Conditionnel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "wind_change",
+      "trigger": "Source commune de vent change",
+      "visual": "Transition progressive des rides et des végétaux",
+      "importance": "Conditionnel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "boat_wake",
+      "trigger": "Embarcation existante se déplace dans ce plan d’eau",
+      "visual": "Sillage lié à vitesse/direction et arrêt au repos",
+      "importance": "Conditionnel",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    },
+    {
+      "id": "spot_transition",
+      "trigger": "Nouveau poste actif",
+      "visual": "Réinitialiser émetteurs locaux, actualiser reflet, conserver ambiance commune",
+      "importance": "Technique",
+      "implementation_status": "to_map_to_existing_game_event",
+      "test_status": "not_tested",
+      "applicability_reason": null
+    }
+  ]
+}

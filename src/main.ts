@@ -1,3 +1,4 @@
+import {installWaterTools} from './ui/water-tools';
 import {installFieldTools} from './ui/field-tools';
 import {ActionGesture} from './game/action-gesture';
 import {installObservations} from './ui/observations';
@@ -260,7 +261,7 @@ function phaseChanged() {
   if (game.phase === 'fighting') { el('toast').hidden = true; teach(2, game.hasReel? 'Glissez sur la commande de canne à gauche, ou sur l’eau. Maintenez Mouliner à droite avec l’autre doigt ; relâchez pour arrêter.':'Au coup, suivez le fil avec la canne. Baissez-la pendant un départ, relevez progressivement pour rapprocher le poisson. Aucun moulinet.'); }
   if (game.phase === 'casting' || game.phase === 'lost' || game.phase === 'idle') saveNow();
   if (game.phase === 'lost') { const losses=Object.entries(save.tackle.active?.losses??{}).map(([id,n])=>`${component(id)?.name} : ${n}`); toast(game.failure+(losses.length?' Perdu : '+losses.join(' · '):' Aucun composant payant perdu.')); }
-  if (game.phase === 'caught') void showCatch();
+  if (game.phase === 'caught') {world?.flushWater(game);void showCatch();}
 }
 function activate() {
   if (!world || overlayPaused || manualPaused) return;
@@ -374,6 +375,7 @@ if (loaded.recovery) { el('help').insertAdjacentHTML('beforeend', '<div class="r
 if (save.tackle.active?.outcome === 'return') saveNow();
 el('menu-open').onclick = () => openModal('menu');
 el('prepare-open').onclick = el('equipment-open').onclick = () => { renderPhase(); openModal('preparation'); };
+installWaterTools({save:()=>save,game,open:openModal,close:closeModal,persist:saveNow,refresh:refreshCollection,toast,postChanged:()=>{world?.setPost(game.post);renderPhase();}},()=>world);
 el('progress-open').onclick = () => { refreshCollection(); openModal('progression'); };
 
 el('snag-release').onclick=()=>toast(game.tryFreeSnag()?'Ligne dégagée.':game.hint);
@@ -418,10 +420,10 @@ document.querySelectorAll<HTMLDialogElement>('dialog').forEach(dialog => dialog.
   if (dialog.id === 'caught') { catchViewRequest++; preview?.hide(); viewedSpecimen = undefined; if (liveCatchView) { game.reset(); phaseChanged(); } if (el<HTMLDialogElement>('aquarium').open) { refreshAquariumControls(); void loadAquarium(); } }
   if (dialog.id === 'aquarium') { aquariumRequest++; aquarium?.dispose(); aquarium = undefined; }
 }));
-el('release-fish').onclick = () => closeModal('caught');
+el('release-fish').onclick = () => {if(liveCatchView)game.releaseCaughtFish();closeModal('caught');};
 el('sound').onclick = () => { save.settings.sound = !save.settings.sound; audio.enabled = save.settings.sound; void audio.unlock(); refreshSettings(); saveNow(); };
 for(const id of ['control-side','control-single','control-tension','control-hints'])el(id).onchange=()=>{save.settings.controls={side:el<HTMLSelectElement>('control-side').value==='right'?'right':'left',singleFinger:el<HTMLInputElement>('control-single').checked,tension:el<HTMLInputElement>('control-tension').checked,hints:el<HTMLInputElement>('control-hints').checked};release();cancelGesture();refreshSettings();renderPhase();saveNow();};
-el('quality').onclick = () => { save.settings.quality = save.settings.quality === 'eco' ? 'high' : 'eco'; world?.setQuality(save.settings.quality); refreshSettings(); saveNow(); };
+el('quality').onclick = () => { save.settings.quality = save.settings.quality === 'eco' ? 'high' : 'eco'; world?.setQuality(save.settings.quality);world?.setWaterQuality(save.settings.waterQuality??'low'); refreshSettings(); saveNow(); };
 el('export-save').onclick = () => {
   const url = URL.createObjectURL(new Blob([JSON.stringify(save, null, 2)], { type: 'application/json' }));
   const a = document.createElement('a'); a.href = url; a.download = `au-fil-de-leau-${profiles.active}-carnet-${new Date().toISOString().slice(0, 10)}.json`; a.click();
@@ -459,7 +461,7 @@ el('resume').onclick = () => { manualPaused = false; el('paused').hidden = true;
 
 refreshCollection(); refreshSettings(); renderPhase();saveNow();
 try {
-  world = new LakeWorld(el<HTMLCanvasElement>('world'), save.settings.quality);world.setPost(game.post);
+  world = new LakeWorld(el<HTMLCanvasElement>('world'), save.settings.quality);world.setPost(game.post);world.setWaterQuality(save.settings.waterQuality??'low');world.pondWater.onEvent=e=>audio.water(e);
   let lastTime = performance.now(); let accumulator = 0; let lastRender = 0;
   world.engine.runRenderLoop(() => {
     const now = performance.now(); const dt = Math.min((now - lastTime) / 1000, 0.1); lastTime = now;
@@ -509,6 +511,7 @@ if (import.meta.env.DEV && import.meta.env.VITE_E2E === '1') {
   Object.assign(window, { __fishingQA: {
     aquariumOrbit:()=>aquarium?.inspectOrbit(),
     fishActor:()=>world?.fishActorDiagnostics(),
+    waterScene:()=>world?.scene,waterReflectors:()=>world?.pondScenery.reflectors,water:()=>world?.waterDiagnostics(),waterDemo:(type:import('./game/water-events').WaterType)=>world?.waterDemo(type),waterQuality:(q:import('./render/pond-water').WaterQuality)=>world?.setWaterQuality(q),ambience:(p:'morning'|'overcast'|'evening')=>world?.setAmbience(p),compareWater:(simple:boolean)=>world?.pondWater.compare(simple),environmentPlacements:()=>world?.pondScenery.placements,replaceAsset:(family:string,url:string|null)=>world?.pondScenery.replace(family,url),
     rendering: () => ({ drawCalls: instrumentation.drawCallsCounter.current, cpuFrameMs: instrumentation.frameTimeCounter.current,
       vertices: world!.scene.getTotalVertices(), meshes: world!.scene.getActiveMeshes().length,
       width: world!.engine.getRenderWidth(), height: world!.engine.getRenderHeight(),

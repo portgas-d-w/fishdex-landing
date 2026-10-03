@@ -1,3 +1,4 @@
+import {pondSpot,inPond,pondDepth,pondMicrozone} from './pond-map.ts';
 import type { WaterPoint, CastAim } from './casting.ts';
 import { inspectTarget } from './casting.ts';
 import type { MethodId } from './specimens.ts';
@@ -19,6 +20,8 @@ export const POSTS:readonly Post[] = [
   {id:'point',tier:'specialisation',name:'Pointe et cassure',implemented:true,initial:false,origin:{x:8,z:10},angle:-.9,sector:6,landing:1.8,difficulty:'Technique',constraints:['Vent latéral sur la bannière','Cassure de profondeur'],hint:'Contrôlez la dérive et la couche atteinte au-delà de la cassure.',obstacles:[],wind:.35},
   {id:'timber',tier:'mastery',name:'Bois immergé',implemented:true,initial:false,origin:{x:-8,z:15},angle:1.2,sector:4,landing:1.8,difficulty:'Exigeant',constraints:['Branches immergées','Couloir de réception étroit'],hint:'Réorientez la canne avant la fuite vers les branches.',obstacles:[{x:-2,z:6,radius:.7},{x:2.1,z:10,radius:.8}]},
 ];
+// Ancrages mondiaux de la même carte ; aucun nouvel identifiant de sauvegarde.
+for(const p of POSTS){const spot=pondSpot(p.id)!;p.origin=spot.origin;p.angle=spot.angle;}
 export const ALL_POSTS:readonly Post[]=[...POSTS,
  {id:'river',tier:'specialisation',name:'Rivière des Aulnes',implemented:true,initial:false,origin:{x:0,z:4},angle:0,sector:7,landing:1.8,difficulty:'Technique',constraints:['Courant réel','Dérive à accompagner'],hint:'Le gravier accueille goujons, chevesnes et poissons de courant.',obstacles:[{x:3,z:10,radius:.6}],context:'river',current:.45},
  {id:'deep',tier:'mastery',name:'Ponton du lac profond',implemented:true,initial:false,origin:{x:0,z:11},angle:0,sector:7,landing:1.8,difficulty:'Technique',constraints:['Couche de 6 à 18 m','Réserve de fil'],hint:'Prospectez les couches sous le poste ; petits poissons et prédateurs présents.',obstacles:[],context:'deep'},
@@ -37,10 +40,11 @@ export function worldPoint(post:PostId,local:WaterPoint):WaterPoint {
   return {x:p.origin.x+local.x*cos+(local.z+1)*sin,z:p.origin.z-local.x*sin+(local.z+1)*cos};
 }
 export function inspectPostTarget(post:PostId,point:WaterPoint,method:MethodId='float',reach=23):CastAim & {microzone:Microzone} {
-  const p=postById(post),world=worldPoint(post,point),base=inspectTarget(p.context?point:world),distance=Math.hypot(point.x,point.z+1);
-  const sector=point.z>=1.5&&Math.abs(point.x)<=p.sector,within=method!=='pole'||distance<=reach;
-  const depth=p.depthRange?p.depthRange[0]+Math.min(p.depthRange[1]-p.depthRange[0],Math.max(0,distance-2.5)*.7):post==='deep'?6+Math.min(12,Math.max(0,distance-2.5)*4):post==='boat'?8+Math.min(8,distance*.4):post==='river'?1+distance*.08:post==='point'?distance<8?1.5:5+distance*.15:post==='cove'?Math.min(1.6,.65+distance*.07):post==='reed-bank'?Math.min(2.8,.8+distance*.1):base.depth;
-  const microzone:Microzone=post==='timber'?'wood':post==='deep'||post==='boat'?'dropoff':post==='reed-bank'&&distance<12?'plants':Math.abs(point.x)>2&&point.z<12?'plants':distance<7?'margin':distance>14?'dropoff':'open-water';
+  const p=postById(post),world=worldPoint(post,point),base=p.context?inspectTarget(point):{point,valid:inPond(world),reason:inPond(world)?'':'Visez le plan d’eau dans le secteur du poste.',depth:pondDepth(world),habitat:'reeds' as const},distance=Math.hypot(point.x,point.z+1);
+  const degrees=Math.atan2(point.x,point.z+1)*180/Math.PI,limits=pondSpot(post)?.sectorDegrees;const sector=point.z>=1.5&&Math.abs(point.x)<=p.sector&&(!limits||degrees>=limits[0]&&degrees<=limits[1]),within=method!=='pole'||distance<=reach;
+  const depth=!p.context?pondDepth(world):p.depthRange?p.depthRange[0]+Math.min(p.depthRange[1]-p.depthRange[0],Math.max(0,distance-2.5)*.7):post==='deep'?6+Math.min(12,Math.max(0,distance-2.5)*4):post==='boat'?8+Math.min(8,distance*.4):post==='river'?1+distance*.08:post==='point'?distance<8?1.5:5+distance*.15:post==='cove'?Math.min(1.6,.65+distance*.07):post==='reed-bank'?Math.min(2.8,.8+distance*.1):base.depth;
+  const plants=p.obstacles.some(o=>Math.hypot(point.x-o.x,point.z-o.z)<o.radius+1.5);
+  const microzone:Microzone=!p.context?(plants?(post==='timber'?'wood':'plants'):pondMicrozone(world)):post==='deep'||post==='boat'?'dropoff':Math.abs(point.x)>2&&point.z<12?'plants':distance<7?'margin':distance>14?'dropoff':'open-water';
   return {...base,point,depth,habitat:microzone==='open-water'||microzone==='dropoff'?'open':microzone==='plants'||microzone==='wood'?'willow':'reeds',microzone,
     valid:p.implemented&&base.valid&&sector&&within,
     reason:!p.implemented?'Ce poste est en préparation.':!within?'Hors de portée de la canne au coup. Rapprochez le placement.':!sector?'Restez dans le couloir devant ce poste.':base.reason};
