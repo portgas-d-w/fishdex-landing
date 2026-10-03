@@ -1,0 +1,24 @@
+{
+  "version": "0.11.0",
+  "applicationCommit": "664df1a26e911be31b94abaab6ff0fb6e5880b09",
+  "projectId": "prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x",
+  "scope": "portgas-d-ws-projects",
+  "preview": {
+    "deploymentId": "dpl_GT6oHGtbiEzCvoYAJoVty8XVP4xg",
+    "url": "https://fishdex-landing-4vkmx91bp-portgas-d-ws-projects.vercel.app",
+    "state": "READY",
+    "checks": 10,
+    "failed": 0,
+    "duration": "2.8 min",
+    "files": "preview-files.json"
+  },
+  "production": {
+    "state": "pending"
+  },
+  "rollback": {
+    "tag": "archive/au-fil-de-leau-before-mobile-2026-10-03",
+    "commit": "46301ec338da273d7a30bbe1a3cbb58b7b4e060e",
+    "deploymentId": "dpl_5x5dLkeoSC3UG4nncDwAAPZLWdoy"
+  },
+  "physicalDevicesTested": false
+}

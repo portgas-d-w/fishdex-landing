@@ -4,7 +4,7 @@
 
 ## Gameplay mobile et matériel 0.11.0 — 3 octobre 2026, Codex
 
-Chantier autorisé par « oui », cahier version2 archivé. Branche codex/gameplay-mobile-materiel sur 46301ec. Implémentation : combat géométrique unique, gestes indépendants/inversion/un doigt, ferrage bref, canne conservée, grande canne recul/déboîtement/kit réel, épuisette position + relevage, risques localisés, eau/fil/élastique raccordés aux événements. Sondage/amorçage au point et portions, Ma canne compatible, montage avec aperçu du moteur, variantes regroupées/fiches/compromis, coût exposé, kit explicite sans achat et ensembles favoris. Les 22 moteurs/approches et 55 recettes restent actifs. Aucune nouvelle dépendance ou production de modèles. v7 additive, anciens droits et deux profils/photos préservés. Ancienne assistance ne dirige plus le combat.
+Chantier autorisé par « oui », cahier version2 archivé. Branche codex/gameplay-mobile-materiel sur 46301ec. Implémentation : combat géométrique unique, gestes indépendants/inversion/un doigt, ferrage bref, canne conservée, grande canne recul/déboîtement/kit réel, épuisette position + relevage, risques localisés, eau/fil/élastique raccordés aux événements. Sondage/amorçage au point et portions, Ma canne compatible, montage avec aperçu du moteur, variantes regroupées/fiches/compromis, coût exposé, kit explicite sans achat et ensembles favoris. Les 22 méthodes et 10 moteurs de présentation et 55 recettes restent actifs. Aucune nouvelle dépendance ou production de modèles. v7 additive, anciens droits et deux profils/photos préservés. Ancienne assistance ne dirige plus le combat.
 
 Fichiers : src/game/combat,fishing,action-gesture,gear-advice,posts,presentation,rig,save ; src/main/style/render/world ; ui/tackle,technique-controls,development,field-tools ; tests de contrôles/méthodes/poissons et nouveaux bancs mobile ; scripts mobile-reference/replay-reference. Rapport/matrice et procédure : docs/GAMEPLAY_MOBILE_MATERIEL.md. Captures avant/après identiques et rejeux gardon/carpe : docs/apercus/mobile-materiel. DEMARRER_AVEC_CODEX.md préexistant préservé, non committé.
 
@@ -371,3 +371,6 @@ Mission explicite `docs/MISSION_CODEX_AUTONOME_AU_FIL_DE_LEAU.md` : P0 à P4 aut
 Pour chaque nouvelle session : ajouter les changements, les résultats réels de test,
 les éventuels bugs, la décision prise et la prochaine tâche. Mettre à jour le résumé
 ci-dessus si le périmètre ou l’architecture évolue.
+
+
+Revue hébergée 0.11 : application 664df1a, READY dpl_GT6oHGtbiEzCvoYAJoVty8XVP4xg, https://fishdex-landing-4vkmx91bp-portgas-d-ws-projects.vercel.app. Smoke protégé 10/10 en 2,8 min, sans QA : Mode test public ∞/achat/profil normal isolé, FishDex66/52/14/gold, feeder/mouche/traîne et captures naturelles au coup/avec moulinet jusqu’à réception/photo/reload/transfert. 263 JS/CSS, 33 GLB et 197 images vérifiés ; seuls manifeste/SVG peuvent différer par CRLF→LF consigné. Entrée index-C9yMDP7o.js SHA256 9f229cb5282bf6381984bf67a916ef60f05f22d5bb86215db9956f396aa08b94. Empreintes/captures dans apercus/mobile-materiel ; tag de retour 46301ec poussé. Publication main et contrôles publics suivent.
