@@ -1,6 +1,6 @@
 # RELAIS PROJET — Codex ↔ Claude Code
 
-**Dernière mise à jour : 3 octobre 2026. Eau naturelle 0.12.1 en validation de publication. Agent : Codex. Mode test public conservé ; 66 identités, 29 formes, 22 techniques et 55 recettes. Essais physiques restent à faire.**
+**Dernière mise à jour : 3 octobre 2026. Eau naturelle 0.12.1 publiée sur fishdex.fr. Agent : Codex. Mode test public conservé ; 66 identités, 29 formes, 22 techniques et 55 recettes. Essais physiques restent à faire.**
 
 ## Eau naturelle 0.12.1 — 3 octobre 2026, Codex
 
@@ -10,7 +10,7 @@ Reprise ciblée depuis main 170ca34, branche codex/eau-naturelle. Audit du Shade
 
 Contrôles réels : npm ci24 paquets/0 vulnérabilité ; check205/205 + TS/build. Navigateurs18 scénarios distincts par lots bureau/mobile390×844 : douze réceptions/photo/reload sur six postes, substituts GLB, qualités/pause/événements, rendu/physique frein/moulinet. Dernier shader repris4/4 : pixels de surface modifiés sans torus, extinction/pause, mipmaps/cache, cycles et turbidité. Matrice et procédure téléphone : docs/EAU_NATURELLE.md. Comparaisons à cadrage/lumière identiques et vidéos dans docs/apercus/eau-naturelle ; contacts synthétiques clairement isolés, vrai lancer réalisé. Mesures10s après2s échauffement : mobile émulé29,97–30,07 FPS, bureau logiciel18,40–22,20 ; GPU logiciel disponible (Standard mobile surface10,03ms/reflet2,03ms médian). Tous les détails/P95/protocoles/limites : docs/PERFORMANCES_EAU_NATURELLE.md. L’objectif30FPS stable sur iPhone reste non validé ; aucun Safari/toucher physique/chauffe/batterie/VRAM testé.
 
-Publication autorisée : projet/API/GitHub/main relus et identiques, prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, portgas-d-ws-projects/fishdex-landing, portgas-d-w/fishdex-landing. Revue hébergée, contrôles publics et empreintes à consigner après exécution dans docs/PUBLICATION_EAU_NATURELLE.md. Prochaine tâche Claude : essais physiques de ce rendu avant d’enrichir le niveau élevé, relever FPS/stabilité/chauffe et corriger seulement à partir des mesures. Ne pas refaire catalogues, sauvegardes ou carte ; turbidité de session TEST et reflet cache économe sont des choix assumés.
+Publication autorisée : projet/API/GitHub/main relus et identiques, prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, portgas-d-ws-projects/fishdex-landing, portgas-d-w/fishdex-landing. Revue READY62b17a7,262JS/CSS+33GLB+197images conformes ; quatre scénarios bureau passés puis série arrêtée à la demande du propriétaire, pas de nouvelle suite publique. Production READYdpl_9ExFY6xrgpw3B2q2fRqL7aTq7sPp, fishdex.fr→wwwHTTP200, entréeindex-44mvFxXQ.js/hash53e58e56… vérifiés. Tag de retour170ca34 poussé. Résultats exacts dans docs/PUBLICATION_EAU_NATURELLE.md. Prochaine tâche Claude : essais physiques de ce rendu avant d’enrichir le niveau élevé, relever FPS/stabilité/chauffe et corriger seulement à partir des mesures. Ne pas refaire catalogues, sauvegardes ou carte ; turbidité de session TEST et reflet cache économe sont des choix assumés.
 
 ## Carte commune et eau interactive 0.12.0 — 3 octobre 2026, Codex
 

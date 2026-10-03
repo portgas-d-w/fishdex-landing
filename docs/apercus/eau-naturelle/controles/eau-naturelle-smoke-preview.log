@@ -1,0 +1,11 @@
+
+Running 14 tests using 1 worker
+
+(node:7208) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:7208) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\smoke\development.spec.ts:11:1 › Le build contrôle le Mode test et conserve la partie normale sans QA (9.8s)
+  ok  2 [desktop] › tests\smoke\development.spec.ts:21:1 › Build V2 sans QA : feeder, mouche et traîne jusqu’au combat, réception, photo et reload (33.9s)
+  ok  3 [desktop] › tests\smoke\fishdex.spec.ts:12:1 › FishDex hébergé sans QA : 66 identités, 52 captures, 14 observations, sources et robe canonique (2.3s)
+  ok  4 [desktop] › tests\smoke\map-water.spec.ts:8:1 › Carte et eau hébergées : six postes, qualités, ambiances et essais isolés sans QA (5.0s)

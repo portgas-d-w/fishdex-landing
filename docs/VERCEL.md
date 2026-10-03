@@ -1,5 +1,9 @@
 # Vercel — migration de FishDex vers Au fil de l’eau
 
+## Eau naturelle 0.12.1 — 3 octobre 2026
+
+Même projet/équipe/GitHub/main relus, application62b17a7. Revue READYdpl_ETfVWw58fsbDaraJtgGZQaUs7b5s, fichiers complets conformes ; quatre scénarios bureau passés puis arrêt de la série demandé par le propriétaire. Publication sans nouvelle suite production selon cette consigne. Production READYdpl_9ExFY6xrgpw3B2q2fRqL7aTq7sPp, https://fishdex-landing-88m6wospf-portgas-d-ws-projects.vercel.app. fishdex.fr→wwwHTTP200, entréeindex-44mvFxXQ.js SHA25653e58e56fd82ca03be9a2f1d266831c77a808834d6813c9f779e2838b80f5c64 conforme au dist revu. Tag archive/au-fil-de-leau-before-eau-naturelle-2026-10-03 sur170ca34 poussé ; ancien déploiement conservé. PUBLICATION_EAU_NATURELLE.md détaille les contrôles réellement exécutés et l’arrêt de tests. Aucun appareil physique ; objectif30FPS réel restant à mesurer.
+
 ## Carte et eau 0.12.0 — 3 octobre 2026
 
 Projet, équipe, GitHub et branche main confirmés et conservés. Application initiale dfa431d : revue 12/12 puis production 14/14 sans token/QA, avec captures naturelles, photo/reload/transfert, profil TEST public séparé, six postes/qualités/ambiances et sources privées exclues. Finition de contraste CSS3470162 : TypeScript/build, deux parcours locaux, deux en revue et deux en production repris. Dernière production READY dpl_Gx3gAmdZErzr2CfrZBDNvEopw9vP, https://fishdex-landing-bix0ew1jr-portgas-d-ws-projects.vercel.app. fishdex.fr → www.fishdex.fr HTTP200, entrée /assets/index-CqEjZL1R.js SHA25695f78b9bcb64eb3bd10a2e97c0381213757ad522bfa7bfe7f18d6d6827fec717. Les 262JS/CSS,33GLB,197images correspondent ; seules fins de ligne du manifeste/SVG normalisées. OIDC limité à la revue, aucune protection modifiée. Sources/pack originaux toujours exclus.
