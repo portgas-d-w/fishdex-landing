@@ -1,6 +1,19 @@
-# Priorités du chantier — état du 2 octobre 2026
+# Priorités du chantier — état du 3 octobre 2026
 
 La mission autonome explicite autorise les fonctionnalités suivantes et remplace l’attente du premier retour appareil pour avancer. Une prise ou une sauvegarde cassée reste prioritaire sur le contenu.
+
+## Poissons, assets et FishDex 0.10.0
+
+- [x] Lecture du ZIP/annexes et audit en lecture seule de l'app ; six sources et quinze GLB historiques inchangés.
+- [x] Registre canonique, sources, aliases/records/formes séparés : 64 espèces, 2 hybrides, 29 formes ; placeholder hors objectifs.
+- [x] 52 chaînes de capture naturelles et 14 découvertes par observation justifiée ; six habitats nouveaux, populations et kits effectivement compatibles.
+- [x] Six attributs causaux, variation/taille/fatigue/courant, comparaison reproductible sans gain.
+- [x] 197 ressources normalisées, 33 modèles naturels exacts/33 provisoires, 29 robes provisoires, photo et identité communes.
+- [x] FishDex/carnet/observations/économie/progression/aquarium, v7 et récupérations des droits/historiques/profils séparés.
+- [x] Check 174 tests + TypeScript/build ; nouvelles chaînes UI/photos/reload et finitions sur les deux vues ; banc naturel des 22 méthodes.
+- [ ] Clôturer les contrôles navigateur/build hébergé et publier sur le projet Vercel existant après revue.
+- [ ] Essais physiques selon `poissons/ESSAIS_TELEPHONE.md` : toucher, naturel, économie, chauffe et Safari/Android.
+- [ ] Raffiner/remplacer les 33 silhouettes naturelles et 29 robes provisoires après retours visuels, sans changer les identités sauvegardées.
 
 ## Catalogue complet V2 — objectif remplaçant les restrictions antérieures
 
@@ -48,7 +61,7 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 - [x] Check 47 tests + TypeScript/build ; navigateur 48 réussis/2 exclusions, atelier final 6/6 ; smoke local, preview protégée et public 8/8 chacun ; publication main et retour conservé.
 - [ ] Essai Safari/iPhone réel, économie des lots et plaisir/équilibre des combats.
 - [x] V2 : réglages de frein, graphes spécialistes, observation, rivière/lac profond/embarcation.
-- [ ] Autres espèces et GLB confirmés : ajout seulement après audit des assets et des profils.
+- [x] Autres espèces/GLB confirmés : audit et intégration au chantier poissons 0.10 ; les silhouettes sans modèle exact restent provisoires explicites.
 
 ## Structure complète 0.5.0 — mission prioritaire
 

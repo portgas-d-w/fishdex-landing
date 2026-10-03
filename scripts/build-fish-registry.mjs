@@ -52,7 +52,7 @@ const entries=[...inputs.values()].map(row=>{
  const id=canonical(row.id),s=species.find(s=>s.id===id);if(!s)throw Error('Identité orpheline '+row.id+' => '+id);
  const type=records[row.id]?'record':aliases[row.id]?['truite-lac','truite-de-mer'].includes(row.id)?'ecotype':'alias':forms[row.id]?'appearance':s.kind;
  const ref=assets.assets.find(a=>a.stem===(row.id==='truite-lac'?'truite-lacustre':row.id)&&['fishes','varieties','mutations'].includes(a.role));
- return {...row,...(captions[row.id]?{sourceDescription:row.description,description:captions[row.id]}:{}),biologicalId:id,gameId:id,latin:s.latin,min:s.min,max:s.max,image:row.id==='esturgeon-gold'?null:ref?.url??row.image??(type==='appearance'?null:s.image),identityStatus:'confirmed',type,parent:id,appearanceId:type==='appearance'||type==='ecotype'?row.id:'natural',visualStatus:s.visualStatus,gameplayStatus:s.mode,sourceIds:s.profile.source_ids};
+ return {...row,...(captions[row.id]?{sourceDescription:row.description,description:captions[row.id]}:{}),biologicalId:id,gameId:id,latin:s.latin,min:s.min,max:s.max,image:ref?.url??row.image??(type==='appearance'?null:s.image),identityStatus:'confirmed',type,parent:id,appearanceId:type==='appearance'||type==='ecotype'?row.id:'natural',visualStatus:s.visualStatus,gameplayStatus:s.mode,sourceIds:s.profile.source_ids};
 });
 // Les alias n'ajoutent jamais de cible ; chaque forme est indépendante du bonus de force.
 const appearances=entries.filter(e=>e.type==='appearance'||e.type==='ecotype').map(e=>({id:e.id,parent:e.parent,name:e.name,image:e.image,kind:e.type,weight:e.id.includes('albinos')?.015:.035,post:e.type==='ecotype'?e.id.includes('mer')?'estuary':'cold-lake':null,visualStatus:'procedural-material',verifiedIdentity:true}));

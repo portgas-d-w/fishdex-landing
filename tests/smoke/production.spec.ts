@@ -41,7 +41,9 @@ test('Le build permet une vraie prise, le chargement différé et le transfert d
   await fightPicture;
   await expect(page.locator('#fish-preview')).toHaveAttribute('data-loaded', 'true');
   await expect(page.locator('#preview-error')).toBeHidden();
-  expect(new Set(models)).toHaveProperty('size',1);
+  const captured=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!).journal.at(-1));
+  // Confirmed robes use their procedural parent; natural exact fish load one GLB.
+  expect(new Set(models)).toHaveProperty('size',captured.appearanceId?0:1);
   await page.waitForTimeout(400);
   await page.screenshot({ path: `test-results/smoke-${info.project.name}-catch.png` });
   await page.locator('#release-fish').click();

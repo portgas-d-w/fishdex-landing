@@ -1,0 +1,142 @@
+{
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "forcedEncounter": true,
+  "naturalEncountersVerifiedBy": "tests/techniques.test.ts",
+  "rows": [
+    {
+      "technique": "coup",
+      "post": "jetty",
+      "capture": "e79e3507-78bf-4de6-b3a3-ba6be590adf0",
+      "photo": true
+    },
+    {
+      "technique": "grande_canne",
+      "post": "jetty",
+      "capture": "20afbd43-dece-4896-8b87-732fd8161865",
+      "photo": true
+    },
+    {
+      "technique": "anglaise",
+      "post": "jetty",
+      "capture": "de5a5544-ec2d-41fe-8a8d-81b4062f1e6b",
+      "photo": true
+    },
+    {
+      "technique": "bolognaise",
+      "post": "river",
+      "capture": "fbdc6ed5-2646-403b-9593-b6ecc678959b",
+      "photo": true
+    },
+    {
+      "technique": "fond",
+      "post": "jetty",
+      "capture": "e9ec90c6-4149-4f4a-aa7c-c0e5073ef7e3",
+      "photo": true
+    },
+    {
+      "technique": "feeder",
+      "post": "jetty",
+      "capture": "b80cdd5f-dc9b-4732-bcbc-4dcbd13fd95c",
+      "photo": true
+    },
+    {
+      "technique": "method_feeder",
+      "post": "jetty",
+      "capture": "50f3b993-fd9d-4a70-be03-7d3db1b7ac41",
+      "photo": true
+    },
+    {
+      "technique": "carpe",
+      "post": "jetty",
+      "capture": "ce7b613e-988b-4235-b4c9-a300c89eef09",
+      "photo": true
+    },
+    {
+      "technique": "stalking",
+      "post": "jetty",
+      "capture": "e194ec4b-a26a-4fa0-bdc2-f076befcf8a9",
+      "photo": true
+    },
+    {
+      "technique": "surface",
+      "post": "jetty",
+      "capture": "4b1ed928-40fd-4da5-8ed9-36035afd761a",
+      "photo": true
+    },
+    {
+      "technique": "leurre",
+      "post": "jetty",
+      "capture": "ff0dea92-f4f2-4515-a317-99e14e806d0e",
+      "photo": true
+    },
+    {
+      "technique": "verticale",
+      "post": "deep",
+      "capture": "ae6739ac-6af6-41d5-a2f5-05497ec07b73",
+      "photo": true
+    },
+    {
+      "technique": "mort_manie",
+      "post": "jetty",
+      "capture": "2680745d-7e05-49e3-9d20-b700a7dc25b6",
+      "photo": true
+    },
+    {
+      "technique": "toc",
+      "post": "river",
+      "capture": "31b9bf02-2e13-4fd5-b81c-1ad0618ee4af",
+      "photo": true
+    },
+    {
+      "technique": "mouche",
+      "post": "jetty",
+      "capture": "97cef86b-cf06-4ee0-ba16-845f7b29a49c",
+      "photo": true
+    },
+    {
+      "technique": "nymphe_fil",
+      "post": "river",
+      "capture": "96d2810c-c479-47a7-819a-42831dd1fb9c",
+      "photo": true
+    },
+    {
+      "technique": "bombette",
+      "post": "jetty",
+      "capture": "7df29f32-f035-46b7-8b75-6bff08391dd5",
+      "photo": true
+    },
+    {
+      "technique": "gambe",
+      "post": "deep",
+      "capture": "6eab74e5-b9e3-498b-a272-2930fdadd41e",
+      "photo": true
+    },
+    {
+      "technique": "traine",
+      "post": "boat",
+      "capture": "c14fc858-486d-4171-8984-75cf6662f824",
+      "photo": true
+    },
+    {
+      "technique": "clonk",
+      "post": "boat",
+      "capture": "01093964-445b-4057-a176-eeb823710809",
+      "photo": true
+    },
+    {
+      "technique": "ultraleger",
+      "post": "jetty",
+      "capture": "4adb905e-20da-45e9-b436-c1dffce016de",
+      "photo": true
+    },
+    {
+      "technique": "carpodrome",
+      "post": "jetty",
+      "capture": "72a72b18-2582-4b4c-96e9-f1797c56a7c1",
+      "photo": true
+    }
+  ]
+}

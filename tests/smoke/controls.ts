@@ -17,7 +17,9 @@ export async function realFishing(page: Page, context: BrowserContext, mobile: b
   await realCombat(page,context,mobile,pole);
 }
 
-export async function realCombat(page:Page,context:BrowserContext,mobile:boolean,pole=false){
+export async function realCombat(page:Page,context:BrowserContext,mobile:boolean,pole=false,maxSeconds=85){
+  await page.bringToFront();
+  if(await page.locator('#resume').isVisible())await page.locator('#resume').click();
   const size=page.viewportSize()!,touch=mobile?await context.newCDPSession(page):undefined;
   await expect(page.locator('#tension-display')).toBeVisible();
   const b = pole?{x:0,y:0,width:0,height:0}:(await page.locator('#reel-control').boundingBox())!;
@@ -30,8 +32,16 @@ export async function realCombat(page:Page,context:BrowserContext,mobile:boolean
   if (touch) {
     await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [rod] });
   } else { await page.mouse.move(x0, y0); await page.mouse.down(); }
-  const deadline = Date.now() + 85_000;
+  const deadline = Date.now() + maxSeconds*1000;
+  let resumed=0;
   while (Date.now() < deadline && await page.locator('body').getAttribute('data-phase') === 'fighting') {
+    // A headless focus loss follows the same pause contract as switching apps.
+    // Resume through the visible button, then issue fresh commands, never QA state.
+    if(await page.locator('#resume').isVisible()){
+      if(touch)await touch.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});else await page.mouse.up();
+      reelHeld=false;await page.bringToFront();await page.locator('#resume').click();resumed++;
+      if(touch)await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[rod]});else{await page.mouse.move(rod.x,rod.y);await page.mouse.down();}
+    }
     // Lecture de l’équivalent accessible du fil visible, pas d’état interne du jeu.
     const cue = (await page.locator('#world').getAttribute('aria-description'))?.match(/Fil à (-?\d+) degrés, tension (\d+)/);
     if (cue) {
@@ -57,5 +67,5 @@ export async function realCombat(page:Page,context:BrowserContext,mobile:boolean
   if(await page.locator('body').getAttribute('data-phase')==='landing'){
     await expect(page.locator('#tech-land')).toBeEnabled();await page.locator('#tech-land').click();
   }
-  await expect(page.locator('#caught')).toBeVisible();
+  await expect(page.locator('#caught'),`phase=${await page.locator('body').getAttribute('data-phase')}; resumed=${resumed}; paused=${await page.locator('#resume').isVisible()}; diagnostic=${await page.locator('#test-diagnostics').textContent().catch(()=>null)}`).toBeVisible();
 }

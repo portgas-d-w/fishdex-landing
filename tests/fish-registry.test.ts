@@ -22,6 +22,7 @@ test('Identités réconciliées : 64 espèces, deux hybrides, pas de records/ali
  for(const [alias,id]of [['nase','hotu'],['soufie','blageon'],['carpe-herbivore','amour-blanc'],['brochet-trophee','pike'],['esturgeon-baeri','esturgeon-siberien'],['truite-de-mer','truite-fario']])assert.equal(canonicalFishId(alias),id);
  assert.notEqual(canonicalFishId('sandre-dore'),canonicalFishId('sandre'));assert.notEqual(canonicalFishId('carpe-koi'),canonicalFishId('carpe-commune'));
  assert.equal(FISH_REGISTRY.species.find(s=>s.id==='truite-tiger')!.latin,'Salmo trutta × Salvelinus fontinalis');assert.equal(FISH_REGISTRY.pending.length,1);assert.equal(FISH_REGISTRY.pending[0].id,'placeholder');
+ const gold=APPEARANCES.find(a=>a.id==='esturgeon-gold')!;assert.equal(gold.parent,'esturgeon-siberien');assert.match(gold.image!,/^\/fishdex-assets\/.+\.webp$/);assert.ok(fishRoutes(gold.parent).some(r=>r.post==='managed'));
  for(const s of SPECIES){assert.ok(fishRoutes(s.id).length,s.id);assert.ok(PROFILES[s.id].source_ids.length,s.id);for(const value of Object.values(PROFILES[s.id].attributes))assert.ok(value>=0&&value<=1);}
  for(const a of APPEARANCES){const routes=fishRoutes(a.parent);assert.ok(routes.some(r=>!a.post||r.post===a.post),a.id);}
 });

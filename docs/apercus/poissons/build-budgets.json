@@ -1,0 +1,18 @@
+{
+  "before": {
+    "entry": "/assets/index-BnHuyJcz.js",
+    "entryBytes": 1940953,
+    "files": 263,
+    "totalBytes": 4709151
+  },
+  "after": {
+    "entry": "/assets/index-BHh5qZXP.js",
+    "entryBytes": 2184950,
+    "files": 263,
+    "totalBytes": 4954288
+  },
+  "normalizedImageBytes": 5253670,
+  "models": 33,
+  "modelBytes": 3718016,
+  "images": 197
+}

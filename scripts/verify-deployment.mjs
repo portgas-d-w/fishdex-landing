@@ -19,8 +19,9 @@ const rows=[];
 for(const path of paths){
  const local=await readFile(join(dist,path)),hosted=await remote(`/${path}`);
  const row={path,bytes:local.length,sha256:digest(local),hostedSha256:digest(hosted),sameBytes:digest(local)===digest(hosted)};
- // Git copies this text asset with LF on Vercel and CRLF in the Windows checkout.
- if(path==='models/manifest.json')row.onlyLineEndingDifference=digest(Buffer.from(local.toString('utf8').replaceAll('\r\n','\n')))===digest(hosted);
+ // Git normalizes text to LF on Vercel. Retain both raw hashes and prove that
+ // replacing CRLF alone gives the remote bytes; never relax binary comparisons.
+ if(path==='models/manifest.json'||/^fishdex-assets\/[^/]+\.svg$/.test(path))row.onlyLineEndingDifference=digest(Buffer.from(local.toString('utf8').replaceAll('\r\n','\n')))===digest(hosted);
  rows.push(row);if(!row.sameBytes&&!row.onlyLineEndingDifference)throw Error(`Different content: ${path}`);
 }
 const html=(await remote('/')).toString('utf8');

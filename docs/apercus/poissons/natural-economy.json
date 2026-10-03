@@ -1,0 +1,3460 @@
+{
+  "seed": 127,
+  "castsPerMethod": 12,
+  "forcedEncounters": false,
+  "unlimitedMoney": false,
+  "unlimitedStock": false,
+  "access": "Normal high-level fixture with earned rights",
+  "controller": "Perfect bearing and regulated tension; no human/device timing",
+  "assumedPreparationPhotoSeconds": 8,
+  "notes": "Only selected replaceable slots are paid. Kits remain free; figures are not balance targets or observed player income.",
+  "rows": [
+    {
+      "technique": "coup",
+      "recipe": "flotteur_fixe",
+      "post": "jetty",
+      "casts": 12,
+      "captures": 11,
+      "elapsedSeconds": 417.28,
+      "rewards": 278,
+      "consumedReplacementCost": 6.88,
+      "netCoinsPerMinute": 38.98,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 8.82,
+          "fightSeconds": 31.52,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "whitebream",
+          "failure": "",
+          "waitSeconds": 8.48,
+          "fightSeconds": 15.18,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 7.95,
+          "fightSeconds": 12.45,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 9.02,
+          "fightSeconds": 6.55,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "crucian",
+          "failure": "",
+          "waitSeconds": 6.95,
+          "fightSeconds": 30.77,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 8.43,
+          "fightSeconds": 23.2,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 7,
+          "outcome": "lost",
+          "failure": "Rupture du bas de ligne. Accompagnez le départ et baissez la canne.",
+          "waitSeconds": 9.22,
+          "fightSeconds": 3.22,
+          "landingSeconds": 0,
+          "cost": 1.013,
+          "losses": {
+            "v2:leader": 0.6,
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 8.17,
+          "fightSeconds": 13.93,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 9.8,
+          "fightSeconds": 19.75,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 10.03,
+          "fightSeconds": 20.95,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 7.43,
+          "fightSeconds": 17.82,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "crucian",
+          "failure": "",
+          "waitSeconds": 9.7,
+          "fightSeconds": 10.95,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        }
+      ]
+    },
+    {
+      "technique": "grande_canne",
+      "recipe": "plombee_etalee",
+      "post": "jetty",
+      "casts": 12,
+      "captures": 11,
+      "elapsedSeconds": 417.98,
+      "rewards": 278,
+      "consumedReplacementCost": 6.88,
+      "netCoinsPerMinute": 38.92,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 8.82,
+          "fightSeconds": 13.12,
+          "landingSeconds": 6.52,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "whitebream",
+          "failure": "",
+          "waitSeconds": 8.48,
+          "fightSeconds": 6.3,
+          "landingSeconds": 10.63,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 7.95,
+          "fightSeconds": 11.43,
+          "landingSeconds": 9.07,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 9.02,
+          "fightSeconds": 6.25,
+          "landingSeconds": 10.73,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "crucian",
+          "failure": "",
+          "waitSeconds": 6.95,
+          "fightSeconds": 14.37,
+          "landingSeconds": 6.52,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 8.43,
+          "fightSeconds": 13.08,
+          "landingSeconds": 6.55,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 7,
+          "outcome": "lost",
+          "failure": "Rupture du bas de ligne. Accompagnez le départ et baissez la canne.",
+          "waitSeconds": 9.22,
+          "fightSeconds": 8.97,
+          "landingSeconds": 0,
+          "cost": 1.013,
+          "losses": {
+            "v2:leader": 0.6,
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 8.17,
+          "fightSeconds": 10.25,
+          "landingSeconds": 6.52,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 9.8,
+          "fightSeconds": 9.8,
+          "landingSeconds": 6.63,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 10.03,
+          "fightSeconds": 17.55,
+          "landingSeconds": 6.52,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 7.43,
+          "fightSeconds": 13.43,
+          "landingSeconds": 6.57,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "crucian",
+          "failure": "",
+          "waitSeconds": 9.7,
+          "fightSeconds": 9.32,
+          "landingSeconds": 7.87,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        }
+      ]
+    },
+    {
+      "technique": "anglaise",
+      "recipe": "waggler_fixe",
+      "post": "jetty",
+      "casts": 12,
+      "captures": 12,
+      "elapsedSeconds": 383.1,
+      "rewards": 309,
+      "consumedReplacementCost": 6.4,
+      "netCoinsPerMinute": 47.39,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 8.82,
+          "fightSeconds": 20.02,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "whitebream",
+          "failure": "",
+          "waitSeconds": 8.48,
+          "fightSeconds": 9.98,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 7.95,
+          "fightSeconds": 10.17,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 9.02,
+          "fightSeconds": 7.97,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "crucian",
+          "failure": "",
+          "waitSeconds": 6.95,
+          "fightSeconds": 19.4,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 8.43,
+          "fightSeconds": 17.7,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 9.22,
+          "fightSeconds": 23.43,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 8.17,
+          "fightSeconds": 11.3,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 9.8,
+          "fightSeconds": 9.65,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 10.03,
+          "fightSeconds": 14.12,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 7.43,
+          "fightSeconds": 14.78,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "crucian",
+          "failure": "",
+          "waitSeconds": 9.7,
+          "fightSeconds": 12.58,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        }
+      ]
+    },
+    {
+      "technique": "bolognaise",
+      "recipe": "bolo_derive",
+      "post": "river",
+      "casts": 12,
+      "captures": 12,
+      "elapsedSeconds": 503.35,
+      "rewards": 381,
+      "consumedReplacementCost": 6.4,
+      "netCoinsPerMinute": 44.65,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 14.98,
+          "fightSeconds": 10.8,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "ombre",
+          "failure": "",
+          "waitSeconds": 13.67,
+          "fightSeconds": 17.12,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "blageon",
+          "failure": "",
+          "waitSeconds": 12.67,
+          "fightSeconds": 11.62,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 18.87,
+          "fightSeconds": 13.62,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "truite-fario",
+          "failure": "",
+          "waitSeconds": 10.78,
+          "fightSeconds": 35.68,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 13.58,
+          "fightSeconds": 33.3,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 15.03,
+          "fightSeconds": 14.6,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 13.1,
+          "fightSeconds": 11.57,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "barbeau-meridional",
+          "failure": "",
+          "waitSeconds": 16.13,
+          "fightSeconds": 23.98,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 16.53,
+          "fightSeconds": 20.5,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 11.7,
+          "fightSeconds": 13.27,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "truite-arc-en-ciel",
+          "failure": "",
+          "waitSeconds": 20.87,
+          "fightSeconds": 11.38,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        }
+      ]
+    },
+    {
+      "technique": "fond",
+      "recipe": "fond_coulissant",
+      "post": "jetty",
+      "casts": 12,
+      "captures": 12,
+      "elapsedSeconds": 409.88,
+      "rewards": 313,
+      "consumedReplacementCost": 6.4,
+      "netCoinsPerMinute": 44.88,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 9.03,
+          "fightSeconds": 35.47,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 8.72,
+          "fightSeconds": 8.32,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 8.18,
+          "fightSeconds": 10.17,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 9.22,
+          "fightSeconds": 8.03,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "whitebream",
+          "failure": "",
+          "waitSeconds": 7.15,
+          "fightSeconds": 16.62,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 8.67,
+          "fightSeconds": 15.12,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 9.43,
+          "fightSeconds": 25.47,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 8.37,
+          "fightSeconds": 14.77,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 10.02,
+          "fightSeconds": 9.65,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 10.27,
+          "fightSeconds": 19.28,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 7.63,
+          "fightSeconds": 20.7,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "whitebream",
+          "failure": "",
+          "waitSeconds": 9.9,
+          "fightSeconds": 11.72,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        }
+      ]
+    },
+    {
+      "technique": "feeder",
+      "recipe": "feeder_coulissant",
+      "post": "jetty",
+      "casts": 12,
+      "captures": 12,
+      "elapsedSeconds": 383.57,
+      "rewards": 313,
+      "consumedReplacementCost": 12.8,
+      "netCoinsPerMinute": 46.96,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 9.03,
+          "fightSeconds": 28.2,
+          "landingSeconds": 1,
+          "cost": 1.067,
+          "losses": {
+            "v2:bait": 1,
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 8.68,
+          "fightSeconds": 7.12,
+          "landingSeconds": 1,
+          "cost": 1.067,
+          "losses": {
+            "v2:bait": 1,
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 8.18,
+          "fightSeconds": 9.23,
+          "landingSeconds": 1,
+          "cost": 1.067,
+          "losses": {
+            "v2:bait": 1,
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 9.22,
+          "fightSeconds": 7.68,
+          "landingSeconds": 1,
+          "cost": 1.067,
+          "losses": {
+            "v2:bait": 1,
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "whitebream",
+          "failure": "",
+          "waitSeconds": 7.15,
+          "fightSeconds": 13.68,
+          "landingSeconds": 1,
+          "cost": 1.067,
+          "losses": {
+            "v2:bait": 1,
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 8.63,
+          "fightSeconds": 13.63,
+          "landingSeconds": 1,
+          "cost": 1.067,
+          "losses": {
+            "v2:bait": 1,
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 9.42,
+          "fightSeconds": 22.38,
+          "landingSeconds": 1,
+          "cost": 1.067,
+          "losses": {
+            "v2:bait": 1,
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 8.37,
+          "fightSeconds": 13.05,
+          "landingSeconds": 1,
+          "cost": 1.067,
+          "losses": {
+            "v2:bait": 1,
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 10.02,
+          "fightSeconds": 8.12,
+          "landingSeconds": 1,
+          "cost": 1.067,
+          "losses": {
+            "v2:bait": 1,
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 10.27,
+          "fightSeconds": 16.93,
+          "landingSeconds": 1,
+          "cost": 1.067,
+          "losses": {
+            "v2:bait": 1,
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 7.63,
+          "fightSeconds": 18.48,
+          "landingSeconds": 1,
+          "cost": 1.067,
+          "losses": {
+            "v2:bait": 1,
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "whitebream",
+          "failure": "",
+          "waitSeconds": 9.9,
+          "fightSeconds": 10.55,
+          "landingSeconds": 1,
+          "cost": 1.067,
+          "losses": {
+            "v2:bait": 1,
+            "v2:groundbait": 1
+          }
+        }
+      ]
+    },
+    {
+      "technique": "method_feeder",
+      "recipe": "method_inline",
+      "post": "jetty",
+      "casts": 12,
+      "captures": 12,
+      "elapsedSeconds": 475.42,
+      "rewards": 368,
+      "consumedReplacementCost": 6.4,
+      "netCoinsPerMinute": 45.64,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "carp",
+          "failure": "",
+          "waitSeconds": 9.02,
+          "fightSeconds": 84.98,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "crucian",
+          "failure": "",
+          "waitSeconds": 8.9,
+          "fightSeconds": 9.67,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 8.13,
+          "fightSeconds": 15.27,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 9.17,
+          "fightSeconds": 7.68,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "crucian",
+          "failure": "",
+          "waitSeconds": 7.18,
+          "fightSeconds": 16.02,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 8.6,
+          "fightSeconds": 13.63,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 9.52,
+          "fightSeconds": 22.38,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 8.37,
+          "fightSeconds": 13.05,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 9.98,
+          "fightSeconds": 13.15,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "carp",
+          "failure": "",
+          "waitSeconds": 10.28,
+          "fightSeconds": 26.15,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "carp",
+          "failure": "",
+          "waitSeconds": 7.62,
+          "fightSeconds": 27.52,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:groundbait": 1
+          }
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "crucian",
+          "failure": "",
+          "waitSeconds": 9.87,
+          "fightSeconds": 11.28,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:groundbait": 1
+          }
+        }
+      ]
+    },
+    {
+      "technique": "carpe",
+      "recipe": "cheveu_coulissant",
+      "post": "jetty",
+      "casts": 12,
+      "captures": 12,
+      "elapsedSeconds": 403.55,
+      "rewards": 368,
+      "consumedReplacementCost": 0,
+      "netCoinsPerMinute": 54.71,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "carp",
+          "failure": "",
+          "waitSeconds": 9.23,
+          "fightSeconds": 50.57,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "crucian",
+          "failure": "",
+          "waitSeconds": 9.98,
+          "fightSeconds": 6.75,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 8.37,
+          "fightSeconds": 12.78,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 9.23,
+          "fightSeconds": 6.93,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "crucian",
+          "failure": "",
+          "waitSeconds": 7.47,
+          "fightSeconds": 12.07,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 8.67,
+          "fightSeconds": 11.12,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 10.22,
+          "fightSeconds": 15.7,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 8.5,
+          "fightSeconds": 10.38,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 10.07,
+          "fightSeconds": 6.9,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "carp",
+          "failure": "",
+          "waitSeconds": 10.7,
+          "fightSeconds": 20.65,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "carp",
+          "failure": "",
+          "waitSeconds": 7.77,
+          "fightSeconds": 22.3,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "crucian",
+          "failure": "",
+          "waitSeconds": 9.95,
+          "fightSeconds": 9.25,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        }
+      ]
+    },
+    {
+      "technique": "stalking",
+      "recipe": "surface_libre",
+      "post": "jetty",
+      "casts": 12,
+      "captures": 12,
+      "elapsedSeconds": 527.15,
+      "rewards": 348,
+      "consumedReplacementCost": 0,
+      "netCoinsPerMinute": 39.61,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "carp",
+          "failure": "",
+          "waitSeconds": 9.28,
+          "fightSeconds": 115.5,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 10.48,
+          "fightSeconds": 19.13,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "ide",
+          "failure": "",
+          "waitSeconds": 8.43,
+          "fightSeconds": 16.23,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "rudd",
+          "failure": "",
+          "waitSeconds": 9.2,
+          "fightSeconds": 7.48,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "rudd",
+          "failure": "",
+          "waitSeconds": 7.55,
+          "fightSeconds": 16.58,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "rudd",
+          "failure": "",
+          "waitSeconds": 8.65,
+          "fightSeconds": 12.38,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "rudd",
+          "failure": "",
+          "waitSeconds": 10.48,
+          "fightSeconds": 19.27,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "rudd",
+          "failure": "",
+          "waitSeconds": 8.52,
+          "fightSeconds": 11.68,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "ide",
+          "failure": "",
+          "waitSeconds": 10.05,
+          "fightSeconds": 16.8,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "carp",
+          "failure": "",
+          "waitSeconds": 10.87,
+          "fightSeconds": 29.83,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "carp",
+          "failure": "",
+          "waitSeconds": 7.78,
+          "fightSeconds": 31.63,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "rudd",
+          "failure": "",
+          "waitSeconds": 9.93,
+          "fightSeconds": 11.38,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        }
+      ]
+    },
+    {
+      "technique": "surface",
+      "recipe": "surface_libre",
+      "post": "jetty",
+      "casts": 12,
+      "captures": 12,
+      "elapsedSeconds": 531.32,
+      "rewards": 348,
+      "consumedReplacementCost": 0,
+      "netCoinsPerMinute": 39.3,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "carp",
+          "failure": "",
+          "waitSeconds": 9.62,
+          "fightSeconds": 115.5,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 10.83,
+          "fightSeconds": 19.13,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "ide",
+          "failure": "",
+          "waitSeconds": 8.78,
+          "fightSeconds": 16.23,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "rudd",
+          "failure": "",
+          "waitSeconds": 9.55,
+          "fightSeconds": 7.48,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "rudd",
+          "failure": "",
+          "waitSeconds": 7.9,
+          "fightSeconds": 16.58,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "rudd",
+          "failure": "",
+          "waitSeconds": 9,
+          "fightSeconds": 12.38,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "rudd",
+          "failure": "",
+          "waitSeconds": 10.83,
+          "fightSeconds": 19.27,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "rudd",
+          "failure": "",
+          "waitSeconds": 8.87,
+          "fightSeconds": 11.68,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "ide",
+          "failure": "",
+          "waitSeconds": 10.38,
+          "fightSeconds": 16.8,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "carp",
+          "failure": "",
+          "waitSeconds": 11.22,
+          "fightSeconds": 29.83,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "carp",
+          "failure": "",
+          "waitSeconds": 8.13,
+          "fightSeconds": 31.63,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "rudd",
+          "failure": "",
+          "waitSeconds": 10.28,
+          "fightSeconds": 11.38,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        }
+      ]
+    },
+    {
+      "technique": "leurre",
+      "recipe": "poisson_nageur",
+      "post": "jetty",
+      "casts": 12,
+      "captures": 4,
+      "elapsedSeconds": 530.57,
+      "rewards": 137,
+      "consumedReplacementCost": 0,
+      "netCoinsPerMinute": 15.49,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 19.25,
+          "fightSeconds": 28.25,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 2,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 3,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 4,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 5,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 6,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 16.83,
+          "fightSeconds": 4.15,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 15.4,
+          "fightSeconds": 9.8,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 9,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 10,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 11,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 17.17,
+          "fightSeconds": 25.18,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        }
+      ]
+    },
+    {
+      "technique": "verticale",
+      "recipe": "tete_plombee",
+      "post": "deep",
+      "casts": 12,
+      "captures": 12,
+      "elapsedSeconds": 478.77,
+      "rewards": 242,
+      "consumedReplacementCost": 0,
+      "netCoinsPerMinute": 30.33,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 18.78,
+          "fightSeconds": 26.15,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 20.18,
+          "fightSeconds": 13.68,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 15.1,
+          "fightSeconds": 12.8,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 16.65,
+          "fightSeconds": 7.35,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 9.8,
+          "fightSeconds": 18.67,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 13.82,
+          "fightSeconds": 13.08,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 17.35,
+          "fightSeconds": 19.47,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 14.72,
+          "fightSeconds": 9.85,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 19.8,
+          "fightSeconds": 10.9,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 19.82,
+          "fightSeconds": 15.38,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 10.32,
+          "fightSeconds": 16.83,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 18.6,
+          "fightSeconds": 11.67,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        }
+      ]
+    },
+    {
+      "technique": "mort_manie",
+      "recipe": "mort_manie_monture",
+      "post": "jetty",
+      "casts": 12,
+      "captures": 7,
+      "elapsedSeconds": 490.43,
+      "rewards": 244,
+      "consumedReplacementCost": 0,
+      "netCoinsPerMinute": 29.85,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 18.95,
+          "fightSeconds": 19.1,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 2,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 3,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 19.9,
+          "fightSeconds": 11.75,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 16.82,
+          "fightSeconds": 7.75,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 20.02,
+          "fightSeconds": 4.53,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 7,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 8,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "ide",
+          "failure": "",
+          "waitSeconds": 20.78,
+          "fightSeconds": 4.45,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 10,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "zander",
+          "failure": "",
+          "waitSeconds": 18.73,
+          "fightSeconds": 13.55,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 15.97,
+          "fightSeconds": 11.05,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        }
+      ]
+    },
+    {
+      "technique": "toc",
+      "recipe": "toc_etage",
+      "post": "river",
+      "casts": 12,
+      "captures": 12,
+      "elapsedSeconds": 503.35,
+      "rewards": 381,
+      "consumedReplacementCost": 6.4,
+      "netCoinsPerMinute": 44.65,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 14.98,
+          "fightSeconds": 10.8,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "ombre",
+          "failure": "",
+          "waitSeconds": 13.67,
+          "fightSeconds": 17.12,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "blageon",
+          "failure": "",
+          "waitSeconds": 12.67,
+          "fightSeconds": 11.62,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 18.87,
+          "fightSeconds": 13.62,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "truite-fario",
+          "failure": "",
+          "waitSeconds": 10.78,
+          "fightSeconds": 35.68,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 13.58,
+          "fightSeconds": 33.3,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 15.03,
+          "fightSeconds": 14.6,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 13.1,
+          "fightSeconds": 11.57,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "barbeau-meridional",
+          "failure": "",
+          "waitSeconds": 16.13,
+          "fightSeconds": 23.98,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 16.53,
+          "fightSeconds": 20.5,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 11.7,
+          "fightSeconds": 13.27,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "truite-arc-en-ciel",
+          "failure": "",
+          "waitSeconds": 20.87,
+          "fightSeconds": 11.38,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        }
+      ]
+    },
+    {
+      "technique": "mouche",
+      "recipe": "seche",
+      "post": "jetty",
+      "casts": 12,
+      "captures": 12,
+      "elapsedSeconds": 378,
+      "rewards": 303,
+      "consumedReplacementCost": 0,
+      "netCoinsPerMinute": 48.1,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 8.87,
+          "fightSeconds": 28.73,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "bleak",
+          "failure": "",
+          "waitSeconds": 8.52,
+          "fightSeconds": 7.17,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 7.98,
+          "fightSeconds": 15.53,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "rudd",
+          "failure": "",
+          "waitSeconds": 9.05,
+          "fightSeconds": 7.13,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "bleak",
+          "failure": "",
+          "waitSeconds": 6.98,
+          "fightSeconds": 10.42,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "rudd",
+          "failure": "",
+          "waitSeconds": 8.47,
+          "fightSeconds": 11.47,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "rudd",
+          "failure": "",
+          "waitSeconds": 9.25,
+          "fightSeconds": 15.98,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "rudd",
+          "failure": "",
+          "waitSeconds": 8.2,
+          "fightSeconds": 10.63,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 9.85,
+          "fightSeconds": 13.45,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 10.07,
+          "fightSeconds": 17.37,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 7.47,
+          "fightSeconds": 18.93,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "bleak",
+          "failure": "",
+          "waitSeconds": 9.73,
+          "fightSeconds": 8.75,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        }
+      ]
+    },
+    {
+      "technique": "nymphe_fil",
+      "recipe": "toc_nymphe",
+      "post": "river",
+      "casts": 12,
+      "captures": 12,
+      "elapsedSeconds": 472.87,
+      "rewards": 381,
+      "consumedReplacementCost": 0,
+      "netCoinsPerMinute": 48.34,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 14.98,
+          "fightSeconds": 10.42,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "ombre",
+          "failure": "",
+          "waitSeconds": 13.67,
+          "fightSeconds": 16.03,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "blageon",
+          "failure": "",
+          "waitSeconds": 12.67,
+          "fightSeconds": 10.22,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 14.65,
+          "fightSeconds": 12.67,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "truite-fario",
+          "failure": "",
+          "waitSeconds": 10.78,
+          "fightSeconds": 30.53,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 17.25,
+          "fightSeconds": 29,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 15.03,
+          "fightSeconds": 13.32,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 13.1,
+          "fightSeconds": 10.7,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "barbeau-meridional",
+          "failure": "",
+          "waitSeconds": 16.13,
+          "fightSeconds": 20.2,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 16.53,
+          "fightSeconds": 18.92,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 11.7,
+          "fightSeconds": 9.48,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "truite-arc-en-ciel",
+          "failure": "",
+          "waitSeconds": 15.93,
+          "fightSeconds": 10.95,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        }
+      ]
+    },
+    {
+      "technique": "bombette",
+      "recipe": "bombette_flot",
+      "post": "jetty",
+      "casts": 12,
+      "captures": 11,
+      "elapsedSeconds": 465.45,
+      "rewards": 298,
+      "consumedReplacementCost": 6.4,
+      "netCoinsPerMinute": 37.59,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 18.13,
+          "fightSeconds": 28.42,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 17.28,
+          "fightSeconds": 5.12,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 15.95,
+          "fightSeconds": 8.12,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 18.6,
+          "fightSeconds": 5.65,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "whitebream",
+          "failure": "",
+          "waitSeconds": 13.47,
+          "fightSeconds": 13.37,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 17.17,
+          "fightSeconds": 12.72,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 19.12,
+          "fightSeconds": 21.8,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "bream",
+          "failure": "",
+          "waitSeconds": 16.52,
+          "fightSeconds": 11.25,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 20.62,
+          "fightSeconds": 4.95,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 10,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "whitebream",
+          "failure": "",
+          "waitSeconds": 13.28,
+          "fightSeconds": 7.85,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 18.72,
+          "fightSeconds": 13.55,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        }
+      ]
+    },
+    {
+      "technique": "gambe",
+      "recipe": "gambe_nymphes",
+      "post": "deep",
+      "casts": 12,
+      "captures": 12,
+      "elapsedSeconds": 450.25,
+      "rewards": 299,
+      "consumedReplacementCost": 0,
+      "netCoinsPerMinute": 39.84,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 18.55,
+          "fightSeconds": 14.32,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 16.62,
+          "fightSeconds": 13.68,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 14.55,
+          "fightSeconds": 12.8,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 16.62,
+          "fightSeconds": 7.35,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 9.3,
+          "fightSeconds": 18.67,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 13.7,
+          "fightSeconds": 13.08,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 15.58,
+          "fightSeconds": 19.47,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 14.53,
+          "fightSeconds": 9.85,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 19.75,
+          "fightSeconds": 10.9,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 18.8,
+          "fightSeconds": 10.95,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 12.7,
+          "fightSeconds": 12.32,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 16.5,
+          "fightSeconds": 11.67,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        }
+      ]
+    },
+    {
+      "technique": "traine",
+      "recipe": "traine_lac",
+      "post": "boat",
+      "casts": 12,
+      "captures": 12,
+      "elapsedSeconds": 460.8,
+      "rewards": 283,
+      "consumedReplacementCost": 0,
+      "netCoinsPerMinute": 36.85,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 15.58,
+          "fightSeconds": 23.05,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 16.52,
+          "fightSeconds": 10.82,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "pike",
+          "failure": "",
+          "waitSeconds": 13.88,
+          "fightSeconds": 28.18,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 15.68,
+          "fightSeconds": 6.88,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 12.02,
+          "fightSeconds": 14.55,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 14.57,
+          "fightSeconds": 11.7,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 17.2,
+          "fightSeconds": 14.87,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 14.18,
+          "fightSeconds": 5.85,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "pike",
+          "failure": "",
+          "waitSeconds": 17.33,
+          "fightSeconds": 13.57,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 18.42,
+          "fightSeconds": 13.2,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 12.7,
+          "fightSeconds": 14.6,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 17.13,
+          "fightSeconds": 10.32,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        }
+      ]
+    },
+    {
+      "technique": "clonk",
+      "recipe": "clonk_vertical",
+      "post": "boat",
+      "casts": 12,
+      "captures": 12,
+      "elapsedSeconds": 945.43,
+      "rewards": 433,
+      "consumedReplacementCost": 6.4,
+      "netCoinsPerMinute": 27.07,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "catfish",
+          "failure": "",
+          "waitSeconds": 30.93,
+          "fightSeconds": 85.87,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "catfish",
+          "failure": "",
+          "waitSeconds": 105.9,
+          "fightSeconds": 22.15,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "catfish",
+          "failure": "",
+          "waitSeconds": 31.12,
+          "fightSeconds": 21.5,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "catfish",
+          "failure": "",
+          "waitSeconds": 14.23,
+          "fightSeconds": 8.27,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "catfish",
+          "failure": "",
+          "waitSeconds": 34.65,
+          "fightSeconds": 46.32,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "catfish",
+          "failure": "",
+          "waitSeconds": 16.48,
+          "fightSeconds": 37.67,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 7,
+          "outcome": "caught",
+          "species": "catfish",
+          "failure": "",
+          "waitSeconds": 66.37,
+          "fightSeconds": 63.55,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "catfish",
+          "failure": "",
+          "waitSeconds": 28.73,
+          "fightSeconds": 25.88,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "catfish",
+          "failure": "",
+          "waitSeconds": 18.43,
+          "fightSeconds": 7.97,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "catfish",
+          "failure": "",
+          "waitSeconds": 53.48,
+          "fightSeconds": 25.92,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "catfish",
+          "failure": "",
+          "waitSeconds": 28.67,
+          "fightSeconds": 27.55,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "catfish",
+          "failure": "",
+          "waitSeconds": 20.37,
+          "fightSeconds": 15.43,
+          "landingSeconds": 1,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        }
+      ]
+    },
+    {
+      "technique": "ultraleger",
+      "recipe": "tete_plombee",
+      "post": "jetty",
+      "casts": 12,
+      "captures": 7,
+      "elapsedSeconds": 538.42,
+      "rewards": 244,
+      "consumedReplacementCost": 0,
+      "netCoinsPerMinute": 27.19,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 18.95,
+          "fightSeconds": 38.43,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 2,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 3,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 19.9,
+          "fightSeconds": 18.9,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 16.82,
+          "fightSeconds": 12.28,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 20.02,
+          "fightSeconds": 6.28,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 7,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 8,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "ide",
+          "failure": "",
+          "waitSeconds": 20.78,
+          "fightSeconds": 5.57,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 10,
+          "outcome": "idle",
+          "failure": "",
+          "waitSeconds": 36.82,
+          "fightSeconds": 0,
+          "landingSeconds": 0,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "zander",
+          "failure": "",
+          "waitSeconds": 18.73,
+          "fightSeconds": 22.83,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "chub",
+          "failure": "",
+          "waitSeconds": 15.97,
+          "fightSeconds": 15.87,
+          "landingSeconds": 1,
+          "cost": 0,
+          "losses": {}
+        }
+      ]
+    },
+    {
+      "technique": "carpodrome",
+      "recipe": "flotteur_fixe",
+      "post": "jetty",
+      "casts": 12,
+      "captures": 11,
+      "elapsedSeconds": 417.98,
+      "rewards": 278,
+      "consumedReplacementCost": 6.88,
+      "netCoinsPerMinute": 38.92,
+      "outcomes": [
+        {
+          "cast": 1,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 8.82,
+          "fightSeconds": 13.12,
+          "landingSeconds": 6.52,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 2,
+          "outcome": "caught",
+          "species": "whitebream",
+          "failure": "",
+          "waitSeconds": 8.48,
+          "fightSeconds": 6.3,
+          "landingSeconds": 10.63,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 3,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 7.95,
+          "fightSeconds": 11.43,
+          "landingSeconds": 9.07,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 4,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 9.02,
+          "fightSeconds": 6.25,
+          "landingSeconds": 10.73,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 5,
+          "outcome": "caught",
+          "species": "crucian",
+          "failure": "",
+          "waitSeconds": 6.95,
+          "fightSeconds": 14.37,
+          "landingSeconds": 6.52,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 6,
+          "outcome": "caught",
+          "species": "perch",
+          "failure": "",
+          "waitSeconds": 8.43,
+          "fightSeconds": 13.08,
+          "landingSeconds": 6.55,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 7,
+          "outcome": "lost",
+          "failure": "Rupture du bas de ligne. Accompagnez le départ et baissez la canne.",
+          "waitSeconds": 9.22,
+          "fightSeconds": 8.97,
+          "landingSeconds": 0,
+          "cost": 1.013,
+          "losses": {
+            "v2:leader": 0.6,
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 8,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 8.17,
+          "fightSeconds": 10.25,
+          "landingSeconds": 6.52,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 9,
+          "outcome": "caught",
+          "species": "gudgeon",
+          "failure": "",
+          "waitSeconds": 9.8,
+          "fightSeconds": 9.8,
+          "landingSeconds": 6.63,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 10,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 10.03,
+          "fightSeconds": 17.55,
+          "landingSeconds": 6.52,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 11,
+          "outcome": "caught",
+          "species": "roach",
+          "failure": "",
+          "waitSeconds": 7.43,
+          "fightSeconds": 13.43,
+          "landingSeconds": 6.57,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        },
+        {
+          "cast": 12,
+          "outcome": "caught",
+          "species": "crucian",
+          "failure": "",
+          "waitSeconds": 9.7,
+          "fightSeconds": 9.32,
+          "landingSeconds": 7.87,
+          "cost": 0.533,
+          "losses": {
+            "v2:bait": 1
+          }
+        }
+      ]
+    }
+  ]
+}

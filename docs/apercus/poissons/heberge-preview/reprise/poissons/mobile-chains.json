@@ -1,0 +1,83 @@
+{
+  "qa": false,
+  "forcedEncounterOnly": true,
+  "controller": "Real DOM/CDP commands at wall-clock speed",
+  "captures": [
+    {
+      "id": "gobie",
+      "appearance": "",
+      "specimen": "6357b47b-f6ef-4b21-8c5f-ba9940954f9d",
+      "length": 12,
+      "photo": true
+    },
+    {
+      "id": "carpe-koi",
+      "appearance": "carpe-koi-kohaku",
+      "specimen": "8f217f4e-b3ef-4239-bf36-12925ce229d9",
+      "length": 32,
+      "photo": true
+    },
+    {
+      "id": "truite-fario",
+      "appearance": "",
+      "specimen": "06b680f4-1fa3-48d3-bd8b-007fbf82b2db",
+      "length": 31,
+      "photo": true
+    },
+    {
+      "id": "esturgeon-siberien",
+      "appearance": "esturgeon-albinos",
+      "specimen": "260dd5cb-f0c9-4e9f-82e2-cbff762b9af1",
+      "length": 73,
+      "photo": true
+    }
+  ],
+  "observations": [
+    {
+      "id": "aa1f619d-983a-4051-a139-9d777c0b8cda",
+      "speciesId": "apron-du-rhone",
+      "seed": 127,
+      "length": 12,
+      "weight": 0.021,
+      "date": "2026-10-02T23:56:15.031Z",
+      "post": "river",
+      "duration": 12,
+      "target": {
+        "x": 0,
+        "z": 5
+      },
+      "xp": 20
+    },
+    {
+      "id": "64ac5041-d7dd-47f9-8957-308e0b787dab",
+      "speciesId": "lamproie-de-planer",
+      "seed": 127,
+      "length": 9,
+      "weight": 0.002,
+      "date": "2026-10-02T23:56:28.563Z",
+      "post": "river",
+      "duration": 12,
+      "target": {
+        "x": 0,
+        "z": 5
+      },
+      "xp": 20
+    },
+    {
+      "id": "6dfec6a0-a5ed-4664-824f-ec0448c02311",
+      "speciesId": "saumon-roi",
+      "seed": 127,
+      "length": 65,
+      "weight": 3.127,
+      "date": "2026-10-02T23:56:42.063Z",
+      "post": "pacific",
+      "duration": 12,
+      "target": {
+        "x": 0,
+        "z": 5
+      },
+      "xp": 20
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,233 @@
+{
+  "fixtures": [
+    {
+      "speciesId": "roach",
+      "length": 12
+    },
+    {
+      "speciesId": "anguille-europeenne",
+      "length": 100
+    },
+    {
+      "speciesId": "esturgeon-siberien",
+      "length": 180,
+      "appearanceId": "esturgeon-albinos"
+    },
+    {
+      "speciesId": "carpe-koi",
+      "length": 32,
+      "appearanceId": "carpe-koi-kohaku"
+    },
+    {
+      "speciesId": "pike",
+      "length": 110
+    }
+  ],
+  "state": {
+    "sceneId": "161d5b58-59fb-4d54-9a6c-cfc8bdf1eb6f",
+    "totalMeshes": 64,
+    "specimen": "",
+    "seed": 127,
+    "appearance": {
+      "coloration": "natural",
+      "mirage": false
+    },
+    "post": "jetty",
+    "method": "pole",
+    "hasReel": false,
+    "presentationDepth": 0,
+    "microzone": "margin",
+    "snagged": false,
+    "rights": {
+      "methods": [
+        "pole",
+        "float"
+      ],
+      "posts": [
+        "jetty",
+        "cove",
+        "bank"
+      ],
+      "precision": 0,
+      "initiation": false,
+      "legacy": false,
+      "mastery": {
+        "float": 5
+      },
+      "techniques": [
+        "coup",
+        "anglaise",
+        "bolognaise",
+        "stalking",
+        "surface",
+        "toc",
+        "bombette"
+      ],
+      "techniqueMastery": {}
+    },
+    "camera": [
+      0,
+      4.2,
+      -8.5
+    ],
+    "boat": {
+      "x": 0,
+      "z": 0
+    },
+    "sections": 12,
+    "encounter": "none",
+    "phase": "idle",
+    "tension": 0.25,
+    "fatigue": 0,
+    "slack": 0,
+    "dragSpeed": 0,
+    "lineLength": 8,
+    "fishDistance": 8,
+    "returning": false,
+    "progress": 0,
+    "reeling": false,
+    "pulling": false,
+    "total": 5,
+    "paused": true,
+    "direction": 0,
+    "reelSpeed": 0,
+    "alignment": 1,
+    "rodTip": {
+      "x": 0.6220156256681585,
+      "y": 0.4054261319436709
+    },
+    "target": {
+      "x": 0,
+      "z": 3.2
+    },
+    "yaw": 0,
+    "lift": 0.5,
+    "aquarium": {
+      "count": 5,
+      "frames": 10,
+      "enabled": true,
+      "plants": false,
+      "rocks": false,
+      "specimens": [
+        {
+          "id": "specimen-exhibit-0",
+          "scale": 0.08333333333333333,
+          "position": [
+            -0.2564216562542459,
+            0.35411142579663685,
+            1.0468311185214727
+          ],
+          "bounds": {
+            "min": [
+              -0.340091862404387,
+              0.31408147394567854,
+              1.0301387273206282
+            ],
+            "max": [
+              -0.1727514484285903,
+              0.3941413921126711,
+              1.0635235346422625
+            ]
+          }
+        },
+        {
+          "id": "specimen-exhibit-1",
+          "scale": 0.6944444444444444,
+          "position": [
+            -0.41607377086878855,
+            0.6405220403519196,
+            1.0416230697026791
+          ],
+          "bounds": {
+            "min": [
+              -1.111828563279816,
+              0.5850143857364802,
+              0.9671142826433194
+            ],
+            "max": [
+              0.27968102461785915,
+              0.6960297398204656,
+              1.1161319484357821
+            ]
+          }
+        },
+        {
+          "id": "specimen-exhibit-2",
+          "scale": 1.1682242990654206,
+          "position": [
+            -0.5367696313040324,
+            1.1482536995497208,
+            1.035997167982577
+          ],
+          "bounds": {
+            "min": [
+              -1.8133152064177605,
+              0.9379732906706977,
+              0.6545546396496893
+            ],
+            "max": [
+              0.7164437850870709,
+              1.498720993616871,
+              1.4162089207567572
+            ]
+          }
+        },
+        {
+          "id": "specimen-exhibit-3",
+          "scale": 0.23515579071134624,
+          "position": [
+            -0.6974539664429059,
+            1.6828380239711624,
+            1.0261767903662
+          ],
+          "bounds": {
+            "min": [
+              -0.91299250746395,
+              1.5946546606719494,
+              0.9481404125277058
+            ],
+            "max": [
+              -0.46080251094856184,
+              1.7698457261212148,
+              1.1056829705738282
+            ]
+          }
+        },
+        {
+          "id": "specimen-exhibit-4",
+          "scale": 0.7638888888888888,
+          "position": [
+            -0.8622570530678821,
+            2.1273908539140867,
+            1.0132145207039445
+          ],
+          "bounds": {
+            "min": [
+              -1.632523610120511,
+              1.9371666148783708,
+              0.8403960105925865
+            ],
+            "max": [
+              -0.09199051665713798,
+              2.31761510814409,
+              1.1860329273194008
+            ]
+          }
+        }
+      ]
+    },
+    "engines": 2,
+    "lakeFrames": 4,
+    "meshes": 23
+  },
+  "orbitSamples": 81,
+  "allInside": true,
+  "longitudinalSpans": [
+    0.1666666716337204,
+    1.3888888359069824,
+    2.500000059582362,
+    0.444444441709674,
+    1.5277777910232544
+  ],
+  "errors": []
+}
