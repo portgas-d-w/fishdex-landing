@@ -502,7 +502,7 @@ try {
 
 // Interface de test uniquement dans le serveur de développement E2E, supprimée du build.
 if (import.meta.env.DEV && import.meta.env.VITE_E2E === '1') {
-  const {manageFight} = await import('../tests/support/combat');
+  const {manageFight} = await import('./testing/combat-driver');
   const { SceneInstrumentation } = await import('@babylonjs/core/Instrumentation/sceneInstrumentation');
   const instrumentation = new SceneInstrumentation(world!.scene);
   instrumentation.captureFrameTime = true;
