@@ -1,3 +1,6 @@
+## 4 octobre 2026 — Refonte des menus par lots
+Les quatre dossiers UI sont réalisés séquentiellement. Socle léger TypeScript/DOM et dialogues natifs conservés : les sous-fiches utilisent un dialogue propre pour préserver filtres, scroll et focus. Tokens Basalte & Turquoise existants réutilisés, interfaces mobiles pleine hauteur ; filtres et conseils interrogent les règles actuelles sans rééquilibrage. Publication unique après validation transversale demandée par le propriétaire. Aucun shader ni modèle modifié.
+
 # Journal des décisions
 
 | Date | Décision | Motif / statut |

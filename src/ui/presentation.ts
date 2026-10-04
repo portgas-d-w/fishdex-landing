@@ -1,0 +1,19 @@
+import {type Slot,type Component,type RigConfig,slotsFor,available,type Tackle} from '../game/rig';
+import {TECHNIQUES,type Technique} from '../game/techniques';
+import {itemCondition,methodAccess,techniqueCondition} from '../game/progression';
+import type {SaveData} from '../game/save';
+import {component} from '../game/rig';
+import {rodCompatible} from '../game/economy';
+export const escapeUI=(s:string)=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
+export const quantityText=(n:number,unit:string)=>`${Number.isFinite(n)?Number(n.toFixed(2)).toLocaleString('fr-FR'):'∞'} ${unit==='m'?'m':unit+(n>1?'s':'')}`;
+export const emptyState=(title:string,hint:string)=>`<div class="empty-state" role="status"><strong>${escapeUI(title)}</strong><p>${escapeUI(hint)}</p></div>`;
+export const status=(label:string)=>`<span class="state-pill">${escapeUI(label)}</span>`;
+export function unlockReason(save:SaveData,id:string){const reason=itemCondition(save,id);if(!reason.includes('compatible'))return reason;const item=component(id);const techniques=TECHNIQUES.filter(t=>item?item.methods.includes(t.base):rodCompatible(id,t.base,t.id));const locked=techniques.filter(t=>!methodAccess(save,t.base));return `${reason} ${locked.slice(0,3).map(t=>t.name+' : '+techniqueCondition(save,t.id)).join(' · ')}`;}
+export const EQUIPMENT_FAMILIES:[string,string,Slot[]][]=[['rod','Cannes',[]],['reel','Moulinets et élastiques',['reel','elastic']],['line','Fils et bas de ligne',['main_line','leader','tippet','fly_line','backing']],['rig','Pièces de montage',['float','weight','attachment','hook','stop','swivel','snap','bead','indicator','hair','boom','pva','bombette','lead_clip','tube','jig_head','nail_weight','wire_arm','harness','clonk']],['bait','Appâts et leurres',['bait','lure','fly']],['groundbait','Amorces et feeders',['groundbait','feeder']],['landing','Réception',['landing']]];
+export const familyContains=(family:string,slot:Slot)=>family==='all'||family===slot||!!EQUIPMENT_FAMILIES.find(f=>f[0]===family)?.[2].includes(slot);
+export const fitsComponent=(i:Component,c:RigConfig)=>slotsFor(c.method,c.recipe,c.technique).includes(i.slot)&&i.methods.includes(c.method)&&(!c.technique||!i.techniques||i.techniques.includes(c.technique));
+// Seuil historique du sac : déplacé sans modifier les règles ni inventer un score.
+export const lowStock=(i:Component,t:Tackle)=>!i.free&&available(t,i.id)<(i.slot==='main_line'?45:i.slot==='leader'?.6:2);
+export const techniqueFamily=(t:Technique)=>['mouche','nymphe_fil','toc'].includes(t.id)?'Mouche et dérive':['verticale','gambe','traine','clonk'].includes(t.id)?'Techniques spécialisées':t.base==='pole'||t.engine==='fixed'||t.engine==='drift'?'Flotteur et coup':t.base==='bottom'&&t.engine!=='retrieve'?'Fond et amorçage':'Leurres et surface';
+export const groupedTechniques=(render:(t:Technique)=>string)=>[...new Set(TECHNIQUES.map(techniqueFamily))].map(f=>`<section class="ui-section"><h3>${f}</h3>${TECHNIQUES.filter(t=>techniqueFamily(t)===f).map(render).join('')}</section>`).join('');
+export function installUIResourceFallback(){document.addEventListener('error',event=>{const img=event.target;if(!(img instanceof HTMLImageElement)||!img.closest('.modal'))return;const fallback=document.createElement('span');fallback.className='image-fallback';fallback.textContent='Illustration indisponible';fallback.setAttribute('role','img');fallback.setAttribute('aria-label',img.alt||'Illustration indisponible');img.replaceWith(fallback);},true);}

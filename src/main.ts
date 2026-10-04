@@ -15,6 +15,8 @@ declare const __TEST_MODE_ENABLED__:boolean;
 import './ui/theme.css';
 import './ui/structure.css';
 import './ui/journey.css';
+import './ui/presentation.css';
+import {installUIResourceFallback} from './ui/presentation';
 import { GameScreens } from './ui/structure';
 import { specimenRarity, rarityName } from './game/rarity';
 import { postById } from './game/posts';
@@ -367,6 +369,7 @@ window.addEventListener('keydown', e => {
   if (e.code !== 'Space' || e.repeat || overlayPaused || manualPaused || (e.target as HTMLElement).closest?.('input,select,button')) return;
   e.preventDefault(); activate();
 });
+installUIResourceFallback();
 hub = new GameScreens({ save: () => save, game, open: openModal, close: closeModal, persist: saveNow, refresh: refreshCollection, toast,postChanged:()=>{world?.setPost(game.post);renderPhase();} });
 observationScreens=installObservations({save:()=>save,game,open:openModal,close:closeModal,persist:saveNow,refresh:refreshCollection,toast});
 const updateTechniqueControls=installTechniqueControls({isPaused:()=>overlayPaused||manualPaused,save:()=>save,game,open:openModal,close:closeModal,persist:saveNow,refresh:refreshCollection,toast});

@@ -1,3 +1,7 @@
+## 4 octobre 2026 — Codex — Refonte UI, lot 01
+
+Lot Matériel/Boutique terminé localement, socle partagé et fiche de composant séparée ; kit groupé, familles, filtres, montages et ensembles expliqués. 205 tests + typecheck/build, 12 scénarios Chromium mobile/bureau passent. Réserve/transactions/sauvegarde v7 préservées ; aucun chantier eau/assets repris. Captures `docs/apercus/refonte-ui/avant` et `01-apres`, détail `docs/refonte-ui/01_MATERIEL_BOUTIQUE/RELAIS_A_COMPLETER.md`. Déploiement regroupé après les quatre lots suivant la demande actuelle. Prochain : lot 02 FishDex. iPhone réel/clavier iOS non contrôlés. Modification préalable de DEMARRER_AVEC_CODEX.md laissée hors commit.
+
 # RELAIS PROJET — Codex ↔ Claude Code
 
 **Dernière mise à jour :4octobre2026. Assets gratuits0.13.0 publiés sur fishdex.fr, revue/public conformes. Agent :Codex. Mode test public conservé, règles et sauvegardes inchangées.**

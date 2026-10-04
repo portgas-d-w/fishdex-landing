@@ -1,0 +1,27 @@
+/* Socle commun aux quatre lots : une surface de défilement native par dialogue. */
+.modal{background:var(--fd-surface);padding:24px;font-size:15px;scroll-padding-top:84px}
+.modal-header{background:var(--fd-surface);margin:-4px 0 20px;top:-24px;padding:16px 0 12px;min-height:64px}
+#preparation>.modal-header,.modal.detail-modal>.modal-header{margin:-4px 0 20px;background:var(--fd-surface);padding:16px 0 12px}
+.modal-header h2{font-size:24px;font-weight:600;overflow-wrap:anywhere}
+.modal .intro,.modal p,.modal small{line-height:1.55}
+.modal .intro{font-size:14px}.modal input,.modal select,.modal textarea{font-size:16px!important}
+.modal button,.modal summary{min-height:44px}.modal button{font-size:14px}
+.modal button:focus-visible,.modal input:focus-visible,.modal select:focus-visible{outline:2px solid var(--fd-focus);outline-offset:3px}
+.modal .action{background:var(--fd-accent);color:var(--fd-on-accent)}
+.modal .warning-line{color:var(--fd-warning)}
+.ui-section{margin:20px 0}.ui-section h3{font-size:18px;font-weight:600}
+.empty-state{padding:24px 16px;border:1px dashed var(--fd-border);border-radius:12px;background:var(--fd-bg);margin:16px 0}
+.empty-state p{font-size:14px;color:var(--fd-text-muted);margin-top:8px}
+.compact-row{min-width:0;flex-wrap:wrap}.compact-row>div{flex:1;min-width:130px}.compact-row strong{overflow-wrap:anywhere}
+.compact-row .component-art{width:52px;height:52px;float:left;margin:0 12px 8px 0;object-fit:contain}
+.image-fallback{display:grid;place-items:center;min-height:52px;background:var(--fd-specimen-bg);color:var(--fd-text-muted);font-size:12px;border-radius:8px}
+.work-tabs{position:relative;gap:8px}.work-tabs button[aria-pressed=true]{background:var(--fd-accent-soft);color:var(--fd-accent);border-color:var(--fd-accent)}
+.equipment-facts{display:grid;gap:8px;margin:16px 0}.equipment-facts>div{padding:12px;background:var(--fd-bg);border-radius:8px}.equipment-facts small{display:block;color:var(--fd-text-muted)}
+.rig-schematic{width:100%;height:200px;background:var(--fd-specimen-bg);border-radius:12px;margin:12px 0}.rig-schematic text{fill:var(--fd-text);font-size:14px}.rig-schematic path,.rig-schematic line{stroke:var(--fd-text-muted);stroke-width:2}.rig-schematic .surface{stroke:var(--fd-accent)}
+.modal details{margin:12px 0}.modal summary{padding:12px 4px;color:var(--fd-text)}
+.shop-toolbar{display:grid;gap:8px}.shop-toolbar label{display:grid;gap:8px}.shop-toolbar input,.shop-toolbar select{width:100%;min-height:44px;padding:10px;border:1px solid var(--fd-border);border-radius:8px;background:var(--fd-bg)}
+.modal .filters label{flex:1;min-width:130px}.modal .filters input[type=checkbox]{width:22px;height:22px;vertical-align:middle}
+.modal .state-pill{display:inline-block;margin:4px 4px 4px 0;font-size:12px;line-height:1.4}
+.rod-workshop svg ellipse{stroke:var(--fd-accent)}
+@media(max-width:640px){.modal:not(.catch-modal){width:100%;height:100dvh;max-height:100dvh;max-width:100%;border-radius:0;border:0;padding:calc(16px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom))}.modal-header{top:calc(-16px - env(safe-area-inset-top));padding-top:calc(12px + env(safe-area-inset-top));margin-top:calc(-16px - env(safe-area-inset-top))}.content-grid{grid-template-columns:1fr}.rod-workshop{max-width:100%;height:330px}.rod-pin{font-size:13px!important;max-width:47%}.rod-pin small{overflow-wrap:anywhere}.work-tabs button{padding:10px 8px}.filters{gap:12px}}
+@media(min-width:641px){.equipment-facts{grid-template-columns:repeat(3,1fr)}}

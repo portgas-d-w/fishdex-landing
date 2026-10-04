@@ -1,3 +1,11 @@
+## Refonte UI — 4 octobre 2026
+- [x] Lot 01 Matériel/Boutique : socle, retours, familles, explications et vérifications locales.
+- [ ] Lot 02 FishDex.
+- [ ] Lot 03 Progression/exploration.
+- [ ] Lot 04 Carnet/aquarium/aide.
+- [ ] Parcours transversaux, préproduction puis publication autorisée.
+- [ ] Essais physiques iPhone 14 Pro (touches, clavier, safe areas, fluidité).
+
 # Priorités du chantier — état du 4 octobre 2026
 
 La mission autonome explicite autorise les fonctionnalités suivantes et remplace l’attente du premier retour appareil pour avancer. Une prise ou une sauvegarde cassée reste prioritaire sur le contenu.
