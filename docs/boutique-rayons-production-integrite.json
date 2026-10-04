@@ -1,0 +1,31 @@
+{
+  "origin": "https://www.fishdex.fr",
+  "entry": "/assets/index-9cxLGp54.js",
+  "jsCss": 262,
+  "models": 33,
+  "images": 197,
+  "allMatch": true,
+  "deployment": "dpl_FBxvK25xxNCNs8XfL11Yv6TWoz3j",
+  "sourceCommit": "aa692d470a78edfc26b4a2ecd564ccd57d000bf0",
+  "appCommit": "351ce649c9077b0f481a71f393b4db3f5b6adaea",
+  "files": 520,
+  "entries": [
+    {
+      "path": "assets/index-2WYB7jmK.css",
+      "bytes": 56136,
+      "sha256": "b2f17d33269d4500f78b46f2aee23351dd3c1f89de72e8be30d236b8dd5d30ec",
+      "hostedSha256": "b2f17d33269d4500f78b46f2aee23351dd3c1f89de72e8be30d236b8dd5d30ec",
+      "sameBytes": true
+    },
+    {
+      "path": "assets/index-9cxLGp54.js",
+      "bytes": 2306038,
+      "sha256": "4d297c9d6e6b8250bcc74edc30cb1058b8fad7edbe01d3b2218969d8176ad59b",
+      "hostedSha256": "4d297c9d6e6b8250bcc74edc30cb1058b8fad7edbe01d3b2218969d8176ad59b",
+      "sameBytes": true
+    }
+  ],
+  "browserScenarios": "14/14 desktop et Chromium mobile, public sans jeton ni API QA",
+  "domain": "fishdex.fr vers https://www.fishdex.fr/ HTTP200",
+  "rawProofLocal": ".migration/boutique-production-integrite.json"
+}

@@ -2,7 +2,7 @@
 - [x] Six catégories illustrées, aquarium séparé, grille compacte et sous-rayons renseignés.
 - [x] Fiches/quantités/comparaison, compatibilité réelle, retours et sauvegardes conservés.
 - [x] Check214/214 + TS/build,16 parcours ciblés et10 régressions mobile/bureau.
-- [ ] Revue hébergée puis publication sur fishdex.fr (cible vérifiée).
+- [x] Revue14/14 puis public14/14, publicationfishdex.fr0.14.1 et empreintes complètes (cible vérifiée).
 - [ ] Essais physiques iPhone/Safari/clavier/focus/toucher ; aucune promesse FPS.
 
 ## Refonte UI — 4 octobre 2026
