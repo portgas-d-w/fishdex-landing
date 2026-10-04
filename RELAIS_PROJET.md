@@ -1,3 +1,7 @@
+## 4 octobre 2026 — Codex, refonte UI lot 04
+
+Carnet/Aquarium/Aide/Réglages et accueil terminés localement en 0.14.0. Recherche et observations distinctes ; favoris réels, remplacement explicite, décor et retours ; erreur WebGL exploitable, moteurs libérés ; aide liée aux 22 profils et côté choisi ; import confirmé/local et TEST séparé. Check 211/211 + TS/build ; transversal 32/32, finitions 18/18, profil TEST et eau/assets 4/4. Captures 04-apres/public-avant ; détail lot 04 et limites physiques dans son relais. Prochaine action : revue Vercel, publication autorisée et contrôle fishdex.fr. Modification préalable DEMARRER_AVEC_CODEX.md exclue ; eau/assets conservés.
+
 ## 4 octobre 2026 — Codex, refonte UI lot 03
 
 Progression et exploration terminées localement : objectif suivi v7 facultatif, chemins réels, 22 techniques, badges, cartes locales, neuf destinations et conseils d’observation ; retours contextuels corrigés. Check 210/210 + TS/build ; 14 scénarios Chromium mobile/bureau passent, dont migration et captures accélérées par QA. Captures 03-apres, détail dans docs/refonte-ui/03_PROGRESSION_EXPLORATION/RELAIS_A_COMPLETER.md. Eau/assets et données acquis conservés. iPhone réel non exécuté ; publication commune finale. Prochain : lot 04 Carnet/Aquarium/Aide.

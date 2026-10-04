@@ -34,7 +34,7 @@ export class FishDexScreen {
  dex(){
   const s=this.h.save(),known=discoveredFish(s),count=known.size,mastered=SPECIES.filter(f=>speciesMastery(s,f.id)===5).length;
   const appearances=new Set([...s.journal,...s.observations].flatMap(f=>f.appearanceId?[f.appearanceId]:[])),total=SPECIES.length;
-  el('dex-menu-progress').textContent=`${count} / ${total} découvertes`;
+  el('dex-menu-progress').textContent=`${count} / ${total} découvertes${this.unread.size?' · Nouveau':''}`;
   const next=SPECIES.find(f=>!known.has(f.id)&&accessibleFishRoutes(s,f.id).some(r=>r.ready));
   el('dex-progress').innerHTML=`<div><strong>Découvertes ${count} / ${total}</strong>${meter(count,total)}<button class="text-action" id="dex-next">${next?'Prochain indice accessible':'Mes objectifs'}</button></div><details><summary>Formes et maîtrise</summary><p>${appearances.size} / ${APPEARANCES.length} formes · ${mastered} / ${total} maîtrisées</p><p class="intro">Les formes restent rattachées au poisson. Une nouvelle taille enrichit le record, sans créer une espèce.</p><button class="secondary" id="dex-objectives">Mes objectifs</button></details>`;
   el('dex-next').onclick=()=>next?this.species(this.groups.findIndex(g=>g[0].gameId===next.id)):this.h.open('progression');el('dex-objectives').onclick=()=>this.h.open('progression');

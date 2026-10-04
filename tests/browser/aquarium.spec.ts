@@ -15,17 +15,17 @@ test('Cinq favoris, décorations, fiches et navigations sans accumulation de mot
     await openMenuPage(page, 'aquarium-open'); await expect(page.locator('#aquarium-canvas')).toHaveAttribute('data-loaded', 'true');
     const before = await page.evaluate(() => (window as any).__fishingQA.snapshot());
     expect(before.aquarium.count).toBe(5); expect(before.engines).toBe(2); expect(before.paused).toBe(true);
-    await page.locator('#aquarium-add').click(); await expect(page.locator('#toast')).toContainText('Cinq favoris');
+    await page.locator('#aq-fish-open').click();await page.locator('#aquarium-add').click(); await expect(page.locator('#toast')).toContainText('Cinq favoris');
     if (i === 0) {
-      await page.locator('#aq-plants').check(); await page.locator('#aq-rocks').check(); await page.locator('#aq-floor').selectOption('gravel'); await page.locator('#aq-background').selectOption('night'); await page.locator('#aq-light').selectOption('cool');
+      await page.locator('[data-close="aquarium-fish"]').click();await page.locator('#aq-decor-open').click();await page.locator('#aq-plants').check(); await page.locator('#aq-rocks').check(); await page.locator('#aq-floor').selectOption('gravel'); await page.locator('#aq-background').selectOption('night'); await page.locator('#aq-light').selectOption('cool');
       const state = await page.evaluate(() => (window as any).__fishingQA.snapshot()); expect(state.aquarium.plants).toBe(true); expect(state.aquarium.rocks).toBe(true);
-      await page.locator('#aquarium').evaluate(e => e.scrollTop = 0); await page.screenshot({ path: `test-results/${info.project.name}-aquarium.png` });
+      await page.locator('[data-close="aquarium-decor"]').click();await page.locator('#aquarium').evaluate(e => e.scrollTop = 0); await page.screenshot({ path: `test-results/${info.project.name}-aquarium.png` });
     }
-    await page.locator('[data-close="aquarium"]').click(); await expect.poll(() => page.evaluate(() => (window as any).__fishingQA.snapshot().engines)).toBe(1);
+    if(await page.locator('#aquarium-fish').isVisible())await page.locator('[data-close="aquarium-fish"]').click();await page.locator('[data-close="aquarium"]').click(); await expect.poll(() => page.evaluate(() => (window as any).__fishingQA.snapshot().engines)).toBe(1);
   }
   await page.reload(); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true'); await openMenuPage(page, 'aquarium-open'); await expect(page.locator('#aquarium-canvas')).toHaveAttribute('data-loaded', 'true');
-  await expect(page.locator('#aq-plants')).toBeChecked(); await expect(page.locator('#aq-floor')).toHaveValue('gravel');
-  await page.locator('#aquarium-choice').selectOption('sixth'); await page.locator('#aq-replace-slot').selectOption('0'); await page.locator('#aq-replace').click(); await expect(page.locator('#aquarium-state')).toContainText('5 / 5'); expect(await page.evaluate(() => JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!).favorites[0])).toBe('sixth');
+  await page.locator('#aq-decor-open').click();await expect(page.locator('#aq-plants')).toBeChecked(); await expect(page.locator('#aq-floor')).toHaveValue('gravel');
+  await page.locator('[data-close="aquarium-decor"]').click();await page.locator('#aq-fish-open').click();await page.locator('#aquarium-choice').selectOption('sixth'); await page.locator('#aq-replace-slot').selectOption('0'); await page.locator('#aq-replace').click(); await expect(page.locator('#aquarium-state')).toContainText('5 / 5'); expect(await page.evaluate(() => JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!).favorites[0])).toBe('sixth');
   await page.locator('[data-aq-remove="sixth"]').click(); await expect(page.locator('#aquarium-state')).toContainText('4 / 5');
   await page.locator('#aquarium-choice').selectOption('sixth'); await page.locator('#aquarium-add').click(); await expect(page.locator('#aquarium-state')).toContainText('5 / 5');
   await page.locator('[data-aq-view="sixth"]').click(); await expect(page.locator('#fish-preview')).toHaveAttribute('data-loaded', 'true');

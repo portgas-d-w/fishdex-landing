@@ -29,7 +29,7 @@ test('Lot 02 : inconnus, conseil débutant, préparation explicite, filtres et r
   await page.locator('[data-close="species-sheet"]').click();await page.locator('#dex-search').fill('gardon');await page.locator('.dex-tile').click();
   await expect(page.locator('#species-sheet')).toContainText('Coup à canne télescopique');await expect(page.locator('#species-sheet')).not.toContainText('Modèle exact du pack');
   const previous=await page.evaluate(()=>localStorage.getItem('au-fil-de-leau.save.v1'));
-  await page.screenshot({path:`docs/apercus/refonte-ui/02-apres/${info.project.name}-gardon-decouvert.png`});
+  await page.screenshot({path:`docs/apercus/refonte-ui/${process.env.UI_STAGE??'02-apres'}/${info.project.name}-gardon-decouvert.png`});
   await page.locator('#species-prepare').click();await expect(page.locator('#encounter-advice')).toBeVisible();
   expect(await page.evaluate(()=>localStorage.getItem('au-fil-de-leau.save.v1'))).toBe(previous);
   await page.locator('[data-close="preparation"]').click();await expect(page.locator('#species-sheet')).toBeVisible();
@@ -54,7 +54,7 @@ test('Lot 01 : retours de fiche, recherche, réserve inchangée et dispositions 
   for(const [width,height] of [[320,740],[430,932],[844,390]]){
     await page.setViewportSize({width,height});
     const overflow=await page.locator('#preparation').evaluate(e=>({width:e.clientWidth,scroll:e.scrollWidth,children:[...e.querySelectorAll('*')].filter(x=>x.getBoundingClientRect().right>e.getBoundingClientRect().right).map(x=>[x.tagName,x.id,x.className,x.getBoundingClientRect().width])}));expect(overflow.scroll,JSON.stringify({width,...overflow})).toBeLessThanOrEqual(overflow.width+1);
-    await page.screenshot({path:`docs/apercus/refonte-ui/01-apres/${info.project.name}-${width}-sac.png`});
+    await page.screenshot({path:`docs/apercus/refonte-ui/${process.env.UI_STAGE??'01-apres'}/${info.project.name}-${width}-sac.png`});
   }
 });
 
@@ -69,7 +69,7 @@ test('Lot 03 : objectif suivi, 22 techniques, carte locale et observation utile'
  const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!));
  await page.locator('#map-other').click();await page.locator('[data-location="running-river"]').click();await page.locator('[data-preview-post="river"]').click();await expect(page.locator('#map [data-post]')).toHaveCount(1);await expect(page.locator('#post-select')).toBeDisabled();
  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!).preparation.post)).toBe(before.preparation.post);
- await page.screenshot({path:`docs/apercus/refonte-ui/03-apres/${info.project.name}-riviere-verrouillee.png`});
+ await page.screenshot({path:`docs/apercus/refonte-ui/${process.env.UI_STAGE??'03-apres'}/${info.project.name}-riviere-verrouillee.png`});
  for(const id of ['map','location-sheet','locations','progression'])if(await page.locator(`#${id}`).isVisible())await page.locator(`[data-close="${id}"]`).click();
  await openMenuPage(page,'observe-open');await expect(page.locator('#observation-destinations [data-preview-post]')).not.toHaveCount(0);await page.locator('#observation-destinations [data-preview-post]').first().click();await expect(page.locator('#map')).toBeVisible();
 });

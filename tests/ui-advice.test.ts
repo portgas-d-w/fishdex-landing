@@ -7,6 +7,13 @@ import {objectives,trackedObjective} from '../src/game/objectives.ts';
 import {parseSave} from '../src/game/save.ts';
 import {postUnlockProgress,postAccess} from '../src/game/progression.ts';
 import {ALL_POSTS} from '../src/game/posts.ts';
+import {recordCatch} from '../src/game/save.ts';
+import {filterJournal} from '../src/game/structure.ts';
+
+test('Recherche et tri du carnet se combinent sans modifier les souvenirs',()=>{
+ const s=emptySave();recordCatch(s,{id:'small',speciesId:'roach',length:20,date:'2026-10-01T12:00:00Z'});recordCatch(s,{id:'large',speciesId:'roach',length:30,date:'2026-10-02T12:00:00Z'});recordCatch(s,{id:'perch',speciesId:'perch',length:25,date:'2026-10-03T12:00:00Z'});const original=JSON.stringify(s);
+ assert.deepEqual(filterJournal(s,{query:'GARDON',sort:'length',minLength:25}).map(f=>f.id),['large']);assert.equal(filterJournal(s,{query:'flotteur'}).length,3);assert.equal(filterJournal(s,{query:'introuvable'}).length,0);assert.equal(filterJournal(s,{}).length,3);assert.equal(JSON.stringify(s),original);
+});
 
 test('Le conseil gardon privilégie le coup gratuit ouvert et ne modifie pas la partie',()=>{
  const save=emptySave();refreshRights(save);const before=JSON.stringify(save),routes=accessibleFishRoutes(save,'roach');

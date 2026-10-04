@@ -109,3 +109,7 @@ Le « oui » du propriétaire lance le cahier complet mobile/matériel. Un seul 
 ## 4 octobre 2026 — Refonte UI progression
 
 Objectif suivi facultatif dans v7, sans gains ni changement de règle ; conseils dérivés des seuils existants avec chemins OR explicites. Carte locale et destinations séparées ; embarcation = contexte du lac. Consultation sans déplacement, installation revalidée. Dialogues de gestion peuvent être remis au premier plan, sans redémarrer les scènes de capture/aquarium/observation.
+
+## 4 octobre 2026 — Refonte UI souvenirs
+
+Contrôles et transactions existants déplacés dans des panneaux natifs, sans nouveau service. Prises et observations restent distinctes ; illustration, photo locale et aperçu régénéré ont des libellés explicites. Décor immédiat déclaré, achat distinct, sixième favori remplacé seulement après choix. Réglages et apprentissage séparés ; Mode test public dans un espace de développement distinct. Une scène aquarium, libération des moteurs de présentation à la fermeture ; menus accessibles après échec WebGL.

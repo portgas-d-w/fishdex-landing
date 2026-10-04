@@ -4,11 +4,11 @@ async function boot(page:any){await page.addInitScript(()=>localStorage.setItem(
 test('Assets gratuits : chargement réel, source partagée, qualités et dix transitions stables',async({page})=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await boot(page);
  await expect.poll(()=>page.evaluate(()=>Object.values((window as any).__fishingQA.water().assets.families).filter((s:any)=>s.startsWith('glb:')).length)).toBe(8);
- await openMenuPage(page,'help-open');await page.locator('#quality').click();await expect(page.locator('#quality')).toHaveText('Qualité élevée');
- for(const id of ['help','menu'])if(await page.locator('#'+id).isVisible())await page.locator('[data-close='+id+']').click();
+ await openMenuPage(page,'settings-open');await page.locator('#quality').click();await expect(page.locator('#quality')).toHaveText('Qualité élevée');
+ for(const id of ['settings','menu'])if(await page.locator('#'+id).isVisible())await page.locator('[data-close='+id+']').click();
  await page.waitForTimeout(1000);expect(await page.evaluate(()=>(window as any).__fishingQA.waterScene().getMeshByName('water').isReady(true))).toBe(true);
- await openMenuPage(page,'help-open');await page.locator('#quality').click();await expect(page.locator('#quality')).toHaveText('Économie mobile');
- for(const id of ['help','menu'])if(await page.locator('#'+id).isVisible())await page.locator('[data-close='+id+']').click();
+ await openMenuPage(page,'settings-open');await page.locator('#quality').click();await expect(page.locator('#quality')).toHaveText('Économie mobile');
+ for(const id of ['settings','menu'])if(await page.locator('#'+id).isVisible())await page.locator('[data-close='+id+']').click();
  const measure=()=>page.evaluate(()=>{const q=(window as any).__fishingQA,s=q.waterScene();return{meshes:s.meshes.length,textures:s.textures.length,materials:s.materials.length,engine:q.snapshot().engines,scene:s.uid};});
  const before=await measure();await openMenuPage(page,'help-open');await page.locator('#test-open').click();
  for(let n=0;n<10;n++)await page.locator('#test-post').selectOption(['cove','bank','reed-bank','point','timber','jetty'][n%6]);

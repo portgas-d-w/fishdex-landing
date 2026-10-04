@@ -29,10 +29,10 @@ test('Le build permet une vraie prise, le chargement différé et le transfert d
   expect(models).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: `test-results/smoke-${info.project.name}-lake.png` });
-  await openMenuPage(page, 'help-open');
+  await openMenuPage(page, 'settings-open');
   await page.locator('#sound').click();
   await expect(page.locator('#sound')).toHaveAttribute('aria-pressed', 'true');
-  await page.locator('[data-close="help"]').click(); await page.locator('[data-close="menu"]').click();
+  await page.locator('[data-close="settings"]').click(); await page.locator('[data-close="menu"]').click();
   const fightPicture = expect(page.locator('body')).toHaveAttribute('data-phase', 'fighting').then(async () => {
     await page.waitForTimeout(600);
     await page.screenshot({ path: `test-results/smoke-${info.project.name}-fight.png` });
@@ -51,7 +51,7 @@ test('Le build permet une vraie prise, le chargement différé et le transfert d
   await expect(page.locator('#collection-count')).toHaveText('1 captures · 0 observations');
   await openMenuPage(page, 'collection-open');
   const downloadPromise = page.waitForEvent('download');
-  await page.locator('#export-save').click();
+  await page.locator('#journal-save-link').click();await page.locator('#export-save').click();
   const download = await downloadPromise;
   const bytes = await readFile((await download.path())!);
   expect(JSON.parse(bytes.toString()).total).toBe(1);
@@ -59,7 +59,7 @@ test('Le build permet une vraie prise, le chargement différé et le transfert d
   await page.reload();
   await expect(page.locator('#collection-count')).toHaveText('0 captures · 0 observations');
   await openMenuPage(page, 'collection-open');
-  await page.locator('#save-file').setInputFiles({ name: 'carnet.json', mimeType: 'application/json', buffer: bytes });
+  await page.locator('#journal-save-link').click();await page.locator('#save-file').setInputFiles({ name: 'carnet.json', mimeType: 'application/json', buffer: bytes });
   await expect(page.locator('#import-review')).toBeVisible();
   await page.locator('#confirm-import').click();
   await expect(page.locator('#collection-count')).toHaveText('1 captures · 0 observations');

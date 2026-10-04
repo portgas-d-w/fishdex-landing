@@ -1,3 +1,4 @@
+import {installMemories,specimenArt,specimenLabel} from './ui/memories';
 import {installWaterTools} from './ui/water-tools';
 import {nextRenderDeadline} from './ui/render-clock';
 import {installFieldTools} from './ui/field-tools';
@@ -68,6 +69,7 @@ el('app').insertAdjacentHTML('beforeend', `
 <dialog id="encyclopedia" class="modal wide-modal"><div class="modal-header"><div><div class="eyebrow">Les pages de FishDex</div><h2>Encyclopédie</h2></div><button class="close" data-close="encyclopedia" aria-label="Fermer l’encyclopédie">Retour</button></div><p class="intro">${SPECIES.filter(s=>s.mode==='capture').length} identités à pêcher · ${SPECIES.filter(s=>s.mode==='observation').length} à observer.</p><div class="filters"><input id="dex-search" type="search" placeholder="Nom, variété ou technique" aria-label="Rechercher un poisson"><select id="dex-category" aria-label="Catégorie"><option value="all">Toute eau</option><option value="paisibles">Paisibles</option><option value="predateurs">Prédateurs</option><option value="eaux-vives">Eaux vives</option></select><select id="dex-state" aria-label="Découvertes"><option value="all">Toutes</option><option value="playable">Jouables</option><option value="discovered">Découvertes</option><option value="mirage">Variantes Mirage</option></select></div><div id="dex-list"></div><p class="modal-footnote">Catalogue : ${fishdex.provenance.biologicalGroups} groupes, ${fishdex.provenance.sourceEntries} fiches avec variétés. Référence locale FishDex. La rareté du jeu classe la découverte ; l’habitat et la présentation déterminent les rencontres.</p></dialog>
 <dialog id="shop" class="modal"><div class="modal-header"><div><div class="eyebrow">Le matériel du bord</div><h2>Boutique</h2></div><button class="close" data-close="shop" aria-label="Fermer la boutique">Retour</button></div><p class="intro" id="shop-balance"></p><div id="shop-list" class="collection-list"></div><p class="modal-footnote">Monnaie virtuelle gagnée avec vos souvenirs de pêche. Canne et appâts de base réutilisables, toujours disponibles.</p></dialog>`);
 el('collection-list').insertAdjacentHTML('afterend', '<h3 class="section-title">Mes spécimens</h3><p class="intro" id="journal-intro"></p><div id="journal-list" class="journal-list"></div><button class="secondary" id="journal-more" hidden>Souvenirs suivants</button><div id="mastery-list" class="tools"></div>');
+el('fish-preview').insertAdjacentHTML('afterend','<div id="specimen-illustration"></div>');
 el('catch-length').parentElement!.insertAdjacentHTML('afterend', '<p id="catch-weight" class="intro"></p><p id="catch-reward" class="reward-line"></p><p id="photo-state" class="modal-footnote"></p><button id="favorite-catch" class="secondary">Ajouter aux favoris</button>');
 el('app').insertAdjacentHTML('beforeend', '<dialog id="aquarium" class="modal wide-modal"><div class="modal-header"><div><div class="eyebrow">Une pause sous la surface</div><h2>Mon aquarium</h2></div><button class="close" data-close="aquarium" aria-label="Fermer l’aquarium">Retour</button></div><canvas id="aquarium-canvas" aria-label="Aquarium 3D de vos cinq favoris"></canvas><p class="intro" id="aquarium-state">Choisissez vos spécimens favoris dans le carnet.</p><div class="filters"><select id="aquarium-choice" aria-label="Choisir un spécimen"></select><button class="secondary" id="aquarium-add">Ajouter</button></div><div id="aquarium-favorites" class="collection-list"></div><h3 class="section-title">L’ambiance du bassin</h3><div class="aquarium-settings"><label>Sol<select id="aq-floor"><option value="sand">Sable clair</option><option value="gravel">Gravier sombre</option></select></label><label>Fond<select id="aq-background"><option value="dawn">Aube</option><option value="night">Nuit</option></select></label><label>Lumière<select id="aq-light"><option value="warm">Chaleureuse</option><option value="cool">Fraîche</option></select></label><label><input id="aq-plants" type="checkbox"> Plantes achetées</label><label><input id="aq-rocks" type="checkbox"> Rochers achetés</label></div><p class="modal-footnote">Cinq individus, leurs robes et leurs gabarits. Aucun entretien ni pénalité d’absence. Les plantes et rochers se trouvent en boutique.</p></dialog>');
 const steps = document.querySelectorAll('.help-step');
@@ -93,6 +95,7 @@ let recoveryPreserved = !loaded.recovery;
 const game = new FishingGame();
 game.testMode=!!save.development;game.accessBypass=save.development?.kind==='sandbox';game.rights=save.progression;game.setMethod(save.preparation.method); game.setBait(save.preparation.bait);game.setPost(save.preparation.post);game.combatMode=save.settings.combatMode;
 let hub: GameScreens | undefined;
+let memories:ReturnType<typeof installMemories>|undefined;
 const audio = new GameAudio(); audio.enabled = save.settings.sound;
 let world: LakeWorld | undefined;
 let preview: FishPreview | undefined;
@@ -127,12 +130,13 @@ function saveNow() {
   }
 }
 const modalLayers:HTMLDialogElement[]=[];
-const managementLayers=new Set(['menu','preparation','rig-sheet','component-sheet','component-detail','research-sheet','shop','purchase-confirm','item-sheet','encyclopedia','species-sheet','progression','method-sheet','badge-sheet','map','locations','location-sheet','collection','help']);
-function openModal(id: string) { hub?.opened(id); game.release();document.dispatchEvent(new Event('fishing-input-reset'));release(); cancelGesture(); el('line-alert').hidden = true; overlayPaused = true;const dialog=el<HTMLDialogElement>(id);const parent=modalLayers.filter(d=>d.open&&d!==dialog).at(-1);if(dialog.open&&managementLayers.has(id)&&modalLayers.at(-1)!==dialog)dialog.close();if(!dialog.open)dialog.showModal();const index=modalLayers.indexOf(dialog);if(index>=0)modalLayers.splice(index,1);modalLayers.push(dialog);const back=dialog.querySelector<HTMLButtonElement>(`[data-close="${id}"]`);if(back){const labels:Record<string,string>={menu:'au menu',preparation:'au matériel','rig-sheet':'au montage','component-sheet':'aux pièces',shop:'à la boutique',encyclopedia:'au FishDex','species-sheet':'à la fiche',collection:'au carnet',progression:'à la progression',map:'à la carte',locations:'aux lieux','location-sheet':'au lieu',help:'à l’aide',caught:'à la rencontre'};back.textContent=id==='menu'?'Reprendre la pêche':parent?'Retour '+(labels[parent.id]??'à l’écran précédent'):'Retour à la pêche';} }
+const managementLayers=new Set(['menu','preparation','rig-sheet','component-sheet','component-detail','research-sheet','shop','purchase-confirm','item-sheet','encyclopedia','species-sheet','progression','method-sheet','badge-sheet','map','locations','location-sheet','collection','help','settings','lesson-sheet','aquarium-fish','aquarium-decor']);
+function openModal(id: string) { if(id!=='aquarium')aquarium?.pause();if(id!=='caught')preview?.pause();hub?.opened(id); game.release();document.dispatchEvent(new Event('fishing-input-reset'));release(); cancelGesture(); el('line-alert').hidden = true; overlayPaused = true;const dialog=el<HTMLDialogElement>(id);const parent=modalLayers.filter(d=>d.open&&d!==dialog).at(-1);if(dialog.open&&managementLayers.has(id)&&modalLayers.at(-1)!==dialog)dialog.close();if(!dialog.open)dialog.showModal();const index=modalLayers.indexOf(dialog);if(index>=0)modalLayers.splice(index,1);modalLayers.push(dialog);const back=dialog.querySelector<HTMLButtonElement>(`[data-close="${id}"]`);if(back){const labels:Record<string,string>={menu:'au menu',preparation:'au matériel','rig-sheet':'au montage','component-sheet':'aux pièces',shop:'à la boutique',encyclopedia:'au FishDex','species-sheet':'à la fiche',collection:'au carnet',progression:'à la progression',map:'à la carte',locations:'aux lieux','location-sheet':'au lieu',help:'à l’aide',settings:'aux réglages','lesson-sheet':'au guide','aquarium-fish':'aux poissons','aquarium-decor':'au décor',aquarium:'à l’aquarium',caught:'à la rencontre'};back.textContent=id==='menu'?'Reprendre la pêche':parent?'Retour '+(labels[parent.id]??'à l’écran précédent'):'Retour à la pêche';} }
 function closeModal(id: string) { el<HTMLDialogElement>(id).close(); }
 let observationScreens:ReturnType<typeof installObservations>|undefined;
 function refreshCollection() {
   observationScreens?.journal(hub?.journalFilter());
+  memories?.refresh();
   el('player-progress').textContent = `Niveau ${levelFor(save.xp)} · ${save.xp} XP · ${wallet(save)} écus`;
   el('equipment-summary').textContent = ITEMS.find(i => i.id === save.equipped)!.name;
   el('collection-count').textContent = `${save.journal.length} captures · ${save.observations.length} observations`;
@@ -144,8 +148,8 @@ function refreshCollection() {
   for (const url of photoUrls) URL.revokeObjectURL(url); photoUrls.length = 0;
   const matches = hub?.journal() ?? [...save.journal].reverse();
   const captures = matches.slice(0, journalLimit);
-  el('journal-intro').textContent = save.journal.length ? `${save.journal.length} souvenir(s) · ${save.favorites.length} / 5 favoris · ${Object.keys(save.variants).length} apparence(s)` : 'Les prises de l’ancien carnet gardent leurs records. Les nouvelles auront leur fiche et leur photo.';
-  el('journal-list').innerHTML = captures.map(s => `<article class="specimen-card"><button class="specimen-view" data-specimen="${escape(s.id)}"><div class="photo-placeholder" data-photo="${escape(s.id)}">Souvenir 3D</div><div><strong>${SPECIES.find(f => f.id === s.speciesId)!.name}${s.mirage ? ' · Mirage' : ''}</strong><p>${s.length} cm · ${s.weight.toLocaleString('fr-FR')} kg · ${appearanceName(s.appearanceId)??(s.coloration === 'golden' ? 'Reflets dorés' : 'Robe naturelle')}</p><small>${rarityName(specimenRarity(s))} · ${s.post?postById(s.post).name+' · ':''}${new Date(s.date).toLocaleDateString('fr-FR')} · ${s.technique?techniqueById(s.technique).name:s.method==='pole'?'Coup':s.method === 'float' ? 'Flotteur' : s.method === 'lure' ? 'Leurre' : 'Fond'}</small></div></button><button class="secondary" data-favorite="${escape(s.id)}" aria-pressed="${save.favorites.includes(s.id)}">${save.favorites.includes(s.id) ? 'Retirer le favori' : 'Favori'}</button></article>`).join('');
+  el('journal-intro').textContent = save.journal.length ? `${save.journal.length} souvenir(s) · ${save.favorites.length} / 5 favoris · ${Object.keys(save.variants).length} apparence(s)` : 'Ton premier souvenir commence au bord de l’eau.';
+  el('journal-list').innerHTML = captures.map(s => `<article class="specimen-card"><button class="specimen-view" data-specimen="${escape(s.id)}"><div class="photo-placeholder" data-photo="${escape(s.id)}">${specimenArt(s)}<small>Illustration · aperçu régénérable</small></div><div><strong>${SPECIES.find(f => f.id === s.speciesId)!.name}${s.mirage ? ' · Mirage' : ''}</strong><p>${s.length} cm · ${s.weight.toLocaleString('fr-FR')} kg · ${appearanceName(s.appearanceId)??(s.coloration === 'golden' ? 'Reflets dorés' : 'Robe naturelle')}</p><small>${s.length===save.records[s.speciesId]?.best?'Record · ':''}${s.reward.discovery?'Première découverte · ':''}${save.favorites.includes(s.id)?'Favori · ':''}${rarityName(specimenRarity(s))} · ${s.post?postById(s.post).name+' · ':''}${new Date(s.date).toLocaleDateString('fr-FR')} · ${s.technique?techniqueById(s.technique).name:s.method==='pole'?'Coup':s.method === 'float' ? 'Flotteur' : s.method === 'lure' ? 'Leurre' : 'Fond'}</small></div></button><button class="secondary" data-favorite="${escape(s.id)}" aria-pressed="${save.favorites.includes(s.id)}">${save.favorites.includes(s.id) ? 'Retirer le favori' : 'Favori'}</button></article>`).join('') || `<div class="empty-state"><h3>${save.journal.length?'Aucun souvenir avec ces filtres':'Ton premier souvenir commence au bord de l’eau'}</h3><p>${save.journal.length?'Retirez un filtre ou réinitialisez la recherche.':'Une capture conserve un individu, sa taille et sa robe.'}</p><button class="action" ${save.journal.length?'data-journal-reset':'data-return-fishing'}>${save.journal.length?'Réinitialiser':'Retourner pêcher'}</button></div>`;
   if(save.historical)el('journal-list').insertAdjacentHTML('beforeend',`<details><summary>Rencontres historiques non identifiées (${save.historical.journal.length})</summary><p class="intro">Identifiants conservés dans l’export. Ces souvenirs attendent une correspondance confirmée ; aucun modèle ni gain n’est inventé.</p>${save.historical.journal.map(s=>`<p>${escape(String(s.speciesId))} · ${escape(String(s.length??'?'))} cm · ${escape(String(s.date??''))}</p>`).join('')}</details>`);
   el('journal-more').hidden = matches.length <= journalLimit;
   el('mastery-list').innerHTML = save.badges.map(b => `<span class="badge">${BADGES[b as keyof typeof BADGES]}</span>`).join('');
@@ -153,7 +157,7 @@ function refreshCollection() {
   for (const s of captures) void getPhoto(s.id).then(blob => {
     const target = Array.from(document.querySelectorAll<HTMLElement>('[data-photo]')).find(e => e.dataset.photo === s.id);
     if (!blob || !target || !target.isConnected) return;
-    const url = URL.createObjectURL(blob); photoUrls.push(url); const img = document.createElement('img'); img.src = url; img.alt = `Photo de ${SPECIES.find(f => f.id === s.speciesId)!.name}`; target.replaceChildren(img);
+    const url = URL.createObjectURL(blob); photoUrls.push(url); const img = document.createElement('img'); img.src = url; img.alt = `Photo de ${SPECIES.find(f => f.id === s.speciesId)!.name}`; target.replaceChildren(img);target.insertAdjacentHTML('beforeend','<small>Photo locale du souvenir</small>');
   });
 }
 function refreshDex() { hub?.dex(); }
@@ -161,29 +165,30 @@ function refreshShop() { hub?.shop(); }
 function refreshAquariumControls() {
   hub?.aquariumSlots();
   const favorites = save.favorites.map(id => save.journal.find(s => s.id === id)!);
-  el('aquarium-choice').innerHTML = save.journal.filter(s => !save.favorites.includes(s.id)).slice().reverse().map(s => `<option value="${escape(s.id)}">${SPECIES.find(f => f.id === s.speciesId)!.name} · ${s.length} cm · ${new Date(s.date).toLocaleDateString('fr-FR')}</option>`).join('') || '<option value="">Pêchez un nouveau souvenir</option>';
+  el('aquarium-choice').innerHTML = save.journal.filter(s => !save.favorites.includes(s.id)).slice().reverse().map(s => `<option value="${escape(s.id)}">${specimenLabel(s)}</option>`).join('') || '<option value="">Pêchez un nouveau souvenir</option>';
   el<HTMLButtonElement>('aquarium-add').disabled = !save.journal.some(s => !save.favorites.includes(s.id));
-  el('aquarium-favorites').innerHTML = favorites.map(s => `<article class="fish-entry"><div><h3>${SPECIES.find(f => f.id === s.speciesId)!.name}</h3><p>${s.length} cm · ${s.weight.toLocaleString('fr-FR')} kg${s.mirage ? ' · Mirage' : ''}</p><button class="secondary" data-aq-view="${escape(s.id)}">Fiche</button><button class="secondary" data-aq-remove="${escape(s.id)}">Retirer</button></div></article>`).join('');
+  el('aquarium-favorites').innerHTML = favorites.map((s,index) => `<article class="fish-entry aq-slot"><div class="aq-thumb">${specimenArt(s)}</div><div><small>Emplacement ${index+1}</small><h3>${SPECIES.find(f => f.id === s.speciesId)!.name}</h3><p>${s.length} cm · ${s.weight.toLocaleString('fr-FR')} kg${s.mirage ? ' · Mirage' : ''} · ${new Date(s.date).toLocaleDateString('fr-FR')}</p><button class="secondary" data-aq-view="${escape(s.id)}">Fiche</button><button class="secondary" data-aq-remove="${escape(s.id)}">Retirer</button></div></article>`).join('');
   el('aquarium-favorites').insertAdjacentHTML('beforeend', Array.from({length: 5 - favorites.length}, (_, i) => `<article class="fish-entry empty-slot"><div><small>Emplacement ${favorites.length + i + 1}</small><h3>Libre</h3><p>Choisissez un individu déjà capturé.</p></div></article>`).join(''));
   el<HTMLSelectElement>('aq-floor').value = save.aquarium.floor; el<HTMLSelectElement>('aq-background').value = save.aquarium.background; el<HTMLSelectElement>('aq-light').value = save.aquarium.light;
   for (const id of ['plants', 'rocks'] as const) { el<HTMLInputElement>(`aq-${id}`).checked = save.aquarium[id]; el<HTMLInputElement>(`aq-${id}`).disabled = !save.inventory.includes(id); }
 }
 async function loadAquarium() {
+  if(!el<HTMLDialogElement>('aquarium').open)return;
   const request = ++aquariumRequest; aquarium?.dispose(); aquarium = undefined;
-  el('aquarium-canvas').dataset.loaded = 'false'; el('aquarium-state').textContent = 'Le bassin se réveille…'; refreshAquariumControls();
+  el('aquarium-canvas').dataset.loaded = 'false'; el('aquarium-state').textContent = 'Le bassin se réveille…';el('aq-retry').hidden=true; refreshAquariumControls();memories?.refresh();
   try {
     if (request !== aquariumRequest) return;
     aquarium = new Aquarium(el<HTMLCanvasElement>('aquarium-canvas'), save.settings.quality); aquarium.customize(save.aquarium);
     const result = await aquarium.show(save.favorites.map(id => save.journal.find(s => s.id === id)!));
     if (request !== aquariumRequest) return;
-    el('aquarium-canvas').dataset.loaded = 'true';
+    el('aquarium-canvas').dataset.loaded = 'true';el('aq-retry').hidden=!result.errors;memories?.refresh();
     el('aquarium-state').textContent = `${result.loaded} / 5 favoris dans le bassin.${result.errors ? ' Un modèle n’a pas pu être chargé ; vos favoris sont conservés.' : result.loaded ? ' Une nage paisible, chacun à son rythme.' : ' Ajoutez des spécimens depuis votre carnet.'}`;
-  } catch { if (request === aquariumRequest) el('aquarium-state').textContent = 'Le bassin n’a pas pu démarrer. Fermez et réessayez ; vos favoris sont conservés.'; }
+  } catch { if(request===aquariumRequest){el('aquarium-state').textContent='3D indisponible. Mes poissons reste consultable en 2D ; vos favoris sont conservés.';el('aq-retry').hidden=false;} }
 }
 function refreshSettings() {
   el('sound').setAttribute('aria-pressed', String(save.settings.sound));
   el('sound').setAttribute('aria-label', save.settings.sound ? 'Couper le son' : 'Activer le son');
-  el('sound').style.opacity = save.settings.sound ? '1' : '.6';
+  el('sound').textContent=save.settings.sound?'Marche':'Arrêt';el('sound').style.opacity='1';
   el('reel-control').setAttribute('aria-label', 'Moulinet : maintenez pour mouliner ; relâchez pour arrêter');
   document.body.dataset.controlSide=save.settings.controls?.side??'left';el<HTMLSelectElement>('control-side').value=save.settings.controls?.side??'left';for(const [id,key]of [['control-single','singleFinger'],['control-tension','tension'],['control-hints','hints']] as const)el<HTMLInputElement>(id).checked=save.settings.controls?.[key]??key==='hints';
   el('quality').textContent = save.settings.quality === 'eco' ? 'Économie mobile' : 'Qualité élevée';
@@ -236,19 +241,21 @@ async function showCatch() {
   }
 }
 function refreshSpecimenInfo(s: Specimen, reward: boolean) {
+  el('specimen-illustration').innerHTML=specimenArt(s);
   if(!reward)el('catch-progression').textContent='';
   el('catch-weight').textContent = `${s.weight.toLocaleString('fr-FR')} kg · ${appearanceName(s.appearanceId)??(s.coloration === 'golden' ? 'Reflets dorés' : 'Robe naturelle')}${s.mirage ? ' · Mirage' : ''}`;
   const r = s.reward;
   el('catch-reward').textContent = reward ? `+${r.coins} écus · +${r.xp} XP — Photo ${r.base}${r.discovery ? `, découverte +${r.discovery}` : ''}${r.record ? `, record +${r.record}` : ''}${r.appearance?`, robe +${r.appearance}`:''}` : `${new Date(s.date).toLocaleString('fr-FR')} · ${s.location}${s.baitItem?' · '+component(s.baitItem)?.name:''} · ${s.method==='pole'?'Coup':s.method === 'float' ? 'Flotteur' : s.method === 'lure' ? 'Leurre' : 'Fond'} · ${ITEMS.find(i => i.id === s.equipment)?.name ?? 'Canne de bordure'}`;
   el('favorite-catch').textContent = save.favorites.includes(s.id) ? 'Retirer des favoris' : 'Ajouter aux favoris';
   el('photo-state').textContent = 'La photo se prépare…';
+  el('specimen-history').textContent=[s.post?postById(s.post).name:s.location,s.technique?techniqueById(s.technique).name:undefined,s.reward.discovery?'Première découverte enregistrée':undefined,s.reward.record?'Record établi lors de cette prise':undefined,s.controlled?'Réception contrôlée':undefined].filter(Boolean).join(' · ');
   el('release-fish').textContent = reward ? 'Continuer à pêcher' : el<HTMLDialogElement>('aquarium').open ? 'Retour à l’aquarium' : 'Retour au carnet';
 }
 async function photograph(s: Specimen, request: number) {
-  let blob = await getPhoto(s.id);
+  let blob = await getPhoto(s.id);const original=!!blob;
   if (!blob && request === catchViewRequest) blob = await preview?.photo() ?? undefined;
   const ok = !!blob && await storePhoto(s.id, blob);
-  if (request === catchViewRequest) el('photo-state').textContent = ok ? 'Photo conservée sur cet appareil. Votre souvenir reste dans le carnet.' : 'Photo indisponible. Votre capture et ses gains sont conservés.';
+  if (request === catchViewRequest) el('photo-state').textContent = ok ? (liveCatchView?'Photo conservée sur cet appareil · prise photographiée.':original?'Photo conservée sur cet appareil · souvenir local.':'Photo conservée sur cet appareil · aperçu régénéré depuis le souvenir.') : 'Photo indisponible. Votre capture et ses gains sont conservés.';
 }
 async function showSpecimen(s: Specimen) {
   aquarium?.pause();
@@ -264,7 +271,7 @@ function phaseChanged() {
   lastPhase = game.phase; renderPhase();
   release();cancelGesture();document.dispatchEvent(new Event('fishing-input-reset'));
   if (game.phase === 'bite') { audio.tone('bite',game.modern?(game.config.components.float?'float':game.technique.engine==='surface'||game.rig.recipe==='seche'?'surface':['bottom','feeder'].includes(game.technique.engine)?'tip':'contact'):undefined); toast((game.modern?game.technique.signal+' : ':'')+'prise ! Ferrez.'); }
-  if (game.phase === 'fighting') { el('toast').hidden = true; teach(2, game.hasReel? 'Glissez sur la commande de canne à gauche, ou sur l’eau. Maintenez Mouliner à droite avec l’autre doigt ; relâchez pour arrêter.':'Au coup, suivez le fil avec la canne. Baissez-la pendant un départ, relevez progressivement pour rapprocher le poisson. Aucun moulinet.'); }
+  if (game.phase === 'fighting') { el('toast').hidden = true; teach(2, game.hasReel? `Glissez sur la commande de canne à ${save.settings.controls?.side==='right'?'droite':'gauche'}, ou sur l’eau. Maintenez Mouliner de l’autre côté ; relâchez pour arrêter.`:'Au coup, suivez le fil avec la canne. Baissez-la pendant un départ, relevez progressivement pour rapprocher le poisson. Aucun moulinet.'); }
   if (game.phase === 'casting' || game.phase === 'lost' || game.phase === 'idle') saveNow();
   if (game.phase === 'lost') { const losses=Object.entries(save.tackle.active?.losses??{}).map(([id,n])=>`${component(id)?.name} : ${n}`); toast(game.failure+(losses.length?' Perdu : '+losses.join(' · '):' Aucun composant payant perdu.')); }
   if (game.phase === 'caught') {world?.flushWater(game);void showCatch();}
@@ -383,6 +390,9 @@ if (save.tackle.active?.outcome === 'return') saveNow();
 el('menu-open').onclick = () => openModal('menu');
 el('prepare-open').onclick = el('equipment-open').onclick = () => { renderPhase(); openModal('preparation'); };
 installWaterTools({save:()=>save,game,open:openModal,close:closeModal,persist:saveNow,refresh:refreshCollection,toast,postChanged:()=>{world?.setPost(game.post);renderPhase();}},()=>world);
+memories=installMemories({save:()=>save,game,open:openModal,close:closeModal,persist:saveNow,refresh:refreshCollection,toast},()=>void loadAquarium());
+if(el('export-recovery'))el('settings-storage').append(el('export-recovery').closest('.recovery-panel')!);
+document.addEventListener('click',e=>{if((e.target as HTMLElement).closest('[data-journal-reset]'))el('journal-reset').click();});
 el('progress-open').onclick = () => { refreshCollection(); openModal('progression'); };
 
 el('snag-release').onclick=()=>toast(game.tryFreeSnag()?'Ligne dégagée.':game.hint);
@@ -393,8 +403,9 @@ el('help-open').onclick = () => openModal('help');
 el('dex-open').onclick = () => { refreshDex(); openModal('encyclopedia'); };
 for (const id of ['dex-search', 'dex-category', 'dex-state']) el(id).addEventListener('input', refreshDex);
 el('shop-open').onclick = () => { refreshShop(); openModal('shop'); };
+el('aquarium').addEventListener('aquarium-refresh',()=>void loadAquarium());
 el('aquarium-open').onclick = () => { openModal('aquarium'); void loadAquarium(); };
-el('aquarium-add').onclick = () => { const id = el<HTMLSelectElement>('aquarium-choice').value; if (!id) return; const error = toggleFavorite(save, id); if (error) { toast(error); return; } saveNow(); refreshCollection(); void loadAquarium(); };
+el('aquarium-add').onclick = () => { const id = el<HTMLSelectElement>('aquarium-choice').value; if (!id) return;if(save.favorites.length===5){toast('Cinq favoris : choisissez l’emplacement à remplacer.');memories?.refresh();return;} const error = toggleFavorite(save, id); if (error) { toast(error); return; } saveNow(); refreshCollection(); void loadAquarium(); };
 el('aquarium-favorites').onclick = event => {
   const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button'); if (!button) return;
   if (button.dataset.aqRemove) { toggleFavorite(save, button.dataset.aqRemove); saveNow(); refreshCollection(); void loadAquarium(); }
@@ -425,8 +436,10 @@ document.querySelectorAll<HTMLButtonElement>('[data-close]').forEach(button => b
 document.querySelectorAll<HTMLDialogElement>('dialog').forEach(dialog => dialog.addEventListener('close', () => {
   if(!dialog.open){const index=modalLayers.indexOf(dialog);if(index>=0)modalLayers.splice(index,1);}
   overlayPaused = !!document.querySelector('dialog[open]'); release();
-  if (dialog.id === 'caught') { catchViewRequest++; preview?.hide(); viewedSpecimen = undefined; if (liveCatchView) { game.reset(); phaseChanged(); } if (el<HTMLDialogElement>('aquarium').open) { refreshAquariumControls(); void loadAquarium(); } }
+  if (dialog.id === 'caught') { catchViewRequest++; preview?.dispose();preview=undefined; viewedSpecimen = undefined; if (liveCatchView) { game.reset(); phaseChanged(); } if (el<HTMLDialogElement>('aquarium').open) { refreshAquariumControls(); void loadAquarium(); } }
   if (dialog.id === 'aquarium') { aquariumRequest++; aquarium?.dispose(); aquarium = undefined; }
+  if(modalLayers.at(-1)?.id==='aquarium')aquarium?.resume();if(modalLayers.at(-1)?.id==='caught')preview?.resume();
+  if(dialog.id==='shop'&&el<HTMLDialogElement>('aquarium').open){refreshAquariumControls();memories?.refresh();}
 }));
 el('release-fish').onclick = () => {if(liveCatchView)game.releaseCaughtFish();closeModal('caught');};
 el('sound').onclick = () => { save.settings.sound = !save.settings.sound; audio.enabled = save.settings.sound; void audio.unlock(); refreshSettings(); saveNow(); };
@@ -446,7 +459,7 @@ el<HTMLInputElement>('save-file').onchange = async event => {
   try {
     if (file.size > MAX_SAVE_BYTES) throw new Error('Fichier trop volumineux.');
     const parsed = parseSave(await file.text()); if (request !== importRequest) return; if(!profiles.accepts(parsed))throw Error('Carnet de test et partie normale ne peuvent pas être mélangés.'); pendingImport = parsed;
-    el('import-description').textContent = `Ce carnet contient ${pendingImport.total} prise(s). Il remplacera votre carnet actuel (${save.total} prise(s)). Exportez le vôtre avant de continuer si vous souhaitez le garder.`;
+    el('import-description').textContent = `Profil ${profiles.active==='test'?'TEST':'normal'} : ${pendingImport.total} prises, ${pendingImport.observations.length} observations, ${pendingImport.coins} écus et niveau ${levelFor(pendingImport.xp)}. Remplace progression, stock, favoris et réglages actuels (${save.total} prises). Les photos locales ne sont pas dans le fichier. Exportez avant de confirmer.`;
     el('import-review').hidden = false;
   } catch (error) { if (request === importRequest) toast(error instanceof Error ? error.message : 'Fichier invalide.'); }
   input.value = '';
@@ -456,7 +469,7 @@ el('confirm-import').onclick = () => {
   game.reset(); release(); cancelGesture(); phaseChanged();
   save = pendingImport; pendingImport = undefined; el('import-review').hidden = true;
   game.rights=save.progression;game.setMethod(save.preparation.method); game.setBait(save.preparation.bait);game.setPost(save.preparation.post);game.combatMode=save.settings.combatMode; equip(); renderPhase();
-  audio.enabled = save.settings.sound; world?.setQuality(save.settings.quality);
+  audio.enabled = save.settings.sound; world?.setQuality(save.settings.quality);world?.setPost(game.post);world?.setWaterQuality(save.settings.waterQuality??'low');
   saveNow(); refreshCollection(); refreshSettings(); toast('Votre carnet a été restauré.');
 };
 el('cancel-import').onclick = () => { pendingImport = undefined; el('import-review').hidden = true; };
@@ -507,11 +520,12 @@ try {
   el<HTMLCanvasElement>('world').addEventListener('webglcontextlost', () => { pauseManually(); toast('Le rendu 3D a été interrompu. Rechargez la page si l’image ne revient pas.'); });
 } catch (error) {
   console.error(error);
-  el('loading').innerHTML = '<h2>L’étang ne s’affiche pas.</h2><p>Le navigateur n’a pas pu démarrer la 3D.<br>Essayez un navigateur récent avec WebGL activé.</p><button class="secondary" onclick="location.reload()">Réessayer</button>';
+  el('loading').innerHTML = '<h2>L’étang ne s’affiche pas.</h2><p>Le navigateur n’a pas pu démarrer la 3D.<br>Essayez un navigateur récent avec WebGL activé.</p><button class="secondary" onclick="location.reload()">Réessayer</button><button id="loading-menu" class="action">Consulter les menus</button>';
+  el('loading-menu').onclick=()=>{el('loading').hidden=true;openModal('menu');};document.body.dataset.ready='error';
 }
 
 // Interface de test uniquement dans le serveur de développement E2E, supprimée du build.
-if (import.meta.env.DEV && import.meta.env.VITE_E2E === '1') {
+if (world && import.meta.env.DEV && import.meta.env.VITE_E2E === '1') {
   const {manageFight} = await import('./testing/combat-driver');
   const { SceneInstrumentation } = await import('@babylonjs/core/Instrumentation/sceneInstrumentation');
   const instrumentation = new SceneInstrumentation(world!.scene);

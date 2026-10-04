@@ -2,7 +2,7 @@
 - [x] Lot 01 Matériel/Boutique : socle, retours, familles, explications et vérifications locales.
 - [x] Lot 02 FishDex : identités cachées, routes éligibles, collection et contrôles.
 - [x] Lot 03 Progression/exploration.
-- [ ] Lot 04 Carnet/aquarium/aide.
+- [x] Lot 04 Carnet/aquarium/aide.
 - [ ] Parcours transversaux, préproduction puis publication autorisée.
 - [ ] Essais physiques iPhone 14 Pro (touches, clavier, safe areas, fluidité).
 
