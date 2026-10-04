@@ -1,3 +1,4 @@
+import type {AbstractMesh} from '@babylonjs/core/Meshes/abstractMesh';
 import { Scene } from '@babylonjs/core/scene';
 import { Mesh } from '@babylonjs/core/Meshes/mesh';
 import { VertexData } from '@babylonjs/core/Meshes/mesh.vertexData';
@@ -47,7 +48,7 @@ export class PondWater {
     private surfaceStarted=0;private surfaceSubmissionCpuMs=0;
     private fpsStart=performance.now();private fpsFrames=0;private renderedFPS=0;
     private selectedEvents:WaterEvent[]=[];
-    constructor(private scene: Scene, private reflectors: Mesh[], contacts: {
+    constructor(private scene: Scene, private reflectors: AbstractMesh[], contacts: {
         family: string;
         x: number;
         z: number;

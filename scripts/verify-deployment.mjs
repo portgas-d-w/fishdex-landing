@@ -15,6 +15,10 @@ const manifest=JSON.parse(await readFile(join(dist,'models/manifest.json'),'utf8
 const paths=(await readdir(join(dist,'assets'))).filter(f=>/\.(js|css)$/.test(f)).map(f=>`assets/${f}`);
 paths.push(...(await readdir(join(dist,'fishdex-assets'))).map(f=>`fishdex-assets/${f}`));
 paths.push('models/manifest.json',...manifest.models.map(m=>`models/${m.model}.glb`));
+// Card assets are separate from the lazy fish catalogue and must also match.
+for(const folder of ['map-assets','models/environment']){
+ try{paths.push(...(await readdir(join(dist,folder))).map(f=>`${folder}/${f}`));}catch(e){if(e.code!=='ENOENT')throw e;}
+}
 const rows=[];
 for(let offset=0;offset<paths.length;offset+=8){
  const batch=await Promise.all(paths.slice(offset,offset+8).map(async path=>{

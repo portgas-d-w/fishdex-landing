@@ -9,7 +9,7 @@ test('Chaque espèce charge son modèle et son portrait ; catalogue sans téléc
   test.setTimeout(240_000);
   const seed = emptySave(); for (const f of SPECIES.filter(s=>s.mode==='capture')) recordCatch(seed, { id: `atlas-${f.id}`, speciesId: f.id, length: (f.min + f.max) / 2, date: '2026-10-01T12:00:00Z' });
   await page.addInitScript(data => localStorage.setItem('au-fil-de-leau.save.v1', JSON.stringify(data)), seed);
-  const requests: string[] = [], errors: string[] = []; page.on('request', r => { if (r.url().endsWith('.glb')) requests.push(r.url()); }); page.on('pageerror', e => errors.push(e.message));
+  const requests: string[] = [], errors: string[] = []; page.on('request', r => { if (r.url().endsWith('.glb')&&!r.url().includes('/models/environment/')) requests.push(r.url()); }); page.on('pageerror', e => errors.push(e.message));
   await ensureLegacyProfile(page); await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true'); expect(requests).toEqual([]);
   await openMenuPage(page, 'collection-open');
   for (const f of SPECIES.filter(s=>s.mode==='capture')) {

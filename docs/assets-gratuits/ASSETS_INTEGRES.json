@@ -1,0 +1,1113 @@
+{
+  "date": "2026-10-04",
+  "map": {
+    "id": "willow-pond",
+    "name": "Étang des Saules"
+  },
+  "engine": "Babylon core/loaders 9.28.0, glTF 2.0",
+  "sources": [
+    {
+      "id": "T01",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_diff_1k.jpg",
+      "path": "assets-source/free-map-01/forest_ground_04-color.jpg",
+      "bytes": 1113899,
+      "sha256": "50a4dda30875020c64385261aa7e00e2155b592302fa6794165f58fae73cbd2c",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Rob Tuytel, Rico Cilliers",
+      "source": "https://polyhaven.com/a/forest_ground_04",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T01",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/forest_ground_04/forest_ground_04_nor_gl_1k.png",
+      "path": "assets-source/free-map-01/forest_ground_04-normal.png",
+      "bytes": 2537954,
+      "sha256": "dc30ffdf75d28b2f02831201b377cf8cce4594d86bbcf46ba711dfcd35a5fcf0",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Rob Tuytel, Rico Cilliers",
+      "source": "https://polyhaven.com/a/forest_ground_04",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T01",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/forest_ground_04/forest_ground_04_arm_1k.png",
+      "path": "assets-source/free-map-01/forest_ground_04-orm.png",
+      "bytes": 1729224,
+      "sha256": "a0e81793c4bed7fcc05b6305eb2f43e7eeaceb8b1acb4e62bdf30562f7412022",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Rob Tuytel, Rico Cilliers",
+      "source": "https://polyhaven.com/a/forest_ground_04",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T02",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/brown_mud_02/brown_mud_02_diff_1k.jpg",
+      "path": "assets-source/free-map-01/brown_mud_02-color.jpg",
+      "bytes": 527741,
+      "sha256": "058b6f12493305ec6b47cb5ea77f013c9e7e58216b34af3700a3d3d7d821732d",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Rob Tuytel",
+      "source": "https://polyhaven.com/a/brown_mud_02",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T02",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/brown_mud_02/brown_mud_02_nor_gl_1k.png",
+      "path": "assets-source/free-map-01/brown_mud_02-normal.png",
+      "bytes": 2490837,
+      "sha256": "6ab08dc4d8b6ff3a7d8407a5a0fe0af0ed324e7734f18b649c3e211cc820e1df",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Rob Tuytel",
+      "source": "https://polyhaven.com/a/brown_mud_02",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T02",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/brown_mud_02/brown_mud_02_arm_1k.png",
+      "path": "assets-source/free-map-01/brown_mud_02-orm.png",
+      "bytes": 1572937,
+      "sha256": "b9d763b634cb85eecf2c85715cf3adb580e60013750ffbd3f61dfa0fb7ea0ef0",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Rob Tuytel",
+      "source": "https://polyhaven.com/a/brown_mud_02",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T03",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/leafy_grass/leafy_grass_diff_1k.jpg",
+      "path": "assets-source/free-map-01/leafy_grass-color.jpg",
+      "bytes": 1195394,
+      "sha256": "cfa40bc9d9417d1852db8753a8d5917f110c40101179f63543c382e39bc05e4a",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Charlotte Baglioni",
+      "source": "https://polyhaven.com/a/leafy_grass",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T03",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/leafy_grass/leafy_grass_nor_gl_1k.png",
+      "path": "assets-source/free-map-01/leafy_grass-normal.png",
+      "bytes": 6111876,
+      "sha256": "7cba8d8a3cbd14663fd974b73ecebcbb42e0cc258d912867e9dd67a5582ca4d9",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Charlotte Baglioni",
+      "source": "https://polyhaven.com/a/leafy_grass",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T03",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/leafy_grass/leafy_grass_arm_1k.png",
+      "path": "assets-source/free-map-01/leafy_grass-orm.png",
+      "bytes": 4507279,
+      "sha256": "49d0cc8d0354eef10383c2a19323b2e690d5feec7a9e583876a5cc53d4cdce15",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Charlotte Baglioni",
+      "source": "https://polyhaven.com/a/leafy_grass",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T04",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/pebble_ground_01/pebble_ground_01_diff_1k.jpg",
+      "path": "assets-source/free-map-01/pebble_ground_01-color.jpg",
+      "bytes": 531564,
+      "sha256": "bd058dc96c0d972b2caab621fc837698280052595da393a3c38965c3bcc783f6",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Rob Tuytel",
+      "source": "https://polyhaven.com/a/pebble_ground_01",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T04",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/pebble_ground_01/pebble_ground_01_nor_gl_1k.png",
+      "path": "assets-source/free-map-01/pebble_ground_01-normal.png",
+      "bytes": 6394075,
+      "sha256": "b69841ba8326c7caae9f9038375721d879575eaa7e716b3c5955673ee2eac1e6",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Rob Tuytel",
+      "source": "https://polyhaven.com/a/pebble_ground_01",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T04",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/pebble_ground_01/pebble_ground_01_arm_1k.png",
+      "path": "assets-source/free-map-01/pebble_ground_01-orm.png",
+      "bytes": 4373922,
+      "sha256": "f24ec45a99fe1d85769be7221a40669a8da286064266183bab65ce857d91598c",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Rob Tuytel",
+      "source": "https://polyhaven.com/a/pebble_ground_01",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T05",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_planks_dirt/wood_planks_dirt_diff_1k.jpg",
+      "path": "assets-source/free-map-01/wood_planks_dirt-color.jpg",
+      "bytes": 918123,
+      "sha256": "230bb4aabaebde24ead3ae593a48f8f45e93705aaf3cfdc438589bb49c2a7af3",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Rob Tuytel",
+      "source": "https://polyhaven.com/a/wood_planks_dirt",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T05",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/wood_planks_dirt/wood_planks_dirt_nor_gl_1k.png",
+      "path": "assets-source/free-map-01/wood_planks_dirt-normal.png",
+      "bytes": 1254232,
+      "sha256": "1a22332d56158d54303650a50914907ee353385671a783e75dd4ac57f616e9af",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Rob Tuytel",
+      "source": "https://polyhaven.com/a/wood_planks_dirt",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T05",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/wood_planks_dirt/wood_planks_dirt_arm_1k.png",
+      "path": "assets-source/free-map-01/wood_planks_dirt-orm.png",
+      "bytes": 3789881,
+      "sha256": "d10a570da1a8afbb68fa67ffc1fb8b0da04faf3e6f960561664794115e596bf7",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Rob Tuytel",
+      "source": "https://polyhaven.com/a/wood_planks_dirt",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T06",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_willow_02/bark_willow_02_diff_1k.jpg",
+      "path": "assets-source/free-map-01/bark_willow_02-color.jpg",
+      "bytes": 998966,
+      "sha256": "95e1380566834aab220bd8ea9a5287f3bfff46910c18017fcb46ebbbe832024f",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Charlotte Baglioni",
+      "source": "https://polyhaven.com/a/bark_willow_02",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T06",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/bark_willow_02/bark_willow_02_nor_gl_1k.png",
+      "path": "assets-source/free-map-01/bark_willow_02-normal.png",
+      "bytes": 6009197,
+      "sha256": "5a1c2edc3c10f6875dbf0bd35a836c3ac178f325b5f81f1ee6c4b8142e3e6c4a",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Charlotte Baglioni",
+      "source": "https://polyhaven.com/a/bark_willow_02",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "T06",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/bark_willow_02/bark_willow_02_arm_1k.png",
+      "path": "assets-source/free-map-01/bark_willow_02-orm.png",
+      "bytes": 4432079,
+      "sha256": "970d971c4ea9e68bff96cef28c9564934256aca16603ca25e9eb625f1546ba8a",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Charlotte Baglioni",
+      "source": "https://polyhaven.com/a/bark_willow_02",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "A01",
+      "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/kloofendal_48d_partly_cloudy_puresky_1k.hdr",
+      "path": "assets-source/free-map-01/sky-1k.hdr",
+      "bytes": 1435119,
+      "sha256": "fd94c84997b8a3c353b62c2125a9b44e19509956986a126e472684432a02d798",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Greg Zaal, Jarod Guest",
+      "source": "https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky",
+      "license": "CC0",
+      "licenseSource": "https://polyhaven.com/license"
+    },
+    {
+      "id": "M02",
+      "url": "https://opengameart.org/sites/default/files/reed.zip",
+      "path": "assets-source/free-map-01/reed.zip",
+      "bytes": 140207,
+      "sha256": "03fd4f90d92618090829bac1152e4280327edb179139ae3f0c66542af31b89bd",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Aredon",
+      "source": "https://opengameart.org/content/lowpoly-reed",
+      "license": "CC0",
+      "licenseSource": "Fiche officielle OpenGameArt / CC0"
+    },
+    {
+      "id": "M03",
+      "url": "https://opengameart.org/sites/default/files/waterlily.zip",
+      "path": "assets-source/free-map-01/waterlily.zip",
+      "bytes": 252928,
+      "sha256": "375a3d54f74da67643f50a6b011f8efe05f88c4db5f2a861b4fd4224a68228c8",
+      "date": "2026-10-03",
+      "status": "downloaded",
+      "author": "Aredon",
+      "source": "https://opengameart.org/content/lowpoly-waterlily",
+      "license": "CC0",
+      "licenseSource": "Fiche officielle OpenGameArt / CC0"
+    },
+    {
+      "id": "M01",
+      "name": "birch",
+      "path": "assets-source/free-map-01/nature/birch.glb",
+      "source": "https://poly.pizza/m/R7qMWzb7nk",
+      "url": "https://static.poly.pizza/457b2397-4bfb-41c4-862d-82d1592b2a5f.glb",
+      "bytes": 4194972,
+      "sha256": "f2e47d42052327adb2c232087fdfad06acf091acabad01abf180d342a5de03a8",
+      "author": "Quaternius",
+      "license": "CC0",
+      "date": "2026-10-03",
+      "status": "downloaded"
+    },
+    {
+      "id": "M01",
+      "name": "rocks",
+      "path": "assets-source/free-map-01/nature/rocks.glb",
+      "source": "https://poly.pizza/m/gYhoEOKItJ",
+      "url": "https://static.poly.pizza/01671e28-0504-4db1-a5d5-af71ce0a6a1e.glb",
+      "bytes": 3152056,
+      "sha256": "122f937f06b8e1d05d750a38a478196533925be515eded7ca0396b759058973f",
+      "author": "Quaternius",
+      "license": "CC0",
+      "date": "2026-10-03",
+      "status": "downloaded"
+    },
+    {
+      "id": "M01",
+      "name": "bush",
+      "path": "assets-source/free-map-01/nature/bush.glb",
+      "source": "https://poly.pizza/m/J2h3HrO356",
+      "url": "https://static.poly.pizza/11bcb3a1-5901-402c-9863-75988b9e21d8.glb",
+      "bytes": 472900,
+      "sha256": "fa263900752fa9e011e349b35d9b5feaf8d8e1c5fb3520f80e1fd0bdb5a3bc3c",
+      "author": "Quaternius",
+      "license": "CC0",
+      "date": "2026-10-03",
+      "status": "downloaded"
+    },
+    {
+      "id": "M01",
+      "name": "grass",
+      "path": "assets-source/free-map-01/nature/grass.glb",
+      "source": "https://poly.pizza/m/UGTOzcO3P2",
+      "url": "https://static.poly.pizza/99357ca2-6364-4990-8d4c-9bc5a1a5e859.glb",
+      "bytes": 767660,
+      "sha256": "f773f5f46c688673482c0a13db231b6fca5ab12279ab5d1def805ceccc1b5aef",
+      "author": "Quaternius",
+      "license": "CC0",
+      "date": "2026-10-03",
+      "status": "downloaded"
+    }
+  ],
+  "primaryBlocked": [
+    {
+      "id": "M01",
+      "name": "BirchTree_1.gltf",
+      "url": "https://drive.usercontent.google.com/uc?id=1K3kgivCdB10eg57AM0CwSZi6TvCwsvNh&export=download",
+      "status": "blocked",
+      "reason": "Error: HTML instead of asset"
+    },
+    {
+      "id": "M01",
+      "name": "BirchTree_1.bin",
+      "url": "https://drive.usercontent.google.com/uc?id=1CzLliZji_8zxWRI_QQXmTgGaycWGYhLb&export=download",
+      "status": "blocked",
+      "reason": "Error: HTML instead of asset"
+    },
+    {
+      "id": "M01",
+      "name": "BirchTree_2.gltf",
+      "url": "https://drive.usercontent.google.com/uc?id=1-IFr4_vcuyPDfpDA7v09xIuBvAWgVCN_&export=download",
+      "status": "blocked",
+      "reason": "Error: HTML instead of asset"
+    },
+    {
+      "id": "M01",
+      "name": "BirchTree_2.bin",
+      "url": "https://drive.usercontent.google.com/uc?id=1qEsSF4KkXsaVVDonE-1HjHN-qjtztnu-&export=download",
+      "status": "blocked",
+      "reason": "Error: HTML instead of asset"
+    },
+    {
+      "id": "M01",
+      "name": "BirchTree_Leaves.png",
+      "url": "https://drive.usercontent.google.com/uc?id=1RPfkjEuuEwFno9gh3U0zQndzcB8DOr_S&export=download",
+      "status": "blocked",
+      "reason": "Error: HTML instead of asset"
+    },
+    {
+      "id": "M01",
+      "name": "BirchTree_Bark.jpg",
+      "url": "https://drive.usercontent.google.com/uc?id=1puC8NuyemENIPB40TOsKdqzp0EmUJe1g&export=download",
+      "status": "blocked",
+      "reason": "Error: HTML instead of asset"
+    },
+    {
+      "id": "M01",
+      "name": "BirchTree_Bark_Normal.png",
+      "url": "https://drive.usercontent.google.com/uc?id=1qg4n9gasJ-c_jQED-IBqx28Qu53CURcR&export=download",
+      "status": "blocked",
+      "reason": "Error: HTML instead of asset"
+    },
+    {
+      "id": "M01",
+      "name": "Bush_Large.gltf",
+      "url": "https://drive.usercontent.google.com/uc?id=1E0Pa78JSmBhddkwnWy4uMiN-Jl-ySpTH&export=download",
+      "status": "blocked",
+      "reason": "Error: HTML instead of asset"
+    },
+    {
+      "id": "M01",
+      "name": "Bush_Large.bin",
+      "url": "https://drive.usercontent.google.com/uc?id=1LLfPoe7ZUYqOu_Td2bsRjrz8ALbLbRd0&export=download",
+      "status": "blocked",
+      "reason": "Error: HTML instead of asset"
+    },
+    {
+      "id": "M01",
+      "name": "Bush_Leaves.png",
+      "url": "https://drive.usercontent.google.com/uc?id=19xOyTuSATvkHhQd8zC6PW-y6RX761yGA&export=download",
+      "status": "blocked",
+      "reason": "Error: HTML instead of asset"
+    }
+  ],
+  "models": [
+    {
+      "name": "tree-birch",
+      "source": "birch",
+      "selected_object": "BirchTree_1",
+      "triangles": 4598,
+      "materials": 2,
+      "blender_dimensions": [
+        5.3,
+        4.1,
+        8.5
+      ],
+      "file": "/models/environment/free-tree-birch.glb",
+      "bytes": 248388,
+      "sha256": "0c97f8b920005e7ad1c9a5c51c4a8ccc52755f47863ee57bda720e5291af9c58",
+      "textures": [
+        {
+          "file": "/models/environment/nature-341e46717713.png",
+          "bytes": 355328,
+          "sha256": "341e467177132c4ee203d4f6e8a984c6b01045018beb21c72148f50ac929abd6"
+        },
+        {
+          "file": "/models/environment/nature-0202a5fd2149.png",
+          "bytes": 44055,
+          "sha256": "0202a5fd21495b38dc720fe2676f950c98d49bb1e800eedda29c5efb5895456a"
+        }
+      ]
+    },
+    {
+      "name": "bush",
+      "source": "bush",
+      "selected_object": "Bush",
+      "triangles": 400,
+      "materials": 1,
+      "blender_dimensions": [
+        1.4,
+        1.2,
+        1
+      ],
+      "file": "/models/environment/free-bush.glb",
+      "bytes": 29328,
+      "sha256": "7c63e495e70a3c12034e87d3509cd9029bc789ad82744cc2621b4e61ee1e5bcc",
+      "textures": [
+        {
+          "file": "/models/environment/nature-64db46578492.png",
+          "bytes": 41777,
+          "sha256": "64db465784921a4883ba3c4607a8de9dfc2892c2da878c182ea3425b6fb95d1b"
+        }
+      ]
+    },
+    {
+      "name": "grass",
+      "source": "grass",
+      "selected_object": "Grass_Small",
+      "triangles": 58,
+      "materials": 1,
+      "blender_dimensions": [
+        0.8,
+        0.7,
+        0.55
+      ],
+      "file": "/models/environment/free-grass.glb",
+      "bytes": 4420,
+      "sha256": "30cfad151e23b6416e6e1f41cc2905120fb7b21d9d28b911c43f296a045a2eb6",
+      "textures": [
+        {
+          "file": "/models/environment/nature-5ee02753fa9a.png",
+          "bytes": 208848,
+          "sha256": "5ee02753fa9ae8eead24a19b72f648e16f1f936b607677f7648fc9be9593e23f"
+        }
+      ]
+    },
+    {
+      "name": "rock",
+      "source": "rocks",
+      "selected_object": "Rock_1",
+      "triangles": 228,
+      "materials": 1,
+      "blender_dimensions": [
+        1.4,
+        1.2,
+        0.8
+      ],
+      "file": "/models/environment/free-rock.glb",
+      "bytes": 12924,
+      "sha256": "70400201e21278891b6a38d2dfbc5c75450a426052d9733cf916d0eb15f90685",
+      "textures": [
+        {
+          "file": "/models/environment/nature-9335143cdd89.png",
+          "bytes": 325249,
+          "sha256": "9335143cdd892a2dc6a2b7bba3d5c0d523c626c2cf1b62388956935d969282a8"
+        }
+      ]
+    },
+    {
+      "name": "rock-alt",
+      "source": "rocks",
+      "selected_object": "Rock_2",
+      "triangles": 202,
+      "materials": 1,
+      "blender_dimensions": [
+        1.4,
+        1.2,
+        0.8
+      ],
+      "file": "/models/environment/free-rock-alt.glb",
+      "bytes": 11420,
+      "sha256": "05ef92e82ab5b141319c84cc8088033467c6a638f06f63a171647e3ea9b8ad67",
+      "textures": [
+        {
+          "file": "/models/environment/nature-9335143cdd89.png",
+          "bytes": 325249,
+          "sha256": "9335143cdd892a2dc6a2b7bba3d5c0d523c626c2cf1b62388956935d969282a8"
+        }
+      ]
+    },
+    {
+      "name": "reeds",
+      "source": "M02",
+      "selected_object": null,
+      "triangles": 760,
+      "materials": 6,
+      "blender_dimensions": [
+        2,
+        2,
+        2
+      ],
+      "file": "/models/environment/free-reeds.glb",
+      "bytes": 53148,
+      "sha256": "3fcb574b35306b0ce04f2ccd715b2fbbcafc1fb59d46d5bce17c0ce8639a334f",
+      "textures": []
+    },
+    {
+      "name": "lily",
+      "source": "M03",
+      "selected_object": null,
+      "triangles": 252,
+      "materials": 1,
+      "blender_dimensions": [
+        0.32,
+        0.25,
+        0.01
+      ],
+      "file": "/models/environment/free-lily.glb",
+      "bytes": 15124,
+      "sha256": "49f3b8a4f9ed3b23ec062e6a29932005b81f151db9b6c635ce785f6e7a6f082d",
+      "textures": []
+    }
+  ],
+  "registry": {
+    "version": 2,
+    "units": "meter",
+    "entries": [
+      {
+        "id": "pier_deck",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          2.4,
+          0.15,
+          2
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "game/pond-map.json.spots.jetty.landing",
+        "sockets": [
+          {
+            "id": "join-front",
+            "position": [
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "id": "join-rear",
+            "position": [
+              0,
+              0,
+              -1
+            ]
+          }
+        ],
+        "priority": "P0"
+      },
+      {
+        "id": "pier_pile",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          0.17,
+          1.7,
+          0.17
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P0"
+      },
+      {
+        "id": "tree_alder",
+        "version": 2,
+        "resource": "/models/environment/free-tree-birch.glb",
+        "lightmap": null,
+        "dimensions": [
+          6,
+          9,
+          5
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": "/models/environment/free-tree-birch.glb",
+          "far": null,
+          "procedural": "selected_18_max_screen_height_110px_eco_70px_high_other_trees_spatial_proxies"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P1",
+        "botanicalNote": "Bouleau Quaternius provisoire pour rôle de feuillu ; pas un aulne/chêne exact"
+      },
+      {
+        "id": "tree_oak",
+        "version": 2,
+        "resource": "/models/environment/free-tree-birch.glb",
+        "lightmap": null,
+        "dimensions": [
+          6,
+          9,
+          5
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": "/models/environment/free-tree-birch.glb",
+          "far": null,
+          "procedural": "selected_18_max_screen_height_110px_eco_70px_high_other_trees_spatial_proxies"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P1",
+        "botanicalNote": "Bouleau Quaternius provisoire pour rôle de feuillu ; pas un aulne/chêne exact"
+      },
+      {
+        "id": "tree_willow",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          6,
+          8,
+          5
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P1"
+      },
+      {
+        "id": "reeds",
+        "version": 2,
+        "resource": "/models/environment/free-reeds.glb",
+        "lightmap": null,
+        "dimensions": [
+          2,
+          2,
+          2
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": "/models/environment/free-reeds.glb",
+          "far": null,
+          "procedural": "instances_shared_geometry_materials"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "game/posts.ts.obstacles",
+        "sockets": [],
+        "priority": "P0",
+        "botanicalNote": "Massettes Aredon, identité distincte des roseaux spécifiques"
+      },
+      {
+        "id": "grass_clump",
+        "version": 2,
+        "resource": "/models/environment/free-grass.glb",
+        "lightmap": null,
+        "dimensions": [
+          0.8,
+          0.55,
+          0.7
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": "/models/environment/free-grass.glb",
+          "far": null,
+          "procedural": "instances_shared_geometry_materials"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P1"
+      },
+      {
+        "id": "shrub",
+        "version": 2,
+        "resource": "/models/environment/free-bush.glb",
+        "lightmap": null,
+        "dimensions": [
+          1.4,
+          1,
+          1.2
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": "/models/environment/free-bush.glb",
+          "far": null,
+          "procedural": "instances_shared_geometry_materials"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P1"
+      },
+      {
+        "id": "lily_cluster",
+        "version": 2,
+        "resource": "/models/environment/free-lily.glb",
+        "lightmap": null,
+        "dimensions": [
+          0.32,
+          0.01,
+          0.25
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "center",
+        "lod": {
+          "near": "/models/environment/free-lily.glb",
+          "far": null,
+          "procedural": "instances_shared_geometry_materials"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P0"
+      },
+      {
+        "id": "rock_small",
+        "version": 2,
+        "resource": "/models/environment/free-rock.glb",
+        "lightmap": null,
+        "dimensions": [
+          1.4,
+          0.8,
+          1.2
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": "/models/environment/free-rock.glb",
+          "far": null,
+          "procedural": "instances_shared_geometry_materials"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P1"
+      },
+      {
+        "id": "rock_landmark",
+        "version": 2,
+        "resource": "/models/environment/free-rock-alt.glb",
+        "lightmap": null,
+        "dimensions": [
+          1.4,
+          0.8,
+          1.2
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": "/models/environment/free-rock-alt.glb",
+          "far": null,
+          "procedural": "instances_shared_geometry_materials"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P1"
+      },
+      {
+        "id": "fallen_log",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          0.4,
+          0.4,
+          5
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P0"
+      },
+      {
+        "id": "submerged_branches",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          2,
+          2,
+          2
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "base_center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "game/posts.ts.obstacles",
+        "sockets": [],
+        "priority": "P0"
+      },
+      {
+        "id": "path_patch",
+        "version": 1,
+        "resource": null,
+        "lightmap": null,
+        "dimensions": [
+          1.4,
+          0.025,
+          3
+        ],
+        "dimensionTolerance": 1.35,
+        "pivot": "center",
+        "lod": {
+          "near": null,
+          "far": null,
+          "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        },
+        "materials": {
+          "max": 3,
+          "colorSpace": "baseColor_sRGB_normals_linear",
+          "lightmapUV": 1
+        },
+        "collision": "visual_only",
+        "sockets": [],
+        "priority": "P2"
+      }
+    ]
+  },
+  "runtime": [
+    {
+      "file": "/map-assets/bark_willow_02-color.jpg",
+      "bytes": 88632,
+      "sha256": "7e4ac046bb89ecb509a5e423e99ce1263abb37482d8355936ef2805aaffe6834",
+      "role": "map_asset"
+    },
+    {
+      "file": "/map-assets/bark_willow_02-normal.png",
+      "bytes": 625400,
+      "sha256": "e1e8c0631220971ff6e85af8fbd68d7de0112071105751f51cdd48bd0dc46001",
+      "role": "map_asset"
+    },
+    {
+      "file": "/map-assets/bark_willow_02-specular.png",
+      "bytes": 196308,
+      "sha256": "0fe12667967ff5ec68cf684633de82c66d04f494bda604ff76b0e8683ae2ae40",
+      "role": "map_asset"
+    },
+    {
+      "file": "/map-assets/ground-atlas.jpg",
+      "bytes": 128721,
+      "sha256": "f7240e0d2e83e2bf458a98ad6119bf24f84bb68df1de144ad9813704dc12f783",
+      "role": "map_asset"
+    },
+    {
+      "file": "/map-assets/post-bank.jpg",
+      "bytes": 17651,
+      "sha256": "4bfa3ed8ffbeeb7d3bf116a9ffccb3deefc6627a213e8fb60268174fc8707d9e",
+      "role": "lazy_post_preview"
+    },
+    {
+      "file": "/map-assets/post-cove.jpg",
+      "bytes": 18350,
+      "sha256": "a6bd36b3eb15ea844ee7cce79653401868738b0ae225f038bf8a2bd2290d599d",
+      "role": "lazy_post_preview"
+    },
+    {
+      "file": "/map-assets/post-jetty.jpg",
+      "bytes": 19576,
+      "sha256": "151d0fa2f896e314723d725abe4706b5055bd4bffed91410a4188232da20843c",
+      "role": "lazy_post_preview"
+    },
+    {
+      "file": "/map-assets/post-point.jpg",
+      "bytes": 17550,
+      "sha256": "043db46e030087a82db1f4362a77cdec9f5f2fc3868ca9cec58e2d7ee1f39d42",
+      "role": "lazy_post_preview"
+    },
+    {
+      "file": "/map-assets/post-reed-bank.jpg",
+      "bytes": 18063,
+      "sha256": "4d707514c0d91c0154fe4916083be71104e3e55fc21ac8d9ae5eccad011e7d33",
+      "role": "lazy_post_preview"
+    },
+    {
+      "file": "/map-assets/post-timber.jpg",
+      "bytes": 17627,
+      "sha256": "ea42b53c45985187135e59530ee8a717b9ce129b016cb6406bc20eb48787507d",
+      "role": "lazy_post_preview"
+    },
+    {
+      "file": "/map-assets/sky-day.env",
+      "bytes": 232452,
+      "sha256": "01b6a820c9a95fb53538db1340e0c0f3b97091fa3a37aefc09eb05fe440d1d46",
+      "role": "map_asset"
+    },
+    {
+      "file": "/map-assets/sky-day.jpg",
+      "bytes": 41801,
+      "sha256": "aed1619ebb6fe40f5cc3d2ed8b99aa834ccd17b98b1eb68cbc5620f2c8a8e93c",
+      "role": "map_asset"
+    },
+    {
+      "file": "/map-assets/wood_planks_dirt-color.jpg",
+      "bytes": 64419,
+      "sha256": "0fc5d3ce9ab1e2fd0c0e8bbaa197acd5fe09e5a624bea25f36625cda535bd799",
+      "role": "map_asset"
+    },
+    {
+      "file": "/map-assets/wood_planks_dirt-normal.png",
+      "bytes": 250767,
+      "sha256": "6893323ad5121f864c0ee3b5539cd71e5f058da3ae2b5f5b3c2de083bcf808be",
+      "role": "map_asset"
+    },
+    {
+      "file": "/map-assets/wood_planks_dirt-specular.png",
+      "bytes": 197837,
+      "sha256": "a1c2b888c0bfdf6892db219683f90dab8e16b392779f691d52361e0d6dd573c4",
+      "role": "map_asset"
+    },
+    {
+      "file": "/models/environment/free-bush.glb",
+      "bytes": 29328,
+      "sha256": "7c63e495e70a3c12034e87d3509cd9029bc789ad82744cc2621b4e61ee1e5bcc",
+      "role": "map_asset"
+    },
+    {
+      "file": "/models/environment/free-grass.glb",
+      "bytes": 4420,
+      "sha256": "30cfad151e23b6416e6e1f41cc2905120fb7b21d9d28b911c43f296a045a2eb6",
+      "role": "map_asset"
+    },
+    {
+      "file": "/models/environment/free-lily.glb",
+      "bytes": 15124,
+      "sha256": "49f3b8a4f9ed3b23ec062e6a29932005b81f151db9b6c635ce785f6e7a6f082d",
+      "role": "map_asset"
+    },
+    {
+      "file": "/models/environment/free-reeds.glb",
+      "bytes": 53148,
+      "sha256": "3fcb574b35306b0ce04f2ccd715b2fbbcafc1fb59d46d5bce17c0ce8639a334f",
+      "role": "map_asset"
+    },
+    {
+      "file": "/models/environment/free-rock-alt.glb",
+      "bytes": 11420,
+      "sha256": "05ef92e82ab5b141319c84cc8088033467c6a638f06f63a171647e3ea9b8ad67",
+      "role": "map_asset"
+    },
+    {
+      "file": "/models/environment/free-rock.glb",
+      "bytes": 12924,
+      "sha256": "70400201e21278891b6a38d2dfbc5c75450a426052d9733cf916d0eb15f90685",
+      "role": "map_asset"
+    },
+    {
+      "file": "/models/environment/free-tree-birch.glb",
+      "bytes": 248388,
+      "sha256": "0c97f8b920005e7ad1c9a5c51c4a8ccc52755f47863ee57bda720e5291af9c58",
+      "role": "map_asset"
+    },
+    {
+      "file": "/models/environment/nature-0202a5fd2149.png",
+      "bytes": 44055,
+      "sha256": "0202a5fd21495b38dc720fe2676f950c98d49bb1e800eedda29c5efb5895456a",
+      "role": "map_asset"
+    },
+    {
+      "file": "/models/environment/nature-341e46717713.png",
+      "bytes": 355328,
+      "sha256": "341e467177132c4ee203d4f6e8a984c6b01045018beb21c72148f50ac929abd6",
+      "role": "map_asset"
+    },
+    {
+      "file": "/models/environment/nature-5ee02753fa9a.png",
+      "bytes": 208848,
+      "sha256": "5ee02753fa9ae8eead24a19b72f648e16f1f936b607677f7648fc9be9593e23f",
+      "role": "map_asset"
+    },
+    {
+      "file": "/models/environment/nature-64db46578492.png",
+      "bytes": 41777,
+      "sha256": "64db465784921a4883ba3c4607a8de9dfc2892c2da878c182ea3425b6fb95d1b",
+      "role": "map_asset"
+    },
+    {
+      "file": "/models/environment/nature-9335143cdd89.png",
+      "bytes": 325249,
+      "sha256": "9335143cdd892a2dc6a2b7bba3d5c0d523c626c2cf1b62388956935d969282a8",
+      "role": "map_asset"
+    }
+  ],
+  "totalNewBytes": 3285163,
+  "essentialNewBytes": 3176346,
+  "note": "Sources conservées hors Git/build. Textures locales partagées; deux familles d’arbres acquièrent le même AssetContainer. Collisions et sauvegardes inchangées."
+}

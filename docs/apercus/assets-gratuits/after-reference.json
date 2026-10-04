@@ -1,0 +1,5500 @@
+[
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "device": "Chromium Windows SwiftShader DPR1, aucun iPhone",
+    "posts": [
+      {
+        "post": "jetty",
+        "snapshot": {
+          "sceneId": "660dcec1-3334-47f1-aff1-e22420502c84",
+          "totalMeshes": 798,
+          "specimen": "",
+          "seed": 127,
+          "appearance": {
+            "coloration": "natural",
+            "mirage": false
+          },
+          "post": "jetty",
+          "method": "pole",
+          "hasReel": false,
+          "presentationDepth": 0,
+          "microzone": "margin",
+          "snagged": false,
+          "rights": {
+            "methods": [
+              "pole",
+              "float",
+              "bottom",
+              "lure"
+            ],
+            "posts": [
+              "jetty",
+              "cove",
+              "bank",
+              "reed-bank",
+              "point",
+              "timber",
+              "river",
+              "deep",
+              "boat",
+              "cold-lake",
+              "estuary",
+              "pacific",
+              "american",
+              "asian",
+              "managed"
+            ],
+            "precision": 0,
+            "initiation": false,
+            "mastery": {},
+            "legacy": false,
+            "techniques": [
+              "coup",
+              "grande_canne",
+              "anglaise",
+              "bolognaise",
+              "fond",
+              "feeder",
+              "method_feeder",
+              "carpe",
+              "stalking",
+              "surface",
+              "leurre",
+              "verticale",
+              "mort_manie",
+              "toc",
+              "mouche",
+              "nymphe_fil",
+              "bombette",
+              "gambe",
+              "traine",
+              "clonk",
+              "ultraleger",
+              "carpodrome"
+            ],
+            "techniqueMastery": {}
+          },
+          "camera": [
+            0,
+            4.2,
+            -8.5
+          ],
+          "technique": "coup",
+          "recipe": "flotteur_fixe",
+          "boat": {
+            "x": 0,
+            "z": 0
+          },
+          "sections": 12,
+          "retreat": 0,
+          "detached": 0,
+          "geometry": {
+            "base": {
+              "x": 0.4,
+              "y": 0.8,
+              "z": -5.7
+            },
+            "tip": {
+              "x": 0.36410013234913596,
+              "y": 7.124888568474544,
+              "z": 4.451884710454839
+            },
+            "axis": {
+              "x": 0,
+              "y": 0.5396320487339693,
+              "z": 0.8419009751622687
+            },
+            "length": 12
+          },
+          "fishPosition": {
+            "x": -1.5,
+            "y": -0.7,
+            "z": 7
+          },
+          "net": {
+            "x": 0.7,
+            "z": 1
+          },
+          "netReady": false,
+          "netLift": 0,
+          "canReceive": false,
+          "encounter": "none",
+          "phase": "idle",
+          "tension": 0.25,
+          "abrasion": 0,
+          "fatigue": 0,
+          "slack": 0,
+          "dragSpeed": 0,
+          "lineLength": 8,
+          "fishDistance": 8,
+          "returning": false,
+          "progress": 0,
+          "reeling": false,
+          "pulling": false,
+          "total": 0,
+          "paused": false,
+          "direction": 0,
+          "reelSpeed": 0,
+          "alignment": 1,
+          "rodTip": {
+            "x": 0.5720943362370408,
+            "y": -0.089889365055764
+          },
+          "target": {
+            "x": 0,
+            "z": 3.2
+          },
+          "yaw": 0,
+          "lift": 0.5,
+          "engines": 1,
+          "lakeFrames": 161,
+          "meshes": 55
+        },
+        "render": {
+          "drawCalls": 86,
+          "cpuFrameMs": 1,
+          "vertices": 219403,
+          "meshes": 55,
+          "width": 390,
+          "height": 844,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "renderedFPS": 30.030030030116727,
+            "turbidity": 0.85,
+            "activeSurfaceWaves": 0,
+            "surfaceCapacity": 8,
+            "normalTexture": 128,
+            "depthTexture": 256,
+            "reflectionRenders": 31,
+            "reflectionObjects": 48,
+            "surfaceSubmissionCpuMs": 0,
+            "reflectionCpuMs": 0.3999999985098839,
+            "reflectionPasses": 1,
+            "quality": "standard",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 20,
+              "drops": 32,
+              "mirror": 256,
+              "cadence": 6
+            },
+            "events": {
+              "spot_transition": 2
+            },
+            "lastId": 2,
+            "mirror": {
+              "width": 256,
+              "height": 256
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 2,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 2,
+                "resource": "/models/environment/free-reeds.glb",
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 2,
+                "resource": "/models/environment/free-grass.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 2,
+                "resource": "/models/environment/free-bush.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 2,
+                "resource": "/models/environment/free-lily.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 2,
+                "resource": "/models/environment/free-rock.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 2,
+                "resource": "/models/environment/free-rock-alt.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "glb:/models/environment/free-reeds.glb",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+              "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+              "grass_clump": "glb:/models/environment/free-grass.glb",
+              "shrub": "glb:/models/environment/free-bush.glb",
+              "lily_cluster": "glb:/models/environment/free-lily.glb",
+              "rock_small": "glb:/models/environment/free-rock.glb",
+              "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 366,
+            "detailTrees": {
+              "available": 18,
+              "enabled": 6,
+              "thresholdPixels": 110
+            },
+            "sharedSources": 7
+          }
+        },
+        "visibleTriangles": 18680,
+        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "seconds": 2.9832999999970196,
+        "frames": 90,
+        "fps": 30.16793483729089,
+        "frameMedian": 33.29999999701977,
+        "frameP95": 46.29999999701977,
+        "camera": [
+          0,
+          4.2,
+          -8.5
+        ],
+        "target": [
+          0,
+          0.10000018576048841,
+          5.499999683810435
+        ]
+      },
+      {
+        "post": "cove",
+        "snapshot": {
+          "sceneId": "660dcec1-3334-47f1-aff1-e22420502c84",
+          "totalMeshes": 798,
+          "specimen": "",
+          "seed": 127,
+          "appearance": {
+            "coloration": "natural",
+            "mirage": false
+          },
+          "post": "cove",
+          "method": "pole",
+          "hasReel": false,
+          "presentationDepth": 0,
+          "microzone": "margin",
+          "snagged": false,
+          "rights": {
+            "methods": [
+              "pole",
+              "float",
+              "bottom",
+              "lure"
+            ],
+            "posts": [
+              "jetty",
+              "cove",
+              "bank",
+              "reed-bank",
+              "point",
+              "timber",
+              "river",
+              "deep",
+              "boat",
+              "cold-lake",
+              "estuary",
+              "pacific",
+              "american",
+              "asian",
+              "managed"
+            ],
+            "precision": 0,
+            "initiation": false,
+            "mastery": {},
+            "legacy": false,
+            "techniques": [
+              "coup",
+              "grande_canne",
+              "anglaise",
+              "bolognaise",
+              "fond",
+              "feeder",
+              "method_feeder",
+              "carpe",
+              "stalking",
+              "surface",
+              "leurre",
+              "verticale",
+              "mort_manie",
+              "toc",
+              "mouche",
+              "nymphe_fil",
+              "bombette",
+              "gambe",
+              "traine",
+              "clonk",
+              "ultraleger",
+              "carpodrome"
+            ],
+            "techniqueMastery": {}
+          },
+          "camera": [
+            -52.20302328388646,
+            4.2,
+            6.187021885360408
+          ],
+          "technique": "coup",
+          "recipe": "flotteur_fixe",
+          "boat": {
+            "x": 0,
+            "z": 0
+          },
+          "sections": 12,
+          "retreat": 0,
+          "detached": 0,
+          "geometry": {
+            "base": {
+              "x": 0.4,
+              "y": 0.8,
+              "z": -5.7
+            },
+            "tip": {
+              "x": 0.36410013234913596,
+              "y": 7.124888568474544,
+              "z": 4.451884710454839
+            },
+            "axis": {
+              "x": 0,
+              "y": 0.5396320487339693,
+              "z": 0.8419009751622687
+            },
+            "length": 12
+          },
+          "fishPosition": {
+            "x": -1.5,
+            "y": -0.7,
+            "z": 7
+          },
+          "net": {
+            "x": 0.7,
+            "z": 1
+          },
+          "netReady": false,
+          "netLift": 0,
+          "canReceive": false,
+          "encounter": "none",
+          "phase": "idle",
+          "tension": 0.25,
+          "abrasion": 0,
+          "fatigue": 0,
+          "slack": 0,
+          "dragSpeed": 0,
+          "lineLength": 8,
+          "fishDistance": 8,
+          "returning": false,
+          "progress": 0,
+          "reeling": false,
+          "pulling": false,
+          "total": 0,
+          "paused": false,
+          "direction": 0,
+          "reelSpeed": 0,
+          "alignment": 1,
+          "rodTip": {
+            "x": 0.5720935082593881,
+            "y": -0.08988944153531625
+          },
+          "target": {
+            "x": 0,
+            "z": 3.2
+          },
+          "yaw": 0,
+          "lift": 0.5,
+          "engines": 1,
+          "lakeFrames": 316,
+          "meshes": 136
+        },
+        "render": {
+          "drawCalls": 97,
+          "cpuFrameMs": 1.1999999955296516,
+          "vertices": 219403,
+          "meshes": 136,
+          "width": 390,
+          "height": 844,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "renderedFPS": 29.979014689627917,
+            "turbidity": 0.85,
+            "activeSurfaceWaves": 0,
+            "surfaceCapacity": 8,
+            "normalTexture": 128,
+            "depthTexture": 256,
+            "reflectionRenders": 57,
+            "reflectionObjects": 48,
+            "surfaceSubmissionCpuMs": 0,
+            "reflectionCpuMs": 0.5,
+            "reflectionPasses": 1,
+            "quality": "standard",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 20,
+              "drops": 32,
+              "mirror": 256,
+              "cadence": 6
+            },
+            "events": {
+              "spot_transition": 3
+            },
+            "lastId": 3,
+            "mirror": {
+              "width": 256,
+              "height": 256
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 2,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 2,
+                "resource": "/models/environment/free-reeds.glb",
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 2,
+                "resource": "/models/environment/free-grass.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 2,
+                "resource": "/models/environment/free-bush.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 2,
+                "resource": "/models/environment/free-lily.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 2,
+                "resource": "/models/environment/free-rock.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 2,
+                "resource": "/models/environment/free-rock-alt.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "glb:/models/environment/free-reeds.glb",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+              "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+              "grass_clump": "glb:/models/environment/free-grass.glb",
+              "shrub": "glb:/models/environment/free-bush.glb",
+              "lily_cluster": "glb:/models/environment/free-lily.glb",
+              "rock_small": "glb:/models/environment/free-rock.glb",
+              "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 366,
+            "detailTrees": {
+              "available": 18,
+              "enabled": 7,
+              "thresholdPixels": 110
+            },
+            "sharedSources": 7
+          }
+        },
+        "visibleTriangles": 23536,
+        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "seconds": 3.0085999999940394,
+        "frames": 91,
+        "fps": 30.246626337891474,
+        "frameMedian": 33.399999998509884,
+        "frameP95": 34.80000000447035,
+        "camera": [
+          -52.20302328388646,
+          4.2,
+          6.187021885360408
+        ],
+        "target": [
+          -41.95733414200834,
+          0.09999975100394831,
+          15.727768948074015
+        ]
+      },
+      {
+        "post": "bank",
+        "snapshot": {
+          "sceneId": "660dcec1-3334-47f1-aff1-e22420502c84",
+          "totalMeshes": 798,
+          "specimen": "",
+          "seed": 127,
+          "appearance": {
+            "coloration": "natural",
+            "mirage": false
+          },
+          "post": "bank",
+          "method": "pole",
+          "hasReel": false,
+          "presentationDepth": 0,
+          "microzone": "margin",
+          "snagged": false,
+          "rights": {
+            "methods": [
+              "pole",
+              "float",
+              "bottom",
+              "lure"
+            ],
+            "posts": [
+              "jetty",
+              "cove",
+              "bank",
+              "reed-bank",
+              "point",
+              "timber",
+              "river",
+              "deep",
+              "boat",
+              "cold-lake",
+              "estuary",
+              "pacific",
+              "american",
+              "asian",
+              "managed"
+            ],
+            "precision": 0,
+            "initiation": false,
+            "mastery": {},
+            "legacy": false,
+            "techniques": [
+              "coup",
+              "grande_canne",
+              "anglaise",
+              "bolognaise",
+              "fond",
+              "feeder",
+              "method_feeder",
+              "carpe",
+              "stalking",
+              "surface",
+              "leurre",
+              "verticale",
+              "mort_manie",
+              "toc",
+              "mouche",
+              "nymphe_fil",
+              "bombette",
+              "gambe",
+              "traine",
+              "clonk",
+              "ultraleger",
+              "carpodrome"
+            ],
+            "techniqueMastery": {}
+          },
+          "camera": [
+            55.57723997998858,
+            4.2,
+            12.754842529208013
+          ],
+          "technique": "coup",
+          "recipe": "flotteur_fixe",
+          "boat": {
+            "x": 0,
+            "z": 0
+          },
+          "sections": 12,
+          "retreat": 0,
+          "detached": 0,
+          "geometry": {
+            "base": {
+              "x": 0.4,
+              "y": 0.8,
+              "z": -5.7
+            },
+            "tip": {
+              "x": 0.36410013234913596,
+              "y": 7.124888568474544,
+              "z": 4.451884710454839
+            },
+            "axis": {
+              "x": 0,
+              "y": 0.5396320487339693,
+              "z": 0.8419009751622687
+            },
+            "length": 12
+          },
+          "fishPosition": {
+            "x": -1.5,
+            "y": -0.7,
+            "z": 7
+          },
+          "net": {
+            "x": 0.7,
+            "z": 1
+          },
+          "netReady": false,
+          "netLift": 0,
+          "canReceive": false,
+          "encounter": "none",
+          "phase": "idle",
+          "tension": 0.25,
+          "abrasion": 0,
+          "fatigue": 0,
+          "slack": 0,
+          "dragSpeed": 0,
+          "lineLength": 8,
+          "fishDistance": 8,
+          "returning": false,
+          "progress": 0,
+          "reeling": false,
+          "pulling": false,
+          "total": 0,
+          "paused": false,
+          "direction": 0,
+          "reelSpeed": 0,
+          "alignment": 1,
+          "rodTip": {
+            "x": 0.5720945901561617,
+            "y": -0.08988949084852685
+          },
+          "target": {
+            "x": 0,
+            "z": 3.2
+          },
+          "yaw": 0,
+          "lift": 0.5,
+          "engines": 1,
+          "lakeFrames": 470,
+          "meshes": 65
+        },
+        "render": {
+          "drawCalls": 94,
+          "cpuFrameMs": 1,
+          "vertices": 219403,
+          "meshes": 65,
+          "width": 390,
+          "height": 844,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "renderedFPS": 29.96616723054616,
+            "turbidity": 0.85,
+            "activeSurfaceWaves": 0,
+            "surfaceCapacity": 8,
+            "normalTexture": 128,
+            "depthTexture": 256,
+            "reflectionRenders": 83,
+            "reflectionObjects": 48,
+            "surfaceSubmissionCpuMs": 0,
+            "reflectionCpuMs": 0.20000000298023224,
+            "reflectionPasses": 1,
+            "quality": "standard",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 20,
+              "drops": 32,
+              "mirror": 256,
+              "cadence": 6
+            },
+            "events": {
+              "spot_transition": 4
+            },
+            "lastId": 4,
+            "mirror": {
+              "width": 256,
+              "height": 256
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 2,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 2,
+                "resource": "/models/environment/free-reeds.glb",
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 2,
+                "resource": "/models/environment/free-grass.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 2,
+                "resource": "/models/environment/free-bush.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 2,
+                "resource": "/models/environment/free-lily.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 2,
+                "resource": "/models/environment/free-rock.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 2,
+                "resource": "/models/environment/free-rock-alt.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "glb:/models/environment/free-reeds.glb",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+              "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+              "grass_clump": "glb:/models/environment/free-grass.glb",
+              "shrub": "glb:/models/environment/free-bush.glb",
+              "lily_cluster": "glb:/models/environment/free-lily.glb",
+              "rock_small": "glb:/models/environment/free-rock.glb",
+              "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 366,
+            "detailTrees": {
+              "available": 18,
+              "enabled": 8,
+              "thresholdPixels": 110
+            },
+            "sharedSources": 7
+          }
+        },
+        "visibleTriangles": 17246,
+        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "seconds": 3.01089999999851,
+        "frames": 91,
+        "fps": 30.22352120629879,
+        "frameMedian": 33.399999998509884,
+        "frameP95": 34.79999999701977,
+        "camera": [
+          55.57723997998858,
+          4.2,
+          12.754842529208013
+        ],
+        "target": [
+          45.01359685930365,
+          0.09999975100394831,
+          21.942303818582495
+        ]
+      },
+      {
+        "post": "reed-bank",
+        "snapshot": {
+          "sceneId": "660dcec1-3334-47f1-aff1-e22420502c84",
+          "totalMeshes": 798,
+          "specimen": "",
+          "seed": 127,
+          "appearance": {
+            "coloration": "natural",
+            "mirage": false
+          },
+          "post": "reed-bank",
+          "method": "pole",
+          "hasReel": false,
+          "presentationDepth": 0,
+          "microzone": "margin",
+          "snagged": false,
+          "rights": {
+            "methods": [
+              "pole",
+              "float",
+              "bottom",
+              "lure"
+            ],
+            "posts": [
+              "jetty",
+              "cove",
+              "bank",
+              "reed-bank",
+              "point",
+              "timber",
+              "river",
+              "deep",
+              "boat",
+              "cold-lake",
+              "estuary",
+              "pacific",
+              "american",
+              "asian",
+              "managed"
+            ],
+            "precision": 0,
+            "initiation": false,
+            "mastery": {},
+            "legacy": false,
+            "techniques": [
+              "coup",
+              "grande_canne",
+              "anglaise",
+              "bolognaise",
+              "fond",
+              "feeder",
+              "method_feeder",
+              "carpe",
+              "stalking",
+              "surface",
+              "leurre",
+              "verticale",
+              "mort_manie",
+              "toc",
+              "mouche",
+              "nymphe_fil",
+              "bombette",
+              "gambe",
+              "traine",
+              "clonk",
+              "ultraleger",
+              "carpodrome"
+            ],
+            "techniqueMastery": {}
+          },
+          "camera": [
+            -59.49802623296194,
+            4.2,
+            65.11916849265278
+          ],
+          "technique": "coup",
+          "recipe": "flotteur_fixe",
+          "boat": {
+            "x": 0,
+            "z": 0
+          },
+          "sections": 12,
+          "retreat": 0,
+          "detached": 0,
+          "geometry": {
+            "base": {
+              "x": 0.4,
+              "y": 0.8,
+              "z": -5.7
+            },
+            "tip": {
+              "x": 0.36410013234913596,
+              "y": 7.124888568474544,
+              "z": 4.451884710454839
+            },
+            "axis": {
+              "x": 0,
+              "y": 0.5396320487339693,
+              "z": 0.8419009751622687
+            },
+            "length": 12
+          },
+          "fishPosition": {
+            "x": -1.5,
+            "y": -0.7,
+            "z": 7
+          },
+          "net": {
+            "x": 0.7,
+            "z": 1
+          },
+          "netReady": false,
+          "netLift": 0,
+          "canReceive": false,
+          "encounter": "none",
+          "phase": "idle",
+          "tension": 0.25,
+          "abrasion": 0,
+          "fatigue": 0,
+          "slack": 0,
+          "dragSpeed": 0,
+          "lineLength": 8,
+          "fishDistance": 8,
+          "returning": false,
+          "progress": 0,
+          "reeling": false,
+          "pulling": false,
+          "total": 0,
+          "paused": false,
+          "direction": 0,
+          "reelSpeed": 0,
+          "alignment": 1,
+          "rodTip": {
+            "x": 0.5720953870977522,
+            "y": -0.08988950420615767
+          },
+          "target": {
+            "x": 0,
+            "z": 3.2
+          },
+          "yaw": 0,
+          "lift": 0.5,
+          "engines": 1,
+          "lakeFrames": 624,
+          "meshes": 152
+        },
+        "render": {
+          "drawCalls": 104,
+          "cpuFrameMs": 1.0999999940395355,
+          "vertices": 219403,
+          "meshes": 152,
+          "width": 390,
+          "height": 844,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "renderedFPS": 29.99700030014878,
+            "turbidity": 0.85,
+            "activeSurfaceWaves": 0,
+            "surfaceCapacity": 8,
+            "normalTexture": 128,
+            "depthTexture": 256,
+            "reflectionRenders": 109,
+            "reflectionObjects": 48,
+            "surfaceSubmissionCpuMs": 0,
+            "reflectionCpuMs": 0.4000000059604645,
+            "reflectionPasses": 1,
+            "quality": "standard",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 20,
+              "drops": 32,
+              "mirror": 256,
+              "cadence": 6
+            },
+            "events": {
+              "spot_transition": 5
+            },
+            "lastId": 5,
+            "mirror": {
+              "width": 256,
+              "height": 256
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 2,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 2,
+                "resource": "/models/environment/free-reeds.glb",
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 2,
+                "resource": "/models/environment/free-grass.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 2,
+                "resource": "/models/environment/free-bush.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 2,
+                "resource": "/models/environment/free-lily.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 2,
+                "resource": "/models/environment/free-rock.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 2,
+                "resource": "/models/environment/free-rock-alt.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "glb:/models/environment/free-reeds.glb",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+              "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+              "grass_clump": "glb:/models/environment/free-grass.glb",
+              "shrub": "glb:/models/environment/free-bush.glb",
+              "lily_cluster": "glb:/models/environment/free-lily.glb",
+              "rock_small": "glb:/models/environment/free-rock.glb",
+              "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 366,
+            "detailTrees": {
+              "available": 18,
+              "enabled": 5,
+              "thresholdPixels": 110
+            },
+            "sharedSources": 7
+          }
+        },
+        "visibleTriangles": 24526,
+        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "seconds": 2.9782999999970197,
+        "frames": 90,
+        "fps": 30.21858106976801,
+        "frameMedian": 33.399999998509884,
+        "frameP95": 34.69999999552965,
+        "camera": [
+          -59.49802623296194,
+          4.2,
+          65.11916849265278
+        ],
+        "target": [
+          -46.52334420105335,
+          0.10000062051703029,
+          59.86011687136178
+        ]
+      },
+      {
+        "post": "point",
+        "snapshot": {
+          "sceneId": "660dcec1-3334-47f1-aff1-e22420502c84",
+          "totalMeshes": 798,
+          "specimen": "",
+          "seed": 127,
+          "appearance": {
+            "coloration": "natural",
+            "mirage": false
+          },
+          "post": "point",
+          "method": "pole",
+          "hasReel": false,
+          "presentationDepth": 0,
+          "microzone": "margin",
+          "snagged": false,
+          "rights": {
+            "methods": [
+              "pole",
+              "float",
+              "bottom",
+              "lure"
+            ],
+            "posts": [
+              "jetty",
+              "cove",
+              "bank",
+              "reed-bank",
+              "point",
+              "timber",
+              "river",
+              "deep",
+              "boat",
+              "cold-lake",
+              "estuary",
+              "pacific",
+              "american",
+              "asian",
+              "managed"
+            ],
+            "precision": 0,
+            "initiation": false,
+            "mastery": {},
+            "legacy": false,
+            "techniques": [
+              "coup",
+              "grande_canne",
+              "anglaise",
+              "bolognaise",
+              "fond",
+              "feeder",
+              "method_feeder",
+              "carpe",
+              "stalking",
+              "surface",
+              "leurre",
+              "verticale",
+              "mort_manie",
+              "toc",
+              "mouche",
+              "nymphe_fil",
+              "bombette",
+              "gambe",
+              "traine",
+              "clonk",
+              "ultraleger",
+              "carpodrome"
+            ],
+            "techniqueMastery": {}
+          },
+          "camera": [
+            22.263867358682614,
+            4.2,
+            86.8802406922891
+          ],
+          "technique": "coup",
+          "recipe": "flotteur_fixe",
+          "boat": {
+            "x": 0,
+            "z": 0
+          },
+          "sections": 12,
+          "retreat": 0,
+          "detached": 0,
+          "geometry": {
+            "base": {
+              "x": 0.4,
+              "y": 0.8,
+              "z": -5.7
+            },
+            "tip": {
+              "x": 0.36410013234913596,
+              "y": 7.124888568474544,
+              "z": 4.451884710454839
+            },
+            "axis": {
+              "x": 0,
+              "y": 0.5396320487339693,
+              "z": 0.8419009751622687
+            },
+            "length": 12
+          },
+          "fishPosition": {
+            "x": -1.5,
+            "y": -0.7,
+            "z": 7
+          },
+          "net": {
+            "x": 0.7,
+            "z": 1
+          },
+          "netReady": false,
+          "netLift": 0,
+          "canReceive": false,
+          "encounter": "none",
+          "phase": "idle",
+          "tension": 0.25,
+          "abrasion": 0,
+          "fatigue": 0,
+          "slack": 0,
+          "dragSpeed": 0,
+          "lineLength": 8,
+          "fishDistance": 8,
+          "returning": false,
+          "progress": 0,
+          "reeling": false,
+          "pulling": false,
+          "total": 0,
+          "paused": false,
+          "direction": 0,
+          "reelSpeed": 0,
+          "alignment": 1,
+          "rodTip": {
+            "x": 0.572094601215351,
+            "y": -0.0898895198083154
+          },
+          "target": {
+            "x": 0,
+            "z": 3.2
+          },
+          "yaw": 0,
+          "lift": 0.5,
+          "engines": 1,
+          "lakeFrames": 779,
+          "meshes": 66
+        },
+        "render": {
+          "drawCalls": 93,
+          "cpuFrameMs": 0.8999999985098839,
+          "vertices": 219403,
+          "meshes": 66,
+          "width": 390,
+          "height": 844,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "renderedFPS": 30.015491866856557,
+            "turbidity": 0.85,
+            "activeSurfaceWaves": 0,
+            "surfaceCapacity": 8,
+            "normalTexture": 128,
+            "depthTexture": 256,
+            "reflectionRenders": 135,
+            "reflectionObjects": 48,
+            "surfaceSubmissionCpuMs": 0,
+            "reflectionCpuMs": 0.3999999985098839,
+            "reflectionPasses": 1,
+            "quality": "standard",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 20,
+              "drops": 32,
+              "mirror": 256,
+              "cadence": 6
+            },
+            "events": {
+              "spot_transition": 6
+            },
+            "lastId": 6,
+            "mirror": {
+              "width": 256,
+              "height": 256
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 2,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 2,
+                "resource": "/models/environment/free-reeds.glb",
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 2,
+                "resource": "/models/environment/free-grass.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 2,
+                "resource": "/models/environment/free-bush.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 2,
+                "resource": "/models/environment/free-lily.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 2,
+                "resource": "/models/environment/free-rock.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 2,
+                "resource": "/models/environment/free-rock-alt.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "glb:/models/environment/free-reeds.glb",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+              "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+              "grass_clump": "glb:/models/environment/free-grass.glb",
+              "shrub": "glb:/models/environment/free-bush.glb",
+              "lily_cluster": "glb:/models/environment/free-lily.glb",
+              "rock_small": "glb:/models/environment/free-rock.glb",
+              "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 366,
+            "detailTrees": {
+              "available": 18,
+              "enabled": 4,
+              "thresholdPixels": 110
+            },
+            "sharedSources": 7
+          }
+        },
+        "visibleTriangles": 17528,
+        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "seconds": 2.99860000000149,
+        "frames": 90,
+        "fps": 30.014006536368733,
+        "frameMedian": 33.29999999701977,
+        "frameP95": 34.5,
+        "camera": [
+          22.263867358682614,
+          4.2,
+          86.8802406922891
+        ],
+        "target": [
+          19.573396289300273,
+          0.09999975100394831,
+          73.14119579628837
+        ]
+      },
+      {
+        "post": "timber",
+        "snapshot": {
+          "sceneId": "660dcec1-3334-47f1-aff1-e22420502c84",
+          "totalMeshes": 798,
+          "specimen": "",
+          "seed": 127,
+          "appearance": {
+            "coloration": "natural",
+            "mirage": false
+          },
+          "post": "timber",
+          "method": "pole",
+          "hasReel": false,
+          "presentationDepth": 0,
+          "microzone": "margin",
+          "snagged": false,
+          "rights": {
+            "methods": [
+              "pole",
+              "float",
+              "bottom",
+              "lure"
+            ],
+            "posts": [
+              "jetty",
+              "cove",
+              "bank",
+              "reed-bank",
+              "point",
+              "timber",
+              "river",
+              "deep",
+              "boat",
+              "cold-lake",
+              "estuary",
+              "pacific",
+              "american",
+              "asian",
+              "managed"
+            ],
+            "precision": 0,
+            "initiation": false,
+            "mastery": {},
+            "legacy": false,
+            "techniques": [
+              "coup",
+              "grande_canne",
+              "anglaise",
+              "bolognaise",
+              "fond",
+              "feeder",
+              "method_feeder",
+              "carpe",
+              "stalking",
+              "surface",
+              "leurre",
+              "verticale",
+              "mort_manie",
+              "toc",
+              "mouche",
+              "nymphe_fil",
+              "bombette",
+              "gambe",
+              "traine",
+              "clonk",
+              "ultraleger",
+              "carpodrome"
+            ],
+            "techniqueMastery": {}
+          },
+          "camera": [
+            63.377913277425755,
+            4.2,
+            56.1524099880198
+          ],
+          "technique": "coup",
+          "recipe": "flotteur_fixe",
+          "boat": {
+            "x": 0,
+            "z": 0
+          },
+          "sections": 12,
+          "retreat": 0,
+          "detached": 0,
+          "geometry": {
+            "base": {
+              "x": 0.4,
+              "y": 0.8,
+              "z": -5.7
+            },
+            "tip": {
+              "x": 0.36410013234913596,
+              "y": 7.124888568474544,
+              "z": 4.451884710454839
+            },
+            "axis": {
+              "x": 0,
+              "y": 0.5396320487339693,
+              "z": 0.8419009751622687
+            },
+            "length": 12
+          },
+          "fishPosition": {
+            "x": -1.5,
+            "y": -0.7,
+            "z": 7
+          },
+          "net": {
+            "x": 0.7,
+            "z": 1
+          },
+          "netReady": false,
+          "netLift": 0,
+          "canReceive": false,
+          "encounter": "none",
+          "phase": "idle",
+          "tension": 0.25,
+          "abrasion": 0,
+          "fatigue": 0,
+          "slack": 0,
+          "dragSpeed": 0,
+          "lineLength": 8,
+          "fishDistance": 8,
+          "returning": false,
+          "progress": 0,
+          "reeling": false,
+          "pulling": false,
+          "total": 0,
+          "paused": false,
+          "direction": 0,
+          "reelSpeed": 0,
+          "alignment": 1,
+          "rodTip": {
+            "x": 0.5720943345689847,
+            "y": -0.08988949917451171
+          },
+          "target": {
+            "x": 0,
+            "z": 3.2
+          },
+          "yaw": 0,
+          "lift": 0.5,
+          "engines": 1,
+          "lakeFrames": 934,
+          "meshes": 135
+        },
+        "render": {
+          "drawCalls": 110,
+          "cpuFrameMs": 1,
+          "vertices": 219403,
+          "meshes": 135,
+          "width": 390,
+          "height": 844,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "renderedFPS": 30.012585923172352,
+            "turbidity": 0.85,
+            "activeSurfaceWaves": 0,
+            "surfaceCapacity": 8,
+            "normalTexture": 128,
+            "depthTexture": 256,
+            "reflectionRenders": 161,
+            "reflectionObjects": 48,
+            "surfaceSubmissionCpuMs": 0,
+            "reflectionCpuMs": 0.3999999985098839,
+            "reflectionPasses": 1,
+            "quality": "standard",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 20,
+              "drops": 32,
+              "mirror": 256,
+              "cadence": 6
+            },
+            "events": {
+              "spot_transition": 7
+            },
+            "lastId": 7,
+            "mirror": {
+              "width": 256,
+              "height": 256
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 2,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 2,
+                "resource": "/models/environment/free-reeds.glb",
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 2,
+                "resource": "/models/environment/free-grass.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 2,
+                "resource": "/models/environment/free-bush.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 2,
+                "resource": "/models/environment/free-lily.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 2,
+                "resource": "/models/environment/free-rock.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 2,
+                "resource": "/models/environment/free-rock-alt.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "glb:/models/environment/free-reeds.glb",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+              "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+              "grass_clump": "glb:/models/environment/free-grass.glb",
+              "shrub": "glb:/models/environment/free-bush.glb",
+              "lily_cluster": "glb:/models/environment/free-lily.glb",
+              "rock_small": "glb:/models/environment/free-rock.glb",
+              "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 366,
+            "detailTrees": {
+              "available": 18,
+              "enabled": 8,
+              "thresholdPixels": 110
+            },
+            "sharedSources": 7
+          }
+        },
+        "visibleTriangles": 23414,
+        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "seconds": 3.00620000000298,
+        "frames": 91,
+        "fps": 30.270773734252476,
+        "frameMedian": 33.399999998509884,
+        "frameP95": 34.29999999701977,
+        "camera": [
+          63.377913277425755,
+          4.2,
+          56.1524099880198
+        ],
+        "target": [
+          49.68867930778172,
+          0.10000018576048753,
+          53.21900261564824
+        ]
+      }
+    ],
+    "transfer": [
+      {
+        "name": "/models/environment/free-tree-birch.glb",
+        "transferSize": 300,
+        "encodedBodySize": 248388,
+        "duration": 1.3999999985098839
+      },
+      {
+        "name": "/models/environment/free-reeds.glb",
+        "transferSize": 300,
+        "encodedBodySize": 53148,
+        "duration": 1.3000000044703484
+      },
+      {
+        "name": "/models/environment/free-grass.glb",
+        "transferSize": 300,
+        "encodedBodySize": 4420,
+        "duration": 1.2999999970197678
+      },
+      {
+        "name": "/models/environment/free-bush.glb",
+        "transferSize": 300,
+        "encodedBodySize": 29328,
+        "duration": 1.2999999970197678
+      },
+      {
+        "name": "/models/environment/free-lily.glb",
+        "transferSize": 300,
+        "encodedBodySize": 15124,
+        "duration": 1.5
+      },
+      {
+        "name": "/models/environment/free-rock.glb",
+        "transferSize": 300,
+        "encodedBodySize": 12924,
+        "duration": 1.5999999940395355
+      },
+      {
+        "name": "/models/environment/free-rock-alt.glb",
+        "transferSize": 300,
+        "encodedBodySize": 11420,
+        "duration": 1.6000000014901161
+      },
+      {
+        "name": "/map-assets/sky-day.jpg",
+        "transferSize": 300,
+        "encodedBodySize": 41801,
+        "duration": 1
+      },
+      {
+        "name": "/map-assets/bark_willow_02-color.jpg",
+        "transferSize": 300,
+        "encodedBodySize": 88632,
+        "duration": 1.3999999985098839
+      },
+      {
+        "name": "/map-assets/bark_willow_02-normal.png",
+        "transferSize": 300,
+        "encodedBodySize": 625400,
+        "duration": 2.600000001490116
+      },
+      {
+        "name": "/map-assets/bark_willow_02-specular.png",
+        "transferSize": 300,
+        "encodedBodySize": 196308,
+        "duration": 1.9000000059604645
+      },
+      {
+        "name": "/map-assets/wood_planks_dirt-color.jpg",
+        "transferSize": 300,
+        "encodedBodySize": 64419,
+        "duration": 1.8000000044703484
+      },
+      {
+        "name": "/map-assets/wood_planks_dirt-normal.png",
+        "transferSize": 300,
+        "encodedBodySize": 250767,
+        "duration": 2.2999999970197678
+      },
+      {
+        "name": "/map-assets/wood_planks_dirt-specular.png",
+        "transferSize": 300,
+        "encodedBodySize": 197837,
+        "duration": 2.2999999970197678
+      },
+      {
+        "name": "/map-assets/ground-atlas.jpg",
+        "transferSize": 300,
+        "encodedBodySize": 128721,
+        "duration": 2.1999999955296516
+      },
+      {
+        "name": "/map-assets/sky-day.env",
+        "transferSize": 300,
+        "encodedBodySize": 232452,
+        "duration": 1.1999999955296516
+      },
+      {
+        "name": "/models/environment/nature-341e46717713.png",
+        "transferSize": 300,
+        "encodedBodySize": 355328,
+        "duration": 0.7000000029802322
+      },
+      {
+        "name": "/models/environment/nature-0202a5fd2149.png",
+        "transferSize": 300,
+        "encodedBodySize": 44055,
+        "duration": 0.8999999985098839
+      },
+      {
+        "name": "/models/environment/nature-5ee02753fa9a.png",
+        "transferSize": 300,
+        "encodedBodySize": 208848,
+        "duration": 1.1000000014901161
+      },
+      {
+        "name": "/models/environment/nature-64db46578492.png",
+        "transferSize": 300,
+        "encodedBodySize": 41777,
+        "duration": 0.8999999985098839
+      },
+      {
+        "name": "/models/environment/nature-9335143cdd89.png",
+        "transferSize": 300,
+        "encodedBodySize": 325249,
+        "duration": 0.8999999985098839
+      },
+      {
+        "name": "/models/environment/nature-9335143cdd89.png",
+        "transferSize": 300,
+        "encodedBodySize": 325249,
+        "duration": 1.2000000029802322
+      }
+    ],
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "device": "Chromium Windows SwiftShader DPR1, aucun iPhone",
+    "posts": [
+      {
+        "post": "jetty",
+        "snapshot": {
+          "sceneId": "6ac4b39f-a9b7-4bd4-a092-0e82a549c967",
+          "totalMeshes": 798,
+          "specimen": "",
+          "seed": 127,
+          "appearance": {
+            "coloration": "natural",
+            "mirage": false
+          },
+          "post": "jetty",
+          "method": "pole",
+          "hasReel": false,
+          "presentationDepth": 0,
+          "microzone": "margin",
+          "snagged": false,
+          "rights": {
+            "methods": [
+              "pole",
+              "float",
+              "bottom",
+              "lure"
+            ],
+            "posts": [
+              "jetty",
+              "cove",
+              "bank",
+              "reed-bank",
+              "point",
+              "timber",
+              "river",
+              "deep",
+              "boat",
+              "cold-lake",
+              "estuary",
+              "pacific",
+              "american",
+              "asian",
+              "managed"
+            ],
+            "precision": 0,
+            "initiation": false,
+            "mastery": {},
+            "legacy": false,
+            "techniques": [
+              "coup",
+              "grande_canne",
+              "anglaise",
+              "bolognaise",
+              "fond",
+              "feeder",
+              "method_feeder",
+              "carpe",
+              "stalking",
+              "surface",
+              "leurre",
+              "verticale",
+              "mort_manie",
+              "toc",
+              "mouche",
+              "nymphe_fil",
+              "bombette",
+              "gambe",
+              "traine",
+              "clonk",
+              "ultraleger",
+              "carpodrome"
+            ],
+            "techniqueMastery": {}
+          },
+          "camera": [
+            0,
+            4.2,
+            -8.5
+          ],
+          "technique": "coup",
+          "recipe": "flotteur_fixe",
+          "boat": {
+            "x": 0,
+            "z": 0
+          },
+          "sections": 12,
+          "retreat": 0,
+          "detached": 0,
+          "geometry": {
+            "base": {
+              "x": 0.4,
+              "y": 0.8,
+              "z": -5.7
+            },
+            "tip": {
+              "x": 0.36410013234913596,
+              "y": 7.124888568474544,
+              "z": 4.451884710454839
+            },
+            "axis": {
+              "x": 0,
+              "y": 0.5396320487339693,
+              "z": 0.8419009751622687
+            },
+            "length": 12
+          },
+          "fishPosition": {
+            "x": -1.5,
+            "y": -0.7,
+            "z": 7
+          },
+          "net": {
+            "x": 0.7,
+            "z": 1
+          },
+          "netReady": false,
+          "netLift": 0,
+          "canReceive": false,
+          "encounter": "none",
+          "phase": "idle",
+          "tension": 0.25,
+          "abrasion": 0,
+          "fatigue": 0,
+          "slack": 0,
+          "dragSpeed": 0,
+          "lineLength": 8,
+          "fishDistance": 8,
+          "returning": false,
+          "progress": 0,
+          "reeling": false,
+          "pulling": false,
+          "total": 0,
+          "paused": false,
+          "direction": 0,
+          "reelSpeed": 0,
+          "alignment": 1,
+          "rodTip": {
+            "x": 0.5208210825923932,
+            "y": -0.0898893922635717
+          },
+          "target": {
+            "x": 0,
+            "z": 3.2
+          },
+          "yaw": 0,
+          "lift": 0.5,
+          "engines": 1,
+          "lakeFrames": 134,
+          "meshes": 216
+        },
+        "render": {
+          "drawCalls": 121,
+          "cpuFrameMs": 1.2000000029802322,
+          "vertices": 219403,
+          "meshes": 216,
+          "width": 1024,
+          "height": 640,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "renderedFPS": 21.247826926822157,
+            "turbidity": 0.85,
+            "activeSurfaceWaves": 0,
+            "surfaceCapacity": 8,
+            "normalTexture": 128,
+            "depthTexture": 256,
+            "reflectionRenders": 27,
+            "reflectionObjects": 48,
+            "surfaceSubmissionCpuMs": 0,
+            "reflectionCpuMs": 0.4000000059604645,
+            "reflectionPasses": 1,
+            "quality": "standard",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 20,
+              "drops": 32,
+              "mirror": 256,
+              "cadence": 6
+            },
+            "events": {
+              "spot_transition": 2
+            },
+            "lastId": 2,
+            "mirror": {
+              "width": 256,
+              "height": 256
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 2,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 2,
+                "resource": "/models/environment/free-reeds.glb",
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 2,
+                "resource": "/models/environment/free-grass.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 2,
+                "resource": "/models/environment/free-bush.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 2,
+                "resource": "/models/environment/free-lily.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 2,
+                "resource": "/models/environment/free-rock.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 2,
+                "resource": "/models/environment/free-rock-alt.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "glb:/models/environment/free-reeds.glb",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+              "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+              "grass_clump": "glb:/models/environment/free-grass.glb",
+              "shrub": "glb:/models/environment/free-bush.glb",
+              "lily_cluster": "glb:/models/environment/free-lily.glb",
+              "rock_small": "glb:/models/environment/free-rock.glb",
+              "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 366,
+            "detailTrees": {
+              "available": 18,
+              "enabled": 4,
+              "thresholdPixels": 110
+            },
+            "sharedSources": 7
+          }
+        },
+        "visibleTriangles": 30648,
+        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "seconds": 2.9498000000044704,
+        "frames": 65,
+        "fps": 22.0353922299483,
+        "frameMedian": 46.79999999701977,
+        "frameP95": 82.60000000149012,
+        "camera": [
+          0,
+          4.2,
+          -8.5
+        ],
+        "target": [
+          0,
+          0.10000018576048841,
+          5.499999683810435
+        ]
+      },
+      {
+        "post": "cove",
+        "snapshot": {
+          "sceneId": "6ac4b39f-a9b7-4bd4-a092-0e82a549c967",
+          "totalMeshes": 798,
+          "specimen": "",
+          "seed": 127,
+          "appearance": {
+            "coloration": "natural",
+            "mirage": false
+          },
+          "post": "cove",
+          "method": "pole",
+          "hasReel": false,
+          "presentationDepth": 0,
+          "microzone": "margin",
+          "snagged": false,
+          "rights": {
+            "methods": [
+              "pole",
+              "float",
+              "bottom",
+              "lure"
+            ],
+            "posts": [
+              "jetty",
+              "cove",
+              "bank",
+              "reed-bank",
+              "point",
+              "timber",
+              "river",
+              "deep",
+              "boat",
+              "cold-lake",
+              "estuary",
+              "pacific",
+              "american",
+              "asian",
+              "managed"
+            ],
+            "precision": 0,
+            "initiation": false,
+            "mastery": {},
+            "legacy": false,
+            "techniques": [
+              "coup",
+              "grande_canne",
+              "anglaise",
+              "bolognaise",
+              "fond",
+              "feeder",
+              "method_feeder",
+              "carpe",
+              "stalking",
+              "surface",
+              "leurre",
+              "verticale",
+              "mort_manie",
+              "toc",
+              "mouche",
+              "nymphe_fil",
+              "bombette",
+              "gambe",
+              "traine",
+              "clonk",
+              "ultraleger",
+              "carpodrome"
+            ],
+            "techniqueMastery": {}
+          },
+          "camera": [
+            -52.20302328388646,
+            4.2,
+            6.187021885360408
+          ],
+          "technique": "coup",
+          "recipe": "flotteur_fixe",
+          "boat": {
+            "x": 0,
+            "z": 0
+          },
+          "sections": 12,
+          "retreat": 0,
+          "detached": 0,
+          "geometry": {
+            "base": {
+              "x": 0.4,
+              "y": 0.8,
+              "z": -5.7
+            },
+            "tip": {
+              "x": 0.36410013234913596,
+              "y": 7.124888568474544,
+              "z": 4.451884710454839
+            },
+            "axis": {
+              "x": 0,
+              "y": 0.5396320487339693,
+              "z": 0.8419009751622687
+            },
+            "length": 12
+          },
+          "fishPosition": {
+            "x": -1.5,
+            "y": -0.7,
+            "z": 7
+          },
+          "net": {
+            "x": 0.7,
+            "z": 1
+          },
+          "netReady": false,
+          "netLift": 0,
+          "canReceive": false,
+          "encounter": "none",
+          "phase": "idle",
+          "tension": 0.25,
+          "abrasion": 0,
+          "fatigue": 0,
+          "slack": 0,
+          "dragSpeed": 0,
+          "lineLength": 8,
+          "fishDistance": 8,
+          "returning": false,
+          "progress": 0,
+          "reeling": false,
+          "pulling": false,
+          "total": 0,
+          "paused": false,
+          "direction": 0,
+          "reelSpeed": 0,
+          "alignment": 1,
+          "rodTip": {
+            "x": 0.5208208907351599,
+            "y": -0.08988945469013226
+          },
+          "target": {
+            "x": 0,
+            "z": 3.2
+          },
+          "yaw": 0,
+          "lift": 0.5,
+          "engines": 1,
+          "lakeFrames": 286,
+          "meshes": 275
+        },
+        "render": {
+          "drawCalls": 147,
+          "cpuFrameMs": 1.0999999940395355,
+          "vertices": 219403,
+          "meshes": 275,
+          "width": 1024,
+          "height": 640,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "renderedFPS": 23.75296912100002,
+            "turbidity": 0.85,
+            "activeSurfaceWaves": 0,
+            "surfaceCapacity": 8,
+            "normalTexture": 128,
+            "depthTexture": 256,
+            "reflectionRenders": 53,
+            "reflectionObjects": 48,
+            "surfaceSubmissionCpuMs": 0,
+            "reflectionCpuMs": 0.20000000298023224,
+            "reflectionPasses": 1,
+            "quality": "standard",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 20,
+              "drops": 32,
+              "mirror": 256,
+              "cadence": 6
+            },
+            "events": {
+              "spot_transition": 3
+            },
+            "lastId": 3,
+            "mirror": {
+              "width": 256,
+              "height": 256
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 2,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 2,
+                "resource": "/models/environment/free-reeds.glb",
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 2,
+                "resource": "/models/environment/free-grass.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 2,
+                "resource": "/models/environment/free-bush.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 2,
+                "resource": "/models/environment/free-lily.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 2,
+                "resource": "/models/environment/free-rock.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 2,
+                "resource": "/models/environment/free-rock-alt.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "glb:/models/environment/free-reeds.glb",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+              "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+              "grass_clump": "glb:/models/environment/free-grass.glb",
+              "shrub": "glb:/models/environment/free-bush.glb",
+              "lily_cluster": "glb:/models/environment/free-lily.glb",
+              "rock_small": "glb:/models/environment/free-rock.glb",
+              "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 366,
+            "detailTrees": {
+              "available": 18,
+              "enabled": 5,
+              "thresholdPixels": 110
+            },
+            "sharedSources": 7
+          }
+        },
+        "visibleTriangles": 32370,
+        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "seconds": 2.97839999999851,
+        "frames": 72,
+        "fps": 24.174053182929097,
+        "frameMedian": 41.20000000298023,
+        "frameP95": 49.19999999552965,
+        "camera": [
+          -52.20302328388646,
+          4.2,
+          6.187021885360408
+        ],
+        "target": [
+          -41.95733414200834,
+          0.09999975100394831,
+          15.727768948074015
+        ]
+      },
+      {
+        "post": "bank",
+        "snapshot": {
+          "sceneId": "6ac4b39f-a9b7-4bd4-a092-0e82a549c967",
+          "totalMeshes": 798,
+          "specimen": "",
+          "seed": 127,
+          "appearance": {
+            "coloration": "natural",
+            "mirage": false
+          },
+          "post": "bank",
+          "method": "pole",
+          "hasReel": false,
+          "presentationDepth": 0,
+          "microzone": "margin",
+          "snagged": false,
+          "rights": {
+            "methods": [
+              "pole",
+              "float",
+              "bottom",
+              "lure"
+            ],
+            "posts": [
+              "jetty",
+              "cove",
+              "bank",
+              "reed-bank",
+              "point",
+              "timber",
+              "river",
+              "deep",
+              "boat",
+              "cold-lake",
+              "estuary",
+              "pacific",
+              "american",
+              "asian",
+              "managed"
+            ],
+            "precision": 0,
+            "initiation": false,
+            "mastery": {},
+            "legacy": false,
+            "techniques": [
+              "coup",
+              "grande_canne",
+              "anglaise",
+              "bolognaise",
+              "fond",
+              "feeder",
+              "method_feeder",
+              "carpe",
+              "stalking",
+              "surface",
+              "leurre",
+              "verticale",
+              "mort_manie",
+              "toc",
+              "mouche",
+              "nymphe_fil",
+              "bombette",
+              "gambe",
+              "traine",
+              "clonk",
+              "ultraleger",
+              "carpodrome"
+            ],
+            "techniqueMastery": {}
+          },
+          "camera": [
+            55.57723997998858,
+            4.2,
+            12.754842529208013
+          ],
+          "technique": "coup",
+          "recipe": "flotteur_fixe",
+          "boat": {
+            "x": 0,
+            "z": 0
+          },
+          "sections": 12,
+          "retreat": 0,
+          "detached": 0,
+          "geometry": {
+            "base": {
+              "x": 0.4,
+              "y": 0.8,
+              "z": -5.7
+            },
+            "tip": {
+              "x": 0.36410013234913596,
+              "y": 7.124888568474544,
+              "z": 4.451884710454839
+            },
+            "axis": {
+              "x": 0,
+              "y": 0.5396320487339693,
+              "z": 0.8419009751622687
+            },
+            "length": 12
+          },
+          "fishPosition": {
+            "x": -1.5,
+            "y": -0.7,
+            "z": 7
+          },
+          "net": {
+            "x": 0.7,
+            "z": 1
+          },
+          "netReady": false,
+          "netLift": 0,
+          "canReceive": false,
+          "encounter": "none",
+          "phase": "idle",
+          "tension": 0.25,
+          "abrasion": 0,
+          "fatigue": 0,
+          "slack": 0,
+          "dragSpeed": 0,
+          "lineLength": 8,
+          "fishDistance": 8,
+          "returning": false,
+          "progress": 0,
+          "reeling": false,
+          "pulling": false,
+          "total": 0,
+          "paused": false,
+          "direction": 0,
+          "reelSpeed": 0,
+          "alignment": 1,
+          "rodTip": {
+            "x": 0.5208213229585221,
+            "y": -0.08988954814172603
+          },
+          "target": {
+            "x": 0,
+            "z": 3.2
+          },
+          "yaw": 0,
+          "lift": 0.5,
+          "engines": 1,
+          "lakeFrames": 442,
+          "meshes": 274
+        },
+        "render": {
+          "drawCalls": 156,
+          "cpuFrameMs": 1.2999999970197678,
+          "vertices": 219403,
+          "meshes": 274,
+          "width": 1024,
+          "height": 640,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "renderedFPS": 23.966446974271733,
+            "turbidity": 0.85,
+            "activeSurfaceWaves": 0,
+            "surfaceCapacity": 8,
+            "normalTexture": 128,
+            "depthTexture": 256,
+            "reflectionRenders": 80,
+            "reflectionObjects": 48,
+            "surfaceSubmissionCpuMs": 0,
+            "reflectionCpuMs": 0.30000000447034836,
+            "reflectionPasses": 1,
+            "quality": "standard",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 20,
+              "drops": 32,
+              "mirror": 256,
+              "cadence": 6
+            },
+            "events": {
+              "spot_transition": 4
+            },
+            "lastId": 4,
+            "mirror": {
+              "width": 256,
+              "height": 256
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 2,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 2,
+                "resource": "/models/environment/free-reeds.glb",
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 2,
+                "resource": "/models/environment/free-grass.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 2,
+                "resource": "/models/environment/free-bush.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 2,
+                "resource": "/models/environment/free-lily.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 2,
+                "resource": "/models/environment/free-rock.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 2,
+                "resource": "/models/environment/free-rock-alt.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "glb:/models/environment/free-reeds.glb",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+              "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+              "grass_clump": "glb:/models/environment/free-grass.glb",
+              "shrub": "glb:/models/environment/free-bush.glb",
+              "lily_cluster": "glb:/models/environment/free-lily.glb",
+              "rock_small": "glb:/models/environment/free-rock.glb",
+              "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 366,
+            "detailTrees": {
+              "available": 18,
+              "enabled": 6,
+              "thresholdPixels": 110
+            },
+            "sharedSources": 7
+          }
+        },
+        "visibleTriangles": 31850,
+        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "seconds": 2.9830999999940397,
+        "frames": 70,
+        "fps": 23.46552244314299,
+        "frameMedian": 43.099999994039536,
+        "frameP95": 50.100000001490116,
+        "camera": [
+          55.57723997998858,
+          4.2,
+          12.754842529208013
+        ],
+        "target": [
+          45.01359685930365,
+          0.09999975100394831,
+          21.942303818582495
+        ]
+      },
+      {
+        "post": "reed-bank",
+        "snapshot": {
+          "sceneId": "6ac4b39f-a9b7-4bd4-a092-0e82a549c967",
+          "totalMeshes": 798,
+          "specimen": "",
+          "seed": 127,
+          "appearance": {
+            "coloration": "natural",
+            "mirage": false
+          },
+          "post": "reed-bank",
+          "method": "pole",
+          "hasReel": false,
+          "presentationDepth": 0,
+          "microzone": "margin",
+          "snagged": false,
+          "rights": {
+            "methods": [
+              "pole",
+              "float",
+              "bottom",
+              "lure"
+            ],
+            "posts": [
+              "jetty",
+              "cove",
+              "bank",
+              "reed-bank",
+              "point",
+              "timber",
+              "river",
+              "deep",
+              "boat",
+              "cold-lake",
+              "estuary",
+              "pacific",
+              "american",
+              "asian",
+              "managed"
+            ],
+            "precision": 0,
+            "initiation": false,
+            "mastery": {},
+            "legacy": false,
+            "techniques": [
+              "coup",
+              "grande_canne",
+              "anglaise",
+              "bolognaise",
+              "fond",
+              "feeder",
+              "method_feeder",
+              "carpe",
+              "stalking",
+              "surface",
+              "leurre",
+              "verticale",
+              "mort_manie",
+              "toc",
+              "mouche",
+              "nymphe_fil",
+              "bombette",
+              "gambe",
+              "traine",
+              "clonk",
+              "ultraleger",
+              "carpodrome"
+            ],
+            "techniqueMastery": {}
+          },
+          "camera": [
+            -59.49802623296194,
+            4.2,
+            65.11916849265278
+          ],
+          "technique": "coup",
+          "recipe": "flotteur_fixe",
+          "boat": {
+            "x": 0,
+            "z": 0
+          },
+          "sections": 12,
+          "retreat": 0,
+          "detached": 0,
+          "geometry": {
+            "base": {
+              "x": 0.4,
+              "y": 0.8,
+              "z": -5.7
+            },
+            "tip": {
+              "x": 0.36410013234913596,
+              "y": 7.124888568474544,
+              "z": 4.451884710454839
+            },
+            "axis": {
+              "x": 0,
+              "y": 0.5396320487339693,
+              "z": 0.8419009751622687
+            },
+            "length": 12
+          },
+          "fishPosition": {
+            "x": -1.5,
+            "y": -0.7,
+            "z": 7
+          },
+          "net": {
+            "x": 0.7,
+            "z": 1
+          },
+          "netReady": false,
+          "netLift": 0,
+          "canReceive": false,
+          "encounter": "none",
+          "phase": "idle",
+          "tension": 0.25,
+          "abrasion": 0,
+          "fatigue": 0,
+          "slack": 0,
+          "dragSpeed": 0,
+          "lineLength": 8,
+          "fishDistance": 8,
+          "returning": false,
+          "progress": 0,
+          "reeling": false,
+          "pulling": false,
+          "total": 0,
+          "paused": false,
+          "direction": 0,
+          "reelSpeed": 0,
+          "alignment": 1,
+          "rodTip": {
+            "x": 0.52082146680339,
+            "y": -0.08988950811350294
+          },
+          "target": {
+            "x": 0,
+            "z": 3.2
+          },
+          "yaw": 0,
+          "lift": 0.5,
+          "engines": 1,
+          "lakeFrames": 601,
+          "meshes": 326
+        },
+        "render": {
+          "drawCalls": 170,
+          "cpuFrameMs": 1.4000000059604645,
+          "vertices": 219403,
+          "meshes": 326,
+          "width": 1024,
+          "height": 640,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "renderedFPS": 24.006145573301104,
+            "turbidity": 0.85,
+            "activeSurfaceWaves": 0,
+            "surfaceCapacity": 8,
+            "normalTexture": 128,
+            "depthTexture": 256,
+            "reflectionRenders": 107,
+            "reflectionObjects": 48,
+            "surfaceSubmissionCpuMs": 0,
+            "reflectionCpuMs": 0.29999999701976776,
+            "reflectionPasses": 1,
+            "quality": "standard",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 20,
+              "drops": 32,
+              "mirror": 256,
+              "cadence": 6
+            },
+            "events": {
+              "spot_transition": 5
+            },
+            "lastId": 5,
+            "mirror": {
+              "width": 256,
+              "height": 256
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 2,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 2,
+                "resource": "/models/environment/free-reeds.glb",
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 2,
+                "resource": "/models/environment/free-grass.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 2,
+                "resource": "/models/environment/free-bush.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 2,
+                "resource": "/models/environment/free-lily.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 2,
+                "resource": "/models/environment/free-rock.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 2,
+                "resource": "/models/environment/free-rock-alt.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "glb:/models/environment/free-reeds.glb",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+              "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+              "grass_clump": "glb:/models/environment/free-grass.glb",
+              "shrub": "glb:/models/environment/free-bush.glb",
+              "lily_cluster": "glb:/models/environment/free-lily.glb",
+              "rock_small": "glb:/models/environment/free-rock.glb",
+              "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 366,
+            "detailTrees": {
+              "available": 18,
+              "enabled": 3,
+              "thresholdPixels": 110
+            },
+            "sharedSources": 7
+          }
+        },
+        "visibleTriangles": 35506,
+        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "seconds": 2.9884000000059605,
+        "frames": 72,
+        "fps": 24.093160219467403,
+        "frameMedian": 40.399999998509884,
+        "frameP95": 49.5,
+        "camera": [
+          -59.49802623296194,
+          4.2,
+          65.11916849265278
+        ],
+        "target": [
+          -46.52334420105335,
+          0.10000062051703029,
+          59.86011687136178
+        ]
+      },
+      {
+        "post": "point",
+        "snapshot": {
+          "sceneId": "6ac4b39f-a9b7-4bd4-a092-0e82a549c967",
+          "totalMeshes": 798,
+          "specimen": "",
+          "seed": 127,
+          "appearance": {
+            "coloration": "natural",
+            "mirage": false
+          },
+          "post": "point",
+          "method": "pole",
+          "hasReel": false,
+          "presentationDepth": 0,
+          "microzone": "margin",
+          "snagged": false,
+          "rights": {
+            "methods": [
+              "pole",
+              "float",
+              "bottom",
+              "lure"
+            ],
+            "posts": [
+              "jetty",
+              "cove",
+              "bank",
+              "reed-bank",
+              "point",
+              "timber",
+              "river",
+              "deep",
+              "boat",
+              "cold-lake",
+              "estuary",
+              "pacific",
+              "american",
+              "asian",
+              "managed"
+            ],
+            "precision": 0,
+            "initiation": false,
+            "mastery": {},
+            "legacy": false,
+            "techniques": [
+              "coup",
+              "grande_canne",
+              "anglaise",
+              "bolognaise",
+              "fond",
+              "feeder",
+              "method_feeder",
+              "carpe",
+              "stalking",
+              "surface",
+              "leurre",
+              "verticale",
+              "mort_manie",
+              "toc",
+              "mouche",
+              "nymphe_fil",
+              "bombette",
+              "gambe",
+              "traine",
+              "clonk",
+              "ultraleger",
+              "carpodrome"
+            ],
+            "techniqueMastery": {}
+          },
+          "camera": [
+            22.263867358682614,
+            4.2,
+            86.8802406922891
+          ],
+          "technique": "coup",
+          "recipe": "flotteur_fixe",
+          "boat": {
+            "x": 0,
+            "z": 0
+          },
+          "sections": 12,
+          "retreat": 0,
+          "detached": 0,
+          "geometry": {
+            "base": {
+              "x": 0.4,
+              "y": 0.8,
+              "z": -5.7
+            },
+            "tip": {
+              "x": 0.36410013234913596,
+              "y": 7.124888568474544,
+              "z": 4.451884710454839
+            },
+            "axis": {
+              "x": 0,
+              "y": 0.5396320487339693,
+              "z": 0.8419009751622687
+            },
+            "length": 12
+          },
+          "fishPosition": {
+            "x": -1.5,
+            "y": -0.7,
+            "z": 7
+          },
+          "net": {
+            "x": 0.7,
+            "z": 1
+          },
+          "netReady": false,
+          "netLift": 0,
+          "canReceive": false,
+          "encounter": "none",
+          "phase": "idle",
+          "tension": 0.25,
+          "abrasion": 0,
+          "fatigue": 0,
+          "slack": 0,
+          "dragSpeed": 0,
+          "lineLength": 8,
+          "fishDistance": 8,
+          "returning": false,
+          "progress": 0,
+          "reeling": false,
+          "pulling": false,
+          "total": 0,
+          "paused": false,
+          "direction": 0,
+          "reelSpeed": 0,
+          "alignment": 1,
+          "rodTip": {
+            "x": 0.5208210336032922,
+            "y": -0.08988958787411953
+          },
+          "target": {
+            "x": 0,
+            "z": 3.2
+          },
+          "yaw": 0,
+          "lift": 0.5,
+          "engines": 1,
+          "lakeFrames": 757,
+          "meshes": 212
+        },
+        "render": {
+          "drawCalls": 123,
+          "cpuFrameMs": 0.9000000059604645,
+          "vertices": 219403,
+          "meshes": 212,
+          "width": 1024,
+          "height": 640,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "renderedFPS": 23.589541969761303,
+            "turbidity": 0.85,
+            "activeSurfaceWaves": 0,
+            "surfaceCapacity": 8,
+            "normalTexture": 128,
+            "depthTexture": 256,
+            "reflectionRenders": 133,
+            "reflectionObjects": 48,
+            "surfaceSubmissionCpuMs": 0,
+            "reflectionCpuMs": 0.29999999701976776,
+            "reflectionPasses": 1,
+            "quality": "standard",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 20,
+              "drops": 32,
+              "mirror": 256,
+              "cadence": 6
+            },
+            "events": {
+              "spot_transition": 6
+            },
+            "lastId": 6,
+            "mirror": {
+              "width": 256,
+              "height": 256
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 2,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 2,
+                "resource": "/models/environment/free-reeds.glb",
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 2,
+                "resource": "/models/environment/free-grass.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 2,
+                "resource": "/models/environment/free-bush.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 2,
+                "resource": "/models/environment/free-lily.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 2,
+                "resource": "/models/environment/free-rock.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 2,
+                "resource": "/models/environment/free-rock-alt.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "glb:/models/environment/free-reeds.glb",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+              "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+              "grass_clump": "glb:/models/environment/free-grass.glb",
+              "shrub": "glb:/models/environment/free-bush.glb",
+              "lily_cluster": "glb:/models/environment/free-lily.glb",
+              "rock_small": "glb:/models/environment/free-rock.glb",
+              "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 366,
+            "detailTrees": {
+              "available": 18,
+              "enabled": 3,
+              "thresholdPixels": 110
+            },
+            "sharedSources": 7
+          }
+        },
+        "visibleTriangles": 28590,
+        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "seconds": 2.9735,
+        "frames": 73,
+        "fps": 24.550193374810828,
+        "frameMedian": 39.400000005960464,
+        "frameP95": 49.099999994039536,
+        "camera": [
+          22.263867358682614,
+          4.2,
+          86.8802406922891
+        ],
+        "target": [
+          19.573396289300273,
+          0.09999975100394831,
+          73.14119579628837
+        ]
+      },
+      {
+        "post": "timber",
+        "snapshot": {
+          "sceneId": "6ac4b39f-a9b7-4bd4-a092-0e82a549c967",
+          "totalMeshes": 798,
+          "specimen": "",
+          "seed": 127,
+          "appearance": {
+            "coloration": "natural",
+            "mirage": false
+          },
+          "post": "timber",
+          "method": "pole",
+          "hasReel": false,
+          "presentationDepth": 0,
+          "microzone": "margin",
+          "snagged": false,
+          "rights": {
+            "methods": [
+              "pole",
+              "float",
+              "bottom",
+              "lure"
+            ],
+            "posts": [
+              "jetty",
+              "cove",
+              "bank",
+              "reed-bank",
+              "point",
+              "timber",
+              "river",
+              "deep",
+              "boat",
+              "cold-lake",
+              "estuary",
+              "pacific",
+              "american",
+              "asian",
+              "managed"
+            ],
+            "precision": 0,
+            "initiation": false,
+            "mastery": {},
+            "legacy": false,
+            "techniques": [
+              "coup",
+              "grande_canne",
+              "anglaise",
+              "bolognaise",
+              "fond",
+              "feeder",
+              "method_feeder",
+              "carpe",
+              "stalking",
+              "surface",
+              "leurre",
+              "verticale",
+              "mort_manie",
+              "toc",
+              "mouche",
+              "nymphe_fil",
+              "bombette",
+              "gambe",
+              "traine",
+              "clonk",
+              "ultraleger",
+              "carpodrome"
+            ],
+            "techniqueMastery": {}
+          },
+          "camera": [
+            63.377913277425755,
+            4.2,
+            56.1524099880198
+          ],
+          "technique": "coup",
+          "recipe": "flotteur_fixe",
+          "boat": {
+            "x": 0,
+            "z": 0
+          },
+          "sections": 12,
+          "retreat": 0,
+          "detached": 0,
+          "geometry": {
+            "base": {
+              "x": 0.4,
+              "y": 0.8,
+              "z": -5.7
+            },
+            "tip": {
+              "x": 0.36410013234913596,
+              "y": 7.124888568474544,
+              "z": 4.451884710454839
+            },
+            "axis": {
+              "x": 0,
+              "y": 0.5396320487339693,
+              "z": 0.8419009751622687
+            },
+            "length": 12
+          },
+          "fishPosition": {
+            "x": -1.5,
+            "y": -0.7,
+            "z": 7
+          },
+          "net": {
+            "x": 0.7,
+            "z": 1
+          },
+          "netReady": false,
+          "netLift": 0,
+          "canReceive": false,
+          "encounter": "none",
+          "phase": "idle",
+          "tension": 0.25,
+          "abrasion": 0,
+          "fatigue": 0,
+          "slack": 0,
+          "dragSpeed": 0,
+          "lineLength": 8,
+          "fishDistance": 8,
+          "returning": false,
+          "progress": 0,
+          "reeling": false,
+          "pulling": false,
+          "total": 0,
+          "paused": false,
+          "direction": 0,
+          "reelSpeed": 0,
+          "alignment": 1,
+          "rodTip": {
+            "x": 0.5208212025926594,
+            "y": -0.08988946128827563
+          },
+          "target": {
+            "x": 0,
+            "z": 3.2
+          },
+          "yaw": 0,
+          "lift": 0.5,
+          "engines": 1,
+          "lakeFrames": 906,
+          "meshes": 310
+        },
+        "render": {
+          "drawCalls": 155,
+          "cpuFrameMs": 1.2000000029802322,
+          "vertices": 219403,
+          "meshes": 310,
+          "width": 1024,
+          "height": 640,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "water": {
+          "ambience": "morning",
+          "water": {
+            "renderedFPS": 22.291141694191154,
+            "turbidity": 0.85,
+            "activeSurfaceWaves": 0,
+            "surfaceCapacity": 8,
+            "normalTexture": 128,
+            "depthTexture": 256,
+            "reflectionRenders": 158,
+            "reflectionObjects": 48,
+            "surfaceSubmissionCpuMs": 0,
+            "reflectionCpuMs": 0.4000000059604645,
+            "reflectionPasses": 1,
+            "quality": "standard",
+            "activeRings": 0,
+            "activeDrops": 0,
+            "capacity": {
+              "rings": 20,
+              "drops": 32,
+              "mirror": 256,
+              "cadence": 6
+            },
+            "events": {
+              "spot_transition": 7
+            },
+            "lastId": 7,
+            "mirror": {
+              "width": 256,
+              "height": 256
+            },
+            "surfaceLevel": 0
+          },
+          "assets": {
+            "registryVersion": 2,
+            "contracts": [
+              {
+                "id": "pier_deck",
+                "version": 1,
+                "resource": null,
+                "collision": "game/pond-map.json.spots.jetty.landing",
+                "sockets": [
+                  {
+                    "id": "join-front",
+                    "position": [
+                      0,
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "join-rear",
+                    "position": [
+                      0,
+                      0,
+                      -1
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "pier_pile",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_alder",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_oak",
+                "version": 2,
+                "resource": "/models/environment/free-tree-birch.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "tree_willow",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "reeds",
+                "version": 2,
+                "resource": "/models/environment/free-reeds.glb",
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "grass_clump",
+                "version": 2,
+                "resource": "/models/environment/free-grass.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "shrub",
+                "version": 2,
+                "resource": "/models/environment/free-bush.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "lily_cluster",
+                "version": 2,
+                "resource": "/models/environment/free-lily.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_small",
+                "version": 2,
+                "resource": "/models/environment/free-rock.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "rock_landmark",
+                "version": 2,
+                "resource": "/models/environment/free-rock-alt.glb",
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "fallen_log",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              },
+              {
+                "id": "submerged_branches",
+                "version": 1,
+                "resource": null,
+                "collision": "game/posts.ts.obstacles",
+                "sockets": []
+              },
+              {
+                "id": "path_patch",
+                "version": 1,
+                "resource": null,
+                "collision": "visual_only",
+                "sockets": []
+              }
+            ],
+            "placements": 281,
+            "families": {
+              "reeds": "glb:/models/environment/free-reeds.glb",
+              "submerged_branches": "procedural",
+              "tree_willow": "procedural",
+              "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+              "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+              "grass_clump": "glb:/models/environment/free-grass.glb",
+              "shrub": "glb:/models/environment/free-bush.glb",
+              "lily_cluster": "glb:/models/environment/free-lily.glb",
+              "rock_small": "glb:/models/environment/free-rock.glb",
+              "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+              "fallen_log": "procedural",
+              "pier_deck": "procedural",
+              "pier_pile": "procedural",
+              "path_patch": "procedural"
+            },
+            "quantities": {
+              "reeds": 3,
+              "submerged_branches": 2,
+              "tree_willow": 12,
+              "tree_oak": 60,
+              "tree_alder": 62,
+              "grass_clump": 45,
+              "shrub": 13,
+              "lily_cluster": 36,
+              "rock_small": 20,
+              "rock_landmark": 1,
+              "fallen_log": 1,
+              "pier_deck": 4,
+              "pier_pile": 4,
+              "path_patch": 18
+            },
+            "meshes": 366,
+            "detailTrees": {
+              "available": 18,
+              "enabled": 4,
+              "thresholdPixels": 110
+            },
+            "sharedSources": 7
+          }
+        },
+        "visibleTriangles": 37780,
+        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "seconds": 3.01420000000298,
+        "frames": 69,
+        "fps": 22.89164620792641,
+        "frameMedian": 44.5,
+        "frameP95": 51.70000000298023,
+        "camera": [
+          63.377913277425755,
+          4.2,
+          56.1524099880198
+        ],
+        "target": [
+          49.68867930778172,
+          0.10000018576048753,
+          53.21900261564824
+        ]
+      }
+    ],
+    "transfer": [
+      {
+        "name": "/models/environment/free-tree-birch.glb",
+        "transferSize": 300,
+        "encodedBodySize": 248388,
+        "duration": 1.7000000029802322
+      },
+      {
+        "name": "/models/environment/free-reeds.glb",
+        "transferSize": 300,
+        "encodedBodySize": 53148,
+        "duration": 1
+      },
+      {
+        "name": "/models/environment/free-grass.glb",
+        "transferSize": 300,
+        "encodedBodySize": 4420,
+        "duration": 1.0999999940395355
+      },
+      {
+        "name": "/models/environment/free-bush.glb",
+        "transferSize": 300,
+        "encodedBodySize": 29328,
+        "duration": 1
+      },
+      {
+        "name": "/models/environment/free-lily.glb",
+        "transferSize": 300,
+        "encodedBodySize": 15124,
+        "duration": 1.1000000014901161
+      },
+      {
+        "name": "/models/environment/free-rock.glb",
+        "transferSize": 300,
+        "encodedBodySize": 12924,
+        "duration": 1.2000000029802322
+      },
+      {
+        "name": "/models/environment/free-rock-alt.glb",
+        "transferSize": 300,
+        "encodedBodySize": 11420,
+        "duration": 1.2999999970197678
+      },
+      {
+        "name": "/map-assets/sky-day.jpg",
+        "transferSize": 300,
+        "encodedBodySize": 41801,
+        "duration": 1.3999999985098839
+      },
+      {
+        "name": "/map-assets/bark_willow_02-color.jpg",
+        "transferSize": 300,
+        "encodedBodySize": 88632,
+        "duration": 1.6000000014901161
+      },
+      {
+        "name": "/map-assets/bark_willow_02-normal.png",
+        "transferSize": 300,
+        "encodedBodySize": 625400,
+        "duration": 2.2999999970197678
+      },
+      {
+        "name": "/map-assets/bark_willow_02-specular.png",
+        "transferSize": 300,
+        "encodedBodySize": 196308,
+        "duration": 2
+      },
+      {
+        "name": "/map-assets/wood_planks_dirt-color.jpg",
+        "transferSize": 300,
+        "encodedBodySize": 64419,
+        "duration": 1.8999999985098839
+      },
+      {
+        "name": "/map-assets/wood_planks_dirt-normal.png",
+        "transferSize": 300,
+        "encodedBodySize": 250767,
+        "duration": 2.399999998509884
+      },
+      {
+        "name": "/map-assets/wood_planks_dirt-specular.png",
+        "transferSize": 300,
+        "encodedBodySize": 197837,
+        "duration": 2.5
+      },
+      {
+        "name": "/map-assets/ground-atlas.jpg",
+        "transferSize": 300,
+        "encodedBodySize": 128721,
+        "duration": 2.5
+      },
+      {
+        "name": "/map-assets/sky-day.env",
+        "transferSize": 300,
+        "encodedBodySize": 232452,
+        "duration": 1.3000000044703484
+      },
+      {
+        "name": "/models/environment/nature-341e46717713.png",
+        "transferSize": 300,
+        "encodedBodySize": 355328,
+        "duration": 0.8999999985098839
+      },
+      {
+        "name": "/models/environment/nature-0202a5fd2149.png",
+        "transferSize": 300,
+        "encodedBodySize": 44055,
+        "duration": 1.2000000029802322
+      },
+      {
+        "name": "/models/environment/nature-5ee02753fa9a.png",
+        "transferSize": 300,
+        "encodedBodySize": 208848,
+        "duration": 1
+      },
+      {
+        "name": "/models/environment/nature-64db46578492.png",
+        "transferSize": 300,
+        "encodedBodySize": 41777,
+        "duration": 0.7000000029802322
+      },
+      {
+        "name": "/models/environment/nature-9335143cdd89.png",
+        "transferSize": 300,
+        "encodedBodySize": 325249,
+        "duration": 0.7999999970197678
+      },
+      {
+        "name": "/models/environment/nature-9335143cdd89.png",
+        "transferSize": 300,
+        "encodedBodySize": 325249,
+        "duration": 0.8999999985098839
+      }
+    ],
+    "errors": []
+  }
+]

@@ -1,3 +1,5 @@
+import {CubeTexture} from '@babylonjs/core/Materials/Textures/cubeTexture';
+import {Texture} from '@babylonjs/core/Materials/Textures/texture';
 import {PondScenery} from './pond-scenery';
 import {PondWater,type WaterQuality} from './pond-water';
 import {terminalPosition,type WaterType} from '../game/water-events';
@@ -99,7 +101,7 @@ export class LakeWorld {
     this.sky();
     this.pondScenery=new PondScenery(this.scene);
     this.pondWater=new PondWater(this.scene,this.pondScenery.reflectors,this.pondScenery.placements);
-    this.water=this.pondWater.material;
+    this.water=this.pondWater.material;this.pondScenery.onAssetsChanged=()=>{this.pondWater.refresh();this.shadow?.getShadowMap()?.resetRefreshCounter();};
     this.contextGround=new Mesh('context-shared-floor',this.scene);this.contextGround.material=this.material('#6a7252');this.contextGround.setEnabled(false);for(const x of [-19,19]){const bank=MeshBuilder.CreateBox('context-bank',{width:4,height:2,depth:50},this.scene);bank.position.set(x,0,12);bank.material=this.material('#70785c');bank.setEnabled(false);this.contextBanks.push(bank);}
     this.dock();
 
@@ -157,11 +159,12 @@ export class LakeWorld {
     mesh.position = at; mesh.scaling = scale; mesh.material = mat;
     return mesh;
   }
+  private daylightEnvironment?:CubeTexture;private daySkyReady=false;
   private sky() {
-    Effect.ShadersStore.lakeSkyVertexShader = `precision highp float; attribute vec3 position; uniform mat4 worldViewProjection; varying float height; void main(){ height=position.y; gl_Position=worldViewProjection*vec4(position,1.0); }`;
-    Effect.ShadersStore.lakeSkyFragmentShader = `precision highp float; varying float height;uniform vec3 tone; void main(){ float h=clamp(height/100.,0.,1.); vec3 col=mix(vec3(.79,.84,.83),vec3(.45,.63,.73),pow(h,.45)); gl_FragColor=vec4(col*tone,1.); }`;
-    const mat = new ShaderMaterial('sky-gradient', this.scene, { vertex: 'lakeSky', fragment: 'lakeSky' }, { attributes: ['position'], uniforms: ['worldViewProjection','tone'] });
-    mat.setColor3('tone',Color3.White());mat.backFaceCulling = false; mat.disableDepthWrite = true;
+    Effect.ShadersStore.lakeSkyVertexShader = `precision highp float; attribute vec3 position; uniform mat4 worldViewProjection; varying float height;varying vec3 skyDirection; void main(){ skyDirection=position;height=position.y; gl_Position=worldViewProjection*vec4(position,1.0); }`;
+    Effect.ShadersStore.lakeSkyFragmentShader = `precision highp float; varying float height;varying vec3 skyDirection;uniform vec3 tone;uniform sampler2D daySky;uniform float photoSky;void main(){ float h=clamp(height/100.,0.,1.); vec3 col=mix(vec3(.79,.84,.83),vec3(.45,.63,.73),pow(h,.45)); vec3 d=normalize(skyDirection);vec2 uv=vec2(atan(d.z,d.x)/6.2831853+.5,acos(clamp(d.y,-1.,1.))/3.14159265);col=mix(col,texture2D(daySky,uv).rgb,photoSky);gl_FragColor=vec4(col*tone,1.); }`;
+    const mat = new ShaderMaterial('sky-gradient', this.scene, { vertex: 'lakeSky', fragment: 'lakeSky' }, { attributes: ['position'], uniforms: ['worldViewProjection','tone','photoSky'],samplers:['daySky'] });
+    mat.setColor3('tone',Color3.White());mat.setFloat('photoSky',0);const day=new Texture('/map-assets/sky-day.jpg',this.scene,false,false,Texture.TRILINEAR_SAMPLINGMODE,()=>{this.daySkyReady=true;mat.setFloat('photoSky',this.ambience==='morning'?1:0);this.scene.getMeshByName('sun')?.setEnabled(this.ambience!=='morning');this.pondWater?.refresh();},()=>{this.daySkyReady=false;mat.setFloat('photoSky',0);this.scene.getMeshByName('sun')?.setEnabled(true);});mat.setTexture('daySky',day);this.daylightEnvironment=CubeTexture.CreateFromPrefilteredData('/map-assets/sky-day.env',this.scene);this.scene.environmentTexture=this.daylightEnvironment;this.scene.environmentIntensity=.35;mat.backFaceCulling = false; mat.disableDepthWrite = true;
     const sky = MeshBuilder.CreateSphere('sky-dome', { diameter: 240, segments: 12 }, this.scene);
     sky.material = mat; sky.isPickable = false;
     const sunMat = this.material('#f3e9cd'); sunMat.disableLighting = true; sunMat.emissiveColor = Color3.FromHexString('#f3e9cd');
@@ -172,6 +175,7 @@ export class LakeWorld {
     this.grip.material = this.material('#c2a46d');
   }
   setQuality(quality: 'eco' | 'high') {
+    this.pondScenery.setQuality(quality);
     this.pondWater.setQuality(quality==='high'?'high':'low');
     this.shadow?.dispose(); this.shadow=undefined;
     if(quality==='high'){this.shadow=new ShadowGenerator(512,this.sun);this.shadow.usePercentageCloserFiltering=true;this.shadow.filteringQuality=ShadowGenerator.QUALITY_LOW;this.shadow.setDarkness(.3);for(const mesh of this.pondScenery.reflectors.slice(0,30)){if(['tree_','fallen_log','pier_'].some(c=>mesh.name.includes(c)))this.shadow.addShadowCaster(mesh);if(mesh.name==='pond-shared-terrain')mesh.receiveShadows=true;}const map=this.shadow.getShadowMap();if(map)map.refreshRate=0;}
@@ -250,7 +254,7 @@ export class LakeWorld {
   dispose() { this.instrumentation?.dispose();this.clearFishActor();window.removeEventListener('resize', this.resize); this.scene.dispose(); this.engine.dispose(); }
   renderDiagnostics(){this.instrumentation??=new SceneInstrumentation(this.scene);this.instrumentation.captureFrameTime=true;return {fps:this.pondWater.diagnostics().renderedFPS,engineRafFPS:this.engine.getFps(),cpuFrameMs:this.instrumentation.frameTimeCounter.current,drawCalls:this.instrumentation.drawCallsCounter.current,width:this.engine.getRenderWidth(),height:this.engine.getRenderHeight(),totalMeshes:this.scene.meshes.length,activeMeshes:this.scene.getActiveMeshes().length,visibleTriangles:this.scene.getActiveMeshes().data.slice(0,this.scene.getActiveMeshes().length).reduce((n,m)=>n+m.getTotalIndices()/3,0),textures:this.scene.textures.map(t=>({name:t.name,...t.getSize()})),renderTargets:this.scene.customRenderTargets.length};}
   showMapDebug(enabled:boolean){if(!this.mapDebug){this.mapDebug=new TransformNode('map-inspection',this.scene);const add=(name:string,points:Vector3[],color:Color3)=>{const line=MeshBuilder.CreateLines(name,{points},this.scene);line.color=color;line.parent=this.mapDebug!;};add('shoreline',[...POND_MAP.contour,POND_MAP.contour[0]].map(p=>new Vector3(p.x,.07,p.z)),Color3.FromHexString('#e6c48d'));for(let z=-5;z<85;z+=8)for(let x=-60;x<64;x+=8)if(inPond({x,z})){const depth=pondDepth({x,z});add('depth-'+x+'-'+z,[new Vector3(x-.7,.075,z),new Vector3(x+.7,.075,z)],new Color3(.2,1-depth/9,.9));}for(const h of POND_MAP.habitats)add('habitat-'+h.id,Array.from({length:33},(_,i)=>new Vector3(h.center_xz_m[0]+Math.sin(i/32*Math.PI*2)*h.radius_m,.085,h.center_xz_m[1]+Math.cos(i/32*Math.PI*2)*h.radius_m)),Color3.FromHexString('#d8cf6b'));for(const p of POSTS){const sector=[{x:-p.sector,z:10},{x:0,z:-1},{x:p.sector,z:10}].map(v=>{const w=worldPoint(p.id,v);return new Vector3(w.x,.08,w.z);});add('sector-'+p.id,sector,Color3.FromHexString('#68d9d4'));for(const o of p.obstacles){const w=worldPoint(p.id,o);add('obstacle-'+p.id,Array.from({length:25},(_,i)=>new Vector3(w.x+Math.sin(i/24*Math.PI*2)*o.radius,.09,w.z+Math.cos(i/24*Math.PI*2)*o.radius)),Color3.FromHexString('#e68181'));}}}this.mapDebug.setEnabled(enabled);}
-  setAmbience(preset:'morning'|'overcast'|'evening'){this.ambience=preset;this.pondScenery.setAmbience(preset);const cloud=preset==='overcast',late=preset==='evening';this.sun.intensity=cloud?.38:late?.6:.82;this.ambient.intensity=cloud?.8:late?.62:.76;this.sun.direction.set(late?.8:.65,late?-.3:-.8,late?.25:-.4);this.sun.diffuse=Color3.FromHexString(late?'#f4bd84':cloud?'#d5e0e1':'#fff2d9');this.scene.fogColor=Color3.FromHexString(late?'#b6ac98':cloud?'#aebebc':'#b7c4c2');(this.scene.getMaterialByName('sky-gradient') as ShaderMaterial).setColor3('tone',new Color3(late?1.06:cloud?.92:1,late?.86:1,late?.74:cloud?1.04:1));this.water.setColor3('sky',this.scene.fogColor);this.pondWater.refresh();this.shadow?.getShadowMap()?.resetRefreshCounter();}
+  setAmbience(preset:'morning'|'overcast'|'evening'){this.ambience=preset;const skyMaterial=this.scene.getMaterialByName('sky-gradient') as ShaderMaterial;skyMaterial.setFloat('photoSky',preset==='morning'&&this.daySkyReady?1:0);this.scene.getMeshByName('sun')?.setEnabled(preset!=='morning'||!this.daySkyReady);this.scene.environmentTexture=preset==='morning'?this.daylightEnvironment??null:null;this.pondScenery.setAmbience(preset);const cloud=preset==='overcast',late=preset==='evening';this.sun.intensity=cloud?.38:late?.6:.82;this.ambient.intensity=cloud?.8:late?.62:.76;this.sun.direction.set(late?.8:.65,late?-.3:-.8,late?.25:-.4);this.sun.diffuse=Color3.FromHexString(late?'#f4bd84':cloud?'#d5e0e1':'#fff2d9');this.scene.fogColor=Color3.FromHexString(late?'#b6ac98':cloud?'#aebebc':'#b7c4c2');(this.scene.getMaterialByName('sky-gradient') as ShaderMaterial).setColor3('tone',new Color3(late?1.06:cloud?.92:1,late?.86:1,late?.74:cloud?1.04:1));this.water.setColor3('sky',this.scene.fogColor);this.pondWater.refresh();this.shadow?.getShadowMap()?.resetRefreshCounter();}
   flushWater(game:FishingGame){this.pondWater.update(game.simulationTime,this.camera.position,game.waterEvents.events,game.environment.wind);}
   setWaterQuality(q:WaterQuality){this.pondWater.setQuality(q);}
   waterDiagnostics(){return {ambience:this.ambience,water:this.pondWater.diagnostics(),assets:this.pondScenery.diagnostics()};}

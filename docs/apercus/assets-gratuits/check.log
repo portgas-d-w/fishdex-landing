@@ -1,0 +1,504 @@
+
+> au-fil-de-leau@0.13.0 check
+> npm run typecheck && npm test && npm run build
+
+
+> au-fil-de-leau@0.13.0 typecheck
+> tsc --noEmit
+
+
+> au-fil-de-leau@0.13.0 test
+> node --experimental-strip-types --test tests/*.test.ts
+
+✔ Gestes normalisés : court, long, diagonal et hors eau (4.4751ms)
+✔ Une cible refusée conserve l’état ; les coordonnées choisissent l’habitat (1.324ms)
+✔ Le lancer part du tiers bas et exige un relâchement central, vers l’eau (0.27ms)
+✔ La vitesse récente domine la puissance ; amplitude, direction et équipement contribuent (0.2461ms)
+✔ La molette accepte les deux sens et normalise ses unités (0.4965ms)
+✔ Un appui immobile récupère du fil jusqu’au relâchement ; transitions et reset arrêtent la commande (13.5191ms)
+✔ Une impulsion de molette s’épuise ; release interrompt immédiatement les tours en attente (0.3574ms)
+✔ Un départ maintient la traction sans moulinage et le frein rend du fil (0.7687ms)
+✔ Le frein et la résistance mécanique évitent une pénalité de bouton (0.8013ms)
+✔ Un retour crée du mou ; récupérer le fil rétablit le contact dans ce même mouvement (1.0175ms)
+✔ La force relative permet de ramener un petit poisson pendant son départ (0.7274ms)
+✔ Orientation et hauteur modifient progressivement les forces, sans seuil binaire (0.1333ms)
+✔ Contact prolongé et récupération ramènent les quinze espèces, avec fatigue causale (167.4456ms)
+✔ Sans récupération, le temps ne garantit aucune capture (3.9132ms)
+✔ Les erreurs brèves sont tolérées, le mou prolongé fait décrocher (1.7197ms)
+✔ Profils séparés, rechargement et retour préservent exactement le carnet normal (2.8529ms)
+✔ Argent illimité : prix et stock appliqués, coût théorique fini, quantités invalides refusées (0.3934ms)
+✔ Test en règles normales ne supprime ni prix ni stock insuffisant (0.4844ms)
+✔ Compatibilité et pertes restent actives : bas de ligne seul, réserve intacte, résolution unique (0.5362ms)
+✔ Stock illimité distinct du portefeuille : désactivation révèle le stock réellement perdu (0.2179ms)
+✔ Mode désactivé et import croisé refusés ; réinitialisation ne touche jamais le profil normal (0.305ms)
+✔ Six attributs causaux : même poisson, taille, kit, graine et commandes ; caches conditionnelles (1577.4778ms)
+✔ Rejeu reproductible, profils distincts, comparaison sans stock ni gains ; cadence 30/60/120 Hz (7.6034ms)
+✔ Sources résolues et propositions distinguées de la biologie (0.1637ms)
+✔ Identité historique non remappable conservée, exportable, sans modèle ni récompense inventés (1.517ms)
+✔ Carnet : robe, poste, montage et pratique se combinent sans gains ni perte (0.6651ms)
+✔ Courant et variation individuelle réelle modifient la traction ; la fatigue la réduit (32.8001ms)
+✔ Alias de robe historique remappé avec robe, gains et favoris conservés (0.5097ms)
+✔ Identités réconciliées : 64 espèces, deux hybrides, pas de records/alias dans le dénominateur (3821.1947ms)
+✔ Les espèces observées ne mordent pas ; les continents et les habitats sont séparés (0.6723ms)
+✔ Poisson roach: rencontre sans forçage, combat, réception, identité, carnet et recharge (64.9908ms)
+✔ Poisson perch: rencontre sans forçage, combat, réception, identité, carnet et recharge (45.8649ms)
+✔ Poisson carp: rencontre sans forçage, combat, réception, identité, carnet et recharge (66.6421ms)
+✔ Poisson pike: rencontre sans forçage, combat, réception, identité, carnet et recharge (641.9788ms)
+✔ Poisson zander: rencontre sans forçage, combat, réception, identité, carnet et recharge (198.0792ms)
+✔ Poisson bream: rencontre sans forçage, combat, réception, identité, carnet et recharge (63.3019ms)
+✔ Poisson tench: rencontre sans forçage, combat, réception, identité, carnet et recharge (131.5378ms)
+✔ Poisson rudd: rencontre sans forçage, combat, réception, identité, carnet et recharge (148.7125ms)
+✔ Poisson bleak: rencontre sans forçage, combat, réception, identité, carnet et recharge (9.5186ms)
+✔ Poisson crucian: rencontre sans forçage, combat, réception, identité, carnet et recharge (10.5846ms)
+✔ Poisson whitebream: rencontre sans forçage, combat, réception, identité, carnet et recharge (104.8059ms)
+✔ Poisson gudgeon: rencontre sans forçage, combat, réception, identité, carnet et recharge (72.128ms)
+✔ Poisson chub: rencontre sans forçage, combat, réception, identité, carnet et recharge (64.5537ms)
+✔ Poisson ide: rencontre sans forçage, combat, réception, identité, carnet et recharge (266.8513ms)
+✔ Poisson catfish: rencontre sans forçage, combat, réception, identité, carnet et recharge (65.8049ms)
+✔ Poisson gobie: rencontre sans forçage, combat, réception, identité, carnet et recharge (236.207ms)
+✔ Poisson vairon: rencontre sans forçage, combat, réception, identité, carnet et recharge (223.0001ms)
+✔ Poisson anguille-europeenne: rencontre sans forçage, combat, réception, identité, carnet et recharge (280.9866ms)
+✔ Poisson barbeau: rencontre sans forçage, combat, réception, identité, carnet et recharge (23.3496ms)
+✔ Poisson black-bass: rencontre sans forçage, combat, réception, identité, carnet et recharge (62.1403ms)
+✔ Poisson carassin-dore: rencontre sans forçage, combat, réception, identité, carnet et recharge (109.8978ms)
+✔ Poisson lotte: rencontre sans forçage, combat, réception, identité, carnet et recharge (206.5957ms)
+✔ Poisson perche-soleil: rencontre sans forçage, combat, réception, identité, carnet et recharge (45.0399ms)
+✔ Poisson truite-arc-en-ciel: rencontre sans forçage, combat, réception, identité, carnet et recharge (107.5924ms)
+✔ Poisson aspe: rencontre sans forçage, combat, réception, identité, carnet et recharge (112.0826ms)
+✔ Poisson carpe-koi: rencontre sans forçage, combat, réception, identité, carnet et recharge (46.2942ms)
+✔ Poisson esturgeon-diamant: rencontre sans forçage, combat, réception, identité, carnet et recharge (71.5981ms)
+✔ Poisson esturgeon-siberien: rencontre sans forçage, combat, réception, identité, carnet et recharge (31.7375ms)
+✔ Poisson truite-fario: rencontre sans forçage, combat, réception, identité, carnet et recharge (122.9468ms)
+✔ Poisson ombre: rencontre sans forçage, combat, réception, identité, carnet et recharge (219.1289ms)
+✔ Poisson amour-blanc: rencontre sans forçage, combat, réception, identité, carnet et recharge (78.7233ms)
+✔ Poisson silure-mandarin: rencontre sans forçage, combat, réception, identité, carnet et recharge (44.2732ms)
+✔ Poisson truite-tiger: rencontre sans forçage, combat, réception, identité, carnet et recharge (39.5355ms)
+✔ Poisson carpe-ghost: rencontre sans forçage, combat, réception, identité, carnet et recharge (52.5166ms)
+✔ Poisson spirlin: rencontre sans forçage, combat, réception, identité, carnet et recharge (63.9172ms)
+✔ Poisson poisson-chat: rencontre sans forçage, combat, réception, identité, carnet et recharge (198.7636ms)
+✔ Poisson vandoise: rencontre sans forçage, combat, réception, identité, carnet et recharge (131.1639ms)
+✔ Poisson carassin-argente: rencontre sans forçage, combat, réception, identité, carnet et recharge (45.1853ms)
+✔ Poisson hotu: rencontre sans forçage, combat, réception, identité, carnet et recharge (63.5298ms)
+✔ Poisson toxostome: rencontre sans forçage, combat, réception, identité, carnet et recharge (44.3184ms)
+✔ Poisson black-bass-petite-bouche: rencontre sans forçage, combat, réception, identité, carnet et recharge (50.408ms)
+✔ Poisson huchon: rencontre sans forçage, combat, réception, identité, carnet et recharge (59.8351ms)
+✔ Poisson omble-chevalier: rencontre sans forçage, combat, réception, identité, carnet et recharge (60.2642ms)
+✔ Poisson eperlan: rencontre sans forçage, combat, réception, identité, carnet et recharge (44.2777ms)
+✔ Poisson barbeau-meridional: rencontre sans forçage, combat, réception, identité, carnet et recharge (43.7204ms)
+✔ Poisson sandre-dore: rencontre sans forçage, combat, réception, identité, carnet et recharge (13.4279ms)
+✔ Poisson blageon: rencontre sans forçage, combat, réception, identité, carnet et recharge (195.1836ms)
+✔ Poisson omble-de-fontaine: rencontre sans forçage, combat, réception, identité, carnet et recharge (271.0175ms)
+✔ Poisson coregone: rencontre sans forçage, combat, réception, identité, carnet et recharge (22.6793ms)
+✔ Poisson coregone-palee: rencontre sans forçage, combat, réception, identité, carnet et recharge (7.0187ms)
+✔ Poisson cristivomer: rencontre sans forçage, combat, réception, identité, carnet et recharge (46.0376ms)
+✔ Poisson mulet-porc: rencontre sans forçage, combat, réception, identité, carnet et recharge (11.1799ms)
+✔ Observation amour-argente: effort interrompable, photo enregistrable, découverte unique sans aquarium (0.72ms)
+✔ Observation amour-marbre: effort interrompable, photo enregistrable, découverte unique sans aquarium (0.2271ms)
+✔ Observation bouviere: effort interrompable, photo enregistrable, découverte unique sans aquarium (0.1827ms)
+✔ Observation loche-franche: effort interrompable, photo enregistrable, découverte unique sans aquarium (0.1532ms)
+✔ Observation chabot: effort interrompable, photo enregistrable, découverte unique sans aquarium (0.1578ms)
+✔ Observation grande-alose: effort interrompable, photo enregistrable, découverte unique sans aquarium (0.1247ms)
+✔ Observation alose-feinte: effort interrompable, photo enregistrable, découverte unique sans aquarium (0.1071ms)
+✔ Observation saumon-atlantique: effort interrompable, photo enregistrable, découverte unique sans aquarium (0.0992ms)
+✔ Observation lamproie-fluviatile: effort interrompable, photo enregistrable, découverte unique sans aquarium (0.1177ms)
+✔ Observation esturgeon-europeen: effort interrompable, photo enregistrable, découverte unique sans aquarium (0.1222ms)
+✔ Observation saumon-roi: effort interrompable, photo enregistrable, découverte unique sans aquarium (0.1174ms)
+✔ Observation apron-du-rhone: effort interrompable, photo enregistrable, découverte unique sans aquarium (0.1171ms)
+✔ Observation lamproie-de-planer: effort interrompable, photo enregistrable, découverte unique sans aquarium (0.1019ms)
+✔ Observation pseudorasbora: effort interrompable, photo enregistrable, découverte unique sans aquarium (0.1246ms)
+✔ Migration v6 avec cinq favoris, stocks et droits ; normal/test séparés (0.6199ms)
+✔ Apparences : parent validé, pas de puissance ajoutée, prime unique et ID persistant (1.5556ms)
+✔ Les appâts proposés respectent le régime ; espèces absentes jamais sélectionnées (4.4948ms)
+✔ Chaque poisson reste accessible avec le kit dans un habitat et une strate adaptés (33.9587ms)
+✔ Ignorer une touche fait perdre le poisson sans enregistrer de prise (11.1612ms)
+✔ Une réserve épuisée ne peut plus amortir une surcharge prolongée (5.0265ms)
+✔ Laisser le fil détendu trop longtemps fait décrocher le poisson (7.8515ms)
+✔ Un combat géré ramène chacun des quinze poissons (218.1862ms)
+✔ Le carnet garde le meilleur record et peut être exporté puis restauré (2.0685ms)
+✔ Une sauvegarde corrompue, inconnue ou incohérente est refusée (0.2704ms)
+✔ Un stockage indisponible ne fait pas planter le jeu (0.1658ms)
+✔ Nouvelle partie : trois postes, coup sans moulinet et kit gratuit complet ; accès vérifiés en logique (2.2284ms)
+✔ Migration v4 conserve possessions, stock, espèces, individus/favoris, gains et capacités déjà ouvertes (1.877ms)
+✔ OU d’accès, défi réalisable avec kit, déblocage permanent et idempotence ; pointe et bois ouverts à haut niveau (1.2672ms)
+✔ Changer de pratique conserve les deux recettes et la réserve ; secours ne donne aucun gain (0.2332ms)
+✔ Postes déplacent les ancrages dans une scène commune, secteurs et portées refusent sans réservation (2.0719ms)
+✔ Rareté du spécimen indépendante des droits et de la force : grand commun exceptionnel, pas de légendaire aléatoire (0.2185ms)
+✔ Coup : vraie première prise, longueur fixe, pas de moulinage ni de frein ; fatigue et canne causalement utiles (18.9215ms)
+✔ Leurre : pas de sélection au lancer ; descente, animation/récupération puis pause réellement actives (62.7615ms)
+✔ Le même individu conserve son noyau : l’environnement ajoute accrochages, jamais une force globale (2.5287ms)
+✔ Perte au coup : bas de ligne et aval payants seulement, réserve et élastique préservés, résolution unique (0.2748ms)
+✔ Ancienne option conservée dans la sauvegarde, sans avantage ni conduite automatique (0.1812ms)
+✔ Leurre : aucune touche immobile, récupération et animation actives, combat et capture (25.4846ms)
+✔ Fond : montage compatible, attente distincte et annulation propre (3.1752ms)
+✔ Adaptateur leurre : roach / graine 127 au ponton et en anse (30.5369ms)
+✔ Adaptateur leurre : carp / graine 33 au ponton et en anse (23.8472ms)
+✔ Adaptateur leurre : tench / graine 4242 au ponton et en anse (7.4923ms)
+✔ Adaptateur grande_canne : roach / graine 127 au ponton et en anse (32.1625ms)
+✔ Adaptateur grande_canne : carp / graine 33 au ponton et en anse (81.2538ms)
+✔ Adaptateur grande_canne : tench / graine 4242 au ponton et en anse (12.7158ms)
+✔ Sondage au point et amorçage ciblé : portions libres réellement consommées, habitat inchangé (2.75ms)
+✔ Aperçu raccordé au moteur : plafond du fond et descente de la plombée (5.7193ms)
+✔ Coût exposé et composants manquants sans achat ni modification ; favoris migrés (0.7638ms)
+✔ Relevage indépendant du nombre d’événements ; une seconde pression de moulinage ne déboîte rien (0.173ms)
+✔ Géométrie : charge à l’arrêt, zéro traction avec mou, aucun gain gratuit par un changement de pose (1.1419ms)
+✔ Moulinage mécanique : un fort départ peut faire sortir du fil malgré l’appui, sans pénalité arbitraire (2.487ms)
+✔ Retour et récupération du mou ; traction latérale issue de la position du scion (1.1318ms)
+✔ Simulation physique reproductible à 30 et 60 Hz (3.0503ms)
+✔ Grande canne : recul puis déboîtement, scion continu et ligne fixe, réemboîtement possible (2.928ms)
+✔ Axes de manipulation verrouillés, pas de déboîtement au simple maintien (0.1394ms)
+✔ Réception : ni attente ni bouton ne donnent une capture ; position et relevage nécessaires (3.0561ms)
+✔ Préférences accessibles migrées sans altérer le carnet v7 ni l’ancienne option de comparaison (0.9567ms)
+✔ Le courant ajoute une dérive mesurable sans multiplier la force intrinsèque du même poisson (1.877ms)
+✔ Carte : six anciens identifiants, relief continu, réception en eau et coordonnées réversibles (1.699ms)
+✔ Événements : vrai impact et touche, aucun impact terrestre, horloge et journal bornés (8.3312ms)
+✔ Capture géométrique et relâcher unique au poste jetty (8.1473ms)
+✔ Capture géométrique et relâcher unique au poste cove (3.4027ms)
+✔ Capture géométrique et relâcher unique au poste bank (1.5104ms)
+✔ Capture géométrique et relâcher unique au poste reed-bank (1.7501ms)
+✔ Capture géométrique et relâcher unique au poste point (1.7442ms)
+✔ Capture géométrique et relâcher unique au poste timber (1.0309ms)
+✔ Pose du flotteur liée à sa charge, indépendante de la fatigue (0.2006ms)
+✔ Migration v1 conserve total et records sans fabriquer des individus ou gains (3.9155ms)
+✔ Capture, rémunération et XP uniques ; restauration sans rejeu (0.4467ms)
+✔ Boutique effective, canne gratuite et favoris limités à cinq individus (0.7115ms)
+✔ Import refuse journal dupliqué, monnaie négative, poids incohérent et favori orphelin (16.289ms)
+✔ PVA : aucune amorce avant dissolution, diffusion limitée ensuite (10.4466ms)
+✔ Tenue de l’esche, charge réelle et animation rotative ont un effet causal (10.889ms)
+✔ Profondeur accessible de 6 à 18 m, soie préparée pour la distance, droits en test normal (2.5399ms)
+✔ Dérive et diffusion restent comparables à 30, 60 et 120 pas par seconde (3.6957ms)
+✔ Réservation atomique, absence de stock bloquante ; un preset ne duplique rien (2.001ms)
+✔ Casse du bas de ligne : flotteur, plombs, moulinet et bobine conservés ; événement idempotent (0.4465ms)
+✔ Casse du fil : seuls mètres engagés et branches aval détachées sont perdus (0.4613ms)
+✔ Coulissement : stop retient, sortie ouverte perd le lest ; clip détache sa branche seule (1.9313ms)
+✔ Décrochage consomme une esche, conserve les objets ; kit mélangé ne protège pas les achats (0.6812ms)
+✔ Migration v3 préserve journal, achats, XP, monnaie et favoris, cercle devient appui (1.6014ms)
+✔ Rechargement d’une ligne réservée : retour conservateur, esche consommée une fois, aucune prise (2.0336ms)
+✔ Import rejette quantités négatives, incompatibilités et presets dupliqués sans effacer la sauvegarde (1.2798ms)
+✔ Portance distingue lest intégré et masse externe ; fil/reel modifient le contrôle (0.3474ms)
+✔ Quinze profils, rencontres bornées à habitat, strate et régime ; aucune table universelle (1.8629ms)
+✔ Chaîne réelle : stock réservé au lancer valide, retour libéré ; lancer refusé sans perte (1.9904ms)
+✔ Capture au montage payé : esche enregistrée et débitée une fois, récompense et reload conservés (14.2579ms)
+✔ Migration v2 conserve individus, favoris et gains et prépare un montage gratuit valide (5.1741ms)
+✔ Tous les emplacements et familles ont un catalogue, futur distinct de verrouillé (0.6176ms)
+✔ Filtres combinés, tris et vues de carnet utilisent les individus, sans modifier la sauvegarde (5.7531ms)
+✔ Un nouvel objet configuré bénéficie des états communs sans logique de navigation spécifique (0.2145ms)
+✔ La courbe de nage conserve sa longueur et garde la tête attachée (1.2567ms)
+✔ V2 coup: rencontre naturelle, gestes, combat, réception et carnet uniques (20.6586ms)
+✔ V2 grande_canne: rencontre naturelle, gestes, combat, réception et carnet uniques (14.7879ms)
+✔ V2 anglaise: rencontre naturelle, gestes, combat, réception et carnet uniques (5.1772ms)
+✔ V2 bolognaise: rencontre naturelle, gestes, combat, réception et carnet uniques (7.8621ms)
+✔ V2 fond: rencontre naturelle, gestes, combat, réception et carnet uniques (6.0511ms)
+✔ V2 feeder: rencontre naturelle, gestes, combat, réception et carnet uniques (5.1932ms)
+✔ V2 method_feeder: rencontre naturelle, gestes, combat, réception et carnet uniques (5.5463ms)
+✔ V2 carpe: rencontre naturelle, gestes, combat, réception et carnet uniques (4.3082ms)
+✔ V2 stalking: rencontre naturelle, gestes, combat, réception et carnet uniques (7.1552ms)
+✔ V2 surface: rencontre naturelle, gestes, combat, réception et carnet uniques (6.3163ms)
+✔ V2 leurre: rencontre naturelle, gestes, combat, réception et carnet uniques (9.8423ms)
+✔ V2 verticale: rencontre naturelle, gestes, combat, réception et carnet uniques (11.147ms)
+✔ V2 mort_manie: rencontre naturelle, gestes, combat, réception et carnet uniques (8.4251ms)
+✔ V2 toc: rencontre naturelle, gestes, combat, réception et carnet uniques (6.5807ms)
+✔ V2 mouche: rencontre naturelle, gestes, combat, réception et carnet uniques (7.4109ms)
+✔ V2 nymphe_fil: rencontre naturelle, gestes, combat, réception et carnet uniques (11.1312ms)
+✔ V2 bombette: rencontre naturelle, gestes, combat, réception et carnet uniques (7.5146ms)
+✔ V2 gambe: rencontre naturelle, gestes, combat, réception et carnet uniques (7.998ms)
+✔ V2 traine: rencontre naturelle, gestes, combat, réception et carnet uniques (8.5359ms)
+✔ V2 clonk: rencontre naturelle, gestes, combat, réception et carnet uniques (25.2751ms)
+✔ V2 ultraleger: rencontre naturelle, gestes, combat, réception et carnet uniques (6.2088ms)
+✔ V2 carpodrome: rencontre naturelle, gestes, combat, réception et carnet uniques (12.0981ms)
+✔ 55 recettes raccordées : montage, stock, moteur, réception et sauvegarde (255.3839ms)
+✔ Feeder et soie exigent une vraie préparation ; interruption avant impact ne consomme rien (0.5289ms)
+✔ Grande canne : le maintien ne déboîte pas ; recul et geste latéral sont nécessaires (0.3306ms)
+✔ Courant et retenue déplacent effectivement la ligne ; vitesse bateau anime seulement la traîne (2.111ms)
+✔ Gambe : trois potences réelles, couches espacées et seule branche ferrée perdue (0.2815ms)
+✔ Propriétés : PVA retarde, pop-up surélève, drop-shot sépare le lest, frein modifie la sortie (0.2939ms)
+✔ Migration v5, droits permanents, composants réutilisables et rejets de données incohérentes (0.6905ms)
+✔ Eau : tuile déterministe sans couture de hauteur ou de normale (14.5894ms)
+✔ Eau : mouvements lents et contacts profonds perturbent moins la surface (0.1545ms)
+✔ Cadence : budget conservé à 30 FPS malgré le jitter RAF, sans rattrapage après pause (0.1387ms)
+ℹ tests 205
+ℹ suites 0
+ℹ pass 205
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9490.6149
+
+> au-fil-de-leau@0.13.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 1206 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                            4.66 kB │ gzip:   1.25 kB
+dist/assets/index-C2U31y5N.css                                            43.09 kB │ gzip:   8.86 kB
+dist/assets/typeStore-Cu_sj2zM.js                                          0.08 kB │ gzip:   0.08 kB
+dist/assets/guid-BXdVC_j_.js                                               0.15 kB │ gzip:   0.14 kB
+dist/assets/flowGraphExecutionBlockWithOutSignal-ZgpOYOYE.js               0.15 kB │ gzip:   0.15 kB
+dist/assets/kernelBlurVaryingDeclaration-DP2Wr9Oc.js                       0.21 kB │ gzip:   0.17 kB
+dist/assets/kernelBlurVaryingDeclaration-g2Ge9lzd.js                       0.22 kB │ gzip:   0.18 kB
+dist/assets/mainUVVaryingDeclaration-BBamQlxR.js                           0.22 kB │ gzip:   0.19 kB
+dist/assets/mainUVVaryingDeclaration-B_7d0nc3.js                           0.23 kB │ gzip:   0.19 kB
+dist/assets/domManagement-BqltO0ki.js                                      0.25 kB │ gzip:   0.17 kB
+dist/assets/logDepthDeclaration-3gXGtHbI.js                                0.27 kB │ gzip:   0.22 kB
+dist/assets/meshUboDeclaration-BATNZvmb.js                                 0.27 kB │ gzip:   0.23 kB
+dist/assets/logDepthDeclaration-DYYUVTrx.js                                0.28 kB │ gzip:   0.22 kB
+dist/assets/flowGraphUnaryOperationBlock-4yhM8_vv.js                       0.30 kB │ gzip:   0.21 kB
+dist/assets/logDepthVertex-D5IUM6qd.js                                     0.30 kB │ gzip:   0.24 kB
+dist/assets/pass.fragment-Cvd2TCWC.js                                      0.31 kB │ gzip:   0.25 kB
+dist/assets/sceneVertexDeclaration-CluTp-RC.js                             0.33 kB │ gzip:   0.22 kB
+dist/assets/bumpVertexDeclaration-Cb04kLz9.js                              0.34 kB │ gzip:   0.25 kB
+dist/assets/meshUboDeclaration-BmNu2KU_.js                                 0.34 kB │ gzip:   0.25 kB
+dist/assets/flowGraphKeyUpEventBlock.pure-Djr9QSa2.js                      0.35 kB │ gzip:   0.23 kB
+dist/assets/keyboardEvents-CGYiptFb.js                                     0.35 kB │ gzip:   0.20 kB
+dist/assets/sceneUboDeclaration-B5VhSG0v.js                                0.36 kB │ gzip:   0.26 kB
+dist/assets/shadowMapFragmentSoftTransparentShadow-R_iOKnyx.js             0.37 kB │ gzip:   0.26 kB
+dist/assets/flowGraphBinaryOperationBlock-CIa0U-OT.js                      0.37 kB │ gzip:   0.24 kB
+dist/assets/logDepthVertex-DSD5XdGw.js                                     0.37 kB │ gzip:   0.26 kB
+dist/assets/fogVertex-NHlgMcT2.js                                          0.38 kB │ gzip:   0.24 kB
+dist/assets/bumpVertexDeclaration-I4Guxw_q.js                              0.39 kB │ gzip:   0.26 kB
+dist/assets/shadowMapFragmentSoftTransparentShadow-B6k0i9Au.js             0.40 kB │ gzip:   0.28 kB
+dist/assets/flowGraphTernaryOperationBlock-Dr82BnEX.js                     0.41 kB │ gzip:   0.24 kB
+dist/assets/vertexColorMixing-DPW6Is9y.js                                  0.43 kB │ gzip:   0.27 kB
+dist/assets/sceneUboDeclaration-B96Tfx7b.js                                0.43 kB │ gzip:   0.27 kB
+dist/assets/postprocess.vertex-DJCmMhI8.js                                 0.46 kB │ gzip:   0.30 kB
+dist/assets/objectIdFunctions-0O_zsAzb.js                                  0.46 kB │ gzip:   0.31 kB
+dist/assets/shaderStore-D-XQlhUT.js                                        0.46 kB │ gzip:   0.17 kB
+dist/assets/procedural.vertex-C47TVAon.js                                  0.47 kB │ gzip:   0.29 kB
+dist/assets/objectIdFunctions-BCg-H1o3.js                                  0.48 kB │ gzip:   0.32 kB
+dist/assets/performanceConfigurator-UtxC_Odd.js                            0.50 kB │ gzip:   0.25 kB
+dist/assets/fogVertex-DNAMrhb0.js                                          0.50 kB │ gzip:   0.29 kB
+dist/assets/flowGraphGLTFDataProvider-Crg6NvY2.js                          0.50 kB │ gzip:   0.31 kB
+dist/assets/rgbdEncode.fragment-CVg4Fcse.js                                0.51 kB │ gzip:   0.33 kB
+dist/assets/rgbdDecode.fragment-Cdz2Tveq.js                                0.52 kB │ gzip:   0.34 kB
+dist/assets/bumpVertex-CWhdIpqj.js                                         0.52 kB │ gzip:   0.32 kB
+dist/assets/flowGraphGetSoundVolumeBlock.pure-DCqtsGUY.js                  0.52 kB │ gzip:   0.32 kB
+dist/assets/packingFunctions-DpGwbupU.js                                   0.52 kB │ gzip:   0.29 kB
+dist/assets/flowGraphCodeExecutionBlock-DHl_oXmB.js                        0.53 kB │ gzip:   0.29 kB
+dist/assets/depthBoxBlur.fragment-CLEAG5DG.js                              0.53 kB │ gzip:   0.35 kB
+dist/assets/flowGraphIsSoundPlayingBlock.pure-DhEo9lLf.js                  0.55 kB │ gzip:   0.33 kB
+dist/assets/flowGraphInteger.pure-CZmJgkLp.js                              0.55 kB │ gzip:   0.29 kB
+dist/assets/flowGraphPauseAnimationBlock.pure-v6dFaNqL.js                  0.56 kB │ gzip:   0.32 kB
+dist/assets/vertexColorMixing-UCrnwszu.js                                  0.56 kB │ gzip:   0.30 kB
+dist/assets/packingFunctions-CINwVZs6.js                                   0.56 kB │ gzip:   0.31 kB
+dist/assets/postprocess.vertex-CmVXXq2T.js                                 0.58 kB │ gzip:   0.35 kB
+dist/assets/flowGraphObjectReferenceBlock-DnKsGda0.js                      0.58 kB │ gzip:   0.35 kB
+dist/assets/flowGraphConstantBlock.pure-BTmEDTgx.js                        0.59 kB │ gzip:   0.34 kB
+dist/assets/flowGraphStopSoundBlock.pure-CI7ws5fO.js                       0.59 kB │ gzip:   0.36 kB
+dist/assets/procedural.vertex-D3o6xkF2.js                                  0.61 kB │ gzip:   0.34 kB
+dist/assets/flowGraphKeyDownEventBlock.pure-C_-Itrdu.js                    0.61 kB │ gzip:   0.36 kB
+dist/assets/flowGraphBranchBlock.pure-BOm1waSR.js                          0.62 kB │ gzip:   0.34 kB
+dist/assets/flowGraphGetVariableBlock.pure-BN3cML7q.js                     0.62 kB │ gzip:   0.35 kB
+dist/assets/flowGraphContextBlock.pure-B62L3bGZ.js                         0.63 kB │ gzip:   0.34 kB
+dist/assets/rgbdEncode.fragment-CxPSfrvR.js                                0.65 kB │ gzip:   0.37 kB
+dist/assets/flowGraphPauseSoundBlock.pure-BTTTobkE.js                      0.65 kB │ gzip:   0.39 kB
+dist/assets/rgbdDecode.fragment-DXl2fYur.js                                0.66 kB │ gzip:   0.38 kB
+dist/assets/flowGraphAsyncExecutionBlock-B8j60x2H.js                       0.66 kB │ gzip:   0.34 kB
+dist/assets/bumpVertex-DRq4BZvD.js                                         0.69 kB │ gzip:   0.38 kB
+dist/assets/flowGraphSetSoundVolumeBlock.pure-BEdzhMBd.js                  0.70 kB │ gzip:   0.38 kB
+dist/assets/flowGraphConditionalDataBlock.pure-BF2q4S2U.js                 0.71 kB │ gzip:   0.35 kB
+dist/assets/flowGraphStopEventPropagationBlock.pure-BZxMo27e.js            0.71 kB │ gzip:   0.38 kB
+dist/assets/depthBoxBlur.fragment-D2KJPEQv.js                              0.71 kB │ gzip:   0.41 kB
+dist/assets/flowGraphSceneReadyEventBlock.pure-DvUr9vVU.js                 0.73 kB │ gzip:   0.40 kB
+dist/assets/flowGraphAssetsContext-WtUyuDAI.js                             0.73 kB │ gzip:   0.27 kB
+dist/assets/flowGraphSetLinearVelocityBlock.pure-DXbNx0P3.js               0.73 kB │ gzip:   0.39 kB
+dist/assets/flowGraphCounterBlock.pure-lqUu7nvP.js                         0.73 kB │ gzip:   0.39 kB
+dist/assets/flowGraphSetAngularVelocityBlock.pure-BgDIHk4j.js              0.74 kB │ gzip:   0.39 kB
+dist/assets/flowGraphIndexOfBlock.pure-_8OEYlG6.js                         0.74 kB │ gzip:   0.39 kB
+dist/assets/flowGraphGetLinearVelocityBlock.pure-CfEegNeI.js               0.74 kB │ gzip:   0.41 kB
+dist/assets/flowGraphGetAngularVelocityBlock.pure-DvdG0OC0.js              0.74 kB │ gzip:   0.41 kB
+dist/assets/flowGraphSetPhysicsMotionTypeBlock.pure-MmYQMcQk.js            0.75 kB │ gzip:   0.40 kB
+dist/assets/pointerEvents-DFkbNwCB.js                                      0.75 kB │ gzip:   0.40 kB
+dist/assets/flowGraphFlipFlopBlock.pure-4KYruavQ.js                        0.77 kB │ gzip:   0.40 kB
+dist/assets/flowGraphApplyForceBlock.pure-Bkb5XB_x.js                      0.78 kB │ gzip:   0.41 kB
+dist/assets/flowGraphFunctionReferenceBlock.pure-C_hc8a7i.js               0.79 kB │ gzip:   0.40 kB
+dist/assets/flowGraphApplyImpulseBlock.pure-CHyf7r6L.js                    0.79 kB │ gzip:   0.41 kB
+dist/assets/flowGraphCancelDelayBlock.pure-CThG5fd9.js                     0.81 kB │ gzip:   0.48 kB
+dist/assets/flowGraphSequenceBlock.pure-BeLU4KXO.js                        0.82 kB │ gzip:   0.39 kB
+dist/assets/flowGraphGetAssetBlock.pure-9qsnmdzW.js                        0.85 kB │ gzip:   0.44 kB
+dist/assets/flowGraphDebounceBlock.pure-BMlcylNI.js                        0.87 kB │ gzip:   0.42 kB
+dist/assets/flowGraphGetPhysicsMassPropertiesBlock.pure-ohNP2A1N.js        0.88 kB │ gzip:   0.41 kB
+dist/assets/flowGraphPlaySoundBlock.pure-kXsOqWhj.js                       0.88 kB │ gzip:   0.45 kB
+dist/assets/kernelBlur.vertex-C2dESVl-.js                                  0.88 kB │ gzip:   0.46 kB
+dist/assets/math.size-BHZaDYSv.js                                          0.91 kB │ gzip:   0.37 kB
+dist/assets/flowGraphDoNBlock.pure-DKw14Pyb.js                             0.92 kB │ gzip:   0.45 kB
+dist/assets/color.fragment-CxH-oW8C.js                                     0.92 kB │ gzip:   0.43 kB
+dist/assets/flowGraphSceneTickEventBlock.pure-DsdsFliJ.js                  0.92 kB │ gzip:   0.44 kB
+dist/assets/mesh.vertexData.functions-CD4JOR2q.js                          0.93 kB │ gzip:   0.48 kB
+dist/assets/instancesDeclaration-CJBvtBV5.js                               0.93 kB │ gzip:   0.34 kB
+dist/assets/flowGraphGetPropertyBlock.pure-Dy5I8bUn.js                     0.96 kB │ gzip:   0.46 kB
+dist/assets/flowGraphCachedOperationBlock-XAGo3Vpv.js                      0.96 kB │ gzip:   0.44 kB
+dist/assets/flowGraphPointerOutEventBlock.pure-CIDOSkqC.js                 0.97 kB │ gzip:   0.48 kB
+dist/assets/flowGraphPointerOverEventBlock.pure-DpoOjHHb.js                0.98 kB │ gzip:   0.49 kB
+dist/assets/flowGraphPointerUpEventBlock.pure-MK98JXKO.js                  1.00 kB │ gzip:   0.48 kB
+dist/assets/flowGraphDataSwitchBlock.pure-CY_AaPLM.js                      1.00 kB │ gzip:   0.50 kB
+dist/assets/flowGraphWhileLoopBlock.pure-DW-yiqbS.js                       1.01 kB │ gzip:   0.50 kB
+dist/assets/flowGraphKeyboardEventBlock-DbReaeeC.js                        1.01 kB │ gzip:   0.42 kB
+dist/assets/flowGraphPointerDownEventBlock.pure-BOPGSQTn.js                1.01 kB │ gzip:   0.48 kB
+dist/assets/flowGraphArrayIndexBlock.pure-DdvJAzCh.js                      1.02 kB │ gzip:   0.50 kB
+dist/assets/flowGraphPointerMoveEventBlock.pure-B1ZE8zNB.js                1.03 kB │ gzip:   0.49 kB
+dist/assets/color.fragment-CbJP31yK.js                                     1.03 kB │ gzip:   0.47 kB
+dist/assets/instancesDeclaration-DsiFqYXH.js                               1.04 kB │ gzip:   0.36 kB
+dist/assets/flowGraphSoundEndedEventBlock.pure-CjwH_8XJ.js                 1.04 kB │ gzip:   0.48 kB
+dist/assets/kernelBlur.vertex-Cr8ljakh.js                                  1.05 kB │ gzip:   0.50 kB
+dist/assets/fogFragment-CISE_m3s.js                                        1.08 kB │ gzip:   0.49 kB
+dist/assets/flowGraphTransformCoordinatesSystemBlock.pure-BH4roCQ-.js      1.09 kB │ gzip:   0.48 kB
+dist/assets/harmonicsFunctions-QSz_WdsQ.js                                 1.12 kB │ gzip:   0.49 kB
+dist/assets/clipPlaneVertex-C59BO8JS.js                                    1.17 kB │ gzip:   0.34 kB
+dist/assets/clipPlaneFragment-DVK0wgyZ.js                                  1.17 kB │ gzip:   0.35 kB
+dist/assets/smartArray-BRfcgNbX.js                                         1.18 kB │ gzip:   0.44 kB
+dist/assets/fogFragment-EikOP4pH.js                                        1.21 kB │ gzip:   0.54 kB
+dist/assets/flowGraphSwitchBlock.pure-8HOgWKGa.js                          1.24 kB │ gzip:   0.56 kB
+dist/assets/defaultUboDeclaration-C53xcSdv.js                              1.26 kB │ gzip:   0.55 kB
+dist/assets/clipPlaneFragment-Ct2VqHzk.js                                  1.27 kB │ gzip:   0.37 kB
+dist/assets/ddsTextureLoader-DyUCj6Su.js                                   1.27 kB │ gzip:   0.62 kB
+dist/assets/halfFloat-Ce77JD5z.js                                          1.29 kB │ gzip:   0.60 kB
+dist/assets/flowGraphSendCustomEventBlock.pure-CbWDu5lL.js                 1.29 kB │ gzip:   0.60 kB
+dist/assets/flowGraphSetVariableBlock.pure-P7BqpxLI.js                     1.31 kB │ gzip:   0.63 kB
+dist/assets/flowGraphIsKeyPressedBlock.pure-BXbFWVPY.js                    1.31 kB │ gzip:   0.52 kB
+dist/assets/flowGraphUnsupportedInteractivityBlock-DaQ6APp7.js             1.32 kB │ gzip:   0.55 kB
+dist/assets/flowGraphTypeToTypeBlocks.pure-QJZ6RnKS.js                     1.32 kB │ gzip:   0.48 kB
+dist/assets/clipPlaneVertex-DKhVm1NW.js                                    1.35 kB │ gzip:   0.37 kB
+dist/assets/meshBlendTagFragmentOutput-DuUOl0Y1.js                         1.38 kB │ gzip:   0.63 kB
+dist/assets/harmonicsFunctions-CMr56qfT.js                                 1.42 kB │ gzip:   0.52 kB
+dist/assets/flowGraphThrottleBlock.pure-CE1wW-l1.js                        1.46 kB │ gzip:   0.56 kB
+dist/assets/flowGraphBezierCurveEasingBlock.pure-D-9D5tPL.js               1.46 kB │ gzip:   0.72 kB
+dist/assets/flowGraphSetPropertyBlock.pure-C7sXx5XE.js                     1.49 kB │ gzip:   0.70 kB
+dist/assets/flowGraphDebugBlock.pure-CZIxdUF9.js                           1.52 kB │ gzip:   0.66 kB
+dist/assets/flowGraphForLoopBlock.pure-CrQbN1gB.js                         1.52 kB │ gzip:   0.68 kB
+dist/assets/color.vertex-Bn1VOzn-.js                                       1.53 kB │ gzip:   0.66 kB
+dist/assets/color.vertex-CYNjCrqH.js                                       1.59 kB │ gzip:   0.67 kB
+dist/assets/flowGraphMeshPickEventBlock.pure-bK6t1EKh.js                   1.61 kB │ gzip:   0.68 kB
+dist/assets/defaultUboDeclaration-bEX7kynB.js                              1.62 kB │ gzip:   0.53 kB
+dist/assets/flowGraphWaitAllBlock.pure-DolInOQd.js                         1.68 kB │ gzip:   0.68 kB
+dist/assets/envTextureLoader-CUMNeKG1.js                                   1.69 kB │ gzip:   0.66 kB
+dist/assets/flowGraphEasingBlock.pure-2ljGOnE8.js                          1.72 kB │ gzip:   0.77 kB
+dist/assets/flowGraphPhysicsCollisionEventBlock.pure-BrMXSDq_.js           1.75 kB │ gzip:   0.68 kB
+dist/assets/gaussianSplattingVoxel.fragment-B_Om6CDx.js                    1.75 kB │ gzip:   0.59 kB
+dist/assets/flowGraphMultiGateBlock.pure-sGsXTL-L.js                       1.79 kB │ gzip:   0.76 kB
+dist/assets/pbrUboDeclaration--xFZEw0i.js                                  1.80 kB │ gzip:   0.67 kB
+dist/assets/math.plane-C0ws7YJZ.js                                         1.81 kB │ gzip:   0.77 kB
+dist/assets/logger-CuBYPcDK.js                                             1.88 kB │ gzip:   0.82 kB
+dist/assets/gaussianSplattingVoxel.vertex-IFn7k8MA.js                      1.88 kB │ gzip:   0.76 kB
+dist/assets/drawWrapper-DcFZvZep.js                                        1.95 kB │ gzip:   1.03 kB
+dist/assets/gaussianSplattingVoxel.fragment-C65sY-Bh.js                    1.97 kB │ gzip:   0.87 kB
+dist/assets/flowGraphConsoleLogBlock.pure-CyYXU6Ij.js                      2.00 kB │ gzip:   0.93 kB
+dist/assets/flowGraphInterpolationBlock.pure-D7pFKRJ9.js                   2.18 kB │ gzip:   0.89 kB
+dist/assets/math.scalar.functions-D-i-XBaP.js                              2.19 kB │ gzip:   1.02 kB
+dist/assets/kernelBlur.fragment-DHQjf6lq.js                                2.29 kB │ gzip:   0.77 kB
+dist/assets/hdrTextureLoader-BQVwkxK1.js                                   2.31 kB │ gzip:   1.13 kB
+dist/assets/flowGraphEventReferenceBlock-eurxkp5P.js                       2.35 kB │ gzip:   0.78 kB
+dist/assets/pbrUboDeclaration-oed3_f2e.js                                  2.39 kB │ gzip:   0.66 kB
+dist/assets/iesTextureLoader-BcYbPJsH.js                                   2.47 kB │ gzip:   1.07 kB
+dist/assets/pbrIBLFunctions-CSlJv7qb.js                                    2.52 kB │ gzip:   0.88 kB
+dist/assets/flowGraphExecutionBlock-z6kKFLAZ.js                            2.52 kB │ gzip:   0.86 kB
+dist/assets/gaussianSplattingVoxel.vertex-BraJXBHO.js                      2.60 kB │ gzip:   0.91 kB
+dist/assets/flowGraphRichTypes.pure-BKlnX8v7.js                            2.62 kB │ gzip:   0.92 kB
+dist/assets/pbrIBLFunctions-b8fwQKtH.js                                    2.71 kB │ gzip:   0.88 kB
+dist/assets/flowGraphReceiveCustomEventBlock.pure-Dp7f97B3.js              2.72 kB │ gzip:   1.06 kB
+dist/assets/kernelBlur.fragment-BcdTKoPW.js                                2.83 kB │ gzip:   0.84 kB
+dist/assets/flowGraphStopAnimationBlock.pure-BhkYgsky.js                   3.14 kB │ gzip:   1.08 kB
+dist/assets/shadowMap.fragment-DX4Yo1bp.js                                 3.30 kB │ gzip:   1.16 kB
+dist/assets/tgaTextureLoader-CqhhocF6.js                                   3.40 kB │ gzip:   1.35 kB
+dist/assets/textureProcessor.fragment-D-awtrDP.js                          3.49 kB │ gzip:   1.00 kB
+dist/assets/logDepthFragment-BPon2Z56.js                                   3.50 kB │ gzip:   0.96 kB
+dist/assets/engineStore-Bn2tApal.js                                        3.51 kB │ gzip:   1.21 kB
+dist/assets/cubemapToSphericalPolynomial-B7KAjMBc.js                       3.67 kB │ gzip:   1.61 kB
+dist/assets/decorators-BWcttrMP.js                                         3.84 kB │ gzip:   1.57 kB
+dist/assets/shadowMap.fragment-DUFTmQJ_.js                                 3.86 kB │ gzip:   1.25 kB
+dist/assets/openpbrUboDeclaration-CbPGRvOI.js                              3.87 kB │ gzip:   1.03 kB
+dist/assets/dumpTools.pure-Mzjcx5Lr.js                                     4.03 kB │ gzip:   1.90 kB
+dist/assets/flowGraphJsonPointerParserBlock.pure-BfTV5tTp.js               4.25 kB │ gzip:   1.66 kB
+dist/assets/textureProcessor.fragment-B-hqHgey.js                          4.37 kB │ gzip:   1.18 kB
+dist/assets/morphTargetsVertex-6N5r7oF1.js                                 4.37 kB │ gzip:   0.98 kB
+dist/assets/reflectionFunction-CivoLMz9.js                                 4.66 kB │ gzip:   1.12 kB
+dist/assets/flowGraphSetDelayBlock.pure-BPifium7.js                        4.71 kB │ gzip:   1.67 kB
+dist/assets/decorators.serialization-By-MjS0E.js                           4.72 kB │ gzip:   1.78 kB
+dist/assets/shadowMap.vertex-TZnupHeR.js                                   4.77 kB │ gzip:   1.60 kB
+dist/assets/flowGraphMatrixMathBlocks.pure-DnaJTNk6.js                     4.79 kB │ gzip:   1.51 kB
+dist/assets/shadowMap.vertex-_1VpiXdw.js                                   4.81 kB │ gzip:   1.54 kB
+dist/assets/openpbrUboDeclaration-Dnhi8mvk.js                              5.22 kB │ gzip:   1.05 kB
+dist/assets/reflectionFunction-Cd8WyD5Q.js                                 5.23 kB │ gzip:   1.18 kB
+dist/assets/sphericalPolynomial.pure-Dbd-RrB2.js                           5.73 kB │ gzip:   1.35 kB
+dist/assets/flowGraphPlayAnimationBlock.pure-MrsedM5-.js                   5.87 kB │ gzip:   1.79 kB
+dist/assets/gaussianSplatting.fragment-D8NuUIxn.js                         6.32 kB │ gzip:   1.65 kB
+dist/assets/gaussianSplatting.fragment-D8dCrABW.js                         6.36 kB │ gzip:   1.71 kB
+dist/assets/morphTargetsVertex-OlIh-Lzh.js                                 6.40 kB │ gzip:   1.15 kB
+dist/assets/helperFunctions-BH8P-eyq.js                                    6.48 kB │ gzip:   2.18 kB
+dist/assets/helperFunctions-gEnZbjN3.js                                    6.81 kB │ gzip:   2.31 kB
+dist/assets/shadowsVertex--0nVb1Fg.js                                      6.84 kB │ gzip:   1.67 kB
+dist/assets/bumpFragment-BtJd9tYZ.js                                       6.86 kB │ gzip:   2.41 kB
+dist/assets/dds.pure-qIOcKh-d.js                                           6.93 kB │ gzip:   2.54 kB
+dist/assets/gaussianSplatting.vertex-_hy5gjle.js                           7.17 kB │ gzip:   1.96 kB
+dist/assets/buffer.pure-CAWHamCn.js                                        7.57 kB │ gzip:   2.50 kB
+dist/assets/bakedVertexAnimation-C6l_KSSy.js                               7.71 kB │ gzip:   1.59 kB
+dist/assets/internalTexture-ziUdfT1O.js                                    7.74 kB │ gzip:   1.99 kB
+dist/assets/geometry.vertex-CRPaaWiZ.js                                    7.89 kB │ gzip:   1.95 kB
+dist/assets/flowGraphVectorMathBlocks.pure-CqDgMR-1.js                     8.03 kB │ gzip:   2.54 kB
+dist/assets/bumpFragment-CZy0KIWh.js                                       8.06 kB │ gzip:   2.52 kB
+dist/assets/flowGraphMathCombineExtractBlocks.pure-ihyhpC6h.js             8.11 kB │ gzip:   1.24 kB
+dist/assets/basisTextureLoader-Do2Gb2ry.js                                 8.15 kB │ gzip:   3.17 kB
+dist/assets/default.vertex-BYS4Xaw0.js                                     8.29 kB │ gzip:   2.31 kB
+dist/assets/effectRenderer.pure-aqD6q3t8.js                                8.36 kB │ gzip:   2.47 kB
+dist/assets/bakedVertexAnimation-COa3IHTL.js                               8.50 kB │ gzip:   1.57 kB
+dist/assets/gaussianSplatting.vertex-BhD0U2Ku.js                           8.51 kB │ gzip:   2.14 kB
+dist/assets/geometry.vertex-DE-hmwUt.js                                    9.10 kB │ gzip:   2.02 kB
+dist/assets/default.vertex-Dh04QukZ.js                                     9.62 kB │ gzip:   2.47 kB
+dist/assets/flowGraphBlock-PiZ78eoL.js                                    10.99 kB │ gzip:   3.28 kB
+dist/assets/geometry.fragment-BektTr1q.js                                 11.32 kB │ gzip:   3.13 kB
+dist/assets/node-CixmmZG_.js                                              11.52 kB │ gzip:   3.14 kB
+dist/assets/constants-_wyaM_ID.js                                         11.77 kB │ gzip:   3.19 kB
+dist/assets/geometry.fragment-DeFLjSuk.js                                 11.82 kB │ gzip:   3.02 kB
+dist/assets/pbrBRDFFunctions-BCNINF-p.js                                  11.93 kB │ gzip:   4.14 kB
+dist/assets/pbrBRDFFunctions-DxfbxN23.js                                  12.76 kB │ gzip:   4.32 kB
+dist/assets/exrTextureLoader-Usurdk8H.js                                  13.14 kB │ gzip:   4.83 kB
+dist/assets/tools.functions-Bxv5dhZ_.js                                   13.49 kB │ gzip:   4.78 kB
+dist/assets/gaussianSplatting-Dq1CpTgZ.js                                 14.39 kB │ gzip:   4.34 kB
+dist/assets/pbr.vertex-BmJnKuD0.js                                        14.62 kB │ gzip:   3.11 kB
+dist/assets/gaussianSplatting-CTZ6Bf5P.js                                 14.76 kB │ gzip:   4.57 kB
+dist/assets/baseTexture.pure-CEqM3fnj.js                                  15.09 kB │ gzip:   3.84 kB
+dist/assets/ktxTextureLoader-BehS09j-.js                                  15.17 kB │ gzip:   4.40 kB
+dist/assets/pbr.vertex-CMQHQtJZ.js                                        17.16 kB │ gzip:   3.62 kB
+dist/assets/openpbrTransmissionLayerData-BRi1vGnu.js                      17.35 kB │ gzip:   4.01 kB
+dist/assets/openpbr.vertex-DQnFz10m.js                                    17.50 kB │ gzip:   3.38 kB
+dist/assets/sceneComponent-Cn-0uY45.js                                    17.97 kB │ gzip:   4.88 kB
+dist/assets/lightConstants-DX3sWIWo.js                                    18.24 kB │ gzip:   4.02 kB
+dist/assets/postProcess.pure-DOEiuV5Y.js                                  18.44 kB │ gzip:   5.07 kB
+dist/assets/openpbrTransmissionLayerData-CbssVoWF.js                      18.46 kB │ gzip:   4.15 kB
+dist/assets/texture.pure-CAOKm8dZ.js                                      19.56 kB │ gzip:   5.45 kB
+dist/assets/lightFragment-x7Xpl9uU.js                                     20.56 kB │ gzip:   3.35 kB
+dist/assets/openpbr.vertex-TEPiWOP7.js                                    20.64 kB │ gzip:   4.01 kB
+dist/assets/flowGraphMathBlocks.pure-BRK76hBD.js                          20.93 kB │ gzip:   4.72 kB
+dist/assets/shadowsVertex-CpxL4lAs.js                                     21.61 kB │ gzip:   3.42 kB
+dist/assets/lightFragment-DY7jBbrD.js                                     22.58 kB │ gzip:   3.36 kB
+dist/assets/default.fragment-DJct8V4A.js                                  24.86 kB │ gzip:   5.95 kB
+dist/assets/default.fragment-P7YeHHKA.js                                  25.83 kB │ gzip:   5.89 kB
+dist/assets/renderTargetTexture.pure-CYNZ8wBf.js                          32.36 kB │ gzip:   8.00 kB
+dist/assets/tools.pure-DG9Rzizn.js                                        34.31 kB │ gzip:  11.06 kB
+dist/assets/pbrDebug-CRIrJQoc.js                                          38.06 kB │ gzip:   8.53 kB
+dist/assets/animationGroup.pure-C75vAw12.js                               42.21 kB │ gzip:  10.34 kB
+dist/assets/pbrDebug-bjTeoVNh.js                                          45.35 kB │ gzip:  10.08 kB
+dist/assets/oitFragment-CwWxHs00.js                                       49.95 kB │ gzip:  10.30 kB
+dist/assets/oitFragment-BANSnSuz.js                                       52.13 kB │ gzip:  10.56 kB
+dist/assets/abstractEngine.pure-rwLfew4P.js                               59.84 kB │ gzip:  14.66 kB
+dist/assets/thinEngine.pure-DtQqicIX.js                                   67.75 kB │ gzip:  17.03 kB
+dist/assets/math.color.pure-Dw4sAYjX.js                                   76.95 kB │ gzip:  18.43 kB
+dist/assets/material.pure-Cs0tJEJZ.js                                     78.81 kB │ gzip:  20.23 kB
+dist/assets/brdfTextureTools-jeL-4w9S.js                                  79.86 kB │ gzip:  50.26 kB
+dist/assets/openpbr.fragment-yqUowydw.js                                  88.83 kB │ gzip:  17.72 kB
+dist/assets/openpbr.fragment-BuXtEGBF.js                                  90.58 kB │ gzip:  17.73 kB
+dist/assets/pbr.fragment-ywwgcet7.js                                      93.72 kB │ gzip:  16.73 kB
+dist/assets/pbr.fragment-D1aADf0p.js                                      97.53 kB │ gzip:  18.19 kB
+dist/assets/openpbrMaterial.pure-C9qXi_4U.js                             125.30 kB │ gzip:  27.31 kB
+dist/assets/scene.pure-QqgLHIuc.js                                       159.57 kB │ gzip:  34.29 kB
+dist/assets/research-library-DyFj3S7m.js                                 511.39 kB │ gzip:  49.86 kB
+dist/assets/index-D4jWlxh2.js                                          2,250.66 kB │ gzip: 557.19 kB
+
+✓ built in 744ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 900 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.

@@ -98,3 +98,7 @@ Le « oui » du propriétaire lance le cahier complet mobile/matériel. Un seul 
 - Base naturelle à tous les niveaux ; un seul MirrorTexture à la fois, frustum réfléchi/cap48. Économe128² en cache (décor fixe), Standard256²/6images, Élevé512²/3images et détails supplémentaires. Pas de passe de réfraction ou effets coûteux ajoutés sans mesure.
 - Huit perturbations shader recyclées depuis vrais événements, position/âge/profondeur/vitesse/direction ; aucun impact ambiant permanent. Contacts du décor dans atlas, pas de mousse. Démos TEST restent isolées de captures/récompenses.
 - Échéance fractionnaire économe conserve33,33ms, aucune accélération de simulation ni rafale de rattrapage. FPS mesurés sur images rendues ; CPU soumission et GPU logiciel séparés. Environ30FPS à390×844 SwiftShader ne certifie pas le minimum stable sur iPhone ; essais physiques requis avant toute garantie.
+
+| 2026-10-04 | Assets gratuits0.13 : CC0 ciblé, sources hors runtime, matériaux Standard mats et sol précalculé | Première passe PBR puis multi-lectures trop coûteuses sur SwiftShader; conserver palette naturelle et variantes proches utiles. |
+| 2026-10-04 | 18 feuillus proches au plus, source glTF partagée/instances gelées et proxies selon pixels | LOD effectif110/70px; silhouettes génériques provisoires, collisions/habitats et IDs inchangés. |
+| 2026-10-04 | HDR128 préfiltré hors jeu, matin uniquement; six previews in-game dans les fiches existantes | Pas de mélange HDR diurne au soir ni autre système de carte; mesures appareil restent à faire. |

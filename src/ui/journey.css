@@ -25,3 +25,5 @@ body[data-method=pole] .tension-display{width:120px;left:auto;right:24px;transfo
 
 #rig-recipe,.technique-tools select{background:var(--fd-surface-raised);color:var(--fd-text);border:1px solid var(--fd-border);border-radius:var(--fd-radius-control);min-height:44px;padding:8px;font:16px var(--fd-font);max-width:100%;color-scheme:dark}
 #rig-recipe{width:100%}.technique-tools input{accent-color:var(--fd-accent)}
+
+.post-preview{display:block;width:100%;height:auto;max-height:220px;object-fit:cover;border-radius:var(--fd-radius-card);margin:12px 0;border:1px solid var(--fd-border)}

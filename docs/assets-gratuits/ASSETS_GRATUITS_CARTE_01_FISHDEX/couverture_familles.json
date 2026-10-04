@@ -1,0 +1,695 @@
+{
+  "schema_version": 1,
+  "status": "proposed_mapping_not_current_repo_inventory",
+  "source": "assets_manifest du chantier de carte antérieur; 40 familles",
+  "entries": [
+    {
+      "family_id": "bank_earth",
+      "label": "Berge de terre et racines fines",
+      "priority": "P0",
+      "spots": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "recommended_sources": "T01,T02",
+      "note": "Réutiliser le terrain/les modules et leurs UV ; mélange au contact, ne pas déplacer la rive.",
+      "original_design_triangle_targets": {
+        "lod0": 2200,
+        "lod1": 800,
+        "lod2": 250
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "bank_rock",
+      "label": "Berge rocheuse basse",
+      "priority": "P1",
+      "spots": [
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "M01 ou M06; T07",
+      "note": "Module existant + pierres sélectionnées ; conserver l’accès et les volumes.",
+      "original_design_triangle_targets": {
+        "lod0": 2500,
+        "lod1": 900,
+        "lod2": 250
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "bank_roots",
+      "label": "Berge avec racines exposées",
+      "priority": "P1",
+      "spots": [
+        "P04",
+        "P06"
+      ],
+      "recommended_sources": "T06; M01 partiel",
+      "note": "Talus actuel ; racines spécifiques encore à fabriquer si absentes. Aucun module de racines exact vérifié.",
+      "original_design_triangle_targets": {
+        "lod0": 3000,
+        "lod1": 1000,
+        "lod2": 250
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "pebble_cluster",
+      "label": "Amas de galets",
+      "priority": "P1",
+      "spots": [
+        "P02",
+        "P03",
+        "P05"
+      ],
+      "recommended_sources": "M01 ou M06; T04",
+      "note": "Quelques petites pierres en volume ; T04 pour le fond, pas des centaines de cailloux.",
+      "original_design_triangle_targets": {
+        "lod0": 900,
+        "lod1": 350,
+        "lod2": 100
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "tree_alder",
+      "label": "Aulne de berge",
+      "priority": "P1",
+      "spots": [
+        "P02",
+        "P04",
+        "P06"
+      ],
+      "recommended_sources": "M01 provisoire",
+      "note": "Feuillu générique provisoire seulement ; aulne exact non trouvé dans la sélection vérifiée.",
+      "original_design_triangle_targets": {
+        "lod0": 8000,
+        "lod1": 2600,
+        "lod2": 500
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "tree_willow",
+      "label": "Saule penché",
+      "priority": "P1",
+      "spots": [
+        "P04",
+        "P06"
+      ],
+      "recommended_sources": "T06; modèle actuel",
+      "note": "Saule penché anatomiquement fidèle encore à fabriquer ; ne pas rebaptiser un érable.",
+      "original_design_triangle_targets": {
+        "lod0": 9000,
+        "lod1": 3000,
+        "lod2": 600
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "tree_oak",
+      "label": "Arbre de fond de rive",
+      "priority": "P1",
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "M01 provisoire",
+      "note": "Feuillu générique pour la masse lointaine ; chêne exact à confirmer/créer plus tard.",
+      "original_design_triangle_targets": {
+        "lod0": 8000,
+        "lod1": 2200,
+        "lod2": 350
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "forest_backdrop",
+      "label": "Groupe forestier lointain",
+      "priority": "P1",
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "M01",
+      "note": "Instances par secteurs ; éventuellement imposteurs fabriqués depuis NOS modèles, pas les aperçus des sites.",
+      "original_design_triangle_targets": {
+        "lod0": 1400,
+        "lod1": 600,
+        "lod2": 180
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "shrub",
+      "label": "Buisson bas",
+      "priority": "P1",
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "M01",
+      "note": "Choisir 2–3 silhouettes et conserver des verts cohérents.",
+      "original_design_triangle_targets": {
+        "lod0": 1600,
+        "lod1": 600,
+        "lod2": 120
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "grass_clump",
+      "label": "Touffe d’herbe de rive",
+      "priority": "P1",
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "M01",
+      "note": "Quelques variantes instanciées ; limiter le recouvrement des cartes alpha.",
+      "original_design_triangle_targets": {
+        "lod0": 180,
+        "lod1": 60,
+        "lod2": 12
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "reeds",
+      "label": "Touffe de roseaux",
+      "priority": "P0",
+      "spots": [
+        "P04",
+        "P02"
+      ],
+      "recommended_sources": "M02",
+      "note": "Touffes irrégulières ; identité botanique et conversion à vérifier.",
+      "original_design_triangle_targets": {
+        "lod0": 750,
+        "lod1": 260,
+        "lod2": 70
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "sedges",
+      "label": "Laîches / plantes de bordure",
+      "priority": "P1",
+      "spots": [
+        "P02",
+        "P04",
+        "P06"
+      ],
+      "recommended_sources": "M01 partiel; existant",
+      "note": "Touffes basses génériques provisoires ; laîches exactes non garanties.",
+      "original_design_triangle_targets": {
+        "lod0": 400,
+        "lod1": 140,
+        "lod2": 40
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "lily_cluster",
+      "label": "Amas de nénuphars",
+      "priority": "P0",
+      "spots": [
+        "P02",
+        "P04"
+      ],
+      "recommended_sources": "M03 ou B02",
+      "note": "Groupes peu profonds ; garder des passages libres et un niveau cohérent avec l’eau.",
+      "original_design_triangle_targets": {
+        "lod0": 500,
+        "lod1": 180,
+        "lod2": 40
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "submerged_plants",
+      "label": "Herbiers visibles peu profonds",
+      "priority": "P1",
+      "spots": [
+        "P02",
+        "P04"
+      ],
+      "recommended_sources": "existant; M01 adaptation visuelle",
+      "note": "Herbiers actuels prioritaires ; aucun pack aquatique spécifique vérifié, une herbe terrestre n’est pas une espèce aquatique.",
+      "original_design_triangle_targets": {
+        "lod0": 650,
+        "lod1": 220,
+        "lod2": 50
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "rock_small",
+      "label": "Pierre de rive",
+      "priority": "P1",
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P05"
+      ],
+      "recommended_sources": "M01 ou M06",
+      "note": "Modèles adaptés à petite taille ; silhouette mesurée et matériaux mutualisés.",
+      "original_design_triangle_targets": {
+        "lod0": 500,
+        "lod1": 180,
+        "lod2": 50
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "rock_landmark",
+      "label": "Rocher repère",
+      "priority": "P1",
+      "spots": [
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "M06 ou M01",
+      "note": "1–2 repères isolés, pas tout le pack à chaque poste.",
+      "original_design_triangle_targets": {
+        "lod0": 2200,
+        "lod1": 750,
+        "lod2": 200
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "fallen_log",
+      "label": "Tronc tombé partiellement immergé",
+      "priority": "P0",
+      "spots": [
+        "P06"
+      ],
+      "recommended_sources": "M01 arbres morts; T06",
+      "note": "Inspecter si une pièce convient comme tronc tombé, sinon garder le mesh actuel texturé ; pas de tronc exact promis.",
+      "original_design_triangle_targets": {
+        "lod0": 2400,
+        "lod1": 800,
+        "lod2": 200
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "submerged_branches",
+      "label": "Branches immergées",
+      "priority": "P0",
+      "spots": [
+        "P06"
+      ],
+      "recommended_sources": "M01 partiel; T06",
+      "note": "Conserver branches actuelles ou extraire un élément adapté ; volumes d’accrochage indépendants.",
+      "original_design_triangle_targets": {
+        "lod0": 1600,
+        "lod1": 550,
+        "lod2": 120
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "stump",
+      "label": "Souche de rive",
+      "priority": "P2",
+      "spots": [
+        "P04",
+        "P06"
+      ],
+      "recommended_sources": "M07 option",
+      "note": "LOD et réduction obligatoires avant duplication ; provisoire actuel si optimisation non concluante.",
+      "original_design_triangle_targets": {
+        "lod0": 1800,
+        "lod1": 600,
+        "lod2": 160
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "pier_deck",
+      "label": "Module de ponton en bois",
+      "priority": "P0",
+      "spots": [
+        "P01"
+      ],
+      "recommended_sources": "M04 ou T05",
+      "note": "Comparer au ponton actuel. Importer 1–2 modules seulement ; respecter les ancrages.",
+      "original_design_triangle_targets": {
+        "lod0": 1200,
+        "lod1": 400,
+        "lod2": 120
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "pier_pile",
+      "label": "Pieux et traverse de ponton",
+      "priority": "P0",
+      "spots": [
+        "P01"
+      ],
+      "recommended_sources": "M04 ou T06",
+      "note": "Pieux compatibles avec la structure du ponton ; bois humide local, pas métal.",
+      "original_design_triangle_targets": {
+        "lod0": 500,
+        "lod1": 180,
+        "lod2": 50
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "path_patch",
+      "label": "Portion de sentier en terre",
+      "priority": "P2",
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "T01; T04",
+      "note": "Réutiliser le terrain ; masque de transition ou vertex colors plutôt que overlays scintillants.",
+      "original_design_triangle_targets": {
+        "lod0": 240,
+        "lod1": 80,
+        "lod2": 20
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "bench",
+      "label": "Banc simple de rive",
+      "priority": "P2",
+      "spots": [
+        "P01",
+        "P03"
+      ],
+      "recommended_sources": "M05 option; existant",
+      "note": "900 tris annoncé comme point de départ ; style fonte à comparer au banc bois existant.",
+      "original_design_triangle_targets": {
+        "lod0": 2000,
+        "lod1": 650,
+        "lod2": 150
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "sign_post",
+      "label": "Panneau de repère",
+      "priority": "P2",
+      "spots": [
+        "P01"
+      ],
+      "recommended_sources": "existant; T05,T06",
+      "note": "Panneau simple actuel + écriture originale FishDex ; aucune signalétique spécifique vérifiée.",
+      "original_design_triangle_targets": {
+        "lod0": 700,
+        "lod1": 250,
+        "lod2": 60
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "angler_proxy",
+      "label": "Pêcheur occupant un poste",
+      "priority": "P2",
+      "spots": [
+        "P04",
+        "P06"
+      ],
+      "recommended_sources": "existant",
+      "note": "Conserver le proxy pêcheur actuel. Aucun personnage complet réaliste gratuit validé ici.",
+      "original_design_triangle_targets": {
+        "lod0": 6000,
+        "lod1": 2200,
+        "lod2": 800
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "floating_leaves",
+      "label": "Petites feuilles de surface",
+      "priority": "P2",
+      "spots": [
+        "P02",
+        "P04"
+      ],
+      "recommended_sources": "géométrie existante; M01 adaptation",
+      "note": "Quelques feuilles simples ; créer ses propres textures depuis l’asset si nécessaire.",
+      "original_design_triangle_targets": {
+        "lod0": 12,
+        "lod1": 4,
+        "lod2": 2
+      },
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "tex_ground_earth",
+      "label": "Terre sèche et humide",
+      "priority": "P0",
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "T01,T02",
+      "note": "Matière sèche/humide avec transitions continues.",
+      "original_design_triangle_targets": null,
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "tex_shore_mud",
+      "label": "Vase et bordure humide",
+      "priority": "P0",
+      "spots": [
+        "P02",
+        "P04",
+        "P06"
+      ],
+      "recommended_sources": "T02",
+      "note": "Éviter le vernis global ; varier la roughness selon humidité.",
+      "original_design_triangle_targets": null,
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "tex_sand_gravel",
+      "label": "Sable et gravier",
+      "priority": "P1",
+      "spots": [
+        "P02",
+        "P03",
+        "P05"
+      ],
+      "recommended_sources": "T04; T08 option",
+      "note": "Terrain de l’étang prioritaire ; sable local si crédible.",
+      "original_design_triangle_targets": null,
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "tex_grass_ground",
+      "label": "Sol végétalisé",
+      "priority": "P1",
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "T03 ou B03",
+      "note": "Une base principale ; B04 réservé aux zones entretenues.",
+      "original_design_triangle_targets": null,
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "tex_wood_weathered",
+      "label": "Bois patiné",
+      "priority": "P0",
+      "spots": [
+        "P01",
+        "P06"
+      ],
+      "recommended_sources": "T05 ou B05; T06",
+      "note": "Planches pour faces planes, écorce pour troncs ; ne pas confondre les deux UV.",
+      "original_design_triangle_targets": null,
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "tex_rock",
+      "label": "Pierre naturelle",
+      "priority": "P1",
+      "spots": [
+        "P03",
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "M01/M06 existant; T07 option",
+      "note": "Conserver les matériaux inclus s’ils sont bons.",
+      "original_design_triangle_targets": null,
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "water_normals",
+      "label": "Normales d’eau répétables",
+      "priority": "P0",
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "génération procédurale originale",
+      "note": "Deux textures répétables 256–512 px via code ; pas de photo d’eau collée. Aucun asset externe dédié retenu.",
+      "original_design_triangle_targets": null,
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "water_contact_mask",
+      "label": "Masque de contact eau/berge",
+      "priority": "P0",
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "données du terrain existant",
+      "note": "Masque original dérivé du contour/profondeur actuels ; une texture générique ne peut pas correspondre à notre rive.",
+      "original_design_triangle_targets": null,
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "fx_ripple",
+      "label": "Atlas de rides locales",
+      "priority": "P0",
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "procédural original",
+      "note": "Cercles irréguliers/masques 256–512 px, déclenchés par les événements existants.",
+      "original_design_triangle_targets": null,
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "fx_splash",
+      "label": "Atlas gouttes et petit splash",
+      "priority": "P0",
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "F01 option; procédural original",
+      "note": "1–3 sprites choisis, impacts limités ; le sprite ne définit pas la logique de l’événement.",
+      "original_design_triangle_targets": null,
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "fx_foam_local",
+      "label": "Mousse de contact locale",
+      "priority": "P2",
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "procédural original; F01 option",
+      "note": "Mousse ponctuelle si justifiée ; pas de plage de surf autour de l’étang.",
+      "original_design_triangle_targets": null,
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "sky_environment",
+      "label": "Ciel et environnement lumineux",
+      "priority": "P0",
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "A01",
+      "note": "HDR 1K de départ, préfiltrage et soleil cohérents avec l’heure.",
+      "original_design_triangle_targets": null,
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "water_audio",
+      "label": "Familles de sons de contact d’eau",
+      "priority": "P1",
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "existant; hors sélection visuelle",
+      "note": "Aucun nouveau fichier audio vérifié. Garder les sons actuels ; rechercher les six familles séparément si absentes.",
+      "original_design_triangle_targets": null,
+      "status": "selection_only_to_audit_in_current_repo"
+    },
+    {
+      "family_id": "spot_previews",
+      "label": "Captures in-game des six postes",
+      "priority": "P1",
+      "spots": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "recommended_sources": "captures in-game",
+      "note": "Six photos après intégration ; aucun aperçu d’auteur ni génération pour remplacer la scène.",
+      "original_design_triangle_targets": null,
+      "status": "selection_only_to_audit_in_current_repo"
+    }
+  ]
+}

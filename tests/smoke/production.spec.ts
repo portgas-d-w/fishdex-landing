@@ -20,7 +20,7 @@ test('Le build permet une vraie prise, le chargement différé et le transfert d
   const models: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
-  page.on('request', request => { if (request.url().endsWith('.glb')) models.push(request.url()); });
+  page.on('request', request => { if (request.url().endsWith('.glb')&&!request.url().includes('/models/environment/')) models.push(request.url()); });
   await page.addInitScript(() => { Math.random = () => 0; localStorage.setItem('au-fil-de-leau.gestures.v3', '3'); });
   await page.addInitScript(s=>{if(!localStorage.getItem('au-fil-de-leau.save.v1'))localStorage.setItem('au-fil-de-leau.save.v1',JSON.stringify(s));},oldV4());
   await page.goto('/');

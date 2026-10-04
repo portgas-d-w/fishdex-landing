@@ -11,14 +11,14 @@ test('Carte eau : six vrais postes, combat réception photo et sauvegarde isolé
  for(const post of ['jetty','cove','bank','reed-bank','point','timber']){await tools(page);await page.locator('#test-technique').selectOption('coup');await page.locator('#test-kit').click();await page.locator('#test-post').selectOption(post);await page.locator('#test-species').selectOption('roach');await page.locator('#test-length').fill('10');await page.locator('#test-seed').fill('127');await page.locator('#test-fight').click();await page.evaluate(()=>(window as any).__fishingQA.advance(.02));expect((await qa(page)).post).toBe(post);await page.evaluate(()=>(window as any).__fishingQA.advance(240,'smart'));await receiveByGesture(page);await expect(page.locator('#fish-preview')).toHaveAttribute('data-loaded','true');await expect(page.locator('#photo-state')).toContainText('Photo conservée');const s=await qa(page);expect(s.total).toBe(rows.length+1);rows.push({post,capture:s.specimen,photo:true});await page.locator('#release-fish').click();await page.evaluate(()=>(window as any).__fishingQA.advance(.02));}
  await page.reload();await expect(page.locator('body')).toHaveAttribute('data-ready','true');expect((await qa(page)).total).toBe(6);expect(await page.evaluate(()=>localStorage.getItem('au-fil-de-leau.save.v1'))).toBe(normal);expect(errors).toEqual([]);await writeFile(`${folder}/${info.project.name}-six-captures.json`,JSON.stringify({forcedEncounter:true,realCombatAndTouchReception:true,physicalDevice:false,rows},null,2));
 });
-test('Registre : substitution GLB locale, rejet des dimensions, retour exact à la famille provisoire',async({page})=>{
+test('Registre : substitution GLB locale, rejet des dimensions, retour exact à la ressource initiale',async({page})=>{
  await boot(page);await page.route('**/models/environment/contract-probe.glb',route=>route.fulfill({contentType:'model/gltf-binary',body:environmentProbe()}));
  await page.route('**/models/environment/contract-invalid.glb',route=>route.fulfill({contentType:'model/gltf-binary',body:environmentProbe(10)}));
- const before=await qa(page);
+ await expect.poll(()=>page.evaluate(()=>Object.values((window as any).__fishingQA.water().assets.families).filter((s:any)=>s.startsWith('glb:')).length)).toBe(8);const before=await qa(page);const initial=await page.evaluate(()=>(window as any).__fishingQA.water().assets);
  expect(await page.evaluate(()=>(window as any).__fishingQA.replaceAsset('rock_small','/models/environment/contract-probe.glb'))).toBe(true);
- const loaded=await page.evaluate(()=>(window as any).__fishingQA.water());expect(loaded.assets.families.rock_small).toContain('glb:');expect(loaded.assets.families.reeds).toBe('procedural');
+ const loaded=await page.evaluate(()=>(window as any).__fishingQA.water());expect(loaded.assets.families.rock_small).toContain('glb:');expect(loaded.assets.families.reeds).toBe(initial.families.reeds);
  expect(await page.evaluate(()=>(window as any).__fishingQA.replaceAsset('rock_small','/models/environment/contract-invalid.glb'))).toBe(false);
- expect(await page.evaluate(()=>(window as any).__fishingQA.replaceAsset('rock_small',null))).toBe(true);
+ expect(await page.evaluate(()=>(window as any).__fishingQA.replaceAsset('rock_small','/models/environment/free-rock.glb'))).toBe(true);
  expect((await qa(page)).totalMeshes).toBe(before.totalMeshes);expect((await qa(page)).total).toBe(0);
 });
 test('Carte eau : pools bornés, pause, dix transitions, qualité et repli de décor',async({page})=>{

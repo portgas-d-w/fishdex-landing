@@ -1,0 +1,282 @@
+[
+  {
+    "id": "bank_earth",
+    "label": "Berge de terre et racines fines",
+    "state": "intégré ou existant conservé",
+    "implementation": "Terrain actuel : atlas T01–T04 avec terre, boue de rive et sous-bois; bathymétrie inchangée.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "bank_rock",
+    "label": "Berge rocheuse basse",
+    "state": "rôle présent, représentation provisoire",
+    "implementation": "Pierres M01 sur placements existants; aucun nouveau module de falaise.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "bank_roots",
+    "label": "Berge avec racines exposées",
+    "state": "hors panier / manque spécifique",
+    "implementation": "Pas de racines exposées exactes dans la sélection; talus conservé.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "pebble_cluster",
+    "label": "Amas de galets",
+    "state": "rôle présent, représentation provisoire",
+    "implementation": "T04 dans atlas et deux pierres M01; galets botaniques/géologiques exacts non revendiqués.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "tree_alder",
+    "label": "Aulne de berge",
+    "state": "rôle présent, représentation provisoire",
+    "implementation": "BirchTree_1 générique proche; aulne exact provisoire. 18 arbres sélectionnés au maximum, proxy loin.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "tree_willow",
+    "label": "Saule penché",
+    "state": "rôle présent, représentation provisoire",
+    "implementation": "Géométrie procédurale conservée, tronc T06; saule exact provisoire.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "tree_oak",
+    "label": "Arbre de fond de rive",
+    "state": "rôle présent, représentation provisoire",
+    "implementation": "Même source générique partagée; chêne exact provisoire.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "forest_backdrop",
+    "label": "Groupe forestier lointain",
+    "state": "intégré ou existant conservé",
+    "implementation": "Deux lignes procédurales spatiales conservées, couronnes réduites loin; GLB proches selon pixels.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "shrub",
+    "label": "Buisson bas",
+    "state": "intégré ou existant conservé",
+    "implementation": "Bush extrait de M01, instances aux 13 placements existants.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "grass_clump",
+    "label": "Touffe d’herbe de rive",
+    "state": "intégré ou existant conservé",
+    "implementation": "Grass_Small 58 triangles; instances aux 45 placements existants.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "reeds",
+    "label": "Touffe de roseaux",
+    "state": "intégré ou existant conservé",
+    "implementation": "M02 est une massette, pas un roseau exact. Trois groupes de deux touffes, 760 triangles/groupe.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "sedges",
+    "label": "Laîches / plantes de bordure",
+    "state": "rôle présent, représentation provisoire",
+    "implementation": "Herbes génériques seulement; aucune espèce de carex exacte.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "lily_cluster",
+    "label": "Amas de nénuphars",
+    "state": "intégré ou existant conservé",
+    "implementation": "M03 waterlily_half 252 triangles, 36 feuilles; axe/pivot/eau contrôlés.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "submerged_plants",
+    "label": "Herbiers visibles peu profonds",
+    "state": "hors panier / manque spécifique",
+    "implementation": "Pas de modèle spécifique ajouté; habitats conservés sans inventer de géométrie.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "rock_small",
+    "label": "Pierre de rive",
+    "state": "intégré ou existant conservé",
+    "implementation": "Rock_1 228 triangles, 20 placements réutilisés.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "rock_landmark",
+    "label": "Rocher repère",
+    "state": "intégré ou existant conservé",
+    "implementation": "Rock_2 202 triangles, un repère existant; petit gabarit volontaire.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "fallen_log",
+    "label": "Tronc tombé partiellement immergé",
+    "state": "intégré ou existant conservé",
+    "implementation": "Tronc procédural existant + T06; pas de nouvelle souche.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "submerged_branches",
+    "label": "Branches immergées",
+    "state": "intégré ou existant conservé",
+    "implementation": "Branches existantes + T06; mêmes vrais volumes d’accrochage.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "stump",
+    "label": "Souche de rive",
+    "state": "hors panier / manque spécifique",
+    "implementation": "M07 facultatif non téléchargé : aucun rôle nouveau utile démontré.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "pier_deck",
+    "label": "Module de ponton en bois",
+    "state": "intégré ou existant conservé",
+    "implementation": "Ponton existant conservé, T05 partagé avec UV métriques; M04 non nécessaire.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "pier_pile",
+    "label": "Pieux et traverse de ponton",
+    "state": "intégré ou existant conservé",
+    "implementation": "Pieux existants T06, contact et géométrie conservés.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "path_patch",
+    "label": "Portion de sentier en terre",
+    "state": "intégré ou existant conservé",
+    "implementation": "Chemins mélangés à l’atlas au lieu de boîtes posées sur le terrain.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "bench",
+    "label": "Banc simple de rive",
+    "state": "hors panier / manque spécifique",
+    "implementation": "Pas de banc spécifique dans le dépôt; M05 facultatif non ajouté.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "sign_post",
+    "label": "Panneau de repère",
+    "state": "hors panier / manque spécifique",
+    "implementation": "Pas de panneau spécifique nécessaire; menus/postes gardent leur organisation.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "angler_proxy",
+    "label": "Pêcheur occupant un poste",
+    "state": "intégré ou existant conservé",
+    "implementation": "Pêcheur procédural du déblocage existant; événement et droits inchangés.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "floating_leaves",
+    "label": "Petites feuilles de surface",
+    "state": "rôle présent, représentation provisoire",
+    "implementation": "Nénuphars présents; pas de simulation de feuilles flottantes autonome.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "tex_ground_earth",
+    "label": "Terre sèche et humide",
+    "state": "intégré ou existant conservé",
+    "implementation": "T01 en atlas; détail proche limité par résolution1024 pour coût maîtrisé.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "tex_shore_mud",
+    "label": "Vase et bordure humide",
+    "state": "intégré ou existant conservé",
+    "implementation": "T02 en atlas issu du vrai contour/profondeurs.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "tex_sand_gravel",
+    "label": "Sable et gravier",
+    "state": "intégré ou existant conservé",
+    "implementation": "T04 aux postes bank/point; pas de plage inventée.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "tex_grass_ground",
+    "label": "Sol végétalisé",
+    "state": "intégré ou existant conservé",
+    "implementation": "T03 en atlas, échelle physique2m avant bake.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "tex_wood_weathered",
+    "label": "Bois patiné",
+    "state": "intégré ou existant conservé",
+    "implementation": "T05/T06 couleur512, normalesGL et spéculaire dérivée ARM linéaire; métal0.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "tex_rock",
+    "label": "Pierre naturelle",
+    "state": "intégré ou existant conservé",
+    "implementation": "Textures M01 partagées512; pas de T07 supplémentaire.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "water_normals",
+    "label": "Normales d’eau répétables",
+    "state": "intégré ou existant conservé",
+    "implementation": "Rides procédurales0.12.1 conservées, aucune normalmap externe.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "water_contact_mask",
+    "label": "Masque de contact eau/berge",
+    "state": "intégré ou existant conservé",
+    "implementation": "Atlas de contacts issu des placements réels, conservé.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "fx_ripple",
+    "label": "Atlas de rides locales",
+    "state": "intégré ou existant conservé",
+    "implementation": "Pools/événements d’eau0.12.1 conservés.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "fx_splash",
+    "label": "Atlas gouttes et petit splash",
+    "state": "intégré ou existant conservé",
+    "implementation": "Impacts existants conservés; F01 non nécessaire.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "fx_foam_local",
+    "label": "Mousse de contact locale",
+    "state": "intégré ou existant conservé",
+    "implementation": "Aucune mousse permanente ajoutée; perturbations de contacts existantes.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "sky_environment",
+    "label": "Ciel et environnement lumineux",
+    "state": "intégré ou existant conservé",
+    "implementation": "A01 : JPG AgX et cube128 préfiltré quality64 hors runtime, matin seulement.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "water_audio",
+    "label": "Familles de sons de contact d’eau",
+    "state": "intégré ou existant conservé",
+    "implementation": "Audio procédural existant; aucune ressource externe ajoutée.",
+    "physicalIPhone": "non exécuté"
+  },
+  {
+    "id": "spot_previews",
+    "label": "Captures in-game des six postes",
+    "state": "intégré ou existant conservé",
+    "implementation": "Six captures réelles576×360, fiches existantes et chargement lazy.",
+    "physicalIPhone": "non exécuté"
+  }
+]
