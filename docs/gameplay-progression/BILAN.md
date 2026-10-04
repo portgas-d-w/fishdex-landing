@@ -9,7 +9,7 @@
 |2|Atelier brouillon/appliquer/annuler, métrique et segments, connecteurs, transformation et aperçu physique|218 tests, 2 parcours navigateur|3e65672|
 |3|Capacités selon canne/composants, kit, ligne fixe, avertissements et réussites distinctes|219 tests, 6 prototypes, 4 contrôles et 6 cycles navigateur|a750f61|
 |4|Manuelle mouche/nymphe/toc, traîne/bateau, feeder local/courant et cycles des22 méthodes|222 tests/55 recettes naturelles simulées, 44 cycles forcés et 4 gestes navigateur|162dc64|
-|5|Prix d’entrée/achat explicite, secours sans don payant, recettes par maîtrise, plombs individuels, aperçu de méthode, aide, exercices fiables et réception fondée sur effort réel|227 tests + TS/build ; 12 cas dont44 cycles, 22 parcours UI, 6 parcours publics locaux sans QA|Commit de finition, voir historique et PUBLICATION.md|
+|5|Prix d’entrée/achat explicite, secours sans don payant, recettes par maîtrise, plombs individuels, aperçu de méthode, aide, exercices fiables et réception fondée sur effort réel|227 tests + TS/build ; 12 cas dont44 cycles, 22 parcours UI, 6 parcours publics locaux sans QA|b26029b|
 
 ## Ce qui change réellement
 
@@ -35,6 +35,6 @@ PERFORMANCES.json compare les octets et SHA du build à0.14.1. Aucune passe GPU/
 
 La plombée individuelle utilise une référence commune : une plombée hétérogène n’est pas livrée. Le rangement du fil libre sur bobine à la transition manuelle reste simplifié/instantané. Engagement de stock au lancer conservé plutôt qu’une allocation définitive à l’application du brouillon. Les petits jalons +4/+8/+12 orientent vers de vrais contenus existants ; ils ne créent pas de récompenses fictives.
 
-Les22 méthodes ont leur cycle contrôlé (voir MATRICE.md), mais cela ne valide ni réalisme biologique ni équilibre humain. Priorité suivante :jouer les11 apprentissages sur iPhone/Safari avec débutants, chronométrer préparation/attente/combat/réception et retoucher CURRICULUM_CONFIG/COMBAT_CONFIG seulement après ces relevés. Procédure exacte TEST_MOBILE.md. Captures dans docs/apercus/gameplay-progression, dont lot5-plombs-* et lot5-public-local. Publication et contrôle des fichiers dans PUBLICATION.md.
+Les22 méthodes ont leur cycle contrôlé (voir MATRICE.md), mais cela ne valide ni réalisme biologique ni équilibre humain. Priorité suivante :jouer les11 apprentissages sur iPhone/Safari avec débutants, chronométrer préparation/attente/combat/réception et retoucher CURRICULUM_CONFIG/COMBAT_CONFIG seulement après ces relevés. Procédure exacte TEST_MOBILE.md. Captures dans docs/apercus/gameplay-progression, dont lot5-plombs-* et lot5-public-local. Préproduction22/22 UI et6/6 prises/portraits passent sans QA ;262JS/CSS+33GLB+197illustrations+ressources carte conformes. Domaine public22/22 UI,6/6 prises/portraits sans jeton/QA et empreintes complètes conformes. Publication et contrôle des fichiers dans PUBLICATION.md.
 
 Modification préalable DEMARRER_AVEC_CODEX.md préservée hors commits. Sourcepack et environnement privés restent ignorés ; aucun nouveau service ou modèle.

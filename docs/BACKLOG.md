@@ -5,7 +5,7 @@
 - [x] Lot3 prototypes et tolérances.
 - [x] Lot4 contrôleurs/cycles22.
 - [x] Lot5 économie/ergonomie/mesures et contrôles locaux.
-- [ ] Préproduction et publication0.15.0.
+- [x] Préproduction et publication0.15.0 :22/22 UI +6/6 prises de chaque côté, empreintes complètes concordantes.
 - [ ] Équilibrage humain après essais physiques : cadence directe et gros combats restent hors cibles sur certains pilotes logiciels.
 
 ## Boutique par rayons — complément lot01, 4octobre2026

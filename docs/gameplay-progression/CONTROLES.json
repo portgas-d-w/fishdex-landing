@@ -1,0 +1,109 @@
+[
+  {
+    "verification": "Lot0 check",
+    "logLocal": ".check-lot0.log",
+    "résumé": [
+      "ℹ tests 214",
+      "ℹ pass 214",
+      "ℹ fail 0",
+      "✓ built in 2.08s"
+    ]
+  },
+  {
+    "verification": "Lot1 check",
+    "logLocal": ".check-lot1.log",
+    "résumé": [
+      "ℹ tests 216",
+      "ℹ pass 216",
+      "ℹ fail 0",
+      "✓ built in 776ms"
+    ]
+  },
+  {
+    "verification": "Lot2 check",
+    "logLocal": ".check-lot2.log",
+    "résumé": [
+      "ℹ tests 218",
+      "ℹ pass 218",
+      "ℹ fail 0",
+      "✓ built in 763ms"
+    ]
+  },
+  {
+    "verification": "Lot3 check",
+    "logLocal": ".check-lot3.log",
+    "résumé": [
+      "ℹ tests 219",
+      "ℹ pass 219",
+      "ℹ fail 0",
+      "✓ built in 4.72s"
+    ]
+  },
+  {
+    "verification": "Lot4 check",
+    "logLocal": ".check-lot4.log",
+    "résumé": [
+      "ℹ tests 222",
+      "ℹ pass 222",
+      "ℹ fail 0",
+      "✓ built in 4.46s"
+    ]
+  },
+  {
+    "verification": "Lot5 check",
+    "logLocal": ".check-lot5.log",
+    "résumé": [
+      "ℹ tests 227",
+      "ℹ pass 227",
+      "ℹ fail 0",
+      "✓ built in 953ms"
+    ]
+  },
+  {
+    "verification": "Contrôleurs",
+    "logLocal": ".browser-lot5.log",
+    "résumé": [
+      "  12 passed (4.3m)"
+    ]
+  },
+  {
+    "verification": "UI build local",
+    "logLocal": ".browser-lot5-build.log",
+    "résumé": [
+      "  22 passed (1.1m)"
+    ]
+  },
+  {
+    "verification": "Parcours publics locaux",
+    "logLocal": ".browser-lot5-smoke-final.log",
+    "résumé": [
+      "  6 passed (2.7m)"
+    ]
+  },
+  {
+    "verification": "UI préproduction",
+    "commande": "node --env-file=.env.local (Playwright progression config, GAME_URL revue)",
+    "résumé": [
+      "  22 passed (2.1m)"
+    ]
+  },
+  {
+    "verification": "Pêche préproduction",
+    "commande": "node --env-file=.env.local (Playwright smoke config, grep vraie prise|Nouvelle partie|conserve les favoris)",
+    "résumé": [
+      "  6 passed (3.0m)"
+    ]
+  },
+  {
+    "verification": "UI domaine public sans jeton ni QA",
+    "résumé": [
+      "  22 passed (1.6m)"
+    ]
+  },
+  {
+    "verification": "Pêche domaine public sans jeton ni QA",
+    "résumé": [
+      "  6 passed (3.3m)"
+    ]
+  }
+]
