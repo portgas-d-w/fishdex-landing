@@ -14,3 +14,7 @@ Contrôles : Node 24.15.0, npm ci (0 vulnérabilité), npm run check : TypeScrip
 Limites : aucun iPhone réel, Safari, clavier virtuel iOS ou performance GPU sur appareil contrôlé. Avancé de ce lot = droits/matériel/monnaie ; les souvenirs seront exercés au lot 02/04. Pas de nouveau benchmark eau demandé pour une refonte de menus ; avertissement de taille du bundle existant conservé. Recette 01-F : bouton de confirmation désactivé synchroniquement ; contrôles des transactions du moteur dans npm test, double toucher physique à tester sur appareil. Erreurs d’image disposent d’un libellé de remplacement. Catalogue futur demeure une documentation sans faux achat.
 
 À réutiliser : fonctions presentation, styles de section, dialogue de détail séparé, contrats de retour natifs. Lots 02 puis 03 puis 04 ; publication finale sur le projet confirmé fishdex-landing avec préproduction et vérification publique.
+
+## Clôture commune publiée
+
+Commit du lot : d4d2d95. Les quatre lots sont livrés en production 0.14.0 sur fishdex.fr après revue Vercel ; source applicative finale main d8bc998. Version et empreinte vérifiées sans token ni QA. Voir ../PUBLICATION.md et ../BILAN.md pour les IDs de déploiement, mesures, captures publiques identiques et résultats réels. Aucun blocage UI connu ; les essais physiques iPhone/Safari restent non exécutés. Prochaine tâche : essai propriétaire sur iPhone 14 Pro, gestes/clavier/rotation/audio/import-export et mesures FPS/chauffe, sans garantie issue de l’émulation.

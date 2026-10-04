@@ -3,7 +3,7 @@
 - [x] Lot 02 FishDex : identités cachées, routes éligibles, collection et contrôles.
 - [x] Lot 03 Progression/exploration.
 - [x] Lot 04 Carnet/aquarium/aide.
-- [ ] Parcours transversaux, préproduction puis publication autorisée.
+- [x] Parcours transversaux, préproduction puis publication autorisée 0.14.0 ; preuves docs/refonte-ui/PUBLICATION.md.
 - [ ] Essais physiques iPhone 14 Pro (touches, clavier, safe areas, fluidité).
 
 # Priorités du chantier — état du 4 octobre 2026

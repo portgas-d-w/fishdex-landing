@@ -1,0 +1,60 @@
+{
+  "url": "https://www.fishdex.fr",
+  "stage": "public-apres",
+  "date": "2026-10-04T03:04:29.231Z",
+  "fixtures": "Profils de revue locaux générés par recordCatch ; aucun gain utilisateur ni capture en conditions naturelles.",
+  "metrics": [
+    {
+      "format": "desktop",
+      "readyMs": 4475,
+      "resources": 100,
+      "decodedBytes": 6800798,
+      "models": [
+        "/models/environment/free-tree-birch.glb",
+        "/models/environment/free-reeds.glb",
+        "/models/environment/free-grass.glb",
+        "/models/environment/free-bush.glb",
+        "/models/environment/free-lily.glb",
+        "/models/environment/free-rock-alt.glb",
+        "/models/environment/free-rock.glb"
+      ],
+      "entry": "https://www.fishdex.fr/assets/index-DUJ0WJre.js"
+    },
+    {
+      "format": "desktop",
+      "advanced": false,
+      "errors": []
+    },
+    {
+      "format": "desktop",
+      "advanced": true,
+      "errors": []
+    },
+    {
+      "format": "mobile",
+      "readyMs": 3545.3000000044703,
+      "resources": 100,
+      "decodedBytes": 6800798,
+      "models": [
+        "/models/environment/free-tree-birch.glb",
+        "/models/environment/free-reeds.glb",
+        "/models/environment/free-grass.glb",
+        "/models/environment/free-bush.glb",
+        "/models/environment/free-lily.glb",
+        "/models/environment/free-rock-alt.glb",
+        "/models/environment/free-rock.glb"
+      ],
+      "entry": "https://www.fishdex.fr/assets/index-DUJ0WJre.js"
+    },
+    {
+      "format": "mobile",
+      "advanced": false,
+      "errors": []
+    },
+    {
+      "format": "mobile",
+      "advanced": true,
+      "errors": []
+    }
+  ]
+}

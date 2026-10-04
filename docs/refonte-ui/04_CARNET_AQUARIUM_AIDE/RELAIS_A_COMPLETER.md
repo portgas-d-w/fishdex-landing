@@ -25,3 +25,7 @@ Captures : avant, public-avant (profils vierge et trois spécimens/une favorite)
 Identité confirmée par API et .vercel : prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, team_5BFwQHD6LvVeOSgmKAj7QoTv, portgas-d-w/fishdex-landing, Vite/Node24, main. Revue puis production commune à réaliser maintenant ; preuves définitives dans ../PUBLICATION.md. Après publication : essais physiques iPhone 14 Pro, pas de fonctionnalité UI laissée bloquée connue.
 
 Correction finale : suspendre immédiatement le bassin reconstruit sous Mes poissons/Décorer, puis revalider sa visibilité après chargement ; aucun rendu forcé de préparation quand suspendu. Check 211/211 + TS/build et 4/4 scénarios aquarium/carnet passent ; compteur de frames stable sous le panneau après remplacement, reprise au retour. Correction de cycle de vie sans modification des individus ou des règles.
+
+## Clôture commune publiée
+
+Commit du lot : 4a1d9d7 + d8bc998 (cycle aquarium). Les quatre lots sont livrés en production 0.14.0 sur fishdex.fr après revue Vercel ; source applicative finale main d8bc998. Version et empreinte vérifiées sans token ni QA. Voir ../PUBLICATION.md et ../BILAN.md pour les IDs de déploiement, mesures, captures publiques identiques et résultats réels. Aucun blocage UI connu ; les essais physiques iPhone/Safari restent non exécutés. Prochaine tâche : essai propriétaire sur iPhone 14 Pro, gestes/clavier/rotation/audio/import-export et mesures FPS/chauffe, sans garantie issue de l’émulation.

@@ -15,3 +15,7 @@ Vérification : npm run check, 207/207 tests et TS/build passent. Deux nouveaux 
 Limites : iPhone réel, Safari, lecteur d’écran physique et clavier virtuel non testés. Tests de disposition Chromium, pas garanties de FPS GPU. Les notifications anciennes ne sont pas rejouées ; une indication Nouveau se limite volontairement à la session et au véritable événement. Publication autorisée finale à renseigner dans le bilan global.
 
 Prochain : lot 03 Progression/exploration ; réutiliser accessibleFishRoutes, presentation, titres natifs et événement fishdex-encounter-preview. Aucun shader, asset de carte ou source privée modifié.
+
+## Clôture commune publiée
+
+Commit du lot : df0f70e. Les quatre lots sont livrés en production 0.14.0 sur fishdex.fr après revue Vercel ; source applicative finale main d8bc998. Version et empreinte vérifiées sans token ni QA. Voir ../PUBLICATION.md et ../BILAN.md pour les IDs de déploiement, mesures, captures publiques identiques et résultats réels. Aucun blocage UI connu ; les essais physiques iPhone/Safari restent non exécutés. Prochaine tâche : essai propriétaire sur iPhone 14 Pro, gestes/clavier/rotation/audio/import-export et mesures FPS/chauffe, sans garantie issue de l’émulation.

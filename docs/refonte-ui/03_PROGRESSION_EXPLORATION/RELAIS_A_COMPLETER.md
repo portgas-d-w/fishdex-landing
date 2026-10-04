@@ -14,3 +14,7 @@ Captures : docs/apercus/refonte-ui/avant et 03-apres, mêmes profils/cadrages ; 
 
 ## Publication et suite
 Publication commune après les quatre lots, sur le projet autorisé après revue. Prochain lot : 04 Carnet/Aquarium/Aide. Réutiliser objectifs, destinations, onglets accessibles, dialogues et tokens ; conserver l’observation distincte des captures.
+
+## Clôture commune publiée
+
+Commit du lot : aa91fc8. Les quatre lots sont livrés en production 0.14.0 sur fishdex.fr après revue Vercel ; source applicative finale main d8bc998. Version et empreinte vérifiées sans token ni QA. Voir ../PUBLICATION.md et ../BILAN.md pour les IDs de déploiement, mesures, captures publiques identiques et résultats réels. Aucun blocage UI connu ; les essais physiques iPhone/Safari restent non exécutés. Prochaine tâche : essai propriétaire sur iPhone 14 Pro, gestes/clavier/rotation/audio/import-export et mesures FPS/chauffe, sans garantie issue de l’émulation.

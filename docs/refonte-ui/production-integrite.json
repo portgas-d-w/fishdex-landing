@@ -1,11 +1,11 @@
 {
-  "origin": "https://fishdex-landing-gfqhscoqy-portgas-d-ws-projects.vercel.app",
+  "origin": "https://www.fishdex.fr",
   "entry": "/assets/index-DUJ0WJre.js",
   "jsCss": 262,
   "models": 33,
   "images": 197,
   "allMatch": true,
   "commit": "d8bc99823a2283d95bf5f2873784685cefd9aed5",
-  "deployment": "dpl_8ZBRJHA4mxwpcn8wy1BkimFwCSFW",
+  "deployment": "dpl_CJfhWpktzjLXzSG2Rk7kQJumHXs7",
   "sha256": "210a5c15743e451225332e5639e6ad3c9b40ddfcadc2ed0cd0dbdc8ee51e9f17"
 }
