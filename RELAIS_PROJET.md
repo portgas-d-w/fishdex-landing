@@ -1,3 +1,7 @@
+## 4 octobre 2026 — Codex, gameplay progression Lot 0
+
+Spécification intégralement lue et archivée docs/gameplay-progression/SPECIFICATION.md ; audit22 IDs, contrôleurs/stock/v7/TEST et migration dans AUDIT_GAMEPLAY.md. npm ci zéro vulnérabilité ; check214/214 + TS/build. Base26f4041, branche codex/gameplay-progression-atelier ; modification DEM utilisateur préservée. Prochaine étape Lot1 niveaux OU quêtes, prêts, droits hérités. Aucun appareil physique testé.
+
 ## 4 octobre 2026 — Codex, boutique par rayons 0.14.1
 
 Demande complémentaire au lot01 : six catégories visuelles compactes, rayons/sous-rayons existants, deux colonnes mobile/trois bureau, aquarium distinct, recherche générale, fiche unique/quantités/total/comparaison et vrais filtres. 142 articles répartis sans changer IDs/prix/stock/droits/v7 ; 22 techniques/55recettes conservées. Sélecteurs purs game/shop, écran ui/shop, intégration structure/tackle/main ; assets/eau intacts. Aucun nouvel abonnement/dépendance/modèle.
