@@ -1,0 +1,29 @@
+{
+  "origin": "https://fishdex-landing-65vqbyenm-portgas-d-ws-projects.vercel.app",
+  "entry": "/assets/index-9cxLGp54.js",
+  "jsCss": 262,
+  "models": 33,
+  "images": 197,
+  "allMatch": true,
+  "deployment": "dpl_HQ2GxrZMEoHwm4BvV3R7DjDhoPGr",
+  "appCommit": "351ce649c9077b0f481a71f393b4db3f5b6adaea",
+  "files": 520,
+  "entries": [
+    {
+      "path": "assets/index-2WYB7jmK.css",
+      "bytes": 56136,
+      "sha256": "b2f17d33269d4500f78b46f2aee23351dd3c1f89de72e8be30d236b8dd5d30ec",
+      "hostedSha256": "b2f17d33269d4500f78b46f2aee23351dd3c1f89de72e8be30d236b8dd5d30ec",
+      "sameBytes": true
+    },
+    {
+      "path": "assets/index-9cxLGp54.js",
+      "bytes": 2306038,
+      "sha256": "4d297c9d6e6b8250bcc74edc30cb1058b8fad7edbe01d3b2218969d8176ad59b",
+      "hostedSha256": "4d297c9d6e6b8250bcc74edc30cb1058b8fad7edbe01d3b2218969d8176ad59b",
+      "sameBytes": true
+    }
+  ],
+  "browserScenarios": "14/14 desktop et Chromium mobile, sans API QA",
+  "rawProofLocal": ".migration/boutique-preview-integrite.json"
+}

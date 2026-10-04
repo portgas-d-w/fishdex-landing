@@ -8,7 +8,7 @@ La boutique commence par six rayons illustrés : Cannes, Moulinets, Fils, Montag
 
 Sous-rayons construits sur les vrais produits ; Montages finit par Autres composants. Appâts et leurres possède deux sous-rayons et un seul sélecteur de familles lorsqu’une sélection le justifie. Pagination de 24 cartes ; images différées, aucune scène supplémentaire. Carte entière interactive : illustration, nom, bénéfice court, prix/lot, possession/stock/équipement/verrou ; aucun trio de boutons redondants.
 
-Fiche : utilité/compatibilité, quantité et achat en premier ; descriptions/compromis/statistiques repliés ensuite. Comparaison explicite du régime des appâts sans promesse de prise.  méthodes issues des 22 techniques et des emplacements effectivement fournis par `slotsFor`, comparaison des valeurs existantes avec le composant actuellement choisi lorsque pertinente. Prix élevé ne constitue pas une recommandation universelle. Filtre Compatible avec ma canne = technique/recette/emplacement, distinct du verrou de progression et du solde. Conditions issues de `itemCondition`/`unlockReason` ; pas de promo ou d’urgence inventée.
+Fiche : utilité/compatibilité, quantité et achat en premier ; descriptions/compromis/statistiques repliés ensuite. Comparaison explicite du régime des appâts sans promesse de prise. Méthodes issues des 22 techniques et des emplacements effectivement fournis par `slotsFor`, comparaison des valeurs existantes avec le composant actuellement choisi lorsque pertinente. Prix élevé ne constitue pas une recommandation universelle. Filtre Compatible avec ma canne = technique/recette/emplacement, distinct du verrou de progression et du solde. Conditions issues de `itemCondition`/`unlockReason` ; pas de promo ou d’urgence inventée.
 
 Lots entre 1 et 20 selon la limite existante : quantité vendue, coût total et confirmation explicite. `purchase`/`purchaseComponent` restent les seuls services de transaction ; réservations, consommation/casse, secours, prix, droits et v7 intacts. Achat n’équipe pas ; fiche de canne possédée offre un équipement explicite via `equipRod`. Bouton de confirmation bloqué synchroniquement pour empêcher une double transaction. Aucun ajout au schéma de sauvegarde.
 
@@ -31,13 +31,13 @@ Playwright : 14/14 boutique après réparation des contrôles conservés dans un
 
 Dispositions : 320×740,390×844,430×932,844×390 et1440×900 sans débordement de boutique ; deux colonnes étroites/trois au bureau. Erreurs vides, quantité0/non entière, argent insuffisant, incompatible et verrouillage distincts contrôlés. Aquarium n’affiche que deux décors, achat revient au panneau d’origine sans changer journal/favoris. Images et fiches consultées visuellement sur les captures.
 
-Captures : `docs/apercus/boutique-rayons/avant` (version publique0.14.0), `apres` et `controle` ; retours Matériel dans `docs/apercus/refonte-ui/boutique-controles`. Les historiques des quatre lots précédents sont conservés. Avant/après = profils de navigateur isolés, pas les données du propriétaire.
+Captures : `docs/apercus/boutique-rayons/avant` (version publique0.14.0), `apres` (préproduction finale puis domaine public) et `controle` ; retours Matériel dans `docs/apercus/refonte-ui/boutique-controles`. Les historiques des quatre lots précédents sont conservés. Avant/après = profils de navigateur isolés, pas les données du propriétaire.
 
 Pas d’essai physique iPhone/Safari, clavier virtuel, VoiceOver, gestes réels, chauffe ou FPS. Les dimensions Chromium sont des contrôles de disposition, pas une garantie sur téléphone. Avertissement de gros chunk Babylon déjà présent ; pas de nouveau benchmark 3D pour cette UI.
 
 ## Publication
 
-Identité confirmée le4octobre : prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, team_5BFwQHD6LvVeOSgmKAj7QoTv, portgas-d-ws-projects/fishdex-landing ; GitHub portgas-d-w/fishdex-landing, main, Vite, Node24. Branche de revue `codex/boutique-rayons`. Déploiement et contrôles hébergés seront consignés après exécution. Retour conservé vers main b975a67 ; aucune protection, domaine ni projet remplacé.
+Identité confirmée le4octobre : prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, team_5BFwQHD6LvVeOSgmKAj7QoTv, portgas-d-ws-projects/fishdex-landing ; GitHub portgas-d-w/fishdex-landing, main, Vite, Node24. Branche de revue `codex/boutique-rayons`. Revue finale READY dpl_HQ2GxrZMEoHwm4BvV3R7DjDhoPGr, https://fishdex-landing-65vqbyenm-portgas-d-ws-projects.vercel.app, application351ce649c9077b0f481a71f393b4db3f5b6adaea.14/14scénarios hébergés passent (1,1min), sans API QA.262JS/CSS,33GLBpoissons,197illustrations et carte/décor correspondent au dist. Entrée /assets/index-9cxLGp54.js, SHA2564d297c9d6e6b8250bcc74edc30cb1058b8fad7edbe01d3b2218969d8176ad59b. Preuve : boutique-rayons-preview-integrite.json. Publication sur main après cette validation. Tag archive/au-fil-de-leau-before-boutique-2026-10-04 conservé sur b975a67 ; aucune protection, domaine ni projet remplacé.
 
 ## Essayer sur téléphone
 
@@ -45,4 +45,4 @@ Ouvrir fishdex.fr→Menu→Boutique. Choisir un des six rayons ; Montages→Flot
 
 Prochaine tâche Claude : tests tactiles iPhone, notamment champ quantité/clavier, retour/focus/rotation et relecture des compromis. Ajouter un futur produit via le catalogue réel, puis vérifier son rayon ; ne pas reclasser une ligne générique comme tresse ou fluoro sans données ni effets correspondants.
 
-Coût mesuré du build final : entréeJS2 306 038octets contre2 295 424 (10 614octets,0,46 %),gzip573,46Ko contre570,91 ; CSS56 136octets/gzip11,17Ko. Aucun nouveau modèle ou texture ;24cartes au maximum avant Voir la suite. Aucune mesure FPS/appareil tirée de ces poids.
+Coût mesuré du build final : entréeJS2 306 038octets contre2 295 424 (10 614octets,0,46 %),gzip573,46Ko contre570,91 ; CSS56 136octets/gzip11,17Ko. Aucun nouveau modèle ou texture ;24cartes au maximum avant Voir la suite. Aucune mesure FPS/appareil tirée de ces poids. Commits : d1c5348 (rayons) et351ce64 (fiche à informations essentielles en premier) ; clôtures de preuves ultérieures sans changement applicatif.

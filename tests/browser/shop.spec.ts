@@ -7,6 +7,7 @@ const rich=()=>{const s=emptySave();s.coins=500;s.xp=10000;return s;};
 async function boot(page:Page,save=emptySave()){
  await page.addInitScript(s=>{localStorage.setItem('au-fil-de-leau.gestures.v3','3');if(!localStorage.getItem('au-fil-de-leau.save.v1'))localStorage.setItem('au-fil-de-leau.save.v1',JSON.stringify(s));},save);
  await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');
+ if(process.env.GAME_URL)expect(await page.evaluate(()=>'__fishingQA' in window)).toBe(false);
 }
 async function product(page:Page,id:string){await page.locator('#shop-query').fill(SHOP_PRODUCTS.find(p=>p.id===id)!.name);await page.locator(`[data-shop-product="${id}"]`).click();}
 test.beforeEach(async({context})=>{const token=process.env.VERCEL_OIDC_TOKEN;if(token&&process.env.GAME_URL){const origin=new URL(process.env.GAME_URL).origin;await context.route(`${origin}/**`,route=>route.continue({headers:{...route.request().headers(),'x-vercel-trusted-oidc-idp-token':token}}));}});
