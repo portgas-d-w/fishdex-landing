@@ -1,3 +1,4 @@
+import {descentFactor} from './rig-layout.ts';
 import {component,type RigConfig} from './rig.ts';
 import {techniqueFor,TECHNIQUE_CONFIG} from './techniques.ts';
 import type {WaterPoint} from './casting.ts';
@@ -16,7 +17,7 @@ export function recipeMechanics(c:RigConfig) {
   const terminalHeight=id==='drop_shot'?.55:id==='tokyo'?.25:id==='chod'?.2:id==='ronnie'?.12:['ned','neko'].includes(id)?.08:bait?.buoyancy==='float'&&c.components.hair?.15:bait?.buoyancy==='balanced'?.04:0;
   const sink=id==='weightless'||id==='wacky'?.14:id==='neko'?.34:id==='ned'?.42:id==='split_shot'?.3:id==='jig_trailer'?.55:.18+(r?.mass??bait?.mass??1)*.035;
   const pva=id==='pva_solide'?TECHNIQUE_CONFIG.pvaSolidDissolve:id==='pva_filet'?TECHNIQUE_CONFIG.pvaMeshDissolve:0;
-  return {sliding,separated,antiTangle,shielded,autoHook,terminalHeight,sink,pva,
+  return {sliding,separated,antiTangle,shielded,autoHook,terminalHeight:c.positions?.hair?.metres??terminalHeight,sink:sink*descentFactor(c),pva,
     snagFactor:shielded?.35:separated?.7:1,tangleFactor:antiTangle?.15:separated?.45:1,
     // A bolting presentation still needs tension and an adequate terminal mass.
     boltMass:autoHook?(id==='surface_controleur'?(component(c.components.float??'')?.integrated??0)+2:r?.mass??0):0,
@@ -37,7 +38,7 @@ export function stepPresentation(c:RigConfig,s:PresentationState,i:PresentationI
   s.noise=Math.max(0,s.noise-dt/TECHNIQUE_CONFIG.noiseDecay);
   s.animation=Math.max(0,s.animation-dt*.5);
   s.recentMotion=i.reelSpeed>0||s.animation>.015?1.8:Math.max(0,s.recentMotion-dt);
-  s.contact=clamp(s.contact+dt*(i.reelSpeed*(m.sliding?.65:.8)+i.lift*.16-(m.sliding?.1:.08)-Math.abs(i.wind)*.06),0,1);
+  s.contact=clamp(s.contact+dt*(i.reelSpeed*(m.sliding?.65:.8)+i.lift*.16-(m.sliding?.1:.08)*(1+(c.leaderLength??.6)*.15)-Math.abs(i.wind)*.06),0,1);
   const dissolving=s.pvaRemaining>0;
   s.pvaRemaining=Math.max(0,s.pvaRemaining-dt);
   s.feederRemaining=Math.max(0,s.feederRemaining-dt);
@@ -49,7 +50,7 @@ export function stepPresentation(c:RigConfig,s:PresentationState,i:PresentationI
   else s.terminalAngle=m.standUp?-Math.PI/2:0;
   let desired=clamp(c.depth,0,i.waterDepth),speed=m.sink,activity=1;
   const moving=['retrieve','vertical','troll','fly'].includes(t.engine);
-  if(t.engine==='fixed') {speed=(c.distribution==='spread'?.28:c.distribution==='touch'?.42:.65)*Math.max(.4,(component(c.components.weight??'')?.mass??1.7)/1.7);}
+  if(t.engine==='fixed') {speed=(c.distribution==='spread'?.28:c.distribution==='touch'?.42:.65)*Math.max(.4,(component(c.components.weight??'')?.mass??1.7)/1.7)*descentFactor(c);}
   if(c.recipe==='waggler_coulissant')speed*=1.4;
   if(t.engine==='bottom'||t.engine==='feeder')desired=i.waterDepth-m.terminalHeight;
   if(t.engine==='surface'||c.recipe==='topwater'||c.recipe==='seche') {desired=.03;speed=.8;activity=Math.max(.08,1-s.noise);}

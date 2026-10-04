@@ -1,3 +1,7 @@
+## 4 octobre 2026 — Codex, gameplay progression Lot 2
+
+Atelier brouillon/appliquer/annuler, toutes pièces compatibles en stock, raccord guidé, transformation de recette et dépendances explicites. Positions métriques/segments v7 et graphe actif ; déplacement plombée agit dans stepPresentation et aperçu partagé. Réglage fin/tap alternatif/zoom de lecture. Stock reste référencé, engagement atomique au lancer selon modèle existant ; aucune copie ou achat silencieux. Check218/218 + TS/build ; navigateur2/2 application/annulation/reload/zoom et stock390×844/bureau. Captures lot2 corrigées après inspection (hauteur excessive du zoom réduite). Prochaine étape Lot3 capacités/retours/tolérances ; drag physique iPhone non exécuté.
+
 ## 4 octobre 2026 — Codex, gameplay progression Lot 1
 
 Familles11/paliers1–150, XP cumulée sans réduction des anciens niveaux, niveau OU quête, variantes par réussites distinctes, progression/boutique raccordées. Curriculum v1 additif à v7, accès enregistrés conservés, prêt éphémère (aucune clé normale remplacée), exercices événementiels cumulables et récompense unique. Captures/photos prêt hors carnet normal. Check216/216 + TS/build ; navigateur2/2 bureau et390×844 : prêt/retour et carnet normal ; captures docs/apercus/gameplay-progression/lot1-*.png. Prochaine étape Lot2 brouillon/positions métriques ; les objectifs manual/kit/deux dépôts restent à contrôler avec leurs gestes aux Lots3/4. Pas de test iPhone physique.
