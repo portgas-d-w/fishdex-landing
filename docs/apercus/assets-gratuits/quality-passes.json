@@ -308,7 +308,15 @@
               "sharedSources": 7
             }
           },
-          "decodedTextureEstimateBytes": 18000554.666666664
+          "decodedTextureEstimateBytes": 18000554.666666664,
+          "containerTexturesInventory": {
+            "count": 5,
+            "width": 512,
+            "height": 512,
+            "estimatedBytes": 6990506.666666667,
+            "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+          },
+          "decodedTexturesEstimateBytes": null
         },
         {
           "quality": "standard",
@@ -610,7 +618,15 @@
               "sharedSources": 7
             }
           },
-          "decodedTextureEstimateBytes": 18262698.666666664
+          "decodedTextureEstimateBytes": 18262698.666666664,
+          "containerTexturesInventory": {
+            "count": 5,
+            "width": 512,
+            "height": 512,
+            "estimatedBytes": 6990506.666666667,
+            "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+          },
+          "decodedTexturesEstimateBytes": null
         },
         {
           "quality": "high",
@@ -912,7 +928,15 @@
               "sharedSources": 7
             }
           },
-          "decodedTextureEstimateBytes": 19311274.666666664
+          "decodedTextureEstimateBytes": 19311274.666666664,
+          "containerTexturesInventory": {
+            "count": 5,
+            "width": 512,
+            "height": 512,
+            "estimatedBytes": 6990506.666666667,
+            "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+          },
+          "decodedTexturesEstimateBytes": null
         }
       ]
     },
@@ -1223,7 +1247,15 @@
               "sharedSources": 7
             }
           },
-          "decodedTextureEstimateBytes": 18000554.666666664
+          "decodedTextureEstimateBytes": 18000554.666666664,
+          "containerTexturesInventory": {
+            "count": 5,
+            "width": 512,
+            "height": 512,
+            "estimatedBytes": 6990506.666666667,
+            "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+          },
+          "decodedTexturesEstimateBytes": null
         },
         {
           "quality": "standard",
@@ -1525,7 +1557,15 @@
               "sharedSources": 7
             }
           },
-          "decodedTextureEstimateBytes": 18262698.666666664
+          "decodedTextureEstimateBytes": 18262698.666666664,
+          "containerTexturesInventory": {
+            "count": 5,
+            "width": 512,
+            "height": 512,
+            "estimatedBytes": 6990506.666666667,
+            "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+          },
+          "decodedTexturesEstimateBytes": null
         },
         {
           "quality": "high",
@@ -1827,7 +1867,15 @@
               "sharedSources": 7
             }
           },
-          "decodedTextureEstimateBytes": 19311274.666666664
+          "decodedTextureEstimateBytes": 19311274.666666664,
+          "containerTexturesInventory": {
+            "count": 5,
+            "width": 512,
+            "height": 512,
+            "estimatedBytes": 6990506.666666667,
+            "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+          },
+          "decodedTexturesEstimateBytes": null
         }
       ]
     }

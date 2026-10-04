@@ -424,7 +424,7 @@
           }
         },
         "visibleTriangles": 18680,
-        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "decodedTexturesEstimateBytes": 25253205.333333332,
         "seconds": 2.9832999999970196,
         "frames": 90,
         "fps": 30.16793483729089,
@@ -439,7 +439,15 @@
           0,
           0.10000018576048841,
           5.499999683810435
-        ]
+        ],
+        "decodedSceneTexturesEstimateBytes": 18262698.666666664,
+        "containerTexturesInventory": {
+          "count": 5,
+          "width": 512,
+          "height": 512,
+          "estimatedBytes": 6990506.666666667,
+          "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+        }
       },
       {
         "post": "cove",
@@ -858,7 +866,7 @@
           }
         },
         "visibleTriangles": 23536,
-        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "decodedTexturesEstimateBytes": 25253205.333333332,
         "seconds": 3.0085999999940394,
         "frames": 91,
         "fps": 30.246626337891474,
@@ -873,7 +881,15 @@
           -41.95733414200834,
           0.09999975100394831,
           15.727768948074015
-        ]
+        ],
+        "decodedSceneTexturesEstimateBytes": 18262698.666666664,
+        "containerTexturesInventory": {
+          "count": 5,
+          "width": 512,
+          "height": 512,
+          "estimatedBytes": 6990506.666666667,
+          "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+        }
       },
       {
         "post": "bank",
@@ -1292,7 +1308,7 @@
           }
         },
         "visibleTriangles": 17246,
-        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "decodedTexturesEstimateBytes": 25253205.333333332,
         "seconds": 3.01089999999851,
         "frames": 91,
         "fps": 30.22352120629879,
@@ -1307,7 +1323,15 @@
           45.01359685930365,
           0.09999975100394831,
           21.942303818582495
-        ]
+        ],
+        "decodedSceneTexturesEstimateBytes": 18262698.666666664,
+        "containerTexturesInventory": {
+          "count": 5,
+          "width": 512,
+          "height": 512,
+          "estimatedBytes": 6990506.666666667,
+          "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+        }
       },
       {
         "post": "reed-bank",
@@ -1726,7 +1750,7 @@
           }
         },
         "visibleTriangles": 24526,
-        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "decodedTexturesEstimateBytes": 25253205.333333332,
         "seconds": 2.9782999999970197,
         "frames": 90,
         "fps": 30.21858106976801,
@@ -1741,7 +1765,15 @@
           -46.52334420105335,
           0.10000062051703029,
           59.86011687136178
-        ]
+        ],
+        "decodedSceneTexturesEstimateBytes": 18262698.666666664,
+        "containerTexturesInventory": {
+          "count": 5,
+          "width": 512,
+          "height": 512,
+          "estimatedBytes": 6990506.666666667,
+          "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+        }
       },
       {
         "post": "point",
@@ -2160,7 +2192,7 @@
           }
         },
         "visibleTriangles": 17528,
-        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "decodedTexturesEstimateBytes": 25253205.333333332,
         "seconds": 2.99860000000149,
         "frames": 90,
         "fps": 30.014006536368733,
@@ -2175,7 +2207,15 @@
           19.573396289300273,
           0.09999975100394831,
           73.14119579628837
-        ]
+        ],
+        "decodedSceneTexturesEstimateBytes": 18262698.666666664,
+        "containerTexturesInventory": {
+          "count": 5,
+          "width": 512,
+          "height": 512,
+          "estimatedBytes": 6990506.666666667,
+          "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+        }
       },
       {
         "post": "timber",
@@ -2594,7 +2634,7 @@
           }
         },
         "visibleTriangles": 23414,
-        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "decodedTexturesEstimateBytes": 25253205.333333332,
         "seconds": 3.00620000000298,
         "frames": 91,
         "fps": 30.270773734252476,
@@ -2609,7 +2649,15 @@
           49.68867930778172,
           0.10000018576048753,
           53.21900261564824
-        ]
+        ],
+        "decodedSceneTexturesEstimateBytes": 18262698.666666664,
+        "containerTexturesInventory": {
+          "count": 5,
+          "width": 512,
+          "height": 512,
+          "estimatedBytes": 6990506.666666667,
+          "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+        }
       }
     ],
     "transfer": [
@@ -3173,7 +3221,7 @@
           }
         },
         "visibleTriangles": 30648,
-        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "decodedTexturesEstimateBytes": 25253205.333333332,
         "seconds": 2.9498000000044704,
         "frames": 65,
         "fps": 22.0353922299483,
@@ -3188,7 +3236,15 @@
           0,
           0.10000018576048841,
           5.499999683810435
-        ]
+        ],
+        "decodedSceneTexturesEstimateBytes": 18262698.666666664,
+        "containerTexturesInventory": {
+          "count": 5,
+          "width": 512,
+          "height": 512,
+          "estimatedBytes": 6990506.666666667,
+          "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+        }
       },
       {
         "post": "cove",
@@ -3607,7 +3663,7 @@
           }
         },
         "visibleTriangles": 32370,
-        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "decodedTexturesEstimateBytes": 25253205.333333332,
         "seconds": 2.97839999999851,
         "frames": 72,
         "fps": 24.174053182929097,
@@ -3622,7 +3678,15 @@
           -41.95733414200834,
           0.09999975100394831,
           15.727768948074015
-        ]
+        ],
+        "decodedSceneTexturesEstimateBytes": 18262698.666666664,
+        "containerTexturesInventory": {
+          "count": 5,
+          "width": 512,
+          "height": 512,
+          "estimatedBytes": 6990506.666666667,
+          "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+        }
       },
       {
         "post": "bank",
@@ -4041,7 +4105,7 @@
           }
         },
         "visibleTriangles": 31850,
-        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "decodedTexturesEstimateBytes": 25253205.333333332,
         "seconds": 2.9830999999940397,
         "frames": 70,
         "fps": 23.46552244314299,
@@ -4056,7 +4120,15 @@
           45.01359685930365,
           0.09999975100394831,
           21.942303818582495
-        ]
+        ],
+        "decodedSceneTexturesEstimateBytes": 18262698.666666664,
+        "containerTexturesInventory": {
+          "count": 5,
+          "width": 512,
+          "height": 512,
+          "estimatedBytes": 6990506.666666667,
+          "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+        }
       },
       {
         "post": "reed-bank",
@@ -4475,7 +4547,7 @@
           }
         },
         "visibleTriangles": 35506,
-        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "decodedTexturesEstimateBytes": 25253205.333333332,
         "seconds": 2.9884000000059605,
         "frames": 72,
         "fps": 24.093160219467403,
@@ -4490,7 +4562,15 @@
           -46.52334420105335,
           0.10000062051703029,
           59.86011687136178
-        ]
+        ],
+        "decodedSceneTexturesEstimateBytes": 18262698.666666664,
+        "containerTexturesInventory": {
+          "count": 5,
+          "width": 512,
+          "height": 512,
+          "estimatedBytes": 6990506.666666667,
+          "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+        }
       },
       {
         "post": "point",
@@ -4909,7 +4989,7 @@
           }
         },
         "visibleTriangles": 28590,
-        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "decodedTexturesEstimateBytes": 25253205.333333332,
         "seconds": 2.9735,
         "frames": 73,
         "fps": 24.550193374810828,
@@ -4924,7 +5004,15 @@
           19.573396289300273,
           0.09999975100394831,
           73.14119579628837
-        ]
+        ],
+        "decodedSceneTexturesEstimateBytes": 18262698.666666664,
+        "containerTexturesInventory": {
+          "count": 5,
+          "width": 512,
+          "height": 512,
+          "estimatedBytes": 6990506.666666667,
+          "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+        }
       },
       {
         "post": "timber",
@@ -5343,7 +5431,7 @@
           }
         },
         "visibleTriangles": 37780,
-        "decodedTexturesEstimateBytes": 18262698.666666664,
+        "decodedTexturesEstimateBytes": 25253205.333333332,
         "seconds": 3.01420000000298,
         "frames": 69,
         "fps": 22.89164620792641,
@@ -5358,7 +5446,15 @@
           49.68867930778172,
           0.10000018576048753,
           53.21900261564824
-        ]
+        ],
+        "decodedSceneTexturesEstimateBytes": 18262698.666666664,
+        "containerTexturesInventory": {
+          "count": 5,
+          "width": 512,
+          "height": 512,
+          "estimatedBytes": 6990506.666666667,
+          "reason": "AssetContainer images absent from Scene.textures; distinct shared PNG inventory, all loaded families confirmed"
+        }
       }
     ],
     "transfer": [

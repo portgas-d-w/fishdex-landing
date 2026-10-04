@@ -15,7 +15,7 @@ Résolution réelle 390×844.
 | point | 30.13 | 30.01 | 33.30 | 34.50 | 93 | 17528 |
 | timber | 30.11 | 30.27 | 33.40 | 34.30 | 110 | 23414 |
 
-Maillages totaux : 431→798; textures : 6→13. Estimation RGBA8+mips, cubes×6 : 1.42→17.42Mio, includes scènes/pools et leurs cibles, approximation des formats. Ce n’est ni une mesure VRAM ni la mémoire du processus. Les triangles sont ceux des meshes actifs; instancing et passes RTT ne sont pas additionnés à ce chiffre. Draw calls et CPU accessibles comprennent les passes et varient avec la cadence du miroir; ne pas prendre une dernière frame pour une moyenne. Dix transitions et remplacement/restauration ont conservé exactement le nombre de meshes, textures, matériaux et moteurs dans les tests. Zéro erreur de page ou HTTP≥400 dans les références finales.
+Maillages totaux : 431→798; textures : 6→13 dans Scene.textures, plus5 images partagées des AssetContainers. Estimation RGBA8+mips, cubes×6 : 1.42→24.09Mio, inclut scène/pools/cibles et cinq images512² du registre ajoutées à l’estimation car absentes de Scene.textures, approximation des formats. Ce n’est ni une mesure VRAM ni la mémoire du processus. Les triangles sont ceux des meshes actifs; instancing et passes RTT ne sont pas additionnés à ce chiffre. Draw calls et CPU accessibles comprennent les passes et varient avec la cadence du miroir; ne pas prendre une dernière frame pour une moyenne. Dix transitions et remplacement/restauration ont conservé exactement le nombre de meshes, textures, matériaux et moteurs dans les tests. Zéro erreur de page ou HTTP≥400 dans les références finales.
 
 ## desktop — viewport 1440×900
 
@@ -30,7 +30,7 @@ Résolution réelle 1024×640.
 | point | 23.47 | 24.55 | 39.40 | 49.10 | 123 | 28590 |
 | timber | 22.65 | 22.89 | 44.50 | 51.70 | 155 | 37780 |
 
-Maillages totaux : 431→798; textures : 6→13. Estimation RGBA8+mips, cubes×6 : 1.42→17.42Mio, includes scènes/pools et leurs cibles, approximation des formats. Ce n’est ni une mesure VRAM ni la mémoire du processus. Les triangles sont ceux des meshes actifs; instancing et passes RTT ne sont pas additionnés à ce chiffre. Draw calls et CPU accessibles comprennent les passes et varient avec la cadence du miroir; ne pas prendre une dernière frame pour une moyenne. Dix transitions et remplacement/restauration ont conservé exactement le nombre de meshes, textures, matériaux et moteurs dans les tests. Zéro erreur de page ou HTTP≥400 dans les références finales.
+Maillages totaux : 431→798; textures : 6→13 dans Scene.textures, plus5 images partagées des AssetContainers. Estimation RGBA8+mips, cubes×6 : 1.42→24.09Mio, inclut scène/pools/cibles et cinq images512² du registre ajoutées à l’estimation car absentes de Scene.textures, approximation des formats. Ce n’est ni une mesure VRAM ni la mémoire du processus. Les triangles sont ceux des meshes actifs; instancing et passes RTT ne sont pas additionnés à ce chiffre. Draw calls et CPU accessibles comprennent les passes et varient avec la cadence du miroir; ne pas prendre une dernière frame pour une moyenne. Dix transitions et remplacement/restauration ont conservé exactement le nombre de meshes, textures, matériaux et moteurs dans les tests. Zéro erreur de page ou HTTP≥400 dans les références finales.
 
 ## Profils et passes séparées
 
