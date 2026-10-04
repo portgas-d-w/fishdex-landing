@@ -126,7 +126,9 @@ function saveNow() {
     storageWarningShown = true; toast('Sauvegarde locale impossible. Exportez votre carnet pour le conserver.');
   }
 }
-function openModal(id: string) { hub?.opened(id); game.release();document.dispatchEvent(new Event('fishing-input-reset'));release(); cancelGesture(); el('line-alert').hidden = true; overlayPaused = true; if (!el<HTMLDialogElement>(id).open) el<HTMLDialogElement>(id).showModal(); }
+const modalLayers:HTMLDialogElement[]=[];
+const managementLayers=new Set(['menu','preparation','rig-sheet','component-sheet','component-detail','research-sheet','shop','purchase-confirm','item-sheet','encyclopedia','species-sheet','progression','method-sheet','badge-sheet','map','locations','location-sheet','collection','help']);
+function openModal(id: string) { hub?.opened(id); game.release();document.dispatchEvent(new Event('fishing-input-reset'));release(); cancelGesture(); el('line-alert').hidden = true; overlayPaused = true;const dialog=el<HTMLDialogElement>(id);const parent=modalLayers.filter(d=>d.open&&d!==dialog).at(-1);if(dialog.open&&managementLayers.has(id)&&modalLayers.at(-1)!==dialog)dialog.close();if(!dialog.open)dialog.showModal();const index=modalLayers.indexOf(dialog);if(index>=0)modalLayers.splice(index,1);modalLayers.push(dialog);const back=dialog.querySelector<HTMLButtonElement>(`[data-close="${id}"]`);if(back){const labels:Record<string,string>={menu:'au menu',preparation:'au matériel','rig-sheet':'au montage','component-sheet':'aux pièces',shop:'à la boutique',encyclopedia:'au FishDex','species-sheet':'à la fiche',collection:'au carnet',progression:'à la progression',map:'à la carte',locations:'aux lieux','location-sheet':'au lieu',help:'à l’aide',caught:'à la rencontre'};back.textContent=id==='menu'?'Reprendre la pêche':parent?'Retour '+(labels[parent.id]??'à l’écran précédent'):'Retour à la pêche';} }
 function closeModal(id: string) { el<HTMLDialogElement>(id).close(); }
 let observationScreens:ReturnType<typeof installObservations>|undefined;
 function refreshCollection() {
@@ -421,6 +423,7 @@ el('journal-list').onclick = event => {
 el('favorite-catch').onclick = () => { if (!viewedSpecimen) return; const error = toggleFavorite(save, viewedSpecimen.id); if (error) toast(error); saveNow(); refreshCollection(); el('favorite-catch').textContent = save.favorites.includes(viewedSpecimen.id) ? 'Retirer des favoris' : 'Ajouter aux favoris'; };
 document.querySelectorAll<HTMLButtonElement>('[data-close]').forEach(button => button.onclick = () => closeModal(button.dataset.close!));
 document.querySelectorAll<HTMLDialogElement>('dialog').forEach(dialog => dialog.addEventListener('close', () => {
+  if(!dialog.open){const index=modalLayers.indexOf(dialog);if(index>=0)modalLayers.splice(index,1);}
   overlayPaused = !!document.querySelector('dialog[open]'); release();
   if (dialog.id === 'caught') { catchViewRequest++; preview?.hide(); viewedSpecimen = undefined; if (liveCatchView) { game.reset(); phaseChanged(); } if (el<HTMLDialogElement>('aquarium').open) { refreshAquariumControls(); void loadAquarium(); } }
   if (dialog.id === 'aquarium') { aquariumRequest++; aquarium?.dispose(); aquarium = undefined; }

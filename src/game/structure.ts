@@ -87,7 +87,7 @@ export const BADGE_RULES = [
     { id: 'lure', description: 'Réussir une prise au leurre.', target: 1, value: (s: SaveData) => s.journal.filter(f => f.method === 'lure').length, link: 'preparation' },
     { id: 'bottom', description: 'Réussir une prise au fond.', target: 1, value: (s: SaveData) => s.journal.filter(f => f.method === 'bottom').length, link: 'preparation' },
     { id: 'collector', description: 'Conserver dix rencontres dans le carnet.', target: 10, value: (s: SaveData) => s.total, link: 'journal' },
-    { id: 'record', description: 'Améliorer un record après la première capture.', target: 1, value: (s: SaveData) => s.journal.filter(f => f.reward.record > 0).length, link: 'journal' },
+    { id: 'record', description: 'Établir un record personnel de taille, première capture comprise.', target: 1, value: (s: SaveData) => s.journal.filter(f => f.reward.record > 0).length, link: 'journal' },
 ];
 export interface JournalFilter {
     species?: string;

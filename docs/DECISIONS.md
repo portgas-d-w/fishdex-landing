@@ -105,3 +105,7 @@ Le « oui » du propriétaire lance le cahier complet mobile/matériel. Un seul 
 | 2026-10-04 | Assets gratuits0.13 : CC0 ciblé, sources hors runtime, matériaux Standard mats et sol précalculé | Première passe PBR puis multi-lectures trop coûteuses sur SwiftShader; conserver palette naturelle et variantes proches utiles. |
 | 2026-10-04 | 18 feuillus proches au plus, source glTF partagée/instances gelées et proxies selon pixels | LOD effectif110/70px; silhouettes génériques provisoires, collisions/habitats et IDs inchangés. |
 | 2026-10-04 | HDR128 préfiltré hors jeu, matin uniquement; six previews in-game dans les fiches existantes | Pas de mélange HDR diurne au soir ni autre système de carte; mesures appareil restent à faire. |
+
+## 4 octobre 2026 — Refonte UI progression
+
+Objectif suivi facultatif dans v7, sans gains ni changement de règle ; conseils dérivés des seuils existants avec chemins OR explicites. Carte locale et destinations séparées ; embarcation = contexte du lac. Consultation sans déplacement, installation revalidée. Dialogues de gestion peuvent être remis au premier plan, sans redémarrer les scènes de capture/aquarium/observation.

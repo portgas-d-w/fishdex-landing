@@ -5,6 +5,11 @@ import {TECHNIQUES,techniqueById,defaultTechnique,type TechniqueId} from './tech
 import type { MethodId } from './specimens.ts';
 import type { SaveData } from './save.ts';
 export const PROGRESSION_CONFIG = {version:1,reedsLevel:3,precisionCatches:2,lureFirstCatch:1};
+export function postUnlockProgress(save:SaveData,id:PostId){
+ const level=levelFor(save.xp);if(id==='reed-bank')return [{label:'Niveau',value:level,target:PROGRESSION_CONFIG.reedsLevel},{label:'Prises au coup dans le cercle du ponton',value:save.progression.precision,target:PROGRESSION_CONFIG.precisionCatches}];
+ const rules:Partial<Record<PostId,[number,MethodId|'total',number]>>={point:[6,'lure',6],timber:[10,'lure',12],river:[4,'pole',3],deep:[10,'lure',8],boat:[6,'lure',6],estuary:[4,'total',8],pacific:[4,'total',8],managed:[4,'total',8],'cold-lake':[6,'total',16],american:[6,'total',16],asian:[6,'total',16]};
+ const rule=rules[id];if(!rule)return [];return [{label:'Niveau',value:level,target:rule[0]},{label:rule[1]==='total'?'Captures':rule[1]==='pole'?'Prises au coup':'Prises aux leurres',value:rule[1]==='total'?save.total:save.progression.mastery[rule[1]]??0,target:rule[2]}];
+}
 export interface Rights { methods:MethodId[]; posts:PostId[]; precision:number; initiation:boolean; mastery:Partial<Record<MethodId,number>>; legacy:boolean;techniques?:TechniqueId[];techniqueMastery?:Partial<Record<TechniqueId,number>> }
 export const initialRights = ():Rights => ({methods:['pole'],posts:['jetty','cove','bank'],precision:0,initiation:false,mastery:{},legacy:false});
 export const methodAccess = (save:SaveData,method:MethodId) => save.development?.kind==='sandbox'||save.progression.methods.includes(method);
@@ -26,7 +31,7 @@ export function refreshRights(save:SaveData) {
   if(p.methods.includes('lure')&&!p.techniques.includes('leurre'))p.techniques.push('leurre');
 }
 export const techniqueAccess=(s:SaveData,id:TechniqueId)=>s.development?.kind==='sandbox'||s.progression.techniques?.includes(id)===true;
-export const techniqueCondition=(s:SaveData,id:TechniqueId)=>techniqueAccess(s,id)?'':id==='leurre'?'Première prise + initiation aux leurres':`Niveau ${techniqueById(id).level} OU ${techniqueById(id).target} prises avec une pratique ${techniqueById(id).base==='pole'?'au coup':'de la même famille'} déjà ouverte.`;
+export const techniqueCondition=(s:SaveData,id:TechniqueId)=>techniqueAccess(s,id)?'':id==='leurre'?'Première prise + initiation aux leurres':`Niveau ${techniqueById(id).level} OU ${techniqueById(id).target} prises avec une pratique ${({pole:'au coup sans moulinet',float:'au flotteur',bottom:'au fond',lure:'aux leurres'})[techniqueById(id).base]} déjà ouverte.`;
 export function switchTechnique(save:SaveData,id:TechniqueId,recipe?:string):string {
   if(save.tackle.active&&!save.tackle.active.resolved)return 'Ramenez la ligne avant de changer de technique.';
   if(!techniqueAccess(save,id))return techniqueCondition(save,id);

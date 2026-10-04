@@ -57,3 +57,19 @@ test('Lot 01 : retours de fiche, recherche, réserve inchangée et dispositions 
     await page.screenshot({path:`docs/apercus/refonte-ui/01-apres/${info.project.name}-${width}-sac.png`});
   }
 });
+
+test('Lot 03 : objectif suivi, 22 techniques, carte locale et observation utile',async({page},info)=>{
+ await page.addInitScript(()=>localStorage.setItem('au-fil-de-leau.gestures.v3','3'));await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');
+ await openMenuPage(page,'progress-open');await expect(page.locator('#progress-view')).toContainText('Ma première capture');
+ await page.locator('[data-progress-tab="techniques"]').click();await expect(page.locator('[data-progress-technique]')).toHaveCount(22);
+ await page.locator('[data-follow-goal="tech:feeder"]').click();await page.locator('[data-progress-tab="path"]').click();await expect(page.locator('#progress-view .next-step').first()).toContainText('Feeder');
+ await page.reload();await expect(page.locator('body')).toHaveAttribute('data-ready','true');await openMenuPage(page,'progress-open');await expect(page.locator('#progress-view .next-step').first()).toContainText('Feeder');
+ await page.locator('[data-goal-unfollow]').click();await expect(page.locator('#progress-view .next-step').first()).toContainText('Ma première capture');
+ await page.locator('#progress-map').click();await expect(page.locator('#map [data-post]')).toHaveCount(6);await page.locator('[data-post="reed-bank"]').click();await expect(page.locator('#post-select')).toBeDisabled();await expect(page.locator('#post-sheet')).toContainText('Niveau 3 OU 2');
+ const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!));
+ await page.locator('#map-other').click();await page.locator('[data-location="running-river"]').click();await page.locator('[data-preview-post="river"]').click();await expect(page.locator('#map [data-post]')).toHaveCount(1);await expect(page.locator('#post-select')).toBeDisabled();
+ expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!).preparation.post)).toBe(before.preparation.post);
+ await page.screenshot({path:`docs/apercus/refonte-ui/03-apres/${info.project.name}-riviere-verrouillee.png`});
+ for(const id of ['map','location-sheet','locations','progression'])if(await page.locator(`#${id}`).isVisible())await page.locator(`[data-close="${id}"]`).click();
+ await openMenuPage(page,'observe-open');await expect(page.locator('#observation-destinations [data-preview-post]')).not.toHaveCount(0);await page.locator('#observation-destinations [data-preview-post]').first().click();await expect(page.locator('#map')).toBeVisible();
+});

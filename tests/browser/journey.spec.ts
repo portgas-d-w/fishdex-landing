@@ -3,7 +3,7 @@ import {test,expect,type Page} from '@playwright/test';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {castByGesture,timedCastGesture,chooseMethod,openMenuPage,holdMouseReel} from './helpers';
 import {oldV4} from '../support/legacy';
-const folder='docs/apercus/mobile-materiel/regression';
+const folder='docs/apercus/refonte-ui/03-apres/parcours';
 const snapshot=(page:Page)=>page.evaluate(()=>(window as any).__fishingQA.snapshot());
 async function boot(page:Page){await page.addInitScript(()=>{Math.random=()=>0;localStorage.setItem('au-fil-de-leau.gestures.v3','3');});await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');await page.evaluate(()=>(window as any).__fishingQA.pauseSimulation());}
 async function preciseCast(page:Page){await timedCastGesture(page,600,.5);await expect(page.locator('body')).toHaveAttribute('data-phase','casting');const {target}=await snapshot(page);expect(Math.hypot(target.x,target.z-3.2)).toBeLessThanOrEqual(1.2);}
@@ -13,7 +13,7 @@ test('Nouvelle partie, trois vues dans la même scène, carte, cercle et occupat
  await mkdir(folder,{recursive:true});const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await boot(page);
  const before=await snapshot(page);expect(before.method).toBe('pole');expect(before.rights.posts).toHaveLength(3);expect(before.hasReel).toBe(false);
  await page.waitForTimeout(500);await page.screenshot({path:`${folder}/after-${info.project.name}-lake.png`});
- await page.locator('#map-open').click();await expect(page.locator('#map [data-post]')).toHaveCount(15);await page.locator('#map [data-post="reed-bank"]').click();await expect(page.locator('#post-sheet')).toContainText('Niveau 3 OU 2');await expect(page.locator('#post-select')).toBeDisabled();await page.screenshot({path:`${folder}/${info.project.name}-map.png`});
+ await page.locator('#map-open').click();await expect(page.locator('#map [data-post]')).toHaveCount(6);await page.locator('#map [data-post="reed-bank"]').click();await expect(page.locator('#post-sheet')).toContainText('Niveau 3 OU 2');await expect(page.locator('#post-select')).toBeDisabled();await page.screenshot({path:`${folder}/${info.project.name}-map.png`});
  const cameras=[];
  for(const post of ['cove','bank','jetty','cove','bank','jetty']){
   await page.locator(`#map [data-post="${post}"]`).click();if((await snapshot(page)).post===post)continue;await page.locator('#post-select').click();const s=await snapshot(page);expect(s.post).toBe(post);expect(s.engines).toBe(before.engines);expect(s.sceneId).toBe(before.sceneId);expect(s.totalMeshes).toBe(before.totalMeshes);cameras.push(s.camera);await page.waitForTimeout(120);await page.screenshot({path:`${folder}/${info.project.name}-${post}.png`});await page.locator('#map-open').click();

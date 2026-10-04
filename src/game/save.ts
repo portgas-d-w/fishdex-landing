@@ -1,3 +1,4 @@
+import {validObjective} from './objectives.ts';
 import { initialRights, refreshRights, itemCondition, type Rights } from './progression.ts';
 import {ALL_POSTS as POSTS} from './posts.ts';
 import {TECHNIQUE_IDS,defaultTechnique,recipeById} from './techniques.ts';
@@ -26,6 +27,7 @@ export interface SaveData {
   legacyRecords: Partial<Record<SpeciesId, RecordEntry>>; journal: Specimen[]; favorites: string[];
   variants: Record<string, RecordEntry>; xp: number; coins: number; badges: string[];
   inventory: ItemId[]; equipped: ItemId;
+  ui?:{trackedObjective?:string};
   aquarium: { floor: 'sand' | 'gravel'; background: 'dawn' | 'night'; plants: boolean; rocks: boolean; light: 'warm' | 'cool' };
   settings: { sound: boolean; quality: 'eco' | 'high'; waterQuality?:'low'|'standard'|'high'; reelMode: 'hold'; combatMode:'manual'|'assisted';controls?:{side:'left'|'right';singleFinger:boolean;tension:boolean;hints:boolean} };
   preparation: { method: 'pole' | 'float' | 'lure' | 'bottom'; bait: 'worm' | 'lure'; location: 'willow-pond'|'running-river'|'deep-lake'|'light-boat'; post:import('./posts.ts').PostId };
@@ -108,6 +110,7 @@ export function parseSave(raw: string): SaveData {
   if(Array.isArray(data.favorites))data.favorites=data.favorites.filter(id=>{if(!historicalIds.has(String(id)))return true;history.favorites.push(String(id));return false;});
   history.favorites=[...new Set(history.favorites)];
   const result = emptySave();if(history.journal.length||Object.keys(history.records).length||Object.keys(history.legacyRecords).length)result.historical=history;
+  if(data.ui&&typeof data.ui==='object'&&validObjective(object(data.ui).trackedObjective))result.ui={trackedObjective:object(data.ui).trackedObjective as string};
   result.records = entries(data.records);
   if(data.version===7){if(!Array.isArray(data.observations)||data.observations.length>10000)throw Error('Carnet d’observation invalide');result.observations=data.observations.map(observation);if(new Set(result.observations.map(o=>o.id)).size!==result.observations.length)throw Error('Observation dupliquée');}
   result.total = Object.values(result.records).reduce((sum, r) => sum + (r?.count??0), 0);

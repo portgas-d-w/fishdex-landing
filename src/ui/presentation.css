@@ -29,3 +29,7 @@
 @media(max-width:350px){.modal .dex-grid{grid-template-columns:1fr 1fr}.dex-picture img{width:100%}.dex-tile{padding:8px}}
 @media(max-width:640px){.modal:not(.catch-modal){width:100%;height:100dvh;max-height:100dvh;max-width:100%;border-radius:0;border:0;padding:calc(16px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom))}.modal-header{top:calc(-16px - env(safe-area-inset-top));padding-top:calc(12px + env(safe-area-inset-top));margin-top:calc(-16px - env(safe-area-inset-top))}.content-grid{grid-template-columns:1fr}.rod-workshop{max-width:100%;height:330px}.rod-pin{font-size:13px!important;max-width:47%}.rod-pin small{overflow-wrap:anywhere}.work-tabs button{padding:10px 8px}.filters{gap:12px}}
 @media(min-width:641px){.equipment-facts{grid-template-columns:repeat(3,1fr)}}
+
+.modal-header>div,.modal-header>h2{min-width:0;flex:1}.modal-header .close{max-width:48%;white-space:normal;line-height:1.3}.goal-path{display:grid;gap:6px;margin:12px 0}.context-map{padding:24px;background:var(--fd-specimen-bg);border:1px solid var(--fd-border);border-radius:12px}.context-map button{display:block;margin:12px 0;width:100%}#menu-next-step{width:100%;text-align:left;margin-top:16px;color:var(--fd-text);background:var(--fd-accent-soft)}#menu-next-step small{display:block;margin-top:8px;color:var(--fd-text-muted)}
+
+#player-progress{padding:12px;gap:6px}#player-progress strong{font-size:20px}#player-progress progress{height:6px;margin:6px 0}.next-step h3{font-size:20px;margin:8px 0}
