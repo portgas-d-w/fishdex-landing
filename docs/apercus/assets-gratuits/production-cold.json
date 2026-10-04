@@ -1,0 +1,1475 @@
+{
+  "date": "2026-10-04T01:06:50.259Z",
+  "url": "https://www.fishdex.fr",
+  "device": "Windows Chromium SwiftShader; aucun appareil physique",
+  "rows": [
+    {
+      "name": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "coldContext": true,
+      "throttling": false,
+      "finalUrl": "https://www.fishdex.fr/",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "navigation": [
+        {
+          "transferSize": 1572,
+          "encodedBodySize": 1272,
+          "decodedBodySize": 4644,
+          "domContentLoaded": 665
+        }
+      ],
+      "resources": [
+        {
+          "name": "/assets/index-D4jWlxh2.js",
+          "transferSize": 557177,
+          "encodedBodySize": 556877,
+          "decodedBodySize": 2250662,
+          "duration": 250
+        },
+        {
+          "name": "/assets/math.scalar.functions-D-i-XBaP.js",
+          "transferSize": 1383,
+          "encodedBodySize": 1083,
+          "decodedBodySize": 2190,
+          "duration": 129.29999999701977
+        },
+        {
+          "name": "/assets/engineStore-Bn2tApal.js",
+          "transferSize": 1570,
+          "encodedBodySize": 1270,
+          "decodedBodySize": 3512,
+          "duration": 251.10000000149012
+        },
+        {
+          "name": "/assets/logger-CuBYPcDK.js",
+          "transferSize": 1144,
+          "encodedBodySize": 844,
+          "decodedBodySize": 1881,
+          "duration": 55.29999999701977
+        },
+        {
+          "name": "/assets/internalTexture-ziUdfT1O.js",
+          "transferSize": 2429,
+          "encodedBodySize": 2129,
+          "decodedBodySize": 7747,
+          "duration": 139.59999999403954
+        },
+        {
+          "name": "/assets/performanceConfigurator-UtxC_Odd.js",
+          "transferSize": 800,
+          "encodedBodySize": 500,
+          "decodedBodySize": 500,
+          "duration": 55
+        },
+        {
+          "name": "/assets/shaderStore-D-XQlhUT.js",
+          "transferSize": 769,
+          "encodedBodySize": 469,
+          "decodedBodySize": 469,
+          "duration": 89.10000000149012
+        },
+        {
+          "name": "/assets/tools.functions-Bxv5dhZ_.js",
+          "transferSize": 5281,
+          "encodedBodySize": 4981,
+          "decodedBodySize": 13495,
+          "duration": 89.80000000447035
+        },
+        {
+          "name": "/assets/domManagement-BqltO0ki.js",
+          "transferSize": 556,
+          "encodedBodySize": 256,
+          "decodedBodySize": 256,
+          "duration": 186.80000000447035
+        },
+        {
+          "name": "/assets/abstractEngine.pure-rwLfew4P.js",
+          "transferSize": 15774,
+          "encodedBodySize": 15474,
+          "decodedBodySize": 59841,
+          "duration": 212
+        },
+        {
+          "name": "/assets/guid-BXdVC_j_.js",
+          "transferSize": 457,
+          "encodedBodySize": 157,
+          "decodedBodySize": 157,
+          "duration": 55.100000001490116
+        },
+        {
+          "name": "/assets/buffer.pure-CAWHamCn.js",
+          "transferSize": 2971,
+          "encodedBodySize": 2671,
+          "decodedBodySize": 7575,
+          "duration": 55.30000000447035
+        },
+        {
+          "name": "/assets/tools.pure-DG9Rzizn.js",
+          "transferSize": 11748,
+          "encodedBodySize": 11448,
+          "decodedBodySize": 34313,
+          "duration": 54.600000001490116
+        },
+        {
+          "name": "/assets/halfFloat-Ce77JD5z.js",
+          "transferSize": 916,
+          "encodedBodySize": 616,
+          "decodedBodySize": 1290,
+          "duration": 128.70000000298023
+        },
+        {
+          "name": "/assets/typeStore-Cu_sj2zM.js",
+          "transferSize": 380,
+          "encodedBodySize": 80,
+          "decodedBodySize": 80,
+          "duration": 128.89999999850988
+        },
+        {
+          "name": "/assets/thinEngine.pure-DtQqicIX.js",
+          "transferSize": 18007,
+          "encodedBodySize": 17707,
+          "decodedBodySize": 67755,
+          "duration": 139.70000000298023
+        },
+        {
+          "name": "/assets/decorators.serialization-By-MjS0E.js",
+          "transferSize": 2120,
+          "encodedBodySize": 1820,
+          "decodedBodySize": 4720,
+          "duration": 55.29999999701977
+        },
+        {
+          "name": "/assets/math.plane-C0ws7YJZ.js",
+          "transferSize": 1089,
+          "encodedBodySize": 789,
+          "decodedBodySize": 1815,
+          "duration": 88.60000000149012
+        },
+        {
+          "name": "/assets/smartArray-BRfcgNbX.js",
+          "transferSize": 753,
+          "encodedBodySize": 453,
+          "decodedBodySize": 1186,
+          "duration": 88.79999999701977
+        },
+        {
+          "name": "/assets/decorators-BWcttrMP.js",
+          "transferSize": 1925,
+          "encodedBodySize": 1625,
+          "decodedBodySize": 3842,
+          "duration": 89.29999999701977
+        },
+        {
+          "name": "/assets/math.color.pure-Dw4sAYjX.js",
+          "transferSize": 19658,
+          "encodedBodySize": 19358,
+          "decodedBodySize": 76952,
+          "duration": 123.10000000149012
+        },
+        {
+          "name": "/assets/lightConstants-DX3sWIWo.js",
+          "transferSize": 4724,
+          "encodedBodySize": 4424,
+          "decodedBodySize": 18247,
+          "duration": 128.89999999850988
+        },
+        {
+          "name": "/assets/math.size-BHZaDYSv.js",
+          "transferSize": 1210,
+          "encodedBodySize": 910,
+          "decodedBodySize": 910,
+          "duration": 55
+        },
+        {
+          "name": "/assets/keyboardEvents-CGYiptFb.js",
+          "transferSize": 657,
+          "encodedBodySize": 357,
+          "decodedBodySize": 357,
+          "duration": 86.69999999552965
+        },
+        {
+          "name": "/assets/sceneComponent-Cn-0uY45.js",
+          "transferSize": 5404,
+          "encodedBodySize": 5104,
+          "decodedBodySize": 17971,
+          "duration": 116.29999999701977
+        },
+        {
+          "name": "/assets/pointerEvents-DFkbNwCB.js",
+          "transferSize": 1059,
+          "encodedBodySize": 759,
+          "decodedBodySize": 759,
+          "duration": 168.79999999701977
+        },
+        {
+          "name": "/assets/scene.pure-QqgLHIuc.js",
+          "transferSize": 36272,
+          "encodedBodySize": 35972,
+          "decodedBodySize": 159578,
+          "duration": 174.29999999701977
+        },
+        {
+          "name": "/assets/drawWrapper-DcFZvZep.js",
+          "transferSize": 1353,
+          "encodedBodySize": 1053,
+          "decodedBodySize": 1954,
+          "duration": 117.39999999850988
+        },
+        {
+          "name": "/assets/texture.pure-CAOKm8dZ.js",
+          "transferSize": 5970,
+          "encodedBodySize": 5670,
+          "decodedBodySize": 19560,
+          "duration": 128.09999999403954
+        },
+        {
+          "name": "/assets/effectRenderer.pure-aqD6q3t8.js",
+          "transferSize": 2933,
+          "encodedBodySize": 2633,
+          "decodedBodySize": 8367,
+          "duration": 128.39999999850988
+        },
+        {
+          "name": "/assets/sphericalPolynomial.pure-Dbd-RrB2.js",
+          "transferSize": 1623,
+          "encodedBodySize": 1323,
+          "decodedBodySize": 5736,
+          "duration": 130.19999999552965
+        },
+        {
+          "name": "/assets/baseTexture.pure-CEqM3fnj.js",
+          "transferSize": 4249,
+          "encodedBodySize": 3949,
+          "decodedBodySize": 15090,
+          "duration": 132.19999999552965
+        },
+        {
+          "name": "/assets/postProcess.pure-DOEiuV5Y.js",
+          "transferSize": 5586,
+          "encodedBodySize": 5286,
+          "decodedBodySize": 18441,
+          "duration": 156.5
+        },
+        {
+          "name": "/assets/renderTargetTexture.pure-CYNZ8wBf.js",
+          "transferSize": 8814,
+          "encodedBodySize": 8514,
+          "decodedBodySize": 32369,
+          "duration": 157.5
+        },
+        {
+          "name": "/assets/material.pure-Cs0tJEJZ.js",
+          "transferSize": 21111,
+          "encodedBodySize": 20811,
+          "decodedBodySize": 78812,
+          "duration": 157.40000000596046
+        },
+        {
+          "name": "/assets/node-CixmmZG_.js",
+          "transferSize": 3603,
+          "encodedBodySize": 3303,
+          "decodedBodySize": 11526,
+          "duration": 189.80000000447035
+        },
+        {
+          "name": "/assets/brdfTextureTools-jeL-4w9S.js",
+          "transferSize": 51070,
+          "encodedBodySize": 50770,
+          "decodedBodySize": 79867,
+          "duration": 209.40000000596046
+        },
+        {
+          "name": "/assets/constants-_wyaM_ID.js",
+          "transferSize": 3582,
+          "encodedBodySize": 3282,
+          "decodedBodySize": 11770,
+          "duration": 89
+        },
+        {
+          "name": "/assets/flowGraphBlock-PiZ78eoL.js",
+          "transferSize": 3690,
+          "encodedBodySize": 3390,
+          "decodedBodySize": 10996,
+          "duration": 168.39999999850988
+        },
+        {
+          "name": "/assets/flowGraphAssetsContext-WtUyuDAI.js",
+          "transferSize": 1036,
+          "encodedBodySize": 736,
+          "decodedBodySize": 736,
+          "duration": 169.5
+        },
+        {
+          "name": "/assets/flowGraphInteger.pure-CZmJgkLp.js",
+          "transferSize": 858,
+          "encodedBodySize": 558,
+          "decodedBodySize": 558,
+          "duration": 177.70000000298023
+        },
+        {
+          "name": "/assets/flowGraphAsyncExecutionBlock-B8j60x2H.js",
+          "transferSize": 969,
+          "encodedBodySize": 669,
+          "decodedBodySize": 669,
+          "duration": 129.79999999701977
+        },
+        {
+          "name": "/assets/flowGraphRichTypes.pure-BKlnX8v7.js",
+          "transferSize": 1260,
+          "encodedBodySize": 960,
+          "decodedBodySize": 2624,
+          "duration": 138.70000000298023
+        },
+        {
+          "name": "/assets/flowGraphExecutionBlockWithOutSignal-ZgpOYOYE.js",
+          "transferSize": 459,
+          "encodedBodySize": 159,
+          "decodedBodySize": 159,
+          "duration": 157.39999999850988
+        },
+        {
+          "name": "/assets/flowGraphExecutionBlock-z6kKFLAZ.js",
+          "transferSize": 1217,
+          "encodedBodySize": 917,
+          "decodedBodySize": 2526,
+          "duration": 168.5
+        },
+        {
+          "name": "/assets/index-C2U31y5N.css",
+          "transferSize": 10265,
+          "encodedBodySize": 9965,
+          "decodedBodySize": 43093,
+          "duration": 175
+        },
+        {
+          "name": "/assets/envTextureLoader-CUMNeKG1.js",
+          "transferSize": 980,
+          "encodedBodySize": 680,
+          "decodedBodySize": 1695,
+          "duration": 48.399999998509884
+        },
+        {
+          "name": "/assets/cubemapToSphericalPolynomial-B7KAjMBc.js",
+          "transferSize": 1942,
+          "encodedBodySize": 1642,
+          "decodedBodySize": 3674,
+          "duration": 49.100000001490116
+        },
+        {
+          "name": "/models/environment/free-tree-birch.glb",
+          "transferSize": 151463,
+          "encodedBodySize": 151163,
+          "decodedBodySize": 248388,
+          "duration": 63.600000001490116
+        },
+        {
+          "name": "/models/environment/free-reeds.glb",
+          "transferSize": 10378,
+          "encodedBodySize": 10078,
+          "decodedBodySize": 53148,
+          "duration": 56.5
+        },
+        {
+          "name": "/models/environment/free-grass.glb",
+          "transferSize": 3569,
+          "encodedBodySize": 3269,
+          "decodedBodySize": 4420,
+          "duration": 44
+        },
+        {
+          "name": "/models/environment/free-bush.glb",
+          "transferSize": 21284,
+          "encodedBodySize": 20984,
+          "decodedBodySize": 29328,
+          "duration": 65.30000000447035
+        },
+        {
+          "name": "/models/environment/free-lily.glb",
+          "transferSize": 5260,
+          "encodedBodySize": 4960,
+          "decodedBodySize": 15124,
+          "duration": 77.80000000447035
+        },
+        {
+          "name": "/models/environment/free-rock.glb",
+          "transferSize": 8644,
+          "encodedBodySize": 8344,
+          "decodedBodySize": 12924,
+          "duration": 76.39999999850988
+        },
+        {
+          "name": "/models/environment/free-rock-alt.glb",
+          "transferSize": 7980,
+          "encodedBodySize": 7680,
+          "decodedBodySize": 11420,
+          "duration": 77.79999999701977
+        },
+        {
+          "name": "/assets/default.vertex-BYS4Xaw0.js",
+          "transferSize": 2696,
+          "encodedBodySize": 2396,
+          "decodedBodySize": 8293,
+          "duration": 51.399999998509884
+        },
+        {
+          "name": "/assets/bakedVertexAnimation-C6l_KSSy.js",
+          "transferSize": 1886,
+          "encodedBodySize": 1586,
+          "decodedBodySize": 7717,
+          "duration": 54.20000000298023
+        },
+        {
+          "name": "/assets/fogVertex-NHlgMcT2.js",
+          "transferSize": 680,
+          "encodedBodySize": 380,
+          "decodedBodySize": 380,
+          "duration": 99.29999999701977
+        },
+        {
+          "name": "/assets/clipPlaneVertex-C59BO8JS.js",
+          "transferSize": 615,
+          "encodedBodySize": 315,
+          "decodedBodySize": 1171,
+          "duration": 116
+        },
+        {
+          "name": "/assets/instancesDeclaration-CJBvtBV5.js",
+          "transferSize": 1233,
+          "encodedBodySize": 933,
+          "decodedBodySize": 933,
+          "duration": 51.29999999701977
+        },
+        {
+          "name": "/assets/vertexColorMixing-DPW6Is9y.js",
+          "transferSize": 734,
+          "encodedBodySize": 434,
+          "decodedBodySize": 434,
+          "duration": 54.100000001490116
+        },
+        {
+          "name": "/assets/sceneUboDeclaration-B5VhSG0v.js",
+          "transferSize": 664,
+          "encodedBodySize": 364,
+          "decodedBodySize": 364,
+          "duration": 51.20000000298023
+        },
+        {
+          "name": "/assets/meshUboDeclaration-BmNu2KU_.js",
+          "transferSize": 645,
+          "encodedBodySize": 345,
+          "decodedBodySize": 345,
+          "duration": 51.20000000298023
+        },
+        {
+          "name": "/assets/defaultUboDeclaration-C53xcSdv.js",
+          "transferSize": 852,
+          "encodedBodySize": 552,
+          "decodedBodySize": 1262,
+          "duration": 50.600000001490116
+        },
+        {
+          "name": "/assets/mainUVVaryingDeclaration-BBamQlxR.js",
+          "transferSize": 529,
+          "encodedBodySize": 229,
+          "decodedBodySize": 229,
+          "duration": 54
+        },
+        {
+          "name": "/assets/logDepthDeclaration-3gXGtHbI.js",
+          "transferSize": 575,
+          "encodedBodySize": 275,
+          "decodedBodySize": 275,
+          "duration": 50.69999999552965
+        },
+        {
+          "name": "/assets/helperFunctions-gEnZbjN3.js",
+          "transferSize": 2691,
+          "encodedBodySize": 2391,
+          "decodedBodySize": 6815,
+          "duration": 50.899999998509884
+        },
+        {
+          "name": "/assets/shadowsVertex--0nVb1Fg.js",
+          "transferSize": 2014,
+          "encodedBodySize": 1714,
+          "decodedBodySize": 6845,
+          "duration": 50.900000005960464
+        },
+        {
+          "name": "/assets/bumpVertexDeclaration-Cb04kLz9.js",
+          "transferSize": 641,
+          "encodedBodySize": 341,
+          "decodedBodySize": 341,
+          "duration": 53.399999998509884
+        },
+        {
+          "name": "/assets/morphTargetsVertex-6N5r7oF1.js",
+          "transferSize": 1318,
+          "encodedBodySize": 1018,
+          "decodedBodySize": 4379,
+          "duration": 72.39999999850988
+        },
+        {
+          "name": "/assets/bumpVertex-CWhdIpqj.js",
+          "transferSize": 822,
+          "encodedBodySize": 522,
+          "decodedBodySize": 522,
+          "duration": 52.79999999701977
+        },
+        {
+          "name": "/assets/logDepthVertex-D5IUM6qd.js",
+          "transferSize": 609,
+          "encodedBodySize": 309,
+          "decodedBodySize": 309,
+          "duration": 53.100000001490116
+        },
+        {
+          "name": "/assets/clipPlaneFragment-DVK0wgyZ.js",
+          "transferSize": 627,
+          "encodedBodySize": 327,
+          "decodedBodySize": 1174,
+          "duration": 53.30000000447035
+        },
+        {
+          "name": "/assets/default.fragment-DJct8V4A.js",
+          "transferSize": 6671,
+          "encodedBodySize": 6371,
+          "decodedBodySize": 24867,
+          "duration": 52.70000000298023
+        },
+        {
+          "name": "/assets/fogFragment-CISE_m3s.js",
+          "transferSize": 797,
+          "encodedBodySize": 497,
+          "decodedBodySize": 1084,
+          "duration": 52.899999998509884
+        },
+        {
+          "name": "/assets/objectIdFunctions-BCg-H1o3.js",
+          "transferSize": 789,
+          "encodedBodySize": 489,
+          "decodedBodySize": 489,
+          "duration": 53.099999994039536
+        },
+        {
+          "name": "/assets/oitFragment-CwWxHs00.js",
+          "transferSize": 10972,
+          "encodedBodySize": 10672,
+          "decodedBodySize": 49959,
+          "duration": 53.399999998509884
+        },
+        {
+          "name": "/assets/logDepthFragment-BPon2Z56.js",
+          "transferSize": 1202,
+          "encodedBodySize": 902,
+          "decodedBodySize": 3507,
+          "duration": 53.80000000447035
+        },
+        {
+          "name": "/assets/lightFragment-x7Xpl9uU.js",
+          "transferSize": 3952,
+          "encodedBodySize": 3652,
+          "decodedBodySize": 20567,
+          "duration": 73.10000000149012
+        },
+        {
+          "name": "/assets/bumpFragment-BtJd9tYZ.js",
+          "transferSize": 2755,
+          "encodedBodySize": 2455,
+          "decodedBodySize": 6862,
+          "duration": 53.29999999701977
+        },
+        {
+          "name": "/assets/reflectionFunction-CivoLMz9.js",
+          "transferSize": 1473,
+          "encodedBodySize": 1173,
+          "decodedBodySize": 4667,
+          "duration": 53.399999998509884
+        },
+        {
+          "name": "/assets/color.vertex-CYNjCrqH.js",
+          "transferSize": 976,
+          "encodedBodySize": 676,
+          "decodedBodySize": 1593,
+          "duration": 42.19999999552965
+        },
+        {
+          "name": "/assets/color.fragment-CxH-oW8C.js",
+          "transferSize": 1229,
+          "encodedBodySize": 929,
+          "decodedBodySize": 929,
+          "duration": 60
+        },
+        {
+          "name": "/map-assets/sky-day.jpg",
+          "transferSize": 42101,
+          "encodedBodySize": 41801,
+          "decodedBodySize": 41801,
+          "duration": 63.70000000298023
+        },
+        {
+          "name": "/map-assets/bark_willow_02-color.jpg",
+          "transferSize": 88932,
+          "encodedBodySize": 88632,
+          "decodedBodySize": 88632,
+          "duration": 63.399999998509884
+        },
+        {
+          "name": "/map-assets/bark_willow_02-normal.png",
+          "transferSize": 625700,
+          "encodedBodySize": 625400,
+          "decodedBodySize": 625400,
+          "duration": 224.89999999850988
+        },
+        {
+          "name": "/map-assets/bark_willow_02-specular.png",
+          "transferSize": 196608,
+          "encodedBodySize": 196308,
+          "decodedBodySize": 196308,
+          "duration": 83.79999999701977
+        },
+        {
+          "name": "/map-assets/wood_planks_dirt-specular.png",
+          "transferSize": 198137,
+          "encodedBodySize": 197837,
+          "decodedBodySize": 197837,
+          "duration": 273.29999999701977
+        },
+        {
+          "name": "/map-assets/wood_planks_dirt-normal.png",
+          "transferSize": 251067,
+          "encodedBodySize": 250767,
+          "decodedBodySize": 250767,
+          "duration": 312.3999999985099
+        },
+        {
+          "name": "/map-assets/ground-atlas.jpg",
+          "transferSize": 129021,
+          "encodedBodySize": 128721,
+          "decodedBodySize": 128721,
+          "duration": 312.5
+        },
+        {
+          "name": "/map-assets/wood_planks_dirt-color.jpg",
+          "transferSize": 64719,
+          "encodedBodySize": 64419,
+          "decodedBodySize": 64419,
+          "duration": 336.5
+        },
+        {
+          "name": "/models/environment/nature-5ee02753fa9a.png",
+          "transferSize": 209148,
+          "encodedBodySize": 208848,
+          "decodedBodySize": 208848,
+          "duration": 385.90000000596046
+        },
+        {
+          "name": "/models/environment/nature-341e46717713.png",
+          "transferSize": 355628,
+          "encodedBodySize": 355328,
+          "decodedBodySize": 355328,
+          "duration": 420.8999999985099
+        },
+        {
+          "name": "/models/environment/nature-0202a5fd2149.png",
+          "transferSize": 44355,
+          "encodedBodySize": 44055,
+          "decodedBodySize": 44055,
+          "duration": 422.80000000447035
+        },
+        {
+          "name": "/models/environment/nature-64db46578492.png",
+          "transferSize": 42077,
+          "encodedBodySize": 41777,
+          "decodedBodySize": 41777,
+          "duration": 323.6000000014901
+        },
+        {
+          "name": "/models/environment/nature-9335143cdd89.png",
+          "transferSize": 325549,
+          "encodedBodySize": 325249,
+          "decodedBodySize": 325249,
+          "duration": 504.20000000298023
+        },
+        {
+          "name": "/models/environment/nature-9335143cdd89.png",
+          "transferSize": 300,
+          "encodedBodySize": 325249,
+          "decodedBodySize": 325249,
+          "duration": 559
+        },
+        {
+          "name": "/assets/rgbdDecode.fragment-Cdz2Tveq.js",
+          "transferSize": 820,
+          "encodedBodySize": 520,
+          "decodedBodySize": 520,
+          "duration": 487.6000000014901
+        },
+        {
+          "name": "/map-assets/sky-day.env",
+          "transferSize": 229349,
+          "encodedBodySize": 229049,
+          "decodedBodySize": 232452,
+          "duration": 491.69999999552965
+        },
+        {
+          "name": "/assets/postprocess.vertex-DJCmMhI8.js",
+          "transferSize": 760,
+          "encodedBodySize": 460,
+          "decodedBodySize": 460,
+          "duration": 113.29999999701977
+        }
+      ],
+      "totals": {
+        "transferSize": 3892299,
+        "encodedBodySize": 4187548,
+        "decodedBodySize": 6747169
+      },
+      "canvas": {
+        "width": 390,
+        "height": 844
+      },
+      "initialFishGlbs": 0,
+      "initialEnvironmentGlbs": 7,
+      "qa": false,
+      "errors": []
+    },
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "coldContext": true,
+      "throttling": false,
+      "finalUrl": "https://www.fishdex.fr/",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "navigation": [
+        {
+          "transferSize": 1572,
+          "encodedBodySize": 1272,
+          "decodedBodySize": 4644,
+          "domContentLoaded": 608.5
+        }
+      ],
+      "resources": [
+        {
+          "name": "/assets/index-D4jWlxh2.js",
+          "transferSize": 557177,
+          "encodedBodySize": 556877,
+          "decodedBodySize": 2250662,
+          "duration": 223.20000000298023
+        },
+        {
+          "name": "/assets/math.scalar.functions-D-i-XBaP.js",
+          "transferSize": 1383,
+          "encodedBodySize": 1083,
+          "decodedBodySize": 2190,
+          "duration": 40.80000000447035
+        },
+        {
+          "name": "/assets/engineStore-Bn2tApal.js",
+          "transferSize": 1570,
+          "encodedBodySize": 1270,
+          "decodedBodySize": 3512,
+          "duration": 203.89999999850988
+        },
+        {
+          "name": "/assets/shaderStore-D-XQlhUT.js",
+          "transferSize": 769,
+          "encodedBodySize": 469,
+          "decodedBodySize": 469,
+          "duration": 40.899999998509884
+        },
+        {
+          "name": "/assets/logger-CuBYPcDK.js",
+          "transferSize": 1144,
+          "encodedBodySize": 844,
+          "decodedBodySize": 1881,
+          "duration": 41.100000001490116
+        },
+        {
+          "name": "/assets/internalTexture-ziUdfT1O.js",
+          "transferSize": 2429,
+          "encodedBodySize": 2129,
+          "decodedBodySize": 7747,
+          "duration": 42.600000001490116
+        },
+        {
+          "name": "/assets/tools.functions-Bxv5dhZ_.js",
+          "transferSize": 5281,
+          "encodedBodySize": 4981,
+          "decodedBodySize": 13495,
+          "duration": 71.29999999701977
+        },
+        {
+          "name": "/assets/domManagement-BqltO0ki.js",
+          "transferSize": 556,
+          "encodedBodySize": 256,
+          "decodedBodySize": 256,
+          "duration": 221.20000000298023
+        },
+        {
+          "name": "/assets/performanceConfigurator-UtxC_Odd.js",
+          "transferSize": 800,
+          "encodedBodySize": 500,
+          "decodedBodySize": 500,
+          "duration": 115.39999999850988
+        },
+        {
+          "name": "/assets/guid-BXdVC_j_.js",
+          "transferSize": 457,
+          "encodedBodySize": 157,
+          "decodedBodySize": 157,
+          "duration": 42.399999998509884
+        },
+        {
+          "name": "/assets/typeStore-Cu_sj2zM.js",
+          "transferSize": 380,
+          "encodedBodySize": 80,
+          "decodedBodySize": 80,
+          "duration": 42.599999994039536
+        },
+        {
+          "name": "/assets/thinEngine.pure-DtQqicIX.js",
+          "transferSize": 18007,
+          "encodedBodySize": 17707,
+          "decodedBodySize": 67755,
+          "duration": 71.5
+        },
+        {
+          "name": "/assets/halfFloat-Ce77JD5z.js",
+          "transferSize": 916,
+          "encodedBodySize": 616,
+          "decodedBodySize": 1290,
+          "duration": 93.79999999701977
+        },
+        {
+          "name": "/assets/abstractEngine.pure-rwLfew4P.js",
+          "transferSize": 15774,
+          "encodedBodySize": 15474,
+          "decodedBodySize": 59841,
+          "duration": 143.59999999403954
+        },
+        {
+          "name": "/assets/tools.pure-DG9Rzizn.js",
+          "transferSize": 11748,
+          "encodedBodySize": 11448,
+          "decodedBodySize": 34313,
+          "duration": 204.5
+        },
+        {
+          "name": "/assets/math.plane-C0ws7YJZ.js",
+          "transferSize": 1089,
+          "encodedBodySize": 789,
+          "decodedBodySize": 1815,
+          "duration": 71.10000000149012
+        },
+        {
+          "name": "/assets/lightConstants-DX3sWIWo.js",
+          "transferSize": 4724,
+          "encodedBodySize": 4424,
+          "decodedBodySize": 18247,
+          "duration": 93.39999999850988
+        },
+        {
+          "name": "/assets/decorators.serialization-By-MjS0E.js",
+          "transferSize": 2120,
+          "encodedBodySize": 1820,
+          "decodedBodySize": 4720,
+          "duration": 93.5
+        },
+        {
+          "name": "/assets/buffer.pure-CAWHamCn.js",
+          "transferSize": 2971,
+          "encodedBodySize": 2671,
+          "decodedBodySize": 7575,
+          "duration": 97.60000000149012
+        },
+        {
+          "name": "/assets/smartArray-BRfcgNbX.js",
+          "transferSize": 753,
+          "encodedBodySize": 453,
+          "decodedBodySize": 1186,
+          "duration": 105.89999999850988
+        },
+        {
+          "name": "/assets/math.color.pure-Dw4sAYjX.js",
+          "transferSize": 19658,
+          "encodedBodySize": 19358,
+          "decodedBodySize": 76952,
+          "duration": 105.5
+        },
+        {
+          "name": "/assets/sceneComponent-Cn-0uY45.js",
+          "transferSize": 5404,
+          "encodedBodySize": 5104,
+          "decodedBodySize": 17971,
+          "duration": 105.60000000149012
+        },
+        {
+          "name": "/assets/pointerEvents-DFkbNwCB.js",
+          "transferSize": 1059,
+          "encodedBodySize": 759,
+          "decodedBodySize": 759,
+          "duration": 148.10000000149012
+        },
+        {
+          "name": "/assets/decorators-BWcttrMP.js",
+          "transferSize": 1925,
+          "encodedBodySize": 1625,
+          "decodedBodySize": 3842,
+          "duration": 167.10000000149012
+        },
+        {
+          "name": "/assets/math.size-BHZaDYSv.js",
+          "transferSize": 1210,
+          "encodedBodySize": 910,
+          "decodedBodySize": 910,
+          "duration": 101.70000000298023
+        },
+        {
+          "name": "/assets/keyboardEvents-CGYiptFb.js",
+          "transferSize": 657,
+          "encodedBodySize": 357,
+          "decodedBodySize": 357,
+          "duration": 105.60000000149012
+        },
+        {
+          "name": "/assets/scene.pure-QqgLHIuc.js",
+          "transferSize": 36272,
+          "encodedBodySize": 35972,
+          "decodedBodySize": 159578,
+          "duration": 132.89999999850988
+        },
+        {
+          "name": "/assets/drawWrapper-DcFZvZep.js",
+          "transferSize": 1353,
+          "encodedBodySize": 1053,
+          "decodedBodySize": 1954,
+          "duration": 128
+        },
+        {
+          "name": "/assets/effectRenderer.pure-aqD6q3t8.js",
+          "transferSize": 2933,
+          "encodedBodySize": 2633,
+          "decodedBodySize": 8367,
+          "duration": 162.5
+        },
+        {
+          "name": "/assets/texture.pure-CAOKm8dZ.js",
+          "transferSize": 5970,
+          "encodedBodySize": 5670,
+          "decodedBodySize": 19560,
+          "duration": 114.69999999552965
+        },
+        {
+          "name": "/assets/sphericalPolynomial.pure-Dbd-RrB2.js",
+          "transferSize": 1623,
+          "encodedBodySize": 1323,
+          "decodedBodySize": 5736,
+          "duration": 132.39999999850988
+        },
+        {
+          "name": "/assets/baseTexture.pure-CEqM3fnj.js",
+          "transferSize": 4249,
+          "encodedBodySize": 3949,
+          "decodedBodySize": 15090,
+          "duration": 147.69999999552965
+        },
+        {
+          "name": "/assets/node-CixmmZG_.js",
+          "transferSize": 3603,
+          "encodedBodySize": 3303,
+          "decodedBodySize": 11526,
+          "duration": 90.80000000447035
+        },
+        {
+          "name": "/assets/postProcess.pure-DOEiuV5Y.js",
+          "transferSize": 5586,
+          "encodedBodySize": 5286,
+          "decodedBodySize": 18441,
+          "duration": 99.40000000596046
+        },
+        {
+          "name": "/assets/renderTargetTexture.pure-CYNZ8wBf.js",
+          "transferSize": 8814,
+          "encodedBodySize": 8514,
+          "decodedBodySize": 32369,
+          "duration": 146.10000000149012
+        },
+        {
+          "name": "/assets/material.pure-Cs0tJEJZ.js",
+          "transferSize": 21111,
+          "encodedBodySize": 20811,
+          "decodedBodySize": 78812,
+          "duration": 146.60000000149012
+        },
+        {
+          "name": "/assets/constants-_wyaM_ID.js",
+          "transferSize": 3582,
+          "encodedBodySize": 3282,
+          "decodedBodySize": 11770,
+          "duration": 93.20000000298023
+        },
+        {
+          "name": "/assets/brdfTextureTools-jeL-4w9S.js",
+          "transferSize": 51070,
+          "encodedBodySize": 50770,
+          "decodedBodySize": 79867,
+          "duration": 162.39999999850988
+        },
+        {
+          "name": "/assets/flowGraphAsyncExecutionBlock-B8j60x2H.js",
+          "transferSize": 969,
+          "encodedBodySize": 669,
+          "decodedBodySize": 669,
+          "duration": 105.39999999850988
+        },
+        {
+          "name": "/assets/index-C2U31y5N.css",
+          "transferSize": 10265,
+          "encodedBodySize": 9965,
+          "decodedBodySize": 43093,
+          "duration": 127.29999999701977
+        },
+        {
+          "name": "/assets/flowGraphRichTypes.pure-BKlnX8v7.js",
+          "transferSize": 1260,
+          "encodedBodySize": 960,
+          "decodedBodySize": 2624,
+          "duration": 127.5
+        },
+        {
+          "name": "/assets/flowGraphInteger.pure-CZmJgkLp.js",
+          "transferSize": 858,
+          "encodedBodySize": 558,
+          "decodedBodySize": 558,
+          "duration": 133
+        },
+        {
+          "name": "/assets/flowGraphAssetsContext-WtUyuDAI.js",
+          "transferSize": 1036,
+          "encodedBodySize": 736,
+          "decodedBodySize": 736,
+          "duration": 146.20000000298023
+        },
+        {
+          "name": "/assets/flowGraphExecutionBlock-z6kKFLAZ.js",
+          "transferSize": 1217,
+          "encodedBodySize": 917,
+          "decodedBodySize": 2526,
+          "duration": 147.10000000149012
+        },
+        {
+          "name": "/assets/flowGraphExecutionBlockWithOutSignal-ZgpOYOYE.js",
+          "transferSize": 459,
+          "encodedBodySize": 159,
+          "decodedBodySize": 159,
+          "duration": 147.5
+        },
+        {
+          "name": "/assets/flowGraphBlock-PiZ78eoL.js",
+          "transferSize": 3690,
+          "encodedBodySize": 3390,
+          "decodedBodySize": 10996,
+          "duration": 166.39999999850988
+        },
+        {
+          "name": "/assets/envTextureLoader-CUMNeKG1.js",
+          "transferSize": 980,
+          "encodedBodySize": 680,
+          "decodedBodySize": 1695,
+          "duration": 62.899999998509884
+        },
+        {
+          "name": "/assets/cubemapToSphericalPolynomial-B7KAjMBc.js",
+          "transferSize": 1942,
+          "encodedBodySize": 1642,
+          "decodedBodySize": 3674,
+          "duration": 187.59999999403954
+        },
+        {
+          "name": "/models/environment/free-tree-birch.glb",
+          "transferSize": 151463,
+          "encodedBodySize": 151163,
+          "decodedBodySize": 248388,
+          "duration": 151.19999999552965
+        },
+        {
+          "name": "/models/environment/free-reeds.glb",
+          "transferSize": 10378,
+          "encodedBodySize": 10078,
+          "decodedBodySize": 53148,
+          "duration": 150.70000000298023
+        },
+        {
+          "name": "/models/environment/free-bush.glb",
+          "transferSize": 21284,
+          "encodedBodySize": 20984,
+          "decodedBodySize": 29328,
+          "duration": 151.5
+        },
+        {
+          "name": "/models/environment/free-grass.glb",
+          "transferSize": 3569,
+          "encodedBodySize": 3269,
+          "decodedBodySize": 4420,
+          "duration": 150.60000000149012
+        },
+        {
+          "name": "/models/environment/free-rock.glb",
+          "transferSize": 8644,
+          "encodedBodySize": 8344,
+          "decodedBodySize": 12924,
+          "duration": 151
+        },
+        {
+          "name": "/models/environment/free-lily.glb",
+          "transferSize": 5260,
+          "encodedBodySize": 4960,
+          "decodedBodySize": 15124,
+          "duration": 151.5
+        },
+        {
+          "name": "/models/environment/free-rock-alt.glb",
+          "transferSize": 7980,
+          "encodedBodySize": 7680,
+          "decodedBodySize": 11420,
+          "duration": 150.80000000447035
+        },
+        {
+          "name": "/assets/default.vertex-BYS4Xaw0.js",
+          "transferSize": 2696,
+          "encodedBodySize": 2396,
+          "decodedBodySize": 8293,
+          "duration": 96.70000000298023
+        },
+        {
+          "name": "/assets/bakedVertexAnimation-C6l_KSSy.js",
+          "transferSize": 1886,
+          "encodedBodySize": 1586,
+          "decodedBodySize": 7717,
+          "duration": 96.5
+        },
+        {
+          "name": "/assets/clipPlaneVertex-C59BO8JS.js",
+          "transferSize": 615,
+          "encodedBodySize": 315,
+          "decodedBodySize": 1171,
+          "duration": 96.5
+        },
+        {
+          "name": "/assets/fogVertex-NHlgMcT2.js",
+          "transferSize": 680,
+          "encodedBodySize": 380,
+          "decodedBodySize": 380,
+          "duration": 96.30000000447035
+        },
+        {
+          "name": "/assets/instancesDeclaration-CJBvtBV5.js",
+          "transferSize": 1233,
+          "encodedBodySize": 933,
+          "decodedBodySize": 933,
+          "duration": 96.29999999701977
+        },
+        {
+          "name": "/assets/vertexColorMixing-DPW6Is9y.js",
+          "transferSize": 734,
+          "encodedBodySize": 434,
+          "decodedBodySize": 434,
+          "duration": 96.10000000149012
+        },
+        {
+          "name": "/assets/sceneUboDeclaration-B5VhSG0v.js",
+          "transferSize": 664,
+          "encodedBodySize": 364,
+          "decodedBodySize": 364,
+          "duration": 96.10000000149012
+        },
+        {
+          "name": "/assets/meshUboDeclaration-BmNu2KU_.js",
+          "transferSize": 645,
+          "encodedBodySize": 345,
+          "decodedBodySize": 345,
+          "duration": 96.39999999850988
+        },
+        {
+          "name": "/assets/mainUVVaryingDeclaration-BBamQlxR.js",
+          "transferSize": 529,
+          "encodedBodySize": 229,
+          "decodedBodySize": 229,
+          "duration": 96
+        },
+        {
+          "name": "/assets/defaultUboDeclaration-C53xcSdv.js",
+          "transferSize": 852,
+          "encodedBodySize": 552,
+          "decodedBodySize": 1262,
+          "duration": 96.60000000149012
+        },
+        {
+          "name": "/assets/helperFunctions-gEnZbjN3.js",
+          "transferSize": 2691,
+          "encodedBodySize": 2391,
+          "decodedBodySize": 6815,
+          "duration": 96.10000000149012
+        },
+        {
+          "name": "/assets/logDepthDeclaration-3gXGtHbI.js",
+          "transferSize": 575,
+          "encodedBodySize": 275,
+          "decodedBodySize": 275,
+          "duration": 95.79999999701977
+        },
+        {
+          "name": "/assets/shadowsVertex--0nVb1Fg.js",
+          "transferSize": 2014,
+          "encodedBodySize": 1714,
+          "decodedBodySize": 6845,
+          "duration": 96.39999999850988
+        },
+        {
+          "name": "/assets/bumpVertexDeclaration-Cb04kLz9.js",
+          "transferSize": 641,
+          "encodedBodySize": 341,
+          "decodedBodySize": 341,
+          "duration": 96.39999999850988
+        },
+        {
+          "name": "/assets/morphTargetsVertex-6N5r7oF1.js",
+          "transferSize": 1318,
+          "encodedBodySize": 1018,
+          "decodedBodySize": 4379,
+          "duration": 96
+        },
+        {
+          "name": "/assets/bumpVertex-CWhdIpqj.js",
+          "transferSize": 822,
+          "encodedBodySize": 522,
+          "decodedBodySize": 522,
+          "duration": 96.60000000149012
+        },
+        {
+          "name": "/assets/logDepthVertex-D5IUM6qd.js",
+          "transferSize": 609,
+          "encodedBodySize": 309,
+          "decodedBodySize": 309,
+          "duration": 95.89999999850988
+        },
+        {
+          "name": "/assets/default.fragment-DJct8V4A.js",
+          "transferSize": 6671,
+          "encodedBodySize": 6371,
+          "decodedBodySize": 24867,
+          "duration": 96
+        },
+        {
+          "name": "/assets/clipPlaneFragment-DVK0wgyZ.js",
+          "transferSize": 627,
+          "encodedBodySize": 327,
+          "decodedBodySize": 1174,
+          "duration": 98.79999999701977
+        },
+        {
+          "name": "/assets/fogFragment-CISE_m3s.js",
+          "transferSize": 797,
+          "encodedBodySize": 497,
+          "decodedBodySize": 1084,
+          "duration": 96
+        },
+        {
+          "name": "/assets/oitFragment-CwWxHs00.js",
+          "transferSize": 10972,
+          "encodedBodySize": 10672,
+          "decodedBodySize": 49959,
+          "duration": 97.89999999850988
+        },
+        {
+          "name": "/assets/objectIdFunctions-BCg-H1o3.js",
+          "transferSize": 789,
+          "encodedBodySize": 489,
+          "decodedBodySize": 489,
+          "duration": 117.79999999701977
+        },
+        {
+          "name": "/assets/logDepthFragment-BPon2Z56.js",
+          "transferSize": 1202,
+          "encodedBodySize": 902,
+          "decodedBodySize": 3507,
+          "duration": 98.10000000149012
+        },
+        {
+          "name": "/assets/lightFragment-x7Xpl9uU.js",
+          "transferSize": 3952,
+          "encodedBodySize": 3652,
+          "decodedBodySize": 20567,
+          "duration": 98.5
+        },
+        {
+          "name": "/assets/reflectionFunction-CivoLMz9.js",
+          "transferSize": 1473,
+          "encodedBodySize": 1173,
+          "decodedBodySize": 4667,
+          "duration": 97.89999999850988
+        },
+        {
+          "name": "/assets/bumpFragment-BtJd9tYZ.js",
+          "transferSize": 2755,
+          "encodedBodySize": 2455,
+          "decodedBodySize": 6862,
+          "duration": 97.70000000298023
+        },
+        {
+          "name": "/assets/color.vertex-CYNjCrqH.js",
+          "transferSize": 976,
+          "encodedBodySize": 676,
+          "decodedBodySize": 1593,
+          "duration": 92
+        },
+        {
+          "name": "/assets/color.fragment-CxH-oW8C.js",
+          "transferSize": 1229,
+          "encodedBodySize": 929,
+          "decodedBodySize": 929,
+          "duration": 112.39999999850988
+        },
+        {
+          "name": "/map-assets/sky-day.jpg",
+          "transferSize": 42101,
+          "encodedBodySize": 41801,
+          "decodedBodySize": 41801,
+          "duration": 110.40000000596046
+        },
+        {
+          "name": "/map-assets/bark_willow_02-color.jpg",
+          "transferSize": 88932,
+          "encodedBodySize": 88632,
+          "decodedBodySize": 88632,
+          "duration": 138.5
+        },
+        {
+          "name": "/map-assets/bark_willow_02-specular.png",
+          "transferSize": 196608,
+          "encodedBodySize": 196308,
+          "decodedBodySize": 196308,
+          "duration": 159.60000000149012
+        },
+        {
+          "name": "/map-assets/wood_planks_dirt-color.jpg",
+          "transferSize": 64719,
+          "encodedBodySize": 64419,
+          "decodedBodySize": 64419,
+          "duration": 195.10000000149012
+        },
+        {
+          "name": "/map-assets/wood_planks_dirt-specular.png",
+          "transferSize": 198137,
+          "encodedBodySize": 197837,
+          "decodedBodySize": 197837,
+          "duration": 235.60000000149012
+        },
+        {
+          "name": "/map-assets/wood_planks_dirt-normal.png",
+          "transferSize": 251067,
+          "encodedBodySize": 250767,
+          "decodedBodySize": 250767,
+          "duration": 356.20000000298023
+        },
+        {
+          "name": "/map-assets/bark_willow_02-normal.png",
+          "transferSize": 625700,
+          "encodedBodySize": 625400,
+          "decodedBodySize": 625400,
+          "duration": 383.29999999701977
+        },
+        {
+          "name": "/map-assets/ground-atlas.jpg",
+          "transferSize": 129021,
+          "encodedBodySize": 128721,
+          "decodedBodySize": 128721,
+          "duration": 241.29999999701977
+        },
+        {
+          "name": "/map-assets/sky-day.env",
+          "transferSize": 229349,
+          "encodedBodySize": 229049,
+          "decodedBodySize": 232452,
+          "duration": 386.1000000014901
+        },
+        {
+          "name": "/models/environment/nature-0202a5fd2149.png",
+          "transferSize": 44355,
+          "encodedBodySize": 44055,
+          "decodedBodySize": 44055,
+          "duration": 343.1000000014901
+        },
+        {
+          "name": "/models/environment/nature-341e46717713.png",
+          "transferSize": 355628,
+          "encodedBodySize": 355328,
+          "decodedBodySize": 355328,
+          "duration": 453.30000000447035
+        },
+        {
+          "name": "/models/environment/nature-9335143cdd89.png",
+          "transferSize": 325549,
+          "encodedBodySize": 325249,
+          "decodedBodySize": 325249,
+          "duration": 477.5
+        },
+        {
+          "name": "/models/environment/nature-64db46578492.png",
+          "transferSize": 42077,
+          "encodedBodySize": 41777,
+          "decodedBodySize": 41777,
+          "duration": 451
+        },
+        {
+          "name": "/models/environment/nature-5ee02753fa9a.png",
+          "transferSize": 209148,
+          "encodedBodySize": 208848,
+          "decodedBodySize": 208848,
+          "duration": 471.5
+        },
+        {
+          "name": "/models/environment/nature-9335143cdd89.png",
+          "transferSize": 300,
+          "encodedBodySize": 325249,
+          "decodedBodySize": 325249,
+          "duration": 471.29999999701977
+        },
+        {
+          "name": "/assets/rgbdDecode.fragment-Cdz2Tveq.js",
+          "transferSize": 820,
+          "encodedBodySize": 520,
+          "decodedBodySize": 520,
+          "duration": 467.6000000014901
+        },
+        {
+          "name": "/assets/postprocess.vertex-DJCmMhI8.js",
+          "transferSize": 760,
+          "encodedBodySize": 460,
+          "decodedBodySize": 460,
+          "duration": 59.5
+        }
+      ],
+      "totals": {
+        "transferSize": 3892299,
+        "encodedBodySize": 4187548,
+        "decodedBodySize": 6747169
+      },
+      "canvas": {
+        "width": 1024,
+        "height": 640
+      },
+      "initialFishGlbs": 0,
+      "initialEnvironmentGlbs": 7,
+      "qa": false,
+      "errors": []
+    }
+  ]
+}

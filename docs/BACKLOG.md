@@ -7,7 +7,7 @@ La mission autonome explicite autorise les fonctionnalités suivantes et remplac
 - [x] ZIP/instructions/audit,25 téléchargements CC0 ciblés, Drive bloqué résolu via miroir fourni.
 - [x] Atlas sols/bois/écorce/ciel diurne, sept exports/instances/LOD réel et six previews, terrain/droits/gameplay conservés.
 - [x] Check205/205, six cas navigateur ciblés et reprise qualité; cadres identiques et passes GPU logiciel documentés.
-- [ ] Préproduction vérifiée, publication autorisée fishdex.fr et empreintes des27 nouveaux fichiers.
+- [x] Préproduction4/4, public2/2 et publication fishdex.fr, fichiers complets conformes dont27nouveaux; tag/relai/procédure enregistrés.
 - [ ] Essais iPhone/Safari/Android réels, sessions prolongées, ombres en élevé, chauffe/VRAM/toucher.
 - [ ] Racines/aulne/chêne/saule exacts, vent GLB/lightmaps : uniquement après retours/budget; consulter couverture réelle40familles.
 
