@@ -1,3 +1,4 @@
+import {initialCurriculum,parseCurriculum,familyFor} from './curriculum.ts';
 import {validObjective} from './objectives.ts';
 import { initialRights, refreshRights, itemCondition, type Rights } from './progression.ts';
 import {ALL_POSTS as POSTS} from './posts.ts';
@@ -23,6 +24,7 @@ export const MAX_SAVE_BYTES = 5_000_000;
 export interface RecordEntry { count: number; best: number; last: string }
 export interface SaveData {
   historical?:{journal:Record<string,unknown>[];records:Record<string,RecordEntry>;legacyRecords:Record<string,RecordEntry>;favorites:string[]};
+  curriculum?:import('./curriculum.ts').Curriculum;
   version: 7; observations:Observation[]; development?:import('./development.ts').DevelopmentProfile; progression:Rights; tackle: Tackle; total: number; records: Partial<Record<SpeciesId, RecordEntry>>;
   legacyRecords: Partial<Record<SpeciesId, RecordEntry>>; journal: Specimen[]; favorites: string[];
   variants: Record<string, RecordEntry>; xp: number; coins: number; badges: string[];
@@ -32,7 +34,7 @@ export interface SaveData {
   settings: { sound: boolean; quality: 'eco' | 'high'; waterQuality?:'low'|'standard'|'high'; reelMode: 'hold'; combatMode:'manual'|'assisted';controls?:{side:'left'|'right';singleFinger:boolean;tension:boolean;hints:boolean} };
   preparation: { method: 'pole' | 'float' | 'lure' | 'bottom'; bait: 'worm' | 'lure'; location: 'willow-pond'|'running-river'|'deep-lake'|'light-boat'; post:import('./posts.ts').PostId };
 }
-export const emptySave = (): SaveData => ({ version:7,observations:[],progression:initialRights(),tackle:{...emptyTackle(),config:starterConfig('pole')},total:0,records:{},legacyRecords:{},journal:[],favorites:[],variants:{},xp:0,coins:0,badges:[],inventory:['starter','pole-starter'],equipped:'pole-starter',aquarium:{floor:'sand',background:'dawn',plants:false,rocks:false,light:'warm'},settings:{sound:false,quality:'eco',waterQuality:'low',reelMode:'hold',combatMode:'manual',controls:{side:'left',singleFinger:false,tension:false,hints:true}},preparation:{method:'pole',bait:'worm',location:'willow-pond',post:'jetty'} });
+export const emptySave = (): SaveData => ({ curriculum:initialCurriculum(),version:7,observations:[],progression:initialRights(),tackle:{...emptyTackle(),config:starterConfig('pole')},total:0,records:{},legacyRecords:{},journal:[],favorites:[],variants:{},xp:0,coins:0,badges:[],inventory:['starter','pole-starter'],equipped:'pole-starter',aquarium:{floor:'sand',background:'dawn',plants:false,rocks:false,light:'warm'},settings:{sound:false,quality:'eco',waterQuality:'low',reelMode:'hold',combatMode:'manual',controls:{side:'left',singleFinger:false,tension:false,hints:true}},preparation:{method:'pole',bait:'worm',location:'willow-pond',post:'jetty'} });
 function object(v: unknown): Record<string, unknown> { if (!v || typeof v !== 'object' || Array.isArray(v)) throw new Error('Sauvegarde invalide.'); return v as Record<string, unknown>; }
 function integer(v: unknown, max = 1_000_000_000) { if (typeof v !== 'number' || !Number.isSafeInteger(v) || v < 0 || v > max) throw new Error('Valeur de progression invalide.'); return v; }
 function string(v: unknown, max = 150) { if (typeof v !== 'string' || !v.length || v.length > max) throw new Error('Texte de sauvegarde invalide.'); return v; }
@@ -159,13 +161,15 @@ export function parseSave(raw: string): SaveData {
     const techniqueMastery:Rights['techniqueMastery']={};if(p.techniqueMastery!==undefined)for(const [id,n]of Object.entries(object(p.techniqueMastery))){if(!TECHNIQUE_IDS.includes(id as typeof TECHNIQUE_IDS[number]))throw Error('Maîtrise inconnue.');techniqueMastery[id as typeof TECHNIQUE_IDS[number]]=integer(n,10000000);}
     result.progression={methods:p.methods,posts:p.posts,precision:integer(p.precision,result.total+Object.values(history.records).reduce((sum,r)=>sum+r.count,0)),initiation:bool(p.initiation),legacy:bool(p.legacy),mastery,techniques,techniqueMastery};
     if(!p.methods.includes(result.preparation.method)||!p.posts.includes(result.preparation.post)||result.tackle.config.technique&&!result.development&& !techniques.includes(result.tackle.config.technique))throw new Error('Préparation non ouverte.');
+    result.curriculum=data.curriculum===undefined?{...initialCurriculum(),legacy:[...new Set((techniques as import('./techniques.ts').TechniqueId[]).map(id=>familyFor(id).id))]}:parseCurriculum(data.curriculum);
     refreshRights(result);
   }
   if(!result.inventory.includes('pole-starter'))result.inventory.push('pole-starter');
   return result;
 }
 function migrateRights(save:SaveData) {
-  save.progression={...initialRights(),legacy:true,initiation:true,methods:['pole','float','lure','bottom']};
+  save.progression={...initialRights(),legacy:true,initiation:true,methods:['pole','float','lure','bottom'],techniques:['coup','anglaise','fond','leurre']};
+  save.curriculum={...initialCurriculum(),legacy:['bordure','distance','puissance','exploration']};
   for(const s of save.journal)save.progression.mastery[s.method]=(save.progression.mastery[s.method]??0)+1;
   if(!save.inventory.includes('pole-starter'))save.inventory.push('pole-starter');
   if(save.preparation.method==='pole') { save.preparation.method='float';save.tackle.config=starterConfig('float');save.equipped='starter'; }

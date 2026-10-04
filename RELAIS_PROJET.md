@@ -1,3 +1,7 @@
+## 4 octobre 2026 — Codex, gameplay progression Lot 1
+
+Familles11/paliers1–150, XP cumulée sans réduction des anciens niveaux, niveau OU quête, variantes par réussites distinctes, progression/boutique raccordées. Curriculum v1 additif à v7, accès enregistrés conservés, prêt éphémère (aucune clé normale remplacée), exercices événementiels cumulables et récompense unique. Captures/photos prêt hors carnet normal. Check216/216 + TS/build ; navigateur2/2 bureau et390×844 : prêt/retour et carnet normal ; captures docs/apercus/gameplay-progression/lot1-*.png. Prochaine étape Lot2 brouillon/positions métriques ; les objectifs manual/kit/deux dépôts restent à contrôler avec leurs gestes aux Lots3/4. Pas de test iPhone physique.
+
 ## 4 octobre 2026 — Codex, gameplay progression Lot 0
 
 Spécification intégralement lue et archivée docs/gameplay-progression/SPECIFICATION.md ; audit22 IDs, contrôleurs/stock/v7/TEST et migration dans AUDIT_GAMEPLAY.md. npm ci zéro vulnérabilité ; check214/214 + TS/build. Base26f4041, branche codex/gameplay-progression-atelier ; modification DEM utilisateur préservée. Prochaine étape Lot1 niveaux OU quêtes, prêts, droits hérités. Aucun appareil physique testé.

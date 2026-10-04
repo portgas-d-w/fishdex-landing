@@ -16,7 +16,7 @@ const manage=manageFight;
 test('Nouvelle partie : trois postes, coup sans moulinet et kit gratuit complet ; accès vérifiés en logique',()=>{
  const s=emptySave();assert.deepEqual(s.progression,initialRights());assert.deepEqual(validateRig(s.tackle),[]);assert.equal(s.tackle.config.components.reel,undefined);
  assert.ok(switchPractice(s,'lure'));assert.ok(initiateLures(s));assert.ok(purchaseComponent(s,'minnow'));assert.equal(s.coins,0);
- recordCatch(s,caught('first'));assert.equal(initiateLures(s),'');assert.equal(switchPractice(s,'lure'),'');assert.ok(s.tackle.config.components.reel);assert.equal(s.equipped,'starter');assert.equal(purchaseComponent(s,'unknown'),'Contenu à venir ou inconnu.');
+ recordCatch(s,caught('first'));assert.ok(initiateLures(s));s.xp=1246;refreshRights(s);assert.equal(initiateLures(s),'');assert.equal(switchPractice(s,'lure'),'');assert.ok(s.tackle.config.components.reel);assert.equal(s.equipped,'starter');assert.equal(purchaseComponent(s,'unknown'),'Contenu à venir ou inconnu.');
 });
 test('Migration v4 conserve possessions, stock, espèces, individus/favoris, gains et capacités déjà ouvertes',()=>{
  const old=oldV4(),modern=emptySave();recordCatch(modern,{...caught('kept'),method:'float'});Object.assign(old,{total:modern.total,records:modern.records,journal:modern.journal,variants:modern.variants,coins:123,xp:40,badges:modern.badges,favorites:['kept'],inventory:['starter','precision','plants'],equipped:'precision'});old.tackle.stock.corn=30;

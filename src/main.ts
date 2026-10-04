@@ -1,3 +1,5 @@
+import {LearningSession} from './game/learning';
+import {learnSkill,familyFor} from './game/curriculum';
 import {installMemories,specimenArt,specimenLabel} from './ui/memories';
 import {installWaterTools} from './ui/water-tools';
 import {nextRenderDeadline} from './ui/render-clock';
@@ -87,6 +89,7 @@ const profiles=new ProfileStorage(storage,import.meta.env.DEV||__TEST_MODE_ENABL
 setPhotoProfile(profiles.active);
 const loaded: ReturnType<typeof loadSave> = storage ? profiles.load() : { data: emptySave(), warning: 'Sauvegarde locale indisponible. Pensez à exporter le carnet.' };
 let save = loaded.data;
+let learning:LearningSession|undefined;
 try{if(!profiles.getItem('au-fil-de-leau.save.v1')&&!save.development&&!loaded.recovery){refreshRights(save);switchTechnique(save,'coup');}}catch{/* Conservation du kit initial si stockage inaccessible. */}
 // Original pré-migration gardé localement pour un éventuel retour au lecteur v4.
 let migrationBackupPending=false;
@@ -123,6 +126,7 @@ equip();
 
 function toast(message: string) { el('toast').textContent = message; el('toast').hidden = false; window.clearTimeout(toastTimer); toastTimer = window.setTimeout(() => el('toast').hidden = true, 5000); }
 function saveNow() {
+  if(learning){persistSave(learning.normal,profiles);return;}
   if(migrationBackupPending){try{storage!.setItem('au-fil-de-leau.save.before-v7',storage!.getItem('au-fil-de-leau.save.v1')!);migrationBackupPending=false;}catch{toast('Exportez la progression avant migration : le stockage ne permet pas de conserver l’original.');return;}}
   if (!recoveryPreserved && loaded.recovery) { try { storage?.setItem('au-fil-de-leau.save.recovery', loaded.recovery); recoveryPreserved = !!storage; } catch { toast('Stockage plein. Exportez le fichier de récupération dans Réglages avant de sauvegarder.'); return; } if (!recoveryPreserved) return; }
   if ((!storage || !persistSave(save, profiles)) && !storageWarningShown) {
@@ -131,7 +135,7 @@ function saveNow() {
 }
 const modalLayers:HTMLDialogElement[]=[];
 const managementLayers=new Set(['menu','preparation','rig-sheet','component-sheet','component-detail','research-sheet','shop','purchase-confirm','item-sheet','encyclopedia','species-sheet','progression','method-sheet','badge-sheet','map','locations','location-sheet','collection','help','settings','lesson-sheet','aquarium-fish','aquarium-decor']);
-function openModal(id: string) { if(id!=='aquarium')aquarium?.pause();if(id!=='caught')preview?.pause();hub?.opened(id); game.release();document.dispatchEvent(new Event('fishing-input-reset'));release(); cancelGesture(); el('line-alert').hidden = true; overlayPaused = true;const dialog=el<HTMLDialogElement>(id);const parent=modalLayers.filter(d=>d.open&&d!==dialog).at(-1);if(dialog.open&&managementLayers.has(id)&&modalLayers.at(-1)!==dialog)dialog.close();if(!dialog.open)dialog.showModal();const index=modalLayers.indexOf(dialog);if(index>=0)modalLayers.splice(index,1);modalLayers.push(dialog);const back=dialog.querySelector<HTMLButtonElement>(`[data-close="${id}"]`);if(back){const labels:Record<string,string>={menu:'au menu',preparation:'au matériel','rig-sheet':'au montage','component-sheet':'aux pièces',shop:'à la boutique',encyclopedia:'au FishDex','species-sheet':'à la fiche',collection:'au carnet',progression:'à la progression',map:'à la carte',locations:'aux lieux','location-sheet':'au lieu',help:'à l’aide',settings:'aux réglages','lesson-sheet':'au guide','aquarium-fish':'aux poissons','aquarium-decor':'au décor',aquarium:'à l’aquarium',caught:'à la rencontre'};back.textContent=id==='menu'?'Reprendre la pêche':parent?'Retour '+(labels[parent.id]??'à l’écran précédent'):'Retour à la pêche';} }
+function openModal(id: string) { if(learning&&['shop','settings','test-tools','aquarium','collection'].includes(id)){toast('Quittez le prêt pour retrouver votre partie et ces écrans.');return;} if(id!=='aquarium')aquarium?.pause();if(id!=='caught')preview?.pause();hub?.opened(id); game.release();document.dispatchEvent(new Event('fishing-input-reset'));release(); cancelGesture(); el('line-alert').hidden = true; overlayPaused = true;const dialog=el<HTMLDialogElement>(id);const parent=modalLayers.filter(d=>d.open&&d!==dialog).at(-1);if(dialog.open&&managementLayers.has(id)&&modalLayers.at(-1)!==dialog)dialog.close();if(!dialog.open)dialog.showModal();const index=modalLayers.indexOf(dialog);if(index>=0)modalLayers.splice(index,1);modalLayers.push(dialog);const back=dialog.querySelector<HTMLButtonElement>(`[data-close="${id}"]`);if(back){const labels:Record<string,string>={menu:'au menu',preparation:'au matériel','rig-sheet':'au montage','component-sheet':'aux pièces',shop:'à la boutique',encyclopedia:'au FishDex','species-sheet':'à la fiche',collection:'au carnet',progression:'à la progression',map:'à la carte',locations:'aux lieux','location-sheet':'au lieu',help:'à l’aide',settings:'aux réglages','lesson-sheet':'au guide','aquarium-fish':'aux poissons','aquarium-decor':'au décor',aquarium:'à l’aquarium',caught:'à la rencontre'};back.textContent=id==='menu'?'Reprendre la pêche':parent?'Retour '+(labels[parent.id]??'à l’écran précédent'):'Retour à la pêche';} }
 function closeModal(id: string) { el<HTMLDialogElement>(id).close(); }
 let observationScreens:ReturnType<typeof installObservations>|undefined;
 function refreshCollection() {
@@ -217,7 +221,8 @@ function teach(bit: number, message: string) {
 async function showCatch() {
   if (!game.result || !game.fish) return;
   const reedsWereOpen=save.progression.posts.includes('reed-bank');
-  const badges = recordCatch(save, game.result); saveNow(); refreshCollection();
+  if(learning){learning.sample(game);game.result.controlled=false;}
+  const badges = recordCatch(save, game.result);if(learning){const specimen=save.journal.at(-1)!;save.coins-=specimen.reward.coins;save.xp-=specimen.reward.xp;specimen.reward={base:0,discovery:0,record:0,coins:0,xp:0};}else{for(const skill of game.cleanEvents)learnSkill(save,familyFor(game.technique.id).id,skill);} saveNow(); refreshCollection();
   if(badges.first||badges.variant)document.dispatchEvent(new CustomEvent('fishdex-discovery',{detail:{id:game.result.speciesId}}));
   el('catch-progression').textContent=!reedsWereOpen&&save.progression.posts.includes('reed-bank')?'Le pêcheur vous laisse la bordure des roseaux. Ce poste est désormais ouvert définitivement.':save.total===1&&!save.progression.initiation?'Première prise réussie. L’initiation aux leurres est disponible dans Ma canne.':'';
   const specimen = save.journal.find(s => s.id === game.result!.id)!;
@@ -481,6 +486,7 @@ document.addEventListener('visibilitychange', () => { if (document.hidden) { pau
 window.addEventListener('focus', () => { if (el<HTMLDialogElement>('caught').open) preview?.resume(); else if (el<HTMLDialogElement>('aquarium').open) aquarium?.resume(); });
 el('resume').onclick = () => { manualPaused = false; el('paused').hidden = true; };
 
+document.addEventListener('learning-start',e=>{if(learning||game.phase!=='idle'){toast('Terminez la ligne ou quittez l’exercice en cours.');return;}try{learning=new LearningSession(save,(e as CustomEvent).detail);save=learning.loan;game.reset();game.accessBypass=true;equip();game.setMethod(save.preparation.method);game.setPost(save.preparation.post);world?.setPost(game.post);setPhotoProfile('test');for(const d of [...modalLayers].reverse())if(d.open)d.close();refreshCollection();renderPhase();el('app').insertAdjacentHTML('beforeend','<button id="learning-exit" class="secondary learning-exit">Prêt d’apprentissage · Quitter</button>');el('learning-exit').onclick=()=>{game.reset();save=learning!.normal;learning=undefined;game.accessBypass=save.development?.kind==='sandbox';equip();game.setMethod(save.preparation.method);game.setPost(save.preparation.post);world?.setPost(game.post);setPhotoProfile(profiles.active);el('learning-exit').remove();saveNow();refreshCollection();renderPhase();toast('Matériel rendu. Vos exercices acquis sont conservés.');};toast('Prêt gratuit : préparation puis pêche. Captures exclues de votre carnet normal.');}catch(error){learning=undefined;toast(String(error));}});
 refreshCollection(); refreshSettings(); renderPhase();saveNow();
 try {
   world = new LakeWorld(el<HTMLCanvasElement>('world'), save.settings.quality);world.setPost(game.post);world.setWaterQuality(save.settings.waterQuality??'low');world.pondWater.onEvent=e=>audio.water(e);
@@ -491,7 +497,7 @@ try {
     if ((game.reeling || game.phase === 'fighting' && game.dragSpeed > 0.08) && !overlayPaused && !manualPaused && now - lastReelSound > 180) { audio.tone(game.dragSpeed > 0.08 ? 'drag' : 'reel'); lastReelSound = now; }
     if (!overlayPaused && !manualPaused && !qaSimulationPaused) {
       accumulator += dt;
-      while (accumulator >= 1 / 60) { game.update(1 / 60); phaseChanged(); accumulator -= 1 / 60; }
+      while (accumulator >= 1 / 60) { game.update(1 / 60); learning?.sample(game); phaseChanged(); accumulator -= 1 / 60; }
     } else accumulator = 0;
     reel.classList.toggle('reeling', game.reeling);el('snag-release').hidden=!game.snagged;el('rod-control').hidden=!canRod();reel.hidden=!canSecondary();el('tension-display').hidden=!save.settings.controls?.tension||!['fighting','landing'].includes(game.phase);if(gesture&&!gesture.casting&&!canRod())cancelGesture();updateTechniqueControls();updateFieldTools();const context=`${postById(game.post).name} · ${game.phase==='idle'?(game.method==='pole'?'Placement proche · coup sans moulinet':'Préparez votre présentation'):`${game.presentationDepth.toFixed(1)} m · ${game.hint||(game.modern&&game.encounterState!=='none'?({approach:'Approche',examine:'Inspection : attendez la prise',follow:'Suit la présentation',attack:'Prise',refuse:'Refus',none:''})[game.encounterState]:'')||(game.microzone==='plants'?'Herbiers':game.microzone==='margin'?'Bordure':'Eau ouverte')}`}`;if(el('fishing-context').textContent!==context)el('fishing-context').textContent=context;
     if (reelPointer !== undefined && canReel() && !qaSimulationPaused) {

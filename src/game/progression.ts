@@ -1,3 +1,4 @@
+import {familyFor,familyAvailable,masteryRank,variantRank} from './curriculum.ts';
 import { levelFor, ITEMS, rodCompatible, accessLevel, type ItemId, type RodId } from './economy.ts';
 import { POSTS, ALL_POSTS, type PostId } from './posts.ts';
 import { component, buyComponent, starterConfig, techniqueConfig, validateRig, type Slot } from './rig.ts';
@@ -18,20 +19,18 @@ export function refreshRights(save:SaveData) {
   p.techniques??=p.methods.map(defaultTechnique);p.techniqueMastery??={};
   if(!p.methods.includes('pole'))p.methods.push('pole');
   if(levelFor(save.xp)>=PROGRESSION_CONFIG.reedsLevel || p.precision>=PROGRESSION_CONFIG.precisionCatches) if(!p.posts.includes('reed-bank'))p.posts.push('reed-bank');
-  if(levelFor(save.xp)>=3 || (p.mastery.pole??0)>=3) for(const m of ['float','bottom'] as MethodId[])if(!p.methods.includes(m))p.methods.push(m);
   for(const post of POSTS.filter(p=>p.initial))if(!p.posts.includes(post.id))p.posts.push(post.id);
   for(const [id,level,method,target] of [['point',6,'lure',6],['timber',10,'lure',12],['river',4,'pole',3],['deep',10,'lure',8],['boat',6,'lure',6]] as const)if(levelFor(save.xp)>=level||(p.mastery[method]??0)>=target)if(!p.posts.includes(id))p.posts.push(id);
   if(levelFor(save.xp)>=4||save.total>=8)for(const id of ['estuary','pacific','managed'] as const)if(!p.posts.includes(id))p.posts.push(id);
   if(levelFor(save.xp)>=6||save.total>=16)for(const id of ['cold-lake','american','asian'] as const)if(!p.posts.includes(id))p.posts.push(id);
-  for(const t of TECHNIQUES)if(t.id==='coup'||t.id==='leurre'&&p.methods.includes('lure')||!['coup','leurre'].includes(t.id)&&(levelFor(save.xp)>=t.level||(p.mastery[t.base]??0)>=t.target)){
+  for(const t of TECHNIQUES)if(familyAvailable(save,familyFor(t.id).id)&&masteryRank(save,familyFor(t.id).id)>=variantRank(t.id)){
     if(!p.techniques.includes(t.id))p.techniques.push(t.id);
     if(!p.methods.includes(t.base))p.methods.push(t.base);
-    if(!save.inventory.includes(t.rod as ItemId))save.inventory.push(t.rod as ItemId);
   }
   if(p.methods.includes('lure')&&!p.techniques.includes('leurre'))p.techniques.push('leurre');
 }
 export const techniqueAccess=(s:SaveData,id:TechniqueId)=>s.development?.kind==='sandbox'||s.progression.techniques?.includes(id)===true;
-export const techniqueCondition=(s:SaveData,id:TechniqueId)=>techniqueAccess(s,id)?'':id==='leurre'?'Première prise + initiation aux leurres':`Niveau ${techniqueById(id).level} OU ${techniqueById(id).target} prises avec une pratique ${({pole:'au coup sans moulinet',float:'au flotteur',bottom:'au fond',lure:'aux leurres'})[techniqueById(id).base]} déjà ouverte.`;
+export const techniqueCondition=(s:SaveData,id:TechniqueId)=>{if(techniqueAccess(s,id))return '';const f=familyFor(id);return !familyAvailable(s,f.id)?`${f.name} : niveau ${f.level} OU quête d’apprentissage terminée (accessible niveau ${f.quest}).`:`Maîtrise ${variantRank(id)} de ${f.name} ; réussites distinctes de conduite.`;};
 export function switchTechnique(save:SaveData,id:TechniqueId,recipe?:string):string {
   if(save.tackle.active&&!save.tackle.active.resolved)return 'Ramenez la ligne avant de changer de technique.';
   if(!techniqueAccess(save,id))return techniqueCondition(save,id);
@@ -46,10 +45,9 @@ export function switchTechnique(save:SaveData,id:TechniqueId,recipe?:string):str
   save.equipped=rod;save.tackle.config=structuredClone(next);save.preparation.method=t.base;save.preparation.bait=t.base==='lure'?'lure':'worm';return '';
 }
 export function initiateLures(save:SaveData):string {
-  if(save.total<PROGRESSION_CONFIG.lureFirstCatch)return 'Réussissez une première capture avec le kit gratuit.';
+  if(!familyAvailable(save,'exploration'))return 'Exploration : niveau 15 OU quête accessible dès le niveau 5.';
   save.progression.initiation=true;
   if(!save.progression.methods.includes('lure'))save.progression.methods.push('lure');
-  if(!save.inventory.includes('starter'))save.inventory.push('starter');
   return '';
 }
 export const postAccess = (save:SaveData,id:PostId) => ALL_POSTS.find(p=>p.id===id)?.implemented===true && (save.development?.kind==='sandbox'||save.progression.posts.includes(id));
@@ -59,7 +57,7 @@ export function itemCondition(save:SaveData,id:string):string {
   const item=ITEMS.find(i=>i.id===id), c=component(id);
   if(item && save.inventory.includes(item.id) || c && !c.free && (save.tackle.stock[id]??0)>0)return ''; // droit acquis
   if(item) {
-    if(item.kind==='rod'&&!save.progression.methods.some(m=>rodCompatible(id,m)))return 'Ouvrez d’abord la pratique compatible.';
+    if(item.kind==='rod'&&!TECHNIQUES.some(t=>techniqueAccess(save,t.id)&&rodCompatible(id,t.base,t.id)))return 'Ouvrez une famille compatible par niveau OU quête.';
     if(levelFor(save.xp)<accessLevel(id)&&!(id==='pole-elastic'&&(save.progression.mastery.pole??0)>=3))return `Niveau ${accessLevel(id)}${id==='pole-elastic'?' OU 3 prises au coup':''}.`;
     return '';
   }

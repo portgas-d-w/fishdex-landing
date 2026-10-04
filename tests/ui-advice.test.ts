@@ -30,9 +30,9 @@ test('Les chemins alternatifs des postes correspondent aux droits du moteur',()=
   refreshRights(save);assert.equal(postAccess(save,post.id),true,post.id+' / '+path.label);
  }
 });
-test('Le leurre demande une capture puis initiation, jamais un simple niveau 1',()=>{
+test('Exploration explique sa maîtrise et sa disponibilité séparément',()=>{
  const goal=objectives(emptySave()).find(g=>g.id==='tech:leurre')!;
- assert.equal(goal.paths.length,1);assert.equal(goal.paths[0].label,'Première capture');assert.equal(goal.complete,false);
+ assert.equal(goal.paths.length,1);assert.equal(goal.paths[0].label,'Maîtrise de Exploration');assert.equal(goal.complete,false);
 });
 test('Un habitat fermé conserve une cause de déblocage sans faux trajet',()=>{
  const save=emptySave();refreshRights(save);const routes=accessibleFishRoutes(save,'saumon-roi');

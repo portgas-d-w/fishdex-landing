@@ -1,3 +1,4 @@
+import {curriculumLevel} from './curriculum.ts';
 import { techniqueById,type TechniqueId } from './techniques.ts';
 import { SPECIES } from './catalog.ts';
 import type { Specimen, Reward } from './specimens.ts';
@@ -29,9 +30,9 @@ export function rewardFor(s: Specimen, first: boolean, record: boolean): Reward 
   const size = (s.length - species.min) / (species.max - species.min);
   const base = Math.round(((REWARD_BASE as Record<string,number>)[s.speciesId]??Math.min(22,Math.round(8+species.strength*6))) * (1 + size * 0.6) * (s.mirage ? 1.8 : s.coloration === 'golden' ? 1.15 : 1));
   const discovery = first ? 20 : 0, best = record && !first ? 10 : 0;
-  return { base, discovery, record: best, coins: base + discovery + best, xp: 20 + Math.round(size * 15) + (first ? 20 : 0) };
+  return { base, discovery, record: best, coins: base + discovery + best, xp: 40 + Math.round(size * 15) + (first ? 20 : 0) };
 }
-export const levelFor = (xp: number) => 1 + Math.floor(Math.sqrt(xp / 80));
+export const levelFor = (xp: number) => curriculumLevel(xp);
 export const BADGES = { first: 'Première rencontre', diversity: 'Les espèces de l’étang', contact: 'Main légère : combat contrôlé', lure: 'Au leurre', bottom: 'Au fond', collector: 'Dix souvenirs', record: 'Un nouveau record' };
 
 export const accessLevel = (id: string) => id === 'precision' ? 2 : id === 'pole-elastic' ? 3 : 1;

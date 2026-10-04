@@ -1,3 +1,11 @@
+## Gameplay progression — nouveau chantier 4 octobre 2026
+- [x] Lot0 audit22 IDs et migration.
+- [x] Lot1 familles/paliers/quête OU niveau et prêts séparés.
+- [ ] Lot2 atelier et graphe métrique.
+- [ ] Lot3 prototypes et tolérances.
+- [ ] Lot4 contrôleurs/cycles22.
+- [ ] Lot5 équilibre, ergonomie, revue et déploiement.
+
 ## Boutique par rayons — complément lot01, 4octobre2026
 - [x] Six catégories illustrées, aquarium séparé, grille compacte et sous-rayons renseignés.
 - [x] Fiches/quantités/comparaison, compatibilité réelle, retours et sauvegardes conservés.

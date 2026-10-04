@@ -119,3 +119,6 @@ Objectif suivi facultatif dans v7, sans gains ni changement de règle ; conseils
 Contrôles et transactions existants déplacés dans des panneaux natifs, sans nouveau service. Prises et observations restent distinctes ; illustration, photo locale et aperçu régénéré ont des libellés explicites. Décor immédiat déclaré, achat distinct, sixième favori remplacé seulement après choix. Réglages et apprentissage séparés ; Mode test public dans un espace de développement distinct. Une scène aquarium, libération des moteurs de présentation à la fermeture ; menus accessibles après échec WebGL.
 
 - Clôture UI 0.14 : aquarium reconstruit suspendu dès sa création si couvert, visibilité revalidée après chargement asynchrone ; pas de frame forcé masqué. Test du compteur stable, reprise et libération. Les captures et temps de chargement concurrent PC ne deviennent pas des garanties iPhone ; relevés bruts et profils de revue isolés documentés.
+
+## 2026-10-04 — Curriculum additif
+Familles et quêtes utilisent les IDs techniques existants. Courbe cumulée plafonnée150, XP conservée (aucun niveau ancien réduit). Prêt en mémoire, seul son état d’exercice est écrit au carnet actif ; matériel/prises ne sont pas attribués au normal. Disponibilité, possession et pratique sont séparées.
