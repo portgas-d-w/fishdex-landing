@@ -1,3 +1,4 @@
+import {buyShopProduct,equipShopRod} from '../browser/helpers';
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { SPECIES } from '../../src/game/catalog';
@@ -99,8 +100,8 @@ test('Le build livre l’atelier, les lots, les ensembles et le catalogue docume
   await page.locator('[data-work-tab="sets"]').click(); await page.locator('#preset-name').fill('Bordure livrée');
   await page.locator('#preset-save').click(); await expect(page.locator('[data-preset]')).toHaveCount(1);
   await page.locator('[data-close="preparation"]').click(); await openMenuPage(page, 'shop-open');
-  await page.locator('[data-component-buy="corn"]').click(); await page.locator('#component-count').fill('2');
-  await expect(page.locator('#component-total')).toContainText('16 écus'); await page.locator('#component-confirm').click();
+  await buyShopProduct(page,'corn',2);
+  await expect(page.locator('#purchase-confirm')).toContainText('16 écus'); await page.locator('#component-confirm').click();
   await page.locator('#library-load-shop').click(); await expect(page.locator('#library-list-shop [data-research]')).toHaveCount(84);
   await page.locator('#library-type-shop').selectOption('Montages'); await expect(page.locator('#library-list-shop [data-research]')).toHaveCount(55);
   await page.locator('#library-query-shop').fill('waggler'); await page.locator('[data-research="montages:waggler_coulissant"]').click();
@@ -132,8 +133,8 @@ test('Le build conserve les favoris, le décor, les achats et les portraits sans
   purchase(seed, 'plants'); purchase(seed, 'rocks');
   await page.addInitScript(data => { if (!localStorage.getItem('au-fil-de-leau.save.v1')) localStorage.setItem('au-fil-de-leau.save.v1', JSON.stringify(data)); }, seed);
   await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
-  await openMenuPage(page, 'shop-open'); await page.locator('#shop [data-buy="balanced"]').click(); await page.locator('#purchase-yes').click(); await page.locator('#shop [data-equip="balanced"]').click();
-  await expect(page.locator('#shop-balance')).toContainText('Canne souple'); await page.locator('[data-close="shop"]').click();
+  await openMenuPage(page, 'shop-open'); await buyShopProduct(page,'balanced'); await page.locator('#purchase-yes').click(); await equipShopRod(page,'balanced');
+  await expect(page.locator('[data-shop-product="balanced"]')).toContainText('Équipé'); await page.locator('[data-close="shop"]').click();
   await openMenuPage(page, 'aquarium-open'); await expect(page.locator('#aquarium-canvas')).toHaveAttribute('data-loaded', 'true');
   await page.locator('#aq-plants').check(); await page.locator('#aq-rocks').check(); await page.locator('#aq-floor').selectOption('gravel');
   await page.locator('#aquarium').evaluate(e => e.scrollTop = 0); await page.screenshot({ path: `test-results/smoke-${info.project.name}-aquarium.png` });

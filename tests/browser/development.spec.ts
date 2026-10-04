@@ -1,10 +1,11 @@
+import {buyShopProduct} from './helpers';
 import {test,expect} from '@playwright/test';
 import {emptySave} from '../../src/game/save';
 import {openMenuPage} from './helpers';
 test('Mode test mobile : ∞, achats, séparation, reload et retour à la partie normale',async({page})=>{
  const s=emptySave();s.coins=43;await page.addInitScript(s=>{if(!localStorage.getItem('au-fil-de-leau.save.v1'))localStorage.setItem('au-fil-de-leau.save.v1',JSON.stringify(s));},s);
  await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');const original=await page.evaluate(()=>localStorage.getItem('au-fil-de-leau.save.v1'));
- await openMenuPage(page,'help-open');await page.locator('#test-open').click();await page.locator('#test-toggle').click();await expect(page.locator('body')).toHaveAttribute('data-ready','true');await expect(page.locator('#test-badge')).toBeVisible();await openMenuPage(page,'shop-open');await expect(page.locator('#shop-balance')).toContainText('∞');await page.locator('[data-buy="precision"]').click();await expect(page.locator('#purchase-yes')).toBeEnabled();await page.locator('#purchase-yes').click();
+ await openMenuPage(page,'help-open');await page.locator('#test-open').click();await page.locator('#test-toggle').click();await expect(page.locator('body')).toHaveAttribute('data-ready','true');await expect(page.locator('#test-badge')).toBeVisible();await openMenuPage(page,'shop-open');await expect(page.locator('#shop-balance')).toContainText('∞');await buyShopProduct(page,'precision');await expect(page.locator('#purchase-yes')).toBeEnabled();await page.locator('#purchase-yes').click();
  expect(await page.evaluate(()=>localStorage.getItem('au-fil-de-leau.save.v1'))).toBe(original);await page.reload();await expect(page.locator('body')).toHaveAttribute('data-ready','true');await openMenuPage(page,'help-open');await page.locator('#test-open').click();await expect(page.locator('#test-profile-state')).toContainText('160 écus');await page.locator('#test-toggle').click();await expect(page.locator('body')).toHaveAttribute('data-ready','true');await expect(page.locator('#test-badge')).toBeHidden();expect(await page.evaluate(()=>localStorage.getItem('au-fil-de-leau.save.v1'))).toBe(original);expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.save.v1')!).inventory.includes('precision'))).toBe(false);
 });
 test('Scénario forcé conserve la casse réelle et les commandes ; partie test neuve limitée',async({page})=>{

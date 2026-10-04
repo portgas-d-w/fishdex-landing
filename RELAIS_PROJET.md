@@ -1,3 +1,9 @@
+## 4 octobre 2026 — Codex, boutique par rayons 0.14.1
+
+Demande complémentaire au lot01 : six catégories visuelles compactes, rayons/sous-rayons existants, deux colonnes mobile/trois bureau, aquarium distinct, recherche générale, fiche unique/quantités/total/comparaison et vrais filtres. 142 articles répartis sans changer IDs/prix/stock/droits/v7 ; 22 techniques/55recettes conservées. Sélecteurs purs game/shop, écran ui/shop, intégration structure/tackle/main ; assets/eau intacts. Aucun nouvel abonnement/dépendance/modèle.
+
+Check final214/214 + TS/build ; navigateur final16/16, régressions10/10 (atelier, progression, carnet/photo, bassin, TEST). Achats répétés/double confirmation/coût/stock/recharge, verrous/argent/compatibilités, retour scroll/filtres/focus et320/390/430/paysage/bureau contrôlés (320, pas un appareil). Correction IDs concurrents des fiches fermées. Pas d’essai physique iPhone/Safari/clavier/VoiceOver/FPS. Rapport, captures et procédure : docs/BOUTIQUE_RAYONS.md. Version en revue à publier après contrôles hébergés sur la cible confirmée ; prochaine action : revue→publication→fishdex.fr. DEMARRER_AVEC_CODEX.md utilisateur préservé hors commit ; pas de force-push.
+
 ## 4 octobre 2026 — Codex, quatre refontes UI publiées (état courant)
 
 0.14.0 en ligne sur https://fishdex.fr → www.fishdex.fr. Quatre commits successifs d4d2d95 / df0f70e / aa91fc8 / 4a1d9d7, correctif de suspension du bassin d8bc998, test de revue précisé 78955c8. Projet Vercel/GitHub/main confirmé et conservé ; revue finale READY dpl_8ZBRJHA4mxwpcn8wy1BkimFwCSFW, production READY dpl_CJfhWpktzjLXzSG2Rk7kQJumHXs7 sur d8bc998. Entrée index-DUJ0WJre.js SHA256210a5c15743e451225332e5639e6ad3c9b40ddfcadc2ed0cd0dbdc8ee51e9f17, intégrité 262JS/CSS+33poissons+197images+ressources carte vérifiée publiquement. Clôture de docs ultérieure sans changement applicatif.

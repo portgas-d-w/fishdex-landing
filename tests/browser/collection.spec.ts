@@ -1,3 +1,4 @@
+import {buyShopProduct,equipShopRod} from './helpers';
 import {ensureLegacyProfile} from './helpers';
 import { openMenuPage } from './helpers';
 import { test, expect } from '@playwright/test';
@@ -10,8 +11,8 @@ test('Spécimens, photo locale, boutique, filtres et export sans doubler les gai
   for (let i = 0; i < 5; i++) recordCatch(seed, { id: `known-${i}`, speciesId: 'roach', length: 20 + i, date: '2026-10-01T10:00:00Z' });
   await page.addInitScript(data => { if (!localStorage.getItem('au-fil-de-leau.save.v1')) localStorage.setItem('au-fil-de-leau.save.v1', JSON.stringify(data)); }, seed);
   await ensureLegacyProfile(page); await page.goto('/'); await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
-  await openMenuPage(page, 'shop-open'); await page.locator('#shop [data-buy="balanced"]').click(); await page.locator('#purchase-yes').click(); await page.locator('#shop [data-equip="balanced"]').click();
-  await expect(page.locator('#shop-balance')).toContainText('Canne souple'); await page.screenshot({ path: `test-results/${info.project.name}-shop.png` });
+  await openMenuPage(page, 'shop-open'); await buyShopProduct(page,'balanced'); await page.locator('#purchase-yes').click(); await equipShopRod(page,'balanced');
+  await expect(page.locator('[data-shop-product="balanced"]')).toContainText('Équipé'); await page.screenshot({ path: `test-results/${info.project.name}-shop.png` });
   await page.locator('[data-close="shop"]').click(); await openMenuPage(page, 'collection-open');
   await expect(page.locator('.specimen-card')).toHaveCount(5); await page.locator('[data-favorite="known-0"]').click();
   await page.locator('[data-specimen="known-0"]').click(); await expect(page.locator('#fish-preview')).toHaveAttribute('data-loaded', 'true');

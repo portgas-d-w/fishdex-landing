@@ -1,11 +1,11 @@
+import {ShopScreen} from './shop';
 import {DESTINATIONS,trackedObjective} from '../game/objectives';
 import {postById} from '../game/posts';
 import {postAccess,postCondition} from '../game/progression';
-import {EQUIPMENT_FAMILIES,emptyState,unlockReason} from './presentation';
 import {wallet} from '../game/development';
 import { JourneyScreens } from './journey';
-import { RARITIES, catalogueRarity, rarityName } from '../game/rarity';
-import {techniqueAccess,techniqueCondition,methodAccess, itemCondition } from '../game/progression';
+import { RARITIES } from '../game/rarity';
+import {techniqueAccess,techniqueCondition,methodAccess } from '../game/progression';
 import { TackleWorkshop } from './tackle';
 import {TECHNIQUES,TECHNIQUE_IDS,RECIPES,type TechniqueId} from '../game/techniques';
 import {APPEARANCES} from '../game/fish-registry';
@@ -14,9 +14,8 @@ import {SLOT_NAMES} from '../game/rig';
 import {FishDexScreen} from './fishdex';
 import fishdex from '../game/fishdex.json';
 import { SPECIES } from '../game/catalog';
-import { METHODS, FAMILIES, GEAR, BADGE_RULES, gearState, filterJournal, type Gear, type JournalFilter } from '../game/structure';
+import { METHODS, FAMILIES, BADGE_RULES, filterJournal, type JournalFilter } from '../game/structure';
 import { BADGES, levelFor } from '../game/economy';
-import { purchase } from '../game/save';
 import type { SaveData } from '../game/save';
 import type { FishingGame } from '../game/fishing';
 import type { Specimen } from '../game/specimens';
@@ -41,7 +40,7 @@ export interface ScreenHooks {
 }
 export class GameScreens {
     readonly groups: Entry[][];
-    private pending?: Gear;
+    private shopScreen:ShopScreen;
     private workshop: TackleWorkshop;
     private journey:JourneyScreens;
     private dexScreen:FishDexScreen;
@@ -65,10 +64,6 @@ export class GameScreens {
         el('menu').querySelector('nav')!.insertAdjacentHTML('beforeend', '<button id="locations-open">Lieux<small>Habitats et prochaines escales</small></button>');
         el('app').insertAdjacentHTML('beforeend', ['species-sheet', 'item-sheet', 'location-sheet', 'method-sheet', 'badge-sheet', 'purchase-confirm'].map(id => `<dialog id="${id}" class="modal detail-modal"><div class="modal-header"><h2 id="${id}-title"></h2><button class="close" data-close="${id}">Retour</button></div><div id="${id}-body"></div></dialog>`).join('') + '<dialog id="locations" class="modal wide-modal"><div class="modal-header"><div><div class="eyebrow">Explorer les habitats</div><h2>Lieux de pêche</h2></div><button class="close" data-close="locations">Retour</button></div><div id="locations-list" class="content-grid"></div></dialog>');
         el('locations-open').onclick = () => this.h.open('locations');
-        el('shop-list').insertAdjacentHTML('beforebegin', '<div class="filters"><label>Catégorie<select id="shop-family">' + option('all', 'Toute la boutique') + FAMILIES.map(([id, name]) => option(id, name)).join('') + '</select></label></div>');
-        el('shop-family').insertAdjacentHTML('afterend','<div class="shop-toolbar"><label>Recherche<input id="shop-query" type="search" placeholder="Nom ou usage"></label><label>Vue<select id="shop-view"><option value="all">Tout le catalogue</option><option value="equipment">Pour mon équipement</option><option value="available">Disponible</option></select></label></div>');
-        el('shop-family').innerHTML=option('all','Toute la boutique')+EQUIPMENT_FAMILIES.map(([id,name])=>option(id,name)).join('')+'<optgroup label="Sous-familles">'+FAMILIES.filter(([id])=>!EQUIPMENT_FAMILIES.some(f=>f[0]===id)).map(([id,name])=>option(id,name)).join('')+'</optgroup>';
-        for(const id of ['shop-query','shop-view'])el(id).addEventListener('input',()=>this.shop());
         el('collection').querySelector('.intro')!.textContent = 'Vos prises individuelles, leurs photos et leurs histoires. La collection des espèces se trouve dans le FishDex.';
         el('collection-list').insertAdjacentHTML('beforebegin', '<details id="legacy-records"><summary>Records des espèces et de l’ancien carnet</summary></details>');
         el('legacy-records').append(el('collection-list'));
@@ -86,8 +81,6 @@ export class GameScreens {
             e.checked = false;
         else
             e.value = e.id === 'journal-sort' ? 'date' : ''; }); this.h.refresh(); };
-        for (const id of ['shop-family'])
-            el(id).addEventListener('change', () => id === 'gear-family' ? this.material() : this.shop());
         el('journal-controls').addEventListener('input', () => this.h.refresh());
         document.addEventListener('click', e => {
             const b = (e.target as HTMLElement).closest<HTMLElement>('[data-dex],[data-gear],[data-location],[data-tech],[data-objective],[data-unlock]');
@@ -109,6 +102,7 @@ export class GameScreens {
             }
         });
         this.workshop = new TackleWorkshop(this.h);
+        this.shopScreen = new ShopScreen(this.h);
         this.journey=new JourneyScreens(this.h);
         el('progress-badges').insertAdjacentHTML('beforebegin','<div id="practice-masteries"></div>');
     }
@@ -118,7 +112,7 @@ export class GameScreens {
         this.workshop.opened(); if (id === 'progression')
         this.progression(); if (id === 'locations')
         this.locations(); if (id === 'shop')
-        this.shop(); }
+        this.shopScreen.opened(); }
     journalFilter():JournalFilter { const f: JournalFilter = {query:el<HTMLInputElement>('journal-query')?.value??''}; for (const key of ['species', 'variant', 'rarity', 'location', 'method','post','recipe', 'after', 'before', 'view', 'sort'] as const)
         f[key] = el<HTMLInputElement>(`journal-${key}`).value; for (const key of ['minLength', 'maxLength', 'minWeight', 'maxWeight'] as const) {
         const value = el<HTMLInputElement>(`journal-${key}`).value;
@@ -129,16 +123,9 @@ export class GameScreens {
     dex(){this.dexScreen.dex();}
     species(index:number){this.dexScreen.species(index);}
     material() { this.workshop.render(); }
-    private gearCard(i: Gear, inventory: boolean) { const s = this.h.save(), state = gearState(i, s); return `<article class="gear-card">${gearArt(i.family)}<span class="state-pill">${state === 'future' ? 'À venir' : state === 'locked' ? 'Verrouillé' : state === 'owned' ? 'Possédé' : 'Disponible'}</span><h3>${i.name}</h3><small class="rarity-label">${rarityName(catalogueRarity(i.id))}</small><p class="intro">${i.description}</p>${state==='locked'?`<p class="warning-line">${unlockReason(s,i.id)}</p>`:''}<button class="secondary" data-gear="${i.id}">Fiche</button>${i.purchaseId ? `<button class="secondary" ${state === 'owned' || state === 'locked' ? 'disabled' : ''} data-buy="${i.purchaseId}">${state === 'owned' ? 'Possédé' : state === 'locked' ? 'Verrouillé' : `${i.price} écus · Acheter`}</button>${i.family === 'rod' && state === 'owned' ? `<button class="secondary" data-equip="${i.purchaseId}" ${s.equipped === i.purchaseId || this.h.game.phase !== 'idle' ? 'disabled' : ''}>${s.equipped === i.purchaseId ? 'Équipée' : this.h.game.phase === 'idle' ? 'Équiper' : 'Après cette partie'}</button>` : ''}` : !inventory && i.state === 'included' ? '<small>Compris dans votre kit gratuit</small>' : ''}</article>`; }
-    shop() {const save=this.h.save();el('shop-balance').textContent=`${save.development?'Mode test · ':''}${wallet(save)} écus · Niveau ${levelFor(save.xp)}`;el('shop-list').className='content-grid';const family=el<HTMLSelectElement>('shop-family').value,query=el<HTMLInputElement>('shop-query').value.toLocaleLowerCase(),view=el<HTMLSelectElement>('shop-view').value;el('shop-list').innerHTML=GEAR.filter(i=>!!i.purchaseId&&(family==='all'||i.family===family)&&`${i.name} ${i.description}`.toLocaleLowerCase().includes(query)&&(view!=='available'||!itemCondition(save,i.id))&&(view!=='equipment'||i.methods.includes(save.tackle.config.method))).map(i=>this.gearCard(i,false)).join('')||((family==='rod'||family==='decor')?emptyState('Aucun objet trouvé','Élargissez les filtres du catalogue.'):'');this.workshop.refreshShopComponents();}
-
-    item(id: string) { const i = GEAR.find(i => i.id === id); if (!i)
-        return; const state = gearState(i, this.h.save()); el('item-sheet-title').textContent = i.name; el('item-sheet-body').innerHTML = `${gearArt(i.family)}<p class="intro">${i.description}</p><div class="facts"><div><small>Possession</small><strong>${state === 'owned' ? '1' : '0'}</strong></div><div><small>Accès</small><strong>${state === 'future' ? 'À venir' : `Niveau ${i.level}`}</strong></div></div><p class="intro">${i.methods.length ? 'Compatible : ' + i.methods.map(id => METHODS.find(m => m.id === id)?.name).join(' · ') : 'Personnalisation de l’aquarium'}</p><p class="intro">${i.state === 'included' ? 'Inclus dans la canne gratuite, réutilisable.' : i.state === 'future' ? 'La logique de cet objet n’est pas disponible. Aucun achat.' : `${i.price} écus · ${state === 'locked' ? itemCondition(this.h.save(),i.id) : state === 'owned' ? 'Acheté / possédé ; équiper reste une action distincte.' : 'Disponible en boutique.'}`}</p>${i.purchaseId && state === 'available' ? `<button id="item-buy" class="action">Acheter · ${i.price} écus</button>` : ''}`; if (i.purchaseId && state === 'available')
-        el('item-buy').onclick = () => this.buy(i.id); this.h.open('item-sheet'); }
-    buy(id: string) { const i = GEAR.find(i => i.id === id); if (!i?.purchaseId || gearState(i, this.h.save()) !== 'available')
-        return; this.pending = i; el('purchase-confirm-title').textContent = 'Confirmer mon achat'; el('purchase-confirm-body').innerHTML = `${gearArt(i.family)}<h3>${i.name}</h3><p class="intro">${i.price} écus · Solde ${wallet(this.h.save())} écus. L’achat n’équipe pas automatiquement cet objet.</p><button id="purchase-yes" class="action" ${!this.h.save().development?.unlimitedMoney && this.h.save().coins < i.price ? 'disabled' : ''}>Confirmer · ${i.price} écus</button>${!this.h.save().development?.unlimitedMoney && this.h.save().coins < i.price ? '<p class="warning-line">Solde insuffisant. Le kit gratuit permet de continuer à pêcher.</p>' : ''}`; el('purchase-yes').onclick = () => { const item = this.pending; if (!item?.purchaseId)
-        return; const message = purchase(this.h.save(), item.purchaseId); this.h.toast(message || 'Achat ajouté à votre inventaire.'); this.pending = undefined; this.h.persist(); this.h.close('purchase-confirm'); if (el<HTMLDialogElement>('item-sheet').open)
-        this.h.close('item-sheet'); this.shop(); this.material(); this.h.refresh(); }; this.h.open('purchase-confirm'); }
+    shop(){this.shopScreen.render();}
+    item(id:string){this.shopScreen.detail(id);}
+    buy(id:string){this.shopScreen.confirm(id);}
     locations(){const s=this.h.save();el('locations-list').innerHTML=DESTINATIONS.map(d=>{const posts=d.posts.map(id=>postById(id as import('../game/posts').PostId)),open=posts.some(p=>postAccess(s,p.id)),current=d.posts.includes(this.h.game.post);return `<article class="location-card">${d.id==='willow-pond'?'<img class="post-preview" src="/map-assets/post-jetty.jpg" alt="Vue de l’étang depuis le jeu" width="576" height="360" loading="lazy">':'<div class="empty-state">Schéma du milieu · '+(posts[0].context==='river'?'Courant et dérive':'Profondeur et présentation')+'<p>Aperçu photographique indisponible</p></div>'}<span class="state-pill">${current?'Lieu actuel':open?'Accessible':'À débloquer'}</span><h3>${esc(d.name)}</h3><p class="intro">${esc(posts[0].hint)}</p>${d.id==='deep-lake'?'<p class="intro">Embarcation légère : contexte de déplacement et de pêche sur le lac.</p>':''}<button class="secondary" data-location="${d.id}">Milieu et conditions</button>${current?`<button ${d.id==='willow-pond'?'id="open-pond-map"':''} class="action" data-preview-post="${this.h.game.post}">Choisir mon poste</button>`:''}</article>`;}).join('');}
     location(id:string){const d=DESTINATIONS.find(d=>d.id===id)||DESTINATIONS.find(d=>id==='light-boat'&&d.id==='deep-lake');if(!d)return;const s=this.h.save();el('location-sheet-title').textContent=d.name;el('location-sheet-body').innerHTML=`<p class="intro">Consultez un poste avant de vous installer. Aucun trajet au simple aperçu.</p>${d.posts.map(id=>{const p=postById(id as import('../game/posts').PostId);return `<article class="next-step"><h3>${esc(p.name)}</h3><span class="state-pill">${postAccess(s,p.id)?'Accessible':'À débloquer'}</span><p class="intro">${esc(p.hint)}</p><p class="intro">${postAccess(s,p.id)?'Accès permanent':esc(postCondition(s,p.id))}</p>${p.id==='boat'?'<p class="intro">Contexte embarqué : vitesse et orientation animent la traîne.</p>':''}<button ${p.id===d.posts[0]?'id="location-select"':''} class="secondary" data-preview-post="${p.id}">Voir ce poste</button></article>`;}).join('')}`;this.h.open('location-sheet');}
 

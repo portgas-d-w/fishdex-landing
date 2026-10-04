@@ -1,4 +1,8 @@
 import { expect, type Page } from '@playwright/test';
+import {SHOP_PRODUCTS} from '../../src/game/shop';
+export async function openShopProduct(page:Page,id:string){await page.locator('#shop-query').fill(SHOP_PRODUCTS.find(p=>p.id===id)!.name);await page.locator(`[data-shop-product="${id}"]`).click();}
+export async function buyShopProduct(page:Page,id:string,count=1){await openShopProduct(page,id);if(count!==1)await page.locator('#shop-quantity').fill(String(count));await page.locator('#shop-detail-buy').click();}
+export async function equipShopRod(page:Page,id:string){await openShopProduct(page,id);await page.locator('#shop-detail-equip').click();await expect(page.locator('#item-sheet .state-pill')).toHaveText('Équipé');await page.locator('[data-close="item-sheet"]').click();}
 export async function chooseMethod(page:Page,method:string) {
   await page.locator('[data-slot="method"]').click();
   if(!await page.locator(`[data-choose-method="${method}"]`).isVisible())await page.locator(`details:has([data-choose-method="${method}"]) > summary`).click();

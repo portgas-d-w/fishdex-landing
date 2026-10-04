@@ -1,3 +1,4 @@
+import {buyShopProduct} from '../browser/helpers';
 import {test,expect} from '@playwright/test';
 import {openMenuPage} from '../browser/helpers';
 import {realCombat} from './controls';
@@ -12,7 +13,7 @@ test('Le build contrôle le Mode test et conserve la partie normale sans QA',asy
  await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');expect(await page.evaluate(()=>'__fishingQA' in window)).toBe(false);await openMenuPage(page,'help-open');
  if(!enabled){await expect(page.locator('#test-open')).toHaveCount(0);return;}
  const original=await page.evaluate(()=>localStorage.getItem('au-fil-de-leau.save.v1'));await page.locator('#test-open').click();await page.locator('#test-toggle').click();await expect(page.locator('body')).toHaveAttribute('data-ready','true');await tools(page);await expect(page.locator('#test-profile-state')).toContainText('∞');await expect(page.locator('#test-technique option')).toHaveCount(22);
- await page.locator('[data-close=test-tools]').click();await page.locator('[data-close=help]').click();await page.locator('#shop-open').click();await page.locator('[data-buy=precision]').click();await page.locator('#purchase-yes').click();await page.reload();await expect(page.locator('body')).toHaveAttribute('data-ready','true');const s=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.test.save.v1')!));expect(s.inventory).toContain('precision');expect(s.development.theoreticalCost).toBe(160);expect(Number.isFinite(s.coins)).toBe(true);
+ await page.locator('[data-close=test-tools]').click();await page.locator('[data-close=help]').click();await page.locator('#shop-open').click();await buyShopProduct(page,'precision');await page.locator('#purchase-yes').click();await page.reload();await expect(page.locator('body')).toHaveAttribute('data-ready','true');const s=await page.evaluate(()=>JSON.parse(localStorage.getItem('au-fil-de-leau.test.save.v1')!));expect(s.inventory).toContain('precision');expect(s.development.theoreticalCost).toBe(160);expect(Number.isFinite(s.coins)).toBe(true);
  // Pendant le profil TEST le texte normal est intact. Son redémarrage valide et
  // sérialise à nouveau le JSON : l'ordre des clés peut changer, pas ses données.
  expect(await page.evaluate(()=>localStorage.getItem('au-fil-de-leau.save.v1'))).toBe(original);

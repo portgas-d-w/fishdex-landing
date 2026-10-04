@@ -18,3 +18,7 @@ Limites : aucun iPhone réel, Safari, clavier virtuel iOS ou performance GPU sur
 ## Clôture commune publiée
 
 Commit du lot : d4d2d95. Les quatre lots sont livrés en production 0.14.0 sur fishdex.fr après revue Vercel ; source applicative finale main d8bc998. Version et empreinte vérifiées sans token ni QA. Voir ../PUBLICATION.md et ../BILAN.md pour les IDs de déploiement, mesures, captures publiques identiques et résultats réels. Aucun blocage UI connu ; les essais physiques iPhone/Safari restent non exécutés. Prochaine tâche : essai propriétaire sur iPhone 14 Pro, gestes/clavier/rotation/audio/import-export et mesures FPS/chauffe, sans garantie issue de l’émulation.
+
+## Complément boutique par rayons — 4octobre2026,0.14.1
+
+La demande actuelle remplace la présentation du catalogue par six catégories compactes et un rayon aquarium distinct.142articles, grille deux colonnes, fiches/quantités, recherche générale, filtre technique/recette, retours complets ; Matériel et services économiques restent ceux du lot01. Check214/214,16scénarios ciblés et10régressions passent. Rapport et procédure : ../../BOUTIQUE_RAYONS.md. Publication en cours de revue ; essais iPhone physiques non exécutés.

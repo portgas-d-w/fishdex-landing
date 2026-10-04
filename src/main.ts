@@ -403,7 +403,7 @@ el('collection-open').onclick = () => { refreshCollection(); openModal('collecti
 el('help-open').onclick = () => openModal('help');
 el('dex-open').onclick = () => { refreshDex(); openModal('encyclopedia'); };
 for (const id of ['dex-search', 'dex-category', 'dex-state']) el(id).addEventListener('input', refreshDex);
-el('shop-open').onclick = () => { refreshShop(); openModal('shop'); };
+el('shop-open').onclick = () => { el<HTMLSelectElement>('shop-family').value='all'; openModal('shop'); };
 el('aquarium').addEventListener('aquarium-refresh',()=>void loadAquarium());
 el('aquarium-open').onclick = () => { openModal('aquarium'); void loadAquarium(); };
 el('aquarium-add').onclick = () => { const id = el<HTMLSelectElement>('aquarium-choice').value; if (!id) return;if(save.favorites.length===5){toast('Cinq favoris : choisissez l’emplacement à remplacer.');memories?.refresh();return;} const error = toggleFavorite(save, id); if (error) { toast(error); return; } saveNow(); refreshCollection(); void loadAquarium(); };
@@ -419,13 +419,13 @@ for (const key of ['floor', 'background', 'light', 'plants', 'rocks'] as const) 
   else save.aquarium.light = el<HTMLSelectElement>('aq-light').value as SaveData['aquarium']['light'];
   saveNow(); aquarium?.customize(save.aquarium);
 });
-el('shop-list').onclick = event => {
+el('gear-list').onclick = event => {
   const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button'); if (!button) return;
   if (button.dataset.buy) { hub?.buy(button.dataset.buy); return; }
   if (button.dataset.equip && game.phase === 'idle' && save.inventory.includes(button.dataset.equip as ItemId)) { const error=equipRod(save,button.dataset.equip as ItemId);if(error)toast(error);else equip(); }
   saveNow(); refreshShop(); refreshCollection();
 };
-el('gear-list').onclick = el('shop-list').onclick;
+
 el('journal-more').onclick = () => { journalLimit += 30; refreshCollection(); };
 el('journal-list').onclick = event => {
   const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button'); if (!button) return;

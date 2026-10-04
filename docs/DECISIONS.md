@@ -1,3 +1,7 @@
+## 4 octobre2026 — Boutique0.14.1 : rayons et transactions séparés
+
+Accueil à six rayons et décor aquarium distinct ; classement pur des142IDs depuis le catalogue existant, sans inventer Tresse/Fluorocarbone. Slots réels des recettes et22techniques alimentent compatibilité et listes de méthodes, y compris emplacements ajoutés par slotsFor. Grille24cartes différées, fiche unique, achat par les services existants, équipement distinct ; pas de promotions ou de classement par prix. État de navigation local à l’écran, aucun nouveau champ sauvegardé. Les images techniques réutilisent les assets et schémas ; tokens Basalte maintenus. Décisions/limites/preuves : BOUTIQUE_RAYONS.md.
+
 ## 4 octobre 2026 — Refonte des menus par lots
 Les quatre dossiers UI sont réalisés séquentiellement. Socle léger TypeScript/DOM et dialogues natifs conservés : les sous-fiches utilisent un dialogue propre pour préserver filtres, scroll et focus. Tokens Basalte & Turquoise existants réutilisés, interfaces mobiles pleine hauteur ; filtres et conseils interrogent les règles actuelles sans rééquilibrage. Publication unique après validation transversale demandée par le propriétaire. Aucun shader ni modèle modifié.
 

@@ -1,3 +1,10 @@
+## Boutique par rayons — complément lot01, 4octobre2026
+- [x] Six catégories illustrées, aquarium séparé, grille compacte et sous-rayons renseignés.
+- [x] Fiches/quantités/comparaison, compatibilité réelle, retours et sauvegardes conservés.
+- [x] Check214/214 + TS/build,16 parcours ciblés et10 régressions mobile/bureau.
+- [ ] Revue hébergée puis publication sur fishdex.fr (cible vérifiée).
+- [ ] Essais physiques iPhone/Safari/clavier/focus/toucher ; aucune promesse FPS.
+
 ## Refonte UI — 4 octobre 2026
 - [x] Lot 01 Matériel/Boutique : socle, retours, familles, explications et vérifications locales.
 - [x] Lot 02 FishDex : identités cachées, routes éligibles, collection et contrôles.
