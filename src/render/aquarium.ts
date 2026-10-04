@@ -103,7 +103,7 @@ export class Aquarium {
       const fit = Math.min(1, (3.5 - this.fish.length * 0.17) / Math.max(0.1, height));
       let y = 0.3;
       for (const fish of this.fish) { fish.root.scaling.scaleInPlace(fit); fish.height *= fit; fish.baseY = y + fish.height / 2; y += fish.height + 0.17; }
-      await this.scene.whenReadyAsync(); this.engine.resize(); this.scene.render();
+      await this.scene.whenReadyAsync(); this.engine.resize();if(this.enabled)this.scene.render();
     }
     return { loaded: this.fish.length, errors };
   }

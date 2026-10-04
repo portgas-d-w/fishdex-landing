@@ -178,9 +178,10 @@ async function loadAquarium() {
   el('aquarium-canvas').dataset.loaded = 'false'; el('aquarium-state').textContent = 'Le bassin se réveille…';el('aq-retry').hidden=true; refreshAquariumControls();memories?.refresh();
   try {
     if (request !== aquariumRequest) return;
-    aquarium = new Aquarium(el<HTMLCanvasElement>('aquarium-canvas'), save.settings.quality); aquarium.customize(save.aquarium);
+    aquarium = new Aquarium(el<HTMLCanvasElement>('aquarium-canvas'), save.settings.quality);if(modalLayers.at(-1)?.id!=='aquarium')aquarium.pause();aquarium.customize(save.aquarium);
     const result = await aquarium.show(save.favorites.map(id => save.journal.find(s => s.id === id)!));
     if (request !== aquariumRequest) return;
+    if(modalLayers.at(-1)?.id!=='aquarium')aquarium.pause();
     el('aquarium-canvas').dataset.loaded = 'true';el('aq-retry').hidden=!result.errors;memories?.refresh();
     el('aquarium-state').textContent = `${result.loaded} / 5 favoris dans le bassin.${result.errors ? ' Un modèle n’a pas pu être chargé ; vos favoris sont conservés.' : result.loaded ? ' Une nage paisible, chacun à son rythme.' : ' Ajoutez des spécimens depuis votre carnet.'}`;
   } catch { if(request===aquariumRequest){el('aquarium-state').textContent='3D indisponible. Mes poissons reste consultable en 2D ; vos favoris sont conservés.';el('aq-retry').hidden=false;} }

@@ -23,3 +23,5 @@ Captures : avant, public-avant (profils vierge et trois spécimens/une favorite)
 
 ## Publication et suite
 Identité confirmée par API et .vercel : prj_nOUkHjJpybWCDpBHnEh2TTWKYK6x, team_5BFwQHD6LvVeOSgmKAj7QoTv, portgas-d-w/fishdex-landing, Vite/Node24, main. Revue puis production commune à réaliser maintenant ; preuves définitives dans ../PUBLICATION.md. Après publication : essais physiques iPhone 14 Pro, pas de fonctionnalité UI laissée bloquée connue.
+
+Correction finale : suspendre immédiatement le bassin reconstruit sous Mes poissons/Décorer, puis revalider sa visibilité après chargement ; aucun rendu forcé de préparation quand suspendu. Check 211/211 + TS/build et 4/4 scénarios aquarium/carnet passent ; compteur de frames stable sous le panneau après remplacement, reprise au retour. Correction de cycle de vie sans modification des individus ou des règles.
