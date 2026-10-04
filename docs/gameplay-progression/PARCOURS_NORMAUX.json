@@ -1,0 +1,89 @@
+{
+  "kind": "Simulation sans bac à sable ni captures forcées ; budgets de préparation hypothétiques ; pas de joueur humain",
+  "rows": [
+    {
+      "profile": "Débutant prudent",
+      "normal": true,
+      "forcedFish": false,
+      "goal": "Niveau direct 15 en restant au coup",
+      "level": 15,
+      "seconds": 1336.6166666666666,
+      "preparationSecondsAssumed": 700,
+      "waitingSecondsSimulated": 269.43333333333334,
+      "fightAndReceptionSecondsSimulated": 367.1833333333333,
+      "attempts": 26,
+      "failures": 5,
+      "catches": 21,
+      "firstEquipment": {
+        "seconds": 281.33333333333337,
+        "attempt": 3,
+        "price": 65
+      },
+      "xp": 1246,
+      "coins": 518,
+      "medianFight": 17.216666666666665,
+      "p90Fight": 24.583333333333332,
+      "inventory": [
+        "starter",
+        "pole-starter",
+        "pole-elastic"
+      ]
+    },
+    {
+      "profile": "Expérimenté",
+      "normal": true,
+      "forcedFish": false,
+      "goal": "Niveau direct 15 en restant au coup",
+      "level": 15,
+      "seconds": 726.35,
+      "preparationSecondsAssumed": 130,
+      "waitingSecondsSimulated": 192.75000000000003,
+      "fightAndReceptionSecondsSimulated": 403.6,
+      "attempts": 22,
+      "failures": 0,
+      "catches": 22,
+      "firstEquipment": {
+        "seconds": 76.33333333333333,
+        "attempt": 3,
+        "price": 65
+      },
+      "xp": 1277,
+      "coins": 518,
+      "medianFight": 18.816666666666666,
+      "p90Fight": 25.283333333333335,
+      "inventory": [
+        "starter",
+        "pole-starter",
+        "pole-elastic"
+      ]
+    },
+    {
+      "profile": "Pratique préférée : coup",
+      "normal": true,
+      "forcedFish": false,
+      "goal": "Niveau direct 15 en restant au coup",
+      "level": 15,
+      "seconds": 861.3499999999999,
+      "preparationSecondsAssumed": 265,
+      "waitingSecondsSimulated": 192.75000000000003,
+      "fightAndReceptionSecondsSimulated": 403.6,
+      "attempts": 22,
+      "failures": 0,
+      "catches": 22,
+      "firstEquipment": {
+        "seconds": 116.33333333333333,
+        "attempt": 3,
+        "price": 65
+      },
+      "xp": 1277,
+      "coins": 518,
+      "medianFight": 18.816666666666666,
+      "p90Fight": 25.283333333333335,
+      "inventory": [
+        "starter",
+        "pole-starter",
+        "pole-elastic"
+      ]
+    }
+  ]
+}

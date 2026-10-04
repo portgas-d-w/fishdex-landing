@@ -13,6 +13,7 @@ export function installTechniqueControls(h:ScreenHooks){
  el('tech-clonk').onclick=()=>h.toast(g.clonk()?'Courte série ; attendez une éventuelle réaction.':`Pause sonore : ${Math.ceil(g.clonkRemaining)} secondes.`);
  el('tech-land').onclick=()=>{if(g.phase==='landing'){g.leaveLanding();}else if(!g.beginLanding())h.toast('Guidez la prise à portée avant de préparer la réception.');};
  document.addEventListener('fishing-input-reset',stop);el('tech-drag').insertAdjacentHTML('afterend','<output id=drag-value></output>');
+ el('tech-drag').addEventListener('pointerdown',()=>{g.release();document.dispatchEvent(new Event('fishing-input-reset'));});
  el('tech-depth').oninput=()=>{g.rig.depth=Number(el<HTMLInputElement>('tech-depth').value);if(g.tackle)g.tackle.config.depth=g.rig.depth;};
  el('tech-drag').oninput=()=>{g.rig.drag=Number(el<HTMLInputElement>('tech-drag').value);if(g.tackle){g.tackle.config.drag=g.rig.drag;if(g.tackle.active)g.tackle.active.config.drag=g.rig.drag;}};
  for(const id of ['tech-speed','tech-course'])el(id).onchange=()=>g.setBoat(Number(el<HTMLSelectElement>('tech-speed').value),Number(el<HTMLSelectElement>('tech-course').value));

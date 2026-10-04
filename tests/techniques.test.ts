@@ -2,7 +2,7 @@ import {manageFight} from './support/combat.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {TECHNIQUES,RECIPES,techniqueById,type TechniqueId} from '../src/game/techniques.ts';
-import {createTestSave} from '../src/game/development.ts';
+import {createTestSave,prepareTestKit} from '../src/game/development.ts';
 import {switchTechnique,refreshRights,techniqueAccess,restoreFreeKit} from '../src/game/progression.ts';
 import {FishingGame} from '../src/game/fishing.ts';
 import {ITEMS} from '../src/game/economy.ts';
@@ -11,7 +11,7 @@ import {techniqueConfig,validateRig,reserveRig,resolveRig,component,parseTackle}
 import {initialPresentation,stepPresentation,recipeMechanics} from '../src/game/presentation.ts';
 import {stepCombat} from '../src/game/combat.ts';
 
-function prepare(id:TechniqueId,recipe?:string){const save=createTestSave();assert.equal(switchTechnique(save,id,recipe),'');const t=techniqueById(id),game=new FishingGame(()=>.01);game.tackle=save.tackle;game.testMode=true;game.method=t.base;game.equipment=save.equipped;game.equipmentPower=ITEMS.find(i=>i.id===save.equipped)!.power;game.rights=save.progression;const post=t.context.includes('pond')?'jetty':t.context.includes('river')?'river':t.context.includes('deep')?'deep':'boat';assert.equal(game.setPost(post),true);save.preparation.post=post;save.preparation.location=post==='river'?'running-river':post==='deep'?'deep-lake':post==='boat'?'light-boat':'willow-pond';if(t.engine==='feeder')game.fillFeeder();if(t.engine==='fly'){game.prepareFly();game.prepareFly();}if(t.engine==='troll')game.setBoat(1,0);return {save,game,t};}
+function prepare(id:TechniqueId,recipe?:string){const save=createTestSave();assert.equal(prepareTestKit(save,id,recipe),'');const t=techniqueById(id),game=new FishingGame(()=>.01);game.tackle=save.tackle;game.testMode=true;game.method=t.base;game.equipment=save.equipped;game.equipmentPower=ITEMS.find(i=>i.id===save.equipped)!.power;game.rights=save.progression;const post=t.context.includes('pond')?'jetty':t.context.includes('river')?'river':t.context.includes('deep')?'deep':'boat';assert.equal(game.setPost(post),true);save.preparation.post=post;save.preparation.location=post==='river'?'running-river':post==='deep'?'deep-lake':post==='boat'?'light-boat':'willow-pond';if(t.engine==='feeder')game.fillFeeder();if(t.engine==='fly'){game.prepareFly();game.prepareFly();}if(t.engine==='troll')game.setBoat(1,0);return {save,game,t};}
 function natural(id:TechniqueId,recipe?:string){const state=prepare(id,recipe),{game:g,save,t}=state;assert.equal(g.cast({x:0,z:3.2}),true,g.failure);assert.equal(g.fish,null);
  for(let n=0;n<7200&&['casting','waiting'].includes(g.phase);n++){if(g.phase==='waiting'){if(g.manualMode&&save.tackle.config.recipe==='streamer')g.useReel();if(t.engine==='retrieve'||t.engine==='fly'&&save.tackle.config.recipe==='streamer'||t.engine==='bottom'||t.engine==='feeder')g.reel(.8/60);if(t.engine==='vertical'||t.engine==='clonk')g.orient(0,.5+Math.sin(n/20)*.2);if(t.engine==='drift')g.holdRestraint(true);if(t.engine==='clonk')g.clonk();}g.update(1/60);}
  assert.ok(['bite','fighting'].includes(g.phase),`${id}/${recipe}: aucune rencontre ${g.failure}`);const fish=g.fish!.id,size=g.fishLength;if(g.phase==='bite')g.strike();

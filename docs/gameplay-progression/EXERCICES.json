@@ -1,0 +1,192 @@
+{
+  "kind": "Gestes dans la logique réelle, rencontres naturelles ; aucune validation manuelle de compétence ni appareil",
+  "rows": [
+    {
+      "family": "bordure",
+      "normalQuestLevel": 1,
+      "attempts": 1,
+      "seconds": 22.316666666666666,
+      "phase": "caught",
+      "steps": [
+        "depth",
+        "strike",
+        "receive"
+      ],
+      "missing": [],
+      "completed": true,
+      "normalCatches": 0,
+      "coins": 0,
+      "forcedFish": false
+    },
+    {
+      "family": "exploration",
+      "normalQuestLevel": 5,
+      "attempts": 1,
+      "seconds": 19.533333333333335,
+      "phase": "caught",
+      "steps": [
+        "animation",
+        "layer",
+        "receive"
+      ],
+      "missing": [],
+      "completed": true,
+      "normalCatches": 0,
+      "coins": 45,
+      "forcedFish": false
+    },
+    {
+      "family": "precision",
+      "normalQuestLevel": 20,
+      "attempts": 2,
+      "seconds": 41.13333333333333,
+      "phase": "caught",
+      "steps": [
+        "deposit",
+        "diffusion",
+        "receive"
+      ],
+      "missing": [],
+      "completed": true,
+      "normalCatches": 0,
+      "coins": 45,
+      "forcedFish": false
+    },
+    {
+      "family": "distance",
+      "normalQuestLevel": 35,
+      "attempts": 1,
+      "seconds": 15.25,
+      "phase": "caught",
+      "steps": [
+        "depth",
+        "contact",
+        "receive"
+      ],
+      "missing": [],
+      "completed": true,
+      "normalCatches": 0,
+      "coins": 45,
+      "forcedFish": false
+    },
+    {
+      "family": "puissance",
+      "normalQuestLevel": 50,
+      "attempts": 1,
+      "seconds": 38.2,
+      "phase": "caught",
+      "steps": [
+        "drag",
+        "departure",
+        "receive"
+      ],
+      "missing": [],
+      "completed": true,
+      "normalCatches": 0,
+      "coins": 45,
+      "forcedFish": false
+    },
+    {
+      "family": "controle",
+      "normalQuestLevel": 65,
+      "attempts": 1,
+      "seconds": 19.816666666666666,
+      "phase": "caught",
+      "steps": [
+        "elastic",
+        "kit",
+        "receive"
+      ],
+      "missing": [],
+      "completed": true,
+      "normalCatches": 0,
+      "coins": 45,
+      "forcedFish": false
+    },
+    {
+      "family": "riviere",
+      "normalQuestLevel": 80,
+      "attempts": 1,
+      "seconds": 20.466666666666665,
+      "phase": "caught",
+      "steps": [
+        "drift",
+        "strike",
+        "receive"
+      ],
+      "missing": [],
+      "completed": true,
+      "normalCatches": 0,
+      "coins": 45,
+      "forcedFish": false
+    },
+    {
+      "family": "soie",
+      "normalQuestLevel": 95,
+      "attempts": 4,
+      "seconds": 71.45,
+      "phase": "caught",
+      "steps": [
+        "deposit",
+        "receive",
+        "manual"
+      ],
+      "missing": [],
+      "completed": true,
+      "normalCatches": 0,
+      "coins": 45,
+      "forcedFish": false
+    },
+    {
+      "family": "profondeur",
+      "normalQuestLevel": 110,
+      "attempts": 2,
+      "seconds": 48.36666666666667,
+      "phase": "caught",
+      "steps": [
+        "rise",
+        "receive",
+        "layers"
+      ],
+      "missing": [],
+      "completed": true,
+      "normalCatches": 0,
+      "coins": 45,
+      "forcedFish": false
+    },
+    {
+      "family": "traine",
+      "normalQuestLevel": 125,
+      "attempts": 1,
+      "seconds": 26.95,
+      "phase": "caught",
+      "steps": [
+        "passage",
+        "boat",
+        "receive"
+      ],
+      "missing": [],
+      "completed": true,
+      "normalCatches": 0,
+      "coins": 45,
+      "forcedFish": false
+    },
+    {
+      "family": "silure",
+      "normalQuestLevel": 140,
+      "attempts": 1,
+      "seconds": 67.08333333333333,
+      "phase": "caught",
+      "steps": [
+        "depth",
+        "clonk",
+        "receive"
+      ],
+      "missing": [],
+      "completed": true,
+      "normalCatches": 0,
+      "coins": 45,
+      "forcedFish": false
+    }
+  ]
+}

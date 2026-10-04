@@ -122,3 +122,7 @@ Contrôles et transactions existants déplacés dans des panneaux natifs, sans n
 
 ## 2026-10-04 — Curriculum additif
 Familles et quêtes utilisent les IDs techniques existants. Courbe cumulée plafonnée150, XP conservée (aucun niveau ancien réduit). Prêt en mémoire, seul son état d’exercice est écrit au carnet actif ; matériel/prises ne sont pas attribués au normal. Disponibilité, possession et pratique sont séparées.
+
+## 4 octobre2026 — Gameplay progression, finition Lot5
+
+Disponibilité niveau OU quête distincte de l’achat ; prix d’entrée spécialisés75–110écus, équipement détenu et droits hérités intacts. Prêts mémoire séparée, validation sur événements effectifs et rafraîchissement immédiat des droits. Plombs1–8unités d’une référence, stock/graphe physique au lancer conservés. Réception demande travail/fatigue, pas minuteur artificiel. Mode TEST rules accélère XP seulement. Coefficients purs ajustables ; cadence/gros combats restent à calibrer avec joueurs réels, pas de garantie fondée sur scripts. Aucun chantier eau/monde/deps parallèle.

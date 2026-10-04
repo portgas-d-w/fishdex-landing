@@ -1,6 +1,6 @@
 import type {SaveData} from './save.ts';
 import type {TechniqueId} from './techniques.ts';
-export const CURRICULUM_CONFIG={version:1,maxLevel:150,baseXP:50,incrementXP:6,maxIncrement:160,questReward:45,cleanBonus:.1};
+export const CURRICULUM_CONFIG={version:1,maxLevel:150,baseXP:50,incrementXP:6,maxIncrement:160,questReward:45,cleanBonus:.1,ordinaryXP:40};
 export const FAMILIES=[
  {id:'bordure',name:'Bordure',real:'Canne au coup',level:1,quest:1,entry:'coup',methods:['coup'],skills:['depth','strike','receive']},
  {id:'exploration',name:'Exploration',real:'Spinning / casting',level:15,quest:5,entry:'leurre',methods:['leurre','ultraleger','mort_manie'],skills:['layer','animation','receive']},
@@ -18,8 +18,8 @@ export type FamilyId=typeof FAMILIES[number]['id'];
 export interface Curriculum {version:1;legacy:FamilyId[];quests:Partial<Record<FamilyId,{steps:string[];rewarded:boolean}>>;skills:Partial<Record<FamilyId,string[]>>}
 export const initialCurriculum=():Curriculum=>({version:1,legacy:[],quests:{},skills:{}});
 export const familyFor=(id:TechniqueId)=>FAMILIES.find(f=>(f.methods as readonly string[]).includes(id))!;
-export const xpThreshold=(level:number)=>{let xp=0;for(let l=1;l<Math.min(150,level);l++)xp+=50+Math.min(6*(l-1),160);return xp;};
-export const curriculumLevel=(xp:number)=>{let l=1;while(l<150&&xp>=xpThreshold(l+1))l++;return l;};
+export const xpThreshold=(level:number)=>{let xp=0;for(let l=1;l<Math.min(CURRICULUM_CONFIG.maxLevel,level);l++)xp+=CURRICULUM_CONFIG.baseXP+Math.min(CURRICULUM_CONFIG.incrementXP*(l-1),CURRICULUM_CONFIG.maxIncrement);return xp;};
+export const curriculumLevel=(xp:number)=>{let l=1;while(l<CURRICULUM_CONFIG.maxLevel&&xp>=xpThreshold(l+1))l++;return l;};
 export const questComplete=(s:SaveData,id:FamilyId)=>{const f=FAMILIES.find(f=>f.id===id)!;return f.skills.every(k=>s.curriculum?.quests[id]?.steps.includes(k));};
 export const familyAvailable=(s:SaveData,id:FamilyId)=>s.development?.kind==='sandbox'||s.progression.legacy&&!s.curriculum?.legacy.length||!!s.curriculum?.legacy.includes(id)||curriculumLevel(s.xp)>=FAMILIES.find(f=>f.id===id)!.level||questComplete(s,id);
 export const masteryRank=(s:SaveData,id:FamilyId)=>Math.min(5,1+(s.curriculum?.skills[id]?.length??0));
@@ -36,3 +36,6 @@ export function parseCurriculum(v:unknown):Curriculum {
  for(const [id,q]of Object.entries(d.quests)){const f=FAMILIES.find(f=>f.id===id);if(!f||!Array.isArray(q.steps)||q.steps.some(k=>!(f.skills as readonly string[]).includes(k))||new Set(q.steps).size!==q.steps.length||typeof q.rewarded!=='boolean'||q.rewarded&&!f.skills.every(k=>q.steps.includes(k)))throw Error('Quête invalide');}
  for(const [id,keys]of Object.entries(d.skills))if(!FAMILIES.some(f=>f.id===id)||!Array.isArray(keys)||keys.some(k=>!['contact','trajectory','retrieval','receive'].includes(k))||new Set(keys).size!==keys.length)throw Error('Maîtrise invalide');return structuredClone(d);
 }
+
+export function recipeCondition(s:SaveData,id:TechniqueId,recipe:string){if(s.development?.kind==='sandbox'||s.curriculum?.legacy.includes(familyFor(id).id))return '';const rank=id==='mouche'&&recipe!=='seche'?2:id==='carpe'&&['chod','ronnie','combi'].includes(recipe)?4:id==='carpe'&&recipe.startsWith('pva_')?3:id==='carpe'&&recipe!=='cheveu_coulissant'?2:1;return masteryRank(s,familyFor(id).id)>=rank?'':`Maîtrise ${rank} de ${familyFor(id).name} : contact, trajectoire, reprise et réception sont des réussites distinctes.`;}
+export function secondaryMilestones(s:SaveData){const level=curriculumLevel(s.xp),base=Math.floor(level/15)*15;return [{level:Math.max(1,base)+4,label:'Essayer un appât ou une recette possédée',target:'preparation'},{level:Math.max(1,base)+8,label:'Comparer un accessoire compatible',target:'shop'},{level:Math.max(1,base)+12,label:'Une réussite de maîtrise ou une découverte',target:'encyclopedia'}].filter(m=>m.level<=CURRICULUM_CONFIG.maxLevel);}

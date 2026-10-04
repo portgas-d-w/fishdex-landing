@@ -1,4 +1,4 @@
-import {curriculumLevel} from './curriculum.ts';
+import {curriculumLevel,CURRICULUM_CONFIG} from './curriculum.ts';
 import { techniqueById,type TechniqueId } from './techniques.ts';
 import { SPECIES } from './catalog.ts';
 import type { Specimen, Reward } from './specimens.ts';
@@ -8,13 +8,13 @@ export const ITEMS = [
   { id: 'starter', name: 'Canne de bordure', price: 0, kind: 'rod', power: 1, description: 'Réutilisable. Les trois montages de base sont inclus.' },
   { id: 'balanced', name: 'Canne souple', price: 70, kind: 'rod', power: 1.18, description: '18 % de récupération et d’amortissement en plus.' },
   { id: 'precision', name: 'Canne de précision', price: 160, kind: 'rod', power: 1.32, description: '32 % de récupération et d’amortissement en plus.' },
-  {id:'long-pole',name:'Grande canne 12 m de secours',price:0,kind:'rod',power:1.12,description:'Emmanchements, élastique et déboîtement ; sans moulinet.'},
-  {id:'bolo-rod',name:'Canne de dérive de secours',price:0,kind:'rod',power:1,description:'Contrôle de bannière au courant, toc et bolognaise.'},
-  {id:'feeder-rod',name:'Canne feeder de secours',price:0,kind:'rod',power:1.1,description:'Scion sensible ; lecture du dépôt et de la touche.'},
-  {id:'heavy-rod',name:'Canne forte de secours',price:0,kind:'rod',power:1.32,description:'Réserve de contrôle pour carpe, monture, traîne et clonk.'},
-  {id:'deep-rod',name:'Canne verticale de secours',price:0,kind:'rod',power:1.18,description:'Couche profonde et petites levées ; contrôle direct du fil.'},
-  {id:'fly-rod',name:'Canne à mouche de secours',price:0,kind:'rod',power:1.08,description:'Masse de soie et préparation du lancer ; ligne ou moulinet.'},
-  {id:'light-rod',name:'Canne ultralégère de secours',price:0,kind:'rod',power:.92,description:'Petites présentations, précision et résistance limitée.'},
+  {id:'long-pole',name:'Grande canne 12 m',price:90,kind:'rod',power:1.12,description:'Emmanchements, élastique et déboîtement ; sans moulinet.'},
+  {id:'bolo-rod',name:'Canne de dérive',price:90,kind:'rod',power:1,description:'Contrôle de bannière au courant, toc et bolognaise.'},
+  {id:'feeder-rod',name:'Canne feeder',price:90,kind:'rod',power:1.1,description:'Scion sensible ; lecture du dépôt et de la touche.'},
+  {id:'heavy-rod',name:'Canne forte',price:110,kind:'rod',power:1.32,description:'Réserve de contrôle pour carpe, monture, traîne et clonk.'},
+  {id:'deep-rod',name:'Canne verticale',price:95,kind:'rod',power:1.18,description:'Couche profonde et petites levées ; contrôle direct du fil.'},
+  {id:'fly-rod',name:'Canne à mouche',price:100,kind:'rod',power:1.08,description:'Masse de soie et préparation du lancer ; ligne ou moulinet.'},
+  {id:'light-rod',name:'Canne ultralégère',price:75,kind:'rod',power:.92,description:'Petites présentations, précision et résistance limitée.'},
   { id: 'plants', name: 'Bosquet aquatique', price: 35, kind: 'decor', power: 1, description: 'Des plantes dans votre aquarium.' },
   { id: 'rocks', name: 'Rochers de rivière', price: 40, kind: 'decor', power: 1, description: 'Un abri minéral dans votre aquarium.' },
 ] as const;
@@ -30,7 +30,7 @@ export function rewardFor(s: Specimen, first: boolean, record: boolean): Reward 
   const size = (s.length - species.min) / (species.max - species.min);
   const base = Math.round(((REWARD_BASE as Record<string,number>)[s.speciesId]??Math.min(22,Math.round(8+species.strength*6))) * (1 + size * 0.6) * (s.mirage ? 1.8 : s.coloration === 'golden' ? 1.15 : 1));
   const discovery = first ? 20 : 0, best = record && !first ? 10 : 0;
-  return { base, discovery, record: best, coins: base + discovery + best, xp: 40 + Math.round(size * 15) + (first ? 20 : 0) };
+  return { base, discovery, record: best, coins: base + discovery + best, xp: CURRICULUM_CONFIG.ordinaryXP + Math.round(size * 15) + (first ? 20 : 0) };
 }
 export const levelFor = (xp: number) => curriculumLevel(xp);
 export const BADGES = { first: 'Première rencontre', diversity: 'Les espèces de l’étang', contact: 'Main légère : combat contrôlé', lure: 'Au leurre', bottom: 'Au fond', collector: 'Dix souvenirs', record: 'Un nouveau record' };

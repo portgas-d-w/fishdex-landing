@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-04",
+  "entry": "/assets/index-DzDYgkUC.js",
+  "bytes": 2337502,
+  "sha256": "6c937b6c25c51a4033e2279b75a7d4e19528872fa91715e5791016da8c38cd5a",
+  "baselineBytes": 2306038,
+  "deltaBytes": 31464,
+  "deltaPercent": 1.364418105859487,
+  "node": "v24.15.0",
+  "physicalDevice": false,
+  "note": "Aucune nouvelle passe GPU, ressource 3D ou dépendance. Le poids du bundle ne mesure pas les FPS sur téléphone."
+}

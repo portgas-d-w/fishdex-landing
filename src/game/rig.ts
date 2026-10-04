@@ -47,7 +47,7 @@ export const COMPONENTS: Component[] = [
 COMPONENTS.push(...EXTRA_COMPONENTS);
 export const component = (id: string) => COMPONENTS.find(c => c.id === id);
 export const SLOT_NAMES: Record<Slot,string> = {...EXTRA_SLOT_NAMES, reel:'Moulinet', elastic:'Élastique', main_line:'Fil', leader:'Bas de ligne', float:'Bouchon', weight:'Plombée / lest', attachment:'Fixation', hook:'Hameçon', bait:'Esche', lure:'Leurre et armement' };
-export interface RigConfig { positions?:Partial<Record<Slot,import('./rig-layout.ts').RigPosition>>; method: MethodId; technique?:TechniqueId; recipe?:string; leaderLength?:number; branchCount?:number; drag?:number; components: Partial<Record<Slot,string>>; depth: number; distribution:'spread'|'grouped'|'touch' }
+export interface RigConfig { shots?:number[]; positions?:Partial<Record<Slot,import('./rig-layout.ts').RigPosition>>; method: MethodId; technique?:TechniqueId; recipe?:string; leaderLength?:number; branchCount?:number; drag?:number; components: Partial<Record<Slot,string>>; depth: number; distribution:'spread'|'grouped'|'touch' }
 export interface Preset { id:string; name:string; rod:RodId; config:RigConfig;favorite?:boolean }
 export interface RigNode { slot:Slot; item:string; parent:Slot|'rod'; quantity:number; attachment:'fixed'|'sliding'|'clip'; retained?:boolean;branch?:number;offset?:number }
 export type Outcome = 'return'|'catch'|'unhook'|'leader'|'main_line'|'hook'|'lead_release'|'weight_branch'|'tippet';
@@ -73,7 +73,7 @@ export function techniqueConfig(id:TechniqueId,recipeId=techniqueById(id).defaul
   if(r.id==='bombette_coul')c.components.bombette='kit2:sinking-bombette';
   return c;
 }
-export const quantityFor=(config:RigConfig,slot:Slot,metres=config.method==='pole'?(config.technique?techniqueById(config.technique).reach:6.4):45)=>['main_line','fly_line','backing'].includes(slot)?metres:slot==='leader'?config.leaderLength??.6:slot==='tippet'?.5:slot==='fly'&&config.technique==='gambe'?config.branchCount??3:1;
+export const quantityFor=(config:RigConfig,slot:Slot,metres=config.method==='pole'?(config.technique?techniqueById(config.technique).reach:6.4):45)=>slot==='weight'&&config.shots?config.shots.length:['main_line','fly_line','backing'].includes(slot)?metres:slot==='leader'?config.leaderLength??.6:slot==='tippet'?.5:slot==='fly'&&config.technique==='gambe'?config.branchCount??3:1;
 export function changeMethod(t:Tackle, method:MethodId) {
   const old=t.config; const next=starterConfig(method); next.depth=old.depth; next.distribution=old.distribution;
   for(const slot of slotsFor(method)) { const item=component(old.components[slot] ?? ''); if(item?.methods.includes(method)) next.components[slot]=item.id; }
@@ -89,7 +89,7 @@ export function rigWarnings(config:RigConfig):string[] {
 }
 export function floatLoad(config:RigConfig){
   const f=component(config.components.float??''),w=component(config.components.weight??'');
-  return (w?.mass??0)+(f?.integrated??0)+(config.technique?component(config.components.bait??config.components.fly??'')?.mass??.15:.15);
+  return (w?.mass??0)*(config.shots?.length??1)+(f?.integrated??0)+(config.technique?component(config.components.bait??config.components.fly??'')?.mass??.15:.15);
 }
 export function validateRig(t:Tackle,config=t.config, metres=config.method==='pole'?6.4:45):string[] {
   const errors:string[]=[...layoutErrors(config)];
@@ -116,6 +116,7 @@ export function reserveRig(t:Tackle,id:string,rod:string):string[] {
     const clip=config.recipe==='carpe_clip'||!!config.components.lead_clip;
     return {slot,item,quantity,parent,...(config.positions?.[slot]?{offset:config.positions[slot]!.metres}:{}),attachment:slot==='weight'||slot==='float'||slot==='feeder'?clip?'clip':sliding?'sliding':mode:'fixed',retained:!!config.components.stop||!!config.components.bead||config.components.attachment==='sliding-fix'};
   });
+  if(config.shots){const at=nodes.findIndex(n=>n.slot==='weight'),w=nodes[at];nodes.splice(at,1,...config.shots.map(offset=>({...w,quantity:1,offset})));}
   if(config.technique==='gambe'){const at=nodes.findIndex(n=>n.slot==='fly'),fly=nodes[at];nodes.splice(at,1,...Array.from({length:config.branchCount??3},(_,branch)=>({...fly,quantity:1,branch,offset:branch*.5})));}
   if(config.recipe==='method_elastique'){const leader=nodes.find(n=>n.slot==='leader');if(leader)leader.parent='elastic';}
   t.active={id,rod,config,nodes,reserved,resolved:false,losses:{},...(config.technique?{used:false}:{})}; return [];
@@ -181,8 +182,9 @@ export function parseTackle(value:unknown):Tackle {
     if(slotsFor(method,c.recipe as string|undefined,c.technique as TechniqueId|undefined).some(slot=>!components[slot])) throw new Error('Montage incomplet.');
     if(c.technique!==undefined&&!Number.isInteger(c.branchCount))throw Error('Nombre de potences invalide.');
     const positions=c.positions===undefined?undefined:obj(c.positions) as RigConfig['positions'];
-    const positioned={method,components,depth:number(c.depth,.2,25),distribution:c.distribution as RigConfig['distribution'],leaderLength:c.leaderLength===undefined?undefined:number(c.leaderLength,.1,3),recipe:c.recipe as string,positions};if(layoutErrors(positioned).length)throw Error('Positions de montage invalides.');
-    return {...(positions?{positions:structuredClone(positions)}:{}),method,components,depth:number(c.depth,.2,25),distribution:c.distribution as RigConfig['distribution'],...(c.technique!==undefined?{technique:c.technique as TechniqueId,recipe:text(c.recipe),leaderLength:number(c.leaderLength,.1,3),branchCount:number(c.branchCount,1,3),drag:number(c.drag,.1,.9)}:{})};
+    const shots=c.shots===undefined?undefined:c.shots as number[];
+    const positioned={shots,method,components,depth:number(c.depth,.2,25),distribution:c.distribution as RigConfig['distribution'],leaderLength:c.leaderLength===undefined?undefined:number(c.leaderLength,.1,3),recipe:c.recipe as string,positions};if(layoutErrors(positioned).length)throw Error('Positions de montage invalides.');
+    return {...(shots?{shots:structuredClone(shots)}:{}),...(positions?{positions:structuredClone(positions)}:{}),...(c.technique===undefined&&c.leaderLength!==undefined?{leaderLength:number(c.leaderLength,.1,3)}:{}),method,components,depth:number(c.depth,.2,25),distribution:c.distribution as RigConfig['distribution'],...(c.technique!==undefined?{technique:c.technique as TechniqueId,recipe:text(c.recipe),leaderLength:number(c.leaderLength,.1,3),branchCount:number(c.branchCount,1,3),drag:number(c.drag,.1,.9)}:{})};
   };
   const d=obj(value), t=emptyTackle();t.config=config(d.config);
   for(const [id,n] of Object.entries(obj(d.stock))) {if(!component(id)||component(id)!.free)throw new Error('Stock inconnu.');t.stock[id]=number(n,0,100000);if(component(id)!.unit!=='m'&&!Number.isSafeInteger(t.stock[id]))throw new Error('Quantité indivisible invalide.');}

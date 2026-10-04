@@ -1,6 +1,6 @@
-# Matrice de livraison — Lots 0 à 4
+# Matrice de livraison — Lots 0 à 5
 
-Contrôles : check222/222 + TypeScript/build ; 55 recettes avec rencontres naturelles simulées. Chromium : 44 cycles forcés via Mode test, réception par gestes de position/relevage, photo conservée et incrément unique du carnet. Ce scénario ne mesure ni attente naturelle ni économie humaine. Rail manuel2/2 et reprise nymphe2/2 ; aucun appareil physique.
+Contrôles : check227/227 + TypeScript/build ; 55 recettes avec rencontres naturelles simulées. Chromium : 44 cycles forcés via Mode test, réception par gestes de position/relevage, photo conservée et incrément unique du carnet. Ce scénario ne mesure ni attente naturelle ni économie humaine. Rail manuel2/2 et reprise nymphe2/2 ; finition UI22/22 et cycles publics locaux6/6 sans QA. Les 11 prêts sont contrôlés par événements/rencontres naturelles simulées. Aucun appareil physique.
 
 |ID|Contrôleur à l’entrée|Statut fonctionnel|Contrôle|Toucher réel|
 |---|---|---|---|---|
@@ -32,9 +32,9 @@ Contrôles : check222/222 + TypeScript/build ; 55 recettes avec rencontres natur
 |Système|Livré et contrôlé|Limites précises|
 |---|---|---|
 |Familles/XP/droits|Niveau OU quête, variantes par gestes distincts, migration, XP conservée, stock séparé|Cadence humaine non mesurée|
-|Prêts/quests|Prêt éphémère, exercices réels cumulables, récompense unique, carnet normal exclu|11 parcours d’apprentissage à confronter aux débutants ; pas tous joués physiquement|
-|Montage|Brouillon, positions métriques, connecteurs existants, réservation au lancer, graphe de pertes et reconstruction|Plombée représentée par un groupe de masse agrégée ; pas chaque plomb individuel|
-|Réception|Filet positionné/relevé, kit/distance/gabarit, refus puis reprise réelle|Prises guidées vs poissons mobiles à tester au toucher|
+|Prêts/quests|Prêt éphémère, exercices réels cumulables, récompense unique, carnet normal exclu|11/11 simulés, niveaux de départ préconfigurés ; durée et difficulté humaines non mesurées|
+|Montage|Brouillon, positions métriques, connecteurs existants, réservation au lancer, graphe de pertes et reconstruction|1–8 plombs individuels, positions/stock/masse/pertes réels ; groupe d’une seule référence matérielle, pas de mélange de masses/références|
+|Réception|Filet positionné/relevé, kit/distance/gabarit, refus puis reprise réelle|Fatigue réelle minimale avant réception, guidage relatif du filet ; prises mobiles à tester au toucher|
 |Contextes|Rivière et courant local, lac profond/couches, bateau/traîne et repositionnement|Décors de contextes existants conservés ; aucun monde supplémentaire|
 |Manuelle|Tirée bornée, retour neutre, fil libre/bobine/engagé conservés, transition exclusive|Rangement de ligne libre sur bobine simplifié à la transition|
 |Feeder/gambe/clonk|Dépôts locaux cumulés, potences inactives distinctes/single capture, attraction conditionnelle avec pause|Coefficients configurés, pas de réalisme biologique revendiqué|

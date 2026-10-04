@@ -1,4 +1,4 @@
-import {familyFor,familyAvailable,masteryRank,variantRank} from './curriculum.ts';
+import {familyFor,familyAvailable,masteryRank,variantRank,recipeCondition} from './curriculum.ts';
 import { levelFor, ITEMS, rodCompatible, accessLevel, type ItemId, type RodId } from './economy.ts';
 import { POSTS, ALL_POSTS, type PostId } from './posts.ts';
 import { component, buyComponent, starterConfig, techniqueConfig, validateRig, type Slot } from './rig.ts';
@@ -34,13 +34,14 @@ export const techniqueCondition=(s:SaveData,id:TechniqueId)=>{if(techniqueAccess
 export function switchTechnique(save:SaveData,id:TechniqueId,recipe?:string):string {
   if(save.tackle.active&&!save.tackle.active.resolved)return 'Ramenez la ligne avant de changer de technique.';
   if(!techniqueAccess(save,id))return techniqueCondition(save,id);
+  if(recipe){const condition=recipeCondition(save,id,recipe);if(condition)return condition;}
   const t=techniqueById(id),old=save.tackle.config;
+  const kept=old.technique===id?{rod:save.equipped as RodId,config:old}:save.tackle.techniqueSetups?.[id];
+  let next:typeof old;try{next=recipe?techniqueConfig(id,recipe):kept?.config??techniqueConfig(id);}catch{return 'Recette incompatible.';}
+  const rod=kept&&!recipe&&save.inventory.includes(kept.rod)&&rodCompatible(kept.rod,t.base,id)?kept.rod:rodCompatible(save.equipped,t.base,id)?save.equipped:t.rod as RodId;
+  if(!save.inventory.includes(rod)){const item=ITEMS.find(i=>i.id===rod);if(!item||item.price!==0)return 'Canne compatible non possédée : achetez-la dans la Boutique. La disponibilité n’offre pas le matériel.';save.inventory.push(rod);}
   save.tackle.techniqueSetups??={};
   if(old.technique)save.tackle.techniqueSetups[old.technique]={rod:save.equipped as RodId,config:structuredClone(old)};
-  const kept=save.tackle.techniqueSetups[id];
-  let next:typeof old;try{next=recipe?techniqueConfig(id,recipe):kept?.config??techniqueConfig(id);}catch{return 'Recette incompatible.';}
-  const rod=kept&&!recipe&&save.inventory.includes(kept.rod)&&rodCompatible(kept.rod,t.base,id)?kept.rod:t.rod as RodId;
-  if(!save.inventory.includes(rod)){const item=ITEMS.find(i=>i.id===rod);if(!item||item.price!==0)return 'Canne compatible non possédée.';save.inventory.push(rod);}
   // No purchase/consumption at selection. Missing stock remains visible and blocks the cast.
   save.equipped=rod;save.tackle.config=structuredClone(next);save.preparation.method=t.base;save.preparation.bait=t.base==='lure'?'lure':'worm';return '';
 }
@@ -98,7 +99,7 @@ export function equipComponent(save:SaveData,slot:Slot,id:string):string {
 export function restoreFreeKit(save:SaveData):string {
   if(save.tackle.active&&!save.tackle.active.resolved)return 'Ramenez la ligne avant de réparer.';
   const m=save.tackle.config.method;if(!methodAccess(save,m))return 'Pratique non ouverte.';
-  if(save.tackle.config.technique){const id=save.tackle.config.technique,t=techniqueById(id);save.equipped=t.rod as RodId;save.tackle.config=techniqueConfig(id);return '';}
+  if(save.tackle.config.technique){const id=save.tackle.config.technique,t=techniqueById(id);const owned=save.inventory.includes(t.rod as ItemId)?t.rod as RodId:save.inventory.filter(r=>rodCompatible(r,t.base,id))[0];if(!owned){save.equipped='pole-starter';save.tackle.config=techniqueConfig('coup');save.preparation.method='pole';save.preparation.bait='worm';return '';}save.equipped=owned;save.tackle.config=techniqueConfig(id);return '';}
   save.equipped=m==='pole'?'pole-starter':'starter';save.tackle.config=starterConfig(m);
   return ''; // aucun gain, aucun débit et aucune modification de la réserve
 }

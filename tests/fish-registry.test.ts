@@ -8,7 +8,7 @@ import {ALL_POSTS,populationWeight,postLocation} from '../src/game/posts.ts';
 import {PROFILES,techniqueEncounterWeight} from '../src/game/profiles.ts';
 import {FishingGame} from '../src/game/fishing.ts';
 import {TECHNIQUES,techniqueById} from '../src/game/techniques.ts';
-import {createTestSave,ProfileStorage,TEST_SAVE_KEY} from '../src/game/development.ts';
+import {createTestSave,prepareTestKit,ProfileStorage,TEST_SAVE_KEY} from '../src/game/development.ts';
 import {switchTechnique} from '../src/game/progression.ts';
 import {ITEMS} from '../src/game/economy.ts';
 import {component,validateRig} from '../src/game/rig.ts';
@@ -41,7 +41,7 @@ for(const species of SPECIES.filter(s=>s.mode==='capture'))test(`Poisson ${speci
  let captured=false,last='';
  for(let attempt=1;attempt<=240&&!captured;attempt++){
   const route=routes[(attempt-1)%Math.min(4,routes.length)],save=createTestSave(),technique=route.technique!,t=techniqueById(technique);
-  assert.equal(switchTechnique(save,technique,route.recipe!), '');save.tackle.config.depth=Math.max(.2,route.depth);
+  assert.equal(prepareTestKit(save,technique,route.recipe!), '');save.tackle.config.depth=Math.max(.2,route.depth);
   const game=new FishingGame(rng(97+attempt*871));game.tackle=save.tackle;game.rights=save.progression;game.method=t.base;game.equipment=save.equipped;game.equipmentPower=ITEMS.find(i=>i.id===save.equipped)!.power;
   assert.equal(game.testMode,false);assert.equal(game.setPost(route.post),true);save.preparation.post=route.post;save.preparation.location=postLocation(route.post);
   assert.deepEqual(validateRig(save.tackle),[]);if(t.engine==='feeder')game.fillFeeder();if(t.engine==='fly'){game.prepareFly();game.prepareFly();}if(t.engine==='troll')game.setBoat(1,0);

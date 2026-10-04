@@ -15,9 +15,9 @@ export function recipeMechanics(c:RigConfig) {
   const shielded=['texas','spinnerbait','tokyo'].includes(id);
   const autoHook=['method_inline','method_elastique','carpe_inline','carpe_clip','d_rig','blowback','combi','chod','ronnie','surface_controleur'].includes(id);
   const terminalHeight=id==='drop_shot'?.55:id==='tokyo'?.25:id==='chod'?.2:id==='ronnie'?.12:['ned','neko'].includes(id)?.08:bait?.buoyancy==='float'&&c.components.hair?.15:bait?.buoyancy==='balanced'?.04:0;
-  const sink=id==='weightless'||id==='wacky'?.14:id==='neko'?.34:id==='ned'?.42:id==='split_shot'?.3:id==='jig_trailer'?.55:.18+(r?.mass??bait?.mass??1)*.035;
+  const sink=id==='weightless'||id==='wacky'?.14:id==='neko'?.34:id==='ned'?.42:id==='split_shot'?.3:id==='jig_trailer'?.55:.18+(r?.mass??bait?.mass??1)*(c.shots?.length??1)*.035;
   const pva=id==='pva_solide'?TECHNIQUE_CONFIG.pvaSolidDissolve:id==='pva_filet'?TECHNIQUE_CONFIG.pvaMeshDissolve:0;
-  return {sliding,separated,antiTangle,shielded,autoHook,terminalHeight:c.positions?.hair?.metres??terminalHeight,sink:sink*descentFactor(c),pva,
+  return {sliding,separated,antiTangle,shielded,autoHook,terminalHeight:bait?.buoyancy==='float'&&c.positions?.hair?c.positions.hair.metres:terminalHeight,sink:sink*descentFactor(c),pva,
     snagFactor:shielded?.35:separated?.7:1,tangleFactor:antiTangle?.15:separated?.45:1,
     // A bolting presentation still needs tension and an adequate terminal mass.
     boltMass:autoHook?(id==='surface_controleur'?(component(c.components.float??'')?.integrated??0)+2:r?.mass??0):0,

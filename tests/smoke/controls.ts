@@ -30,7 +30,7 @@ export async function realCombat(page:Page,context:BrowserContext,_mobile:boolea
   const phase=await page.locator('body').getAttribute('data-phase');const signal=(await page.locator('#world').getAttribute('aria-description'))?.match(/tension (\d+)/);const charge=Number(signal?.[1]??0);
   if(phase==='fighting'&&charge>12&&await page.locator('#tech-land').isVisible()){await clear();await page.locator('#tech-land').click();netPlaced=false;await page.waitForTimeout(80);continue;}
   if(phase==='landing'){if(charge<5){await clear();await page.locator('#tech-land').click();await page.waitForTimeout(100);continue;}
-   if(!netPlaced){await clear();await drag(-35,-76);netPlaced=true;}
+   const offset=(await page.locator('#world').getAttribute('aria-description'))?.match(/décalage latéral (-?\d+) cm, avancer (-?\d+) cm/);if(offset&&Math.hypot(Number(offset[1]),Number(offset[2]))>35){await clear();await drag(Math.max(-50,Math.min(50,Number(offset[1])/2)),Math.max(-50,Math.min(50,-Number(offset[2])/2.5)));netPlaced=true;}else if(!offset&&!netPlaced){await clear();await drag(-35,-76);netPlaced=true;}
    if(await page.locator('#reel-control .reel-label').textContent()==='Relever'){await clear();await drag(0,-32);await page.waitForTimeout(120);continue;}
   }
   const cue=(await page.locator('#world').getAttribute('aria-description'))?.match(/Fil à (-?\d+) degrés, tension (\d+)/);

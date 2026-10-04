@@ -1,6 +1,6 @@
 /** Géométrie en mètres ; charge normalisée (une unité = résistance nominale du kit).
  * La masse du poisson n'est pas une tension. Coefficients de prototype centralisés. */
-export const COMBAT_CONFIG={version:3,step:1/120,maxGap:.05,stiffness:1.15,waterDamping:2.4,traction:1.6,retrievePerTurn:.85,brakeRate:9,overloadSeconds:2.3,slackSeconds:5,snagSeconds:3,abrasionRate:.8,abrasionRecovery:.12,sectionLength:1.6,kitLength:2.4,maxRetreat:2.6,retreatSpeed:1.3,netReach:3.5,netRadius:.9,netLift:.26};
+export const COMBAT_CONFIG={version:4,receptionFatigueSmall:.12,receptionFatigueLarge:.35,step:1/120,maxGap:.05,stiffness:1.15,waterDamping:2.4,traction:1.6,retrievePerTurn:.85,brakeRate:9,overloadSeconds:2.3,slackSeconds:5,snagSeconds:3,abrasionRate:.8,abrasionRecovery:.12,sectionLength:1.6,kitLength:2.4,maxRetreat:2.6,retreatSpeed:1.3,netReach:3.5,netRadius:.9,netLift:.26};
 const clamp=(n:number,a:number,b:number)=>Math.max(a,Math.min(b,n));
 export interface Point3 {x:number;y:number;z:number}
 export function rodGeometry(yaw:number,lift:number,length=4.6,retreat=0,tension=0,fish?:Point3){

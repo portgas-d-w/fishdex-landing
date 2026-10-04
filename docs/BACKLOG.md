@@ -4,7 +4,9 @@
 - [x] Lot2 atelier et graphe métrique.
 - [x] Lot3 prototypes et tolérances.
 - [x] Lot4 contrôleurs/cycles22.
-- [ ] Lot5 équilibre, ergonomie, revue et déploiement.
+- [x] Lot5 économie/ergonomie/mesures et contrôles locaux.
+- [ ] Préproduction et publication0.15.0.
+- [ ] Équilibrage humain après essais physiques : cadence directe et gros combats restent hors cibles sur certains pilotes logiciels.
 
 ## Boutique par rayons — complément lot01, 4octobre2026
 - [x] Six catégories illustrées, aquarium séparé, grille compacte et sous-rayons renseignés.

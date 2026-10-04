@@ -4,7 +4,7 @@ import {techniqueConfig,floatLoad} from '../src/game/rig.ts';
 import {initialPresentation,stepPresentation} from '../src/game/presentation.ts';
 import {inspectPostTarget} from '../src/game/posts.ts';
 import {activityWeight} from '../src/game/profiles.ts';
-import {createTestSave} from '../src/game/development.ts';
+import {createTestSave,prepareTestKit} from '../src/game/development.ts';
 import {switchTechnique} from '../src/game/progression.ts';
 import {FishingGame} from '../src/game/fishing.ts';
 
@@ -29,7 +29,7 @@ test('Tenue de l’esche, charge réelle et animation rotative ont un effet caus
 test('Profondeur accessible de 6 à 18 m, soie préparée pour la distance, droits en test normal',()=>{
  assert.equal(inspectPostTarget('deep',{x:0,z:1.5},'lure',6).depth,6);
  const deep=inspectPostTarget('deep',{x:0,z:4.5},'lure',6);assert.equal(deep.depth,18);assert.ok(deep.valid);
- const save=createTestSave(),g=new FishingGame(()=>.01);switchTechnique(save,'mouche');g.tackle=save.tackle;g.rights=save.progression;g.method='lure';g.equipment='fly-rod';g.setPost('river');g.prepareFly();g.prepareFly();
+ const save=createTestSave(),g=new FishingGame(()=>.01);prepareTestKit(save,'mouche');g.tackle=save.tackle;g.rights=save.progression;g.method='lure';g.equipment='fly-rod';g.setPost('river');g.prepareFly();g.prepareFly();
  assert.equal(g.cast({x:0,z:20}),false);assert.match(g.failure,/davantage de soie/);g.prepareFly();assert.equal(g.cast({x:0,z:20}),true);
  const normal=createTestSave('rules'),closed=new FishingGame();switchTechnique(normal,'coup');closed.tackle=normal.tackle;closed.rights=normal.progression;closed.testMode=true;closed.method='lure';assert.equal(closed.cast({x:0,z:3.2}),false);
  assert.ok(activityWeight('catfish','day')<activityWeight('catfish','night'));
