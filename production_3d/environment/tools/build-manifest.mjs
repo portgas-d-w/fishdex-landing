@@ -7,11 +7,18 @@ const exportsById=Object.fromEntries(await Promise.all((await readdir(exportsDir
 const provenance=await json('production_3d/environment/textures/source/PROVENANCE.json');
 const runtimeExtra={pier_jetty:[],bank_earth:[],ground:['public/map-assets/ground-macro.jpg','public/map-assets/ground-detail.png']};
 const entries=[];
+// Preuve en jeu : statut des familles relevé par la dernière capture in-game (familles chargées en GLB).
+const capDir='docs/apercus/visuels-blender';const caps=(await readdir(capDir)).filter(d=>existsSync(`${capDir}/${d}/reference.json`));
+const capStat=await Promise.all(caps.map(async d=>({d,t:(await stat(`${capDir}/${d}/reference.json`)).mtimeMs})));capStat.sort((a,b)=>b.t-a.t);
+const ingame=capStat.length?await json(`${capDir}/${capStat[0].d}/reference.json`):[];const families=ingame[0]?.entries?.[0]?.assets??{};
 for(const e of registry.entries.filter(e=>e.resource?.includes('/fdx-'))){
- const ex=exportsById[e.id],runtime='public'+e.resource,engine=existsSync(`${engineDir}/${e.id}/report.json`)?await json(`${engineDir}/${e.id}/report.json`):null;
- entries.push({id:e.id,status:existsSync(runtime)&&engine&&!engine.errors.length?'poste_integre':'export_valide',source:e.source,script:e.script,runtime,runtimeBytes:existsSync(runtime)?(await stat(runtime)).size:null,
+ const ex=exportsById[e.id]??Object.values(exportsById).find(x=>x.script===e.script),runtime='public'+e.resource;
+ const engId=[e.id,ex?.id,ex?.id?.split('+')[0],e.resource.match(/fdx-([a-z-]+)\.glb/)?.[1]?.replace(/-/g,'_')].find(k=>k&&existsSync(`${engineDir}/${k}/report.json`));
+ const engine=engId?await json(`${engineDir}/${engId}/report.json`):null;
+ const inGame=String(families[e.id]??'').startsWith('glb:');
+ entries.push({id:e.id,status:inGame?'poste_integre':engine&&!engine.errors.length?'import_moteur_valide':existsSync(runtime)?'export_valide':'source_prete',inGameEvidence:inGame?`${capDir}/${capStat[0].d}/reference.json`:null,source:e.source,script:e.script,runtime,runtimeBytes:existsSync(runtime)?(await stat(runtime)).size:null,
   triangles:ex?.export?.triangles??null,perLod:ex?.export?.per_lod??ex?.export?.per_mesh_triangles??null,materials:ex?.export?.materials??null,images:ex?.export?.images??null,pivot:e.pivot,lod:e.lod,variants:e.variants??null,replacesFamilies:e.replacesFamilies??null,
-  engineImport:engine?{report:`${engineDir}/${e.id}/report.json`,errors:engine.errors.length}:null,previews:ex?.previews??[],licence:'Géométrie produite par script FishDex ; textures CC0 Poly Haven (voir textures/source/PROVENANCE.json)'});
+  engineImport:engine?{report:`${engineDir}/${engId}/report.json`,errors:engine.errors.length}:null,previews:ex?.previews??[],licence:'Géométrie produite par script FishDex ; textures CC0 Poly Haven (voir textures/source/PROVENANCE.json)'});
 }
 entries.push({id:'ground_macro_detail',status:'poste_integre',source:'production_3d/environment/tools/ground-fields.mts + bake_ground.py',runtime:runtimeExtra.ground,runtimeBytes:await Promise.all(runtimeExtra.ground.map(async p=>(await stat(p)).size)),licence:'Couleurs cuites depuis la carte ; détail CC0 leafy_grass + forest_ground_04 (Poly Haven)',integration:'src/render/map-materials.ts ground() : diffuse macro + detailMap 3 m'});
 for(const e of entries)for(const p of [e.source,e.runtime].flat().filter(p=>p&&!p.includes(' ')))if(!existsSync(p))throw Error('chemin manquant '+p);

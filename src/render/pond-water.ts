@@ -92,7 +92,7 @@ export class PondWater {
                 pixels[at + 3] = Math.round(127 + 35 * Math.sin(point.x * .81) * Math.sin(point.z * .67));
             }
         for (const c of contacts.filter(p => ["pier_pile", "lily_cluster", "reeds", "fallen_log"].includes(p.family))) {
-            const radius = c.family === "reeds" ? 1.1 : c.family === "fallen_log" ? .9 : .55;
+            const radius = c.family === "reeds" ? 1.1 : c.family === "fallen_log" ? .9 : c.family === "lily_cluster" ? 1.1 * c.scale : .55;
             const cx = (c.x + 90) / 180 * 256 - .5, cy = (c.z + 31) / 140 * 256 - .5;
             for (let y = Math.max(0, Math.floor(cy - radius * 256 / 140)); y <= Math.min(255, Math.ceil(cy + radius * 256 / 140)); y++)
                 for (let x = Math.max(0, Math.floor(cx - radius * 256 / 180)); x <= Math.min(255, Math.ceil(cx + radius * 256 / 180)); x++) {

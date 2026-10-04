@@ -1,0 +1,162 @@
+{
+  "id": "lily_cluster",
+  "glbs": [
+    "/models/environment/fdx-lily.glb"
+  ],
+  "device": "Chromium SwiftShader, viewer isolé",
+  "info": [
+    {
+      "url": "/models/environment/fdx-lily.glb",
+      "loadMs": 37,
+      "convertedMaterials": 1,
+      "meshes": [
+        {
+          "name": "fdx_lily_a_lod0",
+          "triangles": 176,
+          "material": "fdx_lily_pad-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.024,
+            0.019,
+            0.096
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_lily_a_lod1",
+          "triangles": 72,
+          "material": "fdx_lily_pad-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.088,
+            0.018,
+            0.097
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_lily_a_lod2",
+          "triangles": 36,
+          "material": "fdx_lily_pad-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.109,
+            0.016,
+            -0.012
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_lily_b_lod0",
+          "triangles": 160,
+          "material": "fdx_lily_pad-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.041,
+            0.019,
+            0.036
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_lily_b_lod1",
+          "triangles": 64,
+          "material": "fdx_lily_pad-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.041,
+            0.018,
+            0.119
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_lily_b_lod2",
+          "triangles": 30,
+          "material": "fdx_lily_pad-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.183,
+            0.016,
+            -0.092
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_lily_c_lod0",
+          "triangles": 144,
+          "material": "fdx_lily_pad-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.077,
+            0.018,
+            -0.118
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_lily_c_lod1",
+          "triangles": 56,
+          "material": "fdx_lily_pad-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.097,
+            0.017,
+            -0.201
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_lily_c_lod2",
+          "triangles": 24,
+          "material": "fdx_lily_pad-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.152,
+            0.015,
+            -0.046
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        }
+      ],
+      "triangles": 762,
+      "boundsMin": [
+        -0.945,
+        0.006,
+        -0.934
+      ],
+      "boundsMax": [
+        1.028,
+        0.033,
+        0.932
+      ],
+      "sizeXYZ": [
+        1.974,
+        0.027,
+        1.866
+      ],
+      "offsetX": 0,
+      "textures": [
+        {
+          "name": "fdx_lily_pad (Base Color)",
+          "width": 256,
+          "height": 256
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "shots": [
+    "production_3d/environment/reports/engine-import/lily_cluster/persp.png",
+    "production_3d/environment/reports/engine-import/lily_cluster/top.png"
+  ]
+}

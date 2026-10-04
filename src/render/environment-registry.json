@@ -51,15 +51,15 @@
       "lightmap": null,
       "dimensions": [
         4.0,
-        0.89,
-        2.9
+        0.69,
+        1.85
       ],
       "dimensionTolerance": 1.2,
       "pivot": "lèvre de rive au niveau de l’eau, +z vers l’eau (yaw = normale intérieure du contour)",
       "variants": [
-        "a",
-        "b",
-        "c"
+        "fdx_bank_earth_a",
+        "fdx_bank_earth_b",
+        "fdx_bank_earth_c"
       ],
       "lod": {
         "levels": [
@@ -158,188 +158,351 @@
     },
     {
       "id": "tree_alder",
-      "version": 2,
-      "resource": "/models/environment/free-tree-birch.glb",
+      "version": 3,
+      "resource": "/models/environment/fdx-trees.glb",
       "lightmap": null,
       "dimensions": [
-        6,
-        9,
-        5
+        6.3,
+        11.0,
+        6.1
       ],
       "dimensionTolerance": 1.35,
-      "pivot": "base_center",
+      "pivot": "base_center (pied du tronc, tronc enterré 0,3 m)",
       "lod": {
-        "near": "/models/environment/free-tree-birch.glb",
-        "far": null,
-        "procedural": "selected_18_max_screen_height_110px_eco_70px_high_other_trees_spatial_proxies"
+        "levels": [
+          {
+            "level": 1,
+            "distance": 28
+          },
+          {
+            "level": 2,
+            "distance": 64
+          }
+        ],
+        "near": "/models/environment/fdx-trees.glb#fdx_tree_alder_<v>_lod0",
+        "far": "/models/environment/fdx-trees.glb#fdx_tree_alder_<v>_lod2 (imposteur croisé)",
+        "procedural": "proxies conservés en secours"
       },
       "materials": {
         "max": 3,
         "colorSpace": "baseColor_sRGB_normals_linear",
-        "lightmapUV": 1
+        "lightmapUV": 0
       },
       "collision": "visual_only",
       "sockets": [],
       "priority": "P1",
-      "botanicalNote": "Bouleau Quaternius provisoire pour rôle de feuillu ; pas un aulne/chêne exact"
+      "variants": [
+        "fdx_tree_alder_a",
+        "fdx_tree_alder_b",
+        "fdx_tree_alder_c"
+      ],
+      "allPlacements": true,
+      "source": "production_3d/environment/source/trees.blend",
+      "script": "production_3d/environment/tools/build_trees.py"
     },
     {
       "id": "tree_oak",
-      "version": 2,
-      "resource": "/models/environment/free-tree-birch.glb",
+      "version": 3,
+      "resource": "/models/environment/fdx-trees.glb",
       "lightmap": null,
       "dimensions": [
-        6,
-        9,
-        5
+        9.7,
+        9.3,
+        9.5
       ],
       "dimensionTolerance": 1.35,
-      "pivot": "base_center",
+      "pivot": "base_center (pied du tronc, tronc enterré 0,3 m)",
       "lod": {
-        "near": "/models/environment/free-tree-birch.glb",
-        "far": null,
-        "procedural": "selected_18_max_screen_height_110px_eco_70px_high_other_trees_spatial_proxies"
+        "levels": [
+          {
+            "level": 1,
+            "distance": 28
+          },
+          {
+            "level": 2,
+            "distance": 64
+          }
+        ],
+        "near": "/models/environment/fdx-trees.glb#fdx_tree_oak_<v>_lod0",
+        "far": "/models/environment/fdx-trees.glb#fdx_tree_oak_<v>_lod2 (imposteur croisé)",
+        "procedural": "proxies conservés en secours"
       },
       "materials": {
         "max": 3,
         "colorSpace": "baseColor_sRGB_normals_linear",
-        "lightmapUV": 1
+        "lightmapUV": 0
       },
       "collision": "visual_only",
       "sockets": [],
       "priority": "P1",
-      "botanicalNote": "Bouleau Quaternius provisoire pour rôle de feuillu ; pas un aulne/chêne exact"
+      "variants": [
+        "fdx_tree_oak_a",
+        "fdx_tree_oak_b",
+        "fdx_tree_oak_c"
+      ],
+      "allPlacements": true,
+      "source": "production_3d/environment/source/trees.blend",
+      "script": "production_3d/environment/tools/build_trees.py"
     },
     {
       "id": "tree_willow",
-      "version": 1,
-      "resource": null,
+      "version": 3,
+      "resource": "/models/environment/fdx-trees.glb",
       "lightmap": null,
       "dimensions": [
-        6,
-        8,
-        5
+        7.9,
+        8.2,
+        9.1
       ],
       "dimensionTolerance": 1.35,
-      "pivot": "base_center",
+      "pivot": "base_center (pied du tronc, tronc enterré 0,3 m)",
       "lod": {
-        "near": null,
-        "far": null,
-        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        "levels": [
+          {
+            "level": 1,
+            "distance": 28
+          },
+          {
+            "level": 2,
+            "distance": 64
+          }
+        ],
+        "near": "/models/environment/fdx-trees.glb#fdx_tree_willow_<v>_lod0",
+        "far": "/models/environment/fdx-trees.glb#fdx_tree_willow_<v>_lod2 (imposteur croisé)",
+        "procedural": "proxies conservés en secours"
       },
       "materials": {
         "max": 3,
         "colorSpace": "baseColor_sRGB_normals_linear",
-        "lightmapUV": 1
+        "lightmapUV": 0
       },
       "collision": "visual_only",
       "sockets": [],
-      "priority": "P1"
+      "priority": "P1",
+      "variants": [
+        "fdx_tree_willow_a",
+        "fdx_tree_willow_b"
+      ],
+      "allPlacements": true,
+      "source": "production_3d/environment/source/trees.blend",
+      "script": "production_3d/environment/tools/build_trees.py"
     },
     {
       "id": "reeds",
-      "version": 2,
-      "resource": "/models/environment/free-reeds.glb",
+      "version": 3,
+      "resource": "/models/environment/fdx-reeds.glb",
       "lightmap": null,
       "dimensions": [
-        2,
-        2,
-        2
+        2.3,
+        2.55,
+        1.9
       ],
       "dimensionTolerance": 1.35,
-      "pivot": "base_center",
+      "pivot": "centre de la base au niveau de l’eau, tiges enracinées à -0,35 m",
       "lod": {
-        "near": "/models/environment/free-reeds.glb",
-        "far": null,
-        "procedural": "instances_shared_geometry_materials"
+        "levels": [
+          {
+            "level": 1,
+            "distance": 18
+          },
+          {
+            "level": 2,
+            "distance": 45
+          }
+        ],
+        "cull": 130,
+        "near": "#fdx_reeds_<v>_lod0",
+        "far": "#fdx_reeds_<v>_lod2"
       },
       "materials": {
-        "max": 3,
-        "colorSpace": "baseColor_sRGB_normals_linear",
-        "lightmapUV": 1
+        "max": 1,
+        "colorSpace": "vertexColor_sRGB",
+        "lightmapUV": 0
       },
       "collision": "game/posts.ts.obstacles",
       "sockets": [],
       "priority": "P0",
-      "botanicalNote": "Massettes Aredon, identité distincte des roseaux spécifiques"
+      "variants": [
+        "fdx_reeds_a",
+        "fdx_reeds_b",
+        "fdx_reeds_c"
+      ],
+      "source": "production_3d/environment/source/reeds.blend",
+      "script": "production_3d/environment/tools/build_reeds.py"
+    },
+    {
+      "id": "reeds_shore",
+      "version": 3,
+      "resource": "/models/environment/fdx-reeds.glb",
+      "lightmap": null,
+      "dimensions": [
+        2.3,
+        2.55,
+        1.9
+      ],
+      "dimensionTolerance": 1.35,
+      "pivot": "centre de la base au niveau de l’eau, tiges enracinées à -0,35 m",
+      "lod": {
+        "levels": [
+          {
+            "level": 1,
+            "distance": 18
+          },
+          {
+            "level": 2,
+            "distance": 45
+          }
+        ],
+        "cull": 130,
+        "near": "#fdx_reeds_<v>_lod0",
+        "far": "#fdx_reeds_<v>_lod2"
+      },
+      "materials": {
+        "max": 1,
+        "colorSpace": "vertexColor_sRGB",
+        "lightmapUV": 0
+      },
+      "collision": "visual_only",
+      "sockets": [],
+      "priority": "P1",
+      "variants": [
+        "fdx_reeds_a",
+        "fdx_reeds_b",
+        "fdx_reeds_c"
+      ],
+      "source": "production_3d/environment/source/reeds.blend",
+      "script": "production_3d/environment/tools/build_reeds.py",
+      "note": "Massifs décoratifs hors secteurs de lancer ; pas d’obstacle de jeu"
     },
     {
       "id": "grass_clump",
-      "version": 2,
-      "resource": "/models/environment/free-grass.glb",
+      "version": 3,
+      "resource": "/models/environment/fdx-reeds.glb",
       "lightmap": null,
       "dimensions": [
-        0.8,
-        0.55,
-        0.7
+        0.72,
+        0.6,
+        0.8
       ],
       "dimensionTolerance": 1.35,
-      "pivot": "base_center",
+      "pivot": "base_center (au sol)",
       "lod": {
-        "near": "/models/environment/free-grass.glb",
-        "far": null,
-        "procedural": "instances_shared_geometry_materials"
+        "levels": [
+          {
+            "level": 1,
+            "distance": 10
+          },
+          {
+            "level": 2,
+            "distance": 24
+          }
+        ],
+        "cull": 55,
+        "near": "#fdx_grass_<v>_lod0",
+        "far": "#fdx_grass_<v>_lod2"
       },
       "materials": {
-        "max": 3,
-        "colorSpace": "baseColor_sRGB_normals_linear",
-        "lightmapUV": 1
+        "max": 1,
+        "colorSpace": "vertexColor_sRGB",
+        "lightmapUV": 0
       },
       "collision": "visual_only",
       "sockets": [],
-      "priority": "P1"
+      "priority": "P1",
+      "variants": [
+        "fdx_grass_a",
+        "fdx_grass_b",
+        "fdx_grass_c"
+      ],
+      "source": "production_3d/environment/source/reeds.blend",
+      "script": "production_3d/environment/tools/build_reeds.py"
     },
     {
       "id": "shrub",
-      "version": 2,
-      "resource": "/models/environment/free-bush.glb",
+      "version": 3,
+      "resource": "/models/environment/fdx-trees.glb",
       "lightmap": null,
       "dimensions": [
-        1.4,
-        1,
-        1.2
+        2.4,
+        1.85,
+        2.2
       ],
       "dimensionTolerance": 1.35,
-      "pivot": "base_center",
+      "pivot": "base_center (tiges depuis le sol)",
       "lod": {
-        "near": "/models/environment/free-bush.glb",
-        "far": null,
-        "procedural": "instances_shared_geometry_materials"
+        "levels": [
+          {
+            "level": 1,
+            "distance": 18
+          },
+          {
+            "level": 2,
+            "distance": 45
+          }
+        ],
+        "cull": 120,
+        "near": "/models/environment/fdx-trees.glb#fdx_tree_shrub_<v>_lod0",
+        "far": "/models/environment/fdx-trees.glb#fdx_tree_shrub_<v>_lod2",
+        "procedural": "proxies conservés en secours"
       },
       "materials": {
         "max": 3,
         "colorSpace": "baseColor_sRGB_normals_linear",
-        "lightmapUV": 1
+        "lightmapUV": 0
       },
       "collision": "visual_only",
       "sockets": [],
-      "priority": "P1"
+      "priority": "P1",
+      "variants": [
+        "fdx_tree_shrub_a",
+        "fdx_tree_shrub_b",
+        "fdx_tree_shrub_c"
+      ],
+      "source": "production_3d/environment/source/trees.blend",
+      "script": "production_3d/environment/tools/build_trees.py"
     },
     {
       "id": "lily_cluster",
-      "version": 2,
-      "resource": "/models/environment/free-lily.glb",
+      "version": 3,
+      "resource": "/models/environment/fdx-lily.glb",
       "lightmap": null,
       "dimensions": [
-        0.32,
-        0.01,
-        0.25
+        1.9,
+        0.03,
+        1.8
       ],
       "dimensionTolerance": 1.35,
-      "pivot": "center",
+      "pivot": "centre du bouquet au niveau de l’eau (y=0)",
       "lod": {
-        "near": "/models/environment/free-lily.glb",
-        "far": null,
-        "procedural": "instances_shared_geometry_materials"
+        "levels": [
+          {
+            "level": 1,
+            "distance": 16
+          },
+          {
+            "level": 2,
+            "distance": 38
+          }
+        ],
+        "cull": 95,
+        "near": "#fdx_lily_<v>_lod0",
+        "far": "#fdx_lily_<v>_lod2"
       },
       "materials": {
-        "max": 3,
+        "max": 1,
         "colorSpace": "baseColor_sRGB_normals_linear",
-        "lightmapUV": 1
+        "lightmapUV": 0
       },
       "collision": "visual_only",
       "sockets": [],
-      "priority": "P0"
+      "priority": "P0",
+      "variants": [
+        "fdx_lily_a",
+        "fdx_lily_b",
+        "fdx_lily_c"
+      ],
+      "source": "production_3d/environment/source/lily.blend",
+      "script": "production_3d/environment/tools/build_lily.py"
     },
     {
       "id": "rock_small",
@@ -395,55 +558,86 @@
     },
     {
       "id": "fallen_log",
-      "version": 1,
-      "resource": null,
+      "version": 2,
+      "resource": "/models/environment/fdx-trees.glb",
       "lightmap": null,
       "dimensions": [
-        0.4,
-        0.4,
-        5
+        5.8,
+        1.9,
+        1.0
       ],
       "dimensionTolerance": 1.35,
-      "pivot": "base_center",
+      "pivot": "axe du tronc au niveau de l’eau (y=0), milieu de la longueur",
       "lod": {
-        "near": null,
-        "far": null,
-        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        "levels": [
+          {
+            "level": 1,
+            "distance": 26
+          },
+          {
+            "level": 2,
+            "distance": 60
+          }
+        ],
+        "near": "#fdx_log_<v>_lod0",
+        "far": "#fdx_log_<v>_lod2"
       },
       "materials": {
-        "max": 3,
+        "max": 1,
         "colorSpace": "baseColor_sRGB_normals_linear",
-        "lightmapUV": 1
+        "lightmapUV": 0
       },
       "collision": "visual_only",
       "sockets": [],
-      "priority": "P0"
+      "priority": "P0",
+      "variants": [
+        "fdx_log_a",
+        "fdx_log_b"
+      ],
+      "source": "production_3d/environment/source/trees.blend",
+      "script": "production_3d/environment/tools/build_trees.py"
     },
     {
       "id": "submerged_branches",
-      "version": 1,
-      "resource": null,
+      "version": 2,
+      "resource": "/models/environment/fdx-trees.glb",
       "lightmap": null,
       "dimensions": [
-        2,
-        2,
-        2
+        2.0,
+        1.55,
+        1.8
       ],
       "dimensionTolerance": 1.35,
-      "pivot": "base_center",
+      "pivot": "centre du volume d’accroche au niveau de l’eau (y=0), tronc noyé à -0,6 m",
       "lod": {
-        "near": null,
-        "far": null,
-        "procedural": "spatial_batches_24m_reduced_crowns_beyond_35m_from_posts"
+        "levels": [
+          {
+            "level": 1,
+            "distance": 26
+          },
+          {
+            "level": 2,
+            "distance": 60
+          }
+        ],
+        "near": "#fdx_snag_<v>_lod0",
+        "far": "#fdx_snag_<v>_lod2"
       },
       "materials": {
-        "max": 3,
+        "max": 1,
         "colorSpace": "baseColor_sRGB_normals_linear",
-        "lightmapUV": 1
+        "lightmapUV": 0
       },
       "collision": "game/posts.ts.obstacles",
       "sockets": [],
-      "priority": "P0"
+      "priority": "P0",
+      "variants": [
+        "fdx_snag_a",
+        "fdx_snag_b",
+        "fdx_snag_c"
+      ],
+      "source": "production_3d/environment/source/trees.blend",
+      "script": "production_3d/environment/tools/build_trees.py"
     },
     {
       "id": "path_patch",

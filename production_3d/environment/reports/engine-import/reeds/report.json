@@ -1,0 +1,272 @@
+{
+  "id": "reeds",
+  "glbs": [
+    "/models/environment/fdx-reeds.glb"
+  ],
+  "device": "Chromium SwiftShader, viewer isolé",
+  "info": [
+    {
+      "url": "/models/environment/fdx-reeds.glb",
+      "loadMs": 28,
+      "convertedMaterials": 1,
+      "meshes": [
+        {
+          "name": "fdx_reeds_a_lod0",
+          "triangles": 888,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.016,
+            0.91,
+            0
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_grass_a_lod0",
+          "triangles": 156,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.05,
+            0.258,
+            -0.032
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_reeds_a_lod1",
+          "triangles": 380,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.056,
+            0.91,
+            -0.042
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_grass_a_lod1",
+          "triangles": 48,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.022,
+            0.258,
+            0.013
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_reeds_a_lod2",
+          "triangles": 70,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.096,
+            0.742,
+            0.09
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_grass_a_lod2",
+          "triangles": 24,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.041,
+            0.258,
+            -0.027
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_reeds_b_lod0",
+          "triangles": 972,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.064,
+            0.942,
+            -0.022
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_grass_b_lod0",
+          "triangles": 174,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.027,
+            0.27,
+            0.003
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_reeds_b_lod1",
+          "triangles": 404,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.028,
+            0.823,
+            -0.022
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_grass_b_lod1",
+          "triangles": 60,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.045,
+            0.27,
+            0.022
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_reeds_b_lod2",
+          "triangles": 94,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.028,
+            0.713,
+            -0.135
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_grass_b_lod2",
+          "triangles": 36,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.045,
+            0.27,
+            0.05
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_reeds_c_lod0",
+          "triangles": 1000,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.016,
+            0.83,
+            0.073
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_grass_c_lod0",
+          "triangles": 192,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.024,
+            0.269,
+            0.059
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_reeds_c_lod1",
+          "triangles": 484,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.016,
+            0.771,
+            0.001
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_grass_c_lod1",
+          "triangles": 72,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.024,
+            0.269,
+            0.069
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_reeds_c_lod2",
+          "triangles": 118,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.112,
+            0.661,
+            -0.011
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_grass_c_lod2",
+          "triangles": 48,
+          "material": "fdx_reed_blade-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.111,
+            0.259,
+            -0.025
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        }
+      ],
+      "triangles": 5220,
+      "boundsMin": [
+        -1.153,
+        -0.35,
+        -0.876
+      ],
+      "boundsMax": [
+        1.185,
+        2.234,
+        1.023
+      ],
+      "sizeXYZ": [
+        2.338,
+        2.584,
+        1.899
+      ],
+      "offsetX": 0,
+      "textures": []
+    }
+  ],
+  "errors": [],
+  "shots": [
+    "production_3d/environment/reports/engine-import/reeds/persp.png"
+  ]
+}

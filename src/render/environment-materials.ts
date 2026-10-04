@@ -5,11 +5,11 @@ import type {AssetContainer} from '@babylonjs/core/assetContainer';
 import type {Scene} from '@babylonjs/core/scene';
 
 /**
- * Les GLB FishDex sont rendus par StandardMaterial (espace gamma) : la base color doit rester encodée sRGB
+ * Les GLB du décor (fdx-* Blender FishDex, free-* gratuits) sont rendus par StandardMaterial (espace gamma) : la base color doit rester encodée sRGB
  * dans le GPU. Sans cette option, le chargeur glTF crée des textures sRGB matérielles qui renvoient des
  * valeurs linéaires, environ quatre fois trop sombres une fois affichées sans conversion.
  */
-export const environmentLoadOptions=(url:string)=>/\/fdx-[^/]+\.glb$/.test(url)?{pluginOptions:{gltf:{useSRGBBuffers:false}}}:undefined;
+export const environmentLoadOptions=(url:string)=>/\/(fdx|free)-[^/]+\.glb$/.test(url)?{pluginOptions:{gltf:{useSRGBBuffers:false}}}:undefined;
 
 /**
  * Chemin d’éclairage mobile partagé : les GLB du décor arrivent en PBR glTF et sont convertis
@@ -28,7 +28,9 @@ export function adaptEnvironmentMaterials(c:AssetContainer,scene:Scene,family:st
    // Rugosité glTF → reflet spéculaire discret ; aucune matière naturelle métallique.
    const rough=Math.max(.35,Math.min(1,source.roughness??.9));material.specularColor=Color3.Gray().scale(.12*(1-rough)+.01);material.specularPower=10+40*(1-rough);
    if(source.bumpTexture){material.bumpTexture=source.bumpTexture;material.bumpTexture.level=source.bumpTexture.level||1;material.invertNormalMapX=source.invertNormalMapX;material.invertNormalMapY=source.invertNormalMapY;}
-   if(alpha){material.useAlphaFromDiffuseTexture=true;material.transparencyMode=StandardMaterial.MATERIAL_ALPHATEST;material.alphaCutOff=source.alphaCutOff||.5;material.backFaceCulling=false;material.twoSidedLighting=true;}
+   // Feuillage/imposteurs : normales de volume exportées depuis Blender ; pas d’inversion pour les faces arrière
+   // (twoSidedLighting assombrirait la moitié des cartes et des plans croisés).
+   if(alpha){material.useAlphaFromDiffuseTexture=true;material.transparencyMode=StandardMaterial.MATERIAL_ALPHATEST;material.alphaCutOff=source.alphaCutOff||.5;material.backFaceCulling=false;material.twoSidedLighting=false;}
   }else{
    material.specularColor=new Color3(.015,.015,.015);
    if(source.albedoTexture?.hasAlpha||['grass_clump','lily_cluster'].includes(family))material.emissiveColor=new Color3(.02,.025,.01);

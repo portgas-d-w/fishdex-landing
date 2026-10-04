@@ -1,0 +1,232 @@
+{
+  "id": "trees",
+  "seed": 11,
+  "script": "production_3d/environment/tools/build_trees.py",
+  "source_blend": "production_3d/environment/source/trees.blend",
+  "variants": [
+    "fdx_tree_alder_a",
+    "fdx_tree_alder_b",
+    "fdx_tree_alder_c",
+    "fdx_tree_oak_a",
+    "fdx_tree_oak_b",
+    "fdx_tree_oak_c",
+    "fdx_tree_willow_a",
+    "fdx_tree_willow_b",
+    "fdx_tree_shrub_a",
+    "fdx_tree_shrub_b",
+    "fdx_tree_shrub_c"
+  ],
+  "heights_m": {
+    "fdx_tree_alder_a_lod0": 9.52,
+    "fdx_tree_alder_b_lod0": 9.87,
+    "fdx_tree_alder_c_lod0": 8.66,
+    "fdx_tree_oak_a_lod0": 8.59,
+    "fdx_tree_oak_b_lod0": 8.4,
+    "fdx_tree_oak_c_lod0": 8.79,
+    "fdx_tree_willow_a_lod0": 8.3,
+    "fdx_tree_willow_b_lod0": 7.76,
+    "fdx_tree_shrub_a_lod0": 1.27,
+    "fdx_tree_shrub_b_lod0": 1.15,
+    "fdx_tree_shrub_c_lod0": 1.18
+  },
+  "lod0_size_xyz_babylon": {
+    "fdx_tree_alder_a_lod0": [
+      7.3,
+      10.93,
+      6.95
+    ],
+    "fdx_tree_alder_b_lod0": [
+      6.47,
+      11.04,
+      6.1
+    ],
+    "fdx_tree_alder_c_lod0": [
+      5.06,
+      11.07,
+      5.33
+    ],
+    "fdx_tree_oak_a_lod0": [
+      9.7,
+      8.69,
+      9.03
+    ],
+    "fdx_tree_oak_b_lod0": [
+      9.34,
+      9.91,
+      9.41
+    ],
+    "fdx_tree_oak_c_lod0": [
+      10.13,
+      9.39,
+      10.18
+    ],
+    "fdx_tree_willow_a_lod0": [
+      7.81,
+      8.17,
+      9.39
+    ],
+    "fdx_tree_willow_b_lod0": [
+      8.04,
+      8.17,
+      8.81
+    ],
+    "fdx_tree_shrub_a_lod0": [
+      2.44,
+      1.95,
+      2.16
+    ],
+    "fdx_tree_shrub_b_lod0": [
+      2.54,
+      1.99,
+      2.21
+    ],
+    "fdx_tree_shrub_c_lod0": [
+      2.2,
+      1.62,
+      2.17
+    ]
+  },
+  "pivot": "pied du tronc au niveau du sol (tronc enterré de 0,3 m)",
+  "materials": 3,
+  "textures": [
+    "fdx-bark-color.jpg (512 sRGB)",
+    "fdx-bark-normal.jpg (512 linéaire)",
+    "fdx-foliage-atlas.png (1024 PNG8 alpha)",
+    "fdx-tree-impostors.png (1024² alpha, 4×4 cellules, rendu Blender)"
+  ],
+  "export": {
+    "file": "public/models/environment/fdx-trees.glb",
+    "bytes": 2995768,
+    "sha256": "61a1eb2c6f9990fcc1fa76ff90932a890ee0b36e1931e64c3a88e126e81dac97",
+    "meshes": 48,
+    "triangles": 33472,
+    "vertices": 36994,
+    "materials": [
+      "fdx_bark",
+      "fdx_leaves",
+      "fdx_tree_impostor"
+    ],
+    "images": [
+      {
+        "name": "fdx-bark-color",
+        "size": [
+          512,
+          512
+        ]
+      },
+      {
+        "name": "fdx-bark-normal",
+        "size": [
+          512,
+          512
+        ]
+      },
+      {
+        "name": "fdx-foliage-atlas",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "fdx-tree-impostors",
+        "size": [
+          1024,
+          1024
+        ]
+      }
+    ],
+    "uv_layers": [
+      "UVMap"
+    ],
+    "vertex_colors": true,
+    "bounds_blender_min": [
+      -5.93,
+      -5.9124,
+      -1.7362
+    ],
+    "bounds_blender_max": [
+      5.6445,
+      5.6445,
+      11.0438
+    ],
+    "size_m_xyz_blender": [
+      11.5746,
+      11.557,
+      12.78
+    ],
+    "per_mesh_triangles": {
+      "fdx_tree_alder_a_lod0": 3468,
+      "fdx_tree_alder_a_lod1": 890,
+      "fdx_tree_alder_b_lod0": 3692,
+      "fdx_tree_alder_b_lod1": 890,
+      "fdx_tree_alder_c_lod0": 3988,
+      "fdx_tree_alder_c_lod1": 970,
+      "fdx_tree_oak_a_lod0": 2100,
+      "fdx_tree_oak_a_lod1": 560,
+      "fdx_tree_oak_b_lod0": 2036,
+      "fdx_tree_oak_b_lod1": 560,
+      "fdx_tree_oak_c_lod0": 1908,
+      "fdx_tree_oak_c_lod1": 560,
+      "fdx_tree_willow_a_lod0": 2292,
+      "fdx_tree_willow_a_lod1": 558,
+      "fdx_tree_willow_b_lod0": 1888,
+      "fdx_tree_willow_b_lod1": 518,
+      "fdx_tree_shrub_a_lod0": 956,
+      "fdx_tree_shrub_a_lod1": 382,
+      "fdx_tree_shrub_b_lod0": 924,
+      "fdx_tree_shrub_b_lod1": 382,
+      "fdx_tree_shrub_c_lod0": 924,
+      "fdx_tree_shrub_c_lod1": 382,
+      "fdx_log_a_lod0": 394,
+      "fdx_log_a_lod1": 153,
+      "fdx_log_a_lod2": 20,
+      "fdx_snag_a_lod0": 363,
+      "fdx_snag_a_lod1": 120,
+      "fdx_snag_a_lod2": 34,
+      "fdx_log_b_lod0": 394,
+      "fdx_log_b_lod1": 153,
+      "fdx_log_b_lod2": 20,
+      "fdx_snag_b_lod0": 292,
+      "fdx_snag_b_lod1": 96,
+      "fdx_snag_b_lod2": 28,
+      "fdx_snag_c_lod0": 379,
+      "fdx_snag_c_lod1": 120,
+      "fdx_snag_c_lod2": 34,
+      "fdx_tree_alder_a_lod2": 4,
+      "fdx_tree_alder_b_lod2": 4,
+      "fdx_tree_alder_c_lod2": 4,
+      "fdx_tree_oak_a_lod2": 4,
+      "fdx_tree_oak_b_lod2": 4,
+      "fdx_tree_oak_c_lod2": 4,
+      "fdx_tree_willow_a_lod2": 4,
+      "fdx_tree_willow_b_lod2": 4,
+      "fdx_tree_shrub_a_lod2": 4,
+      "fdx_tree_shrub_b_lod2": 4,
+      "fdx_tree_shrub_c_lod2": 4
+    }
+  },
+  "previews": [
+    "production_3d/environment/previews/trees/fdx_tree_alder_a_lod0-front.jpg",
+    "production_3d/environment/previews/trees/fdx_tree_alder_a_lod0-persp.jpg",
+    "production_3d/environment/previews/trees/fdx_tree_alder_b_lod0-front.jpg",
+    "production_3d/environment/previews/trees/fdx_tree_alder_c_lod0-front.jpg",
+    "production_3d/environment/previews/trees/fdx_tree_oak_a_lod0-front.jpg",
+    "production_3d/environment/previews/trees/fdx_tree_oak_a_lod0-persp.jpg",
+    "production_3d/environment/previews/trees/fdx_tree_oak_b_lod0-front.jpg",
+    "production_3d/environment/previews/trees/fdx_tree_oak_c_lod0-front.jpg",
+    "production_3d/environment/previews/trees/fdx_tree_willow_a_lod0-front.jpg",
+    "production_3d/environment/previews/trees/fdx_tree_willow_a_lod0-persp.jpg",
+    "production_3d/environment/previews/trees/fdx_tree_willow_b_lod0-front.jpg",
+    "production_3d/environment/previews/trees/fdx_tree_shrub_a_lod0-front.jpg",
+    "production_3d/environment/previews/trees/fdx_tree_shrub_a_lod0-persp.jpg",
+    "production_3d/environment/previews/trees/fdx_tree_shrub_b_lod0-front.jpg",
+    "production_3d/environment/previews/trees/fdx_tree_shrub_c_lod0-front.jpg",
+    "production_3d/environment/previews/trees/fdx_log_a_lod0-persp.jpg",
+    "production_3d/environment/previews/trees/fdx_log_a_lod0-side.jpg",
+    "production_3d/environment/previews/trees/fdx_snag_a_lod0-persp.jpg",
+    "production_3d/environment/previews/trees/fdx_snag_a_lod0-side.jpg",
+    "production_3d/environment/previews/trees/fdx_snag_b_lod0-persp.jpg",
+    "production_3d/environment/previews/trees/fdx_snag_b_lod0-side.jpg"
+  ]
+}

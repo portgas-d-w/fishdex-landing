@@ -19,9 +19,9 @@ export class MapMaterials{
   // Macro-couleur cuite depuis la carte réelle + détail tuilé tous les 3 m (une lecture de plus, pas de splat multi-lectures).
   const m=new StandardMaterial('map-ground',this.scene);m.diffuseColor=Color3.White();m.specularColor=new Color3(.004,.004,.004);m.specularPower=10;
   const tex=new Texture('/map-assets/ground-macro.jpg',this.scene,false,false,Texture.TRILINEAR_SAMPLINGMODE,undefined,()=>{m.diffuseTexture=null;m.diffuseColor=Color3.FromHexString('#66713f');});
-  tex.wrapU=tex.wrapV=Texture.CLAMP_ADDRESSMODE;tex.anisotropicFilteringLevel=4;m.diffuseTexture=tex;
+  tex.wrapU=tex.wrapV=Texture.CLAMP_ADDRESSMODE;tex.anisotropicFilteringLevel=2;m.diffuseTexture=tex;
   const detail=new Texture('/map-assets/ground-detail.png',this.scene,false,false,Texture.TRILINEAR_SAMPLINGMODE,undefined,()=>{m.detailMap.isEnabled=false;});
-  detail.gammaSpace=false;detail.uScale=180/3;detail.vScale=140/3;detail.anisotropicFilteringLevel=4;
+  detail.gammaSpace=false;detail.uScale=180/3;detail.vScale=140/3;detail.anisotropicFilteringLevel=1;
   m.detailMap.texture=detail;m.detailMap.diffuseBlendLevel=1;m.detailMap.bumpLevel=0;m.detailMap.isEnabled=true;return m;
  }
 }

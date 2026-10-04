@@ -29,10 +29,10 @@ def profile(variant, x, z, rnd):
     end = math.cos(min(1.0, abs(x) / HALF) * math.pi / 2) ** 1.4          # 1 au centre, 0 aux extrémités
     wav = pnoise(Vector((x * 0.9 + variant * 7.1, 0.3, 1.7))) * 0.18 + pnoise(Vector((x * 2.7, variant * 3.3, 0.2))) * 0.06
     lip_z = -0.12 + wav                                                   # lèvre ondulée
-    lip_h = (0.12 + 0.08 * (pnoise(Vector((x * 1.3, variant * 1.9, 4.0))) + 0.5)) * end
-    if z <= lip_z:                                                        # dessus : rejoint le terrain vers l'arrière
-        back = max(0.0, min(1.0, (lip_z - z) / 1.9))
-        lift = lip_h * (1 - back) ** 1.5 - 0.05 * back - 0.03 * (1 - end)
+    lip_h = (0.07 + 0.06 * (pnoise(Vector((x * 1.3, variant * 1.9, 4.0))) + 0.5)) * end
+    if z <= lip_z:                                                        # dessus : étroite bande de lèvre qui plonge vite sous le terrain
+        back = max(0.0, min(1.0, (lip_z - z) / 0.75))
+        lift = lip_h * (1 - back) ** 1.3 - 0.07 * back - 0.03 * (1 - end)
         bump = pnoise(Vector((x * 3.1, z * 3.1, variant))) * 0.025 * end
         return terrain(z) + lift + bump
     t = min(1.0, (z - lip_z) / (0.32 + 0.1 * end))                        # face érodée puis pied enterré
@@ -51,7 +51,7 @@ def vcolor(y, z, lip_z):
     if z > lip_z - 0.05:
         return (0.78, 0.66, 0.54, 1)
     back = min(1.0, (lip_z - z) / 1.2)
-    return (0.8 - 0.18 * back, 0.7 + 0.02 * back, 0.55 - 0.1 * back, 1)
+    return (0.86 - 0.1 * back, 0.8 + 0.06 * back, 0.66 - 0.06 * back, 1)
 
 
 def module(name, variant, nx, zs, roots, col, mat, rnd):
@@ -104,9 +104,9 @@ def main():
     mat = fx.material('fdx_bank_mud', base=os.path.join(fx.TEX_PREP, 'fdx-bank-mud-color.jpg'),
                       normal=os.path.join(fx.TEX_PREP, 'fdx-bank-mud-normal.jpg'), roughness=0.95, normal_strength=0.9, vertex_color=True)
     col = fx.collection('bank_earth_export')
-    zs0 = [-2.3, -1.7, -1.2, -0.8, -0.5, -0.32, -0.2, -0.1, 0.0, 0.1, 0.22, 0.38, 0.6]
-    zs1 = [-2.3, -1.2, -0.5, -0.2, 0.0, 0.2, 0.6]
-    zs2 = [-2.3, -0.4, 0.0, 0.6]
+    zs0 = [-1.25, -0.95, -0.7, -0.5, -0.36, -0.24, -0.14, -0.05, 0.04, 0.14, 0.26, 0.4, 0.6]
+    zs1 = [-1.25, -0.7, -0.36, -0.14, 0.04, 0.26, 0.6]
+    zs2 = [-1.25, -0.4, 0.0, 0.6]
     objs = []; stats = {}
     for v, letter in enumerate('abc'):
         lods = [module(f'fdx_bank_earth_{letter}_lod0', v, 20, zs0, 6, col, mat, rnd),

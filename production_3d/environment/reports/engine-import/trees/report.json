@@ -1,0 +1,970 @@
+{
+  "id": "trees",
+  "glbs": [
+    "/models/environment/fdx-trees.glb"
+  ],
+  "device": "Chromium SwiftShader, viewer isolé",
+  "info": [
+    {
+      "url": "/models/environment/fdx-trees.glb",
+      "loadMs": 68,
+      "convertedMaterials": 3,
+      "meshes": [
+        {
+          "name": "fdx_tree_alder_a_lod0_primitive0",
+          "triangles": 3096,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -1.153,
+            4.679,
+            0.09
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_alder_a_lod0_primitive1",
+          "triangles": 372,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -1.318,
+            5.9,
+            0.034
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_alder_a_lod1_primitive0",
+          "triangles": 704,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.718,
+            4.453,
+            -0.259
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_alder_a_lod1_primitive1",
+          "triangles": 186,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.489,
+            5.831,
+            -0.292
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_alder_b_lod0_primitive0",
+          "triangles": 3320,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.237,
+            4.72,
+            0.977
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_alder_b_lod0_primitive1",
+          "triangles": 372,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.212,
+            5.957,
+            0.647
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_alder_b_lod1_primitive0",
+          "triangles": 704,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.227,
+            4.484,
+            0.594
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_alder_b_lod1_primitive1",
+          "triangles": 186,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.003,
+            5.622,
+            0.594
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_alder_c_lod0_primitive0",
+          "triangles": 3616,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.054,
+            4.475,
+            0.36
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_alder_c_lod0_primitive1",
+          "triangles": 372,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.214,
+            5.853,
+            -0.056
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_alder_c_lod1_primitive0",
+          "triangles": 784,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.218,
+            4.085,
+            -0.057
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_alder_c_lod1_primitive1",
+          "triangles": 186,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.018,
+            5.286,
+            0.057
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_oak_a_lod0_primitive0",
+          "triangles": 1668,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.804,
+            3.537,
+            0.364
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_oak_a_lod0_primitive1",
+          "triangles": 432,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.621,
+            5.118,
+            0.402
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_oak_a_lod1_primitive0",
+          "triangles": 344,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.555,
+            3.142,
+            -0.365
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_oak_a_lod1_primitive1",
+          "triangles": 216,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.239,
+            5.664,
+            -0.254
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_oak_b_lod0_primitive0",
+          "triangles": 1604,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.223,
+            3.992,
+            0.744
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_oak_b_lod0_primitive1",
+          "triangles": 432,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.154,
+            6.12,
+            0.603
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_oak_b_lod1_primitive0",
+          "triangles": 344,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.085,
+            3.352,
+            -0.376
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_oak_b_lod1_primitive1",
+          "triangles": 216,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.012,
+            6.671,
+            -0.58
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_oak_c_lod0_primitive0",
+          "triangles": 1476,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.572,
+            3.714,
+            -0.019
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_oak_c_lod0_primitive1",
+          "triangles": 432,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.331,
+            5.699,
+            -0.011
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_oak_c_lod1_primitive0",
+          "triangles": 344,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.925,
+            3.058,
+            0.451
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_oak_c_lod1_primitive1",
+          "triangles": 216,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.826,
+            6.009,
+            0.679
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_willow_a_lod0_primitive0",
+          "triangles": 1944,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.093,
+            3.286,
+            0.346
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_willow_a_lod0_primitive1",
+          "triangles": 348,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.195,
+            3.399,
+            0.933
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_willow_a_lod1_primitive0",
+          "triangles": 384,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.589,
+            2.885,
+            -0.208
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_willow_a_lod1_primitive1",
+          "triangles": 174,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -1.176,
+            3.582,
+            -0.038
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_willow_b_lod0_primitive0",
+          "triangles": 1540,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.352,
+            3.003,
+            -0.317
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_willow_b_lod0_primitive1",
+          "triangles": 348,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.335,
+            2.35,
+            -0.4
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_willow_b_lod1_primitive0",
+          "triangles": 344,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.554,
+            2.344,
+            0.305
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_willow_b_lod1_primitive1",
+          "triangles": 174,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.846,
+            3.24,
+            -0.304
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_shrub_a_lod0_primitive0",
+          "triangles": 832,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.249,
+            0.631,
+            0.026
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_shrub_a_lod0_primitive1",
+          "triangles": 124,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.078,
+            0.734,
+            -0.025
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_shrub_a_lod1_primitive0",
+          "triangles": 320,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.18,
+            0.456,
+            0.064
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_shrub_a_lod1_primitive1",
+          "triangles": 62,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.253,
+            0.67,
+            0.021
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_shrub_b_lod0_primitive0",
+          "triangles": 800,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.14,
+            0.678,
+            0.022
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_shrub_b_lod0_primitive1",
+          "triangles": 124,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.155,
+            0.803,
+            -0.047
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_shrub_b_lod1_primitive0",
+          "triangles": 320,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.008,
+            0.455,
+            -0.141
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_shrub_b_lod1_primitive1",
+          "triangles": 62,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.009,
+            0.584,
+            -0.066
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_shrub_c_lod0_primitive0",
+          "triangles": 800,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.133,
+            0.467,
+            0.052
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_shrub_c_lod0_primitive1",
+          "triangles": 124,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.076,
+            0.674,
+            0.109
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_shrub_c_lod1_primitive0",
+          "triangles": 320,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.069,
+            0.396,
+            0.125
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_shrub_c_lod1_primitive1",
+          "triangles": 62,
+          "material": "fdx_leaves-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.03,
+            0.631,
+            0.217
+          ],
+          "hasNormalMap": false,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_log_a_lod0",
+          "triangles": 394,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.147,
+            0.734,
+            -0.159
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_log_a_lod1",
+          "triangles": 153,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.147,
+            0.736,
+            -0.085
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_log_a_lod2",
+          "triangles": 20,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.002,
+            0.037,
+            0.002
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_snag_a_lod0",
+          "triangles": 363,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.047,
+            -0.122,
+            -0.028
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_snag_a_lod1",
+          "triangles": 120,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.006,
+            -0.158,
+            0.209
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_snag_a_lod2",
+          "triangles": 34,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.006,
+            -0.073,
+            -0.046
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_log_b_lod0",
+          "triangles": 394,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.163,
+            0.703,
+            -0.228
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_log_b_lod1",
+          "triangles": 153,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.169,
+            0.644,
+            -0.163
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_log_b_lod2",
+          "triangles": 20,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.001,
+            0.037,
+            -0.054
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_snag_b_lod0",
+          "triangles": 292,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.07,
+            -0.138,
+            0.039
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_snag_b_lod1",
+          "triangles": 96,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.009,
+            -0.135,
+            0.022
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_snag_b_lod2",
+          "triangles": 28,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.009,
+            -0.28,
+            0.016
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_snag_c_lod0",
+          "triangles": 379,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.205,
+            -0.112,
+            -0.073
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_snag_c_lod1",
+          "triangles": 120,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.01,
+            -0.199,
+            0.008
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_snag_c_lod2",
+          "triangles": 34,
+          "material": "fdx_bark-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.076,
+            -0.096,
+            0.007
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_tree_alder_a_lod2",
+          "triangles": 4,
+          "material": "fdx_tree_impostor-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0,
+            5.255,
+            0
+          ],
+          "hasNormalMap": false,
+          "vertexColors": false
+        },
+        {
+          "name": "fdx_tree_alder_b_lod2",
+          "triangles": 4,
+          "material": "fdx_tree_impostor-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0,
+            5.313,
+            0
+          ],
+          "hasNormalMap": false,
+          "vertexColors": false
+        },
+        {
+          "name": "fdx_tree_alder_c_lod2",
+          "triangles": 4,
+          "material": "fdx_tree_impostor-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0,
+            5.333,
+            0
+          ],
+          "hasNormalMap": false,
+          "vertexColors": false
+        },
+        {
+          "name": "fdx_tree_oak_a_lod2",
+          "triangles": 4,
+          "material": "fdx_tree_impostor-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0,
+            4.624,
+            0
+          ],
+          "hasNormalMap": false,
+          "vertexColors": false
+        },
+        {
+          "name": "fdx_tree_oak_b_lod2",
+          "triangles": 4,
+          "material": "fdx_tree_impostor-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0,
+            4.745,
+            0
+          ],
+          "hasNormalMap": false,
+          "vertexColors": false
+        },
+        {
+          "name": "fdx_tree_oak_c_lod2",
+          "triangles": 4,
+          "material": "fdx_tree_impostor-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0,
+            4.881,
+            0
+          ],
+          "hasNormalMap": false,
+          "vertexColors": false
+        },
+        {
+          "name": "fdx_tree_willow_a_lod2",
+          "triangles": 4,
+          "material": "fdx_tree_impostor-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0,
+            4.103,
+            0
+          ],
+          "hasNormalMap": false,
+          "vertexColors": false
+        },
+        {
+          "name": "fdx_tree_willow_b_lod2",
+          "triangles": 4,
+          "material": "fdx_tree_impostor-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0,
+            2.758,
+            0
+          ],
+          "hasNormalMap": false,
+          "vertexColors": false
+        },
+        {
+          "name": "fdx_tree_shrub_a_lod2",
+          "triangles": 4,
+          "material": "fdx_tree_impostor-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0,
+            1.004,
+            0
+          ],
+          "hasNormalMap": false,
+          "vertexColors": false
+        },
+        {
+          "name": "fdx_tree_shrub_b_lod2",
+          "triangles": 4,
+          "material": "fdx_tree_impostor-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0,
+            1.104,
+            0
+          ],
+          "hasNormalMap": false,
+          "vertexColors": false
+        },
+        {
+          "name": "fdx_tree_shrub_c_lod2",
+          "triangles": 4,
+          "material": "fdx_tree_impostor-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0,
+            0.985,
+            0
+          ],
+          "hasNormalMap": false,
+          "vertexColors": false
+        }
+      ],
+      "triangles": 33472,
+      "boundsMin": [
+        -5.645,
+        -1.736,
+        -5.645
+      ],
+      "boundsMax": [
+        5.93,
+        11.044,
+        5.912
+      ],
+      "sizeXYZ": [
+        11.575,
+        12.78,
+        11.557
+      ],
+      "offsetX": 0,
+      "textures": [
+        {
+          "name": "fdx_bark (Normal)",
+          "width": 512,
+          "height": 512
+        },
+        {
+          "name": "fdx_bark (Base Color)",
+          "width": 512,
+          "height": 512
+        },
+        {
+          "name": "fdx_leaves (Base Color)",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "name": "fdx_tree_impostor (Base Color)",
+          "width": 1024,
+          "height": 1024
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "shots": [
+    "production_3d/environment/reports/engine-import/trees/persp.png",
+    "production_3d/environment/reports/engine-import/trees/game.png"
+  ]
+}

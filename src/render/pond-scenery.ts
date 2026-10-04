@@ -1,7 +1,7 @@
 import registry from './environment-registry.json';
 import {MapMaterials} from './map-materials';
 import {adaptEnvironmentMaterials,environmentLoadOptions} from './environment-materials';
-import {bindEmbeddedLods,lodLevelOf,type LodLevel} from './environment-lod';
+import {bindEmbeddedLods,lodLevelOf,isLodNode,type LodLevel} from './environment-lod';
 import type {AbstractMesh} from '@babylonjs/core/Meshes/abstractMesh';
 import {Texture} from '@babylonjs/core/Materials/Textures/texture';
 import {PBRMaterial} from '@babylonjs/core/Materials/PBR/pbrMaterial';
@@ -21,8 +21,7 @@ import {LoadAssetContainerAsync} from '@babylonjs/core/Loading/sceneLoader';
 import {POND_MAP,pondGround,inPond,shoreDistance,localToPond} from '../game/pond-map';
 import {POSTS,worldPoint} from '../game/posts';
 import type {AssetContainer} from '@babylonjs/core/assetContainer';
-interface EnvironmentEntry{id:string;version:number;resource:string|null;lightmap:string|null;dimensions:number[];dimensionTolerance:number;collision:string;sockets:unknown[];replacesFamilies?:string[];lod?:{levels?:LodLevel[];cull?:number};variants?:string[]};
-const variantOf=(name:string)=>/_([a-z])_lod\d/.exec(name)?.[1];
+interface EnvironmentEntry{id:string;version:number;resource:string|null;lightmap:string|null;dimensions:number[];dimensionTolerance:number;collision:string;sockets:unknown[];replacesFamilies?:string[];lod?:{levels?:LodLevel[];cull?:number};variants?:string[];allPlacements?:boolean};
 const ENTRIES=registry.entries as EnvironmentEntry[];
 export interface Placement{id:string;family:string;x:number;y:number;z:number;yaw:number;scale:number;variant?:number}
 export class PondScenery{
@@ -37,26 +36,35 @@ export class PondScenery{
  private populate(){
   const treePlacements:Placement[]=[];
   // Objets visibles associés aux volumes de fil déjà simulés.
-  for(const post of POSTS)for(const o of post.obstacles){const at=worldPoint(post.id,o),p=this.add(post.id==='timber'?'submerged_branches':'reeds',at.x,at.z,1,-.25);if(post.id==='timber'){for(let n=0;n<3;n++)this.shape(p,'stem',new Vector3((n-1)*.5,.4,0),new Vector3(.12,2.5,.12),'#65584a',1.1+n*.15);}else for(let n=0;n<7;n++)this.shape(p,'stem',new Vector3(Math.cos(n*1.9)*o.radius*.75,.9,Math.sin(n*1.9)*o.radius*.75),new Vector3(.04,1.8+n%3*.13,.04),'#6d754c',Math.sin(n)*.1);}
+  for(const post of POSTS)for(const o of post.obstacles){const at=worldPoint(post.id,o),p=this.add(post.id==='timber'?'submerged_branches':'reeds',at.x,at.z,1,0);if(post.id==='timber'){for(let n=0;n<3;n++)this.shape(p,'stem',new Vector3((n-1)*.5,.15,0),new Vector3(.12,2.5,.12),'#65584a',1.1+n*.15);}else for(let n=0;n<7;n++)this.shape(p,'stem',new Vector3(Math.cos(n*1.9)*o.radius*.75,.65,Math.sin(n*1.9)*o.radius*.75),new Vector3(.04,1.8+n%3*.13,.04),'#6d754c',Math.sin(n)*.1);}
   for(let n=0;n<90;n++){const a=n/90*Math.PI*2,x=Math.sin(a)*(65+this.rand()*15),z=39+Math.cos(a)*(50+this.rand()*13);if(inPond({x,z})||POND_MAP.spots.some(s=>Math.hypot(x-s.origin.x,z-s.origin.z)<13))continue;treePlacements.push(this.add(n%7===0?'tree_willow':n%3===0?'tree_alder':'tree_oak',x,z,.7+this.rand()*.5));}
   for(let n=0;n<55;n++){const a=n/55*Math.PI*2,x=Math.sin(a)*(76+this.rand()*8),z=39+Math.cos(a)*(60+this.rand()*8);if(inPond({x,z})||POND_MAP.spots.some(s=>Math.hypot(x-s.origin.x,z-s.origin.z)<13))continue;treePlacements.push(this.add(n%4?'tree_alder':'tree_oak',x,z,.65+this.rand()*.35));}
   for(const spot of POND_MAP.spots){const near=treePlacements.filter(p=>p.family!=='tree_willow').sort((a,b)=>Math.hypot(a.x-spot.origin.x,a.z-spot.origin.z)-Math.hypot(b.x-spot.origin.x,b.z-spot.origin.z)).slice(0,3);for(const p of near)this.detailTrees.add(p.id);}for(const p of treePlacements)this.tree(p);
   for(const id of ['cove','bank','reed-bank','point','timber'])for(const side of [-1,1])for(let n=0;n<3;n++){const at=localToPond(id,{x:side*(1.3+n*.3),z:-3-n*.5});if(inPond(at))continue;const p=this.add('grass_clump',at.x,at.z,.7+this.rand()*.3);for(let blade=0;blade<5;blade++)this.shape(p,'box',new Vector3((blade-2)*.08,.24,Math.sin(blade)*.08),new Vector3(.04,.48+blade*.04,.07),'#687348',Math.sin(blade)*.22);}
   for(let n=0;n<80;n++){const c=POND_MAP.contour[n%POND_MAP.contour.length],x=c.x+(this.rand()-.5)*8,z=c.z+(this.rand()-.5)*8;if(inPond({x,z})||POND_MAP.spots.some(s=>Math.hypot(x-s.origin.x,z-s.origin.z)<8))continue;const p=this.add(n%3?'grass_clump':'shrub',x,z,.6+this.rand()*.7);this.shape(p,n%3?'stem':'stone',new Vector3(0,.3,0),new Vector3(n%3?.22:.7,n%3?.55:.5,n%3?.22:.6),'#687348');}
-  for(const id of ['cove','reed-bank'])for(let n=0;n<18;n++){const at=localToPond(id,{x:-2.5+(n%6)*.25,z:4+Math.floor(n/6)*1.1}),p=this.add('lily_cluster',at.x,at.z,1,.025);this.shape(p,'stem',new Vector3(0,0,0),new Vector3(.32,.01,.25),'#71804b');}
+  // Nénuphars en bouquets irréguliers (même zone d’herbiers qu’avant, plus de grille en tirets).
+  for(const [id,spots] of [['cove',[[-2.2,4.5,1.05],[-1.0,6.1,.85],[-3.1,6.7,.95],[-0.2,4.2,.7]]],['reed-bank',[[-1.9,4.4,1],[-0.8,6.3,.8],[-2.9,7.0,.9]]]] as const)for(const [lx,lz,sc] of spots){const at=localToPond(id,{x:lx,z:lz}),p=this.add('lily_cluster',at.x,at.z,sc,0,(lx*7.1+lz*3.3)%(Math.PI*2));this.shape(p,'stem',new Vector3(0,.012,0),new Vector3(1.6,.01,1.3),'#71804b');}
   for(const id of ['bank','point','timber'])for(let n=0;n<7;n++){const at=localToPond(id,{x:(n%2?1:-1)*(4+n*.25),z:-5}),p=this.add(id==='point'&&n===0?'rock_landmark':'rock_small',at.x,at.z,.5+this.rand());this.shape(p,'stone',new Vector3(0,.2,0),new Vector3(.7,.4,.6),'#8d8d7a');}
-  const log=localToPond('timber',{x:3,z:5}),p=this.add('fallen_log',log.x,log.z,1,-.15);this.shape(p,'stem',new Vector3(0,.25,0),new Vector3(.4,5,.4),'#675646',Math.PI/2);
+  const log=localToPond('timber',{x:3,z:5}),p=this.add('fallen_log',log.x,log.z,1,0);this.shape(p,'stem',new Vector3(0,.1,0),new Vector3(.4,5,.4),'#675646',Math.PI/2);
   for(let n=0;n<4;n++){const p=this.add('pier_deck',0,-7+n*2,1,.28,0);for(let j=0;j<7;j++)this.shape(p,'box',new Vector3(0,0,-.85+j*.285),new Vector3(2.4,.15,.27),j%2?'#aa9e83':'#b4a990');}
   // Pieux de secours alignés sur les rangées du ponton Blender (contacts d’eau et fallback identiques).
   for(const [x,z] of [[-1.29,-.18],[1.29,-.18],[-1.06,-2],[1.06,-2],[-1.29,-4],[1.29,-4]]){const p=this.add('pier_pile',x,z,1,-.1,0);this.shape(p,'stem',Vector3.Zero(),new Vector3(.17,1.7,.17),'#7c6d52');}
   this.add('pier_jetty',0,-4,1,0,0);
   for(const s of POND_MAP.spots){for(let n=0;n<3;n++){const at=localToPond(s.id,{x:0,z:-9-n*3}),p=this.add('path_patch',at.x,at.z,1,pondGround(at)+.015,s.angle);this.shape(p,'box',Vector3.Zero(),new Vector3(1.4,.025,3),'#958e70');}}
-  this.banks();
+  this.banks();this.willows();this.backdrop();this.shoreReeds();
+  // Variantes déterministes des arbres (sans consommer la graine des placements historiques).
+  this.placements.forEach((p,i)=>{if(p.family.startsWith('tree_')&&p.variant===undefined)p.variant=(i*7+3)%6;});
  }
  /** Berges érodées Blender posées sur le vrai contour, de part et d’autre de chaque poste (place libre devant le pêcheur et le ponton). */
  private banks(){const c=POND_MAP.contour;let k=0;for(const s of POND_MAP.spots){let best={d:Infinity,i:0,t:0};for(let i=0;i<c.length;i++){const a=c[i],b=c[(i+1)%c.length],dx=b.x-a.x,dz=b.z-a.z,t=Math.max(0,Math.min(1,((s.origin.x-a.x)*dx+(s.origin.z-a.z)*dz)/(dx*dx+dz*dz))),d=Math.hypot(a.x+t*dx-s.origin.x,a.z+t*dz-s.origin.z);if(d<best.d)best={d,i,t};}
   const a=c[best.i],b=c[(best.i+1)%c.length],len=Math.hypot(b.x-a.x,b.z-a.z),ux=(b.x-a.x)/len,uz=(b.z-a.z)/len,mx=a.x+best.t*(b.x-a.x),mz=a.z+best.t*(b.z-a.z);let nx=-uz,nz=ux;if(!inPond({x:mx+nx,z:mz+nz})){nx=-nx;nz=-nz;}
   for(const off of [-10.6,-6.7,-3.3,3.3,6.7,10.6]){const t=best.t+off/len;if(t<.06||t>.94)continue;this.add('bank_earth',a.x+t*(b.x-a.x),a.z+t*(b.z-a.z),1,0,Math.atan2(nx,nz));this.placements[this.placements.length-1].variant=k++%3;}}}
+ /** Massifs de roseaux de rive (anse, bordure des roseaux, baie peu profonde) : de côté par rapport aux postes, jamais dans un secteur de lancer. */
+ private shoreReeds(){const c=POND_MAP.contour,h=(n:number)=>{const v=Math.sin(n*78.233)*43758.5453;return v-Math.floor(v);};let k=0;for(let i=0;i<c.length;i++){const a=c[i],b=c[(i+1)%c.length],len=Math.hypot(b.x-a.x,b.z-a.z);let nx=-(b.z-a.z)/len,nz=(b.x-a.x)/len;const mx=(a.x+b.x)/2,mz=(a.z+b.z)/2;if(!inPond({x:mx+nx,z:mz+nz})){nx=-nx;nz=-nz;}for(let t=.08;t<.94;t+=.055){const x=a.x+(b.x-a.x)*t+nx*(.7+h(k)*.9),z=a.z+(b.z-a.z)*t+nz*(.7+h(k)*.9);k++;const nearReedy=[['reed-bank',26],['cove',22]].some(([id,r])=>{const s=POND_MAP.spots.find(s=>s.id===id)!;return Math.hypot(x-s.origin.x,z-s.origin.z)<(r as number);})||Math.hypot(x+34,z-21)<16;if(!nearReedy||!inPond({x,z})||h(k*3)<.35)continue;if(POND_MAP.spots.some(s=>{const dx=x-s.origin.x,dz=z-s.origin.z,d=Math.hypot(dx,dz),ang=Math.atan2(dx,dz)-s.angle,rel=Math.atan2(Math.sin(ang),Math.cos(ang))*180/Math.PI,[lo,hi]=(s as {sectorDegrees?:number[]}).sectorDegrees??[-60,60];const m=s.id==='reed-bank'?7:18;return d<7||d<70&&rel>lo-m&&rel<hi+m;}))continue;const p=this.add('reeds_shore',x,z,.75+h(k*5)*.5,0,h(k*7)*Math.PI*2);this.placements[this.placements.length-1].variant=k%3;for(let n=0;n<5;n++)this.shape(p,'stem',new Vector3(Math.cos(n*1.9)*.5,.65,Math.sin(n*1.9)*.5),new Vector3(.04,1.7,.04),'#6d754c',Math.sin(n)*.1);}}}
+ /** Rideau forestier de fond : deux rangs d’arbres derrière l’anneau existant, au bord du terrain (LOD2 imposteurs au loin). */
+ private backdrop(){const h=(n:number)=>{const v=Math.sin(n*12.9898)*43758.5453;return v-Math.floor(v);};for(const [row,count,rx,rz] of [[0,96,86.5,67.5],[1,70,82.5,64]] as const)for(let n=0;n<count;n++){const a=(n+h(n+row*97)*.6)/count*Math.PI*2,x=Math.sin(a)*(rx+(h(n*3+row)-.5)*3),z=39+Math.cos(a)*(rz+(h(n*5+row)-.5)*3);if(inPond({x,z})||POND_MAP.spots.some(s=>Math.hypot(x-s.origin.x,z-s.origin.z)<16))continue;this.tree(this.add(h(n*7+row)<.62?'tree_alder':'tree_oak',x,z,.85+h(n*11+row)*.45,pondGround({x,z}),h(n*13+row)*Math.PI*2));}}
+ /** Saules repères en rive, loin des postes (≥16 m) et espacés, penchés au-dessus de l’eau par leur variante. */
+ private willows(){const c=POND_MAP.contour,picked:{x:number,z:number}[]=[];for(let i=0;i<c.length&&picked.length<5;i++)for(const t of [.3,.7]){const a=c[i],b=c[(i+1)%c.length],x=a.x+(b.x-a.x)*t,z=a.z+(b.z-a.z)*t,len=Math.hypot(b.x-a.x,b.z-a.z);let nx=-(b.z-a.z)/len,nz=(b.x-a.x)/len;if(inPond({x:x+nx,z:z+nz})){nx=-nx;nz=-nz;}const at={x:x+nx*2.2,z:z+nz*2.2};if(POND_MAP.spots.some(s=>Math.hypot(at.x-s.origin.x,at.z-s.origin.z)<16)||picked.some(p=>Math.hypot(p.x-at.x,p.z-at.z)<25)||picked.length>=5)continue;picked.push(at);this.tree(this.add('tree_willow',at.x,at.z,.95+.1*(picked.length%2),pondGround(at),Math.atan2(-nx,-nz)));}}
  private batch(){for(const [key,parts]of this.groups){const m=parts.length>1?Mesh.MergeMeshes(parts,true,true):parts[0];if(!m)continue;m.name='pond-asset-'+key;m.metadata={family:key.split(':')[0],placement:parts[0].metadata?.placement,treeDetail:key.includes(':@')};m.freezeWorldMatrix();m.isPickable=false;if(m.metadata.family==='path_patch')m.setEnabled(false);this.meshes.push(m);if(!['lily_cluster','grass_clump','path_patch','submerged_branches'].includes(m.metadata.family))this.reflectors.push(m);this.status.set(m.metadata.family,'procedural');}}
  private enabled=true;
  private requests=new Map<string,number>();
@@ -83,22 +91,22 @@ export class PondScenery{
   try{
    c=await this.acquire(url);
    if(this.requests.get(family)!==token||this.scene.isDisposed){this.release(c);return false;}
-   const meshes=c.meshes.filter(m=>m.getTotalVertices()>0);if(!meshes.length)throw Error('empty');
+   const meshes=c.meshes.filter(m=>m.getTotalVertices()>0&&(!contract.variants||lodLevelOf(m.name)===0&&contract.variants.some(v=>m.name.startsWith(v))));if(!meshes.length)throw Error('empty');
    const bounds=meshes.reduce((acc,m)=>{m.computeWorldMatrix(true);const b=m.getBoundingInfo().boundingBox;return{min:Vector3.Minimize(acc.min,b.minimumWorld),max:Vector3.Maximize(acc.max,b.maximumWorld)};},{min:new Vector3(Infinity,Infinity,Infinity),max:new Vector3(-Infinity,-Infinity,-Infinity)}),size=bounds.max.subtract(bounds.min);
    if(![size.x,size.y,size.z].every(v=>Number.isFinite(v)&&v>0&&v<25))throw Error('invalid_dimensions');
    if([size.x,size.y,size.z].some((v,i)=>v>contract.dimensions[i]*contract.dimensionTolerance||v<contract.dimensions[i]/contract.dimensionTolerance))throw Error('dimensions_outside_contract');
    // Chemin d’éclairage mobile partagé (StandardMaterial mat) et LOD déclarés par le registre.
    if(!this.adapted.has(c)){adaptEnvironmentMaterials(c,this.scene,family,url);bindEmbeddedLods(c.meshes,contract.lod?.levels,contract.lod?.cull);this.adapted.add(c);}
    this.bindLightmap(c,contract);
-   for(const p of this.placements.filter(p=>p.family===family&&(!family.startsWith('tree_')||this.detailTrees.has(p.id)))){
-    const variant=contract.variants&&p.variant!==undefined?contract.variants[p.variant%contract.variants.length]:undefined;
-    const r=c.instantiateModelsToScene(n=>p.id+'-'+n,false,{doNotInstantiate:false,predicate:e=>lodLevelOf(e.name)===0&&(!variant||!variantOf(e.name)||variantOf(e.name)===variant)});instances.push(r);
+   for(const p of this.placements.filter(p=>p.family===family&&(!family.startsWith('tree_')||contract.allPlacements||this.detailTrees.has(p.id)))){
+    const variant=contract.variants?contract.variants[(p.variant??0)%contract.variants.length]:undefined;
+    const r=c.instantiateModelsToScene(n=>p.id+'-'+n,false,{doNotInstantiate:false,predicate:e=>lodLevelOf(e.name)===0&&(!variant||!isLodNode(e.name)||e.name.startsWith(variant))});instances.push(r);
     const holder=new TransformNode('asset-instance-'+p.id,this.scene);holder.position.set(p.x,p.y,p.z);holder.rotation.y=p.yaw;holder.scaling.setAll(p.scale);holder.setEnabled(this.enabled);
-    for(const node of r.rootNodes)node.parent=holder;r.rootNodes=[holder];if(family.startsWith('tree_'))this.detailHolders.set(p.id,holder);
+    for(const node of r.rootNodes)node.parent=holder;r.rootNodes=[holder];if(family.startsWith('tree_')&&!contract.allPlacements)this.detailHolders.set(p.id,holder);
     for(const m of holder.getChildMeshes()){m.metadata={family,placement:p.id};m.computeWorldMatrix(true);m.freezeWorldMatrix();if(!['grass_clump','lily_cluster'].includes(family))this.reflectors.push(m);}holder.freezeWorldMatrix();
    }
    this.disposeReplacement(family);this.containers.set(family,c);this.replacements.set(family,instances);
-   const hidden=[family,...(contract.replacesFamilies??[])];this.meshes.filter(m=>hidden.includes(m.metadata?.family)&&(!family.startsWith('tree_')||m.metadata?.treeDetail)).forEach(m=>m.setEnabled(false));this.status.set(family,'glb:'+url);this.onAssetsChanged?.();return true;
+   const hidden=[family,...(contract.replacesFamilies??[])];this.meshes.filter(m=>hidden.includes(m.metadata?.family)&&(!family.startsWith('tree_')||contract.allPlacements||m.metadata?.treeDetail)).forEach(m=>m.setEnabled(false));this.status.set(family,'glb:'+url);this.onAssetsChanged?.();return true;
   }catch(e){for(const r of instances)r.dispose();if(c)this.release(c);for(const [id,holder]of this.detailHolders)if(holder.isDisposed())this.detailHolders.delete(id);for(let n=this.reflectors.length-1;n>=0;n--)if(this.reflectors[n].isDisposed())this.reflectors.splice(n,1);if(this.requests.get(family)===token)this.status.set(family,'fallback:'+String(e));return false;}
  }
  private bindLightmap(c:AssetContainer,entry:EnvironmentEntry){if(!entry.lightmap)return;if(!/^\/models\/environment\/[a-zA-Z0-9_-]+\.png$/.test(entry.lightmap))throw Error('invalid_lightmap_path');const meshes=c.meshes.filter(m=>m.getTotalVertices()>0);if(meshes.some(m=>!m.isVerticesDataPresent(VertexBuffer.UV2Kind)))throw Error('missing_UV2');const tex=new Texture(entry.lightmap,this.scene);tex.coordinatesIndex=1;tex.gammaSpace=false;c.textures.push(tex);for(const m of c.materials)if(m instanceof StandardMaterial||m instanceof PBRMaterial){this.lightmaps.set(m,tex);m.useLightmapAsShadowmap=true;m.lightmapTexture=this.ambience==='morning'?tex:null;}}
@@ -106,6 +114,7 @@ export class PondScenery{
  setQuality(quality:'eco'|'high'){this.quality=quality;}
  updateWind(time:number,wind:number,eye:Vector3){let changed=false;const camera=this.scene.activeCamera,projection=this.scene.getEngine().getRenderHeight()/(2*Math.tan((camera?.fov??.8)/2));for(const [id,h]of this.detailHolders){const p=this.placements.find(p=>p.id===id)!;const pixels=8.5*p.scale*projection/Math.max(1,Vector3.Distance(eye,h.position)),near=this.enabled&&pixels>(this.quality==='high'?70:110);if(h.isEnabled()!==near){h.setEnabled(near);changed=true;}for(const proxy of this.meshes.filter(m=>m.metadata?.treeDetail&&m.metadata?.placement===id))proxy.setEnabled(this.enabled&&!near);}if(changed)this.onAssetsChanged?.();for(const m of this.windMaterials){m.setFloat('time',time);m.setFloat('wind',wind);m.setVector3('eye',eye);}}
  private replacedFamily(family:string){return this.replacements.has(family)||ENTRIES.some(e=>this.replacements.has(e.id)&&e.replacesFamilies?.includes(family));}
- setEnabled(enabled:boolean){this.enabled=enabled;for(const m of this.meshes)m.setEnabled(enabled&&m.metadata?.family!=='path_patch'&&(!this.replacedFamily(m.metadata?.family)||m.metadata?.family.startsWith('tree_')&&!m.metadata?.treeDetail));for(const list of this.replacements.values())for(const r of list)for(const n of r.rootNodes)if(n instanceof TransformNode)n.setEnabled(enabled);}
+ private keepsProxy(m:Mesh){const f=m.metadata?.family as string|undefined;return !!f?.startsWith('tree_')&&!ENTRIES.find(e=>e.id===f)?.allPlacements&&!m.metadata?.treeDetail;}
+ setEnabled(enabled:boolean){this.enabled=enabled;for(const m of this.meshes)m.setEnabled(enabled&&m.metadata?.family!=='path_patch'&&(!this.replacedFamily(m.metadata?.family)||this.keepsProxy(m)));for(const list of this.replacements.values())for(const r of list)for(const n of r.rootNodes)if(n instanceof TransformNode)n.setEnabled(enabled);}
  diagnostics(){return{registryVersion:registry.version,contracts:ENTRIES.map(e=>({id:e.id,version:e.version,resource:e.resource,collision:e.collision,sockets:e.sockets})),placements:this.placements.length,families:Object.fromEntries(this.status),quantities:Object.fromEntries([...this.status.keys()].map(f=>[f,this.placements.filter(p=>p.family===f).length])),meshes:this.meshes.length,detailTrees:{available:this.detailHolders.size,enabled:[...this.detailHolders.values()].filter(h=>h.isEnabled()).length,thresholdPixels:this.quality==='high'?70:110},sharedSources:this.sources.size};}
 }

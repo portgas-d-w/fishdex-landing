@@ -1,0 +1,75 @@
+{
+  "id": "reeds+grass_clump",
+  "seed": 9,
+  "script": "production_3d/environment/tools/build_reeds.py",
+  "source_blend": "production_3d/environment/source/reeds.blend",
+  "variants": {
+    "reeds": [
+      "fdx_reeds_a",
+      "fdx_reeds_b",
+      "fdx_reeds_c"
+    ],
+    "grass_clump": [
+      "fdx_grass_a",
+      "fdx_grass_b",
+      "fdx_grass_c"
+    ]
+  },
+  "pivot": "centre de la base ; roseaux enracinés à -0,35 m sous l’eau, herbe à -0,03 m",
+  "materials": 1,
+  "textures": [],
+  "export": {
+    "file": "public/models/environment/fdx-reeds.glb",
+    "bytes": 270476,
+    "sha256": "46daa4785de78612e5fb3e3ad9fc9801360a4251bbb378579a61889bfb1ca1d3",
+    "meshes": 18,
+    "triangles": 5220,
+    "vertices": 6234,
+    "materials": [
+      "fdx_reed_blade"
+    ],
+    "images": [],
+    "uv_layers": [],
+    "vertex_colors": true,
+    "bounds_blender_min": [
+      -1.1853,
+      -1.023,
+      -0.35
+    ],
+    "bounds_blender_max": [
+      1.1526,
+      0.8763,
+      2.2337
+    ],
+    "size_m_xyz_blender": [
+      2.3379,
+      1.8993,
+      2.5837
+    ],
+    "per_mesh_triangles": {
+      "fdx_reeds_a_lod0": 888,
+      "fdx_grass_a_lod0": 156,
+      "fdx_reeds_a_lod1": 380,
+      "fdx_grass_a_lod1": 48,
+      "fdx_reeds_a_lod2": 70,
+      "fdx_grass_a_lod2": 24,
+      "fdx_reeds_b_lod0": 972,
+      "fdx_grass_b_lod0": 174,
+      "fdx_reeds_b_lod1": 404,
+      "fdx_grass_b_lod1": 60,
+      "fdx_reeds_b_lod2": 94,
+      "fdx_grass_b_lod2": 36,
+      "fdx_reeds_c_lod0": 1000,
+      "fdx_grass_c_lod0": 192,
+      "fdx_reeds_c_lod1": 484,
+      "fdx_grass_c_lod1": 72,
+      "fdx_reeds_c_lod2": 118,
+      "fdx_grass_c_lod2": 48
+    }
+  },
+  "previews": [
+    "production_3d/environment/previews/reeds/reeds-a-front.jpg",
+    "production_3d/environment/previews/reeds/reeds-a-persp.jpg",
+    "production_3d/environment/previews/reeds/grass-a-persp.jpg"
+  ]
+}

@@ -16,11 +16,11 @@
   ],
   "export": {
     "file": "public/models/environment/fdx-bank-earth.glb",
-    "bytes": 370552,
-    "sha256": "44c5a3b15b76693495e5b12529ccf8eae325f505f60c69f3f50f6eecc56b9675",
+    "bytes": 346908,
+    "sha256": "1c1c7699ba279078c1837e2c009a0ff1283949245c9c5212729b325602dfec0a",
     "meshes": 9,
-    "triangles": 2424,
-    "vertices": 2471,
+    "triangles": 2184,
+    "vertices": 1969,
     "materials": [
       "fdx_bank_mud"
     ],
@@ -51,19 +51,19 @@
     ],
     "bounds_blender_max": [
       2.0,
-      2.3,
-      0.4311
+      1.25,
+      0.2303
     ],
     "size_m_xyz_blender": [
       4.0,
-      2.9,
-      0.8899
+      1.85,
+      0.6891
     ],
     "per_mesh_triangles": {
-      "fdx_bank_earth_a_lod0": 720,
+      "fdx_bank_earth_a_lod0": 624,
       "fdx_bank_earth_a_lod1": 96,
       "fdx_bank_earth_a_lod2": 24,
-      "fdx_bank_earth_b_lod0": 720,
+      "fdx_bank_earth_b_lod0": 576,
       "fdx_bank_earth_b_lod1": 96,
       "fdx_bank_earth_b_lod2": 24,
       "fdx_bank_earth_c_lod0": 624,

@@ -1,0 +1,70 @@
+{
+  "id": "lily_cluster",
+  "seed": 5,
+  "script": "production_3d/environment/tools/build_lily.py",
+  "source_blend": "production_3d/environment/source/lily.blend",
+  "variants": [
+    "fdx_lily_a",
+    "fdx_lily_b",
+    "fdx_lily_c"
+  ],
+  "pivot": "centre du bouquet au niveau de l’eau",
+  "materials": 1,
+  "textures": [
+    "fdx-lily-pad.jpg (256 sRGB, procédurale)"
+  ],
+  "export": {
+    "file": "public/models/environment/fdx-lily.glb",
+    "bytes": 61540,
+    "sha256": "8c931b6d31dcb54a703c600766f33552abdc99591f30b0e97c291fc65a3302d3",
+    "meshes": 9,
+    "triangles": 762,
+    "vertices": 900,
+    "materials": [
+      "fdx_lily_pad"
+    ],
+    "images": [
+      {
+        "name": "fdx-lily-pad",
+        "size": [
+          256,
+          256
+        ]
+      }
+    ],
+    "uv_layers": [
+      "UVMap"
+    ],
+    "vertex_colors": true,
+    "bounds_blender_min": [
+      -1.0282,
+      -0.9319,
+      0.006
+    ],
+    "bounds_blender_max": [
+      0.9455,
+      0.9344,
+      0.0329
+    ],
+    "size_m_xyz_blender": [
+      1.9737,
+      1.8663,
+      0.0269
+    ],
+    "per_mesh_triangles": {
+      "fdx_lily_a_lod0": 176,
+      "fdx_lily_a_lod1": 72,
+      "fdx_lily_a_lod2": 36,
+      "fdx_lily_b_lod0": 160,
+      "fdx_lily_b_lod1": 64,
+      "fdx_lily_b_lod2": 30,
+      "fdx_lily_c_lod0": 144,
+      "fdx_lily_c_lod1": 56,
+      "fdx_lily_c_lod2": 24
+    }
+  },
+  "previews": [
+    "production_3d/environment/previews/lily/lily-a-top.jpg",
+    "production_3d/environment/previews/lily/lily-a-persp.jpg"
+  ]
+}
