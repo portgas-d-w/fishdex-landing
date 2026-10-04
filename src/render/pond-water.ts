@@ -18,7 +18,9 @@ import { Texture } from "@babylonjs/core/Materials/Textures/texture";
 import { waterVertex, waterFragment } from "./water-shaders";
 import { rippleTexture, surfaceStrength, isWake, boundedTurbidity, WATER_TURBIDITY, SURFACE_WAVES } from "./water-optics";
 export type WaterQuality = 'low' | 'standard' | 'high';
-export const WATER_PROFILES = { low: { rings: 12, drops: 16, mirror: 128, cadence: 0 }, standard: { rings: 20, drops: 32, mirror: 256, cadence: 6 }, high: { rings: 28, drops: 48, mirror: 512, cadence: 3 } };
+export const WATER_PROFILES = { low: { rings: 12, drops: 16, crowns: 2, mirror: 128, cadence: 0 }, standard: { rings: 20, drops: 32, crowns: 4, mirror: 256, cadence: 6 }, high: { rings: 28, drops: 48, crowns: 6, mirror: 512, cadence: 3 } };
+/** Événements réels qui franchissent la surface avec masse : couronne d’éclaboussure brève (pool borné). */
+const SPLASH_TYPES = ['cast_impact', 'feeder_impact', 'groundbait_impact', 'fish_surface_break', 'fish_dive', 'net_exit', 'fish_release'];
 export class PondWater {
     readonly mesh: Mesh;
     readonly contextMesh: Mesh;
@@ -37,6 +39,7 @@ export class PondWater {
     private context = false;
     private simple: StandardMaterial;
     readonly counts: Partial<Record<WaterType, number>> = {};
+    private crowns: { mesh: Mesh; event?: WaterEvent }[] = [];
     onEvent?: (e: WaterEvent) => void;
     private turbidity = WATER_TURBIDITY.default;
     private mirrorRenders = 0;
@@ -91,8 +94,8 @@ export class PondWater {
                 pixels[at + 1] = Math.round(Math.min(1, shoreDistance(point) / 8) * 255);
                 pixels[at + 3] = Math.round(127 + 35 * Math.sin(point.x * .81) * Math.sin(point.z * .67));
             }
-        for (const c of contacts.filter(p => ["pier_pile", "lily_cluster", "reeds", "fallen_log"].includes(p.family))) {
-            const radius = c.family === "reeds" ? 1.1 : c.family === "fallen_log" ? .9 : c.family === "lily_cluster" ? 1.1 * c.scale : .55;
+        for (const c of contacts.filter(p => ["pier_pile", "lily_cluster", "reeds", "reeds_shore", "fallen_log", "submerged_branches"].includes(p.family))) {
+            const radius = c.family === "reeds" ? 1.1 : c.family === "reeds_shore" ? 1.05 * c.scale : c.family === "fallen_log" ? .9 : c.family === "submerged_branches" ? .8 : c.family === "lily_cluster" ? 1.1 * c.scale : .55;
             const cx = (c.x + 90) / 180 * 256 - .5, cy = (c.z + 31) / 140 * 256 - .5;
             for (let y = Math.max(0, Math.floor(cy - radius * 256 / 140)); y <= Math.min(255, Math.ceil(cy + radius * 256 / 140)); y++)
                 for (let x = Math.max(0, Math.floor(cx - radius * 256 / 180)); x <= Math.min(255, Math.ceil(cx + radius * 256 / 180)); x++) {
@@ -136,16 +139,28 @@ export class PondWater {
         mat.alpha = .22;
         mat.backFaceCulling = false;
         for (let n = 0; n < 28; n++) {
-            const mesh = MeshBuilder.CreateTorus('water-contact-' + n, { diameter: 1, thickness: .008, tessellation: 24 }, scene);
+            const mesh = MeshBuilder.CreateTorus('water-contact-' + n, { diameter: 1, thickness: .016, tessellation: 28 }, scene);
             mesh.material = mat.clone('water-contact-mat-' + n);
             mesh.setEnabled(false);
             this.effects.push({ mesh });
         }
         for (let n = 0; n < 48; n++) {
-            const mesh = MeshBuilder.CreateSphere('water-drop-' + n, { diameter: .035, segments: 4 }, scene);
+            const mesh = MeshBuilder.CreateSphere('water-drop-' + n, { diameter: .045, segments: 4 }, scene);
             mesh.material = mat;
             mesh.setEnabled(false);
             this.effects.push({ mesh, drop: n });
+        }
+        // Couronne d’éclaboussure : cylindre ouvert translucide, quelques dixièmes de seconde, jamais de mousse permanente.
+        const crownMat = new StandardMaterial('water-splash-crown', scene);
+        crownMat.disableLighting = true; crownMat.emissiveColor = Color3.FromHexString('#d6e2da'); crownMat.alpha = 0; crownMat.backFaceCulling = false;
+        for (let n = 0; n < 6; n++) {
+            const mesh = MeshBuilder.CreateCylinder('water-splash-' + n, { height: 1, diameterTop: 1.35, diameterBottom: .7, tessellation: 18, cap: Mesh.NO_CAP }, scene);
+            // Opacité par sommet : base dense au contact de l’eau, bord supérieur dissipé (gerbe, pas un bol).
+            const pos = mesh.getVerticesData('position')!, cols: number[] = [];
+            for (let i = 0; i < pos.length; i += 3) cols.push(1, 1, 1, pos[i + 1] > 0 ? 0 : 1);
+            mesh.setVerticesData('color', cols, false, 4); mesh.hasVertexAlpha = true; mesh.useVertexColors = true;
+            mesh.material = crownMat.clone('water-splash-mat-' + n); mesh.isPickable = false; mesh.setEnabled(false);
+            this.crowns.push({ mesh });
         }
     }
     setQuality(q: WaterQuality) { if (this.quality === q && this.mirror) {
@@ -174,8 +189,12 @@ export class PondWater {
         const meshes=this.reflectors.filter(m=>{
             if(m.isDisposed()||!m.isEnabled())return false;
             m.computeWorldMatrix(true);return m.isInFrustum(planes);
-        }).sort((a,b)=>Vector3.DistanceSquared(a.getBoundingInfo().boundingSphere.centerWorld,camera.position)-Vector3.DistanceSquared(b.getBoundingInfo().boundingSphere.centerWorld,camera.position));
-        return [...(sky?[sky]:[]),...meshes].slice(0,48);
+        });
+        // Priorité à la taille apparente (rayon / distance) : la rive opposée boisée, qui domine le reflet,
+        // passe avant les petits objets proches ; les instances d’arbres partagent leur lot de rendu.
+        const size=(m:AbstractMesh)=>{const b=m.getBoundingInfo().boundingSphere;return b.radiusWorld/Math.max(1,Vector3.Distance(b.centerWorld,camera.position));};
+        meshes.sort((a,b)=>size(b)-size(a));
+        return [...(sky?[sky]:[]),...meshes].slice(0,60);
     }
     setTurbidity(value: number) { this.turbidity = boundedTurbidity(value); this.material.setFloat("turbidity", this.turbidity); }
     refresh() { if (this.mirror) {
@@ -193,7 +212,7 @@ export class PondWater {
         return; const p = WATER_PROFILES[this.quality], rings = this.effects.slice(0, p.rings), empty = rings.find(f => !f.event || this.now - f.event.time > 2.4), slot = empty ?? rings.filter(f => !f.event?.essential).sort((a, b) => (a.event?.time ?? 0) - (b.event?.time ?? 0))[0] ?? rings.sort((a, b) => (a.event?.time ?? 0) - (b.event?.time ?? 0))[0]; slot.event = e; slot.mesh.position.set(e.position.x, .025, e.position.z); slot.mesh.rotation.y = e.direction; if (['cast_impact', 'feeder_impact', 'groundbait_impact', 'fish_surface_break', 'fish_dive', 'net_exit', 'fish_release'].includes(e.type))
         for (const f of this.effects.slice(28, 28 + Math.min(p.drops, Math.ceil(surfaceStrength(e) * 6))))
             if (!f.event || this.now - f.event.time > .65)
-                f.event = e; this.onEvent?.(e); }
+                f.event = e; if (SPLASH_TYPES.includes(e.type) && surfaceStrength(e) > .12) { const pool = this.crowns.slice(0, p.crowns), free = pool.find(c => !c.event || this.now - c.event.time > .5) ?? pool.sort((a, b) => (a.event?.time ?? 0) - (b.event?.time ?? 0))[0]; if (free) { free.event = e; free.mesh.position.set(e.position.x, 0, e.position.z); } } this.onEvent?.(e); }
     demo(type: WaterType, position: Vector3, seed = 127) { this.trigger({ id: this.debugId--, type, time: this.now, position: { x: position.x, y: 0, z: position.z }, intensity: .4, source: 'visual_test', direction: 0, essential: true, seed }); }
     update(time: number, eye: Vector3, events: WaterEvent[], wind = 0) { this.now = time; this.material.setFloat('time', time); this.material.setVector3('eye', eye); this.material.setFloat('wind', wind); for (const e of events)
         if (e.id > this.lastId) {
@@ -213,8 +232,17 @@ export class PondWater {
         }
         else {
             f.mesh.scaling.set(.15 + age * (.3 + e.intensity), 1, .15 + age * (.3 + e.intensity));
-            (f.mesh.material as StandardMaterial).alpha = (1 - age / 2.4) * (surfaceStrength(e) * .10);
+            // Ride lisible mais sobre : opacité proportionnelle à la perturbation réelle, extinction douce.
+            (f.mesh.material as StandardMaterial).alpha = Math.pow(1 - age / 2.4, 1.6) * Math.min(.38, surfaceStrength(e) * .7);
         }
+    } for (let n = 0; n < this.crowns.length; n++) {
+        const c = this.crowns[n], age = c.event ? time - c.event.time : 99, on = !!c.event && age >= 0 && age < .45 && n < p.crowns;
+        c.mesh.setEnabled(on);
+        if (!on) { c.event = undefined; continue; }
+        const k = age / .45, s = surfaceStrength(c.event!), r = (.18 + .5 * s) * (.6 + k);
+        c.mesh.scaling.set(r, (.06 + .3 * s) * Math.sin(Math.min(1, k * 1.4) * Math.PI), r);
+        c.mesh.position.y = c.mesh.scaling.y / 2 - .01;
+        (c.mesh.material as StandardMaterial).alpha = (1 - k) * Math.min(.32, .12 + s * .4);
     } this.uploadWaves(); }
     private uploadWaves() {
         this.waves.fill(0);this.motions.fill(0);this.selectedEvents.length=0;
@@ -228,6 +256,6 @@ export class PondWater {
         }
         this.material.setFloat('waveCount',this.activeWaves);this.material.setArray4('waves',this.waves);this.material.setArray4('waveMotion',this.motions);
     }
-    clearEffects() { this.activeWaves = 0; this.material.setFloat("waveCount", 0); this.effects.forEach(e => { e.event = undefined; e.mesh.setEnabled(false); }); }
-    diagnostics() { return { renderedFPS:this.renderedFPS,turbidity: this.turbidity, activeSurfaceWaves: this.activeWaves, surfaceCapacity: SURFACE_WAVES, normalTexture: 128, depthTexture: 256, reflectionRenders: this.mirrorRenders, reflectionObjects:this.mirror?.renderList?.length??0,surfaceSubmissionCpuMs:this.surfaceSubmissionCpuMs,reflectionCpuMs: this.mirrorCpuMs, reflectionPasses: this.mirror ? 1 : 0, quality: this.quality, activeRings: this.effects.filter(f => f.drop === undefined && !!f.event).length, activeDrops: this.effects.filter(f => f.drop !== undefined && !!f.event).length, capacity: WATER_PROFILES[this.quality], events: { ...this.counts }, lastId: this.lastId, mirror: this.mirror?.getSize(), surfaceLevel: 0 }; }
+    clearEffects() { this.activeWaves = 0; this.material.setFloat("waveCount", 0); this.crowns.forEach(c => { c.event = undefined; c.mesh.setEnabled(false); }); this.effects.forEach(e => { e.event = undefined; e.mesh.setEnabled(false); }); }
+    diagnostics() { return { renderedFPS:this.renderedFPS,turbidity: this.turbidity, activeSurfaceWaves: this.activeWaves, surfaceCapacity: SURFACE_WAVES, normalTexture: 128, depthTexture: 256, reflectionRenders: this.mirrorRenders, reflectionObjects:this.mirror?.renderList?.length??0,surfaceSubmissionCpuMs:this.surfaceSubmissionCpuMs,reflectionCpuMs: this.mirrorCpuMs, reflectionPasses: this.mirror ? 1 : 0, quality: this.quality, activeRings: this.effects.filter(f => f.drop === undefined && !!f.event).length, activeDrops: this.effects.filter(f => f.drop !== undefined && !!f.event).length, activeCrowns: this.crowns.filter(c => !!c.event).length, capacity: WATER_PROFILES[this.quality], events: { ...this.counts }, lastId: this.lastId, mirror: this.mirror?.getSize(), surfaceLevel: 0 }; }
 }

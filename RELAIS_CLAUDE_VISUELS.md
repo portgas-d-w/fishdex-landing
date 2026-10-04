@@ -17,7 +17,7 @@ Mise à jour : 4 octobre 2026 (soir), Claude Code. Mission : `CHANTIER_CLAUDE_VI
 | 1 Chaîne Blender | Terminé | `tools/fdx_blender.py`, étalon `build_calibration.py`, viewer `viewer/index.html`, `reports/engine-import/calibration` |
 | 2 Poste pilote | Terminé | ponton + berges + sol ; `docs/apercus/visuels-blender/pilot-v1/` (5 vues, matin/couvert/soir) |
 | 3 Végétation et carte | Terminé (première passe) | arbres, buissons, rideau forestier, roseaux, herbe, nénuphars, bois immergé ; `lot3/` (6 postes ×2 formats), `reeds-v2/` |
-| 4 Eau et événements | À faire | — |
+| 4 Eau et événements | Terminé | `production_3d/environment/reports/EAU_EVENEMENTS.md`, `docs/apercus/visuels-blender/eau/` (+ `water-scenarios.json`), `lot4/` |
 | 5 Optimisation / livraison | À faire | — |
 
 ## Ressources produites (toutes « poste_integre » d’après `production_3d/environment/manifest.json`)
@@ -40,7 +40,7 @@ Placement (dans `src/render/pond-scenery.ts`, graines déterministes, sans conso
 - `src/render/pond-scenery.ts` : `replacesFamilies`, `variants` (préfixes de nœuds), `allPlacements`, contrôle de dimensions par famille/variante, placements ci-dessus.
 - `src/render/environment-registry.json` v3 : familles ci-dessus.
 - `src/render/map-materials.ts` : sol macro + `detailMap` (PNG gris+alpha obligatoire), anisotropie 2/1.
-- `src/render/pond-water.ts` : rayon de contact des bouquets de nénuphars ∝ échelle (1,1 m).
+- `src/render/pond-water.ts` : contacts (nénuphars ∝ échelle, branches immergées, roseaux de rive) ; rides lisibles (opacité ∝ perturbation, ≤0,38) ; gouttes 4,5 cm ; couronnes d’éclaboussure en pool (2/4/6) pour franchissements massifs réels ; reflet trié par taille apparente, 60 objets max.
 - `.gitignore`, `.vercelignore` (`production_3d` exclu du déploiement).
 
 ## Paramètres et pièges retenus
@@ -69,6 +69,6 @@ Bisection : masquer les arbres ne change pas le FPS logiciel ; le terrain plein 
 
 ## Prochaine action exacte
 
-Lot 4 : lire `src/game/water-events.ts` et `src/render/pond-water.ts` (événements réels, pools), produire `production_3d/environment/reports/EAU_EVENEMENTS.md` (correspondance avec `evenements_eau_reference.json`), finitions de surface/contacts dans `pond-water.ts`/`water-shaders.ts` uniquement, puis scénarios d’eau sur les trois profils (`window.__fishingQA.waterDemo(type)`).
+Lot 5 : (1) synchroniser avec `main` (vérifier les nouveaux commits Codex, fusion sans écraser le gameplay) ; (2) mesure dédiée au profil par défaut (éco + eau low) et au profil haut sur les six postes ; (3) captures finales avant/après identiques (`capture-ingame.mjs after --pilot`) et planche comparative ; (4) retirer de `public/` les ressources plus référencées après vérification des tests et manifestes Codex (`ground-atlas.jpg`, `free-tree-birch.glb`, `free-bush.glb`, `free-lily.glb`, `free-reeds.glb`, `free-grass.glb`) ; (5) `npm run check` + suites Playwright du dépôt ; (6) prévisualisation puis production Vercel `portgas-d-ws-projects/fishdex-landing` si l’accès CLI est disponible.
 
 Serveur : `VITE_E2E=1 npx vite --host 127.0.0.1 --port 5180 --strictPort` ; captures : `node production_3d/environment/tools/capture-ingame.mjs <dossier> [--posts …] [--pilot] [--viewports mobile,desktop]` ; import isolé : `MSYS_NO_PATHCONV=1 node production_3d/environment/tools/engine-check.mjs <id> /models/environment/<fichier>.glb` ; manifest : `node production_3d/environment/tools/build-manifest.mjs`.

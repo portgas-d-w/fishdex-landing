@@ -1,0 +1,817 @@
+{
+  "device": "Chromium Windows SwiftShader, viewport 390×844, aucun iPhone",
+  "profiles": {
+    "low": {
+      "events": {
+        "cast_impact": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "line_deposit": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "float_enter": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "float_motion": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "bite_float": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "float_submerge": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "float_resurface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "strike_surface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "lure_surface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "lure_submerge": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "bait_sink": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "feeder_impact": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "groundbait_impact": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "fish_near_surface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "fish_surface_turn": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "fish_surface_break": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "fish_dive": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "line_surface_drag": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "obstacle_disturbance": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "net_enter": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "net_capture": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "net_exit": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "fish_release": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "ambient_surface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "rain_surface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "boat_wake": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        }
+      },
+      "impacts30": {
+        "peak": {
+          "rings": 12,
+          "drops": 3,
+          "crowns": 2,
+          "waves": 8
+        },
+        "capacity": {
+          "rings": 12,
+          "drops": 16,
+          "crowns": 2,
+          "mirror": 128,
+          "cadence": 0
+        },
+        "clearedAfter3s": true,
+        "before": {
+          "meshes": 1737,
+          "materials": 100,
+          "textures": 14
+        },
+        "after": {
+          "meshes": 1737,
+          "materials": 100,
+          "textures": 14
+        }
+      },
+      "reflectionObjects": 72
+    },
+    "standard": {
+      "events": {
+        "cast_impact": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "line_deposit": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "float_enter": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "float_motion": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "bite_float": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "float_submerge": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "float_resurface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "strike_surface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "lure_surface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "lure_submerge": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "bait_sink": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "feeder_impact": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "groundbait_impact": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "fish_near_surface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "fish_surface_turn": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "fish_surface_break": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "fish_dive": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "line_surface_drag": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "obstacle_disturbance": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "net_enter": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "net_capture": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "net_exit": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "fish_release": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "ambient_surface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "rain_surface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "boat_wake": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        }
+      },
+      "impacts30": {
+        "peak": {
+          "rings": 20,
+          "drops": 3,
+          "crowns": 4,
+          "waves": 8
+        },
+        "capacity": {
+          "rings": 20,
+          "drops": 32,
+          "crowns": 4,
+          "mirror": 256,
+          "cadence": 6
+        },
+        "clearedAfter3s": true,
+        "before": {
+          "meshes": 1737,
+          "materials": 100,
+          "textures": 14
+        },
+        "after": {
+          "meshes": 1737,
+          "materials": 100,
+          "textures": 14
+        }
+      },
+      "reflectionObjects": 72
+    },
+    "high": {
+      "events": {
+        "cast_impact": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "line_deposit": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "float_enter": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "float_motion": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "bite_float": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "float_submerge": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "float_resurface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "strike_surface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "lure_surface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "lure_submerge": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "bait_sink": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "feeder_impact": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "groundbait_impact": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "fish_near_surface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "fish_surface_turn": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "fish_surface_break": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "fish_dive": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "line_surface_drag": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "obstacle_disturbance": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "net_enter": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "net_capture": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "net_exit": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "fish_release": {
+          "rings": 1,
+          "drops": 3,
+          "crowns": 1,
+          "waves": 1
+        },
+        "ambient_surface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "rain_surface": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        },
+        "boat_wake": {
+          "rings": 1,
+          "drops": 0,
+          "crowns": 0,
+          "waves": 1
+        }
+      },
+      "impacts30": {
+        "peak": {
+          "rings": 23,
+          "drops": 3,
+          "crowns": 6,
+          "waves": 8
+        },
+        "capacity": {
+          "rings": 28,
+          "drops": 48,
+          "crowns": 6,
+          "mirror": 512,
+          "cadence": 3
+        },
+        "clearedAfter3s": true,
+        "before": {
+          "meshes": 1737,
+          "materials": 100,
+          "textures": 14
+        },
+        "after": {
+          "meshes": 1737,
+          "materials": 100,
+          "textures": 14
+        }
+      },
+      "reflectionObjects": 72
+    }
+  },
+  "transitions10": {
+    "start": {
+      "meshes": 1737,
+      "materials": 100,
+      "textures": 14,
+      "geometries": 554,
+      "renderTargets": 1,
+      "rings": 0,
+      "drops": 0,
+      "crowns": 0,
+      "waves": 0,
+      "capacity": {
+        "rings": 20,
+        "drops": 32,
+        "crowns": 4,
+        "mirror": 256,
+        "cadence": 6
+      },
+      "reflectionObjects": 72
+    },
+    "end": {
+      "meshes": 1737,
+      "materials": 100,
+      "textures": 14,
+      "geometries": 554,
+      "renderTargets": 1,
+      "rings": 0,
+      "drops": 0,
+      "crowns": 0,
+      "waves": 0,
+      "capacity": {
+        "rings": 20,
+        "drops": 32,
+        "crowns": 4,
+        "mirror": 256,
+        "cadence": 6
+      },
+      "reflectionObjects": 72
+    },
+    "trail": [
+      {
+        "post": "cove",
+        "meshes": 1737,
+        "materials": 100,
+        "textures": 14,
+        "geometries": 554,
+        "renderTargets": 1,
+        "rings": 0,
+        "drops": 0,
+        "crowns": 0,
+        "waves": 0,
+        "capacity": {
+          "rings": 20,
+          "drops": 32,
+          "crowns": 4,
+          "mirror": 256,
+          "cadence": 6
+        },
+        "reflectionObjects": 72
+      },
+      {
+        "post": "bank",
+        "meshes": 1737,
+        "materials": 100,
+        "textures": 14,
+        "geometries": 554,
+        "renderTargets": 1,
+        "rings": 0,
+        "drops": 0,
+        "crowns": 0,
+        "waves": 0,
+        "capacity": {
+          "rings": 20,
+          "drops": 32,
+          "crowns": 4,
+          "mirror": 256,
+          "cadence": 6
+        },
+        "reflectionObjects": 72
+      },
+      {
+        "post": "reed-bank",
+        "meshes": 1737,
+        "materials": 100,
+        "textures": 14,
+        "geometries": 554,
+        "renderTargets": 1,
+        "rings": 0,
+        "drops": 0,
+        "crowns": 0,
+        "waves": 0,
+        "capacity": {
+          "rings": 20,
+          "drops": 32,
+          "crowns": 4,
+          "mirror": 256,
+          "cadence": 6
+        },
+        "reflectionObjects": 72
+      },
+      {
+        "post": "point",
+        "meshes": 1737,
+        "materials": 100,
+        "textures": 14,
+        "geometries": 554,
+        "renderTargets": 1,
+        "rings": 0,
+        "drops": 0,
+        "crowns": 0,
+        "waves": 0,
+        "capacity": {
+          "rings": 20,
+          "drops": 32,
+          "crowns": 4,
+          "mirror": 256,
+          "cadence": 6
+        },
+        "reflectionObjects": 72
+      },
+      {
+        "post": "timber",
+        "meshes": 1737,
+        "materials": 100,
+        "textures": 14,
+        "geometries": 554,
+        "renderTargets": 1,
+        "rings": 0,
+        "drops": 0,
+        "crowns": 0,
+        "waves": 0,
+        "capacity": {
+          "rings": 20,
+          "drops": 32,
+          "crowns": 4,
+          "mirror": 256,
+          "cadence": 6
+        },
+        "reflectionObjects": 72
+      },
+      {
+        "post": "jetty",
+        "meshes": 1737,
+        "materials": 100,
+        "textures": 14,
+        "geometries": 554,
+        "renderTargets": 1,
+        "rings": 0,
+        "drops": 0,
+        "crowns": 0,
+        "waves": 0,
+        "capacity": {
+          "rings": 20,
+          "drops": 32,
+          "crowns": 4,
+          "mirror": 256,
+          "cadence": 6
+        },
+        "reflectionObjects": 72
+      },
+      {
+        "post": "cove",
+        "meshes": 1737,
+        "materials": 100,
+        "textures": 14,
+        "geometries": 554,
+        "renderTargets": 1,
+        "rings": 0,
+        "drops": 0,
+        "crowns": 0,
+        "waves": 0,
+        "capacity": {
+          "rings": 20,
+          "drops": 32,
+          "crowns": 4,
+          "mirror": 256,
+          "cadence": 6
+        },
+        "reflectionObjects": 72
+      },
+      {
+        "post": "bank",
+        "meshes": 1737,
+        "materials": 100,
+        "textures": 14,
+        "geometries": 554,
+        "renderTargets": 1,
+        "rings": 0,
+        "drops": 0,
+        "crowns": 0,
+        "waves": 0,
+        "capacity": {
+          "rings": 20,
+          "drops": 32,
+          "crowns": 4,
+          "mirror": 256,
+          "cadence": 6
+        },
+        "reflectionObjects": 72
+      },
+      {
+        "post": "point",
+        "meshes": 1737,
+        "materials": 100,
+        "textures": 14,
+        "geometries": 554,
+        "renderTargets": 1,
+        "rings": 0,
+        "drops": 0,
+        "crowns": 0,
+        "waves": 0,
+        "capacity": {
+          "rings": 20,
+          "drops": 32,
+          "crowns": 4,
+          "mirror": 256,
+          "cadence": 6
+        },
+        "reflectionObjects": 72
+      },
+      {
+        "post": "jetty",
+        "meshes": 1737,
+        "materials": 100,
+        "textures": 14,
+        "geometries": 554,
+        "renderTargets": 1,
+        "rings": 0,
+        "drops": 0,
+        "crowns": 0,
+        "waves": 0,
+        "capacity": {
+          "rings": 20,
+          "drops": 32,
+          "crowns": 4,
+          "mirror": 256,
+          "cadence": 6
+        },
+        "reflectionObjects": 72
+      }
+    ],
+    "growth": {
+      "meshes": 0,
+      "materials": 0,
+      "textures": 0,
+      "geometries": 0,
+      "renderTargets": 0
+    },
+    "effectsClearedAtEnd": true
+  },
+  "errors": []
+}
