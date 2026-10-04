@@ -1,0 +1,50 @@
+{
+  "file": "production_3d/environment/exports/calibration.glb",
+  "bytes": 5868,
+  "sha256": "8088bbbb37d82c384d351197c5a226ae747cbd34a2e501148aa2491e12dca43e",
+  "meshes": 4,
+  "triangles": 54,
+  "vertices": 112,
+  "materials": [
+    "cal-arrow",
+    "cal-grey",
+    "cal-marker"
+  ],
+  "images": [],
+  "uv_layers": [],
+  "vertex_colors": false,
+  "bounds_blender_min": [
+    -0.5,
+    -1.7,
+    0.0
+  ],
+  "bounds_blender_max": [
+    0.925,
+    0.5,
+    1.6
+  ],
+  "size_m_xyz_blender": [
+    1.425,
+    2.2,
+    1.6
+  ],
+  "id": "calibration",
+  "pivot": "base_center (cube posé sur le sol)",
+  "previews": [
+    "production_3d/environment/previews/calibration/calibration-top.jpg",
+    "production_3d/environment/previews/calibration/calibration-persp.jpg"
+  ],
+  "expected_babylon": {
+    "cube_size_m": [
+      1,
+      1,
+      1
+    ],
+    "arrow_points": "+Z",
+    "red_marker": "-X",
+    "post_xz": [
+      -0.4,
+      -0.4
+    ]
+  }
+}

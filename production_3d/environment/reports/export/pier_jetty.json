@@ -1,0 +1,79 @@
+{
+  "id": "pier_jetty",
+  "seed": 2026,
+  "script": "production_3d/environment/tools/build_pier.py",
+  "source_blend": "production_3d/environment/source/pier_jetty.blend",
+  "pivot": "niveau de l’eau (y=0), axe du ponton, milieu de la longueur ; placement étang (0,0,-4), yaw 0",
+  "deck_top_y": 0.355,
+  "length_m": 8.0,
+  "width_m": 2.4,
+  "materials": 1,
+  "textures": [
+    "fdx-wood-weathered-color.jpg (1024, sRGB)",
+    "fdx-wood-weathered-normal.jpg (512, linéaire)"
+  ],
+  "export": {
+    "file": "public/models/environment/fdx-pier-jetty.glb",
+    "bytes": 475080,
+    "sha256": "e82dd7a3514a3e322472d17e61900b33073a93399dd1c36bb28de93cd70fde94",
+    "meshes": 3,
+    "triangles": 2584,
+    "vertices": 3387,
+    "materials": [
+      "fdx_wood_weathered"
+    ],
+    "images": [
+      {
+        "name": "fdx-wood-weathered-color",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "fdx-wood-weathered-normal",
+        "size": [
+          512,
+          512
+        ]
+      }
+    ],
+    "uv_layers": [
+      "UVMap"
+    ],
+    "vertex_colors": true,
+    "bounds_blender_min": [
+      -1.4224,
+      -4.0008,
+      -1.5747
+    ],
+    "bounds_blender_max": [
+      1.4182,
+      4.0014,
+      0.8053
+    ],
+    "size_m_xyz_blender": [
+      2.8407,
+      8.0022,
+      2.3801
+    ],
+    "per_lod": {
+      "lod0": {
+        "triangles": 1832
+      },
+      "lod1": {
+        "triangles": 692
+      },
+      "lod2": {
+        "triangles": 60
+      }
+    }
+  },
+  "previews": [
+    "production_3d/environment/previews/pier/pier-lod0-persp.jpg",
+    "production_3d/environment/previews/pier/pier-lod0-side.jpg",
+    "production_3d/environment/previews/pier/pier-lod0-low.jpg",
+    "production_3d/environment/previews/pier/pier-lod1-persp.jpg",
+    "production_3d/environment/previews/pier/pier-lod2-persp.jpg"
+  ]
+}

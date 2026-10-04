@@ -1,0 +1,30 @@
+{
+ "width": 1024,
+ "height": 800,
+ "fields": [
+  "inPond",
+  "depth",
+  "shoreDistance",
+  "height",
+  "trail",
+  "stand",
+  "gravel(+)/reedMarsh(-)"
+ ],
+ "x": [
+  -90,
+  90
+ ],
+ "z": [
+  -31,
+  109
+ ],
+ "row0": "z=-31",
+ "posts": [
+  "jetty",
+  "cove",
+  "bank",
+  "reed-bank",
+  "point",
+  "timber"
+ ]
+}

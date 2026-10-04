@@ -16,8 +16,12 @@ export class MapMaterials{
   m.specularTexture=load('specular',()=>{material.specularTexture=null;});m.useGlossinessFromSpecularMapAlpha=true;this.cache.set(name,m);return m;
  }
  ground(){
-  const m=new StandardMaterial('map-ground',this.scene);m.diffuseColor=Color3.White();m.specularColor=new Color3(.005,.005,.005);m.specularPower=12;
-  const tex=new Texture('/map-assets/ground-atlas.jpg',this.scene,false,false,Texture.TRILINEAR_SAMPLINGMODE,undefined,()=>{m.diffuseTexture=null;m.diffuseColor=Color3.FromHexString('#79815a');});
-  tex.wrapU=tex.wrapV=Texture.CLAMP_ADDRESSMODE;tex.anisotropicFilteringLevel=2;m.diffuseTexture=tex;return m;
+  // Macro-couleur cuite depuis la carte réelle + détail tuilé tous les 3 m (une lecture de plus, pas de splat multi-lectures).
+  const m=new StandardMaterial('map-ground',this.scene);m.diffuseColor=Color3.White();m.specularColor=new Color3(.004,.004,.004);m.specularPower=10;
+  const tex=new Texture('/map-assets/ground-macro.jpg',this.scene,false,false,Texture.TRILINEAR_SAMPLINGMODE,undefined,()=>{m.diffuseTexture=null;m.diffuseColor=Color3.FromHexString('#66713f');});
+  tex.wrapU=tex.wrapV=Texture.CLAMP_ADDRESSMODE;tex.anisotropicFilteringLevel=4;m.diffuseTexture=tex;
+  const detail=new Texture('/map-assets/ground-detail.png',this.scene,false,false,Texture.TRILINEAR_SAMPLINGMODE,undefined,()=>{m.detailMap.isEnabled=false;});
+  detail.gammaSpace=false;detail.uScale=180/3;detail.vScale=140/3;detail.anisotropicFilteringLevel=4;
+  m.detailMap.texture=detail;m.detailMap.diffuseBlendLevel=1;m.detailMap.bumpLevel=0;m.detailMap.isEnabled=true;return m;
  }
 }

@@ -1,0 +1,242 @@
+{
+  "id": "bank_earth",
+  "glbs": [
+    "/models/environment/fdx-bank-earth.glb",
+    "/models/environment/fdx-pier-jetty.glb"
+  ],
+  "device": "Chromium SwiftShader, viewer isolé",
+  "info": [
+    {
+      "url": "/models/environment/fdx-bank-earth.glb",
+      "loadMs": 45,
+      "convertedMaterials": 1,
+      "meshes": [
+        {
+          "name": "fdx_bank_earth_a_lod0",
+          "triangles": 720,
+          "material": "fdx_bank_mud-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -2,
+            -0.015,
+            -0.85
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_bank_earth_a_lod1",
+          "triangles": 96,
+          "material": "fdx_bank_mud-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -2,
+            -0.014,
+            -0.85
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_bank_earth_a_lod2",
+          "triangles": 24,
+          "material": "fdx_bank_mud-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -2,
+            -0.017,
+            -0.85
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_bank_earth_b_lod0",
+          "triangles": 720,
+          "material": "fdx_bank_mud-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -2,
+            -0.004,
+            -0.85
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_bank_earth_b_lod1",
+          "triangles": 96,
+          "material": "fdx_bank_mud-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -2,
+            -0.002,
+            -0.85
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_bank_earth_b_lod2",
+          "triangles": 24,
+          "material": "fdx_bank_mud-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -2,
+            -0.006,
+            -0.85
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_bank_earth_c_lod0",
+          "triangles": 624,
+          "material": "fdx_bank_mud-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -2,
+            -0.011,
+            -0.85
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_bank_earth_c_lod1",
+          "triangles": 96,
+          "material": "fdx_bank_mud-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -2,
+            -0.016,
+            -0.85
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_bank_earth_c_lod2",
+          "triangles": 24,
+          "material": "fdx_bank_mud-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -2,
+            -0.015,
+            -0.85
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        }
+      ],
+      "triangles": 2424,
+      "boundsMin": [
+        -4,
+        -0.459,
+        -2.3
+      ],
+      "boundsMax": [
+        0,
+        0.431,
+        0.6
+      ],
+      "sizeXYZ": [
+        4,
+        0.89,
+        2.9
+      ],
+      "offsetX": -2,
+      "textures": [
+        {
+          "name": "fdx_bank_mud (Normal)",
+          "width": 512,
+          "height": 512
+        },
+        {
+          "name": "fdx_bank_mud (Base Color)",
+          "width": 512,
+          "height": 512
+        }
+      ]
+    },
+    {
+      "url": "/models/environment/fdx-pier-jetty.glb",
+      "loadMs": 62,
+      "convertedMaterials": 1,
+      "meshes": [
+        {
+          "name": "fdx_pier_jetty_lod0",
+          "triangles": 1832,
+          "material": "fdx_wood_weathered-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            2.002,
+            -0.385,
+            0
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_pier_jetty_lod1",
+          "triangles": 692,
+          "material": "fdx_wood_weathered-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            1.998,
+            -0.397,
+            0
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_pier_jetty_lod2",
+          "triangles": 60,
+          "material": "fdx_wood_weathered-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            2,
+            0.2,
+            0
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        }
+      ],
+      "triangles": 2584,
+      "boundsMin": [
+        0.582,
+        -1.575,
+        -4.001
+      ],
+      "boundsMax": [
+        3.422,
+        0.805,
+        4.001
+      ],
+      "sizeXYZ": [
+        2.841,
+        2.38,
+        8.002
+      ],
+      "offsetX": 2,
+      "textures": [
+        {
+          "name": "fdx_wood_weathered (Normal)",
+          "width": 512,
+          "height": 512
+        },
+        {
+          "name": "fdx_wood_weathered (Base Color)",
+          "width": 1024,
+          "height": 1024
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "shots": [
+    "production_3d/environment/reports/engine-import/bank_earth/persp.png"
+  ]
+}

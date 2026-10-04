@@ -1,0 +1,81 @@
+{
+  "id": "bank_earth",
+  "seed": 41,
+  "script": "production_3d/environment/tools/build_bank.py",
+  "source_blend": "production_3d/environment/source/bank_earth.blend",
+  "variants": [
+    "a",
+    "b",
+    "c"
+  ],
+  "pivot": "milieu de la lèvre de rive au niveau de l’eau ; +z vers l’eau ; yaw = normale intérieure du contour",
+  "materials": 1,
+  "textures": [
+    "fdx-bank-mud-color.jpg (512 sRGB)",
+    "fdx-bank-mud-normal.jpg (512 linéaire)"
+  ],
+  "export": {
+    "file": "public/models/environment/fdx-bank-earth.glb",
+    "bytes": 370552,
+    "sha256": "44c5a3b15b76693495e5b12529ccf8eae325f505f60c69f3f50f6eecc56b9675",
+    "meshes": 9,
+    "triangles": 2424,
+    "vertices": 2471,
+    "materials": [
+      "fdx_bank_mud"
+    ],
+    "images": [
+      {
+        "name": "fdx-bank-mud-color",
+        "size": [
+          512,
+          512
+        ]
+      },
+      {
+        "name": "fdx-bank-mud-normal",
+        "size": [
+          512,
+          512
+        ]
+      }
+    ],
+    "uv_layers": [
+      "UVMap"
+    ],
+    "vertex_colors": true,
+    "bounds_blender_min": [
+      -2.0,
+      -0.6,
+      -0.4588
+    ],
+    "bounds_blender_max": [
+      2.0,
+      2.3,
+      0.4311
+    ],
+    "size_m_xyz_blender": [
+      4.0,
+      2.9,
+      0.8899
+    ],
+    "per_mesh_triangles": {
+      "fdx_bank_earth_a_lod0": 720,
+      "fdx_bank_earth_a_lod1": 96,
+      "fdx_bank_earth_a_lod2": 24,
+      "fdx_bank_earth_b_lod0": 720,
+      "fdx_bank_earth_b_lod1": 96,
+      "fdx_bank_earth_b_lod2": 24,
+      "fdx_bank_earth_c_lod0": 624,
+      "fdx_bank_earth_c_lod1": 96,
+      "fdx_bank_earth_c_lod2": 24
+    }
+  },
+  "previews": [
+    "production_3d/environment/previews/bank/bank-a-persp.jpg",
+    "production_3d/environment/previews/bank/bank-a-low.jpg",
+    "production_3d/environment/previews/bank/bank-a-front.jpg",
+    "production_3d/environment/previews/bank/bank-b-persp.jpg",
+    "production_3d/environment/previews/bank/bank-c-persp.jpg"
+  ]
+}

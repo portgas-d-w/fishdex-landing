@@ -1,0 +1,91 @@
+{
+  "id": "pier_jetty",
+  "glbs": [
+    "/models/environment/fdx-pier-jetty.glb"
+  ],
+  "device": "Chromium SwiftShader, viewer isolé",
+  "info": [
+    {
+      "url": "/models/environment/fdx-pier-jetty.glb",
+      "loadMs": 38,
+      "convertedMaterials": 1,
+      "meshes": [
+        {
+          "name": "fdx_pier_jetty_lod0",
+          "triangles": 1832,
+          "material": "fdx_wood_weathered-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0.002,
+            -0.385,
+            0
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_pier_jetty_lod1",
+          "triangles": 692,
+          "material": "fdx_wood_weathered-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            -0.002,
+            -0.397,
+            0
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        },
+        {
+          "name": "fdx_pier_jetty_lod2",
+          "triangles": 60,
+          "material": "fdx_wood_weathered-mobile",
+          "materialClass": "StandardMaterial",
+          "centerWorld": [
+            0,
+            0.2,
+            0
+          ],
+          "hasNormalMap": true,
+          "vertexColors": true
+        }
+      ],
+      "triangles": 2584,
+      "boundsMin": [
+        -1.418,
+        -1.575,
+        -4.001
+      ],
+      "boundsMax": [
+        1.422,
+        0.805,
+        4.001
+      ],
+      "sizeXYZ": [
+        2.841,
+        2.38,
+        8.002
+      ],
+      "offsetX": 0,
+      "textures": [
+        {
+          "name": "fdx_wood_weathered (Normal)",
+          "width": 512,
+          "height": 512
+        },
+        {
+          "name": "fdx_wood_weathered (Base Color)",
+          "width": 1024,
+          "height": 1024
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "shots": [
+    "production_3d/environment/reports/engine-import/pier_jetty/persp.png",
+    "production_3d/environment/reports/engine-import/pier_jetty/side.png",
+    "production_3d/environment/reports/engine-import/pier_jetty/low.png",
+    "production_3d/environment/reports/engine-import/pier_jetty/top.png"
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "generated": "2026-10-04",
+  "map": "willow-pond (Étang des Saules)",
+  "registryVersion": 3,
+  "statusScale": [
+    "source_prete",
+    "export_valide",
+    "import_moteur_valide",
+    "poste_integre"
+  ],
+  "entries": [
+    {
+      "id": "pier_jetty",
+      "status": "poste_integre",
+      "source": "production_3d/environment/source/pier_jetty.blend",
+      "script": "production_3d/environment/tools/build_pier.py",
+      "runtime": "public/models/environment/fdx-pier-jetty.glb",
+      "runtimeBytes": 475080,
+      "triangles": 2584,
+      "perLod": {
+        "lod0": {
+          "triangles": 1832
+        },
+        "lod1": {
+          "triangles": 692
+        },
+        "lod2": {
+          "triangles": 60
+        }
+      },
+      "materials": [
+        "fdx_wood_weathered"
+      ],
+      "images": [
+        {
+          "name": "fdx-wood-weathered-color",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "name": "fdx-wood-weathered-normal",
+          "size": [
+            512,
+            512
+          ]
+        }
+      ],
+      "pivot": "water_level_on_axis_mid_length (placement 0,0,-4 ; dessus des planches y=0.355)",
+      "lod": {
+        "levels": [
+          {
+            "level": 1,
+            "distance": 24
+          },
+          {
+            "level": 2,
+            "distance": 60
+          }
+        ],
+        "near": "/models/environment/fdx-pier-jetty.glb#fdx_pier_jetty_lod0",
+        "far": "/models/environment/fdx-pier-jetty.glb#fdx_pier_jetty_lod2",
+        "procedural": "pier_deck+pier_pile en secours"
+      },
+      "variants": null,
+      "replacesFamilies": [
+        "pier_deck",
+        "pier_pile"
+      ],
+      "engineImport": {
+        "report": "production_3d/environment/reports/engine-import/pier_jetty/report.json",
+        "errors": 0
+      },
+      "previews": [
+        "production_3d/environment/previews/pier/pier-lod0-persp.jpg",
+        "production_3d/environment/previews/pier/pier-lod0-side.jpg",
+        "production_3d/environment/previews/pier/pier-lod0-low.jpg",
+        "production_3d/environment/previews/pier/pier-lod1-persp.jpg",
+        "production_3d/environment/previews/pier/pier-lod2-persp.jpg"
+      ],
+      "licence": "Géométrie produite par script FishDex ; textures CC0 Poly Haven (voir textures/source/PROVENANCE.json)"
+    },
+    {
+      "id": "bank_earth",
+      "status": "poste_integre",
+      "source": "production_3d/environment/source/bank_earth.blend",
+      "script": "production_3d/environment/tools/build_bank.py",
+      "runtime": "public/models/environment/fdx-bank-earth.glb",
+      "runtimeBytes": 370552,
+      "triangles": 2424,
+      "perLod": {
+        "fdx_bank_earth_a_lod0": 720,
+        "fdx_bank_earth_a_lod1": 96,
+        "fdx_bank_earth_a_lod2": 24,
+        "fdx_bank_earth_b_lod0": 720,
+        "fdx_bank_earth_b_lod1": 96,
+        "fdx_bank_earth_b_lod2": 24,
+        "fdx_bank_earth_c_lod0": 624,
+        "fdx_bank_earth_c_lod1": 96,
+        "fdx_bank_earth_c_lod2": 24
+      },
+      "materials": [
+        "fdx_bank_mud"
+      ],
+      "images": [
+        {
+          "name": "fdx-bank-mud-color",
+          "size": [
+            512,
+            512
+          ]
+        },
+        {
+          "name": "fdx-bank-mud-normal",
+          "size": [
+            512,
+            512
+          ]
+        }
+      ],
+      "pivot": "lèvre de rive au niveau de l’eau, +z vers l’eau (yaw = normale intérieure du contour)",
+      "lod": {
+        "levels": [
+          {
+            "level": 1,
+            "distance": 20
+          },
+          {
+            "level": 2,
+            "distance": 45
+          }
+        ],
+        "cull": 110,
+        "near": "#fdx_bank_earth_<v>_lod0",
+        "far": "#fdx_bank_earth_<v>_lod2"
+      },
+      "variants": [
+        "a",
+        "b",
+        "c"
+      ],
+      "replacesFamilies": null,
+      "engineImport": {
+        "report": "production_3d/environment/reports/engine-import/bank_earth/report.json",
+        "errors": 0
+      },
+      "previews": [
+        "production_3d/environment/previews/bank/bank-a-persp.jpg",
+        "production_3d/environment/previews/bank/bank-a-low.jpg",
+        "production_3d/environment/previews/bank/bank-a-front.jpg",
+        "production_3d/environment/previews/bank/bank-b-persp.jpg",
+        "production_3d/environment/previews/bank/bank-c-persp.jpg"
+      ],
+      "licence": "Géométrie produite par script FishDex ; textures CC0 Poly Haven (voir textures/source/PROVENANCE.json)"
+    },
+    {
+      "id": "ground_macro_detail",
+      "status": "poste_integre",
+      "source": "production_3d/environment/tools/ground-fields.mts + bake_ground.py",
+      "runtime": [
+        "public/map-assets/ground-macro.jpg",
+        "public/map-assets/ground-detail.png"
+      ],
+      "runtimeBytes": [
+        62730,
+        214731
+      ],
+      "licence": "Couleurs cuites depuis la carte ; détail CC0 leafy_grass + forest_ground_04 (Poly Haven)",
+      "integration": "src/render/map-materials.ts ground() : diffuse macro + detailMap 3 m"
+    }
+  ],
+  "textureSources": [
+    {
+      "file": "bark_willow_02-color.jpg",
+      "author": "Charlotte Baglioni",
+      "page": "https://polyhaven.com/a/bark_willow_02",
+      "license": "CC0 1.0",
+      "sha256": "95e1380566834aab220bd8ea9a5287f3bfff46910c18017fcb46ebbbe832024f"
+    },
+    {
+      "file": "bark_willow_02-normal.png",
+      "author": "Charlotte Baglioni",
+      "page": "https://polyhaven.com/a/bark_willow_02",
+      "license": "CC0 1.0",
+      "sha256": "5a1c2edc3c10f6875dbf0bd35a836c3ac178f325b5f81f1ee6c4b8142e3e6c4a"
+    },
+    {
+      "file": "brown_mud_02-color.jpg",
+      "author": "Rob Tuytel",
+      "page": "https://polyhaven.com/a/brown_mud_02",
+      "license": "CC0 1.0",
+      "sha256": "058b6f12493305ec6b47cb5ea77f013c9e7e58216b34af3700a3d3d7d821732d"
+    },
+    {
+      "file": "brown_mud_02-normal.png",
+      "author": "Rob Tuytel",
+      "page": "https://polyhaven.com/a/brown_mud_02",
+      "license": "CC0 1.0",
+      "sha256": "6ab08dc4d8b6ff3a7d8407a5a0fe0af0ed324e7734f18b649c3e211cc820e1df"
+    },
+    {
+      "file": "forest_ground_04-color.jpg",
+      "author": "Rob Tuytel, Rico Cilliers",
+      "page": "https://polyhaven.com/a/forest_ground_04",
+      "license": "CC0 1.0",
+      "sha256": "50a4dda30875020c64385261aa7e00e2155b592302fa6794165f58fae73cbd2c"
+    },
+    {
+      "file": "leafy_grass-color.jpg",
+      "author": "Charlotte Baglioni",
+      "page": "https://polyhaven.com/a/leafy_grass",
+      "license": "CC0 1.0",
+      "sha256": "cfa40bc9d9417d1852db8753a8d5917f110c40101179f63543c382e39bc05e4a"
+    },
+    {
+      "file": "wood_planks_dirt-color.jpg",
+      "author": "Rob Tuytel",
+      "page": "https://polyhaven.com/a/wood_planks_dirt",
+      "license": "CC0 1.0",
+      "sha256": "230bb4aabaebde24ead3ae593a48f8f45e93705aaf3cfdc438589bb49c2a7af3"
+    },
+    {
+      "file": "wood_planks_dirt-normal.png",
+      "author": "Rob Tuytel",
+      "page": "https://polyhaven.com/a/wood_planks_dirt",
+      "license": "CC0 1.0",
+      "sha256": "1a22332d56158d54303650a50914907ee353385671a783e75dd4ac57f616e9af"
+    }
+  ]
+}

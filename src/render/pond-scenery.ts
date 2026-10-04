@@ -1,5 +1,7 @@
 import registry from './environment-registry.json';
 import {MapMaterials} from './map-materials';
+import {adaptEnvironmentMaterials,environmentLoadOptions} from './environment-materials';
+import {bindEmbeddedLods,lodLevelOf,type LodLevel} from './environment-lod';
 import type {AbstractMesh} from '@babylonjs/core/Meshes/abstractMesh';
 import {Texture} from '@babylonjs/core/Materials/Textures/texture';
 import {PBRMaterial} from '@babylonjs/core/Materials/PBR/pbrMaterial';
@@ -19,9 +21,10 @@ import {LoadAssetContainerAsync} from '@babylonjs/core/Loading/sceneLoader';
 import {POND_MAP,pondGround,inPond,shoreDistance,localToPond} from '../game/pond-map';
 import {POSTS,worldPoint} from '../game/posts';
 import type {AssetContainer} from '@babylonjs/core/assetContainer';
-interface EnvironmentEntry{id:string;version:number;resource:string|null;lightmap:string|null;dimensions:number[];dimensionTolerance:number;collision:string;sockets:unknown[]};
+interface EnvironmentEntry{id:string;version:number;resource:string|null;lightmap:string|null;dimensions:number[];dimensionTolerance:number;collision:string;sockets:unknown[];replacesFamilies?:string[];lod?:{levels?:LodLevel[];cull?:number};variants?:string[]};
+const variantOf=(name:string)=>/_([a-z])_lod\d/.exec(name)?.[1];
 const ENTRIES=registry.entries as EnvironmentEntry[];
-export interface Placement{id:string;family:string;x:number;y:number;z:number;yaw:number;scale:number}
+export interface Placement{id:string;family:string;x:number;y:number;z:number;yaw:number;scale:number;variant?:number}
 export class PondScenery{
  readonly placements:Placement[]=[];readonly meshes:Mesh[]=[];readonly reflectors:AbstractMesh[]=[];private mapMaterials:MapMaterials;private detailTrees=new Set<string>();private detailHolders=new Map<string,TransformNode>();private quality:'eco'|'high'='eco';onAssetsChanged?:()=>void;private seed=127;private ambience='morning';private lightmaps=new Map<StandardMaterial|PBRMaterial,Texture>();private windMaterials:ShaderMaterial[]=[];private windCache=new Map<string,ShaderMaterial>();private materialCache=new Map<string,StandardMaterial>();private groups=new Map<string,Mesh[]>();private containers=new Map<string,AssetContainer>();private replacements=new Map<string,ReturnType<AssetContainer['instantiateModelsToScene']>[]>();readonly status=new Map<string,string>();
  constructor(private scene:Scene){this.mapMaterials=new MapMaterials(scene);Effect.ShadersStore.pondPlantVertexShader='precision highp float;attribute vec3 position;attribute vec3 normal;attribute vec4 color;uniform mat4 worldViewProjection;uniform mat4 world;uniform float time;uniform float wind;varying vec3 wp;varying vec3 norm;varying vec3 col;void main(){vec3 p=position;p.x+=sin(time*.8+position.z*.2)*color.a*(.025+abs(wind)*.09);wp=(world*vec4(p,1.)).xyz;norm=normal;col=color.rgb;gl_Position=worldViewProjection*vec4(p,1.);}';Effect.ShadersStore.pondPlantFragmentShader='precision highp float;varying vec3 wp;varying vec3 norm;varying vec3 col;uniform vec3 eye;uniform vec3 tint;void main(){float light=.58+max(0.,dot(normalize(norm),normalize(vec3(-.65,.8,.4))))*.42;float fog=1.-exp(-pow(length(eye-wp)*.0075,2.));gl_FragColor=vec4(mix(col*light*tint,vec3(.72,.77,.75),fog),1.);}';this.terrain();this.populate();this.batch();const ground=this.meshes.find(m=>m.name==='pond-shared-terrain')!;const previous=ground.material as StandardMaterial;ground.material=this.mapMaterials.ground();previous.dispose(false,true);this.materialCache.delete('#ffffff');ground.useVertexColors=false;for(const e of ENTRIES)if(e.resource)void this.replace(e.id,e.resource);}
@@ -43,15 +46,23 @@ export class PondScenery{
   for(const id of ['cove','reed-bank'])for(let n=0;n<18;n++){const at=localToPond(id,{x:-2.5+(n%6)*.25,z:4+Math.floor(n/6)*1.1}),p=this.add('lily_cluster',at.x,at.z,1,.025);this.shape(p,'stem',new Vector3(0,0,0),new Vector3(.32,.01,.25),'#71804b');}
   for(const id of ['bank','point','timber'])for(let n=0;n<7;n++){const at=localToPond(id,{x:(n%2?1:-1)*(4+n*.25),z:-5}),p=this.add(id==='point'&&n===0?'rock_landmark':'rock_small',at.x,at.z,.5+this.rand());this.shape(p,'stone',new Vector3(0,.2,0),new Vector3(.7,.4,.6),'#8d8d7a');}
   const log=localToPond('timber',{x:3,z:5}),p=this.add('fallen_log',log.x,log.z,1,-.15);this.shape(p,'stem',new Vector3(0,.25,0),new Vector3(.4,5,.4),'#675646',Math.PI/2);
-  for(let n=0;n<4;n++){const p=this.add('pier_deck',0,-7+n*2,1,.28,0);for(let j=0;j<7;j++)this.shape(p,'box',new Vector3(0,0,-.85+j*.285),new Vector3(2.4,.15,.27),j%2?'#aa9e83':'#b4a990');}for(const x of [-1.12,1.12])for(const z of [-6.5,-1.7]){const p=this.add('pier_pile',x,z,1,-.1,0);this.shape(p,'stem',Vector3.Zero(),new Vector3(.17,1.7,.17),'#7c6d52');}
+  for(let n=0;n<4;n++){const p=this.add('pier_deck',0,-7+n*2,1,.28,0);for(let j=0;j<7;j++)this.shape(p,'box',new Vector3(0,0,-.85+j*.285),new Vector3(2.4,.15,.27),j%2?'#aa9e83':'#b4a990');}
+  // Pieux de secours alignés sur les rangées du ponton Blender (contacts d’eau et fallback identiques).
+  for(const [x,z] of [[-1.29,-.18],[1.29,-.18],[-1.06,-2],[1.06,-2],[-1.29,-4],[1.29,-4]]){const p=this.add('pier_pile',x,z,1,-.1,0);this.shape(p,'stem',Vector3.Zero(),new Vector3(.17,1.7,.17),'#7c6d52');}
+  this.add('pier_jetty',0,-4,1,0,0);
   for(const s of POND_MAP.spots){for(let n=0;n<3;n++){const at=localToPond(s.id,{x:0,z:-9-n*3}),p=this.add('path_patch',at.x,at.z,1,pondGround(at)+.015,s.angle);this.shape(p,'box',Vector3.Zero(),new Vector3(1.4,.025,3),'#958e70');}}
+  this.banks();
  }
+ /** Berges érodées Blender posées sur le vrai contour, de part et d’autre de chaque poste (place libre devant le pêcheur et le ponton). */
+ private banks(){const c=POND_MAP.contour;let k=0;for(const s of POND_MAP.spots){let best={d:Infinity,i:0,t:0};for(let i=0;i<c.length;i++){const a=c[i],b=c[(i+1)%c.length],dx=b.x-a.x,dz=b.z-a.z,t=Math.max(0,Math.min(1,((s.origin.x-a.x)*dx+(s.origin.z-a.z)*dz)/(dx*dx+dz*dz))),d=Math.hypot(a.x+t*dx-s.origin.x,a.z+t*dz-s.origin.z);if(d<best.d)best={d,i,t};}
+  const a=c[best.i],b=c[(best.i+1)%c.length],len=Math.hypot(b.x-a.x,b.z-a.z),ux=(b.x-a.x)/len,uz=(b.z-a.z)/len,mx=a.x+best.t*(b.x-a.x),mz=a.z+best.t*(b.z-a.z);let nx=-uz,nz=ux;if(!inPond({x:mx+nx,z:mz+nz})){nx=-nx;nz=-nz;}
+  for(const off of [-10.6,-6.7,-3.3,3.3,6.7,10.6]){const t=best.t+off/len;if(t<.06||t>.94)continue;this.add('bank_earth',a.x+t*(b.x-a.x),a.z+t*(b.z-a.z),1,0,Math.atan2(nx,nz));this.placements[this.placements.length-1].variant=k++%3;}}}
  private batch(){for(const [key,parts]of this.groups){const m=parts.length>1?Mesh.MergeMeshes(parts,true,true):parts[0];if(!m)continue;m.name='pond-asset-'+key;m.metadata={family:key.split(':')[0],placement:parts[0].metadata?.placement,treeDetail:key.includes(':@')};m.freezeWorldMatrix();m.isPickable=false;if(m.metadata.family==='path_patch')m.setEnabled(false);this.meshes.push(m);if(!['lily_cluster','grass_clump','path_patch','submerged_branches'].includes(m.metadata.family))this.reflectors.push(m);this.status.set(m.metadata.family,'procedural');}}
  private enabled=true;
  private requests=new Map<string,number>();
  private sources=new Map<string,{promise:Promise<AssetContainer>;users:number}>();
  private sourceKeys=new WeakMap<AssetContainer,string>();private adapted=new WeakSet<AssetContainer>();
- private async acquire(url:string){let source=this.sources.get(url);if(!source){source={promise:LoadAssetContainerAsync(url,this.scene),users:0};this.sources.set(url,source);}source.users++;try{const container=await source.promise;this.sourceKeys.set(container,url);return container;}catch(error){if(--source.users===0)this.sources.delete(url);throw error;}}
+ private async acquire(url:string){let source=this.sources.get(url);if(!source){source={promise:LoadAssetContainerAsync(url,this.scene,environmentLoadOptions(url)),users:0};this.sources.set(url,source);}source.users++;try{const container=await source.promise;this.sourceKeys.set(container,url);return container;}catch(error){if(--source.users===0)this.sources.delete(url);throw error;}}
  private release(container:AssetContainer){const url=this.sourceKeys.get(container),source=url?this.sources.get(url):undefined;if(source&&--source.users>0)return;if(url)this.sources.delete(url);for(const m of container.materials)this.lightmaps.delete(m as StandardMaterial|PBRMaterial);container.dispose();}
  private disposeReplacement(family:string){
   for(const r of this.replacements.get(family)??[])r.dispose();for(const [id,holder]of this.detailHolders)if(holder.isDisposed())this.detailHolders.delete(id);
@@ -67,7 +78,7 @@ export class PondScenery{
   if(!contract||!this.placements.some(p=>p.family===family))return false;
   const token=(this.requests.get(family)??0)+1;this.requests.set(family,token);
   if(url&&!/^\/models\/environment\/[a-zA-Z0-9_-]+\.glb$/.test(url)){this.status.set(family,'invalid_path');return false;}
-  if(!url){this.disposeReplacement(family);this.meshes.filter(m=>m.metadata?.family===family).forEach(m=>m.setEnabled(this.enabled));this.status.set(family,'procedural');return true;}
+  if(!url){this.disposeReplacement(family);const restored=[family,...(contract.replacesFamilies??[])];this.meshes.filter(m=>restored.includes(m.metadata?.family)&&m.metadata?.family!=='path_patch').forEach(m=>m.setEnabled(this.enabled));this.status.set(family,'procedural');return true;}
   let c:AssetContainer|undefined;const instances:ReturnType<AssetContainer['instantiateModelsToScene']>[]=[];
   try{
    c=await this.acquire(url);
@@ -76,38 +87,25 @@ export class PondScenery{
    const bounds=meshes.reduce((acc,m)=>{m.computeWorldMatrix(true);const b=m.getBoundingInfo().boundingBox;return{min:Vector3.Minimize(acc.min,b.minimumWorld),max:Vector3.Maximize(acc.max,b.maximumWorld)};},{min:new Vector3(Infinity,Infinity,Infinity),max:new Vector3(-Infinity,-Infinity,-Infinity)}),size=bounds.max.subtract(bounds.min);
    if(![size.x,size.y,size.z].every(v=>Number.isFinite(v)&&v>0&&v<25))throw Error('invalid_dimensions');
    if([size.x,size.y,size.z].some((v,i)=>v>contract.dimensions[i]*contract.dimensionTolerance||v<contract.dimensions[i]/contract.dimensionTolerance))throw Error('dimensions_outside_contract');
-   // Matte vegetation shares the existing mobile lighting path, without per-pixel IBL.
-   if(url.startsWith('/models/environment/free-')&&!this.adapted.has(c)){
-    const converted=new Map<PBRMaterial,StandardMaterial>();
-    for(const source of c.materials)if(source instanceof PBRMaterial){
-     const material=new StandardMaterial(source.name+'-mobile',this.scene);
-     material.diffuseColor=source.albedoColor.clone();material.diffuseTexture=source.albedoTexture;
-     material.backFaceCulling=source.backFaceCulling;material.specularColor=new Color3(.015,.015,.015);
-     if(source.albedoTexture?.hasAlpha||['grass_clump','lily_cluster'].includes(family))material.emissiveColor=new Color3(.02,.025,.01);
-     if(family==='lily_cluster')material.diffuseColor=new Color3(.34,.43,.22);
-     if(source.albedoTexture?.hasAlpha){material.useAlphaFromDiffuseTexture=true;material.transparencyMode=StandardMaterial.MATERIAL_ALPHATEST;material.alphaCutOff=.45;}
-     converted.set(source,material);
-    }
-    for(const mesh of c.meshes)if(mesh.material instanceof PBRMaterial)mesh.material=converted.get(mesh.material)??mesh.material;
-    for(const multi of c.multiMaterials)multi.subMaterials=multi.subMaterials.map(m=>m instanceof PBRMaterial?converted.get(m)??m:m);
-    c.materials=c.materials.map(m=>m instanceof PBRMaterial?converted.get(m)??m:m);
-    for(const source of converted.keys())source.dispose(false,false);this.adapted.add(c);
-   }
+   // Chemin d’éclairage mobile partagé (StandardMaterial mat) et LOD déclarés par le registre.
+   if(!this.adapted.has(c)){adaptEnvironmentMaterials(c,this.scene,family,url);bindEmbeddedLods(c.meshes,contract.lod?.levels,contract.lod?.cull);this.adapted.add(c);}
    this.bindLightmap(c,contract);
    for(const p of this.placements.filter(p=>p.family===family&&(!family.startsWith('tree_')||this.detailTrees.has(p.id)))){
-    const r=c.instantiateModelsToScene(n=>p.id+'-'+n,false,{doNotInstantiate:false});instances.push(r);
+    const variant=contract.variants&&p.variant!==undefined?contract.variants[p.variant%contract.variants.length]:undefined;
+    const r=c.instantiateModelsToScene(n=>p.id+'-'+n,false,{doNotInstantiate:false,predicate:e=>lodLevelOf(e.name)===0&&(!variant||!variantOf(e.name)||variantOf(e.name)===variant)});instances.push(r);
     const holder=new TransformNode('asset-instance-'+p.id,this.scene);holder.position.set(p.x,p.y,p.z);holder.rotation.y=p.yaw;holder.scaling.setAll(p.scale);holder.setEnabled(this.enabled);
     for(const node of r.rootNodes)node.parent=holder;r.rootNodes=[holder];if(family.startsWith('tree_'))this.detailHolders.set(p.id,holder);
     for(const m of holder.getChildMeshes()){m.metadata={family,placement:p.id};m.computeWorldMatrix(true);m.freezeWorldMatrix();if(!['grass_clump','lily_cluster'].includes(family))this.reflectors.push(m);}holder.freezeWorldMatrix();
    }
    this.disposeReplacement(family);this.containers.set(family,c);this.replacements.set(family,instances);
-   this.meshes.filter(m=>m.metadata?.family===family&&(!family.startsWith('tree_')||m.metadata?.treeDetail)).forEach(m=>m.setEnabled(false));this.status.set(family,'glb:'+url);this.onAssetsChanged?.();return true;
+   const hidden=[family,...(contract.replacesFamilies??[])];this.meshes.filter(m=>hidden.includes(m.metadata?.family)&&(!family.startsWith('tree_')||m.metadata?.treeDetail)).forEach(m=>m.setEnabled(false));this.status.set(family,'glb:'+url);this.onAssetsChanged?.();return true;
   }catch(e){for(const r of instances)r.dispose();if(c)this.release(c);for(const [id,holder]of this.detailHolders)if(holder.isDisposed())this.detailHolders.delete(id);for(let n=this.reflectors.length-1;n>=0;n--)if(this.reflectors[n].isDisposed())this.reflectors.splice(n,1);if(this.requests.get(family)===token)this.status.set(family,'fallback:'+String(e));return false;}
  }
  private bindLightmap(c:AssetContainer,entry:EnvironmentEntry){if(!entry.lightmap)return;if(!/^\/models\/environment\/[a-zA-Z0-9_-]+\.png$/.test(entry.lightmap))throw Error('invalid_lightmap_path');const meshes=c.meshes.filter(m=>m.getTotalVertices()>0);if(meshes.some(m=>!m.isVerticesDataPresent(VertexBuffer.UV2Kind)))throw Error('missing_UV2');const tex=new Texture(entry.lightmap,this.scene);tex.coordinatesIndex=1;tex.gammaSpace=false;c.textures.push(tex);for(const m of c.materials)if(m instanceof StandardMaterial||m instanceof PBRMaterial){this.lightmaps.set(m,tex);m.useLightmapAsShadowmap=true;m.lightmapTexture=this.ambience==='morning'?tex:null;}}
  setAmbience(preset:string){this.ambience=preset;for(const [m,tex]of this.lightmaps){m.lightmapTexture=preset==='morning'?tex:null;}for(const m of this.windMaterials)m.setColor3('tint',Color3.FromHexString(preset==='evening'?'#edc89d':preset==='overcast'?'#e0e9e7':'#ffffff'));}
  setQuality(quality:'eco'|'high'){this.quality=quality;}
  updateWind(time:number,wind:number,eye:Vector3){let changed=false;const camera=this.scene.activeCamera,projection=this.scene.getEngine().getRenderHeight()/(2*Math.tan((camera?.fov??.8)/2));for(const [id,h]of this.detailHolders){const p=this.placements.find(p=>p.id===id)!;const pixels=8.5*p.scale*projection/Math.max(1,Vector3.Distance(eye,h.position)),near=this.enabled&&pixels>(this.quality==='high'?70:110);if(h.isEnabled()!==near){h.setEnabled(near);changed=true;}for(const proxy of this.meshes.filter(m=>m.metadata?.treeDetail&&m.metadata?.placement===id))proxy.setEnabled(this.enabled&&!near);}if(changed)this.onAssetsChanged?.();for(const m of this.windMaterials){m.setFloat('time',time);m.setFloat('wind',wind);m.setVector3('eye',eye);}}
- setEnabled(enabled:boolean){this.enabled=enabled;for(const m of this.meshes)m.setEnabled(enabled&&m.metadata?.family!=='path_patch'&&(!this.replacements.has(m.metadata?.family)||m.metadata?.family.startsWith('tree_')&&!m.metadata?.treeDetail));for(const list of this.replacements.values())for(const r of list)for(const n of r.rootNodes)if(n instanceof TransformNode)n.setEnabled(enabled);}
+ private replacedFamily(family:string){return this.replacements.has(family)||ENTRIES.some(e=>this.replacements.has(e.id)&&e.replacesFamilies?.includes(family));}
+ setEnabled(enabled:boolean){this.enabled=enabled;for(const m of this.meshes)m.setEnabled(enabled&&m.metadata?.family!=='path_patch'&&(!this.replacedFamily(m.metadata?.family)||m.metadata?.family.startsWith('tree_')&&!m.metadata?.treeDetail));for(const list of this.replacements.values())for(const r of list)for(const n of r.rootNodes)if(n instanceof TransformNode)n.setEnabled(enabled);}
  diagnostics(){return{registryVersion:registry.version,contracts:ENTRIES.map(e=>({id:e.id,version:e.version,resource:e.resource,collision:e.collision,sockets:e.sockets})),placements:this.placements.length,families:Object.fromEntries(this.status),quantities:Object.fromEntries([...this.status.keys()].map(f=>[f,this.placements.filter(p=>p.family===f).length])),meshes:this.meshes.length,detailTrees:{available:this.detailHolders.size,enabled:[...this.detailHolders.values()].filter(h=>h.isEnabled()).length,thresholdPixels:this.quality==='high'?70:110},sharedSources:this.sources.size};}
 }

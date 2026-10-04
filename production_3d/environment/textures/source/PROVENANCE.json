@@ -1,0 +1,93 @@
+{
+  "note": "Sources CC0 réellement utilisées par les scripts Blender FishDex.",
+  "files": [
+    {
+      "file": "bark_willow_02-color.jpg",
+      "bytes": 998966,
+      "sha256": "95e1380566834aab220bd8ea9a5287f3bfff46910c18017fcb46ebbbe832024f",
+      "author": "Charlotte Baglioni",
+      "page": "https://polyhaven.com/a/bark_willow_02",
+      "license": "CC0 1.0",
+      "licenseSource": "https://polyhaven.com/license",
+      "downloaded": "2026-10-03 (Codex, assets gratuits carte 01)",
+      "resolution": "1k"
+    },
+    {
+      "file": "bark_willow_02-normal.png",
+      "bytes": 6009197,
+      "sha256": "5a1c2edc3c10f6875dbf0bd35a836c3ac178f325b5f81f1ee6c4b8142e3e6c4a",
+      "author": "Charlotte Baglioni",
+      "page": "https://polyhaven.com/a/bark_willow_02",
+      "license": "CC0 1.0",
+      "licenseSource": "https://polyhaven.com/license",
+      "downloaded": "2026-10-03 (Codex, assets gratuits carte 01)",
+      "resolution": "1k"
+    },
+    {
+      "file": "brown_mud_02-color.jpg",
+      "bytes": 527741,
+      "sha256": "058b6f12493305ec6b47cb5ea77f013c9e7e58216b34af3700a3d3d7d821732d",
+      "author": "Rob Tuytel",
+      "page": "https://polyhaven.com/a/brown_mud_02",
+      "license": "CC0 1.0",
+      "licenseSource": "https://polyhaven.com/license",
+      "downloaded": "2026-10-03 (Codex, assets gratuits carte 01)",
+      "resolution": "1k"
+    },
+    {
+      "file": "brown_mud_02-normal.png",
+      "bytes": 2490837,
+      "sha256": "6ab08dc4d8b6ff3a7d8407a5a0fe0af0ed324e7734f18b649c3e211cc820e1df",
+      "author": "Rob Tuytel",
+      "page": "https://polyhaven.com/a/brown_mud_02",
+      "license": "CC0 1.0",
+      "licenseSource": "https://polyhaven.com/license",
+      "downloaded": "2026-10-03 (Codex, assets gratuits carte 01)",
+      "resolution": "1k"
+    },
+    {
+      "file": "forest_ground_04-color.jpg",
+      "bytes": 1113899,
+      "sha256": "50a4dda30875020c64385261aa7e00e2155b592302fa6794165f58fae73cbd2c",
+      "author": "Rob Tuytel, Rico Cilliers",
+      "page": "https://polyhaven.com/a/forest_ground_04",
+      "license": "CC0 1.0",
+      "licenseSource": "https://polyhaven.com/license",
+      "downloaded": "2026-10-03 (Codex, assets gratuits carte 01)",
+      "resolution": "1k"
+    },
+    {
+      "file": "leafy_grass-color.jpg",
+      "bytes": 1195394,
+      "sha256": "cfa40bc9d9417d1852db8753a8d5917f110c40101179f63543c382e39bc05e4a",
+      "author": "Charlotte Baglioni",
+      "page": "https://polyhaven.com/a/leafy_grass",
+      "license": "CC0 1.0",
+      "licenseSource": "https://polyhaven.com/license",
+      "downloaded": "2026-10-03 (Codex, assets gratuits carte 01)",
+      "resolution": "1k"
+    },
+    {
+      "file": "wood_planks_dirt-color.jpg",
+      "bytes": 918123,
+      "sha256": "230bb4aabaebde24ead3ae593a48f8f45e93705aaf3cfdc438589bb49c2a7af3",
+      "author": "Rob Tuytel",
+      "page": "https://polyhaven.com/a/wood_planks_dirt",
+      "license": "CC0 1.0",
+      "licenseSource": "https://polyhaven.com/license",
+      "downloaded": "2026-10-03 (Codex, assets gratuits carte 01)",
+      "resolution": "1k"
+    },
+    {
+      "file": "wood_planks_dirt-normal.png",
+      "bytes": 1254232,
+      "sha256": "1a22332d56158d54303650a50914907ee353385671a783e75dd4ac57f616e9af",
+      "author": "Rob Tuytel",
+      "page": "https://polyhaven.com/a/wood_planks_dirt",
+      "license": "CC0 1.0",
+      "licenseSource": "https://polyhaven.com/license",
+      "downloaded": "2026-10-03 (Codex, assets gratuits carte 01)",
+      "resolution": "1k"
+    }
+  ]
+}

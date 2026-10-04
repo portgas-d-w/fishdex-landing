@@ -1,7 +1,92 @@
 {
-  "version": 2,
+  "version": 3,
   "units": "meter",
   "entries": [
+    {
+      "id": "pier_jetty",
+      "version": 1,
+      "resource": "/models/environment/fdx-pier-jetty.glb",
+      "lightmap": null,
+      "dimensions": [
+        2.84,
+        2.38,
+        8.0
+      ],
+      "dimensionTolerance": 1.2,
+      "pivot": "water_level_on_axis_mid_length (placement 0,0,-4 ; dessus des planches y=0.355)",
+      "lod": {
+        "levels": [
+          {
+            "level": 1,
+            "distance": 24
+          },
+          {
+            "level": 2,
+            "distance": 60
+          }
+        ],
+        "near": "/models/environment/fdx-pier-jetty.glb#fdx_pier_jetty_lod0",
+        "far": "/models/environment/fdx-pier-jetty.glb#fdx_pier_jetty_lod2",
+        "procedural": "pier_deck+pier_pile en secours"
+      },
+      "materials": {
+        "max": 1,
+        "colorSpace": "baseColor_sRGB_normals_linear",
+        "lightmapUV": 0
+      },
+      "collision": "game/pond-map.json.spots.jetty.landing",
+      "sockets": [],
+      "replacesFamilies": [
+        "pier_deck",
+        "pier_pile"
+      ],
+      "priority": "P0",
+      "source": "production_3d/environment/source/pier_jetty.blend",
+      "script": "production_3d/environment/tools/build_pier.py"
+    },
+    {
+      "id": "bank_earth",
+      "version": 1,
+      "resource": "/models/environment/fdx-bank-earth.glb",
+      "lightmap": null,
+      "dimensions": [
+        4.0,
+        0.89,
+        2.9
+      ],
+      "dimensionTolerance": 1.2,
+      "pivot": "lèvre de rive au niveau de l’eau, +z vers l’eau (yaw = normale intérieure du contour)",
+      "variants": [
+        "a",
+        "b",
+        "c"
+      ],
+      "lod": {
+        "levels": [
+          {
+            "level": 1,
+            "distance": 20
+          },
+          {
+            "level": 2,
+            "distance": 45
+          }
+        ],
+        "cull": 110,
+        "near": "#fdx_bank_earth_<v>_lod0",
+        "far": "#fdx_bank_earth_<v>_lod2"
+      },
+      "materials": {
+        "max": 1,
+        "colorSpace": "baseColor_sRGB_normals_linear",
+        "lightmapUV": 0
+      },
+      "collision": "visual_only",
+      "sockets": [],
+      "priority": "P0",
+      "source": "production_3d/environment/source/bank_earth.blend",
+      "script": "production_3d/environment/tools/build_bank.py"
+    },
     {
       "id": "pier_deck",
       "version": 1,
