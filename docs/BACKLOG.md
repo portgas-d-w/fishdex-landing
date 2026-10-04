@@ -2,7 +2,7 @@
 - [x] Lot0 audit22 IDs et migration.
 - [x] Lot1 familles/paliers/quête OU niveau et prêts séparés.
 - [x] Lot2 atelier et graphe métrique.
-- [ ] Lot3 prototypes et tolérances.
+- [x] Lot3 prototypes et tolérances.
 - [ ] Lot4 contrôleurs/cycles22.
 - [ ] Lot5 équilibre, ergonomie, revue et déploiement.
 

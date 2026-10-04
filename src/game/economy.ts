@@ -21,7 +21,7 @@ export const ITEMS = [
 export type ItemId = typeof ITEMS[number]['id'];
 export type RodId = Exclude<ItemId,'plants'|'rocks'>;
 export const rodCompatible = (id:string,method:string,technique?:TechniqueId) => {
- if(technique){const t=techniqueById(technique);if(t.base!==method)return false;if(t.sections)return id==='long-pole';if(technique==='coup')return ['pole-starter','pole-elastic'].includes(id);if(['mouche','nymphe_fil'].includes(technique))return id==='fly-rod';if(technique==='ultraleger')return id==='light-rod';if(id===t.rod)return true;return t.context.includes('pond')&&['starter','balanced','precision','heavy-rod'].includes(id)&&method!=='pole';}
+ if(technique){const t=techniqueById(technique);if(t.base!==method)return false;if(t.sections)return id==='long-pole';if(technique==='coup')return ['pole-starter','pole-elastic','long-pole'].includes(id);if(['mouche','nymphe_fil'].includes(technique))return id==='fly-rod';if(technique==='ultraleger')return id==='light-rod';if(id===t.rod)return true;return t.context.includes('pond')&&['starter','balanced','precision','heavy-rod'].includes(id)&&method!=='pole';}
  return method==='pole'?['pole-starter','pole-elastic','long-pole'].includes(id):['starter','balanced','precision','bolo-rod','feeder-rod','heavy-rod','deep-rod','fly-rod','light-rod'].includes(id);
 };
 export const REWARD_BASE = { roach: 12, perch: 15, carp: 22, pike: 25, zander: 20, bream: 16, tench: 18, rudd: 12, bleak: 10, crucian: 14, whitebream: 13, gudgeon: 10, chub: 17, ide: 17, catfish: 28 };

@@ -25,7 +25,7 @@ export function installTechniqueControls(h:ScreenHooks){
   el('tech-settings').hidden=!modern||!['waiting','fighting'].includes(phase);
   el('tech-depth-wrap').hidden=phase!=='waiting'||!['vertical','clonk'].includes(t.engine);el('tech-drag-wrap').hidden=!g.hasReel||phase!=='fighting';
   el('tech-speed-wrap').hidden=g.post!=='boat'||phase!=='waiting';el('tech-course-wrap').hidden=g.post!=='boat'||phase!=='waiting';
-  el('reel-control').setAttribute('aria-label',phase==='landing'?'Réception : positionnez puis relevez par un geste court':t.sections&&phase==='fighting'?'Grande canne : vers soi pour reculer, latéralement pour déboîter':'Récupération : maintenez pour tourner, relâchez pour arrêter');
-  el('reel-control').querySelector('.reel-label')!.textContent=phase==='landing'?(g.netReady?'Relever':'Positionner'):t.sections&&phase==='fighting'?(g.canDetach?'Déboîter →':'Reculer ↓'):t.id==='mouche'&&phase==='waiting'?'Récupérer la soie':phase==='waiting'&&['bottom','feeder'].includes(t.engine)?'Prendre contact':'Mouliner';
+  el('reel-control').setAttribute('aria-label',phase==='landing'?'Réception : positionnez puis relevez par un geste court':g.hasSections&&phase==='fighting'?'Grande canne : vers soi pour reculer, latéralement pour déboîter':'Récupération : maintenez pour tourner, relâchez pour arrêter');
+  el('reel-control').querySelector('.reel-label')!.textContent=phase==='landing'?(g.netReady?'Relever':'Positionner'):g.hasSections&&phase==='fighting'?(g.canDetach?'Déboîter →':'Reculer ↓'):t.id==='mouche'&&phase==='waiting'?'Récupérer la soie':phase==='waiting'&&['bottom','feeder'].includes(t.engine)?'Prendre contact':'Mouliner';
  };
 }

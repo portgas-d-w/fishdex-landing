@@ -182,7 +182,7 @@ export function recordCatch(save: SaveData, caught: Catch): { first: boolean; re
   if(caught.appearanceId&&!appearanceFor(caught.speciesId,caught.appearanceId))throw Error('Apparence incompatible');
   const s: Specimen = { ...(caught.appearanceId?{appearanceId:caught.appearanceId}:{}),...(caught.seed!==undefined?{seed:caught.seed}:{}),...(caught.baitItem?{baitItem:caught.baitItem}:{}),...(caught.post?{post:caught.post}:{}),...(caught.microzone?{microzone:caught.microzone}:{}), ...(caught.technique?{technique:caught.technique}:{}),...(caught.recipe?{recipe:caught.recipe}:{}), id: caught.id ?? uniqueId(), speciesId: caught.speciesId, form: 'common', coloration: caught.coloration ?? 'natural', mirage: caught.mirage ?? false, length: caught.length, weight: weightFor(caught.speciesId, caught.length), date: caught.date, location: caught.location??'L’étang des Saules', method: caught.method ?? 'float', equipment: caught.equipment ?? save.equipped, bait: caught.bait ?? 'worm', target: caught.target ?? { x: -1.5, z: 7 }, controlled: caught.controlled ?? false, reward: ZERO_REWARD() };
   result.variant = !save.variants[variantKey(s)];
-  s.reward = rewardFor(s, result.first, result.record);
+  s.reward = rewardFor(s, result.first, result.record);if(s.controlled)s.reward.xp+=Math.floor(s.reward.xp*.1);
   if(result.variant&&s.appearanceId){s.reward.appearance=6;s.reward.coins+=6;s.reward.xp+=5;}
   addRecord(save.records, s.speciesId, s); addRecord(save.variants, variantKey(s), s);
   save.journal.push(s); save.total++; save.xp += s.reward.xp; save.coins += s.reward.coins;

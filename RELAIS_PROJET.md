@@ -1,3 +1,7 @@
+## 4 octobre 2026 — Codex, gameplay progression Lot 3
+
+Contrôleurs pilotés par capacités réelles (interface moulinet, composants montés, kit, élastique). Coup sur grande canne possible avec kit réel ; retour/déboîtement gardent la longueur de fil. Contact/surcharge avertis après0,6s ; réussites physiques distinctes, bonus contrôlé plafonné10% une fois. Check219/219 + TS/build ; six simulations gardon15/carpe55×3contrôleurs réussies (PROTOTYPES.json). Navigateur4/4 gestes/ferrage après correction du test obsolète (Réglages séparés et attente QA), puis6cycles de prototype réception/photo/save sur2formats réussis ;12captures inspectées. Durées simulées trop courtes pour certaines prises proches : écart d’équilibrage documenté, aucune garantie15–30s. Prochaine étape Lot4 manuelle/boat et cycles22. Pas de téléphone physique.
+
 ## 4 octobre 2026 — Codex, gameplay progression Lot 2
 
 Atelier brouillon/appliquer/annuler, toutes pièces compatibles en stock, raccord guidé, transformation de recette et dépendances explicites. Positions métriques/segments v7 et graphe actif ; déplacement plombée agit dans stepPresentation et aperçu partagé. Réglage fin/tap alternatif/zoom de lecture. Stock reste référencé, engagement atomique au lancer selon modèle existant ; aucune copie ou achat silencieux. Check218/218 + TS/build ; navigateur2/2 application/annulation/reload/zoom et stock390×844/bureau. Captures lot2 corrigées après inspection (hauteur excessive du zoom réduite). Prochaine étape Lot3 capacités/retours/tolérances ; drag physique iPhone non exécuté.

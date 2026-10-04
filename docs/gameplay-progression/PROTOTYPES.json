@@ -1,0 +1,103 @@
+{
+  "kind": "Simulation pure, pilote automatisé ; aucune observation de joueur ou appareil",
+  "rows": [
+    {
+      "technique": "coup",
+      "species": "roach",
+      "size": 15,
+      "seed": 127,
+      "seconds": 0.8666666666666667,
+      "phase": "caught",
+      "startLine": 3.6828524753602503,
+      "endLine": 3.6828524753602503,
+      "sections": 6.4,
+      "detached": 0,
+      "clean": [
+        "receive"
+      ],
+      "failure": ""
+    },
+    {
+      "technique": "coup",
+      "species": "carp",
+      "size": 55,
+      "seed": 33,
+      "seconds": 5.733333333333333,
+      "phase": "caught",
+      "startLine": 3.6828524753602503,
+      "endLine": 3.6828524753602503,
+      "sections": 6.4,
+      "detached": 0,
+      "clean": [
+        "receive"
+      ],
+      "failure": ""
+    },
+    {
+      "technique": "leurre",
+      "species": "roach",
+      "size": 15,
+      "seed": 127,
+      "seconds": 7.85,
+      "phase": "caught",
+      "startLine": 9.19574780584279,
+      "endLine": 4.968651694479425,
+      "sections": 4.6,
+      "detached": 0,
+      "clean": [
+        "retrieval",
+        "receive"
+      ],
+      "failure": ""
+    },
+    {
+      "technique": "leurre",
+      "species": "carp",
+      "size": 55,
+      "seed": 33,
+      "seconds": 8.1,
+      "phase": "caught",
+      "startLine": 9.19574780584279,
+      "endLine": 6.06595001117804,
+      "sections": 4.6,
+      "detached": 0,
+      "clean": [
+        "retrieval",
+        "receive"
+      ],
+      "failure": ""
+    },
+    {
+      "technique": "grande_canne",
+      "species": "roach",
+      "size": 15,
+      "seed": 127,
+      "seconds": 8,
+      "phase": "caught",
+      "startLine": 4.299499911272295,
+      "endLine": 4.299499911272295,
+      "sections": 2.4000000000000017,
+      "detached": 6,
+      "clean": [
+        "receive"
+      ],
+      "failure": ""
+    },
+    {
+      "technique": "grande_canne",
+      "species": "carp",
+      "size": 55,
+      "seed": 33,
+      "seconds": 8.633333333333333,
+      "phase": "caught",
+      "startLine": 4.299499911272295,
+      "endLine": 4.299499911272295,
+      "sections": 2.4000000000000017,
+      "detached": 6,
+      "clean": [
+        "receive"
+      ],
+      "failure": ""
+    }
+  ]
+}

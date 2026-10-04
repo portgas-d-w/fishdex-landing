@@ -1,3 +1,4 @@
+import {rodCapabilities} from './rod-capabilities.ts';
 import {inPond,pondDepth,pondToLocal} from './pond-map.ts';
 import {WaterEvents} from './water-events.ts';
 import { inspectPostTarget, worldPoint, postById, populationWeight, localSizeExponent, lineObstacle, ENCOUNTER_CONFIG, type PostId, type Microzone } from './posts.ts';
@@ -19,7 +20,10 @@ export type Phase = 'idle' | 'casting' | 'waiting' | 'bite' | 'fighting' | 'land
 export interface Catch { technique?:import('./techniques.ts').TechniqueId;recipe?:string;location?:string; speciesId: Species['id']; length: number; date: string; id?: string; coloration?: Specimen['coloration']; mirage?: boolean;appearanceId?:string;seed?:number; method?: MethodId; equipment?: string; bait?: BaitId; baitItem?: string; target?: WaterPoint; controlled?: boolean; post?:PostId; microzone?:Microzone }
 export class FishingGame {
   readonly waterEvents=new WaterEvents();simulationTime=0;private releasedSpecimen='';
-  cleanEvents=new Set<string>();
+  cleanEvents=new Set<string>();private cleanRetrieve=0;private hadContactLoss=false;private cleanAt=0;
+  get capabilities(){return rodCapabilities(this.equipment,this.config);}
+  get hasSections(){return this.capabilities.sections;}
+  get contactState(){return this.highTensionTime>.6?'overload':this.slackTime>.6?'slack':'contact';}
   manualRetrieved=0;
   testMode=false;accessBypass=false;testTarget?:WaterPoint;private forcedSnag=false;
   testEncounter(id:Species['id'],size:number,seed:number,direct=false){if(!this.testMode||this.phase!=='idle')return 'Scénario réservé au profil TEST au repos.';const fish=SPECIES.find(f=>f.id===id);if(!fish||fish.mode!=='capture'||!Number.isFinite(size)||!Number.isInteger(seed)||seed<0||seed>4294967295)return 'Individu invalide.';let value=seed>>>0;this.random=()=>{value=(Math.imul(value,1664525)+1013904223)>>>0;return value/4294967296;};if(!this.cast(this.testTarget??{x:0,z:Math.min(this.reach-1,this.method==='pole'?3.2:7)}))return this.failure;this.fish=fish;this.size=Math.max(fish.min,Math.min(fish.max,size));this.combatSeed=seed>>>0;this.individual=1;this.identifyFish();if(this.tackle?.active)this.tackle.active.used=true;this.transition('bite');if(direct)this.strike();return ''; }
@@ -34,8 +38,8 @@ export class FishingGame {
   get config(){return this.tackle?.config??this.rig;}
   get technique(){return techniqueFor(this.config);}
   get modern(){return !!this.config.technique;}
-  get hasReel(){return this.modern?this.technique.reel:this.method!=='pole';}
-  get reach(){return this.modern?this.technique.reach:this.method==='pole'?6.4:23;}
+  get hasReel(){return this.capabilities.reelInterface;}
+  get reach(){return this.capabilities.sections?12:this.modern?this.technique.reach:this.method==='pole'?6.4:23;}
   get canAnimate(){return this.modern?['retrieve','vertical','clonk','drift','fly','bottom','feeder','surface','troll'].includes(this.technique.engine):this.method==='lure';}
   presentationState=initialPresentation();
   encounterState:'none'|'approach'|'examine'|'follow'|'attack'|'refuse'='none';private encounterTime=0;
@@ -48,7 +52,7 @@ export class FishingGame {
   clonk(){if(this.phase!=='waiting'||this.technique.engine!=='clonk'||this.clonkRemaining>0)return false;this.clonkRemaining=TECHNIQUE_CONFIG.clonkCooldown;this.clonkAttraction=8;this.clonkPulse++;this.waterEvents.emit(this,'ambient_surface',{x:0,z:1.5},.25);this.presentationState.noise=Math.max(.1,this.presentationState.noise-.25);return true;}
   setBoat(speed:number,turn:number){if(this.post!=='boat'||!Number.isFinite(speed)||!Number.isFinite(turn))return false;this.boatSpeed=Math.max(0,Math.min(1.8,speed));this.boatTurn=Math.max(-1,Math.min(1,turn));return true;}
   holdRestraint(active:boolean){this.restrained=active&&this.phase==='waiting';}
-  holdSections(active:boolean){this.shortening=active&&['fighting','landing'].includes(this.phase)&&this.technique.sections;}
+  holdSections(active:boolean){this.shortening=active&&['fighting','landing'].includes(this.phase)&&this.hasSections;}
   get landingAction(){return this.size<=25?'Recevoir la petite prise':this.size>65?'Épuisette puis tapis':'Recevoir à l’épuisette';}
   receive(){if(!this.netReady||this.netLift<COMBAT_CONFIG.netLift){this.failure=this.size>(component(this.rig.components.landing??'')?.capacity??120)?'Épuisette trop petite : adaptez la réception.':'Placez la réception sous le poisson, puis relevez-la par un geste court.';return false;}this.waterEvents.emit(this,'net_capture',this.netPosition,.3);this.waterEvents.emit(this,'net_exit',this.netPosition,.15,false);this.finishCatch();return true;}
   releaseCaughtFish(){if(this.phase!=='caught'||!this.result||this.releasedSpecimen===this.result.id)return false;this.releasedSpecimen=this.result.id??this.specimenId;this.waterEvents.emit(this,'fish_release',this.netPosition,.25);return true;}
@@ -90,15 +94,15 @@ export class FishingGame {
   get rodGeometry(){return rodGeometry(this.rodYaw,this.rodLift,this.rodLength,this.poleRetreat,this.tension,this.fishPosition);}
   get lineEntry(){const tip=this.rodGeometry.tip,fish=this.fishPosition,t=Math.max(0,Math.min(1,tip.y/Math.max(.001,tip.y-fish.y)));return {x:tip.x+(fish.x-tip.x)*t,z:tip.z+(fish.z-tip.z)*t};}
   get receptionReach(){return this.size<=25?2.8:COMBAT_CONFIG.netReach;}
-  get canReceive(){return !!this.fish&&['fighting','landing'].includes(this.phase)&&this.fishDistance<=this.receptionReach+1&&(!this.technique.sections||this.rodSections<=COMBAT_CONFIG.kitLength+.1);}
+  get canReceive(){return !!this.fish&&['fighting','landing'].includes(this.phase)&&this.fishDistance<=this.receptionReach+1&&(!this.hasSections||this.rodSections<=COMBAT_CONFIG.kitLength+.1);}
   beginLanding(){if(!this.canReceive)return false;this.netLift=0;this.transition('landing');return true;}
   leaveLanding(){if(this.phase!=='landing')return false;this.netLift=0;this.transition('fighting');return true;}
   placeNet(x:number,z:number){if(this.phase!=='landing'||!Number.isFinite(x)||!Number.isFinite(z))return false;const dx=x-this.netPosition.x,dz=z-this.netPosition.z;if(Math.hypot(dx,dz)>.03)this.netHeading=Math.atan2(dx,dz);this.netPosition={x:Math.max(-2.8,Math.min(2.8,x)),z:Math.max(.15,Math.min(this.receptionReach,z))};this.netLift=0;return true;}
-  get netReady(){const speed=Math.hypot(this.combatVelocity.x,this.combatVelocity.z),alignment=speed<.25?1:Math.abs((Math.sin(this.netHeading)*this.combatVelocity.x+Math.cos(this.netHeading)*this.combatVelocity.z)/speed);return alignment>.15&&this.fishPosition.y>-.7&&!this.pulling&&this.phase==='landing'&&this.size<=(component(this.rig.components.landing??'')?.capacity??120)&&Math.hypot(this.fishPosition.x-this.netPosition.x,this.fishPosition.z-this.netPosition.z)<COMBAT_CONFIG.netRadius&&this.tension<.95&&this.tension>.025&&(!this.technique.sections||this.rodSections<=COMBAT_CONFIG.kitLength+.1)&&Math.abs(this.fishVelocity)<(this.size>65?.8:2.3);}
+  get netReady(){const speed=Math.hypot(this.combatVelocity.x,this.combatVelocity.z),alignment=speed<.25?1:Math.abs((Math.sin(this.netHeading)*this.combatVelocity.x+Math.cos(this.netHeading)*this.combatVelocity.z)/speed);return alignment>.15&&this.fishPosition.y>-.7&&!this.pulling&&this.phase==='landing'&&this.size<=(component(this.rig.components.landing??'')?.capacity??120)&&Math.hypot(this.fishPosition.x-this.netPosition.x,this.fishPosition.z-this.netPosition.z)<COMBAT_CONFIG.netRadius&&this.tension<.95&&this.tension>.025&&(!this.hasSections||this.rodSections<=COMBAT_CONFIG.kitLength+.1)&&Math.abs(this.fishVelocity)<(this.size>65?.8:2.3);}
   liftNet(amount:number){if(!this.netReady||!Number.isFinite(amount)||amount<=0)return false;this.netLift=Math.min(.6,this.netLift+amount);return this.netLift>=COMBAT_CONFIG.netLift?this.receive():false;}
-  movePole(metres:number){if(!this.technique.sections||!['fighting','landing'].includes(this.phase)||!Number.isFinite(metres))return false;this.poleRetreat=Math.max(0,Math.min(COMBAT_CONFIG.maxRetreat,this.poleRetreat+Math.max(-.32,Math.min(.32,metres))));return true;}
-  get canDetach(){return this.technique.sections&&this.rodSections>COMBAT_CONFIG.kitLength+.1&&this.poleRetreat>=COMBAT_CONFIG.sectionLength-.01;}
-  detachPole(reattach=false){if(!this.technique.sections||!['fighting','landing'].includes(this.phase))return false;if(reattach){if(!this.detachedSections||this.poleRetreat+COMBAT_CONFIG.sectionLength>COMBAT_CONFIG.maxRetreat)return false;this.rodSections+=COMBAT_CONFIG.sectionLength;this.poleRetreat+=COMBAT_CONFIG.sectionLength;this.detachedSections--;}else{if(!this.canDetach)return false;const removed=Math.min(COMBAT_CONFIG.sectionLength,this.rodSections-COMBAT_CONFIG.kitLength);this.rodSections-=removed;this.poleRetreat-=removed;this.detachedSections++;}return true;}
+  movePole(metres:number){if(!this.hasSections||!['fighting','landing'].includes(this.phase)||!Number.isFinite(metres))return false;this.poleRetreat=Math.max(0,Math.min(COMBAT_CONFIG.maxRetreat,this.poleRetreat+Math.max(-.32,Math.min(.32,metres))));return true;}
+  get canDetach(){return this.hasSections&&this.rodSections>COMBAT_CONFIG.kitLength+.1&&this.poleRetreat>=COMBAT_CONFIG.sectionLength-.01;}
+  detachPole(reattach=false){if(!this.hasSections||!['fighting','landing'].includes(this.phase))return false;if(reattach){if(!this.detachedSections||this.poleRetreat+COMBAT_CONFIG.sectionLength>COMBAT_CONFIG.maxRetreat)return false;this.rodSections+=COMBAT_CONFIG.sectionLength;this.poleRetreat+=COMBAT_CONFIG.sectionLength;this.detachedSections--;}else{if(!this.canDetach)return false;const removed=Math.min(COMBAT_CONFIG.sectionLength,this.rodSections-COMBAT_CONFIG.kitLength);this.rodSections-=removed;this.poleRetreat-=removed;this.detachedSections++;}return true;}
   testCombatScenario(kind:'departure'|'return'|'quiet'|'obstacle'){if(!this.testMode||!['fighting','landing'].includes(this.phase))return false;this.motion=kind==='departure'?'burst':kind==='return'?'return':kind==='quiet'?'rest':'cruise';this.eventRemaining=5;const cover=postById(this.post).obstacles[0];this.coverTarget=kind==='obstacle'&&cover?{x:cover.x,z:cover.z}:undefined;this.bearingTarget=kind==='obstacle'&&cover?Math.atan2(cover.x-this.fishPosition.x,cover.z-this.fishPosition.z):.25;return kind!=='obstacle'||!!cover;}
   private bearingTarget = 0;private coverTarget?:WaterPoint;
   private engagedRig?: string;
@@ -173,7 +177,7 @@ export class FishingGame {
     this.retrieveProgress = 0; this.waitingActivity = 0; this.lureAnimation = 0;
     this.appearance = { coloration: this.random() > 0.96 ? 'golden' : 'natural', mirage: this.random() > 0.995 };
     this.waitDuration = 3 + this.random() * 4;
-    this.encounterState='none';this.encounterTime=0;this.rodSections=this.reach;
+    this.encounterState='none';this.encounterTime=0;this.rodSections=this.capabilities.length;this.cleanEvents.clear();this.cleanRetrieve=0;this.hadContactLoss=false;this.cleanAt=0;this.manualRetrieved=0;
     if(this.modern){const m=recipeMechanics(this.rig);this.presentationState=initialPresentation();this.presentationState.point={...aim.point};this.presentationState.flyEnergy=this.flyEnergy;this.presentationState.noise=this.technique.engine==='surface'?(this.technique.id==='stalking'?.18:.3):.1;this.presentationState.pvaRemaining=m.pva;this.presentationState.feederRemaining=this.feederFilled?component(this.rig.components.feeder??'')?.diffusion??TECHNIQUE_CONFIG.feederDiffusion:0;this.presentationState.tangled=!m.antiTangle&&Math.abs(this.rodYaw)>.8&&this.random()<.12*m.tangleFactor;this.flyEnergy=0;this.feederFilled=false;}
     this.transition('casting');
     return true;
@@ -259,7 +263,12 @@ this.poleRetreat=0;this.detachedSections=0;this.rodSections=this.hasReel?4.6:thi
       this.direction+=(this.bearingTarget-this.direction)*Math.min(1,dt*(.6+profile.agility));
       this.direction=Math.max(-.9,Math.min(.9,this.direction+Math.sin(this.elapsed*(2+profile.head_shakes*3))*profile.head_shakes*.72*dt));
       const response=stepCombat({distance:this.fishDistance,lineLength:this.lineLength,tension:this.tension,fatigue:this.fatigue,position:this.fishPosition,velocity:this.combatVelocity},
-       {yaw:this.rodYaw,lift:this.rodLift,bearing:this.direction,force,power:this.equipmentPower*rigControl(this.rig),reelSpeed:this.snagged?0:this.reelSpeed,motion:this.motion,endurance:profile.endurance,adapter:this.hasReel?'reel':'pole',elasticity:this.hasReel?.85:1.1*(component(this.rig.components.elastic??'')?.control??1),drag:this.rig.drag,rodLength:this.rodLength,retreat:this.poleRetreat,current:this.environment.current,reserve:45,escapeTarget:this.coverTarget},dt);
+       {yaw:this.rodYaw,lift:this.rodLift,bearing:this.direction,force,power:this.equipmentPower*rigControl(this.rig),reelSpeed:this.snagged?0:this.reelSpeed,motion:this.motion,endurance:profile.endurance,adapter:this.hasReel?'reel':'pole',elasticity:this.hasReel?.85:this.capabilities.elastic?1.1*(component(this.rig.components.elastic??'')?.control??1):.45,drag:this.rig.drag,rodLength:this.rodLength,retreat:this.poleRetreat,current:this.environment.current,reserve:45,escapeTarget:this.coverTarget},dt);
+      if(this.slack>.3)this.hadContactLoss=true;
+      if(this.hadContactLoss&&response.tension>.08&&response.tension<.85){this.cleanEvents.add('contact');this.hadContactLoss=false;}
+      if(response.retrieved>0&&response.tension>.08&&response.tension<.85)this.cleanRetrieve+=response.retrieved*dt;
+      if(this.cleanRetrieve>=1.5)this.cleanEvents.add('retrieval');
+      if(this.coverTarget){const before=Math.hypot(this.fishPosition.x-this.coverTarget.x,this.fishPosition.z-this.coverTarget.z),after=Math.hypot(response.position.x-this.coverTarget.x,response.position.z-this.coverTarget.z);if(after>before&&before<3&&response.tension>.08)this.cleanAt+=dt;else this.cleanAt=Math.max(0,this.cleanAt-dt);if(this.cleanAt>.8)this.cleanEvents.add('trajectory');}
       this.alignment=response.alignment;this.tension=response.tension;this.fatigue=response.fatigue;this.fishDistance=response.distance;this.lineLength=response.lineLength;this.slack=response.slack;this.dragSpeed=response.dragSpeed;this.fishVelocity=response.radialVelocity;this.combatVelocity=response.velocity;this.fishPosition=response.position;if(!postById(this.post).context){const previous=worldPoint(this.post,{x:response.position.x-response.velocity.x*dt,z:response.position.z-response.velocity.z*dt}),next=worldPoint(this.post,response.position);if(!inPond(next)){const at=pondToLocal(this.post,previous);this.fishPosition.x=at.x;this.fishPosition.z=at.z;this.combatVelocity={x:0,z:0};}this.fishPosition.y=Math.max(-Math.max(.1,pondDepth(worldPoint(this.post,this.fishPosition))-.08),this.fishPosition.y);this.fishDistance=Math.hypot(this.fishPosition.x,this.fishPosition.z+1);}this.elasticExtension=response.elasticExtension;
       if(this.tension>.92||this.slackTime>1)this.controlled=false;
       this.progress=Math.max(0,Math.min(1,1-(this.fishDistance-1.8)/Math.max(1,this.distance)));
@@ -272,7 +281,7 @@ this.poleRetreat=0;this.detachedSections=0;this.rodSections=this.hasReel?4.6:thi
     }
     this.waterEvents.observe(this);
   }
-  private finishCatch(){
+  private finishCatch(){this.cleanEvents.add('receive');
     if(!this.fish)return;
     this.result={id:this.specimenId||uniqueId(),seed:this.specimenSeed,speciesId:this.fish.id,length:Math.max(this.fish.min,Math.min(this.fish.max,this.size)),date:new Date().toISOString(),...this.appearance,method:this.method,equipment:this.equipment,bait:this.bait,baitItem:offeredComponent(this.rig)?.id,post:this.post,microzone:this.microzone,target:{...this.target},controlled:this.controlled,...(this.modern?{technique:this.technique.id,recipe:this.rig.recipe,location:postById(this.post).name}:{})};
     this.resolve('catch');this.transition('caught');

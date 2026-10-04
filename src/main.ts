@@ -222,7 +222,7 @@ async function showCatch() {
   if (!game.result || !game.fish) return;
   const reedsWereOpen=save.progression.posts.includes('reed-bank');
   if(learning){learning.sample(game);game.result.controlled=false;}
-  const badges = recordCatch(save, game.result);if(learning){const specimen=save.journal.at(-1)!;save.coins-=specimen.reward.coins;save.xp-=specimen.reward.xp;specimen.reward={base:0,discovery:0,record:0,coins:0,xp:0};}else{for(const skill of game.cleanEvents)learnSkill(save,familyFor(game.technique.id).id,skill);} saveNow(); refreshCollection();
+  const badges = recordCatch(save, game.result);if(learning){const specimen=save.journal.at(-1)!;save.coins-=specimen.reward.coins;save.xp-=specimen.reward.xp;specimen.reward={base:0,discovery:0,record:0,coins:0,xp:0};}else{for(const skill of game.cleanEvents)learnSkill(save,familyFor(game.technique.id).id,skill);refreshRights(save);} saveNow(); refreshCollection();
   if(badges.first||badges.variant)document.dispatchEvent(new CustomEvent('fishdex-discovery',{detail:{id:game.result.speciesId}}));
   el('catch-progression').textContent=!reedsWereOpen&&save.progression.posts.includes('reed-bank')?'Le pêcheur vous laisse la bordure des roseaux. Ce poste est désormais ouvert définitivement.':save.total===1&&!save.progression.initiation?'Première prise réussie. L’initiation aux leurres est disponible dans Ma canne.':'';
   const specimen = save.journal.find(s => s.id === game.result!.id)!;
@@ -311,7 +311,7 @@ function release() {
   if (id !== undefined && reel.hasPointerCapture(id)) reel.releasePointerCapture(id);
 }
 function canRod(){return !overlayPaused&&!manualPaused&&(['fighting','landing','bite'].includes(game.phase)||game.phase==='idle'&&game.modern&&game.technique.engine==='fly'||game.phase==='waiting'&&(game.canAnimate||game.snagged));}
-function canSecondary(){return !overlayPaused&&!manualPaused&&(game.phase==='landing'||game.phase==='fighting'&&(game.hasReel||game.technique.sections)||game.phase==='waiting'&&game.hasReel&&game.canAnimate);}
+function canSecondary(){return !overlayPaused&&!manualPaused&&(game.phase==='landing'||game.phase==='fighting'&&(game.hasReel||game.hasSections)||game.phase==='waiting'&&game.hasReel&&game.canAnimate);}
 function canReel() { return game.hasReel&&!overlayPaused && !manualPaused && (game.phase === 'fighting' || game.phase === 'waiting' && game.canAnimate); }
 function turnReel(turns: number) {
   if (!canReel() || !turns) return;
@@ -321,7 +321,7 @@ el('strike').onclick = activate;
 el('retry').onclick = () => { game.reset(); phaseChanged(); };
 reel.addEventListener('pointerdown',e=>{
  if(e.button!==0||reelPointer!==undefined||!canSecondary())return;if(save.settings.controls?.singleFinger)cancelGesture();
- reelPointer=e.pointerId;netOrigin={...game.netPosition};actionGesture=game.phase==='landing'?new ActionGesture(e.clientX,e.clientY,e.timeStamp,'net',game.netReady):game.technique.sections?new ActionGesture(e.clientX,e.clientY,e.timeStamp,'pole'):undefined;
+ reelPointer=e.pointerId;netOrigin={...game.netPosition};actionGesture=game.phase==='landing'?new ActionGesture(e.clientX,e.clientY,e.timeStamp,'net',game.netReady):game.hasSections?new ActionGesture(e.clientX,e.clientY,e.timeStamp,'pole'):undefined;
  if(!actionGesture)game.holdReel(true);reel.setPointerCapture(e.pointerId);void audio.unlock();
 });
 reel.addEventListener('pointermove',e=>{if(e.pointerId!==reelPointer||!actionGesture)return;const action=actionGesture.move(e.clientX,e.clientY,e.timeStamp);if(actionGesture.kind==='pole'){if(actionGesture.axis==='vertical')game.movePole(action.retreat);if(action.detach&&!game.detachPole(action.reattach))toast(action.reattach?'Avancez le kit avant de réemboîter.':'Reculez jusqu’à la jonction, puis glissez latéralement.');}else if(actionGesture.liftEligible){if(action.lift)game.liftNet(action.lift); }else game.placeNet(netOrigin.x+action.dx*.02,netOrigin.z-action.dy*.025);});
@@ -511,9 +511,9 @@ try {
       // Le repère de la jauge affiche exactement la tension qui courbe la canne.
       const percent = Math.round(Math.min(1, game.tension) * 100);
       el('tension-display').style.setProperty('--tension', `${percent}%`);
-      el('tension-meter').setAttribute('aria-valuenow', String(percent));
+      el('tension-meter').setAttribute('aria-valuenow', String(percent));el('tension-label').textContent=game.contactState==='overload'?'Charge forte':game.contactState==='slack'?'Contact perdu':'Contact utile';
       canvas.setAttribute('aria-description', `Fil à ${angle} degrés, tension ${percent} pour cent. Canne latérale ${Math.round(game.rodYaw*100)} pour cent, hauteur ${Math.round(game.rodLift*100)} pour cent.`);
-      const danger = game.tension > .85?'Charge forte : accompagnez le départ.':game.tension<.04?'Contact perdu : reprenez le fil ou relevez la canne.':game.phase==='landing'&&game.netReady?'Réception sous la prise : relevez.':game.returning&&game.hasReel?'Il revient : reprenez le fil.':game.canDetach?'Jonction accessible : glissez latéralement.':game.canReceive&&game.phase==='fighting'?'À portée : préparez la réception.':'';
+      const danger = game.contactState==='overload'?'Charge forte : accompagnez le départ.':game.contactState==='slack'?'Contact perdu : reprenez le fil ou relevez la canne.':game.phase==='landing'&&game.netReady?'Réception sous la prise : relevez.':game.returning&&game.hasReel?'Il revient : reprenez le fil.':game.canDetach?'Jonction accessible : glissez latéralement.':game.canReceive&&game.phase==='fighting'?'À portée : préparez la réception.':'';
       if (save.settings.controls?.hints&&danger && danger !== lastLineAlert && now > alertUntil + 2000+Math.min(6000,save.total*750)) { el('line-alert').textContent = danger; el('line-alert').hidden = false; alertUntil = now + 1800; }
       lastLineAlert = danger;
     } else if (!['fighting','landing'].includes(game.phase)) { canvas.removeAttribute('aria-description'); el('line-alert').hidden = true; }
@@ -548,6 +548,6 @@ if (world && import.meta.env.DEV && import.meta.env.VITE_E2E === '1') {
     pauseSimulation: () => { qaSimulationPaused = true; },
     resumeSimulation: () => { qaSimulationPaused = false; },
     snapshot: () => ({sceneId:world?.scene.uid,totalMeshes:world?.scene.meshes.length,fish:game.fish?.id,specimen:game.specimenId,seed:game.specimenSeed,appearance:game.appearance,post:game.post,method:game.method,hasReel:game.hasReel,presentationDepth:game.presentationDepth,microzone:game.microzone,snagged:game.snagged,rights:save.progression,camera:world?.camera.position.asArray(),technique:game.config.technique,recipe:game.config.recipe,boat:game.presentationState.boat,sections:game.rodSections,retreat:game.poleRetreat,detached:game.detachedSections,geometry:game.rodGeometry,fishPosition:game.fishPosition,net:game.netPosition,netReady:game.netReady,netLift:game.netLift,canReceive:game.canReceive,encounter:game.encounterState,phase: game.phase, tension: game.tension, abrasion:game.abrasion,fatigue: game.fatigue, slack: game.slack, dragSpeed: game.dragSpeed, lineLength: game.lineLength, fishDistance: game.fishDistance, returning: game.returning, progress: game.progress, reeling: game.reeling, pulling: game.pulling, total: save.total, paused: manualPaused || overlayPaused, direction: game.direction, reelSpeed: game.reelSpeed, alignment: game.alignment, rodTip: world?.rodTipOnScreen(), target: game.target, yaw: game.rodYaw, lift: game.rodLift, aquarium: aquarium?.diagnostics(), engines: Engine.Instances.length, lakeFrames, meshes: world?.scene.getActiveMeshes().length }),
-    advance: (seconds:number,mode?:'smart')=>{const initialPhase=game.phase;for(let i=0;i<seconds*60;i++){if(mode==='smart'&&['fighting','landing'].includes(game.phase))manageFight(game,false,false);else game.update(1/60);phaseChanged();if(mode==='smart'&&game.canReceive&&game.fishPosition.y>-.65||['caught','lost','bite'].includes(game.phase)||game.phase==='landing'&&initialPhase!=='landing')break;}},
+    advance: (seconds:number,mode?:'smart')=>{const initialPhase=game.phase;for(let i=0;i<seconds*60;i++){if(mode==='smart'&&['fighting','landing'].includes(game.phase))manageFight(game,false,false);else game.update(1/60);learning?.sample(game);phaseChanged();if(mode==='smart'&&game.canReceive&&game.fishPosition.y>-.65||['caught','lost','bite'].includes(game.phase)||game.phase==='landing'&&initialPhase!=='landing')break;}},
   } });
 }
