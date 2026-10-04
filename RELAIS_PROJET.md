@@ -1,3 +1,7 @@
+## 4 octobre 2026 — Codex — Refonte UI, lot 02
+
+FishDex terminé localement après lot 01 : inconnus cohérents, silhouettes claires, filtres Ici/formes, conseils accessibles, retour depuis préparation, records et robes réels. 207 tests + TS/build et 12 scénarios navigateur passent. Contrat de conseils pur `accessibleFishRoutes`, aucun trajet/achat automatique ; v7 intact. Détail et limites dans `docs/refonte-ui/02_FISHDEX/RELAIS_A_COMPLETER.md`, captures `02-apres`. Prochain : lot 03 Progression/exploration ; publication commune finale.
+
 ## 4 octobre 2026 — Codex — Refonte UI, lot 01
 
 Lot Matériel/Boutique terminé localement, socle partagé et fiche de composant séparée ; kit groupé, familles, filtres, montages et ensembles expliqués. 205 tests + typecheck/build, 12 scénarios Chromium mobile/bureau passent. Réserve/transactions/sauvegarde v7 préservées ; aucun chantier eau/assets repris. Captures `docs/apercus/refonte-ui/avant` et `01-apres`, détail `docs/refonte-ui/01_MATERIEL_BOUTIQUE/RELAIS_A_COMPLETER.md`. Déploiement regroupé après les quatre lots suivant la demande actuelle. Prochain : lot 02 FishDex. iPhone réel/clavier iOS non contrôlés. Modification préalable de DEMARRER_AVEC_CODEX.md laissée hors commit.

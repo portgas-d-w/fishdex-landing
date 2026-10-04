@@ -57,7 +57,7 @@ export class GameScreens {
         primary.innerHTML = '<span class="device-light"></span><strong>FishDex</strong><small id="dex-menu-progress">Mes découvertes et objectifs</small>';
         el('collection-open').innerHTML = 'Carnet<small id="collection-count">Historique des rencontres</small>';
         el('encyclopedia').querySelector('h2')!.textContent = 'FishDex';
-        el('dex-list').insertAdjacentHTML('beforebegin', '<div id="dex-progress" class="dex-progress"></div>');
+        el('encyclopedia').querySelector('.intro')!.insertAdjacentHTML('afterend', '<div id="dex-progress" class="dex-progress"></div>');
 
         el('menu').querySelector('nav')!.insertAdjacentHTML('beforeend', '<button id="locations-open">Lieux<small>Habitats et prochaines escales</small></button>');
         el('app').insertAdjacentHTML('beforeend', ['species-sheet', 'item-sheet', 'location-sheet', 'method-sheet', 'badge-sheet', 'purchase-confirm'].map(id => `<dialog id="${id}" class="modal detail-modal"><div class="modal-header"><h2 id="${id}-title"></h2><button class="close" data-close="${id}">Retour</button></div><div id="${id}-body"></div></dialog>`).join('') + '<dialog id="locations" class="modal wide-modal"><div class="modal-header"><div><div class="eyebrow">Explorer les habitats</div><h2>Lieux de pêche</h2></div><button class="close" data-close="locations">Retour</button></div><div id="locations-list" class="content-grid"></div></dialog>');

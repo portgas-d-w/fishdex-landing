@@ -1,6 +1,8 @@
 import {SPECIES} from './catalog.ts';
 import {TECHNIQUES,compatibleRecipes,techniqueContext,type TechniqueId} from './techniques.ts';
-import {techniqueConfig} from './rig.ts';
+import {techniqueConfig,validateRig} from './rig.ts';
+import {postAccess,postCondition,techniqueAccess,techniqueCondition} from './progression.ts';
+import type {SaveData} from './save.ts';
 import {ALL_POSTS,populationWeight,inspectPostTarget,type PostId} from './posts.ts';
 import {techniqueEncounterWeight} from './profiles.ts';
 import {initialPresentation,stepPresentation} from './presentation.ts';
@@ -39,3 +41,10 @@ export function fishRoutes(id:string):FishRoute[]{
  const sorted=result.sort((a,b)=>rank(a)-rank(b));cache.set(id,sorted);return sorted;
 }
 export const suggestedFishPost=(id:string):PostId|undefined=>fishRoutes(id)[0]?.post;
+/** Conseils de présentation uniquement : aucune mutation, achat ou téléportation. */
+export function accessibleFishRoutes(save:SaveData,id:string){return fishRoutes(id).map(route=>{
+ const reasons:string[]=[];if(!postAccess(save,route.post))reasons.push(postCondition(save,route.post));
+ if(route.technique){if(!techniqueAccess(save,route.technique))reasons.push(techniqueCondition(save,route.technique));const technique=TECHNIQUES.find(t=>t.id===route.technique)!;if(!save.inventory.includes(technique.rod as typeof save.equipped))reasons.push('Canne requise : '+technique.name);const config=save.tackle.config.technique===route.technique&&save.tackle.config.recipe===route.recipe?save.tackle.config:techniqueConfig(route.technique,route.recipe!);reasons.push(...validateRig(save.tackle,config));}
+ return {...route,reasons,ready:reasons.length===0};
+ }).sort((a,b)=>Number(b.ready)-Number(a.ready)+((a.post===save.preparation.post?-1:0)-(b.post===save.preparation.post?-1:0))*.1);
+}

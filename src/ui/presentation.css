@@ -15,7 +15,7 @@
 .compact-row{min-width:0;flex-wrap:wrap}.compact-row>div{flex:1;min-width:130px}.compact-row strong{overflow-wrap:anywhere}
 .compact-row .component-art{width:52px;height:52px;float:left;margin:0 12px 8px 0;object-fit:contain}
 .image-fallback{display:grid;place-items:center;min-height:52px;background:var(--fd-specimen-bg);color:var(--fd-text-muted);font-size:12px;border-radius:8px}
-.work-tabs{position:relative;gap:8px}.work-tabs button[aria-pressed=true]{background:var(--fd-accent-soft);color:var(--fd-accent);border-color:var(--fd-accent)}
+.work-tabs{position:relative;gap:8px}.work-tabs button[aria-selected=true]{background:var(--fd-accent-soft);color:var(--fd-accent);border-color:var(--fd-accent)}
 .equipment-facts{display:grid;gap:8px;margin:16px 0}.equipment-facts>div{padding:12px;background:var(--fd-bg);border-radius:8px}.equipment-facts small{display:block;color:var(--fd-text-muted)}
 .rig-schematic{width:100%;height:200px;background:var(--fd-specimen-bg);border-radius:12px;margin:12px 0}.rig-schematic text{fill:var(--fd-text);font-size:14px}.rig-schematic path,.rig-schematic line{stroke:var(--fd-text-muted);stroke-width:2}.rig-schematic .surface{stroke:var(--fd-accent)}
 .modal details{margin:12px 0}.modal summary{padding:12px 4px;color:var(--fd-text)}
@@ -23,5 +23,9 @@
 .modal .filters label{flex:1;min-width:130px}.modal .filters input[type=checkbox]{width:22px;height:22px;vertical-align:middle}
 .modal .state-pill{display:inline-block;margin:4px 4px 4px 0;font-size:12px;line-height:1.4}
 .rod-workshop svg ellipse{stroke:var(--fd-accent)}
+.dex-picture .fish-silhouette,.species-hero .fish-silhouette,.variant-list .fish-silhouette{filter:brightness(0) invert(.86);opacity:1}
+.modal .dex-progress{display:block;margin:12px 0 16px}.dex-progress strong{font-size:20px}.dex-progress details{margin-bottom:0}
+.dex-tile strong{font-size:15px;overflow-wrap:anywhere}.dex-tile .tile-state{color:var(--fd-text-muted)}
+@media(max-width:350px){.modal .dex-grid{grid-template-columns:1fr 1fr}.dex-picture img{width:100%}.dex-tile{padding:8px}}
 @media(max-width:640px){.modal:not(.catch-modal){width:100%;height:100dvh;max-height:100dvh;max-width:100%;border-radius:0;border:0;padding:calc(16px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom))}.modal-header{top:calc(-16px - env(safe-area-inset-top));padding-top:calc(12px + env(safe-area-inset-top));margin-top:calc(-16px - env(safe-area-inset-top))}.content-grid{grid-template-columns:1fr}.rod-workshop{max-width:100%;height:330px}.rod-pin{font-size:13px!important;max-width:47%}.rod-pin small{overflow-wrap:anywhere}.work-tabs button{padding:10px 8px}.filters{gap:12px}}
 @media(min-width:641px){.equipment-facts{grid-template-columns:repeat(3,1fr)}}

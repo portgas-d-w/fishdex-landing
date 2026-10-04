@@ -1,35 +1,17 @@
-# Relais à compléter par Codex
+# Relais — lot 02 FishDex
 
-Ce document est un gabarit de passation. Il ne signifie pas que le lot est implémenté.
+4 octobre 2026 · Codex · codex/refonte-ui · départ d4d2d95. Lot implémenté et contrôlé localement ; publication commune après les quatre lots.
 
-## État du lot
-- Date, branche, commit de départ et commit final :
-- Statut : non commencé / en cours / terminé / partiellement bloqué.
-- Écrans effectivement modifiés :
+Collection : résumé découvertes, objectif accessible, silhouettes claires, numéros du registre, portraits différés sans 3D par carte. Filtre Ici = les six postes du premier étang, ou le poste du milieu spécialisé courant. Profils du catalogue explicités, filtres secondaires repliés et formes vues/manquantes, reset et recherche vide. Les 66 identités confirmées sont toutes jouables (52 capture / 14 observation) ; les fiches futures de conception ne font pas partie du dénominateur. Les 29 formes restent des robes rattachées.
 
-## Architecture et composants
-- Fichiers du dépôt concernés :
-- Composants partagés créés ou réutilisés :
-- Contrats de navigation, données et services à réutiliser :
-- Nouveau code mort ou anciens écrans supprimés après vérification :
+Inconnus : titre et alt génériques, silhouette et indices de couche/habitat, recherche par numéro/couche/mode seulement. Aucun nom scientifique ou portrait coloré révélé par consultation. Découverts : portrait naturel, profil secondaire, routes possibles, records réels et maîtrise ; aucune statistique fictive de poids pour un record ancien. Formes inconnues masquées, formes connues nommées. Textes de pack/prototype retirés du parcours joueur.
 
-## Données et sauvegardes
-- IDs conservés et éventuelles migrations :
-- Fixture vide / partie avancée / contenus verrouillés testés :
-- Catalogue et règles consultés :
+Conseils : adaptateur pur accessibleFishRoutes dans src/game/fish-access.ts, moteur de rencontres inchangé. Priorité aux routes ouvertes, canne possédée et montage utilisable puis poste courant. Gardon débutant : coup gratuit, pas première recette du catalogue. Ouverture matérielle conserve la fiche de retour et prévisualise le conseil. Seule une action explicite équipe la technique/recette ; aucun achat, consommation ou changement de poste automatique. La réception reste régie par le montage réel. Message Nouveau dérivé seulement des événements réels de première découverte/forme, marqué lu à l’ouverture ; état de session, aucune cascade à l’import/rechargement. Révélation de capture existante conservée et numéro stabilisé sur le registre ; observation émet aussi l’événement réel.
 
-## Validation
-- Contrôles exécutés et résultats :
-- Captures avant/après :
-- Test réel iPhone : exécuté, non exécuté, ou partiellement exécuté ; détails.
-- Poids, chargement et coût observés :
-- Limites restantes :
+Fichiers : src/ui/fishdex.ts, main.ts, observations.ts ; intégration légère tackle.ts ; adaptateur fish-access ; shared presentation (onglets Material ARIA tablist/tab et navigation flèches/Home/End, fallback image et palette existante). Retours par dialogues natifs conservant filtres/scroll/focus ; fermeture de fiche actualise son statut lu. Aucune migration v7, taxonomie/IDs/prix/droits inchangés.
 
-## Déploiement
-- Projet vérifié, URL de revue et production :
-- Commit réellement servi :
+Vérification : npm run check, 207/207 tests et TS/build passent. Deux nouveaux tests protègent priorité débutant et absence de mutations/trajet. 12/12 scénarios Chromium (collection vierge/avancée droits, gardon découvert/records, inconnus/recherche sans fuite, 66/52/14 et habitat américain, préparation consultée sans mutation, retour et recharge, atelier régressé). Contrôle après dernier ajustement de retour : 2/2 ciblés également passés avant finition. Captures docs/apercus/refonte-ui/02-apres, comparaison avec avant ; gardon découvert mobile et bureau en supplément. Aucun modèle 3D supplémentaire dans la grille ; les routes détaillées sont calculées à la demande, pas les 66 au démarrage du FishDex.
 
-## Passage au lot suivant
-- Travail restant et dépendances utiles :
-- Ce que le prochain lot doit réutiliser :
-- Décisions demandant encore un arbitrage réel :
+Limites : iPhone réel, Safari, lecteur d’écran physique et clavier virtuel non testés. Tests de disposition Chromium, pas garanties de FPS GPU. Les notifications anciennes ne sont pas rejouées ; une indication Nouveau se limite volontairement à la session et au véritable événement. Publication autorisée finale à renseigner dans le bilan global.
+
+Prochain : lot 03 Progression/exploration ; réutiliser accessibleFishRoutes, presentation, titres natifs et événement fishdex-encounter-preview. Aucun shader, asset de carte ou source privée modifié.

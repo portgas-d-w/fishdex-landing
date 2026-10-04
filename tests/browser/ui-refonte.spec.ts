@@ -1,6 +1,7 @@
 import {test, expect} from '@playwright/test';
 import {legacySave} from '../support/legacy';
 import {openMenuPage} from './helpers';
+import {emptySave,recordCatch} from '../../src/game/save';
 
 for (const advanced of [false,true]) test(`Référence et parcours UI ${advanced?'avancé':'vierge'}`,async({page},info)=>{
   const save=legacySave(); if(advanced){save.xp=10000;save.coins=500;save.tackle.stock.corn=15;}
@@ -15,6 +16,26 @@ for (const advanced of [false,true]) test(`Référence et parcours UI ${advanced
     await page.locator(`[data-close="${dialog}"]`).first().click();
   }
   expect(errors).toEqual([]);
+});
+
+test('Lot 02 : inconnus, conseil débutant, préparation explicite, filtres et recharge',async({page},info)=>{
+  const seed=emptySave();recordCatch(seed,{id:'ui-roach',speciesId:'roach',length:20,date:'2026-10-04T00:00:00Z',method:'pole'});
+  await page.addInitScript(s=>{localStorage.setItem('au-fil-de-leau.gestures.v3','3');if(!localStorage.getItem('au-fil-de-leau.save.v1'))localStorage.setItem('au-fil-de-leau.save.v1',JSON.stringify(s));},seed);
+  await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');await openMenuPage(page,'dex-open');
+  await expect(page.locator('.dex-tile')).toHaveCount(66);await expect(page.locator('#dex-progress')).toContainText('1 / 66');
+  await page.locator('#dex-search').fill('brochet');await expect(page.locator('.dex-tile')).toHaveCount(0);
+  await page.locator('#dex-search').fill('002');await page.locator('.dex-tile').click();await expect(page.locator('#species-sheet-title')).toContainText('À découvrir');
+  await expect(page.locator('#species-sheet')).not.toContainText('Perche');await expect(page.locator('#species-sheet img')).not.toHaveAttribute('alt',/Perche/i);
+  await page.locator('[data-close="species-sheet"]').click();await page.locator('#dex-search').fill('gardon');await page.locator('.dex-tile').click();
+  await expect(page.locator('#species-sheet')).toContainText('Coup à canne télescopique');await expect(page.locator('#species-sheet')).not.toContainText('Modèle exact du pack');
+  const previous=await page.evaluate(()=>localStorage.getItem('au-fil-de-leau.save.v1'));
+  await page.screenshot({path:`docs/apercus/refonte-ui/02-apres/${info.project.name}-gardon-decouvert.png`});
+  await page.locator('#species-prepare').click();await expect(page.locator('#encounter-advice')).toBeVisible();
+  expect(await page.evaluate(()=>localStorage.getItem('au-fil-de-leau.save.v1'))).toBe(previous);
+  await page.locator('[data-close="preparation"]').click();await expect(page.locator('#species-sheet')).toBeVisible();
+  await page.locator('[data-close="species-sheet"]').click();await expect(page.locator('#dex-search')).toHaveValue('gardon');
+  await page.locator('#dex-search').fill('');await page.locator('#dex-habitat').selectOption('here');const here=await page.locator('.dex-tile').count();expect(here).toBeLessThan(66);expect(here).toBeGreaterThan(0);
+  await page.reload();await expect(page.locator('body')).toHaveAttribute('data-ready','true');await openMenuPage(page,'dex-open');await expect(page.locator('#dex-progress')).toContainText('1 / 66');
 });
 
 test('Lot 01 : retours de fiche, recherche, réserve inchangée et dispositions étroites',async({page},info)=>{

@@ -210,12 +210,13 @@ async function showCatch() {
   if (!game.result || !game.fish) return;
   const reedsWereOpen=save.progression.posts.includes('reed-bank');
   const badges = recordCatch(save, game.result); saveNow(); refreshCollection();
+  if(badges.first||badges.variant)document.dispatchEvent(new CustomEvent('fishdex-discovery',{detail:{id:game.result.speciesId}}));
   el('catch-progression').textContent=!reedsWereOpen&&save.progression.posts.includes('reed-bank')?'Le pêcheur vous laisse la bordure des roseaux. Ce poste est désormais ouvert définitivement.':save.total===1&&!save.progression.initiation?'Première prise réussie. L’initiation aux leurres est disponible dans Ma canne.':'';
   const specimen = save.journal.find(s => s.id === game.result!.id)!;
   viewedSpecimen = specimen; liveCatchView = true;
   el('caught').classList.toggle('first-discovery', badges.first);
-  const dexNumber = hub?.groups.findIndex(rows => rows.some(e => e.gameId === specimen.speciesId)) ?? -1;
-  el('catch-heading').textContent = badges.first ? `FishDex #${String(dexNumber + 1).padStart(3, '0')} · Nouvelle découverte` : badges.record ? 'Votre nouveau record' : 'Une belle rencontre';
+  const dexNumber = SPECIES.find(f=>f.id===specimen.speciesId)!.number;
+  el('catch-heading').textContent = badges.first ? `FishDex #${String(dexNumber).padStart(3, '0')} · Nouvelle découverte` : badges.record ? 'Votre nouveau record' : 'Une belle rencontre';
   el('catch-name').textContent = game.fish.name; el('catch-latin').textContent = game.fish.latin;
   el('catch-length').textContent = game.result.length.toLocaleString('fr-FR');
   el('catch-description').textContent = game.fish.description;

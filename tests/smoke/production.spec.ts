@@ -145,7 +145,7 @@ test('Le build conserve les favoris, le décor, les achats et les portraits sans
   expect(stored.total).toBe(5); expect(stored.xp).toBe(seed.xp); expect(stored.coins).toBe(seed.coins - 70); expect(stored.equipped).toBe('balanced');
   expect(stored.favorites).toHaveLength(4); expect(stored.aquarium.floor).toBe('gravel');
   await openMenuPage(page, 'collection-open'); await expect(page.locator('[data-photo="build-2"] img')).toBeVisible(); await page.locator('[data-close="collection"]').click();
-  await openMenuPage(page, 'dex-open'); await page.locator('#dex-state').selectOption('playable'); await expect(page.locator('.dex-tile')).toHaveCount(SPECIES.filter(s=>s.mode==='capture').length);
+  await openMenuPage(page, 'dex-open'); await page.locator('#dex-filters').evaluate((e:HTMLDetailsElement)=>e.open=true);await page.locator('#dex-state').selectOption('playable'); await expect(page.locator('.dex-tile')).toHaveCount(SPECIES.filter(s=>s.mode==='capture').length);
   await page.locator('#dex-search').fill('gardon'); await expect(page.locator('.dex-tile')).toHaveCount(1);
   expect(errors).toEqual([]);
 });

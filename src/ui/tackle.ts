@@ -1,6 +1,6 @@
 import {componentAdvice,exposedCost,missingComponents,rigPreview} from '../game/gear-advice';
 import {componentArt} from './asset-art';
-import {quantityText,emptyState,EQUIPMENT_FAMILIES,familyContains,fitsComponent,lowStock,groupedTechniques,unlockReason} from './presentation';
+import {quantityText,emptyState,EQUIPMENT_FAMILIES,familyContains,fitsComponent,lowStock,groupedTechniques,unlockReason,installSectionTabs} from './presentation';
 import {SPECIES} from '../game/catalog';
 import {discoveredFish} from '../game/save';
 import {techniqueEncounterWeight} from '../game/profiles';
@@ -39,11 +39,19 @@ export class TackleWorkshop {
       if(b.dataset.favoritePreset){const p=this.h.save().tackle.presets.find(p=>p.id===b.dataset.favoritePreset);if(p){if(p.favorite)delete p.favorite;else p.favorite=true;this.commit();}}
     });
     el('rig-sheet-body').addEventListener('click',e=>{const b=(e.target as HTMLElement).closest<HTMLElement>('[data-slot]');if(b)this.select(b.dataset.slot as Slot);});
+    document.addEventListener('fishdex-encounter-preview',event=>{
+      const {identity,known,route}=(event as CustomEvent<{identity:string;known:boolean;route:import('../game/fish-access').FishRoute}>).detail;
+      if(!route.technique)return;
+      const fish=SPECIES.find(f=>f.id===identity),technique=TECHNIQUES.find(t=>t.id===route.technique)!;
+      el('work-body').insertAdjacentHTML('afterbegin',`<section class="empty-state" id="encounter-advice"><strong>${known?esc(fish?.name??'Rencontre'):'Poisson à découvrir #'+fish?.number}</strong><p>${esc(technique.name)} · ${esc(RECIPES.find(r=>r.id===route.recipe)?.name??'')} · ${route.depth} m. Le poste reste celui de votre partie ; changez-le explicitement sur la carte.</p><button id="encounter-apply" class="action">Utiliser cette technique et recette</button><p class="intro">Cette action équipe la préparation ; aucun achat ni consommation. Retour retrouve la fiche FishDex.</p></section>`);
+      el('encounter-apply').onclick=()=>{if(!this.editable())return;const error=switchTechnique(this.h.save(),route.technique!,route.recipe!);if(error){this.h.toast(error);return;}this.h.save().tackle.config.depth=route.depth;this.commit();this.h.toast('Préparation équipée. Vérifiez le fond et le poste avant de lancer.');};
+    });
     for(const id of ['shop']) {
       el(id).insertAdjacentHTML('beforeend',`<details class="research-shelf" id="library-${id}"><summary>Documentation du catalogue · espace de développement</summary><h3>Catalogue de conception</h3><p class="intro">Fiches présentes, usages futurs explicitement indiqués. Tailles regroupées par famille.</p><div class="filters"><label>Recherche<input id="library-query-${id}" type="search" placeholder="Nom, montage ou appât"></label><label>Catégorie<select id="library-type-${id}">${['Matériel','Méthodes','Montages','Appâts et leurres'].map(c=>`<option ${id==='encyclopedia'&&c==='Poissons'?'selected':''}>${c}</option>`).join('')}</select></label></div><div id="library-list-${id}" class="compact-list"></div><button class="secondary" id="library-load-${id}">Consulter les fiches</button></details>`);
       el(`library-load-${id}`).onclick=()=>void this.catalogue(id);
       for(const kind of ['query','type'])el(`library-${kind}-${id}`).addEventListener('input',()=>void this.catalogue(id));
     }
+    installSectionTabs(panel.querySelector('.work-tabs')!,el('work-body'));
     document.addEventListener('click',e=>{const b=(e.target as HTMLElement).closest<HTMLElement>('[data-component-info],[data-component-buy],[data-research],[data-ui-unlock]');if(!b)return;
       if(b.hasAttribute('data-ui-unlock'))this.h.open('progression');
       if(b.dataset.componentInfo)this.componentInfo(b.dataset.componentInfo);
@@ -56,7 +64,8 @@ export class TackleWorkshop {
   private commit(){const s=this.h.save(),g=this.h.game;g.tackle=s.tackle;g.setMethod(s.tackle.config.method);s.preparation.method=g.method;s.preparation.bait=g.bait;const rod=ITEMS.find(i=>i.id===s.equipped)!;g.equipment=s.equipped;g.equipmentPower=rod.power;this.h.persist();this.h.refresh();this.render();}
   render() {
     const s=this.h.save(),t=s.tackle,c=t.config;
-    document.querySelectorAll<HTMLElement>('[data-work-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.workTab===this.tab)));
+    document.querySelectorAll<HTMLElement>('[data-work-tab]').forEach(b=>{b.removeAttribute('aria-pressed');b.setAttribute('aria-selected',String(b.dataset.workTab===this.tab));b.tabIndex=b.dataset.workTab===this.tab?0:-1;});
+    el('work-body').setAttribute('aria-labelledby',document.querySelector<HTMLElement>(`[data-work-tab="${this.tab}"]`)!.id);
     const errors=validateRig(t),warnings=rigWarnings(c);
     const message=errors.length?errors.join(' '):warnings.length?warnings.join(' '):'Montage prêt. Choisissez un poste sur la carte, puis placez votre ligne.';
     if(this.tab==='rod') {
