@@ -14,7 +14,7 @@ test('Carte eau : six vrais postes, combat réception photo et sauvegarde isolé
 test('Registre : substitution GLB locale, rejet des dimensions, retour exact à la ressource initiale',async({page})=>{
  await boot(page);await page.route('**/models/environment/contract-probe.glb',route=>route.fulfill({contentType:'model/gltf-binary',body:environmentProbe()}));
  await page.route('**/models/environment/contract-invalid.glb',route=>route.fulfill({contentType:'model/gltf-binary',body:environmentProbe(10)}));
- await expect.poll(()=>page.evaluate(()=>Object.values((window as any).__fishingQA.water().assets.families).filter((s:any)=>s.startsWith('glb:')).length)).toBe(8);const before=await qa(page);const initial=await page.evaluate(()=>(window as any).__fishingQA.water().assets);
+ await expect.poll(()=>page.evaluate(()=>Object.values((window as any).__fishingQA.water().assets.families).filter((s:any)=>s.startsWith('glb:')).length)).toBe(14);const before=await qa(page);const initial=await page.evaluate(()=>(window as any).__fishingQA.water().assets);
  expect(await page.evaluate(()=>(window as any).__fishingQA.replaceAsset('rock_small','/models/environment/contract-probe.glb'))).toBe(true);
  const loaded=await page.evaluate(()=>(window as any).__fishingQA.water());expect(loaded.assets.families.rock_small).toContain('glb:');expect(loaded.assets.families.reeds).toBe(initial.families.reeds);
  expect(await page.evaluate(()=>(window as any).__fishingQA.replaceAsset('rock_small','/models/environment/contract-invalid.glb'))).toBe(false);

@@ -3,6 +3,7 @@ import {StandardMaterial} from '@babylonjs/core/Materials/standardMaterial';
 import {Color3} from '@babylonjs/core/Maths/math.color';
 import type {AssetContainer} from '@babylonjs/core/assetContainer';
 import type {Scene} from '@babylonjs/core/scene';
+import {FoliageWindPlugin,WIND_AMPLITUDE} from './environment-wind';
 
 /**
  * Les GLB du décor (fdx-* Blender FishDex, free-* gratuits) sont rendus par StandardMaterial (espace gamma) : la base color doit rester encodée sRGB
@@ -37,6 +38,7 @@ export function adaptEnvironmentMaterials(c:AssetContainer,scene:Scene,family:st
    if(family==='lily_cluster')material.diffuseColor=new Color3(.34,.43,.22);
    if(source.albedoTexture?.hasAlpha){material.useAlphaFromDiffuseTexture=true;material.transparencyMode=StandardMaterial.MATERIAL_ALPHATEST;material.alphaCutOff=.45;}
   }
+  if(fdx&&WIND_AMPLITUDE[source.name]!==undefined)new FoliageWindPlugin(material,WIND_AMPLITUDE[source.name]);
   converted.set(source,material);
  }
  for(const mesh of c.meshes)if(mesh.material instanceof PBRMaterial)mesh.material=converted.get(mesh.material)??mesh.material;

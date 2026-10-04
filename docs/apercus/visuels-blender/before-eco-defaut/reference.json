@@ -1,0 +1,738 @@
+[
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "water": "default",
+    "device": "Chromium Windows SwiftShader (rendu logiciel), aucun iPhone",
+    "readyMs": 1361,
+    "entries": [
+      {
+        "post": "jetty",
+        "view": "game",
+        "ambience": "morning",
+        "render": {
+          "drawCalls": 44,
+          "cpuFrameMs": 1.0999999977648258,
+          "vertices": 219403,
+          "meshes": 55,
+          "width": 390,
+          "height": 844,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "assets": {
+          "reeds": "glb:/models/environment/free-reeds.glb",
+          "submerged_branches": "procedural",
+          "tree_willow": "procedural",
+          "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+          "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+          "grass_clump": "glb:/models/environment/free-grass.glb",
+          "shrub": "glb:/models/environment/free-bush.glb",
+          "lily_cluster": "glb:/models/environment/free-lily.glb",
+          "rock_small": "glb:/models/environment/free-rock.glb",
+          "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+          "fallen_log": "procedural",
+          "pier_deck": "procedural",
+          "pier_pile": "procedural",
+          "path_patch": "procedural"
+        },
+        "visibleTriangles": 18680,
+        "totalMeshes": 798,
+        "materials": 95,
+        "textures": 13,
+        "decodedTexturesEstimateBytes": 18000554.666666664,
+        "frames": 90,
+        "fps": 29.96703626014361,
+        "frameMedian": 33.400000002235174,
+        "frameP95": 54.19999999925494,
+        "frameMax": 75.5
+      },
+      {
+        "post": "cove",
+        "view": "game",
+        "ambience": "morning",
+        "render": {
+          "drawCalls": 63,
+          "cpuFrameMs": 1.5,
+          "vertices": 219403,
+          "meshes": 136,
+          "width": 390,
+          "height": 844,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "assets": {
+          "reeds": "glb:/models/environment/free-reeds.glb",
+          "submerged_branches": "procedural",
+          "tree_willow": "procedural",
+          "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+          "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+          "grass_clump": "glb:/models/environment/free-grass.glb",
+          "shrub": "glb:/models/environment/free-bush.glb",
+          "lily_cluster": "glb:/models/environment/free-lily.glb",
+          "rock_small": "glb:/models/environment/free-rock.glb",
+          "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+          "fallen_log": "procedural",
+          "pier_deck": "procedural",
+          "pier_pile": "procedural",
+          "path_patch": "procedural"
+        },
+        "visibleTriangles": 23536,
+        "totalMeshes": 798,
+        "materials": 95,
+        "textures": 13,
+        "decodedTexturesEstimateBytes": 18000554.666666664,
+        "frames": 90,
+        "fps": 30.001000033349346,
+        "frameMedian": 33.30000000074506,
+        "frameP95": 34.5,
+        "frameMax": 35
+      },
+      {
+        "post": "bank",
+        "view": "game",
+        "ambience": "morning",
+        "render": {
+          "drawCalls": 51,
+          "cpuFrameMs": 1.5,
+          "vertices": 219403,
+          "meshes": 65,
+          "width": 390,
+          "height": 844,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "assets": {
+          "reeds": "glb:/models/environment/free-reeds.glb",
+          "submerged_branches": "procedural",
+          "tree_willow": "procedural",
+          "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+          "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+          "grass_clump": "glb:/models/environment/free-grass.glb",
+          "shrub": "glb:/models/environment/free-bush.glb",
+          "lily_cluster": "glb:/models/environment/free-lily.glb",
+          "rock_small": "glb:/models/environment/free-rock.glb",
+          "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+          "fallen_log": "procedural",
+          "pier_deck": "procedural",
+          "pier_pile": "procedural",
+          "path_patch": "procedural"
+        },
+        "visibleTriangles": 17246,
+        "totalMeshes": 798,
+        "materials": 95,
+        "textures": 13,
+        "decodedTexturesEstimateBytes": 18000554.666666664,
+        "frames": 90,
+        "fps": 30.2846759539597,
+        "frameMedian": 33.399999998509884,
+        "frameP95": 34.399999998509884,
+        "frameMax": 34.69999999925494
+      },
+      {
+        "post": "reed-bank",
+        "view": "game",
+        "ambience": "morning",
+        "render": {
+          "drawCalls": 79,
+          "cpuFrameMs": 1.300000000745058,
+          "vertices": 219403,
+          "meshes": 152,
+          "width": 390,
+          "height": 844,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "assets": {
+          "reeds": "glb:/models/environment/free-reeds.glb",
+          "submerged_branches": "procedural",
+          "tree_willow": "procedural",
+          "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+          "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+          "grass_clump": "glb:/models/environment/free-grass.glb",
+          "shrub": "glb:/models/environment/free-bush.glb",
+          "lily_cluster": "glb:/models/environment/free-lily.glb",
+          "rock_small": "glb:/models/environment/free-rock.glb",
+          "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+          "fallen_log": "procedural",
+          "pier_deck": "procedural",
+          "pier_pile": "procedural",
+          "path_patch": "procedural"
+        },
+        "visibleTriangles": 24526,
+        "totalMeshes": 798,
+        "materials": 95,
+        "textures": 13,
+        "decodedTexturesEstimateBytes": 18000554.666666664,
+        "frames": 91,
+        "fps": 30.314134381573393,
+        "frameMedian": 33.5,
+        "frameP95": 35.399999998509884,
+        "frameMax": 37.600000001490116
+      },
+      {
+        "post": "point",
+        "view": "game",
+        "ambience": "morning",
+        "render": {
+          "drawCalls": 52,
+          "cpuFrameMs": 0.7999999970197678,
+          "vertices": 219403,
+          "meshes": 66,
+          "width": 390,
+          "height": 844,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "assets": {
+          "reeds": "glb:/models/environment/free-reeds.glb",
+          "submerged_branches": "procedural",
+          "tree_willow": "procedural",
+          "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+          "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+          "grass_clump": "glb:/models/environment/free-grass.glb",
+          "shrub": "glb:/models/environment/free-bush.glb",
+          "lily_cluster": "glb:/models/environment/free-lily.glb",
+          "rock_small": "glb:/models/environment/free-rock.glb",
+          "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+          "fallen_log": "procedural",
+          "pier_deck": "procedural",
+          "pier_pile": "procedural",
+          "path_patch": "procedural"
+        },
+        "visibleTriangles": 17528,
+        "totalMeshes": 798,
+        "materials": 95,
+        "textures": 13,
+        "decodedTexturesEstimateBytes": 18000554.666666664,
+        "frames": 90,
+        "fps": 30.27856277756867,
+        "frameMedian": 33.30000000074506,
+        "frameP95": 34.80000000074506,
+        "frameMax": 41.19999999925494
+      },
+      {
+        "post": "timber",
+        "view": "game",
+        "ambience": "morning",
+        "render": {
+          "drawCalls": 71,
+          "cpuFrameMs": 0.9000000022351742,
+          "vertices": 219403,
+          "meshes": 135,
+          "width": 390,
+          "height": 844,
+          "textures": [
+            {
+              "name": "/map-assets/sky-day.jpg",
+              "width": 1024,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/sky-day.env",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "/map-assets/bark_willow_02-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/bark_willow_02-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-color.jpg",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-normal.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/wood_planks_dirt-specular.png",
+              "width": 512,
+              "height": 512
+            },
+            {
+              "name": "/map-assets/ground-atlas.jpg",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "name": "pond-bathymetry-contacts",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "name": "pond-ripple-normals",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "pond-selective-reflection",
+              "width": 128,
+              "height": 128
+            },
+            {
+              "name": "data:EnvironmentBRDFTexture0",
+              "width": 256,
+              "height": 256
+            }
+          ]
+        },
+        "assets": {
+          "reeds": "glb:/models/environment/free-reeds.glb",
+          "submerged_branches": "procedural",
+          "tree_willow": "procedural",
+          "tree_oak": "glb:/models/environment/free-tree-birch.glb",
+          "tree_alder": "glb:/models/environment/free-tree-birch.glb",
+          "grass_clump": "glb:/models/environment/free-grass.glb",
+          "shrub": "glb:/models/environment/free-bush.glb",
+          "lily_cluster": "glb:/models/environment/free-lily.glb",
+          "rock_small": "glb:/models/environment/free-rock.glb",
+          "rock_landmark": "glb:/models/environment/free-rock-alt.glb",
+          "fallen_log": "procedural",
+          "pier_deck": "procedural",
+          "pier_pile": "procedural",
+          "path_patch": "procedural"
+        },
+        "visibleTriangles": 23414,
+        "totalMeshes": 798,
+        "materials": 95,
+        "textures": 13,
+        "decodedTexturesEstimateBytes": 18000554.666666664,
+        "frames": 90,
+        "fps": 30.014006536368733,
+        "frameMedian": 33.5,
+        "frameP95": 34.80000000074506,
+        "frameMax": 35.600000001490116
+      }
+    ],
+    "transfer": [
+      {
+        "name": "/models/environment/free-tree-birch.glb",
+        "transferSize": 300,
+        "encodedBodySize": 248388
+      },
+      {
+        "name": "/models/environment/free-reeds.glb",
+        "transferSize": 300,
+        "encodedBodySize": 53148
+      },
+      {
+        "name": "/models/environment/free-grass.glb",
+        "transferSize": 300,
+        "encodedBodySize": 4420
+      },
+      {
+        "name": "/models/environment/free-bush.glb",
+        "transferSize": 300,
+        "encodedBodySize": 29328
+      },
+      {
+        "name": "/models/environment/free-lily.glb",
+        "transferSize": 300,
+        "encodedBodySize": 15124
+      },
+      {
+        "name": "/models/environment/free-rock.glb",
+        "transferSize": 300,
+        "encodedBodySize": 12924
+      },
+      {
+        "name": "/models/environment/free-rock-alt.glb",
+        "transferSize": 300,
+        "encodedBodySize": 11420
+      },
+      {
+        "name": "/map-assets/sky-day.jpg",
+        "transferSize": 300,
+        "encodedBodySize": 41801
+      },
+      {
+        "name": "/map-assets/bark_willow_02-color.jpg",
+        "transferSize": 300,
+        "encodedBodySize": 88632
+      },
+      {
+        "name": "/map-assets/bark_willow_02-normal.png",
+        "transferSize": 300,
+        "encodedBodySize": 625400
+      },
+      {
+        "name": "/map-assets/bark_willow_02-specular.png",
+        "transferSize": 300,
+        "encodedBodySize": 196308
+      },
+      {
+        "name": "/map-assets/wood_planks_dirt-color.jpg",
+        "transferSize": 300,
+        "encodedBodySize": 64419
+      },
+      {
+        "name": "/map-assets/wood_planks_dirt-normal.png",
+        "transferSize": 300,
+        "encodedBodySize": 250767
+      },
+      {
+        "name": "/map-assets/wood_planks_dirt-specular.png",
+        "transferSize": 300,
+        "encodedBodySize": 197837
+      },
+      {
+        "name": "/map-assets/ground-atlas.jpg",
+        "transferSize": 300,
+        "encodedBodySize": 128721
+      },
+      {
+        "name": "/map-assets/sky-day.env",
+        "transferSize": 300,
+        "encodedBodySize": 232452
+      },
+      {
+        "name": "/models/environment/nature-341e46717713.png",
+        "transferSize": 300,
+        "encodedBodySize": 355328
+      }
+    ],
+    "errors": []
+  }
+]

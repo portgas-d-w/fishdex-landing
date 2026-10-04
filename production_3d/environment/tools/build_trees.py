@@ -277,6 +277,12 @@ def impostor_atlas(trees, size=256):
     atlas[..., 3] = (atlas[..., 3] > 0.5).astype(np.float32)
     out = bpy.data.images.new('fdx-tree-impostors', W, Hh, alpha=True); out.pixels = atlas.ravel().tolist()
     out.filepath_raw = os.path.join(fx.TEX_PREP, 'fdx-tree-impostors.png'); out.file_format = 'PNG'; out.save()
+    bpy.data.images.remove(out)
+    try:  # PNG8 (palette + alpha binaire) via Python/Pillow du système : ~770 Ko → ~100 Ko
+        import subprocess
+        subprocess.run(['python', os.path.join(fx.TOOLS, 'quantize_png.py'), os.path.join(fx.TEX_PREP, 'fdx-tree-impostors.png')], check=True, timeout=120)
+    except Exception as exc:
+        print('IMPOSTOR_QUANTIZE_SKIPPED', exc)
     for o in scene.objects:
         if o.type == 'MESH':
             o.hide_render = False

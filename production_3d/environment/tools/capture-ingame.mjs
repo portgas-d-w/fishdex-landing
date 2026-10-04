@@ -1,9 +1,9 @@
 // Captures in-game reproductibles pour le chantier visuel (Chromium SwiftShader, pas un iPhone).
-// Usage : node production_3d/environment/tools/capture-ingame.mjs <stage> [--posts jetty,cove] [--pilot] [--viewports mobile,desktop]
+// Usage : node production_3d/environment/tools/capture-ingame.mjs <stage> [--posts jetty,cove] [--pilot] [--viewports mobile,desktop] [--water standard|low|high|default]
 // Nécessite un serveur `VITE_E2E=1 vite --port 5180` (GAME_URL pour changer l'adresse).
 import {chromium} from '@playwright/test';import {mkdir,writeFile} from 'node:fs/promises';
 const args=process.argv.slice(2),stage=args[0]??'before',opt=(k,d)=>{const i=args.indexOf('--'+k);return i<0?d:args[i+1];};
-const posts=opt('posts','jetty,cove,bank,reed-bank,point,timber').split(','),pilot=args.includes('--pilot'),viewports=opt('viewports','mobile,desktop').split(',');
+const water=opt('water','standard'),posts=opt('posts','jetty,cove,bank,reed-bank,point,timber').split(','),pilot=args.includes('--pilot'),viewports=opt('viewports','mobile,desktop').split(',');
 const folder=`docs/apercus/visuels-blender/${stage}`;await mkdir(folder,{recursive:true});
 const VIEWPORTS={mobile:{width:390,height:844},desktop:{width:1440,height:900}};
 // Vues de contrôle du poste pilote (coordonnées monde, ponton centré en x=0, z∈[-8,0]).
@@ -23,7 +23,7 @@ try{for(const name of viewports){
  const p=await browser.newPage({viewport:VIEWPORTS[name]}),errors=[];p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error')errors.push(m.text());});p.on('response',r=>{if(r.status()>=400)errors.push(r.status()+' '+new URL(r.url()).pathname);});
  await p.addInitScript(()=>localStorage.setItem('au-fil-de-leau.gestures.v3','3'));const t0=Date.now();await p.goto(process.env.GAME_URL??'http://127.0.0.1:5180');await p.locator('body[data-ready=true]').waitFor({state:'attached',timeout:120000});const readyMs=Date.now()-t0;
  await tools(p);await p.locator('#test-toggle').click();await p.waitForFunction(()=>!!window.__fishingQA,null,{timeout:120000});await p.locator('body[data-ready=true]').waitFor({state:'attached',timeout:120000});
- await p.evaluate(()=>{const q=window.__fishingQA;q.pauseSimulation();q.waterQuality('standard');q.ambience('morning');});
+ await p.evaluate(w=>{const q=window.__fishingQA;q.pauseSimulation();if(w!=='default')q.waterQuality(w);q.ambience('morning');},water);
  const entries=[];
  for(const post of posts){
   await tools(p);await p.locator('#test-post').selectOption(post);await close(p);await p.waitForTimeout(2500);
@@ -37,5 +37,5 @@ try{for(const name of viewports){
   }
  }
  const transfer=await p.evaluate(()=>performance.getEntriesByType('resource').filter(e=>/\/(models\/environment|map-assets)\//.test(e.name)).map(e=>({name:new URL(e.name).pathname,transferSize:e.transferSize,encodedBodySize:e.encodedBodySize})));
- results.push({name,viewport:VIEWPORTS[name],device:'Chromium Windows SwiftShader (rendu logiciel), aucun iPhone',readyMs,entries,transfer,errors});await p.close();
+ results.push({name,viewport:VIEWPORTS[name],water,device:'Chromium Windows SwiftShader (rendu logiciel), aucun iPhone',readyMs,entries,transfer,errors});await p.close();
 }}finally{await browser.close();await writeFile(`${folder}/reference.json`,JSON.stringify(results,null,2)+'\n');}

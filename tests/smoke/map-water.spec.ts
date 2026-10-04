@@ -9,7 +9,7 @@ test('Carte et eau hébergées : six postes, qualités, ambiances et essais isol
  await page.addInitScript(()=>localStorage.setItem('au-fil-de-leau.gestures.v3','3'));await page.goto('/');await expect(page.locator('body')).toHaveAttribute('data-ready','true');
  expect(await page.evaluate(()=>'__fishingQA' in window)).toBe(false);await expect(page.locator('#water-tools')).toBeHidden();await tools(page);await page.locator('#test-toggle').click();await expect(page.locator('#test-badge')).toBeVisible();
  const normal=await page.evaluate(()=>localStorage.getItem('au-fil-de-leau.save.v1'));await tools(page);await page.locator('#water-tools-open').click();
- for(const family of ['tree_oak','tree_alder','grass_clump','shrub','reeds','lily_cluster','rock_small','rock_landmark'])await expect(page.locator('#water-diagnostics')).toContainText('"'+family+'": "glb:');
+ for(const family of ['tree_oak','tree_alder','tree_willow','grass_clump','shrub','reeds','reeds_shore','lily_cluster','rock_small','rock_landmark','pier_jetty','bank_earth','fallen_log','submerged_branches'])await expect(page.locator('#water-diagnostics')).toContainText('"'+family+'": "glb:');
  expect(await page.locator('#water-tools').evaluate(el=>el.scrollWidth<=el.clientWidth+1)).toBe(true);
  for(const post of ['jetty','cove','bank','reed-bank','point','timber']){await page.locator('#water-post').selectOption(post);await expect(page.locator('body')).toHaveAttribute('data-post',post);await expect(page.locator('#water-diagnostics')).toContainText('"post": "'+post+'"');}
  for(const q of ['standard','high','low']){await page.locator('#water-profile').selectOption(q);await expect(page.locator('#water-diagnostics')).toContainText('"quality": "'+q+'"');}

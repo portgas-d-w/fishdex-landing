@@ -1,6 +1,7 @@
 import registry from './environment-registry.json';
 import {MapMaterials} from './map-materials';
 import {adaptEnvironmentMaterials,environmentLoadOptions} from './environment-materials';
+import {SHARED_WIND} from './environment-wind';
 import {bindEmbeddedLods,lodLevelOf,isLodNode,type LodLevel} from './environment-lod';
 import type {AbstractMesh} from '@babylonjs/core/Meshes/abstractMesh';
 import {Texture} from '@babylonjs/core/Materials/Textures/texture';
@@ -105,14 +106,17 @@ export class PondScenery{
     for(const node of r.rootNodes)node.parent=holder;r.rootNodes=[holder];if(family.startsWith('tree_')&&!contract.allPlacements)this.detailHolders.set(p.id,holder);
     for(const m of holder.getChildMeshes()){m.metadata={family,placement:p.id};m.computeWorldMatrix(true);m.freezeWorldMatrix();if(!['grass_clump','lily_cluster'].includes(family))this.reflectors.push(m);}holder.freezeWorldMatrix();
    }
-   this.disposeReplacement(family);this.containers.set(family,c);this.replacements.set(family,instances);
+   this.disposeReplacement(family);this.containers.set(family,c);this.replacements.set(family,instances);this.applyLodScale();
    const hidden=[family,...(contract.replacesFamilies??[])];this.meshes.filter(m=>hidden.includes(m.metadata?.family)&&(!family.startsWith('tree_')||contract.allPlacements||m.metadata?.treeDetail)).forEach(m=>m.setEnabled(false));this.status.set(family,'glb:'+url);this.onAssetsChanged?.();return true;
   }catch(e){for(const r of instances)r.dispose();if(c)this.release(c);for(const [id,holder]of this.detailHolders)if(holder.isDisposed())this.detailHolders.delete(id);for(let n=this.reflectors.length-1;n>=0;n--)if(this.reflectors[n].isDisposed())this.reflectors.splice(n,1);if(this.requests.get(family)===token)this.status.set(family,'fallback:'+String(e));return false;}
  }
  private bindLightmap(c:AssetContainer,entry:EnvironmentEntry){if(!entry.lightmap)return;if(!/^\/models\/environment\/[a-zA-Z0-9_-]+\.png$/.test(entry.lightmap))throw Error('invalid_lightmap_path');const meshes=c.meshes.filter(m=>m.getTotalVertices()>0);if(meshes.some(m=>!m.isVerticesDataPresent(VertexBuffer.UV2Kind)))throw Error('missing_UV2');const tex=new Texture(entry.lightmap,this.scene);tex.coordinatesIndex=1;tex.gammaSpace=false;c.textures.push(tex);for(const m of c.materials)if(m instanceof StandardMaterial||m instanceof PBRMaterial){this.lightmaps.set(m,tex);m.useLightmapAsShadowmap=true;m.lightmapTexture=this.ambience==='morning'?tex:null;}}
  setAmbience(preset:string){this.ambience=preset;for(const [m,tex]of this.lightmaps){m.lightmapTexture=preset==='morning'?tex:null;}for(const m of this.windMaterials)m.setColor3('tint',Color3.FromHexString(preset==='evening'?'#edc89d':preset==='overcast'?'#e0e9e7':'#ffffff'));}
- setQuality(quality:'eco'|'high'){this.quality=quality;}
- updateWind(time:number,wind:number,eye:Vector3){let changed=false;const camera=this.scene.activeCamera,projection=this.scene.getEngine().getRenderHeight()/(2*Math.tan((camera?.fov??.8)/2));for(const [id,h]of this.detailHolders){const p=this.placements.find(p=>p.id===id)!;const pixels=8.5*p.scale*projection/Math.max(1,Vector3.Distance(eye,h.position)),near=this.enabled&&pixels>(this.quality==='high'?70:110);if(h.isEnabled()!==near){h.setEnabled(near);changed=true;}for(const proxy of this.meshes.filter(m=>m.metadata?.treeDetail&&m.metadata?.placement===id))proxy.setEnabled(this.enabled&&!near);}if(changed)this.onAssetsChanged?.();for(const m of this.windMaterials){m.setFloat('time',time);m.setFloat('wind',wind);m.setVector3('eye',eye);}}
+ /** Distances de LOD du registre ×0,85 en éco, ×1,25 en qualité élevée (bascules plus tôt/plus tard, mêmes ressources). */
+ private lodOriginal=new WeakMap<object,number>();
+ private applyLodScale(){const k=this.quality==='high'?1.25:.85;for(const c of new Set(this.containers.values()))for(const m of c.meshes)if(m instanceof Mesh)for(const l of m.getLODLevels()){const o=this.lodOriginal.get(l)??l.distanceOrScreenCoverage;this.lodOriginal.set(l,o);l.distanceOrScreenCoverage=o*k;}}
+ setQuality(quality:'eco'|'high'){this.quality=quality;this.applyLodScale();}
+ updateWind(time:number,wind:number,eye:Vector3){let changed=false;const camera=this.scene.activeCamera,projection=this.scene.getEngine().getRenderHeight()/(2*Math.tan((camera?.fov??.8)/2));for(const [id,h]of this.detailHolders){const p=this.placements.find(p=>p.id===id)!;const pixels=8.5*p.scale*projection/Math.max(1,Vector3.Distance(eye,h.position)),near=this.enabled&&pixels>(this.quality==='high'?70:110);if(h.isEnabled()!==near){h.setEnabled(near);changed=true;}for(const proxy of this.meshes.filter(m=>m.metadata?.treeDetail&&m.metadata?.placement===id))proxy.setEnabled(this.enabled&&!near);}if(changed)this.onAssetsChanged?.();for(const m of this.windMaterials){m.setFloat('time',time);m.setFloat('wind',wind);m.setVector3('eye',eye);}SHARED_WIND.time=time;SHARED_WIND.strength=Math.min(1,Math.abs(wind));}
  private replacedFamily(family:string){return this.replacements.has(family)||ENTRIES.some(e=>this.replacements.has(e.id)&&e.replacesFamilies?.includes(family));}
  private keepsProxy(m:Mesh){const f=m.metadata?.family as string|undefined;return !!f?.startsWith('tree_')&&!ENTRIES.find(e=>e.id===f)?.allPlacements&&!m.metadata?.treeDetail;}
  setEnabled(enabled:boolean){this.enabled=enabled;for(const m of this.meshes)m.setEnabled(enabled&&m.metadata?.family!=='path_patch'&&(!this.replacedFamily(m.metadata?.family)||this.keepsProxy(m)));for(const list of this.replacements.values())for(const r of list)for(const n of r.rootNodes)if(n instanceof TransformNode)n.setEnabled(enabled);}
