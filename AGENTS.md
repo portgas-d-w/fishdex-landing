@@ -1,5 +1,16 @@
 # Instructions de chantier — Codex et Claude Code
 
+## Changement de plateforme — décision du propriétaire, 5 octobre 2026
+
+FishDex est porté **complètement vers Roblox**, priorité console et manette. **Claude Code pilote le portage** dans le projet distinct `../fishdex-roblox` (relais : `../fishdex-roblox/RELAIS_PORTAGE_ROBLOX.md`). Ce dépôt web devient une **référence gelée** (tag `archive/web-reference-avant-roblox-2026-10-05`) ; fishdex.fr et l'app FishDex restent en ligne.
+
+- Codex : lire `docs/portage_roblox/PREVENIR_CODEX.md`. Ne plus lancer de nouveau lot spécifique au navigateur de façon autonome ; sauvegarder son chantier, documenter commits et fichiers utiles, puis n'intervenir sur Roblox que sur un lot coordonné explicitement confié.
+- Les agents ne modifient jamais simultanément la même scène Studio ni les mêmes fichiers ; réserver un lot dans le relais avant de commencer.
+- Aucun redéploiement du web pour « remplacer » le jeu ; les anciens prompts tactiles/CSS/Vercel/GLB sont historiques. Les commits limités à la documentation ne déclenchent pas de build Vercel (`ignoreCommand`).
+- Les règles ci-dessous restent valables pour toute intervention sur ce dépôt web.
+
+
+
 ## Mission et contraintes
 
 Construire progressivement un jeu de pêche 3D solo agréable sur navigateur mobile.

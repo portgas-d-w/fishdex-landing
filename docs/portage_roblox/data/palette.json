@@ -1,0 +1,20 @@
+{
+  "status": "design_tokens_from_read_reference",
+  "colors": {
+    "background": "#171F22",
+    "surface": "#232D31",
+    "raisedSurface": "#2C393D",
+    "specimenBackground": "#1D282C",
+    "border": "#415255",
+    "text": "#F0F5F4",
+    "mutedText": "#AFBFBE",
+    "accent": "#4CC6C2",
+    "accentLight": "#68D9D4",
+    "accentSurface": "#203E3F",
+    "onAccent": "#102526",
+    "focus": "#9DEBE7",
+    "success": "#82C99A",
+    "warning": "#E5C785",
+    "error": "#E68181"
+  }
+}

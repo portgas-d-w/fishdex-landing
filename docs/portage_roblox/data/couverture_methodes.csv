@@ -1,0 +1,23 @@
+reference_id,nom_public,famille_decouverte,controleur_selon_capacites,palier_famille_reference,id_depot_confirme,source_web,preparation_roblox,presentation_touche,combat_reception,contexte_jouable,sauvegarde,test_manette,test_console_reelle,statut,note
+coup,Au flotteur,Bordure,fixed_line,1,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+leurre,Lancer et animer,Exploration,reel,15,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+ultraleger,Petits leurres,Exploration,reel,15,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+mort_manie,Poisson-appât animé,Exploration,reel,15,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+feeder,Cage d’amorce,Précision,reel,30,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+method_feeder,Appât groupé,Précision,reel,30,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+anglaise,Flotteur à distance,Distance,reel,45,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+bombette,Lancer un appât léger,Distance,reel,45,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+fond,Au fond,Puissance,reel,60,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+carpe,Posé pour la carpe,Puissance,reel,60,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+surface,Appât en surface,Transversal,capability_based,60,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+stalking,Approche discrète,Transversal,capability_based,60,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+grande_canne,Déposer avec le kit,Contrôle,pole_kit,75,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+carpodrome,Carpe au coup,Contrôle,pole_kit,75,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+bolognaise,Flotteur en rivière,Rivière,reel,90,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+toc,Dérive naturelle,Rivière,manual_or_reel,90,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+mouche,Présenter une mouche,Soie,manual_or_reel,105,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+nymphe_fil,Nymphe sous l’eau,Soie,manual_or_reel,105,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+verticale,Sous le poste,Profondeur,reel,120,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+gambe,Train d’imitations,Profondeur,reel,120,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+traine,Pêcher en déplacement,Traîne,reel,135,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée
+clonk,Attirer en profondeur,Silure,reel,150,,,,,,,,,,a_auditer,Niveau OU quête ; variantes/maîtrise selon référence ; entrée non auditée

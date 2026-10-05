@@ -1,0 +1,147 @@
+{
+  "name": "PORTAGE_FISHDEX_ROBLOX_CONSOLE",
+  "created": "2026-10-05",
+  "type": "handoff_specification_not_built_game",
+  "files": [
+    {
+      "path": "00_DECISIONS_ET_PERIMETRE.md",
+      "bytes": 3907,
+      "sha256": "b07bfd2f0d447395354b8f00d8cb9cd97bfc5e199063a89e0f3906e8b107c92b"
+    },
+    {
+      "path": "01_AUDIT_ET_RECUPERATION.md",
+      "bytes": 4349,
+      "sha256": "a5a19fea7b477cb60f904c90576d41f7660ba6d95291deb1d5952783904865bf"
+    },
+    {
+      "path": "02_INSTALLATION_ET_FLUX_DE_TRAVAIL.md",
+      "bytes": 4959,
+      "sha256": "cae265f66b45ddde1e53421e9a66094c7aedd5260a5c98363102d07015c125c5"
+    },
+    {
+      "path": "03_ARCHITECTURE_ET_DONNEES.md",
+      "bytes": 5811,
+      "sha256": "3c707290992233c71b88fe86d0d17c61e15fbdd0ffbebb58269182dd09262896"
+    },
+    {
+      "path": "04_GAMEPLAY_MANETTE_ET_METHODES.md",
+      "bytes": 7743,
+      "sha256": "58fa53d677ee389c7cd23a7180aa6299a14929148c8dbf9212c95a4e06e36516"
+    },
+    {
+      "path": "05_UI_MATERIEL_ET_BOUTIQUE.md",
+      "bytes": 5715,
+      "sha256": "7d41324aa6ff23f4dde4110cb7f106c85bd60a389f2effe9183bf28c77ec2a47"
+    },
+    {
+      "path": "06_CARTE_EAU_ASSETS_ET_POISSONS.md",
+      "bytes": 6013,
+      "sha256": "621490ad1fa0b12fea42d0b129726a47e90a2925f64d4a4154e9f344222566e9"
+    },
+    {
+      "path": "07_LOTS_ET_CRITERES_DE_FIN.md",
+      "bytes": 4712,
+      "sha256": "934408f0546e02e1c468414cdc3d3459aa0bb28ed315ae7cf2bbe0177db15b43"
+    },
+    {
+      "path": "08_TESTS_PERFORMANCES_ET_PUBLICATION.md",
+      "bytes": 5731,
+      "sha256": "1e3f02dd267d1538ca8e197d07508d37991ac037c89dc3a61915d87cd895cbbb"
+    },
+    {
+      "path": "09_RELAIS_ET_SOURCES.md",
+      "bytes": 4381,
+      "sha256": "401be88a1e89ca0025045ed08df5c321a65e7abca4194535e73bf134ce434a36"
+    },
+    {
+      "path": "DEMARRER_AVEC_CLAUDE.md",
+      "bytes": 6663,
+      "sha256": "90de0079fa9c9bfc0db5dc4510880b57cfa3dd517a2f596cdff5898ee1e7e3dd"
+    },
+    {
+      "path": "PREVENIR_CODEX.md",
+      "bytes": 2978,
+      "sha256": "c448916bfccb7976ecf96a3f244caaca0823f054fbadba81e43b80c467418b0f"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3879,
+      "sha256": "29c2ebefe7e0265422bf56e5ebb639ab22a1960803cf27c67b39010be694c6ec"
+    },
+    {
+      "path": "data/contextes_entrees.json",
+      "bytes": 1522,
+      "sha256": "91a307927f126869c2307685d9648d68c4cf1d9b56be8a090250eca70b18174d"
+    },
+    {
+      "path": "data/couverture_methodes.csv",
+      "bytes": 3507,
+      "sha256": "87184daa1a60cb91f5092d032933eb6f1ae07ba11f21433b89227d545c3dada9"
+    },
+    {
+      "path": "data/palette.json",
+      "bytes": 484,
+      "sha256": "5d6583d51faa9073fa73b4668a667cbd447cbd2e633c9eb1cd53ac411e600e4b"
+    },
+    {
+      "path": "data/plan_lots.json",
+      "bytes": 1791,
+      "sha256": "ea690a38b9ffe977075c8c10c164d3eaf0c3b05370a721cf10d9389a0ef36814"
+    },
+    {
+      "path": "references/FISHDEX_GAMEPLAY_COMPLET_PROGRESSION_CODEX.md",
+      "bytes": 53090,
+      "sha256": "060defebaa8405cfec6b3235bae82919a5a63246c408daad6fa805ff373a97b7"
+    },
+    {
+      "path": "references/GUIDE_DA_BASALTE_TURQUOISE_CODEX_CLAUDE.md",
+      "bytes": 28679,
+      "sha256": "04860da87cd3717b0d992ddb6f26741ee05a9646a28826a5eee4d48c8b7cd48f"
+    },
+    {
+      "path": "references/LIRE_AVANT_REFERENCES.md",
+      "bytes": 798,
+      "sha256": "6ed4c115e0f8537719f225a18726198d342169d8acaa9dbea64faad764ef75fe"
+    },
+    {
+      "path": "templates/AUDIT_PORTAGE_TEMPLATE.md",
+      "bytes": 937,
+      "sha256": "db9d0cb5b248f094e2cc1d9cc5d0ad97dfd48c0a7af710b5df50aa6030abbaf4"
+    },
+    {
+      "path": "templates/PLAN_PUBLICATION_TEMPLATE.md",
+      "bytes": 789,
+      "sha256": "5d799012f9c015471d95e4af1471b299bb980bf091515800a051ec87fc3c56a9"
+    },
+    {
+      "path": "templates/RECETTE_CONSOLE_TEMPLATE.md",
+      "bytes": 1145,
+      "sha256": "36e151869c152bf0f836578742185dff4f7165fdc0d9f85cbdf7c20e60fffb13"
+    },
+    {
+      "path": "templates/RELAIS_PORTAGE_ROBLOX_TEMPLATE.md",
+      "bytes": 1112,
+      "sha256": "5b351a687e3579c67fbadd0e694da2f9515cb208bbec8fe4cefdc612b723baf4"
+    },
+    {
+      "path": "templates/couverture_fonctionnalites.csv",
+      "bytes": 106,
+      "sha256": "ce02c324bf678a34916d9f7f2bc26c0127452d6fed89b9402fa6ec2d88203b2a"
+    },
+    {
+      "path": "templates/couverture_poissons.csv",
+      "bytes": 211,
+      "sha256": "d83ef9bec63cb0df328bff37db334d06756167c73b0350f00d80f483db348d22"
+    },
+    {
+      "path": "templates/inventaire_assets.csv",
+      "bytes": 262,
+      "sha256": "6e3c745fac972d5a458741b5d85f9ef95b63589377a1bd614a3d182b58dbd249"
+    },
+    {
+      "path": "templates/risques_et_blocages.csv",
+      "bytes": 86,
+      "sha256": "fb3a99b3afbcdae7d2c92d95d93fb78d97b41988b45556e3b6c94e7a1911101f"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "status": "design_proposal_not_engine_binding",
+  "contexts": {
+    "Exploration": {
+      "left_stick": "move",
+      "right_stick": "camera",
+      "face_left": "interact"
+    },
+    "AimReel": {
+      "right_stick": "aim",
+      "right_trigger": "charge_then_release_cast",
+      "face_right": "cancel"
+    },
+    "FixedLinePlacement": {
+      "right_stick": "position_within_reach",
+      "face_bottom": "confirm_deposit",
+      "face_right": "cancel"
+    },
+    "Waiting": {
+      "left_trigger": "strike_when_required"
+    },
+    "FightReel": {
+      "right_stick": "rod_orientation",
+      "right_trigger": "retrieve",
+      "left_bumper": "open_drag_adjustment"
+    },
+    "FightPole": {
+      "right_stick": "rod_orientation",
+      "left_stick": "pole_return_in_context"
+    },
+    "FightManual": {
+      "right_stick": "rod_orientation",
+      "left_stick": "bounded_hand_retrieval_in_context"
+    },
+    "Landing": {
+      "right_stick": "position_net",
+      "right_trigger": "controlled_lift"
+    },
+    "RigWorkshop": {
+      "directional": "select_or_fine_adjust",
+      "stick": "move_selected_component",
+      "face_bottom": "confirm",
+      "face_right": "cancel"
+    },
+    "Menu": {
+      "directional": "navigate",
+      "face_bottom": "confirm",
+      "face_right": "back",
+      "bumpers": "tabs"
+    }
+  },
+  "requirements": [
+    "exclusive_context_routing",
+    "release_on_focus_loss",
+    "release_on_disconnect",
+    "device_specific_prompts",
+    "no_game_action_from_ui_release"
+  ]
+}

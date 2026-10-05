@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "decision_date": "2026-10-05",
+  "target": "Roblox",
+  "primary_input": "gamepad",
+  "primary_platforms": [
+    "PlayStation",
+    "Xbox"
+  ],
+  "secondary_platforms": [
+    "PC",
+    "mobile"
+  ],
+  "implementation_owner": "Claude",
+  "coordination": "one_writer_per_studio_scene",
+  "lots": [
+    {
+      "id": 0,
+      "name": "Audit et sauvegarde",
+      "status": "not_started",
+      "owner": "Claude",
+      "depends_on": []
+    },
+    {
+      "id": 1,
+      "name": "Fondation Studio/Git/Rojo",
+      "status": "not_started",
+      "owner": "Claude",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Première boucle complète",
+      "status": "not_started",
+      "owner": "Claude",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Contrôleurs et préparation",
+      "status": "not_started",
+      "owner": "Claude",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Toutes les méthodes",
+      "status": "not_started",
+      "owner": "Claude",
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Carte et bestiaire",
+      "status": "not_started",
+      "owner": "Claude",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Fonctionnalités complètes",
+      "status": "not_started",
+      "owner": "Claude",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Équilibrage et compatibilité",
+      "status": "not_started",
+      "owner": "Claude",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Recette et sortie",
+      "status": "not_started",
+      "owner": "Claude",
+      "depends_on": [
+        7
+      ]
+    }
+  ]
+}
