@@ -1,3 +1,14 @@
+## Visuels Blender première carte — Claude, 4 octobre 2026
+- [x] Lot0 audit, captures et mesures de référence (`production_3d/environment/AUDIT_VISUELS.md`).
+- [x] Lot1 chaîne Blender 5.1.2 bpy, scène étalon validée dans un viewer moteur isolé.
+- [x] Lot2 poste pilote : ponton, berges érodées, sol macro+détail, couleurs/lumière vérifiées sur trois ambiances.
+- [x] Lot3 arbres/buissons/rideau forestier, roselières, herbe, nénuphars, bois immergé ; LOD déclarés au registre.
+- [x] Lot4 eau : 28 événements réels cartographiés, rides/gerbes en pools, reflets de rive, recette trois profils.
+- [x] Lot5 vent GPU, LOD par qualité, aperçus de postes, captures avant/après, mesures et préproduction.
+- [ ] Mesure iPhone 14 Pro Safari (cadence, chauffe, mémoire GPU, 4G) ; procédure `production_3d/environment/LIVRAISON.md`.
+- [ ] Brouillard/couleur du lointain (`world.ts`, fichier commun) à reprendre si les arbres lointains semblent trop délavés sur appareil.
+- [ ] Émergence/replongée/pluie : rendus prêts mais non émis par la simulation (choix gameplay).
+
 ## Gameplay progression — nouveau chantier 4 octobre 2026
 - [x] Lot0 audit22 IDs et migration.
 - [x] Lot1 familles/paliers/quête OU niveau et prêts séparés.

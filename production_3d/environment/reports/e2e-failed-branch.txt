@@ -1,0 +1,31 @@
+desktop|tests\browser\fish-finishes.spec.ts:6:1|Aquarium : cinq identités et robes, rapports de taille, orbites dans les parois et photos sans gains 
+desktop|tests\browser\fish-registry.spec.ts:11:1|Poissons confirmés : chaînes UI forcées, rendu en réception, photo, identité, carnet et recharge 
+desktop|tests\browser\gestures.spec.ts:4:1|Départ bas, préparation visible, relâchement seul, refus et annulations 
+desktop|tests\browser\journey.spec.ts:26:1|Migration navigateur v4 : copie originale, droits acquis et préférences mobiles explicitement persistantes 
+desktop|tests\browser\journey.spec.ts:33:1|Deux vraies captures au coup ouvrent définitivement le poste, première prise puis initiation aux leurres 
+desktop|tests\browser\map-water.spec.ts:9:1|Carte eau : six vrais postes, combat réception photo et sauvegarde isolée 
+desktop|tests\browser\memories.spec.ts:22:1|Lot 04 : vide, réglages persistants, import protégé et aide contextuelle 
+desktop|tests\browser\mobile-gameplay.spec.ts:8:1|Méthodes : kit, commandes, réception par position et relevage, photo et sauvegarde uniques 
+desktop|tests\browser\mobile-gameplay.spec.ts:9:1|Matériel : aperçu, kit explicite, fiche, sac, favori et absence d’achat automatique 
+desktop|tests\browser\physics.spec.ts:9:1|Départ puissant : traction, frein et moulinage sous charge sans pénalité de bouton 
+desktop|tests\browser\tackle.spec.ts:9:1|Atelier mobile/bureau, montage, achats, sac, ensemble, catalogue et retours stables 
+desktop|tests\browser\tackle.spec.ts:29:1|Stock manquant bloque le lancer, preset explique le manque et kit à zéro argent relance 
+desktop|tests\browser\techniques.spec.ts:15:1|Catalogue V2 : les 22 chaînes UI/combat/réception/photo/reload dans le profil isolé 
+desktop|tests\browser\techniques.spec.ts:21:1|Ateliers V2 et milieux : variantes, soie, feeder, courant, bateau et interruptions 
+desktop|tests\browser\touch.spec.ts:34:1|Carnet et boutique défilent naturellement ; recherche et sélection restent éditables 
+desktop|tests\browser\ui-refonte.spec.ts:21:1|Lot 02 : inconnus, conseil débutant, préparation explicite, filtres et recharge 
+desktop|tests\browser\ui-refonte.spec.ts:41:1|Lot 01 : retours de fiche, recherche, réserve inchangée et dispositions étroites 
+desktop|tests\browser\ui-refonte.spec.ts:61:1|Lot 03 : objectif suivi, 22 techniques, carte locale et observation utile 
+mobile|tests\browser\art-direction.spec.ts:63:1|Lisibilité à 320/390/430 px et paysage : panneaux, contrastes et cibles tactiles 
+mobile|tests\browser\fish-finishes.spec.ts:6:1|Aquarium : cinq identités et robes, rapports de taille, orbites dans les parois et photos sans gains 
+mobile|tests\browser\gestures.spec.ts:4:1|Départ bas, préparation visible, relâchement seul, refus et annulations 
+mobile|tests\browser\journey.spec.ts:26:1|Migration navigateur v4 : copie originale, droits acquis et préférences mobiles explicitement persistantes 
+mobile|tests\browser\journey.spec.ts:33:1|Deux vraies captures au coup ouvrent définitivement le poste, première prise puis initiation aux leurres 
+mobile|tests\browser\memories.spec.ts:22:1|Lot 04 : vide, réglages persistants, import protégé et aide contextuelle 
+mobile|tests\browser\mobile-gameplay.spec.ts:9:1|Matériel : aperçu, kit explicite, fiche, sac, favori et absence d’achat automatique 
+mobile|tests\browser\tackle.spec.ts:9:1|Atelier mobile/bureau, montage, achats, sac, ensemble, catalogue et retours stables 
+mobile|tests\browser\techniques.spec.ts:21:1|Ateliers V2 et milieux : variantes, soie, feeder, courant, bateau et interruptions 
+mobile|tests\browser\touch.spec.ts:34:1|Carnet et boutique défilent naturellement ; recherche et sélection restent éditables 
+mobile|tests\browser\ui-refonte.spec.ts:21:1|Lot 02 : inconnus, conseil débutant, préparation explicite, filtres et recharge 
+mobile|tests\browser\ui-refonte.spec.ts:41:1|Lot 01 : retours de fiche, recherche, réserve inchangée et dispositions étroites 
+mobile|tests\browser\ui-refonte.spec.ts:61:1|Lot 03 : objectif suivi, 22 techniques, carte locale et observation utile 

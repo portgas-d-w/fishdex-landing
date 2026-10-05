@@ -17,11 +17,13 @@ export class MapMaterials{
  }
  ground(){
   // Macro-couleur cuite depuis la carte réelle + détail tuilé tous les 3 m (une lecture de plus, pas de splat multi-lectures).
-  const m=new StandardMaterial('map-ground',this.scene);m.diffuseColor=Color3.White();m.specularColor=new Color3(.004,.004,.004);m.specularPower=10;
+  const m=new StandardMaterial('map-ground',this.scene);m.diffuseColor=Color3.White();m.specularColor=Color3.Black();
   const tex=new Texture('/map-assets/ground-macro.jpg',this.scene,false,false,Texture.TRILINEAR_SAMPLINGMODE,undefined,()=>{m.diffuseTexture=null;m.diffuseColor=Color3.FromHexString('#66713f');});
   tex.wrapU=tex.wrapV=Texture.CLAMP_ADDRESSMODE;tex.anisotropicFilteringLevel=2;m.diffuseTexture=tex;
-  const detail=new Texture('/map-assets/ground-detail.png',this.scene,false,false,Texture.TRILINEAR_SAMPLINGMODE,undefined,()=>{m.detailMap.isEnabled=false;});
-  detail.gammaSpace=false;detail.uScale=180/3;detail.vScale=140/3;detail.anisotropicFilteringLevel=1;
-  m.detailMap.texture=detail;m.detailMap.diffuseBlendLevel=1;m.detailMap.bumpLevel=0;m.detailMap.isEnabled=true;return m;
+  // Détail tuilé 3 m appliqué comme multiplicateur final (lightmap ×2, gris 0,5 neutre) : même lecture visuelle que
+  // detailMap mais sans le chemin de normale de détail (dérivées par pixel), nettement moins coûteux.
+  const detail=new Texture('/map-assets/ground-detail.png',this.scene,false,false,Texture.TRILINEAR_SAMPLINGMODE,undefined,()=>{m.lightmapTexture=null;});
+  detail.gammaSpace=false;detail.uScale=180/3;detail.vScale=140/3;detail.level=2;
+  m.lightmapTexture=detail;m.useLightmapAsShadowmap=true;return m;
  }
 }

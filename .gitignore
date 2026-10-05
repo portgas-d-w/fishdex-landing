@@ -14,3 +14,5 @@ playwright-report/
 # Chantier visuel Claude : champs intermédiaires et journaux Blender régénérables
 production_3d/environment/textures/fields/*.f32
 production_3d/environment/reports/*.log
+
+.env*

@@ -27,7 +27,10 @@ export function adaptEnvironmentMaterials(c:AssetContainer,scene:Scene,family:st
   const alpha=source.transparencyMode===PBRMaterial.MATERIAL_ALPHATEST||!!source.albedoTexture?.hasAlpha;
   if(fdx){
    // Rugosité glTF → reflet spéculaire discret ; aucune matière naturelle métallique.
-   const rough=Math.max(.35,Math.min(1,source.roughness??.9));material.specularColor=Color3.Gray().scale(.12*(1-rough)+.01);material.specularPower=10+40*(1-rough);
+   // Matières mates (rugosité ≥ 0,85, feuillage) : pas de terme spéculaire, shader plus léger sur mobile.
+   const rough=Math.max(.35,Math.min(1,source.roughness??.9));material.specularColor=rough>=.85||alpha?Color3.Black():Color3.Gray().scale(.12*(1-rough)+.01);material.specularPower=10+40*(1-rough);
+   // Écorce : arbres vus surtout de loin, la normal map n’apporte rien et coûte un repère tangent par pixel.
+   if(source.name==='fdx_bark')source.bumpTexture=null;
    if(source.bumpTexture){material.bumpTexture=source.bumpTexture;material.bumpTexture.level=source.bumpTexture.level||1;material.invertNormalMapX=source.invertNormalMapX;material.invertNormalMapY=source.invertNormalMapY;}
    // Feuillage/imposteurs : normales de volume exportées depuis Blender ; pas d’inversion pour les faces arrière
    // (twoSidedLighting assombrirait la moitié des cartes et des plans croisés).

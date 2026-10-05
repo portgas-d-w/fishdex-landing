@@ -9,6 +9,10 @@ Les quatre dossiers UI sont réalisés séquentiellement. Socle léger TypeScrip
 
 | Date | Décision | Motif / statut |
 | --- | --- | --- |
+| 2026-10-04 | Décor produit par scripts Blender `bpy` reproductibles, GLB partagés par familles, LOD `_lodN` déclarés au registre | Modèles éditables et régénérables ; instanciation (appels de dessin ÷2 à 5) ; aucun LOD déduit d’un nom de fichier. |
+| 2026-10-04 | GLB du décor chargés sans tampon sRGB matériel (`useSRGBBuffers:false`) | Le chemin mobile StandardMaterial travaille en espace gamma : sinon couleurs ~4× trop sombres (rochers et herbe noirs). |
+| 2026-10-04 | Sol = macro-couleur cuite depuis la carte + `detailMap` tuilée 3 m | Remplace l’atlas moyenné beige sans splat multi-lectures ; PNG gris+alpha obligatoire pour la normale de détail. |
+| 2026-10-04 | Vent des végétaux GLB par plugin de matériau GPU, base fixe, phase par instance | Pas de reconstruction CPU ; collisions/obstacles inchangés. |
 | 2026-10-03 | Carte commune 0.12, six anciens IDs, translation Z +39 et caméra historique du ponton | Une source pour fond, couleurs, sondages et rencontres ; comparaison avant/après et droits acquis conservés. |
 | 2026-10-03 | Eau olive, normales procédurales, reflets sélectifs 256/512 et profil économe par défaut | Comparaison avec matériau simple et WaterMaterial 9.28 ; limiter passes et dépendances. Cadences en images rendues, performance appareil à mesurer. |
 | 2026-10-03 | Journal d’eau sur l’horloge de simulation, effets isolés sans récompense et non-applicabilité explicite | Éviter impacts à chaque image et faux sauts/pluie ; qualités visuelles sans changement de pêche. |
