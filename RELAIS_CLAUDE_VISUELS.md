@@ -18,7 +18,7 @@ Mise à jour : 4 octobre 2026 (soir), Claude Code. Mission : `CHANTIER_CLAUDE_VI
 | 2 Poste pilote | Terminé | ponton + berges + sol ; `docs/apercus/visuels-blender/pilot-v1/` (5 vues, matin/couvert/soir) |
 | 3 Végétation et carte | Terminé (première passe) | arbres, buissons, rideau forestier, roseaux, herbe, nénuphars, bois immergé ; `lot3/` (6 postes ×2 formats), `reeds-v2/` |
 | 4 Eau et événements | Terminé | `production_3d/environment/reports/EAU_EVENEMENTS.md`, `docs/apercus/visuels-blender/eau/` (+ `water-scenarios.json`), `lot4/` |
-| 5 Optimisation / livraison | Publié en production sur demande du propriétaire (5 oct.) | `reports/PERFORMANCES.md`, `reports/TESTS_LIVRAISON.md`, `LIVRAISON.md`, `comparaison-avant-apres.jpg` |
+| 5 Optimisation / livraison | Publié : production dpl_BTnAFG2np5Ym8hvDXiX7c1jmjqXT, smoke public 12/12 (5 oct.) | `reports/PERFORMANCES.md`, `reports/TESTS_LIVRAISON.md`, `LIVRAISON.md`, `comparaison-avant-apres.jpg` |
 
 ## Ressources produites (toutes « poste_integre » d’après `production_3d/environment/manifest.json`)
 
